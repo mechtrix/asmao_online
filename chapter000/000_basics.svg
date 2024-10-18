@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="1050"
+   height="700"
+   viewBox="0 0 277.81249 185.20833"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   sodipodi:docname="000_basics.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="1.0255231"
+     inkscape:cx="554.35125"
+     inkscape:cy="341.7768"
+     inkscape:window-width="1920"
+     inkscape:window-height="1001"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Ebene 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g1997"
+       transform="matrix(1.2721084,0,0,1.2721084,-37.797557,-25.198368)">
+      <circle
+         style="opacity:1;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.786097;stroke-linecap:round;stroke-dasharray:none"
+         id="path242"
+         cx="138.90625"
+         cy="92.604164"
+         r="19.885136" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.46667px;line-height:1.25;font-family:Bahnschrift;-inkscape-font-specification:'Bahnschrift, @wght=300';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wght' 300;stroke-width:0.264583"
+         x="121.86749"
+         y="95.609673"
+         id="text298"><tspan
+           sodipodi:role="line"
+           id="tspan296"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.46667px;font-family:Bahnschrift;-inkscape-font-specification:'Bahnschrift, @wght=300';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wght' 300;stroke-width:0.264583"
+           x="121.86749"
+           y="95.609673">Statistics</tspan></text>
+    </g>
+    <g
+       id="g3562">
+      <rect
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.5;stroke-dasharray:none;stroke-opacity:1"
+         id="rect1087-46"
+         width="40.619534"
+         height="15.072658"
+         x="96.703125"
+         y="17.687029"
+         rx="2.8006947"
+         ry="2.8006947" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.23333px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="117.51501"
+         y="27.949978"
+         id="text3056"><tspan
+           sodipodi:role="line"
+           id="tspan3054"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111px;font-family:Bahnschrift;-inkscape-font-specification:'Bahnschrift, @wght=300';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wght' 300;stroke-width:0.264583"
+           x="117.51501"
+           y="27.949978">Data</tspan></text>
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 119.46159,32.759686 11.62789,35.786945"
+         id="path3536"
+         inkscape:connector-type="polyline"
+         inkscape:connector-curvature="0"
+         inkscape:connection-start="#rect1087-46"
+         inkscape:connection-end="#g1997" />
+    </g>
+    <g
+       id="g3569">
+      <rect
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.5;stroke-dasharray:none;stroke-opacity:1"
+         id="rect1087-460"
+         width="40.619534"
+         height="15.072658"
+         x="140.48984"
+         y="17.687029"
+         rx="2.8006947"
+         ry="2.8006947" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.23333px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="161.24298"
+         y="23.485479"
+         id="text3056-7"><tspan
+           sodipodi:role="line"
+           id="tspan3054-4"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:Bahnschrift;-inkscape-font-specification:'Bahnschrift, @wght=300';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wght' 300;stroke-width:0.264583"
+           x="161.24298"
+           y="23.485479">Descriptive</tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:Bahnschrift;-inkscape-font-specification:'Bahnschrift, @wght=300';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wght' 300;stroke-width:0.264583"
+           x="161.24298"
+           y="31.422979"
+           id="tspan3085">Statistics</tspan></text>
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="M 158.3509,32.759686 146.72302,68.546631"
+         id="path3538"
+         inkscape:connector-type="polyline"
+         inkscape:connector-curvature="0"
+         inkscape:connection-start="#rect1087-460"
+         inkscape:connection-end="#g1997" />
+    </g>
+    <g
+       id="g3576">
+      <rect
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.5;stroke-dasharray:none;stroke-opacity:1"
+         id="rect1087-89"
+         width="40.619534"
+         height="15.072658"
+         x="175.91402"
+         y="43.424206"
+         rx="2.8006947"
+         ry="2.8006947" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.23333px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="196.28424"
+         y="49.222656"
+         id="text3056-7-2"><tspan
+           sodipodi:role="line"
+           id="tspan3054-4-2"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:Bahnschrift;-inkscape-font-specification:'Bahnschrift, @wght=300';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wght' 300;stroke-width:0.264583"
+           x="196.28424"
+           y="49.222656">Inferential</tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:Bahnschrift;-inkscape-font-specification:'Bahnschrift, @wght=300';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wght' 300;stroke-width:0.264583"
+           x="196.28424"
+           y="57.160156"
+           id="tspan3085-4">Statistics</tspan></text>
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="M 185.85092,58.496863 159.37094,77.735701"
+         id="path3540"
+         inkscape:connector-type="polyline"
+         inkscape:connector-curvature="0"
+         inkscape:connection-start="#rect1087-89"
+         inkscape:connection-end="#g1997" />
+    </g>
+    <g
+       id="g3582">
+      <rect
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.5;stroke-dasharray:none;stroke-opacity:1"
+         id="rect1087"
+         width="40.619534"
+         height="15.072658"
+         x="189.44485"
+         y="85.067833"
+         rx="2.8006947"
+         ry="2.8006947" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.23333px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="210.0199"
+         y="94.538757"
+         id="text3056-1"><tspan
+           sodipodi:role="line"
+           id="tspan3054-7"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111px;font-family:Bahnschrift;-inkscape-font-specification:'Bahnschrift, @wght=300';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wght' 300;stroke-width:0.264583"
+           x="210.0199"
+           y="94.538757">Probability</tspan></text>
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 189.44485,92.604163 -25.24255,2e-6"
+         id="path3542"
+         inkscape:connector-type="polyline"
+         inkscape:connector-curvature="0"
+         inkscape:connection-start="#rect1087"
+         inkscape:connection-end="#g1997" />
+    </g>
+    <g
+       id="g3588">
+      <rect
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.5;stroke-dasharray:none;stroke-opacity:1"
+         id="rect1087-4"
+         width="40.619534"
+         height="15.072658"
+         x="175.91402"
+         y="126.71146"
+         rx="2.8006947"
+         ry="2.8006947" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.23333px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="196.79222"
+         y="136.23164"
+         id="text3056-1-4"><tspan
+           sodipodi:role="line"
+           id="tspan3054-7-9"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111px;font-family:Bahnschrift;-inkscape-font-specification:'Bahnschrift, @wght=300';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wght' 300;stroke-width:0.264583"
+           x="196.79222"
+           y="136.23164">Sampling</tspan></text>
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="M 185.85091,126.71146 159.37094,107.47263"
+         id="path3546"
+         inkscape:connector-type="polyline"
+         inkscape:connector-curvature="0"
+         inkscape:connection-start="#rect1087-4"
+         inkscape:connection-end="#g1997" />
+    </g>
+    <g
+       id="g3594">
+      <rect
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.5;stroke-dasharray:none;stroke-opacity:1"
+         id="rect1087-9"
+         width="40.619534"
+         height="15.072658"
+         x="140.48984"
+         y="152.44864"
+         rx="2.8006947"
+         ry="2.8006947" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.23333px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="161.48932"
+         y="162.71159"
+         id="text3056-1-4-3"><tspan
+           sodipodi:role="line"
+           id="tspan3054-7-9-5"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111px;font-family:Bahnschrift;-inkscape-font-specification:'Bahnschrift, @wght=300';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wght' 300;stroke-width:0.264583"
+           x="161.48932"
+           y="162.71159">Variables</tspan></text>
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="M 158.3509,152.44864 146.72302,116.6617"
+         id="path3548"
+         inkscape:connector-type="polyline"
+         inkscape:connector-curvature="0"
+         inkscape:connection-start="#rect1087-9"
+         inkscape:connection-end="#g1997" />
+    </g>
+    <g
+       id="g3600">
+      <rect
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.5;stroke-dasharray:none;stroke-opacity:1"
+         id="rect1087-5"
+         width="40.619534"
+         height="15.072658"
+         x="96.703117"
+         y="152.44864"
+         rx="2.8006947"
+         ry="2.8006947" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.23333px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="116.91814"
+         y="162.71159"
+         id="text3056-1-4-3-2"><tspan
+           sodipodi:role="line"
+           id="tspan3054-7-9-5-5"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111px;font-family:Bahnschrift;-inkscape-font-specification:'Bahnschrift, @wght=300,wdth=87.0';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wdth' 87, 'wght' 300;stroke-width:0.264583"
+           x="116.91814"
+           y="162.71159">Distributions</tspan></text>
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="M 119.46159,152.44864 131.08948,116.6617"
+         id="path3550"
+         inkscape:connector-type="polyline"
+         inkscape:connector-curvature="0"
+         inkscape:connection-start="#rect1087-5"
+         inkscape:connection-end="#g1997" />
+    </g>
+    <g
+       id="g3607">
+      <rect
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.5;stroke-dasharray:none;stroke-opacity:1"
+         id="rect1087-52"
+         width="40.619534"
+         height="15.072658"
+         x="61.278938"
+         y="126.71146"
+         rx="2.8006947"
+         ry="2.8006947" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.23333px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="81.697227"
+         y="132.53316"
+         id="text3056-7-2-1"><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:Bahnschrift;-inkscape-font-specification:'Bahnschrift, @wght=300';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wght' 300;stroke-width:0.264583"
+           x="81.697227"
+           y="132.53316"
+           id="tspan3085-4-9">Statistical</tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:Bahnschrift;-inkscape-font-specification:'Bahnschrift, @wght=300';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wght' 300;stroke-width:0.264583"
+           x="81.697227"
+           y="140.47066"
+           id="tspan3406">Software</tspan></text>
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="M 91.961576,126.71146 118.44156,107.47263"
+         id="path3552"
+         inkscape:connector-type="polyline"
+         inkscape:connector-curvature="0"
+         inkscape:connection-start="#rect1087-52"
+         inkscape:connection-end="#g1997" />
+    </g>
+    <g
+       id="g3614">
+      <rect
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.5;stroke-dasharray:none;stroke-opacity:1"
+         id="rect1087-1"
+         width="40.619534"
+         height="15.072658"
+         x="47.748112"
+         y="85.067825"
+         rx="2.8006947"
+         ry="2.8006947" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.23333px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="68.722176"
+         y="90.866272"
+         id="text3056-7-2-4"><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:Bahnschrift;-inkscape-font-specification:'Bahnschrift, @wght=300';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wght' 300;stroke-width:0.264583"
+           x="68.722176"
+           y="90.866272"
+           id="tspan3085-4-2">Ethics </tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:Bahnschrift;-inkscape-font-specification:'Bahnschrift, @wght=300';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wght' 300;stroke-width:0.264583"
+           x="68.722176"
+           y="98.803772"
+           id="tspan3289">&amp; Bias</tspan></text>
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 88.367645,92.604158 25.242555,4e-6"
+         id="path3554"
+         inkscape:connector-type="polyline"
+         inkscape:connector-curvature="0"
+         inkscape:connection-start="#rect1087-1"
+         inkscape:connection-end="#g1997" />
+    </g>
+    <g
+       id="g3621">
+      <rect
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.5;stroke-dasharray:none;stroke-opacity:1"
+         id="rect1087-8"
+         width="40.619534"
+         height="15.072658"
+         x="61.278961"
+         y="43.424187"
+         rx="2.8006947"
+         ry="2.8006947" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.23333px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="82.122025"
+         y="48.59322"
+         id="text3056-7-2-4-2"><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:Bahnschrift;-inkscape-font-specification:'Bahnschrift, @wght=300';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wght' 300;stroke-width:0.264583"
+           x="82.122025"
+           y="48.59322"
+           id="tspan3289-1">Real World</tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:Bahnschrift;-inkscape-font-specification:'Bahnschrift, @wght=300';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wght' 300;stroke-width:0.264583"
+           x="82.122025"
+           y="56.53072"
+           id="tspan3442">Applications</tspan></text>
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 91.961586,58.496844 26.479984,19.23885"
+         id="path3556"
+         inkscape:connector-type="polyline"
+         inkscape:connector-curvature="0"
+         inkscape:connection-start="#rect1087-8"
+         inkscape:connection-end="#g1997" />
+    </g>
+  </g>
+</svg>

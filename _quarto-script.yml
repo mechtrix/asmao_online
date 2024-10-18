@@ -1,0 +1,20 @@
+project:
+  type: book
+  output-dir: site
+
+book:
+  chapters:
+    - index.qmd
+    - chapter000_BasicConcepts.qmd
+    - chapter001_Distributions.qmd
+    - references.qmd
+    
+format:
+  html:
+    include-in-header: mathjax.html
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt
+
+
+

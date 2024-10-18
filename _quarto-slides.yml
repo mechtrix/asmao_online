@@ -1,0 +1,24 @@
+project: 
+  output-dir: _slides
+  type: default
+
+slide-number: true
+
+format:
+  revealjs:
+    # css: style.css
+    # auto-stretch: false
+    toc-depth: 1
+    slide-level: 5
+    scrollable: true
+    mouse-wheel: true
+    # output-file: slides.html
+    # title-slide-attributes:
+    #   data-background-image: img/siegelWithTranparency.png
+    #   data-background-size: contain
+    # logo: img/siegel.png
+    reference-location: document
+    footer: "Prof. Dr. Tim Weber"
+    include-in-header: mathjax.html
+    fig-format: svg
+    mermaid-format: png
