@@ -1,0 +1,3811 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+library(tidyverse)
+library(patchwork)
+library(gghalves)
+library(ggridges)
+library(here)
+library(ggthemes)
+library(gt)
+library(gtsummary)
+library(broom)
+library(pwr)
+library(qqplotr)
+library(ggpubr)
+library(datasauRus)
+library(car)
+library(ggh4x)
+library(gghighlight)
+library(rstatix)
+
+```
+
+# Inferential Statistics
+
+::: {.content-visible when-profile="script"}
+
+Inferential statistics involves making predictions, generalizations, or inferences about a population based on a sample of data. 
+These techniques are used when researchers want to draw conclusions beyond the specific data they have collected. 
+Inferential statistics help answer questions about relationships, differences, and associations within a population. 
+
+
+
+:::
+
+## Hypothesis Testing - Basics
+
+```{r}
+#| label: fig-hypothesis
+#| out-width: 85%
+#| fig-cap: We are hypotheses.
+
+knitr::include_graphics(here::here("chapter002","004_Hypothesis.png"))
+```
+
+::: {.content-visible when-profile="script"}
+
+**[Null Hypothesis (H0)](#H0):** This is the default or status quo assumption. 
+It represents the belief that there is no significant change, effect, or difference in the production process. 
+It is often denoted as a statement of equality (e.g., the mean production rate is equal to a certain value).
+
+**[Alternative Hypothesis (Ha)](#Ha):** This is the claim or statement we want to test. 
+It represents the opposite of the null hypothesis, suggesting that there is a significant change, effect, or difference in the production process (e.g., the mean production rate is not equal to a certain value).
+
+:::
+
+::: {.content-visible when-profile="slides"}
+
+### The drive shaft exercise - Hypotheses
+
+:::{.incremental .v-center-container}
+
+H0:
+: The drive shaft diameter is within the specification.
+
+Ha:
+: The drive shaft diameter is not within the specification.
+
+:::
+
+:::
+
+::: {.content-visible when-profile="script"}
+
+### The drive shaft exercise - Hypotheses
+
+During the [QC](#QC) of the drive shaft $n=100$ samples are taken and the diameter is measured with an accuracy of $\pm 0.01mm$.
+Is the true mean of all produced drive shafts within the specification?
+
+For this we can formulate the hypotheses.
+
+H0:
+: The drive shaft diameter is within the specification.
+
+Ha:
+: The drive shaft diameter is not within the specification.
+
+In the following we will explore, how to test for these hypotheses.
+
+:::
+
+## Standard Error
+
+```{r}
+#| label: fig-se
+#| layout-ncol: 2
+#| out-width: 95%
+#| fig-cap: The SE for varying sample sizes $n$
+#| fig-subcap: 
+#|   - maximum sample size $n = 200$
+#|   - sample size for $n = 5 \ldots 50$
+
+se_dat <- data.frame(
+  sd = 1,
+  n = seq(1,200)
+) %>% 
+  mutate(
+    se = sd/sqrt(n)
+  )
+
+plt1 <- se_dat %>% 
+  ggplot(
+    aes(x = n, y = se)
+  )+
+  geom_line()+
+  scale_x_continuous(
+    expand = c(0,0,0,0)
+  )+
+  scale_y_continuous(
+    expand = c(0,0,0,0),
+    limits = c(0,NA)
+  )+
+  theme_few()+
+  labs(
+    title = "The SE vs. the sample size"
+  )
+
+
+tmp_n_1020 <- se_dat %>% filter(n == 10 | n == 20) %>% 
+  rowid_to_column() %>%
+  pivot_wider(
+    names_from = rowid,
+    values_from = c(n,se)
+  )
+
+tmp_n_1030 <- se_dat %>% filter(n == 10 | n == 30) %>% 
+  rowid_to_column() %>%
+  pivot_wider(
+    names_from = rowid,
+    values_from = c(n,se)
+  )
+  
+tmp_n_1040 <- se_dat %>% filter(n == 10 | n == 40) %>% 
+  rowid_to_column() %>%
+  pivot_wider(
+    names_from = rowid,
+    values_from = c(n,se)
+  )
+
+
+tmp <- bind_rows(tmp_n_1020,tmp_n_1030,tmp_n_1040) %>% 
+  mutate(
+    diff_se = se_1 - se_2
+  )
+
+plt2 <- se_dat %>% 
+  filter(n>5&n<50) %>% 
+  ggplot(
+    aes(x = n, y = se)
+  )+
+  geom_line()+
+  scale_x_continuous(
+    expand = c(0.05,0,0.05,0),
+    # limits = c(5,50),
+    breaks = seq(0,50,5)
+  )+
+  scale_y_continuous(
+    expand = c(0,0.01,0.01,0),
+    # limits = c(0,0.5)
+  )+
+  geom_point(
+    data = se_dat %>% filter(n == 10 | n == 20 | n == 30 | n == 40),
+    shape = 1,
+    size = 4
+  )+
+  geom_segment(
+    data = tmp,
+    aes(x = n_2,
+        xend = n_2,
+        y = se_1,
+        yend = se_2)
+  )+
+  geom_segment(
+    data = tmp,
+    aes(x = n_1,
+        xend = n_2,
+        y = se_1,
+        yend = se_1)
+  )+
+  geom_text(
+    data = se_dat %>% filter(n == 10 | n == 20 | n == 30 | n == 40),
+    aes(
+      label = se %>% round(.,digits = 3),
+      ),
+    nudge_x = -1,
+    nudge_y = -0.01
+  )+
+  geom_label(
+    data = tmp,
+    aes(
+      x = n_2,
+      y = (se_1 + se_2)/2,
+      label = paste0(diff_se %>% round(.,digits = 3)*100,"%")
+    )
+  )+
+  theme_few()+
+  labs(
+    title = "The SE vs. the sample size (n = 5 ... 50 and sd = 1)"
+  )
+
+plt1
+plt2
+
+```
+
+::: {.content-visible when-profile="script"}
+
+[Standard error](#se) is a statistical measure that quantifies the variation or uncertainty in sample statistics, particularly the mean (average). 
+It is a valuable tool in inferential statistics and provides an estimate of how much the sample mean is expected to vary from the true population mean.
+
+\begin{align}
+SE = \frac{sd}{\sqrt{n}}
+\end{align}
+
+A smaller [standard error](#se) indicates that the sample mean is likely very close to the population mean, while a larger standard error suggests greater variability and less precision in estimating the population mean. 
+[Standard error](#se) is crucial when constructing confidence intervals and performing hypothesis tests, as it helps in assessing the reliability of sample statistics as estimates of population parameters.
+
+**Variance vs. Standard Deviation:** The standard error formula is based on the standard deviation of the sample, not the variance. 
+The standard deviation is the square root of the variance. 
+
+**Scaling of Variability:** The purpose of the standard error is to measure the variability or spread of sample means. 
+The square root of the sample size reflects how that variability decreases as the sample size increases. 
+When the sample size is larger, the sample mean is expected to be closer to the population mean, and the standard error becomes smaller to reflect this reduced variability.
+
+**Central Limit Theorem:** The inclusion of $\sqrt{n}$ in the standard error formula is closely tied to the Central Limit Theorem, which states that the distribution of sample means approaches a normal distribution as the sample size increases. 
+$\sqrt{n}$ helps in this context to ensure that the standard error appropriately reflects the distribution's properties.
+
+:::
+
+
+## Confidence Intervals
+
+::: {.content-visible when-profile="script"}
+
+A [Confidence Interval](#ci) is a statistical concept used to estimate a range of values within which a population parameter, such as a population mean or proportion, is likely to fall. 
+It provides a way to express the uncertainty or variability in our sample data when making inferences about the population. 
+In other words, it quantifies the level of confidence we have in our estimate of a population parameter.
+
+Confidence intervals are typically expressed as a range with an associated confidence level. 
+The confidence level, often denoted as $1-\alpha$, represents the probability that the calculated interval contains the true population parameter. 
+Common confidence levels include $90\%$, $95\%$, and $99\%$.
+
+There are different ways of calculating [CI](#ci).
+
+1. For the population mean [$\mu_0$](#truemean-gloss) when the population standard deviation [$\sigma_0^2$](#truevariance-gloss) is known (\eqref{ci01}).
+
+\begin{align}
+CI = \bar{X} \pm t \frac{\sigma_0}{\sqrt{n}} \label{ci01}
+\end{align}
+
+* $\bar{X}$ is the sample mean.
+
+* $Z$ is the critical value from the standard normal distribution corresponding to the desired confidence level (e.g., $1.96$ for a $95\%$ confidence interval).
+
+* $\sigma_0$ is the populations standard deviation
+
+* $n$ is the sample size
+
+2.For the population mean [$\mu_0$](#truemean-gloss) when the population standard deviation [$\sigma_0$](#truevariance-gloss) is Unknown (t-confidence interval), see \eqref{ci02}.
+
+\begin{align}
+CI = \bar{X} \pm t \frac{sd}{\sqrt{n}} \label{ci02}
+\end{align}
+
+* $\bar{X}$ is the sample mean.
+
+* $t$ is the critical value from the t-distribution with $n-1$ degrees of freedom corresponding to the desired confidence level
+
+* $sd$ is the sample standard deviation
+
+* $n$ is the sample size
+
+3. For a population proportion [p](#popprop-gloss), see \eqref{ci03}.
+
+\begin{align}
+CI = \hat{p} \pm Z \sqrt{\frac{\hat{p}(1-\hat{p})}{n}} \label{ci03}
+\end{align}
+
+* $\hat{p}$ is the sample proportion
+
+* $Z$ is the critical value from the standard normal distribution corresponding to the desired confidence level
+
+* $n$ is the sample size
+
+4. The method for calculating confidence intervals may vary depending on the estimated parameter. 
+Estimating a population median or the differences between two population means, other statistical techniques may be used.
+
+:::
+
+### The drive shaft exercise - Confidence Intervals
+
+```{r}
+#| label: fig-ci
+#| out-width: 75%
+#| fig-cap: The 95% CI for the drive shaft data.
+
+load(here("data","drive_shaft_data.Rdata"))
+
+drive_shaft <- drive_shaft %>% 
+  pivot_wider(names_from = group,values_from = diameter) %>% 
+  select(group01,sample_no)
+
+conf_interval <- confint(lm(group01~1,data = drive_shaft),level = 0.95) %>% 
+  as_tibble() %>% 
+  tidy()
+
+conf_interval <- tidy(lm(group01~1,data = drive_shaft),level = 0.95,conf.int = TRUE) 
+
+drive_shaft <- drive_shaft %>% 
+  mutate(conf.low = conf_interval$conf.low,
+         conf.high = conf_interval$conf.high,
+         in_conf = case_when(
+           (group01 > conf.low & group01 < conf.high) ~ TRUE,
+           TRUE ~ FALSE
+         )
+         )
+
+drive_shaft %>% 
+  # ggplot(aes(x = factor("group01")))+
+  ggplot()+
+  geom_histogram(aes(x = group01),color = "white")+
+  geom_rect(data = conf_interval,
+            aes(xmin = conf.low, 
+                xmax = conf.high, 
+                ymin = -Inf, 
+                ymax = Inf,
+                fill = "CI"),
+            alpha=0.5)+
+  geom_vline(data = conf_interval,
+            aes(xintercept = conf.low),
+            color = "azure3",
+            # alpha=0.5
+            )+
+  geom_vline(data = conf_interval,
+            aes(xintercept = conf.high),
+            color = "azure3",
+            )+
+  geom_density(aes(x = group01),color = "azure1") +
+  scale_fill_manual(values = c("CI"="azure3"))+
+  geom_vline(aes(xintercept = mean(group01),linetype = "mean"),color = "black",key_glyph = draw_key_path)+
+  scale_y_continuous(
+    expand = c(0,0,0.05,0)
+  )+
+  scale_x_continuous(
+    expand = c(0,0,0,0)
+  )+
+  scale_linetype_manual(values = c(mean = "dashed"))+
+  theme(legend.position = "bottom")+
+  labs(
+    title = "The confidence interval for the drive shaft data",
+    x = "diameter in mm",
+    y = "count",
+    fill = "",
+    linetype = ""
+    )+
+  theme_few()+
+  theme(legend.position = "bottom")
+  
+```
+
+::: {.content-visible when-profile="script"}
+
+The $95\%$ [CI](#ci) for the drive shaft data is shown in @fig-ci.
+For comparison the histogram with an overlayed density curve is plotted.
+The highlighted area shows the minimum and maximum [CI](#ci), the calculated mean is shown as a dashed line.
+
+:::
+
+
+## Significance Level 
+
+::: {.content-visible when-profile="script"}
+   
+The [significance level $\alpha$](#sign-level) is a critical component of hypothesis testing in statistics. 
+It represents the maximum acceptable probability of making a Type I error, which is the error of rejecting a null hypothesis when it is actually true. 
+In other words, $\alpha$ is the probability of concluding that there is an effect or relationship when there isn't one.
+Commonly used significance levels include $0.05 (5\%)$, $0.01 (1\%)$, and $0.10 (10\%)$. 
+The choice of $\alpha$ depends on the context of the study and the desired balance between making correct decisions and minimizing the risk of Type I errors.
+
+## False negative - risk
+
+The risk for a false negative outcome is called [$\beta$ - risk](#beta-risk).
+Is is calculated using statistical power analysis. 
+Statistical power is the probability of correctly rejecting a null hypothesis when it is false, which is essentially the complement of beta ($\beta$). 
+
+\begin{align}
+\beta = 1 - \text{Power}
+\end{align}
+
+:::
+
+## Power Analysis
+
+::: {.content-visible when-profile="script"}
+
+Statistical power is calculated using software, statistical tables, or calculators specifically designed for this purpose.
+Generally speaking: The greater the statistical power, the greater is the evidence to accept or reject the $H_0$ based on the study.
+Power analysis is also very useful in determining the sample size before the actualy experiments are conducted.
+Below is an example for a power calculation for a two-sample t-test.
+
+$$
+\text{Power} = 1 - \beta = P\left(\frac{{|\bar{X}_1 - \bar{X}_2|}}{\sqrt{\frac{S_1^2}{n_1} + \frac{S_2^2}{n_2}}} > Z_{\frac{\alpha}{2}} - \frac{\delta}{\sqrt{\frac{S_1^2}{n_1} + \frac{S_2^2}{n_2}}}\right)
+$$
+
+1. Effect Size: 
+This represents the magnitude of the effect you want to detect. 
+Larger effects are easier to detect than smaller ones.
+
+2. Significance Level ($\alpha$): This is the predetermined level of significance that defines how confident you want to be in rejecting the null hypothesis (e.g., typically set at 0.05).
+
+3. Sample Size ($n$): 
+The number of observations or participants in your study. Increasing the sample size generally increases the power of the test.
+
+4. Power ($1 - \beta$): 
+This is the probability of correctly rejecting the null hypothesis when it is false. 
+Higher power is desirable, as it minimizes the chances of a Type II error (failing to detect a true effect).
+
+5. Type I Error ($\alpha$): 
+The probability of incorrectly rejecting the null hypothesis when it is true. 
+This is typically set at $0.05$ or $5\%$ in most studies.
+
+6. Type II Error ($\beta$): 
+The probability of failing to reject the null hypothesis when it is false. Power is the complement of $\beta$ ($Power = 1 - \beta$).
+
+:::
+
+::: {.r-stack}
+
+::: {.fragment .fade-out}
+
+```{r}
+#| label: fig-ct-prob
+#| fig-cap: The coin toss with the respective probabilites [@pwr].
+#| out-width: 75%
+#| fig-pos: "H"
+
+knitr::include_graphics(here::here("chapter002","023_CoinToss.png"))
+```
+
+:::
+
+:::{ .incremental .v-center-container .fade-in-then-out}
+
+H0:
+: The coin is fair and lands heads $50\%$ of the time.
+
+Ha:
+: The coin is loaded and lands heads more than $50\%$ of the time.
+
+:::
+
+
+::: {.fragment .fade-in-then-out}
+
+```{r}
+#| label: pwr-calc
+#| echo: true
+
+pwr.p.test(h = ES.h(p1 = 0.75, p2 = 0.50),
+           sig.level = 0.05,
+           power = 0.80,
+           alternative = "greater")
+
+```
+
+:::
+
+::: {.fragment .fade-in-then-out}
+
+::: {.content-visible when-profile="script"}
+
+The sample size $n = 23$, meaning $23$ coin flips means that the statistical power is $80\%$  at a $\alpha = 0.05$ significance level ($\beta = 1-power = 0.2 \approx 20\%$).
+But what if the sample size varies?
+This is the subject of @fig-pwr-calc.
+On the `x-axis` the power is shown (or the $\beta$-risk on the upper `x-axis`), whereas the sample size `n` is depicted on the `y-axis`.
+To increase the power by $10\%$ to be $90\%$ the sample sized must be increased by $11$.
+A further power increase of $5\%$ would in turn mean an increase in sample size to be $n = 40$.
+This highlights the non-linear nature of power calculations and why they are important for experimental planning.
+
+:::
+
+```{r}
+#| label: fig-pwr-calc
+#| fig-cap: The power vs. the sample size
+
+pwr_df <- data.frame(
+  p1 = 0.75,
+  p2 = 0.5,
+  sig_level = 0.05,
+  pwr = seq(0.2,0.999,0.001),
+  alternative = "greater"
+  ) %>% 
+  rowwise() %>% 
+  mutate(
+    ES = ES.h(p1 = p1, p2 = p2),
+    n = list(pwr.p.test(
+      h = ES,
+      sig.level = sig_level,
+      power = pwr,
+      alternative = "greater"
+    )[["n"]] 
+    )
+  ) %>% 
+  unnest(n)
+
+pwr_df %>% 
+  ggplot(aes(x = pwr, y = n))+
+  geom_line()+
+  scale_x_continuous(
+    expand = c(0,0,0,0),
+    limits = c(0.2,1),
+    labels = scales::percent,
+    breaks = seq(0,1,0.05),
+    sec.axis = sec_axis(
+      trans = ~ 1- . ,
+      labels = scales::percent,
+      name = bquote("" %<-% beta*" risk"),
+      breaks = seq(0,1,0.05)
+    )
+  )+
+  scale_y_continuous(
+    breaks = seq(0,100,5),
+    expand = c(0,0,0,0)
+  )+
+  labs(
+    title = expression("Power and "*beta*" risk for the example"),
+    x = bquote("" %->% " Power"),
+    y = "sample size n"
+  )+
+  theme_few()
+
+```
+
+:::
+
+::: {.fragment .fade-in-then-out}
+
+::: {.content-visible when-profile="script"}
+
+:::
+
+```{r}
+#| label: fig-pwr-calc-params
+#| fig-cap: The power vs. the sample size for different effect sizes
+
+p1 <- c(seq(0.6,0.8, 0.1),0.65)
+p2 <- c(0.5)
+sig_level <- seq(0.01,0.05, 0.01)
+pwr = seq(0.3,0.95,0.01)
+
+pwr_df_params <- expand_grid(p1,p2,sig_level,pwr) %>% 
+  add_column(alternative = "greater") %>% 
+  rowwise() %>% 
+  mutate(
+    ES = ES.h(p1 = p1, p2 = p2),
+    n = list(pwr.p.test(
+      h = ES,
+      sig.level = sig_level,
+      power = pwr,
+      alternative = "greater"
+    )[["n"]] 
+    )
+  ) %>% 
+  unnest(n)
+
+pwr_df_params %>% 
+  ggplot(aes(x = pwr, y = n, linetype = as.factor(sig_level)))+
+  geom_path()+
+  geom_vline(xintercept = 0.8, color = "gray")+
+  scale_x_continuous(
+    expand = c(0,0,0,0),
+    limits = c(0.3,0.95),
+    labels = scales::percent,
+    breaks = seq(0,1,0.1),
+    sec.axis = sec_axis(
+      trans = ~ 1- . ,
+      labels = scales::percent,
+      name = bquote("" %<-% beta*" risk"),
+      breaks = seq(0,1,0.1)
+    )
+  )+
+  scale_y_continuous(
+    # breaks = seq(0,100,5),
+    expand = c(0,0,0,0)
+  )+
+  facet_wrap(
+    ~as.factor(p1),
+    # scales = "free"
+  )+
+  labs(
+    title = expression("Power and "*beta*" risk for the example"),
+    x = bquote("" %->% " Power"),
+    y = "sample size n"
+  )+
+  theme_few()
+
+```
+
+:::
+
+:::
+
+::: {.content-visible when-profile="script"}
+
+### A word on Effect Size
+
+Cohen [@Cohen_2013] describes effect size as “the degree to which the null hypothesis is false.” 
+In the coin flipping example, this is the difference between $75\%$ and $50\%$. 
+We could say the effect was 25% but recall we had to transform the absolute difference in proportions to another quantity using the ES.h function. 
+This is a crucial part of doing power analysis correctly: An effect size must be provided on the expected scale.
+Doing otherwise will produce wrong sample size and power calculations.
+
+When in doubt, Conventional Effect Sizes can be used. 
+These are pre-determined effect sizes for “small”, “medium”, and “large” effects, see @Cohen_2013. 
+
+:::
+
+## p-value
+
+```{r}
+#| label: fig-stat-rates
+#| fig-cap: Type I and Type II error in the context of inferential statistics.
+#| out-width: 75%
+
+knitr::include_graphics(here::here("chapter002","008_Rates.png"))
+```
+
+::: {.content-visible when-profile="script"}
+
+The p-value is a statistical measure that quantifies the evidence against a null hypothesis. 
+It represents the probability of obtaining test results as extreme or more extreme than the ones observed, assuming the null hypothesis is true. 
+In hypothesis testing, a smaller p-value indicates stronger evidence against the null hypothesis.
+If the p-value is less than or equal to $\alpha$ ($p \leq \alpha$), you reject the null hypothesis.
+If the p-value is greater than $\alpha$ ( $p > \alpha$ ), you fail to reject the null hypothesis.
+A common threshold for determining statistical significance is to reject the null hypothesis when $p\leq\alpha$.
+
+The p-value however does not give an assumption about the effect size, which can be quite insignificant [@Nuzzo_2014].
+While the p-value therefore is the probability of accepting $H_a$ as true, it is not a measure of magnitude or relative importance of an effect.
+Therefore the [CI](#ci) and the effect size should always be reported with a p-value.
+Some Researchers even claim that most of the research today is false [@Ioannidis_2005].
+In practice, especially in the manufacturing industry, the p-value and its use is still popular.
+Before implementing any measures in a series production, those questions will be asked.
+The confident and reliable engineer asks them beforehand and is always his own greatest critique.
+
+:::
+
+
+
+## Statistical errors
+
+```{r}
+#| label: fig-stat-errors
+#| fig-cap: The statistical Errors (Type I and Type II).
+#| out-width: 75%
+
+knitr::include_graphics(here::here("chapter002","007_StatisticalErrors.png"))
+```
+
+::: {.content-visible when-profile="script"}
+
+* Type I Error (False Positive, see @fig-stat-errors):
+
+A Type I error occurs when a null hypothesis that is actually true is rejected.
+In other words, it's a false alarm.
+It is concluded that there is a significant effect or difference when there is none.
+The probability of committing a Type I error is denoted by the [significance level $\alpha$](#sign-level). 
+*Example:* Imagine a drug trial where the null hypothesis is that the drug has no effect (it's ineffective), but due to random chance, the data appears to show a significant effect, and you incorrectly conclude that the drug is effective (Type I error).
+
+* Type II Error (False Negative, see @fig-stat-errors):
+
+A Type II error occurs when a null hypothesis that is actually false is not rejected.
+It means failing to detect a significant effect or difference when one actually exists.
+The probability of committing a Type II error is denoted by the symbol $\beta$.
+*Example:* In a criminal trial, the null hypothesis might be that the defendant is innocent, but they are actually guilty. 
+If the jury fails to find enough evidence to convict the guilty person, it is a Type II error.
+
+Type I Error is falsely concluding, that there is an effect or difference when there is none (false positive).
+Type II Error failing to conclude that there is an effect or difference when there actually is one (false negative).
+
+The relationship between *Type I* and *Type II* errors is often described as a trade-off. 
+As the risk of Type I errors is reduced by lowering the significance level ($\alpha$), the risk of Type II errors ($\beta$) is typically increased (@fig-stat-rates). 
+This trade-off is inherent in hypothesis testing, and the choice of significance level depends on the specific goals and context of the study. 
+Researchers often aim to strike a balance between these two types of errors based on the consequences and costs associated with each. 
+This balance is a critical aspect of the design and interpretation of statistical tests.
+
+:::
+
+{{< pagebreak >}}
+
+## Parametric and Non-parametric Tests {.r-stretch}
+
+::: {.content-visible when-profile="script"}
+
+Parametric and non-parametric tests in statistics are methods used for analyzing data. 
+The primary difference between them lies in the assumptions they make about the underlying data distribution:
+
+1. Parametric Tests:
+   - These tests assume that the data follows a specific probability distribution, often the normal distribution.
+   - Parametric tests make assumptions about population parameters like means and variances.
+   - They are more powerful when the data truly follows the assumed distribution.
+   - Examples of parametric tests include t-tests, ANOVA, regression analysis, and parametric correlation tests.
+
+2. Non-Parametric Tests:
+   - Non-parametric tests make minimal or no assumptions about the shape of the population distribution.
+   - They are more robust and can be used when data deviates from a normal distribution or when dealing with ordinal or nominal data.
+   - Non-parametric tests are generally less powerful compared to parametric tests but can be more reliable in certain situations.
+   - Examples of non-parametric tests include the Mann-Whitney U test, Wilcoxon signed-rank test, Kruskal-Wallis test, and Spearman's rank correlation.
+
+The choice between parametric and non-parametric tests depends on the nature of the data and the assumptions. 
+Parametric tests are appropriate when data follows the assumed distribution, while non-parametric tests are suitable when dealing with non-normally distributed data or ordinal data.
+Some examples for parametric and non-parametric tests are given in @tbl-ParamTestsvsNonParamTests.
+
+:::
+
+<!-- ::: {.v-center-container} -->
+
+```{r}
+#| label: tbl-ParamTestsvsNonParamTests
+#| tbl-cap: Some parametric and non-parametric statistical tests.
+
+ParamTests_NonParamTests <- 
+  data.frame(
+    `param` = 
+      c("One-sample t-test", "Paired t-test", "Two-sample t-test", "One-Way ANOVA"),
+    `non_param` = 
+      c("Wilcoxon signed rankk test", "Mann-Whitney U test", "Kruskal Wallis test", "Welch Test")
+  )
+
+ParamTests_NonParamTests %>% 
+  gt() %>% 
+  cols_label(param = md("**Parametric Tests**"),
+             non_param = md("**Non-Parametric Tests**")) %>% 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = "20px",
+    table.align = "center"
+    )
+
+```
+
+<!-- ::: -->
+
+## Paired and Independent Tests
+
+```{r}
+#| label: fig-pairedvsindep
+#| out-width: 75%
+#| fig-cap: The difference between paired and independent Tests.
+#| fig-pos: "H"
+
+knitr::include_graphics(here::here("chapter002","018_Paired_Independent.png"))
+
+```
+
+::: {.content-visible when-profile="script"}
+
+1. Paired Statistical Test:
+- Paired tests are used when there is a natural pairing or connection between two sets of data points. 
+This pairing is often due to repeated measurements on the same subjects or entities.
+- They are designed to assess the difference between two related samples, such as before and after measurements on the same group of individuals.
+- The key idea is to reduce variability by considering the differences within each pair, which can increase the test sensitivity.
+
+2. Independent Statistical Test:
+- Independent tests, also known as unpaired or two-sample tests, are used when there is no inherent pairing between the two sets of data.
+- These tests are typically applied to compare two separate and unrelated groups or samples.
+- They assume that the data in each group is independent of the other, meaning that the value in one group doesn't affect the value in the other group.
+
+An example for a paired test is, if two groups of data are to be compared in two different points in time (see @fig-pairedvsindep).
+
+:::
+
+{{< pagebreak >}}
+
+## Distribution Tests
+
+::: {.content-visible when-profile="script"}
+
+The importance of testing for normality (or other distributions) lies in the fact that various statistical techniques, such as parametric tests (e.g., t-tests, ANOVA), are based on the assumption of for example normality. 
+When data deviates significantly from a normal distribution, using these parametric methods can lead to incorrect conclusions and biased results. 
+Therefore, it is essential to determine how a dataset is approximately distributed before applying such techniques.
+
+Several tests for normality are available, with the most common ones being the Kolmogorov-Smirnov test, the Shapiro-Wilk test, and the Anderson-Darling test. 
+These tests provide a quantitative measure of how well the data conforms to a normal distribution. 
+
+In practice, it is important to interpret the results of these tests cautiously. 
+Sometimes, a minor departure from normality may not affect the validity of parametric tests, especially when the sample size is large. 
+In such cases, using non-parametric methods may be an alternative. 
+However, in cases where normality assumptions are crucial, transformations of the data or choosing appropriate non-parametric tests may be necessary to ensure the reliability of statistical analyses.
+
+Tests for normality do not free you from the burden of thinking for yourself.
+
+:::
+
+### Quantile-Quantile plots {#sec-qq-plot}
+
+::: {.content-visible when-profile="script"}
+
+[Quantile-Quantile](#qq) plots are a graphical tool used in statistics to assess whether a dataset follows a particular theoretical distribution, typically the normal distribution. 
+They provide a visual comparison between the observed quantiles[^7] of the data and the quantiles expected from the chosen theoretical distribution. 
+
+A neutral explanation of how [QQ](#qq) plots work:
+
+[^7]: A quantile is a statistical concept used to divide a dataset into equal-sized subsets or intervals. 
+
+:::
+
+#### Sample data
+
+::: {.content-visible when-profile="script"}
+
+In @tbl-qq-smpl-dat $n=10$ datapoints are shown as a sample dataset.
+
+:::
+
+```{r}
+#| label: tbl-qq-smpl-dat
+#| tbl-cap: 10 randomly sampled datapoints for the creation of the QQ-plot
+
+set.seed(123)
+
+qq_smpl <- data.frame(x = rnorm(10)) %>% 
+  mutate(smpl_no = seq_along(x)) 
+
+qq_smpl %>% 
+  gt()
+
+
+```
+
+
+#### Data Sorting 
+
+::: {.content-visible when-profile="script"}
+
+To create a [QQ](#qq) plot, the data must be sorted in ascending order.
+
+:::
+
+```{r}
+#| label: tbl-qq-smpl-sort
+#| tbl-cap: The sorted data points.
+
+set.seed(123)
+
+qq_smpl_srt <- qq_smpl %>% 
+  arrange(x)  
+  
+qq_smpl_srt %>% gt()
+
+
+```
+
+#### Theoretical Quantiles
+
+::: {.content-visible when-profile="script"}
+
+Theoretical quantiles are calculated based on the chosen distribution (e.g., the normal distribution). 
+These quantiles represent the expected values if the data perfectly follows that distribution.
+
+:::
+
+```{r}
+#| label: tbl-qq-smpl-thrtcl
+#| tbl-cap: The calculated theoretical quantiles
+
+
+qq_smple_srt_thrtcl <-  qq_smpl_srt %>% 
+  mutate(
+    x_norm = as_vector(scale(x)),
+    x_thrtcl = pnorm(x_norm)
+  )
+
+qq_smple_srt_thrtcl %>% 
+  gt()
+
+```
+
+#### Plotting Points 
+
+```{r}
+#| label: fig-qq-pts
+#| out-width: 75%
+#| fig-cap: The QQ points as calculated before.
+#| fig-pos: "H"
+
+qq_smpl %>% 
+  ggplot(aes(sample = x))+
+  stat_qq_point()+
+  labs(
+    title = "The drawn QQ points"
+  )+
+  theme_minimal()
+
+```
+
+::: {.content-visible when-profile="script"}
+
+For each data point, a point is plotted in the [QQ](#qq) plot. 
+The x-coordinate of the point corresponds to the theoretical quantile, and the y-coordinate corresponds to the observed quantile from the data, see @fig-qq-pts.
+
+:::
+
+#### Perfect Normal Distribution
+
+```{r}
+#| label: fig-qq-abline
+#| out-width: 75%
+#| fig-cap: A perfect normal distribution would be indicated if all points would fall on this straight line.
+#| fig-pos: "H"
+
+qq_smpl %>% 
+  ggplot(aes(sample = x))+
+  stat_qq_point()+
+  geom_abline()+
+  labs(
+    title = "A perfect normal distribution line."
+  )+
+  theme_minimal()
+
+```
+
+::: {.content-visible when-profile="script"}
+
+In the case of a perfect normal distribution, all the points would fall along a straight line at a 45-degree angle. 
+If the data deviates from normality, the points may deviate from this line in specific ways, see @fig-qq-abline.
+
+:::
+
+#### Interpretation
+
+```{r}
+#| label: fig-qq-line
+#| out-width: 75%
+#| fig-cap: The QQ line as plotted using the theoretical and sample quantiles.
+#| fig-pos: "H"
+
+qq_smpl %>% 
+  ggplot(aes(sample = x))+
+  stat_qq_point()+
+  stat_qq_line(
+    aes(linetype = "QQ-line"),
+    key_glyph = draw_key_path
+    )+
+  geom_abline(
+    aes(linetype = "perfect normal distribution",slope = 1,intercept = 0),
+    key_glyph = draw_key_path
+    )+
+  labs(
+    title = "A perfect QQ line in comparison to the data QQ line.",
+    x = "theoretical",
+    y = "sample",
+    linetype = ""
+  )+
+  theme_minimal()+
+  theme(legend.position = "bottom")
+
+```
+
+::: {.content-visible when-profile="script"}
+
+Deviations from the straight line suggest departures from the assumed distribution. 
+For example, if points curve upward, it indicates that the data has heavier tails than a normal distribution. 
+If points curve downward, it suggests lighter tails. 
+S-shaped curves or other patterns can reveal additional information about the data's distribution.
+In @fig-qq-line the QQ-points are shown together with the respective QQ-line and a line of perfectly normal distributed points.
+Some deviations can be seen, but it is hard to judge, if the data is normally distributed or not.
+
+:::
+
+
+
+#### Confidence Interval
+
+```{r}
+#| label: fig-qq-bands
+#| out-width: 75%
+#| fig-cap: The QQ plot with confidence bands.
+#| fig-pos: "H"
+
+qq_smpl %>% 
+  ggplot(aes(sample = x))+
+  stat_qq_band()+
+  stat_qq_point()+
+  stat_qq_line()+
+  scale_x_continuous(
+    breaks = seq(-3,3,0.5),
+    # limits = c(-1.5,1.5)
+  )+
+  scale_y_continuous(
+    breaks = seq(-3,3,0.5),
+    # limits = c(-1.5,1.5)
+  )+
+  labs(
+    title = "The confidence bands for the QQ plot.",
+    x = "theoretical",
+    y = "sample"
+  )+
+  theme_few()
+
+```
+
+::: {.content-visible when-profile="script"}
+
+Because it is hard to judge from @fig-qq-line if the points are normally distributed, it makes sense to get limits for normally disitrbuted points.
+This is shown in @fig-qq-bands.
+The gray area depicts the ($95\%$) confidence bands for a normal distribution.
+All the points fall into the area, as well as the line.
+This shows, that the points are likely to be normally distributed.
+
+:::
+
+#### The drive shaft exercise
+
+```{r}
+#| label: fig-qq-ds
+#| out-width: 75%
+#| fig-cap: The QQ plots for each drive shaft group shown in subplots.
+#| fig-pos: "H"
+
+load(here("data","drive_shaft_data.Rdata"))
+
+drive_shaft %>% 
+  ggplot(aes(sample = diameter))+
+  stat_qq_band()+
+  stat_qq_line(
+    aes(linetype = "qq-line from data")
+  )+
+  stat_qq_point()+
+  geom_abline(
+    aes(
+      linetype = "perfect normal distribution",
+      slope = 1,
+      intercept = 0),
+    key_glyph = draw_key_path,
+    lwd = 1
+    )+
+  labs(
+    title = "QQ-Plots of the drive shaft data with confidence bands.",
+    linetype = ""
+  )+
+  
+  facet_wrap(~group,scale = "free")+
+  theme_few(base_size = 10)+
+  theme(
+    panel.grid.major = element_line(color = "gray"),
+    panel.grid.minor = element_line(color = "gray"),
+    legend.position = "bottom"
+  )
+  
+
+```
+::: {.content-visible when-profile="script"}
+
+The [QQ](#qq) plot method is extended to the drive shaft exercise in @fig-qq-ds.
+In each subplot the plot for the respective group is shown together with the QQ-points, the QQ-line and the respective confidence bands.
+The scaling for each plot is different to enhance visibility of every subplot.
+A line for the perfect normal distribution is also shown in solid linestyle.
+From group $1 \ldots 4$ all points fall into the QQ confidence bands.
+Group05 differs however.
+The points from visible categories, which is a strong indicator, that the measurement system may be to inaccurate.
+
+:::
+
+
+### Quantitative Methods {#sec-ks-test}
+
+```{r}
+#| label: fig-ks-smpl
+#| out-width: 75%
+#| fig-cap: A visualisation of the KS test using the 10 datapoints from before
+#| fig-pos: "H"
+
+my_data <- qq_smpl$x
+
+# Perform the KS test
+ks_result <- ks.test(my_data, "pnorm")
+
+# Create a data frame for the ECDF
+ecdf_data <- data.frame(x = my_data, ecdf = ecdf(my_data)(my_data))
+
+# Create a data frame for the theoretical normal CDF
+normal_data <- data.frame(x = seq(min(my_data), max(my_data), length = 1000),
+                          cdf = pnorm(seq(min(my_data), max(my_data), length = 1000),
+                                      mean = mean(my_data), sd = sd(my_data)))
+
+# Create a ggplot object to visualize the ECDF
+ggplot(ecdf_data, aes(x = x, y = ecdf)) +
+  geom_step() +
+  geom_line(data = normal_data, aes(x = x, y = cdf), color = "red") +
+  labs(title = "Kolmogorov-Smirnov Test for Normality",
+       subtitle = paste("D =", round(ks_result$statistic, 2), "p =", signif(ks_result$p.value, digits = 3))) +
+  theme_few()
+
+```
+
+::: {.content-visible when-profile="script"}
+
+The [Kolmogorov-Smirnov](#KS) test for normality, often referred to as the [KS](#KS) test, is a statistical test used to assess whether a dataset follows a normal distribution. 
+It evaluates how closely the [cumulative distribution function](#cdf) of the dataset matches the expected [CDF](#cdf) of a normal distribution. 
+
+1. **Null Hypothesis (H0):** The null hypothesis in the KS test states that the sample data follows a normal distribution.
+
+2. **Alternative Hypothesis (Ha):** The alternative hypothesis suggests that the sample data significantly deviates from a normal distribution.
+
+3. **Test Statistic (D):** The KS test calculates a test statistic, denoted as *D* which measures the maximum vertical difference between the empirical [CDF](#cdf) of the data and the theoretical [CDF](#cdf) of a normal distribution. 
+It quantifies how far the observed data diverges from the expected normal distribution.
+A visualization of the [KS](#KS)-test is shown in @fig-ks-smpl.
+The red line denotes a perfect normal distribution, whereas the step function shows the empirical [CDF](#cdf) of the data itself.
+
+4. **Critical Value:** To assess the significance of D, a critical value is determined based on the sample size and the chosen significance level ($\alpha$). 
+If D exceeds the critical value, it indicates that the dataset deviates significantly from a normal distribution.
+
+5. **Decision:** If D is greater than the critical value, the null hypothesis is rejected, and it is concluded that the data is not normally distributed. 
+If D is less than or equal to the critical value, there is not enough evidence to reject the null hypothesis, suggesting that the data may follow a normal distribution.
+
+It is important to note that the KS test is sensitive to departures from normality in both tails of the distribution. 
+There are other normality tests, like the *Shapiro-Wilk test* and *Anderson-Darling test*, which may be more suitable in certain situations. 
+Researchers typically choose the most appropriate test based on the characteristics of their data and the assumptions they want to test.
+
+:::
+
+
+
+### Expanding to non-normal disitributions
+
+```{r}
+#| label: fig-qq-wbll
+#| layout-ncol: 2
+#| out-width: 75%
+#| fig-cap: The QQ-plot can easily be extended to non-normal distributions.
+#| fig-subcap: 
+#| - the QQ-plot for the weibull distribution using the drive shaft failure time data
+#| - a detrended QQ-plot
+
+load(here("data","drive_shaft_failures.Rdata"))
+
+# n <- 100  # Number of drive shafts
+# shape <- 2  # Shape parameter
+# scale <- 500  # Scale parameter (in hours)
+
+di <- "weibull"
+dp <- list(shape = 2, scale = 500)
+de <- TRUE
+
+plt1 <- drive_shaft_failure %>% 
+  ggplot(aes(sample = Time_to_Failure))+
+  stat_qq_band(
+    distribution = di,
+    dparams = dp
+    )+
+  stat_qq_point(
+    distribution = di,
+    dparams = dp
+  )+
+  stat_qq_line(
+    distribution = di,
+    dparams = dp
+    )+
+  labs(
+    title = "QQ-plot for the weibull distribution",
+    caption = "drive shaft failure data",
+    x = "theoretical",
+    y = "sample"
+  )+
+  theme_few()
+  
+
+plt2 <- drive_shaft_failure %>% 
+  ggplot(aes(sample = Time_to_Failure))+
+  stat_qq_band(
+    distribution = di,
+    dparams = dp,
+    detrend = de
+    )+
+  stat_qq_point(
+    distribution = di,
+    dparams = dp,
+    detrend = de
+  )+
+  stat_qq_line(
+    distribution = di,
+    dparams = dp,
+    detrend = de
+    )+
+  labs(
+    title = "QQ-plot for the weibull distribution (drive shaft failure data)",
+    caption = "drive shaft failure data",
+    x = "theoretical",
+    y = "sample"
+  )+
+  theme_few()
+
+plt1
+plt2
+
+```
+
+::: {.content-visible when-profile="script"}
+
+The [QQ](#qq)-plot can easily be extended to non-normal disitributions as well.
+This is shown in @fig-qq-wbll.
+In @fig-qq-wbll-1 a classic [QQ](#qq)-plot for @fig-ds-wbll is shown.
+The same rules as before still apply, they are *only* extended to the weibull distribution.
+In @fig-qq-wbll-2 a *detrended* [QQ](#qq)-plot is shown in order to account for visual bias.
+It is of course known, that the data follows a *weibull* disitribution with a shape parameter $\beta=2$ and a scale parameter $\lambda = 500$, but such distributional parameters can also be estimated [@fitdistrplus].
+
+:::
+
+
+
+## Test 1 Variable
+
+```{r}
+#| label: fig-tests-OneVar
+#| out-width: 75%
+#| fig-cap: Statistical tests for one variable.
+#| fig-pos: "H"
+
+knitr::include_graphics(here::here("chapter002","019_StatisticalTests_OneVar.png"))
+
+```
+
+
+### One Proportion Test 
+
+```{r}
+#| label: tbl-prop-test-data
+#| tbl-cap: The raw data for the proportion test.
+
+data <- data.frame(Category = c("A", "B"),
+                   Count = c(35, 20),
+                   Total = c(100, 100)) %>% 
+  
+  mutate(
+    plt_lbl = paste(Count," counts\n",Total," trials")
+  )
+
+data %>% 
+  gt() %>% 
+  tab_options(
+    table.font.size = 25
+  )
+
+```
+
+::: {.content-visible when-profile="script"}
+
+The one proportion test is used on categorical data with a binary outcome, such as success or failure. 
+Its prerequisite is having a known or hypothesized population proportion that the sample proportion shall be compared to. 
+This test helps determine if the sample proportion significantly differs from the population proportion, making it valuable for studies involving proportions and percentages.
+
+:::
+
+
+
+::: {.content-visible when-profile="slides"}
+
+. . .
+
+:::
+
+```{r}
+#| label: tbl-prop-test-res
+#| tbl-cap: The test results for the proportion test.
+
+# Calculate proportions
+data$Proportion <- data$Count / data$Total
+
+# Perform one-proportion test
+test_result <- prop.test(data$Count, data$Total)
+
+test_result %>% 
+  tidy() %>% 
+  select(-method) %>% 
+  gt() %>% 
+  fmt_number(decimals = 3) %>% 
+  tab_options(
+    table.font.size = 25
+  )
+
+```
+
+### Chi^2^ goodness of fit test {.incremental}
+
+::: {.r-stack}
+
+::: {.fragment .fade-out}
+
+```{r}
+#| label: tbl-chi-gof-data
+#| tbl-cap: The raw data for the gof $\chi^2$ test.
+
+load(here("data","drive_shaft_data.Rdata"))
+
+ds_sum <- drive_shaft %>% 
+  group_by(group) %>% 
+  summarise(
+    count_n_observed = n()
+  )  
+
+ds_sum %>% gt() %>% 
+  fmt_number(decimals = 3) %>% 
+  tab_options(
+    table.font.size = 25
+  )
+
+```
+
+:::
+
+::: {.fragment}
+
+
+```{r}
+#| label: tbl-chi-gof-res
+#| tbl-cap: The test results for the gof $\chi^2$ test.
+
+
+out_chi_square_gof <- chisq.test(ds_sum$count_n_observed) %>% broom::tidy()
+
+out_chi_square_gof %>% 
+  select(-method) %>%
+  gt() %>% 
+  fmt_number(decimals = 3)%>% 
+  tab_options(
+    table.font.size = 25
+  )
+
+```
+
+:::
+
+:::
+
+::: {.content-visible when-profile="script"}
+
+The $\chi^2$ goodness of Fit Test ([gof](#gof)) is applied on categorical data with expected frequencies. 
+It is suitable for analyzing nominal or ordinal data. 
+This test assesses whether there is a significant difference between the observed and expected frequencies in your dataset, making it useful for determining if the data fits an expected distribution.
+
+:::
+
+
+
+### One-sample t-test
+
+::: {.content-visible when-profile="script"}
+
+The one-sample t-test is designed for continuous data when you have a known or hypothesized population mean that you want to compare your sample mean to. 
+It relies on the assumption of normal distribution, making it applicable when assessing whether a sample's mean differs significantly from a specified population mean.
+
+The test can be applied in various settings.
+One is, to test if measured data comes from a population with a certain mean (for exampe a test against a specification).
+To show the application, the *drive shaft data* is employed.
+In @tbl-t-one-data the *per group* summarised data of the dirve shaft data is shown.
+
+:::
+
+::: {.r-stack}
+
+::: {.fragment .fade-out}
+
+```{r}
+#| label: tbl-t-one-data
+#| tbl-cap: The raw data for the one sample t-test.
+
+load(here("data","drive_shaft_data.Rdata"))
+
+drive_shaft %>% 
+  group_by(group) %>% 
+  summarise(
+    mean_diameter = mean(diameter),
+    sd_diameter = sd(diameter)
+  ) %>% 
+  gt()  %>% 
+  fmt_number(decimals = 3)%>% 
+  tab_options(
+    table.font.size = 15
+  )
+  
+
+```
+
+:::
+
+::: {.content-visible when-profile="script"}
+
+One important prerequisite for the One sample t-test normally distributed data.
+For this, graphical and numerical methods have been introduced in previous chapters.
+First, a classic [QQ](#qq)-plot is created for every group (see @fig-t-one-qq).
+From a first glance, the data appears to be normally distributed.
+
+:::
+
+::: {.fragment .fade-in-then-out}
+
+```{r}
+#| label: fig-t-one-qq
+#| fig-cap: The qq-plot for the drive shaft data
+#| out-width: 95%
+
+load(here("data","drive_shaft_data.Rdata"))
+
+
+drive_shaft %>% 
+  ggplot(aes(sample = diameter))+
+  stat_qq_band()+
+  stat_qq_line()+
+  stat_qq_point()+
+  geom_abline()+
+  facet_wrap(~group)+
+  labs(
+    title = "The graphcial check for normality"
+  )+
+  theme_few()
+
+```
+
+:::
+
+::: {.content-visible when-profile="script"}
+
+A more quantitative approach to tests for normality is shown in @tbl-t-one-ks-test.
+Here, each group is tested with the [KS](#KS)-test for normality.
+[H0](#H0) is accepted (the data is normal distributed) because the computed p-value is larger than the significance level ($\alpha  = 0.05$). 
+
+:::
+
+::: {.fragment .fade-in-then-out}
+
+```{r}
+#| label: tbl-t-one-ks-test
+#| tbl-cap: The results for the one KS normality test for each group.
+
+source("ks_helpers.R")
+
+load(here("data","drive_shaft_data.Rdata"))
+
+drive_shaft %>% 
+  group_nest(group) %>% 
+  mutate(
+    ks_res = map(data, ks_drive_shaft),
+    ks_tidy = map(ks_res, tidy)
+  ) %>% 
+  select(-data,-ks_res) %>%
+  unnest(ks_tidy) %>% 
+  mutate(
+    method = str_wrap(method, width  = 1),
+    method = str_replace_all(method, pattern = "\n", replacement = "<br />")
+  ) %>% 
+  gt()  %>% 
+  fmt_markdown(
+    columns = everything()
+  ) %>% 
+  fmt_number(decimals = 3)%>% 
+  tab_options(
+    table.font.size = 15
+  ) %>% 
+  as_raw_html()
+
+```
+
+:::
+
+::: {.content-visible when-profile="script"}
+
+There is sufficient evidence to assume normal distributed data within each group.
+The next step is, to test if the data comes from a certain population mean ([$\mu_0$](#truemean-gloss)). 
+In this case, the population mean is the specification of the drive shaft at a diameter $=12mm$.
+
+:::
+
+::: {.fragment .fade-in}
+
+```{r}
+#| label: tbl-t-one-res
+#| tbl-cap: The results for the one sample t-test (against mean = 12mm).
+
+drive_shaft %>% 
+  group_nest(group) %>% 
+  mutate(
+    t_one_sample = map(data, function(x) t.test(x["diameter"],mu = 12)),
+    t_tidy = map(t_one_sample, function(x) tidy(x))
+  ) %>% 
+  unnest(t_tidy) %>% 
+  select(-data,-t_one_sample) %>% 
+  mutate(
+    method = str_wrap(method, width  = 1),
+    method = str_replace_all(method, pattern = "\n", replacement = "<br />")
+    ) %>% 
+  gt() %>% 
+  fmt_markdown(
+    columns = everything()
+  ) %>% 
+  fmt_number(decimals = 3) %>% 
+  tab_options(
+    table.font.size = 15
+  )  %>% 
+  as_raw_html()
+
+
+```
+
+:::
+
+:::
+
+### One sample Wilcoxon test {.incremental}
+
+::: {.content-visible when-profile="script"}
+
+For situations where your data may not follow a normal distribution or when dealing with ordinal data, the one-sample Wilcoxon test is a non-parametric alternative to the t-test. 
+It is used to evaluate whether a sample's median significantly differs from a specified population median.
+
+The wear and tear of drive shafts can occur due to various factors related to the vehicle's operation and maintenance. 
+Some common causes include:
+
+1. **Normal Usage:** Over time, the drive shaft undergoes stress and strain during regular driving. This can lead to gradual wear on components, especially if the vehicle is frequently used.
+
+2. **Misalignment:** Improper alignment of the drive shaft can result in uneven distribution of forces, causing accelerated wear. This misalignment may stem from issues with the suspension system or other related components.
+
+3. **Lack of Lubrication:** Inadequate lubrication of the drive shaft joints and bearings can lead to increased friction, accelerating wear. Regular maintenance, including proper lubrication, is essential to mitigate this factor.
+
+4. **Contamination:** Exposure to dirt, debris, and water can contribute to the degradation of drive shaft components. Contaminants can infiltrate joints and bearings, causing abrasive damage over time.
+
+5. **Vibration and Imbalance:** Excessive vibration or imbalance in the drive shaft can lead to increased stress on its components. This may result from issues with the balance of the rotating parts or damage to the shaft itself.
+
+6. **Extreme Operating Conditions:** Harsh driving conditions, such as off-road terrain or constant heavy loads, can accelerate wear on the drive shaft. The components may be subjected to higher levels of stress than they were designed for, leading to premature wear and tear.
+
+The wear and tear because o the reasons above can be rated on a scale with discrete values from $1 \ldots 5$ with $2$ being the reference value.
+It is therefore interesting, if the wear and tear rating of $n=100$ drive shafts per group differs *significantly* from the reference value $2$.
+Because we are dealing with discrete data, the one sample t-test can not be used.
+
+:::
+
+::: {.r-stack}
+
+::: {.content-visible when-profile="slides"}
+
+::: {.fragment .fade-in-then-out}
+
+1. *Normal Usage*
+2. *Misalignment* 
+3. *Lack of Lubrication*
+4. *Contamination*
+5. *Extreme Operating Conditions*
+
+:::
+
+:::
+
+::: {.fragment .fade-in-then-out}
+
+```{r}
+#| label: fig-wilcox-one-hist
+#| fig-cap: The wear and tear rating data histograms.
+#| out-width: 75%
+#| 
+load(here("data","drive_shaft_wear_and_tear.Rdata"))
+
+drive_shaft_wear_and_tear <- drive_shaft_wear_and_tear %>% 
+  pivot_longer(
+    cols = starts_with("group"),
+    names_to = "group",
+    values_to = "rating")
+
+drive_shaft_wear_and_tear %>% 
+  ggplot(aes(x = rating))+
+  geom_histogram(
+    bins = 5,
+    color = "white"
+  )+
+  geom_vline(xintercept = 2)+
+  scale_y_continuous(
+    expand = c(0,0,0.05,0)
+  )+
+  labs(
+    title = "Histograms of the rating data"
+  )+
+  facet_wrap(~group)+
+  theme_few()
+
+
+
+```
+
+:::
+
+::: {.r-fit-text}
+
+::: {.fragment .fade-in-then-out}
+
+```{r}
+#| label: tbl-wilcox-one-res
+#| tbl-cap: The results for the one sample Wilcoxon test for every group against the reference value.
+
+load(here("data","drive_shaft_wear_and_tear.Rdata"))
+
+drive_shaft_wear_and_tear <- drive_shaft_wear_and_tear %>% 
+  pivot_longer(
+    cols = starts_with("group"),
+    names_to = "group",
+    values_to = "rating")
+
+# # Define the reference level (null hypothesis)
+reference_level <- 2
+
+drive_shaft_wear_and_tear %>% 
+  group_nest(group) %>% 
+  mutate(
+    wilcox_res = map(data,function(x) wilcox.test(x %>% pull("rating"),mu = reference_level, alternative = "greater") %>% tidy()) 
+  ) %>% 
+  unnest(wilcox_res) %>% 
+  select(-data,-method) %>% 
+  gt() %>% 
+  fmt_markdown(
+    columns = everything()
+  ) %>% 
+  fmt_number(decimals = 3) %>% 
+  tab_options(
+    table.font.size = 15
+  )  %>% 
+  as_raw_html()
+
+# # Perform a one-sample Wilcoxon test
+# wilcox.test(wear_and_tear_ratings, mu = reference_level, alternative = "two.sided")
+
+```
+
+:::
+
+:::
+
+::: {.fragment .fade-in-then-out}
+
+```{r}
+#| label: tbl-wilcox-one-compare
+#| tbl-cap: The results for the one sample t-test compared to the results of a one sample Wilcoxon test.
+
+load(here("data","drive_shaft_data.Rdata"))
+
+drive_shaft %>% 
+  group_nest(group) %>% 
+  mutate(
+    t_one_sample = map(data, function(x) t.test(x["diameter"],mu = 12)),
+    t_tidy = map(t_one_sample, function(x) tidy(x)),
+    wilcox_one_sample = map(data, function(x) wilcox.test(x %>% pull(diameter),mu = 12)),
+    wilcox_tidy = map(wilcox_one_sample, function(x) tidy(x))
+  ) %>% 
+  unnest(cols = c(t_tidy, wilcox_tidy),names_sep = "_") %>% 
+  select(group,t_tidy_p.value,wilcox_tidy_p.value) %>% 
+  # mutate(
+  #   method = str_wrap(method, width  = 1),
+  #   method = str_replace_all(method, pattern = "\n", replacement = "<br />")
+  #   ) %>% 
+  gt() %>% 
+  fmt_markdown(
+    columns = everything()
+  ) %>% 
+  fmt_number(decimals = 3) %>% 
+  tab_options(
+    table.font.size = 15
+  )  %>% 
+  as_raw_html()
+
+```
+
+:::
+
+:::
+
+## Test 2 Variable (Qualitative or Quantitative)
+
+```{r}
+#| label: fig-tests-TwoVar-same
+#| out-width: 75%
+#| fig-cap: Statistical tests for two variables.
+#| fig-pos: "H"
+
+knitr::include_graphics(here::here("chapter002","020_StatisticalTests_TwoVar_same.png"))
+
+```
+
+### Cochrane’s Q-test
+
+Cochran’s Q test is employed when you have categorical data with three or more related groups, often collected over time or with repeated measurements. 
+It assesses if there is a significant difference in proportions between the related groups.
+
+### Chi^2^ test of independence
+
+::: {.content-visible when-profile="script"}
+
+This test is appropriate when you have two categorical variables, and you want to determine if there is an association between them. 
+It is useful for assessing whether the two variables are dependent or independent of each other.
+
+In the context of the drive shaft production the example assumes a dataset with categorical variables like "Defects" (Yes/No) and "Operator" (Operator A/B). 
+
+:::
+
+#### Contingency tables
+
+::: {.content-visible when-profile="script"}
+
+A contingency table, also known as a cross-tabulation or crosstab, is a statistical table that displays the frequency distribution of variables. 
+It organizes data into rows and columns to show the frequency or relationship between two or more categorical variables. 
+Each cell in the table represents the count or frequency of occurrences that fall into a specific combination of categories for the variables being analyzed. 
+It is commonly used in statistics to examine the association between categorical variables and to understand patterns within data sets.
+
+:::
+
+```{r}
+#| label: tbl-chi-sq-indep-tbl
+#| tbl-cap: The contingency table for this example.
+
+load(file = here("data","drive_shaft_chi_sq.Rdata"))
+
+# Create a contingency table
+
+contingency_table <- table(drive_shaft_chi_sq$Defects, drive_shaft_chi_sq$Operator) 
+
+drive_shaft_chi_sq %>% 
+  count(Operator, Defects) %>% 
+  pivot_wider(names_from = Operator, values_from = n) %>% 
+  gt() %>% 
+  fmt_markdown(
+    columns = everything()
+  ) %>% 
+  fmt_number(decimals = 0) %>% 
+  tab_options(
+    table.font.size = 15
+  ) %>% 
+  as_raw_html()
+
+
+```
+
+#### test results
+
+::: {.content-visible when-profile="script"}
+
+With $p\approx1>0.05$ the $p$-value is greater than the significance level of $\alpha = 0.05$.
+The $H_0$ is therefore proven, there is no difference between the operators.
+The test results are depicted below-
+
+:::
+
+```{r}
+#| label: chi-sq-indep-res
+#| warning: false
+
+chi_sq_test <- chisq.test(contingency_table) %>% print()
+
+```
+
+
+### Correlation
+
+
+```{r}
+#| label: fig-corr
+#| out-width: 75%
+#| fig-cap: Correlation between two variables and the quantification thereof.
+
+knitr::include_graphics(here::here("chapter002","024_Correlation.png"))
+
+```
+
+::: {.content-visible when-profile="script"}
+
+Correlation refers to a statistical measure that describes the relationship between two variables. 
+It indicates the extent to which changes in one variable are associated with changes in another. 
+
+Correlation is measured on a scale from -1 to 1:
+
+- A correlation of 1 implies a perfect positive relationship, where an increase in one variable corresponds to a proportional increase in the other.
+  
+- A correlation of -1 implies a perfect negative relationship, where an increase in one variable corresponds to a proportional decrease in the other.
+
+- A correlation close to 0 suggests a weak or no relationship between the variables.
+
+Correlation doesn't imply causation; it only indicates that two variables change together but doesn't determine if one causes the change in the other.
+
+:::
+
+
+#### Pearson Corrrelation
+
+::: {.r-stack}
+
+:::{.fragment .fade-out}
+
+```{r}
+#| label: fig-drive-shaft-pearson-qq
+#| out-width: 75%
+#| fig-cap: The QQ-plot of both variables. There is strong evidence that they are normally disitrbuted.
+
+load(here("data","drive_shaft_rpm_dia.Rdata"))
+
+drive_shaft_rpm_dia %>% 
+  pivot_longer(cols = everything(),names_to = "variable",values_to = "value") %>% 
+  ggplot(aes(sample = value))+
+  stat_qq_band()+
+  stat_qq_line()+
+  stat_qq_point()+
+  facet_wrap(~variable,scales = "free")+
+  labs(
+    title = "QQ-plot of diameter and rpm",
+  )+
+  theme_few()
+
+```
+
+:::
+
+:::{.fragment .fade-in-then-out}
+
+```{r}
+#| label: fig-drive-shaft-corr-pear
+#| out-width: 75%
+#| fig-cap: Correlation between rpm of lathe machine and the diameter of the drive shaft.
+
+load(here("data","drive_shaft_rpm_dia.Rdata"))
+
+drive_shaft_rpm_dia %>% 
+  ggplot(aes(x = rpm, y = diameter))+
+  geom_point()+
+  stat_cor()+
+  geom_smooth(
+    method = "lm"
+  )+
+  labs(
+    title = "Drive shaft diameter vs. rpm of lathe machine",
+    x = "rpm",
+    y = "diameter in mm"
+  )+
+  theme_few()
+
+```
+
+:::
+
+:::{.fragment .fade-in-then-out}
+
+```{r}
+
+load(here("data","drive_shaft_rpm_dia.Rdata"))
+
+cor.test(drive_shaft_rpm_dia$rpm,drive_shaft_rpm_dia$diameter)
+
+```
+
+:::
+
+:::
+
+::: {.content-visible when-profile="script"}
+
+When you have two continuous variables and want to measure the strength and direction of their linear relationship, Pearson correlation is the go-to choice [@PCC]. 
+It assumes normally distributed data and is particularly valuable for exploring linear associations between variables and is calculated via \eqref{pearcorr}.
+
+\begin{align}
+R = \frac{\sum_{i = 1}^{n}(x_i - \bar{x}) \times (y_i - \bar{y})}{\sqrt{\sum_{i=1}^{n}(x_i-\bar{x})^2}\times \sum_{i=1}^{n}(y_i-\bar{y})^2} \label{pearcorr}
+\end{align}
+
+The [Pearson Correlation Coeffcient](#PCC) works best with normal disitributed data.
+The normal distribution of the data is verified in @fig-drive-shaft-pearson-qq.
+
+:::
+
+
+#### Spearman Correlation
+
+::: {.content-visible when-profile="script"}
+
+Spearman [@Spearman1904] correlation is a non-parametric alternative to Pearson correlation. 
+It is used when the data is not normally distributed or when the relationship between variables is monotonic but not necessarily linear.
+
+\begin{align}
+\rho = 1 - \frac{6 \sum d_i^2}{n(n^2 - 1)} \label{spearcorr}
+\end{align}
+
+In @fig-drive-shaft-corr-spear the example data for a drive shaft production is shown.
+The `Production_Time` and the `Defects` seem to form a relationship, but the data does not appear to be normally distributed.
+This can also be seen in the QQ-plots of both variables in @fig-drive-shaft-spear-qq.
+
+:::
+
+::: {.r-stack}
+
+:::{.fragment .fade-out}
+
+```{r}
+#| label: fig-drive-shaft-corr-spear
+#| out-width: 75%
+#| fig-cap: The relationship between the production time and the number of defects. The data seems to have a relationship, but it is clearly not linear.
+
+
+load(file = here("data","drive_shaft_time_defects.Rdata"))
+
+drive_shaft_time_defect %>% 
+  ggplot(aes(x = Production_Time,y = Defects))+
+  geom_point()+
+  geom_smooth(
+    method = "lm",
+    linetype = "dashed",
+    color = "gray")+
+  geom_smooth()+
+  labs(
+    title = "Production Time vs. Number of Defects."
+  )+
+  theme_few()
+  
+
+```
+
+:::
+
+:::{.fragment .fade-in-then-out}
+
+```{r}
+#| label: fig-drive-shaft-spear-qq
+#| out-width: 75%
+#| fig-cap: The QQ-plots of both variables.
+
+load(file = here("data","drive_shaft_time_defects.Rdata"))
+
+drive_shaft_time_defect %>% 
+  pivot_longer(
+    cols = everything(),
+    names_to = "variable",
+    values_to = "values"
+  ) %>% 
+  ggplot(aes(sample = values))+
+  stat_qq_band()+
+  stat_qq_line()+
+  stat_qq_point()+
+  facet_wrap(~variable,scales = "free")+
+  labs(
+    title = "The QQ-plots for the  variables. There is strong evidence that the data is not normally disitributed"
+  )+
+  theme_few()
+
+```
+
+:::
+
+:::{.fragment .fade-in}
+
+```{r}
+out_spearman <- cor.test(drive_shaft_time_defect$Production_Time,drive_shaft_time_defect$Defects,method = "spearman") %>% print()
+```
+
+:::
+
+:::{.fragment .fade-in}
+
+```{r}
+out_pearson <- cor.test(drive_shaft_time_defect$Production_Time,drive_shaft_time_defect$Defects,method = "pearson") %>% print()
+
+```
+:::
+
+:::
+
+#### Correlation - methodogical limits
+
+::: {.content-visible when-profile="script"}
+
+While correlation analysis and summary statistics are certainly useful, one must always consider the raw data.
+The data taken from @datasauRus showcases this.
+The summary statistics in @tbl-corr-limits are practically the same, one would not suspect different underlying data.
+When the raw data is plotted though (@fig-corr-limits), it can be seen that the data appears to be highly non linear, forming different shapes as well as different categories etc.
+
+Always check the raw data.
+
+:::
+
+::: {.r-stack}
+
+:::{.fragment .fade-out}
+
+```{r}
+#| label: tbl-corr-limits
+#| tbl-cap: The datasauRus data and the respective summary statistics.
+
+datasaurus_dozen %>% 
+    group_by(dataset) %>% 
+    summarize(
+      mean_x    = mean(x),
+      mean_y    = mean(y),
+      std_dev_x = sd(x),
+      std_dev_y = sd(y),
+      corr_x_y  = cor(x, y)
+    ) %>% 
+  gt() %>% 
+   fmt_number(decimals = 3) %>% 
+  tab_options(
+    # table.font.size = 25
+  ) %>% 
+  as_raw_html()
+
+```
+
+:::
+
+:::{.fragment .fade-in-then-out}
+
+```{r}
+#| label: fig-corr-limits
+#| out-width: 75%
+#| fig-cap: The raw data from the datasauRus packages shows, that summary statistics may be misleading.
+
+ggplot(datasaurus_dozen, aes(x = x, y = y))+
+    geom_point()+
+    theme_void(base_size = 10)+
+    theme(legend.position = "none")+
+    facet_wrap(~dataset, ncol = 5)+
+  coord_equal()
+
+```
+
+:::
+
+:::
+
+## Test 2 Variables (2 Groups)
+
+```{r}
+#| label: fig-tests-TwoVar-TwoGrps
+#| out-width: 75%
+#| fig-cap: Statistical tests for teo variable.
+#| fig-pos: "H"
+
+knitr::include_graphics(here::here("chapter002","021_StatisticalTests_TwoVar_TwoGrps.png"))
+
+```
+
+### Test for equal variance (homoscedasticity)
+
+```{r}
+#| label: fig-tst-var
+#| fig-cap: The variances ($sd^2$) for the drive shaft data.
+#| out-width: 75%
+
+load(here("data","drive_shaft_data.Rdata"))
+
+ds_sum <- drive_shaft %>% 
+  group_by(group) %>% 
+  summarise(
+    mean_diameter = mean(diameter),
+    sd_diameter = sd(diameter),
+    var_diameter = var(diameter)
+  )
+
+ds_sum %>% 
+  ggplot(aes(x = group, y = var_diameter))+
+  geom_col()+
+  scale_y_continuous(expand = c(0,0,0.05,0))+
+  labs(
+    title = "The variances of the drive shaft data",
+    x = "Group",
+    y = "Variance (sd²)"
+  )+
+  theme_few()
+
+```
+
+::: {.content-visible when-profile="script"}
+
+Tests for equal variances, also known as tests for homoscedasticity, are used to determine if the variances of two or more groups or samples are equal. 
+Equal variances are an assumption in various statistical tests, such as the t-test and analysis of variance ([ANOVA](#anova)). 
+When the variances are not equal, it can affect the validity of these tests. Two common tests for equal variances are:
+
+Certainly, here are bullet points outlining the null hypothesis, prerequisites, and decisions for each of the three tests:
+
+:::
+
+
+#### F-Test [@Hahs_Vaughn_2013] {#sec-f-test .smaller}
+
+:::: {.columns}
+
+::: {.column wwidth="50%"}
+- **Null Hypothesis:** The variances of the different groups or samples are equal.
+- **Prerequisites:**
+  - Independence
+  - Normality
+  - Number of groups $= 2$
+
+:::  
+
+::: {.column wwidth="50%"}
+
+- **Decisions:**
+  - $p> \alpha \rightarrow$ fail to reject [H0](#H0)
+  - $p< \alpha \rightarrow$ reject [H0](#H0)
+
+:::
+
+::::
+
+```{r}
+#| output: true
+#| echo: false
+
+ds_wide <- drive_shaft %>% 
+  pivot_wider(names_from = group, values_from = diameter) 
+
+Group01VsGroup03 <- var.test(ds_wide$group01,ds_wide$group03) %>% print()
+
+```
+
+#### Bartlett Test [@Bartlett1937] {#sec-bartlett .smaller}
+
+:::: {.columns}
+
+::: {.column wwidth="50%"}
+- **Null Hypothesis:** The variances of the different groups or samples are equal.
+- **Prerequisites:**
+  - Independence
+  - Normality
+  - Number of groups $> 2$
+
+:::  
+
+::: {.column wwidth="50%"}
+
+- **Decisions:**
+  - $p> \alpha \rightarrow$ fail to reject [H0](#H0)
+  - $p< \alpha \rightarrow$ reject [H0](#H0)
+
+:::
+
+::::
+
+```{r}
+#| output: true
+#| echo: false
+
+out_bartlett <- bartlett.test(diameter ~ group, data = drive_shaft) %>% print()
+
+```
+
+#### Levene Test [@0-8047-0596-8] {.smaller}
+
+:::: {.columns}
+
+::: {.column wwidth="50%"}
+- **Null Hypothesis:** The variances of the different groups or samples are equal.
+- **Prerequisites:**
+  - Independence
+  - Number of groups $> 2$
+
+:::  
+
+::: {.column wwidth="50%"}
+
+- **Decisions:**
+  - $p> \alpha \rightarrow$ fail to reject [H0](#H0)
+  - $p< \alpha \rightarrow$ reject [H0](#H0)
+
+:::
+
+::::
+
+```{r}
+#| output: true
+#| echo: false
+
+ds_levene <- drive_shaft %>% 
+  mutate(group = as_factor(group))
+
+out_levene <- leveneTest(diameter ~ group, data = ds_levene) %>% print()
+
+```
+
+### t-test for independent samples
+
+::: {.content-visible when-profile="script"}
+
+The independent samples t-test is applied when you have continuous data from two independent groups. 
+It evaluates whether there is a significant difference in means between these groups, assuming a normal distribution of the data.
+
+:::
+
+::: {.r-stack}
+
+:::{.fragment .fade-out}
+
+- **Null Hypothesis:** The means of the two samples are equal.
+- **Prerequisites:**
+  - Independence
+  - Normal Distribution
+  - Number of groups $=2$
+  - equal Variances of the groups
+
+:::
+
+:::{.fragment .fade-in-then-out}
+
+First, the variances are compared in order to check if they are equal using the F-Test (as described in @sec-f-test).
+
+```{r}
+#| warning: false
+
+load (here("data","drive_shaft_data.Rdata"))
+
+group01 <- drive_shaft %>% filter(group == "group01")
+group03 <- drive_shaft %>% filter(group == "group03")
+
+var.test(group01 %>% pull("diameter"),group03%>% pull("diameter"))
+```
+
+With $p>\alpha = 0.05$ the $H_0$ is accepted, the variances are equal.
+
+:::
+
+:::{.fragment .fade-in-then-out}
+
+The next step is to check the data for normality using the KS-test (as described in @sec-ks-test).
+
+```{r}
+#| warning: false
+
+ks.test(group01 %>% pull("diameter"), 
+        y= "pnorm",
+        mean(group01 %>% pull("diameter")),
+        sd(group01 %>% pull("diameter"))
+        )
+ks.test(group03 %>% pull("diameter"), 
+        y= "pnorm",
+        mean(group03 %>% pull("diameter")),
+        sd(group03 %>% pull("diameter"))
+        )
+
+
+```
+
+With $p>\alpha = 0.05$ the $H_0$ is accepted, the data seems to be normally distributed.
+
+:::
+
+:::{.fragment .fade-in-then-out}
+
+```{r}
+#| label: fig-t-tst-two-indep
+#| fig-cap: The data within the two groups for comparing the sample means using the t-test for independent samples.
+#| out-width: 75%
+#| fig-pos: "H"
+
+load (here("data","drive_shaft_data.Rdata"))
+
+tmp <- drive_shaft %>% 
+  filter(group %in% c("group01","group03"))
+
+tmp %>% 
+  ggplot(aes(x = diameter,linetype = group))+
+  stat_theodensity(
+    aes(y = after_stat(count)/20),
+    distri = "norm",
+    geom = "area",
+    show.legend = FALSE
+  )+
+  geom_histogram(
+    color = "white",
+    alpha = 0.5,
+    show.legend = FALSE
+  )+
+  geom_boxplot(
+    aes(y = 30,
+        fill = group),
+    linetype = "solid",
+    varwidth = FALSE,
+    width = 2.5,
+    position = "identity"
+    )+
+  scale_y_continuous(
+    expand = c(0,0,0.05,0),
+    breaks = seq(0,50,5)
+  )+
+  scale_x_continuous(
+    breaks = seq(0,20,0.1)
+  )+
+  scale_fill_grey(
+    start = 0.5,
+    end = 0.8
+  )+
+  labs(
+    title = "The groups for comparing the sample means.",
+    y = "count",
+    x = "diameter",
+    fill = ""
+  )+
+  theme_few()+
+  theme(
+    legend.position = "bottom"
+  )
+
+```
+
+:::
+
+:::{.fragment .fade-in-then-out}
+
+The formal test is then carried out.
+With $p<\alpha=0.05$ $H_0$ is rejected, the data comes from populations with different means.
+
+```{r}
+#| warning: false
+
+load (here("data","drive_shaft_data.Rdata"))
+
+group01 <- drive_shaft %>% filter(group == "group01")
+group02 <- drive_shaft %>% filter(group == "group02")
+
+t.test(group01 %>% pull(diameter),group03%>% pull(diameter),var.equal = TRUE)
+
+```
+
+:::
+
+:::
+
+### Welch t-test for independent samples
+
+::: {.content-visible when-profile="script"}
+
+Similar to the independent samples t-test, the Welch t-test is used for continuous data with two independent groups [@Welch1947]. 
+However, it is employed when there are unequal variances between the groups, relaxing the assumption of equal variances in the standard t-test.
+
+:::
+
+::: {.r-stack}
+
+:::{.fragment .fade-out}
+
+- **Null Hypothesis:** The means of the two samples are equal.
+- **Prerequisites:**
+  - Independence
+  - Normal Distribution
+  - Number of groups $=2$
+
+:::
+
+:::{.fragment .fade-in-then-out}
+
+First, the variances are compared in order to check if they are equal using the F-Test (as described in @sec-f-test).
+
+```{r}
+#| warning: false
+
+load (here("data","drive_shaft_data.Rdata"))
+
+group01 <- drive_shaft %>% filter(group == "group01")
+group02 <- drive_shaft %>% filter(group == "group02")
+
+var.test(group01 %>% pull("diameter"),group02%>% pull("diameter"))
+```
+
+With $p<\alpha = 0.05$ $H_0$ is rejected and $H_a$ is accepted. 
+The variances are different.
+
+:::
+
+:::{.fragment .fade-in-then-out}
+
+Using the KS-test (see @sec-ks-test) the data is checked for normality.
+
+```{r}
+#| warning: false
+
+ks.test(group01 %>% pull("diameter"), 
+        y= "pnorm",
+        mean(group01 %>% pull("diameter")),
+        sd(group01 %>% pull("diameter"))
+        )
+ks.test(group02 %>% pull("diameter"), 
+        y= "pnorm",
+        mean(group02 %>% pull("diameter")),
+        sd(group02 %>% pull("diameter"))
+        )
+
+
+```
+
+With $p>\alpha = 0.05$ $H_0$ is accepted, the data seems to be normally distributed.
+
+:::
+
+:::{.fragment .fade-in-then-out}
+
+```{r}
+#| label: fig-welch-tst-two-indep
+#| fig-cap: The data within the two groups for comparing the sample means using the Welch-test for independent samples.
+#| out-width: 75%,
+#| fig-pos: "H"
+
+load (here("data","drive_shaft_data.Rdata"))
+
+tmp <- drive_shaft %>% 
+  filter(group %in% c("group01","group02")) %>% 
+  mutate(
+    y_pos = case_when(
+      group == "group01" ~ 25,
+      group == "group02" ~ 30,
+    )
+  )
+
+tmp %>% 
+  ggplot(aes(x = diameter,linetype = group))+
+  stat_theodensity(
+    aes(y = after_stat(count)/20,
+        alpha = group),
+    distri = "norm",
+    geom = "area",
+    show.legend = FALSE
+  )+
+  geom_histogram(
+    color = "white",
+    alpha = 0.5,
+    show.legend = FALSE
+  )+
+  geom_boxplot(
+    aes(y =y_pos,
+        fill = group),
+    linetype = "solid",
+    varwidth = FALSE,
+    width = 2.5,
+    position = "identity"
+    )+
+  scale_y_continuous(
+    expand = c(0,0,0.05,0),
+    breaks = seq(0,50,5)
+  )+
+  scale_x_continuous(
+    breaks = seq(0,20,0.1)
+  )+
+  scale_fill_grey(
+    start = 0.5,
+    end = 0.8
+  )+
+  labs(
+    title = "The groups for comparing the sample means.",
+    y = "count",
+    x = "diameter",
+    fill = ""
+  )+
+  theme_few()+
+  theme(
+    legend.position = "bottom"
+  )
+
+```
+
+:::
+
+:::{.fragment .fade-in-then-out}
+
+Then, the formal test is carried out.
+
+```{r}
+#| warning: false
+
+load (here("data","drive_shaft_data.Rdata"))
+
+group01 <- drive_shaft %>% filter(group == "group01")
+group02 <- drive_shaft %>% filter(group == "group02")
+
+t.test(group01 %>% pull(diameter),group02%>% pull(diameter),var.equal = FALSE)
+
+```
+
+With $p<\alpha = 0.05$ we reject $H_0$, the data seems to be coming from different population means, even though the variances are overlapping (and different).
+
+:::
+
+:::
+
+### Mann-Whitney U test
+
+::: {.content-visible when-profile="script"}
+
+For non-normally distributed data or small sample sizes, the Mann-Whitney U test serves as a non-parametric alternative to the independent samples t-test [@MannWhitney1947]. 
+It assesses whether there is a significant difference in medians between two independent groups.
+
+:::
+
+::: {.r-stack}
+
+:::{.fragment .fade-out}
+
+- **Null Hypothesis:** The medians of the two samples are equal.
+- **Prerequisites:**
+  - Independence
+  - no specific distribution (non-parametric)
+  - Number of groups $=2$
+
+:::
+
+:::{.fragment .fade-in-then-out}
+
+```{r}
+#| label: fig-mannu-tst-data
+#| fig-cap: The data within the two groups for comparing the sample medians using the Mann-Whitney-U Test.
+#| out-width: 75%
+#| fig-pos: "H"
+
+load(here("data","drive_shaft_mann_u.Rdata"))
+
+drive_shaft_mann_u %>% 
+  ggplot(aes(x = diameter))+
+  geom_density_ridges(
+    aes(y = group),
+    scale = 0.95,
+    quantile_lines = TRUE
+    )+
+  scale_y_discrete(
+    expand = c(0,0,0,0)
+  )+
+  scale_x_continuous(
+    breaks = seq(0,20,0.1)
+  )+
+  labs(
+    title = "Ridgeline plots of two groups of drive shaft diameters",
+    y = ""
+  )+
+  theme_few()
+  
+```
+
+:::
+
+:::{.fragment .fade-in-then-out}
+
+This time a graphical method to check for normality is employed (QQ-plot, see @sec-qq-plot).
+From the @fig-mannu-tst-qq it is pretty clear, that the data is not normally distributed.
+Furthermore, the variances seem to be unequal as well.
+
+```{r}
+#| label: fig-mannu-tst-qq
+#| fig-cap: The data within the two groups for comparing the sample medians using the Mann-Whitney-U Test.
+#| out-width: 75%
+#| fig-pos: "H"
+
+load(here("data","drive_shaft_mann_u.Rdata"))
+
+drive_shaft_mann_u %>% 
+  ggplot(aes(sample = diameter))+
+  stat_qq_band()+
+  stat_qq_line()+
+  stat_qq_point()+
+  scale_x_continuous(
+    breaks = seq(0,20,0.2)
+  )+
+  facet_wrap(
+    ~group,
+    # scales = "free"
+    )+
+  labs(
+    title = "The QQ-plots for the data to check for normality."
+  )+
+  theme_few()
+  
+```
+
+:::
+
+:::{.fragment .fade-in-then-out}
+
+Then, the formal test is carried out.
+With $p<\alpha = 0.05$ $H_0$ is rejected, the true location shift is not equal to $0$.
+
+```{r}
+
+load(here("data","drive_shaft_mann_u.Rdata"))
+
+wilcox.test(diameter~group,data = drive_shaft_mann_u)
+
+```
+
+:::
+
+:::
+
+### t-test for paired samples
+
+::: {.content-visible when-profile="script"}
+
+The paired samples t-test is suitable when you have continuous data from two related groups or repeated measures. 
+It helps determine if there is a significant difference in means between the related groups, assuming normally distributed data.
+
+:::
+
+::: {.r-stack}
+
+:::{.fragment .fade-out}
+
+- **Null Hypothesis:** True mean difference is not equal to 0.
+- **Prerequisites:**
+  - Paired Data
+  - Normal Distribution
+  - equal variances
+  - Number of groups $=2$
+
+:::
+
+:::{.fragment .fade-in-then-out}
+
+Using the F-Test, the variances are compared.
+
+```{r}
+load(here("data","drive_shaft_treatment.Rdata"))
+
+var.test(diameter~timepoint, data = drive_shaft_treatment)
+
+```
+
+With $p>\alpha = 0.05$ $H_0$ is accepted, the variances are equal.
+
+:::
+
+:::{.fragment .fade-in-then-out} 
+
+Using a QQ-plot the data is checked for normality.
+
+```{r}
+
+load(here("data","drive_shaft_treatment.Rdata"))
+
+drive_shaft_treatment %>% 
+  ggplot(aes(sample = diameter))+
+  stat_qq_band()+
+  stat_qq_line()+
+  stat_qq_point()+
+  facet_wrap(~timepoint)+
+  labs(
+    title = "QQ-plots of the treament data at the different timepoints"
+  )+
+  theme_few()
+
+```
+
+::: {.content-visible when-profile="script"}
+
+Without a formal test, the data is assumed to be normally distributed.
+
+:::
+
+:::
+
+:::{.fragment .fade-in-then-out}
+
+```{r}
+#| label: fig-t-tst-paired
+#| fig-cap: A boxplot of the data, showing the connections between the datapoints.
+#| out-width: 75%
+#| fig-pos: "H"
+
+load(here("data","drive_shaft_treatment.Rdata"))
+
+drive_shaft_treatment %>% 
+  ggplot(aes(x = timepoint, y = diameter))+
+  geom_boxplot(width = 0.1,fill = "gray")+
+  geom_point()+
+  geom_segment(data = drive_shaft_treatment %>% pivot_wider(names_from = timepoint, values_from = diameter),
+               aes(x = "t0",
+                   xend = "t1",
+                   y = t0, 
+                   yend = t1)
+               )+
+  ggrepel::geom_label_repel(aes(label = smpl_idx))+
+  labs(
+    title = "Paired t-test data with connections between samples.",
+    x = "t0 = initial, t1 = after treatment",
+    y = "diameter in mm"
+  )+
+  theme_few()
+  
+
+```
+
+:::
+
+:::{.fragment .fade-in-then-out}
+
+The formal test is then carried out.
+
+```{r}
+
+drive_shaft_treatment |> 
+  rstatix::t_test(
+    formula = diameter ~ timepoint,
+    paired = TRUE
+  )
+
+```
+
+With $p<\alpha = 0.05$ $H_0$ is rejected, the treatment changed the properties of the product.
+
+:::
+
+
+:::
+
+### Wilcoxon signed rank test
+
+::: {.content-visible when-profile="script"}
+
+For non-normally distributed data or situations involving paired samples, the Wilcoxon signed rank test is a non-parametric alternative to the paired samples t-test. 
+It evaluates whether there is a significant difference in medians between the related groups.
+
+:::
+
+::: {.r-stack}
+
+:::{.fragment .fade-out}
+
+- **Null Hypothesis:** True mean difference is not equal to 0.
+- **Prerequisites:**
+  - Paired Data
+  - Number of groups $=2$
+
+:::
+
+:::{.fragment .fade-in-then-out}
+
+```{r}
+
+load(here("data","drive_shaft_wilcox_signed_rank.Rdata"))
+
+drive_shaft_wilcox_signed_rank %>% 
+  ggplot(aes(sample = diameter))+
+  stat_qq_band(conf = 0.5)+
+  stat_qq_line()+
+  stat_qq_point()+
+  facet_wrap(~timepoint)+
+  theme_few()
+
+
+```
+
+:::
+
+:::{.fragment .fade-in-then-out}
+
+```{r}
+
+load(here("data","drive_shaft_wilcox_signed_rank.Rdata"))
+
+drive_shaft_wilcox_signed_rank %>% 
+  ggplot(aes(x = timepoint,y = diameter))+
+  geom_boxplot()+
+  geom_point()+
+  geom_segment(data = drive_shaft_wilcox_signed_rank %>% pivot_wider(names_from = timepoint, values_from = diameter),
+               aes(x = "t0",
+                   xend = "t1",
+                   y = t0, 
+                   yend = t1)
+               )+
+  ggrepel::geom_label_repel(aes(label = smpl_idx))+
+  theme_few()
+
+
+```
+
+:::
+
+:::{.fragment .fade-in-then-out}
+
+```{r}
+
+drive_shaft_wilcox_signed_rank |> 
+  rstatix::wilcox_test(
+    formula = diameter ~ timepoint,
+    paired = TRUE
+  )
+
+```
+
+:::
+
+:::
+
+{{< pagebreak >}}
+
+## Test 2 Variables (> 2 Groups)
+
+```{r}
+#| label: fig-tests-TwoVar-nGrps
+#| out-width: 75%
+#| fig-cap: Statistical tests for one variable.
+#| fig-pos: "H"
+
+knitr::include_graphics(here::here("chapter000","022_StatisticalTests_TwoVars_nGrps.png"))
+
+```
+
+### Analysis of Variance (ANOVA) - Basic Idea
+
+::: {.content-visible when-profile="script"}
+[ANOVA](#anova)'s ability to compare multiple groups or factors makes it widely applicable across diverse fields for analyzing variance and understanding relationships within data.
+In the context of engineering sciences the application of ANOVA include:
+
+1. **Experimental Design and Analysis:** 
+Engineers often conduct experiments to optimize processes, test materials, or evaluate designs.
+ANOVA aids in analyzing these experiments by assessing the effects of various factors (like temperature, pressure, or material composition) on the performance of systems or products. 
+It helps identify significant factors and their interactions to improve engineering processes.
+
+2. **Product Testing and Reliability:** 
+Engineers use ANOVA to compare the performance of products manufactured under different conditions or using different materials. 
+This analysis helps ensure product reliability by identifying which factors significantly impact product quality, durability, or functionality.
+
+3. **Process Control and Improvement:** 
+ANOVA plays a crucial role in quality control and process improvement within engineering. 
+It helps identify variations in manufacturing processes, such as assessing the impact of machine settings or production methods on product quality. 
+By understanding these variations, engineers can make informed decisions to optimize processes and minimize defects.
+
+4. **Supply Chain and Logistics:** 
+In engineering logistics and supply chain management, ANOVA aids in analyzing the performance of different suppliers or transportation methods. 
+It helps assess variations in delivery times, costs, or product quality across various suppliers or logistical approaches.
+
+5. **Simulation and Modeling:** 
+In computational engineering, ANOVA is used to analyze the outputs of simulations or models. 
+It helps understand the significance of different input variables on the output, enabling engineers to refine models and simulations for more accurate predictions.
+
+:::
+
+```{r}
+#| label: fig-ANOVA-basic-idea
+#| out-width: 95%
+#| fig-cap: The basic idea of an ANOVA.
+#| fig-pos: "H"
+
+knitr::include_graphics(here::here("chapter002","025_ANOVA_nd.png"))
+
+```
+
+::: {.content-visible when-profile="script"}
+
+Across such fields ANOVA is often used to:
+
+**Comparing Means:** 
+ANOVA is employed when comparing means between three or more groups. 
+It assesses whether there are statistically significant differences among the means of these groups. 
+For instance, in an experiment testing the effect of different fertilizers on plant growth, ANOVA can determine if there's a significant difference in growth rates among the groups treated with various fertilizers.
+
+**Modeling Dependencies:** 
+ANOVA can be extended to model dependencies among variables in more complex designs. 
+For instance, in factorial ANOVA, it's used to study the interaction effects among multiple independent variables on a dependent variable.
+This allows researchers to understand how different factors might interact to influence an outcome.
+
+**Measurement System Analysis (MSA):** 
+ANOVA is integral in MSA to evaluate the variation contributed by different components of a measurement system. 
+In assessing the reliability and consistency of measurement instruments or processes, ANOVA helps in dissecting the total variance into components attributed to equipment variation, operator variability, and measurement error.
+
+As with statistical tests before, the applicability of the ANOVA depends on various factors.
+
+:::
+
+
+#### Sum of squared error (SSE)
+
+::: {.content-visible when-profile="script"}
+
+The [sum of squared errors](#sse) is a statistical measure used to assess the goodness of fit of a model to its data. 
+It is calculated by squaring the differences between the observed values and the values predicted by the model for each data point, then summing up these squared differences. 
+The SSE indicates the total variability or dispersion of the observed data points around the fitted regression line or model. 
+Lower SSE values generally indicate a better fit of the model to the data.
+
+\begin{align}
+SSE = \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 \label{sse}
+\end{align}
+
+:::
+
+```{r}
+#| label: fig-sse
+#| out-width: 70%
+#| fig-cap: A graphical depiction of the SSE.
+#| fig-pos: "H"
+
+knitr::include_graphics(here::here("chapter002","027_SSE.png"))
+
+```
+
+#### Mean squared error (MSE) 
+
+::: {.content-visible when-profile="script"}
+
+The [mean squared error](#mse) is a measure used to assess the average squared difference between the predicted and actual values in a dataset. 
+It is frequently employed in regression analysis to evaluate the accuracy of a predictive model. 
+The MSE is calculated by taking the average of the squared differences between predicted values and observed values. 
+A lower MSE indicates that the model's predictions are closer to the actual values, reflecting better accuracy.
+
+:::
+
+::: {.v-center-container}
+
+\begin{align}
+MSE = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 \label{mse}
+\end{align}
+
+:::
+
+### One-way ANOVA 
+
+::: {.content-visible when-profile="script"}
+
+The one-way analysis of variance (ANOVA) is used for continuous data with three or more independent groups. 
+It assesses whether there are significant differences in means among these groups, assuming a normal distribution.
+
+:::
+
+::: {.r-stack}
+
+:::{.fragment .fade-in-then-out .v-center-container fragment-index=1}
+
+- **Null Hypothesis:** True mean difference is equal to 0.
+- **Prerequisites:**
+  - equal variances
+  - Number of groups $>2$
+  - One response, one predictor variable
+
+:::
+
+:::{.fragment .fade-in-then-out fragment-index=2}
+
+```{r}
+#| label: fig-one-way-ANOVA-basic-idea
+#| out-width: 75%
+#| fig-cap: The basic idea of a One-way ANOVA.
+#| fig-pos: "H"
+
+knitr::include_graphics(here::here("chapter002","026_One-Way-ANOVA.png"))
+
+```
+:::
+
+:::{.fragment .fade-in-then-out fragment-index=3}
+
+
+The most important prerequisite for a One-way ANOVA are equal variances.
+Because there are more than two groups, the Bartlett test (as introduced in @sec-bartlett) is chosen (data is normally distributed).
+
+```{r}
+
+bartlett.test(diameter ~ group,data = drive_shaft)
+
+```
+
+:::
+
+:::{.fragment .fade-in-then-out fragment-index=4}
+
+Because $p<\alpha = 0.05$ the variances are different.
+
+:::
+
+:::{.fragment .fade-in-then-out fragment-index=5}
+
+```{r}
+#| label: fig-one-way-ANOVA-boxplot
+#| out-width: 95%
+#| fig-cap: The groups with equal variance are highlighted.
+#| fig-pos: "H"
+
+drive_shaft %>% 
+  ggplot(aes(x = group, y = diameter,fill = group))+
+  geom_boxplot()+
+  gghighlight(group %in% c("group01","group04","group03"))+
+  scale_fill_brewer(palette = "Set1")+
+  theme_few()+
+  theme(legend.position = "bottom")
+```
+
+:::
+
+:::{.fragment .fade-in-then-out fragment-index=6}
+
+```{r}
+bartlett.test(diameter ~ group,data = drive_shaft %>% filter(group %in% c("group01","group04","group03")))
+```
+
+:::
+
+:::{.fragment .fade-in-then-out fragment-index=7}
+
+With $p>\alpha=0.05$ $H_0$ is accepted, the variances of `group01`, `group02` and `group03` are equal.
+
+:::
+
+:::{.fragment .fade-in-then-out fragment-index=8}
+
+Of course, many software package provide an automated way of performing a One-way ANOVA, but the first will be explained in detail.
+The general model for a One-way ANOVA is shown in \eqref{onewayanova}.
+
+\begin{align}
+Y \sim X + \epsilon \label{onewayanova}
+\end{align}
+
+- $H_0$: All population means are equal.
+- $H_a$: Not all population means are equal.
+
+For a One-way ANOVA the [predictor variable](#X) $X$ is the mean ($\bar{x}$) of all datapoints $x_i$.
+
+:::
+
+:::{.fragment .fade-in-then-out fragment-index=9}
+
+::: {.content-visible when-profile="script"}
+
+First the SSE and the MSE is calculated for the complete model ($H_a$ is true), see @tbl-anova-ow-complete.
+The complete model means, that every mean, for every group is calculated and the [$SSE$](#sse) according to \eqref{sse} is calculated.
+
+:::
+
+```{r}
+#| label: fig-anova-mdls-comp
+#| fig-cap: Computation of error for the complete model (mean per group as model)
+#| out-width: 75%
+
+load (here("data","drive_shaft_data.Rdata"))
+
+grp_dat <- drive_shaft %>% filter(group %in% c("group01","group04","group03")) %>% 
+  ungroup() %>% 
+  group_by(group) %>% 
+  mutate(
+    fit = mean(diameter),
+    error = fit-diameter,
+    sq_error = error^2
+  ) 
+
+mean_dat <- drive_shaft %>% filter(group %in% c("group01","group04","group03")) %>% 
+  mutate(
+    fit = mean(diameter),
+    error = fit-diameter,
+    sq_error = error^2
+  )
+
+mean_grp_dat <-  grp_dat %>% 
+  group_by(group) %>% 
+  summarise(
+    mean_diameter = mean(diameter)
+  )
+
+grp_dat %>% 
+  ggplot()+
+  geom_segment(
+    aes(
+      x = sample_no,
+      xend = sample_no,
+      y = fit,
+      yend = diameter
+    )
+  )+
+  geom_point(
+    aes(x = sample_no,y = diameter)
+  )+
+  geom_hline(
+    data = mean_grp_dat,
+    aes(
+      yintercept = mean_diameter
+      )
+    )+
+  facet_wrap(
+    ~group)+
+  labs(
+    title = "computations of error for the complete model",
+    subtitle = "model = mean per group",
+    x = "sample no",
+    y = "diameter"
+  )+
+  theme_few()
+```
+
+:::
+
+:::{.fragment .fade-in-then-out fragment-index=10}
+
+```{r}
+#| label: fig-anova-mdls-red
+#| fig-cap: Computation of error for the reduced model (overall mean as model)
+#| out-width: 75%
+
+mean_dat %>% 
+  ggplot()+
+  geom_segment(
+    aes(
+      x = sample_no,
+      xend = sample_no,
+      y = fit,
+      yend = diameter
+    )
+  )+
+  geom_point(
+    aes(x = sample_no,y = diameter)
+  )+
+  geom_hline(
+    # aes(
+      yintercept = mean_dat$fit[1],
+      # linetype = "overall mean"
+    # )
+  )+
+  facet_wrap(
+    ~group
+  )+
+  labs(
+    title = "computations of error for the reduced model",
+    subtitle = "model = overall mean",
+    x = "sample no",
+    y = "diameter"
+  )+
+  theme_few()
+
+
+```
+
+:::
+
+:::{.fragment .fade-in-then-out fragment-index=11}
+
+```{r}
+#| label: tbl-anova-ow-complete
+#| tbl-cap: The SSE and MSE for the complete model.
+
+load (here("data","drive_shaft_data.Rdata"))
+
+aov_ow_tmp_complete <- drive_shaft %>% filter(group %in% c("group01","group04","group03")) %>% 
+  ungroup() %>% 
+  group_by(group) %>% 
+  mutate(
+    fit = mean(diameter),
+    error = fit-diameter,
+    sq_error = error^2
+  ) 
+
+aov_ow_complete <- aov_ow_tmp_complete %>% 
+  ungroup() %>% 
+  summarise(
+    n = n(), 
+    sse = sum(sq_error)
+    ) %>% 
+  mutate(p = 3) %>%  #number of groups
+  mutate(
+    df = n - p
+    ) %>% 
+  select(sse, df, n, p) %>% 
+  mutate(mse = sse / df) 
+
+aov_ow_complete %>% 
+  gt() %>% 
+    fmt_number(decimals = 3) %>% 
+  tab_options(
+    table.font.size = 25
+  ) %>% 
+  as_raw_html()
+
+```
+
+:::
+
+:::{.fragment .fade-in-then-out fragment-index=12}
+
+Then, the SSE and the MSE is calculated for the reduced model ($H_0$ is true).
+In the reduced model, the mean is not calculated per group, the overall mean is calculated (results in @tbl-anova-ow-reduced).
+
+```{r}
+#| label: tbl-anova-ow-reduced
+#| tbl-cap: The SSE and MSE from the reduced model.
+
+aov_ow_tmp_reduced <- drive_shaft %>% filter(group %in% c("group01","group04","group03")) %>% 
+  mutate(
+    fit = mean(diameter),
+    error = fit-diameter,
+    sq_error = error^2
+  ) %>% 
+  ungroup()
+
+aov_ow_reduced <- aov_ow_tmp_reduced %>% 
+  ungroup() %>% 
+  summarise(
+    n = n(), 
+    sse = sum(sq_error)
+    ) %>% 
+  mutate(p = 1) %>%  #number of groups
+  mutate(
+    df = n - p
+    ) %>% 
+  select(sse, df, n, p) %>% 
+  mutate(mse = sse / df) # mse = sigma squared 
+
+aov_ow_reduced %>% 
+  gt()%>% 
+    fmt_number(decimals = 3) %>% 
+  tab_options(
+    table.font.size = 25
+  ) %>% 
+  as_raw_html()
+
+```
+
+:::
+
+:::{.fragment .fade-in-then-out fragment-index=13}
+
+The $SSE$, $df$ and $MSE$ explained by the complete model are calculated:
+
+```{r}
+
+explained_sse <- aov_ow_reduced$sse - aov_ow_complete$sse
+
+explained_df <- aov_ow_reduced$df - aov_ow_complete$df
+
+explained_mse <- explained_sse / explained_df 
+
+```
+
+\begin{align}
+SSE_{explained} &= SSE_{reduced}-SSE_{complete} = `r round(explained_sse,digits = 2)` \\
+df_{explained} &= df_{reduced} - df_{complete} = `r round(explained_df,digits = 2)` \\
+MSE_{explained} &= \frac{SSE_{explained}}{df_{explained}} = `r round(explained_mse,digits = 2)`
+\end{align}
+
+:::
+
+:::{.fragment .fade-in-then-out fragment-index=14}
+
+The ratio of the  variance (MSE) as explained by the complete model to the reduced model is then calculated.
+The probability of this statistic is afterwards calculated (if $H_0$ is true).
+
+```{r}
+f <- explained_mse/aov_ow_complete$mse
+
+p_aov_ow <- pf(f, explained_df, aov_ow_complete$df, lower.tail = F) %>% print()
+
+aov_ow_data <- drive_shaft %>% 
+  filter(group %in% c("group01","group04","group03")) %>% 
+  mutate(group = as.factor(group))
+
+aov_res <- aov(diameter~group,data =aov_ow_data)
+
+```
+
+The probability of a F-statistic with $pf = `r round(f,digits = 3)`$ is $`r round(p_aov_ow,digits = 2)`$.
+
+:::
+
+:::{.fragment .fade-in-then-out fragment-index=15}
+
+A crosscheck with a automated solution (`aov`-function) yields the results shown in @tbl-anova-ow-r-sol.
+
+```{r}
+#| label: tbl-anova-ow-r-sol
+#| tbl-cap: The ANOVA results from the aov function.
+
+aov_res %>% 
+  tidy() %>% 
+  gt() %>% 
+    fmt_number(decimals = 3) %>% 
+  tab_options(
+    table.font.size = 25
+  ) %>% 
+  as_raw_html()
+
+```
+
+:::
+
+:::{.fragment .fade-in-then-out .smaller fragment-index=16}
+
+Some sanity checks are of course required to ensure the validity of the results.
+First, the variance of the residuals must be equal along the groups (see @fig-anova-ow-variance).
+
+```{r}
+#| label: fig-anova-ow-variance
+#| out-width: 75%
+#| fig-cap: The variances of the residuals.
+#| fig-pos: "H"
+
+aov_augment <- augment(aov_res)
+
+aov_augment %>% 
+  ggplot(
+    aes(x = group,
+        y = .resid)
+  )+
+  geom_boxplot()+
+  labs(
+    title = "The residuals of the ANOVA models"
+  )+
+  theme_few()
+
+```
+
+:::
+
+:::{.fragment .fade-in-then-out fragment-index=17}
+
+Also, the residuals from the model must be normally distributed (see @fig-anova-ow-qq).
+
+```{r}
+#| label: fig-anova-ow-qq
+#| out-width: 75%
+#| fig-cap: The distribution of the residuals.
+#| fig-pos: "H"
+
+aov_augment <- augment(aov_res)
+
+aov_augment %>% 
+  ggplot(
+    aes(sample = .resid)
+  )+
+  stat_qq_band()+
+  stat_qq_line()+
+  stat_qq_point()+
+  labs(
+    title = "The distribution of the residuals"
+  )+
+  theme_few()
+
+```
+
+:::
+
+:::{.fragment .fade-in-then-out fragment-index=18}
+
+The model seems to be valid (equal variances of residuals, normal distributed residuals).
+
+With $p<\alpha = 0.05$ $H_0$ can be rejected, the means come from different populations.
+
+::: {.content-visible when-profile="slides"}
+
+![](img/thumbs-up.png){width=20%}
+
+:::
+
+:::
+
+:::
+
+### Welch ANOVA
+
+::: {.content-visible when-profile="script"}
+
+**Welch ANOVA:**
+Similar to one-way ANOVA, the Welch ANOVA is employed when there are unequal variances between the groups being compared. It relaxes the assumption of equal variances, making it suitable for situations where variance heterogeneity exists.
+
+:::
+
+::: {.r-stack}
+
+:::{.fragment .fade-in-then-out .v-center-container fragment-index=1}
+
+- **Null Hypothesis:** True mean difference is not equal to 0.
+- **Prerequisites:**
+  - Number of groups $>2$
+  - One response, one predictor variable
+
+:::
+
+:::{.fragment .fade-in-then-out fragment-index=2}
+
+The Welch ANOVA drops the prerequisite of equal variances in groups.
+Because there are more than two groups, the Bartlett test (as introduced in @sec-bartlett) is chosen (data is normally distributed).
+
+```{r}
+
+load (here("data","drive_shaft_data.Rdata"))
+
+bartlett.test(diameter ~ group,data = drive_shaft)
+
+```
+
+With $p<\alpha = 0.05$ $H_0$ can be rejected, the variances are not equal.
+
+:::
+
+:::{.fragment .fade-in-then-out fragment-index=3}
+
+The ANOVA table for the Welch ANOVA is shown in @tbl-anova-ow-welch.
+
+```{r}
+#| label: tbl-anova-ow-welch
+#| tbl-cap: The ANOVA results from the ANOVA Welch Test (not assuming equal variances).
+
+load (here("data","drive_shaft_data.Rdata"))
+
+
+aov_welch_res <- oneway.test(diameter~group, data = drive_shaft, var.equal = FALSE)
+
+aov_welch_res %>% 
+  tidy() %>% 
+  mutate(
+    method = str_wrap(method, width  = 25),
+    method = str_replace_all(method, pattern = "\n", replacement = "<br />")
+  ) %>% 
+  gt() %>% 
+  fmt_markdown() %>% 
+  fmt_number(decimals = 3) %>% 
+  tab_options(
+    table.font.size = 15
+  ) %>% 
+  as_raw_html()
+
+```
+
+:::
+
+:::
+
+### Kruskal Wallis
+
+::: {.r-stack}
+
+::: {.content-visible when-profile="script"}
+
+**Kruskal-Wallis Test:**
+When dealing with non-normally distributed data, the Kruskal-Wallis test is a non-parametric alternative to one-way ANOVA. 
+It is used to evaluate whether there are significant differences in medians among three or more independent groups.
+
+In this example the drive strength is measured using three-point bending.
+Three different methods are employed to increase the strength of the drive shaft.
+:::
+
+:::{.fragment .fade-in-then-out .v-center-container fragment-index=1}
+
+```{r}
+#| label: fig-kruskal-three-point
+#| out-width: 75%
+#| fig-cap: The mechanical Background for a three-point bending test
+#| fig-pos: "H"
+
+knitr::include_graphics(here::here("chapter000","028_three_point_bending.png"))
+
+```
+
+* Method A: baseline material
+* Method B: different geometry
+* Method C: different material
+
+:::
+
+:::{.fragment .fade-in-then-out .v-center-container fragment-index=2}
+
+::: {.content-visible when-profile="script"}
+
+In @fig-kruskal-raw-dat the raw drive shaft strength data for Method A, B and C is shown.
+At first glance, the data does not appear to be normally distributed.
+
+:::
+
+```{r}
+#| label: fig-kruskal-raw-dat
+#| out-width: 80%
+#| fig-cap: The raw data from the drive shaft strength testing.
+#| fig-pos: "H"
+#| 
+load(file = here("data","drive_shaft_kruskal_wallis.Rdata"))
+
+kw_shaft_data %>% 
+  ggplot(aes(x = group, y = strength))+
+  geom_half_boxplot()+
+  geom_half_violin(side = "r")+
+  scale_y_continuous(
+    limits = c(0,NA),
+    expand = c(0,0,0.05,0)
+  )+
+  labs(
+    title = "Drive shaft strength vs. production method",
+    x = "",
+    y = bquote("strength in "~frac(N,mm^2))
+  )+
+  theme_few()
+
+```
+
+:::
+
+:::{.fragment .fade-in-then-out .v-center-container fragment-index=3}
+
+::: {.content-visible when-profile="script"}
+
+In @fig-kruskal-qq the visual test for normal distribution is performed.
+The data does not appear to be normally distributed.
+
+:::
+
+```{r}
+#| label: fig-kruskal-qq
+#| out-width: 80%
+#| fig-cap: The qq-plot for the drive shaft strength testing data.
+#| fig-pos: "H"
+ 
+kw_shaft_data %>% 
+  ggplot(aes(sample = strength))+
+  stat_qq_band()+
+  stat_qq_line()+
+  stat_qq_point()+
+  facet_wrap(~group)+
+  theme_few(base_size = 15)
+
+```
+
+:::
+
+
+:::{.fragment .fade-in-then-out .v-center-container fragment-index=4}
+
+::: {.content-visible when-profile="script"}
+
+The Kruskal-Wallis test is then carried out.
+With  $p< \alpha = 0.05$ it is shown, that the groups come from populations with different means.
+The next step is to find which of the groups are different using a post-hoc analysis.
+
+:::
+
+```{r}
+
+kruskal.test(strength~group, data = kw_shaft_data)
+
+```
+:::
+
+::: {.fragment .fade-in-then-out fragment-index=5}
+
+::: {.content-visible when-profile="script"}
+
+The Kruskal-Wallis Test (as the ANOVA) can only tell you, if there is a signifcant difference between the groups, not what groups are different.
+Post-hoc tests are able to determine such, but must be used with a correction for multiple testing (see [@Tamhane1977])
+
+:::
+
+```{r}
+
+pairwise.wilcox.test(kw_shaft_data$strength, kw_shaft_data$group, p.adjust.method = "bonferroni") 
+
+```
+
+Because  $p<\alpha = 0.05$ it can be concluded, that all means are different from each other.
+
+:::
+
+:::
+
+### repeated measures ANOVA
+
+::: {.r-stack}
+
+:::{.fragment .fade-out}
+
+::: {.content-visible when-profile="script"}
+
+**Repeated Measures ANOVA:**
+The repeated measures ANOVA is applicable when you have continuous data with multiple measurements within the same subjects or units over time. 
+It is used to assess whether there are significant differences in means over the repeated measurements, under the assumptions of sphericity and normal distribution.
+
+In this example, the diameter of $n = 20$ drive shafts is measured after three different steps.
+
+- Before Machining
+- After Machining
+- After Inspection
+
+:::
+
+```{r}
+#| label: fig-rep-meas-raw
+#| out-width: 80%
+#| fig-cap: The raw data for the repeated measures ANOVA.
+#| fig-pos: "H"
+
+load(file = here("data","drive_shaft_repeated_measures.Rdata"))
+
+level_order <- c("Before_Machining","After_Machining","After_Inspection")
+
+rep_meas_ds %>% 
+  ggplot(
+    aes(x = factor(timepoint, level = level_order),
+        y = diameter
+        )
+    )+
+  geom_line(
+    aes(
+      group = Subject_ID
+    ),
+    color = "grey",
+    position = position_jitter(width = 0.1, seed = 123),
+  )+
+  geom_half_boxplot(
+    outlier.shape = NA,
+    fill = "steelblue",
+    alpha = 0.5
+    )+
+  geom_half_violin(
+    side = "r",
+    fill = "steelblue",
+    alpha = 0.5
+    )+
+  geom_point(
+    aes(
+      group = Subject_ID
+      ),
+    position = position_jitter(width = 0.1, seed = 123),
+    shape = 21,
+    fill = "white",
+    color = "black",
+    size = 2,
+    stroke = 1
+    )+
+  ggrepel::geom_label_repel(
+    aes(label = Subject_ID),
+    position = position_jitter(width = 0.1,seed = 123),
+    max.overlaps = 100
+    )+
+  labs(
+    title = "repeatedly measured diameters at different timepoints",
+    x = "",
+    y = "diameter"
+  )+
+  theme_few(base_size = 15)
+
+```
+:::
+
+:::{.fragment .fade-in-then-out}
+
+First, outliers are identified.
+There is no strict rule to identify outliers, in this case a classical measure is applied according to \eqref{outlierrule}
+
+\begin{align}
+\text{outlier} &=
+\begin{cases}
+x_i & >Q3 + 1.5 \cdot IQR \\
+x_i & <Q1 - 1.5 \cdot IQR
+\end{cases}
+\label{outlierrule}
+\end{align}
+
+```{r}
+
+detected_outliers <- rep_meas_ds %>% 
+  group_by(timepoint) %>% 
+  identify_outliers(diameter) %>% 
+  print()
+
+rep_meas_ds <- rep_meas_ds %>% 
+  filter(Subject_ID != detected_outliers$Subject_ID)
+
+```
+:::
+
+:::{.fragment .fade-in-then-out}
+
+A check for normality is done employing the Shapiro-Wilk test [@shapiro1965analysis].
+
+```{r}
+
+rep_meas_ds %>% 
+  group_by(timepoint) %>% 
+  shapiro_test(diameter) %>% 
+  gt() %>% 
+  fmt_number(decimals = 3) %>% 
+  tab_options(
+    table.font.size = 15
+  )  %>% 
+  as_raw_html()
+
+```
+:::
+
+:::{.fragment .fade-in-then-out}
+
+::: {.content-visible when-profile="script"}
+
+The next step is to check the dataset for sphericity, meaning to compare the variance of the groups among each other in order to determine the equality thereof.
+For this the Mauchly Test for sphericity is employed [@Mauchly1940].
+
+:::
+
+```{r}
+
+out <- rep_meas_ds %>% 
+  anova_test(
+    dv = diameter,
+    wid = Subject_ID,
+    within = timepoint
+  )
+
+print(out[[2]])
+  
+
+```
+
+With $p>\alpha = 0.05$ $H_0$ is accepted, the variances are equal.
+Otherwise sphericity corrections must be applied [@Greenhouse1959].
+:::
+
+:::{.fragment .fade-in-then-out}
+
+::: {.content-visible when-profile="script"}
+
+The next step is to perform the repeated measures ANOVA, which yields the following results.
+
+:::
+
+```{r}
+
+out %>% get_anova_table() %>% 
+  gt() %>% 
+  fmt_number(decimals = 3) %>% 
+  tab_options(
+    table.font.size = 15
+  ) %>% 
+  as_raw_html()
+
+```
+
+With  $p<\alpha = 0.05$ $H_0$ is rejected, the different timepoints yield different diameters. 
+Which groups are different is then determined using a post-hoc test, including a correction for the significance level [@bonferroni1936].
+
+:::
+
+:::{.fragment .fade-in-then-out}
+
+::: {.content-visible when-profile="script"}
+
+In this case, the assumptions for a t-test are met, the pairwise t-test can be used.
+
+:::
+
+```{r}
+
+rep_meas_ds %>% 
+  pairwise_t_test(diameter~timepoint, paired = TRUE, p.adjust.method = "bonferroni") %>% 
+  select(-.y.) %>% 
+  rename("signif"="p.adj.signif") %>% 
+  gt() %>% 
+  fmt_number(
+    columns = c(statistic,p,p.adj),
+    decimals = 3
+    ) %>% 
+  tab_options(
+    table.font.size = 15
+  ) %>% 
+  as_raw_html()
+
+```
+
+with  $p<\alpha = 0.05$ $H_0$ is rejected for the comparison `Before_Machining - After_Machining` and `After_Inspection - Before_Machining`.
+It can therefore be concluded that the machining has a significant influence on the diameter, whereas the inspection has none.
+
+:::
+
+:::
+
+### Friedman test
+
+::: {.r-stack}
+
+:::{.fragment .fade-in}
+
+::: {.content-visible when-profile="script"}
+
+The Friedman test is a non-parametric alternative to repeated measures ANOVA [@Friedman1937]. 
+It is utilized when dealing with non-normally distributed data and multiple measurements within the same subjects. 
+This test helps determine if there are significant differences in medians over the repeated measurements.
+
+:::
+
+The same data as for the repeated measures ANOVA will be used.
+
+```{r}
+load(file = here("data","drive_shaft_repeated_measures.Rdata"))
+
+out_fried <- rep_meas_ds %>% 
+  friedman_test(
+    diameter~timepoint|Subject_ID
+  ) 
+out_fried %>% 
+  gt() %>% 
+  fmt_number(decimals = 3) %>% 
+  tab_options(
+    table.font.size = 15
+  ) %>% 
+  as_raw_html()
+
+
+```
+
+With $p<\alpha = 0.05$ $H_0$ is rejected, the timepoints play a vital role for the drive shaft parameter.
+
+:::
+
+:::
+   
