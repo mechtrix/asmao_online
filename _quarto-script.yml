@@ -15,7 +15,14 @@ format:
     include-in-header: mathjax.html
     theme: cosmo
   pdf:
-    documentclass: scrreprt
-
+    documentclass: scrbook
+    papersize: A4
+    number-sections: true
+    toc: true
+    lof: true
+    lot: true
+    fig-align: center
+    fig-pos: 'ht'
+    fig-format: pdf
 
 
