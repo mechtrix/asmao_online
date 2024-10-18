@@ -10,7 +10,6 @@ editor_options:
 #| include: false
 
 library(tidyverse)
-# library(patchwork)
 library(gghalves)
 library(distributional)
 library(here)
@@ -20,8 +19,7 @@ library(ggh4x)
 library(ggridges)
 library(ggdist)
 library(tidydice)
-# library(gt)
-# library(gtsummary)
+
 
 ```
 

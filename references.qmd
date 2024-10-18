@@ -1,11 +1,10 @@
 ---
-title: "References"
+title: "References {.unnumbered}"
 output: html_document
+number-sections: false
 editor_options: 
   chunk_output_type: console
 ---
-
-# References {.unnumbered}
 
 ::: {#refs}
 :::

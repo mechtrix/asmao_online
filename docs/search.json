@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Advanced Statistical Methods and Optimization",
     "section": "",
-    "text": "Preface\nThis is a Quarto book.\nTo learn more about Quarto books visit https://quarto.org/docs/books.\n\n\n[1] 2",
+    "text": "Preface\nThis is the script for the lecture “Advanced Statistical Methods and Optimization” at the DIT/Campus Cham. I do realize, that this body of knowledge has been repeated over and over, but have decided to do my own nonetheless so I can add my own flavor to the realms of statistics. Please note that this material is copyrighted, you are not allowed to copy, at least ask for permission - you are likely to get it.\nTim Weber, Oct. 2024",
     "crumbs": [
       "Advanced Statistical Methods and Optimization"
     ]
@@ -252,11 +252,11 @@
   {
     "objectID": "references.html",
     "href": "references.html",
-    "title": "3  References",
+    "title": "References {.unnumbered}",
     "section": "",
-    "text": "References\n\n\nJ. Bibby, E. J. G. Pitman. 1980. “Some Basic Theory for\nStatistical Inference.” The Mathematical Gazette 64\n(428): 138–38. https://doi.org/10.2307/3615104.\n\n\nJohnson, Norman Lloyd. 1994. Continuous Univariate\nDistributions. Wiley.\n\n\nMeyna, Arno. 2023. Sicherheit Und Zuverlässigkeit Technischer\nSysteme. Carl Hanser Verlag GmbH &\nCo. KG. https://doi.org/10.3139/9783446468085.fm.\n\n\nRamalho, Joao. 2021. industRial: Data, Functions and Support\nMaterials from the Book \"industRial Data Science\". https://CRAN.R-project.org/package=industRial.\n\n\nStudent. 1908. “The Probable Error of a Mean.”\nBiometrika 6 (1): 1. https://doi.org/10.2307/2331554.\n\n\nTaboga, Marco. 2017. Lectures on Probability Theory and Mathematical\nStatistics - 3rd Edition. Createspace Independent Publishing\nPlatform.\n\n\n“The R Graph Gallery – Help and Inspiration for r\nCharts.” 2022. https://r-graph-gallery.com/.\n\n\nTiedemann, Frederik. 2022. Gghalves: Compose Half-Half Plots Using\nYour Favourite Geoms. https://CRAN.R-project.org/package=gghalves.\n\n\nWeibull, Waloddi. 1951. “A Statistical Distribution Function of\nWide Applicability.” Journal of Applied Mechanics 18\n(3): 293–97. https://doi.org/10.1115/1.4010337.\n\n\nWickham, Hadley. 2016. Ggplot2: Elegant Graphics for Data\nAnalysis. Springer-Verlag New York. https://ggplot2.tidyverse.org.\n\n\nWilke, Claus O. 2022. Ggridges: Ridgeline Plots in ’Ggplot2’.\nhttps://CRAN.R-project.org/package=ggridges.",
+    "text": "J. Bibby, E. J. G. Pitman. 1980. “Some Basic Theory for\nStatistical Inference.” The Mathematical Gazette 64\n(428): 138–38. https://doi.org/10.2307/3615104.\n\n\nJohnson, Norman Lloyd. 1994. Continuous Univariate\nDistributions. Wiley.\n\n\nMeyna, Arno. 2023. Sicherheit Und Zuverlässigkeit Technischer\nSysteme. Carl Hanser Verlag GmbH &\nCo. KG. https://doi.org/10.3139/9783446468085.fm.\n\n\nRamalho, Joao. 2021. industRial: Data, Functions and Support\nMaterials from the Book \"industRial Data Science\". https://CRAN.R-project.org/package=industRial.\n\n\nStudent. 1908. “The Probable Error of a Mean.”\nBiometrika 6 (1): 1. https://doi.org/10.2307/2331554.\n\n\nTaboga, Marco. 2017. Lectures on Probability Theory and Mathematical\nStatistics - 3rd Edition. Createspace Independent Publishing\nPlatform.\n\n\n“The R Graph Gallery – Help and Inspiration for r\nCharts.” 2022. https://r-graph-gallery.com/.\n\n\nTiedemann, Frederik. 2022. Gghalves: Compose Half-Half Plots Using\nYour Favourite Geoms. https://CRAN.R-project.org/package=gghalves.\n\n\nWeibull, Waloddi. 1951. “A Statistical Distribution Function of\nWide Applicability.” Journal of Applied Mechanics 18\n(3): 293–97. https://doi.org/10.1115/1.4010337.\n\n\nWickham, Hadley. 2016. Ggplot2: Elegant Graphics for Data\nAnalysis. Springer-Verlag New York. https://ggplot2.tidyverse.org.\n\n\nWilke, Claus O. 2022. Ggridges: Ridgeline Plots in ’Ggplot2’.\nhttps://CRAN.R-project.org/package=ggridges.",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>References</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>References {.unnumbered}</span>"
     ]
   }
 ]

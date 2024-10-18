@@ -14,8 +14,32 @@ format:
   html:
     include-in-header: mathjax.html
     theme: cosmo
-  pdf:
+  titlepage-pdf:
     documentclass: scrbook
+    titlepage: "academic"
+    titlepage-theme:
+      elements: ["\\headerblock", "\\logoblock", "\\titleblock" , "\\authorblock", "\\affiliationblock", "\\vfill","\\dateblock"]
+      title-space-after: "0.08\\paperheight"
+      author-style: "superscript"
+      author-space-between: "10pt"
+      affiliation-sep: "newline"
+      # author-sep: ",\ "
+      # author-color: "white" 
+      # author-fontfamily: "Arial"
+      author-fontsize: 16
+      author-spacing: 16
+      author-fontstyle: ["textsc"]
+      # author-align: center
+      author-space-after: "0.08\\paperheight"
+      affiliation-style: "numbered-list-with-correspondence"
+      affiliation-fontfamily: "Arial"
+      affiliation-fontsize: 16
+      affiliation-spacing: 16
+      # affiliation-fontstyle: ["textsc"]
+      affiliation-align: left
+      affiliation-space-after: "0.08\\paperheight"
+    titlepage-logo: "img/siegel.png"
+    titlepage-header: "Deggendorf Institute of Technology"
     papersize: A4
     number-sections: true
     toc: true
