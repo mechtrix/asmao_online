@@ -8,6 +8,7 @@ book:
     - chapter000_BasicConcepts.qmd
     - chapter001_Distributions.qmd
     - references.qmd
+  downloads: [pdf]
     
 format:
   html:
