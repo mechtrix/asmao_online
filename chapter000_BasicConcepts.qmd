@@ -389,7 +389,7 @@ df %>%
   )+
   labs(
     x = "diameter in mm",
-    y = "count",
+    y = "density",
     title = "A density plot of the syringe data."
   )+
   scale_x_continuous(
