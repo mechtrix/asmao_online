@@ -29,8 +29,6 @@ library(rstatix)
 
 ```
 
-# Inferential Statistics
-
 ::: {.content-visible when-profile="script"}
 
 Inferential statistics involves making predictions, generalizations, or inferences about a population based on a sample of data. 
@@ -1254,10 +1252,7 @@ data <- data.frame(Category = c("A", "B"),
   )
 
 data %>% 
-  gt() %>% 
-  tab_options(
-    table.font.size = 25
-  )
+  gt() 
 
 ```
 
@@ -1291,10 +1286,7 @@ test_result %>%
   tidy() %>% 
   select(-method) %>% 
   gt() %>% 
-  fmt_number(decimals = 3) %>% 
-  tab_options(
-    table.font.size = 25
-  )
+  fmt_number(decimals = 3) 
 
 ```
 
@@ -1317,10 +1309,7 @@ ds_sum <- drive_shaft %>%
   )  
 
 ds_sum %>% gt() %>% 
-  fmt_number(decimals = 3) %>% 
-  tab_options(
-    table.font.size = 25
-  )
+  fmt_number(decimals = 3)
 
 ```
 
