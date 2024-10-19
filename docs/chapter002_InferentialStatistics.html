@@ -8,7 +8,7 @@
 
 <meta name="author" content="Prof.&nbsp;Dr.&nbsp;Tim Weber">
 
-<title>3&nbsp; Inferential Statistics – Advanced Statistical Methods and Optimization</title>
+<title>4&nbsp; Inferential Statistics – Advanced Statistical Methods and Optimization</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -85,8 +85,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./references.html" rel="next">
-<link href="./chapter001_Distributions.html" rel="prev">
+<link href="./chapter003_Regression.html" rel="next">
+<link href="./SamplingMethods.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -194,7 +194,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter002_InferentialStatistics.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Inferential Statistics</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter002_InferentialStatistics.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Inferential Statistics</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -242,14 +242,26 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./SamplingMethods.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sampling Methods</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./chapter002_InferentialStatistics.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Inferential Statistics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Inferential Statistics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter003_Regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regression Analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">References {.unnumbered}</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">References {.unnumbered}</span></span></a>
   </div>
 </li>
     </ul>
@@ -262,61 +274,61 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#hypothesis-testing---basics" id="toc-hypothesis-testing---basics" class="nav-link active" data-scroll-target="#hypothesis-testing---basics"><span class="header-section-number">3.1</span> Hypothesis Testing - Basics</a>
+  <li><a href="#hypothesis-testing---basics" id="toc-hypothesis-testing---basics" class="nav-link active" data-scroll-target="#hypothesis-testing---basics"><span class="header-section-number">4.1</span> Hypothesis Testing - Basics</a>
   <ul class="collapse">
-  <li><a href="#the-drive-shaft-exercise---hypotheses-1" id="toc-the-drive-shaft-exercise---hypotheses-1" class="nav-link" data-scroll-target="#the-drive-shaft-exercise---hypotheses-1"><span class="header-section-number">3.1.1</span> The drive shaft exercise - Hypotheses</a></li>
+  <li><a href="#the-drive-shaft-exercise---hypotheses-1" id="toc-the-drive-shaft-exercise---hypotheses-1" class="nav-link" data-scroll-target="#the-drive-shaft-exercise---hypotheses-1"><span class="header-section-number">4.1.1</span> The drive shaft exercise - Hypotheses</a></li>
   </ul></li>
-  <li><a href="#standard-error" id="toc-standard-error" class="nav-link" data-scroll-target="#standard-error"><span class="header-section-number">3.2</span> Standard Error</a></li>
-  <li><a href="#confidence-intervals" id="toc-confidence-intervals" class="nav-link" data-scroll-target="#confidence-intervals"><span class="header-section-number">3.3</span> Confidence Intervals</a>
+  <li><a href="#standard-error" id="toc-standard-error" class="nav-link" data-scroll-target="#standard-error"><span class="header-section-number">4.2</span> Standard Error</a></li>
+  <li><a href="#confidence-intervals" id="toc-confidence-intervals" class="nav-link" data-scroll-target="#confidence-intervals"><span class="header-section-number">4.3</span> Confidence Intervals</a>
   <ul class="collapse">
-  <li><a href="#the-drive-shaft-exercise---confidence-intervals" id="toc-the-drive-shaft-exercise---confidence-intervals" class="nav-link" data-scroll-target="#the-drive-shaft-exercise---confidence-intervals"><span class="header-section-number">3.3.1</span> The drive shaft exercise - Confidence Intervals</a></li>
+  <li><a href="#the-drive-shaft-exercise---confidence-intervals" id="toc-the-drive-shaft-exercise---confidence-intervals" class="nav-link" data-scroll-target="#the-drive-shaft-exercise---confidence-intervals"><span class="header-section-number">4.3.1</span> The drive shaft exercise - Confidence Intervals</a></li>
   </ul></li>
-  <li><a href="#significance-level" id="toc-significance-level" class="nav-link" data-scroll-target="#significance-level"><span class="header-section-number">3.4</span> Significance Level</a></li>
-  <li><a href="#false-negative---risk" id="toc-false-negative---risk" class="nav-link" data-scroll-target="#false-negative---risk"><span class="header-section-number">3.5</span> False negative - risk</a></li>
-  <li><a href="#power-analysis" id="toc-power-analysis" class="nav-link" data-scroll-target="#power-analysis"><span class="header-section-number">3.6</span> Power Analysis</a>
+  <li><a href="#significance-level" id="toc-significance-level" class="nav-link" data-scroll-target="#significance-level"><span class="header-section-number">4.4</span> Significance Level</a></li>
+  <li><a href="#false-negative---risk" id="toc-false-negative---risk" class="nav-link" data-scroll-target="#false-negative---risk"><span class="header-section-number">4.5</span> False negative - risk</a></li>
+  <li><a href="#power-analysis" id="toc-power-analysis" class="nav-link" data-scroll-target="#power-analysis"><span class="header-section-number">4.6</span> Power Analysis</a>
   <ul class="collapse">
-  <li><a href="#a-word-on-effect-size" id="toc-a-word-on-effect-size" class="nav-link" data-scroll-target="#a-word-on-effect-size"><span class="header-section-number">3.6.1</span> A word on Effect Size</a></li>
+  <li><a href="#a-word-on-effect-size" id="toc-a-word-on-effect-size" class="nav-link" data-scroll-target="#a-word-on-effect-size"><span class="header-section-number">4.6.1</span> A word on Effect Size</a></li>
   </ul></li>
-  <li><a href="#p-value" id="toc-p-value" class="nav-link" data-scroll-target="#p-value"><span class="header-section-number">3.7</span> p-value</a></li>
-  <li><a href="#statistical-errors" id="toc-statistical-errors" class="nav-link" data-scroll-target="#statistical-errors"><span class="header-section-number">3.8</span> Statistical errors</a></li>
-  <li><a href="#parametric-and-non-parametric-tests" id="toc-parametric-and-non-parametric-tests" class="nav-link" data-scroll-target="#parametric-and-non-parametric-tests"><span class="header-section-number">3.9</span> Parametric and Non-parametric Tests</a></li>
-  <li><a href="#paired-and-independent-tests" id="toc-paired-and-independent-tests" class="nav-link" data-scroll-target="#paired-and-independent-tests"><span class="header-section-number">3.10</span> Paired and Independent Tests</a></li>
-  <li><a href="#distribution-tests" id="toc-distribution-tests" class="nav-link" data-scroll-target="#distribution-tests"><span class="header-section-number">3.11</span> Distribution Tests</a>
+  <li><a href="#p-value" id="toc-p-value" class="nav-link" data-scroll-target="#p-value"><span class="header-section-number">4.7</span> p-value</a></li>
+  <li><a href="#statistical-errors" id="toc-statistical-errors" class="nav-link" data-scroll-target="#statistical-errors"><span class="header-section-number">4.8</span> Statistical errors</a></li>
+  <li><a href="#parametric-and-non-parametric-tests" id="toc-parametric-and-non-parametric-tests" class="nav-link" data-scroll-target="#parametric-and-non-parametric-tests"><span class="header-section-number">4.9</span> Parametric and Non-parametric Tests</a></li>
+  <li><a href="#paired-and-independent-tests" id="toc-paired-and-independent-tests" class="nav-link" data-scroll-target="#paired-and-independent-tests"><span class="header-section-number">4.10</span> Paired and Independent Tests</a></li>
+  <li><a href="#distribution-tests" id="toc-distribution-tests" class="nav-link" data-scroll-target="#distribution-tests"><span class="header-section-number">4.11</span> Distribution Tests</a>
   <ul class="collapse">
-  <li><a href="#sec-qq-plot" id="toc-sec-qq-plot" class="nav-link" data-scroll-target="#sec-qq-plot"><span class="header-section-number">3.11.1</span> Quantile-Quantile plots</a></li>
-  <li><a href="#sec-ks-test" id="toc-sec-ks-test" class="nav-link" data-scroll-target="#sec-ks-test"><span class="header-section-number">3.11.2</span> Quantitative Methods</a></li>
-  <li><a href="#expanding-to-non-normal-disitributions" id="toc-expanding-to-non-normal-disitributions" class="nav-link" data-scroll-target="#expanding-to-non-normal-disitributions"><span class="header-section-number">3.11.3</span> Expanding to non-normal disitributions</a></li>
+  <li><a href="#sec-qq-plot" id="toc-sec-qq-plot" class="nav-link" data-scroll-target="#sec-qq-plot"><span class="header-section-number">4.11.1</span> Quantile-Quantile plots</a></li>
+  <li><a href="#sec-ks-test" id="toc-sec-ks-test" class="nav-link" data-scroll-target="#sec-ks-test"><span class="header-section-number">4.11.2</span> Quantitative Methods</a></li>
+  <li><a href="#expanding-to-non-normal-disitributions" id="toc-expanding-to-non-normal-disitributions" class="nav-link" data-scroll-target="#expanding-to-non-normal-disitributions"><span class="header-section-number">4.11.3</span> Expanding to non-normal disitributions</a></li>
   </ul></li>
-  <li><a href="#test-1-variable" id="toc-test-1-variable" class="nav-link" data-scroll-target="#test-1-variable"><span class="header-section-number">3.12</span> Test 1 Variable</a>
+  <li><a href="#test-1-variable" id="toc-test-1-variable" class="nav-link" data-scroll-target="#test-1-variable"><span class="header-section-number">4.12</span> Test 1 Variable</a>
   <ul class="collapse">
-  <li><a href="#one-proportion-test" id="toc-one-proportion-test" class="nav-link" data-scroll-target="#one-proportion-test"><span class="header-section-number">3.12.1</span> One Proportion Test</a></li>
-  <li><a href="#chi2-goodness-of-fit-test" id="toc-chi2-goodness-of-fit-test" class="nav-link" data-scroll-target="#chi2-goodness-of-fit-test"><span class="header-section-number">3.12.2</span> Chi<sup>2</sup> goodness of fit test</a></li>
-  <li><a href="#one-sample-t-test" id="toc-one-sample-t-test" class="nav-link" data-scroll-target="#one-sample-t-test"><span class="header-section-number">3.12.3</span> One-sample t-test</a></li>
-  <li><a href="#one-sample-wilcoxon-test" id="toc-one-sample-wilcoxon-test" class="nav-link" data-scroll-target="#one-sample-wilcoxon-test"><span class="header-section-number">3.12.4</span> One sample Wilcoxon test</a></li>
+  <li><a href="#one-proportion-test" id="toc-one-proportion-test" class="nav-link" data-scroll-target="#one-proportion-test"><span class="header-section-number">4.12.1</span> One Proportion Test</a></li>
+  <li><a href="#chi2-goodness-of-fit-test" id="toc-chi2-goodness-of-fit-test" class="nav-link" data-scroll-target="#chi2-goodness-of-fit-test"><span class="header-section-number">4.12.2</span> Chi<sup>2</sup> goodness of fit test</a></li>
+  <li><a href="#one-sample-t-test" id="toc-one-sample-t-test" class="nav-link" data-scroll-target="#one-sample-t-test"><span class="header-section-number">4.12.3</span> One-sample t-test</a></li>
+  <li><a href="#one-sample-wilcoxon-test" id="toc-one-sample-wilcoxon-test" class="nav-link" data-scroll-target="#one-sample-wilcoxon-test"><span class="header-section-number">4.12.4</span> One sample Wilcoxon test</a></li>
   </ul></li>
-  <li><a href="#test-2-variable-qualitative-or-quantitative" id="toc-test-2-variable-qualitative-or-quantitative" class="nav-link" data-scroll-target="#test-2-variable-qualitative-or-quantitative"><span class="header-section-number">3.13</span> Test 2 Variable (Qualitative or Quantitative)</a>
+  <li><a href="#test-2-variable-qualitative-or-quantitative" id="toc-test-2-variable-qualitative-or-quantitative" class="nav-link" data-scroll-target="#test-2-variable-qualitative-or-quantitative"><span class="header-section-number">4.13</span> Test 2 Variable (Qualitative or Quantitative)</a>
   <ul class="collapse">
-  <li><a href="#cochranes-q-test" id="toc-cochranes-q-test" class="nav-link" data-scroll-target="#cochranes-q-test"><span class="header-section-number">3.13.1</span> Cochrane’s Q-test</a></li>
-  <li><a href="#chi2-test-of-independence" id="toc-chi2-test-of-independence" class="nav-link" data-scroll-target="#chi2-test-of-independence"><span class="header-section-number">3.13.2</span> Chi<sup>2</sup> test of independence</a></li>
-  <li><a href="#correlation" id="toc-correlation" class="nav-link" data-scroll-target="#correlation"><span class="header-section-number">3.13.3</span> Correlation</a></li>
+  <li><a href="#cochranes-q-test" id="toc-cochranes-q-test" class="nav-link" data-scroll-target="#cochranes-q-test"><span class="header-section-number">4.13.1</span> Cochrane’s Q-test</a></li>
+  <li><a href="#chi2-test-of-independence" id="toc-chi2-test-of-independence" class="nav-link" data-scroll-target="#chi2-test-of-independence"><span class="header-section-number">4.13.2</span> Chi<sup>2</sup> test of independence</a></li>
+  <li><a href="#correlation" id="toc-correlation" class="nav-link" data-scroll-target="#correlation"><span class="header-section-number">4.13.3</span> Correlation</a></li>
   </ul></li>
-  <li><a href="#test-2-variables-2-groups" id="toc-test-2-variables-2-groups" class="nav-link" data-scroll-target="#test-2-variables-2-groups"><span class="header-section-number">3.14</span> Test 2 Variables (2 Groups)</a>
+  <li><a href="#test-2-variables-2-groups" id="toc-test-2-variables-2-groups" class="nav-link" data-scroll-target="#test-2-variables-2-groups"><span class="header-section-number">4.14</span> Test 2 Variables (2 Groups)</a>
   <ul class="collapse">
-  <li><a href="#test-for-equal-variance-homoscedasticity" id="toc-test-for-equal-variance-homoscedasticity" class="nav-link" data-scroll-target="#test-for-equal-variance-homoscedasticity"><span class="header-section-number">3.14.1</span> Test for equal variance (homoscedasticity)</a></li>
-  <li><a href="#t-test-for-independent-samples" id="toc-t-test-for-independent-samples" class="nav-link" data-scroll-target="#t-test-for-independent-samples"><span class="header-section-number">3.14.2</span> t-test for independent samples</a></li>
-  <li><a href="#welch-t-test-for-independent-samples" id="toc-welch-t-test-for-independent-samples" class="nav-link" data-scroll-target="#welch-t-test-for-independent-samples"><span class="header-section-number">3.14.3</span> Welch t-test for independent samples</a></li>
-  <li><a href="#mann-whitney-u-test" id="toc-mann-whitney-u-test" class="nav-link" data-scroll-target="#mann-whitney-u-test"><span class="header-section-number">3.14.4</span> Mann-Whitney U test</a></li>
-  <li><a href="#t-test-for-paired-samples" id="toc-t-test-for-paired-samples" class="nav-link" data-scroll-target="#t-test-for-paired-samples"><span class="header-section-number">3.14.5</span> t-test for paired samples</a></li>
-  <li><a href="#wilcoxon-signed-rank-test" id="toc-wilcoxon-signed-rank-test" class="nav-link" data-scroll-target="#wilcoxon-signed-rank-test"><span class="header-section-number">3.14.6</span> Wilcoxon signed rank test</a></li>
+  <li><a href="#test-for-equal-variance-homoscedasticity" id="toc-test-for-equal-variance-homoscedasticity" class="nav-link" data-scroll-target="#test-for-equal-variance-homoscedasticity"><span class="header-section-number">4.14.1</span> Test for equal variance (homoscedasticity)</a></li>
+  <li><a href="#t-test-for-independent-samples" id="toc-t-test-for-independent-samples" class="nav-link" data-scroll-target="#t-test-for-independent-samples"><span class="header-section-number">4.14.2</span> t-test for independent samples</a></li>
+  <li><a href="#welch-t-test-for-independent-samples" id="toc-welch-t-test-for-independent-samples" class="nav-link" data-scroll-target="#welch-t-test-for-independent-samples"><span class="header-section-number">4.14.3</span> Welch t-test for independent samples</a></li>
+  <li><a href="#mann-whitney-u-test" id="toc-mann-whitney-u-test" class="nav-link" data-scroll-target="#mann-whitney-u-test"><span class="header-section-number">4.14.4</span> Mann-Whitney U test</a></li>
+  <li><a href="#t-test-for-paired-samples" id="toc-t-test-for-paired-samples" class="nav-link" data-scroll-target="#t-test-for-paired-samples"><span class="header-section-number">4.14.5</span> t-test for paired samples</a></li>
+  <li><a href="#wilcoxon-signed-rank-test" id="toc-wilcoxon-signed-rank-test" class="nav-link" data-scroll-target="#wilcoxon-signed-rank-test"><span class="header-section-number">4.14.6</span> Wilcoxon signed rank test</a></li>
   </ul></li>
-  <li><a href="#test-2-variables-2-groups-1" id="toc-test-2-variables-2-groups-1" class="nav-link" data-scroll-target="#test-2-variables-2-groups-1"><span class="header-section-number">3.15</span> Test 2 Variables (&gt; 2 Groups)</a>
+  <li><a href="#test-2-variables-2-groups-1" id="toc-test-2-variables-2-groups-1" class="nav-link" data-scroll-target="#test-2-variables-2-groups-1"><span class="header-section-number">4.15</span> Test 2 Variables (&gt; 2 Groups)</a>
   <ul class="collapse">
-  <li><a href="#analysis-of-variance-anova---basic-idea" id="toc-analysis-of-variance-anova---basic-idea" class="nav-link" data-scroll-target="#analysis-of-variance-anova---basic-idea"><span class="header-section-number">3.15.1</span> Analysis of Variance (ANOVA) - Basic Idea</a></li>
-  <li><a href="#one-way-anova" id="toc-one-way-anova" class="nav-link" data-scroll-target="#one-way-anova"><span class="header-section-number">3.15.2</span> One-way ANOVA</a></li>
-  <li><a href="#welch-anova" id="toc-welch-anova" class="nav-link" data-scroll-target="#welch-anova"><span class="header-section-number">3.15.3</span> Welch ANOVA</a></li>
-  <li><a href="#kruskal-wallis" id="toc-kruskal-wallis" class="nav-link" data-scroll-target="#kruskal-wallis"><span class="header-section-number">3.15.4</span> Kruskal Wallis</a></li>
-  <li><a href="#repeated-measures-anova" id="toc-repeated-measures-anova" class="nav-link" data-scroll-target="#repeated-measures-anova"><span class="header-section-number">3.15.5</span> repeated measures ANOVA</a></li>
-  <li><a href="#friedman-test" id="toc-friedman-test" class="nav-link" data-scroll-target="#friedman-test"><span class="header-section-number">3.15.6</span> Friedman test</a></li>
+  <li><a href="#analysis-of-variance-anova---basic-idea" id="toc-analysis-of-variance-anova---basic-idea" class="nav-link" data-scroll-target="#analysis-of-variance-anova---basic-idea"><span class="header-section-number">4.15.1</span> Analysis of Variance (ANOVA) - Basic Idea</a></li>
+  <li><a href="#one-way-anova" id="toc-one-way-anova" class="nav-link" data-scroll-target="#one-way-anova"><span class="header-section-number">4.15.2</span> One-way ANOVA</a></li>
+  <li><a href="#welch-anova" id="toc-welch-anova" class="nav-link" data-scroll-target="#welch-anova"><span class="header-section-number">4.15.3</span> Welch ANOVA</a></li>
+  <li><a href="#kruskal-wallis" id="toc-kruskal-wallis" class="nav-link" data-scroll-target="#kruskal-wallis"><span class="header-section-number">4.15.4</span> Kruskal Wallis</a></li>
+  <li><a href="#repeated-measures-anova" id="toc-repeated-measures-anova" class="nav-link" data-scroll-target="#repeated-measures-anova"><span class="header-section-number">4.15.5</span> repeated measures ANOVA</a></li>
+  <li><a href="#friedman-test" id="toc-friedman-test" class="nav-link" data-scroll-target="#friedman-test"><span class="header-section-number">4.15.6</span> Friedman test</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -326,7 +338,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Inferential Statistics</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Inferential Statistics</span></h1>
 </div>
 
 
@@ -357,8 +369,8 @@ window.Quarto = {
 
 
 <p>Inferential statistics involves making predictions, generalizations, or inferences about a population based on a sample of data. These techniques are used when researchers want to draw conclusions beyond the specific data they have collected. Inferential statistics help answer questions about relationships, differences, and associations within a population.</p>
-<section id="hypothesis-testing---basics" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="hypothesis-testing---basics"><span class="header-section-number">3.1</span> Hypothesis Testing - Basics</h2>
+<section id="hypothesis-testing---basics" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="hypothesis-testing---basics"><span class="header-section-number">4.1</span> Hypothesis Testing - Basics</h2>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-hypothesis" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -367,7 +379,7 @@ window.Quarto = {
 <img src="chapter002/004_Hypothesis.png" class="img-fluid figure-img" style="width:85.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hypothesis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.1: We are hypotheses.
+Figure&nbsp;4.1: We are hypotheses.
 </figcaption>
 </figure>
 </div>
@@ -375,8 +387,8 @@ Figure&nbsp;3.1: We are hypotheses.
 </div>
 <p><strong><a href="#H0">Null Hypothesis (H0)</a>:</strong> This is the default or status quo assumption. It represents the belief that there is no significant change, effect, or difference in the production process. It is often denoted as a statement of equality (e.g., the mean production rate is equal to a certain value).</p>
 <p><strong><a href="#Ha">Alternative Hypothesis (Ha)</a>:</strong> This is the claim or statement we want to test. It represents the opposite of the null hypothesis, suggesting that there is a significant change, effect, or difference in the production process (e.g., the mean production rate is not equal to a certain value).</p>
-<section id="the-drive-shaft-exercise---hypotheses-1" class="level3" data-number="3.1.1">
-<h3 data-number="3.1.1" class="anchored" data-anchor-id="the-drive-shaft-exercise---hypotheses-1"><span class="header-section-number">3.1.1</span> The drive shaft exercise - Hypotheses</h3>
+<section id="the-drive-shaft-exercise---hypotheses-1" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="the-drive-shaft-exercise---hypotheses-1"><span class="header-section-number">4.1.1</span> The drive shaft exercise - Hypotheses</h3>
 <p>During the <a href="#QC">QC</a> of the drive shaft <span class="math inline">\(n=100\)</span> samples are taken and the diameter is measured with an accuracy of <span class="math inline">\(\pm 0.01mm\)</span>. Is the true mean of all produced drive shafts within the specification?</p>
 <p>For this we can formulate the hypotheses.</p>
 <dl>
@@ -392,8 +404,8 @@ The drive shaft diameter is not within the specification.
 <p>In the following we will explore, how to test for these hypotheses.</p>
 </section>
 </section>
-<section id="standard-error" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="standard-error"><span class="header-section-number">3.2</span> Standard Error</h2>
+<section id="standard-error" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="standard-error"><span class="header-section-number">4.2</span> Standard Error</h2>
 <div id="fig-se" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-se-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -425,7 +437,7 @@ The drive shaft diameter is not within the specification.
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-se-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.2: The SE for varying sample sizes <span class="math inline">\(n\)</span>
+Figure&nbsp;4.2: The SE for varying sample sizes <span class="math inline">\(n\)</span>
 </figcaption>
 </figure>
 </div>
@@ -438,8 +450,8 @@ SE = \frac{sd}{\sqrt{n}}
 <p><strong>Scaling of Variability:</strong> The purpose of the standard error is to measure the variability or spread of sample means. The square root of the sample size reflects how that variability decreases as the sample size increases. When the sample size is larger, the sample mean is expected to be closer to the population mean, and the standard error becomes smaller to reflect this reduced variability.</p>
 <p><strong>Central Limit Theorem:</strong> The inclusion of <span class="math inline">\(\sqrt{n}\)</span> in the standard error formula is closely tied to the Central Limit Theorem, which states that the distribution of sample means approaches a normal distribution as the sample size increases. <span class="math inline">\(\sqrt{n}\)</span> helps in this context to ensure that the standard error appropriately reflects the distribution’s properties.</p>
 </section>
-<section id="confidence-intervals" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="confidence-intervals"><span class="header-section-number">3.3</span> Confidence Intervals</h2>
+<section id="confidence-intervals" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="confidence-intervals"><span class="header-section-number">4.3</span> Confidence Intervals</h2>
 <p>A <a href="#ci">Confidence Interval</a> is a statistical concept used to estimate a range of values within which a population parameter, such as a population mean or proportion, is likely to fall. It provides a way to express the uncertainty or variability in our sample data when making inferences about the population. In other words, it quantifies the level of confidence we have in our estimate of a population parameter.</p>
 <p>Confidence intervals are typically expressed as a range with an associated confidence level. The confidence level, often denoted as <span class="math inline">\(1-\alpha\)</span>, represents the probability that the calculated interval contains the true population parameter. Common confidence levels include <span class="math inline">\(90\%\)</span>, <span class="math inline">\(95\%\)</span>, and <span class="math inline">\(99\%\)</span>.</p>
 <p>There are different ways of calculating <a href="#ci">CI</a>.</p>
@@ -479,8 +491,8 @@ CI = \hat{p} \pm Z \sqrt{\frac{\hat{p}(1-\hat{p})}{n}} \label{ci03}
 <ol start="4" type="1">
 <li>The method for calculating confidence intervals may vary depending on the estimated parameter. Estimating a population median or the differences between two population means, other statistical techniques may be used.</li>
 </ol>
-<section id="the-drive-shaft-exercise---confidence-intervals" class="level3" data-number="3.3.1">
-<h3 data-number="3.3.1" class="anchored" data-anchor-id="the-drive-shaft-exercise---confidence-intervals"><span class="header-section-number">3.3.1</span> The drive shaft exercise - Confidence Intervals</h3>
+<section id="the-drive-shaft-exercise---confidence-intervals" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="the-drive-shaft-exercise---confidence-intervals"><span class="header-section-number">4.3.1</span> The drive shaft exercise - Confidence Intervals</h3>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-ci" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -489,28 +501,28 @@ CI = \hat{p} \pm Z \sqrt{\frac{\hat{p}(1-\hat{p})}{n}} \label{ci03}
 <img src="chapter002_InferentialStatistics_files/figure-html/fig-ci-1.png" class="img-fluid figure-img" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ci-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.3: The 95% CI for the drive shaft data.
+Figure&nbsp;4.3: The 95% CI for the drive shaft data.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>The <span class="math inline">\(95\%\)</span> <a href="#ci">CI</a> for the drive shaft data is shown in <a href="#fig-ci" class="quarto-xref">Figure&nbsp;<span>3.3</span></a>. For comparison the histogram with an overlayed density curve is plotted. The highlighted area shows the minimum and maximum <a href="#ci">CI</a>, the calculated mean is shown as a dashed line.</p>
+<p>The <span class="math inline">\(95\%\)</span> <a href="#ci">CI</a> for the drive shaft data is shown in <a href="#fig-ci" class="quarto-xref">Figure&nbsp;<span>4.3</span></a>. For comparison the histogram with an overlayed density curve is plotted. The highlighted area shows the minimum and maximum <a href="#ci">CI</a>, the calculated mean is shown as a dashed line.</p>
 </section>
 </section>
-<section id="significance-level" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="significance-level"><span class="header-section-number">3.4</span> Significance Level</h2>
+<section id="significance-level" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="significance-level"><span class="header-section-number">4.4</span> Significance Level</h2>
 <p>The <a href="#sign-level">significance level <span class="math inline">\(\alpha\)</span></a> is a critical component of hypothesis testing in statistics. It represents the maximum acceptable probability of making a Type I error, which is the error of rejecting a null hypothesis when it is actually true. In other words, <span class="math inline">\(\alpha\)</span> is the probability of concluding that there is an effect or relationship when there isn’t one. Commonly used significance levels include <span class="math inline">\(0.05 (5\%)\)</span>, <span class="math inline">\(0.01 (1\%)\)</span>, and <span class="math inline">\(0.10 (10\%)\)</span>. The choice of <span class="math inline">\(\alpha\)</span> depends on the context of the study and the desired balance between making correct decisions and minimizing the risk of Type I errors.</p>
 </section>
-<section id="false-negative---risk" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="false-negative---risk"><span class="header-section-number">3.5</span> False negative - risk</h2>
+<section id="false-negative---risk" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="false-negative---risk"><span class="header-section-number">4.5</span> False negative - risk</h2>
 <p>The risk for a false negative outcome is called <a href="#beta-risk"><span class="math inline">\(\beta\)</span> - risk</a>. Is is calculated using statistical power analysis. Statistical power is the probability of correctly rejecting a null hypothesis when it is false, which is essentially the complement of beta (<span class="math inline">\(\beta\)</span>).</p>
 <p><span class="math display">\[\begin{align}
 \beta = 1 - \text{Power}
 \end{align}\]</span></p>
 </section>
-<section id="power-analysis" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="power-analysis"><span class="header-section-number">3.6</span> Power Analysis</h2>
+<section id="power-analysis" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="power-analysis"><span class="header-section-number">4.6</span> Power Analysis</h2>
 <p>Statistical power is calculated using software, statistical tables, or calculators specifically designed for this purpose. Generally speaking: The greater the statistical power, the greater is the evidence to accept or reject the <span class="math inline">\(H_0\)</span> based on the study. Power analysis is also very useful in determining the sample size before the actualy experiments are conducted. Below is an example for a power calculation for a two-sample t-test.</p>
 <p><span class="math display">\[
 \text{Power} = 1 - \beta = P\left(\frac{{|\bar{X}_1 - \bar{X}_2|}}{\sqrt{\frac{S_1^2}{n_1} + \frac{S_2^2}{n_2}}} &gt; Z_{\frac{\alpha}{2}} - \frac{\delta}{\sqrt{\frac{S_1^2}{n_1} + \frac{S_2^2}{n_2}}}\right)
@@ -533,7 +545,7 @@ Figure&nbsp;3.3: The 95% CI for the drive shaft data.
 <img src="chapter002/023_CoinToss.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ct-prob-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.4: The coin toss with the respective probabilites <span class="citation" data-cites="pwr">(<a href="references.html#ref-pwr" role="doc-biblioref">Champely 2020</a>)</span>.
+Figure&nbsp;4.4: The coin toss with the respective probabilites <span class="citation" data-cites="pwr">(<a href="references.html#ref-pwr" role="doc-biblioref">Champely 2020</a>)</span>.
 </figcaption>
 </figure>
 </div>
@@ -571,7 +583,7 @@ The coin is loaded and lands heads more than <span class="math inline">\(50\%\)<
 </div>
 </div>
 <div class="fragment fade-in-then-out">
-<p>The sample size <span class="math inline">\(n = 23\)</span>, meaning <span class="math inline">\(23\)</span> coin flips means that the statistical power is <span class="math inline">\(80\%\)</span> at a <span class="math inline">\(\alpha = 0.05\)</span> significance level (<span class="math inline">\(\beta = 1-power = 0.2 \approx 20\%\)</span>). But what if the sample size varies? This is the subject of <a href="#fig-pwr-calc" class="quarto-xref">Figure&nbsp;<span>3.5</span></a>. On the <code>x-axis</code> the power is shown (or the <span class="math inline">\(\beta\)</span>-risk on the upper <code>x-axis</code>), whereas the sample size <code>n</code> is depicted on the <code>y-axis</code>. To increase the power by <span class="math inline">\(10\%\)</span> to be <span class="math inline">\(90\%\)</span> the sample sized must be increased by <span class="math inline">\(11\)</span>. A further power increase of <span class="math inline">\(5\%\)</span> would in turn mean an increase in sample size to be <span class="math inline">\(n = 40\)</span>. This highlights the non-linear nature of power calculations and why they are important for experimental planning.</p>
+<p>The sample size <span class="math inline">\(n = 23\)</span>, meaning <span class="math inline">\(23\)</span> coin flips means that the statistical power is <span class="math inline">\(80\%\)</span> at a <span class="math inline">\(\alpha = 0.05\)</span> significance level (<span class="math inline">\(\beta = 1-power = 0.2 \approx 20\%\)</span>). But what if the sample size varies? This is the subject of <a href="#fig-pwr-calc" class="quarto-xref">Figure&nbsp;<span>4.5</span></a>. On the <code>x-axis</code> the power is shown (or the <span class="math inline">\(\beta\)</span>-risk on the upper <code>x-axis</code>), whereas the sample size <code>n</code> is depicted on the <code>y-axis</code>. To increase the power by <span class="math inline">\(10\%\)</span> to be <span class="math inline">\(90\%\)</span> the sample sized must be increased by <span class="math inline">\(11\)</span>. A further power increase of <span class="math inline">\(5\%\)</span> would in turn mean an increase in sample size to be <span class="math inline">\(n = 40\)</span>. This highlights the non-linear nature of power calculations and why they are important for experimental planning.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-pwr-calc" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -580,7 +592,7 @@ The coin is loaded and lands heads more than <span class="math inline">\(50\%\)<
 <img src="chapter002_InferentialStatistics_files/figure-html/fig-pwr-calc-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pwr-calc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.5: The power vs.&nbsp;the sample size
+Figure&nbsp;4.5: The power vs.&nbsp;the sample size
 </figcaption>
 </figure>
 </div>
@@ -596,7 +608,7 @@ Figure&nbsp;3.5: The power vs.&nbsp;the sample size
 <img src="chapter002_InferentialStatistics_files/figure-html/fig-pwr-calc-params-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pwr-calc-params-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.6: The power vs.&nbsp;the sample size for different effect sizes
+Figure&nbsp;4.6: The power vs.&nbsp;the sample size for different effect sizes
 </figcaption>
 </figure>
 </div>
@@ -604,14 +616,14 @@ Figure&nbsp;3.6: The power vs.&nbsp;the sample size for different effect sizes
 </div>
 </div>
 </div>
-<section id="a-word-on-effect-size" class="level3" data-number="3.6.1">
-<h3 data-number="3.6.1" class="anchored" data-anchor-id="a-word-on-effect-size"><span class="header-section-number">3.6.1</span> A word on Effect Size</h3>
+<section id="a-word-on-effect-size" class="level3" data-number="4.6.1">
+<h3 data-number="4.6.1" class="anchored" data-anchor-id="a-word-on-effect-size"><span class="header-section-number">4.6.1</span> A word on Effect Size</h3>
 <p>Cohen <span class="citation" data-cites="Cohen_2013">(<a href="references.html#ref-Cohen_2013" role="doc-biblioref">Cohen 2013</a>)</span> describes effect size as “the degree to which the null hypothesis is false.” In the coin flipping example, this is the difference between <span class="math inline">\(75\%\)</span> and <span class="math inline">\(50\%\)</span>. We could say the effect was 25% but recall we had to transform the absolute difference in proportions to another quantity using the ES.h function. This is a crucial part of doing power analysis correctly: An effect size must be provided on the expected scale. Doing otherwise will produce wrong sample size and power calculations.</p>
 <p>When in doubt, Conventional Effect Sizes can be used. These are pre-determined effect sizes for “small”, “medium”, and “large” effects, see <span class="citation" data-cites="Cohen_2013">Cohen (<a href="references.html#ref-Cohen_2013" role="doc-biblioref">2013</a>)</span>.</p>
 </section>
 </section>
-<section id="p-value" class="level2" data-number="3.7">
-<h2 data-number="3.7" class="anchored" data-anchor-id="p-value"><span class="header-section-number">3.7</span> p-value</h2>
+<section id="p-value" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="p-value"><span class="header-section-number">4.7</span> p-value</h2>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-stat-rates" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -620,7 +632,7 @@ Figure&nbsp;3.6: The power vs.&nbsp;the sample size for different effect sizes
 <img src="chapter002/008_Rates.png" class="img-fluid figure-img" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-stat-rates-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.7: Type I and Type II error in the context of inferential statistics.
+Figure&nbsp;4.7: Type I and Type II error in the context of inferential statistics.
 </figcaption>
 </figure>
 </div>
@@ -629,8 +641,8 @@ Figure&nbsp;3.7: Type I and Type II error in the context of inferential statisti
 <p>The p-value is a statistical measure that quantifies the evidence against a null hypothesis. It represents the probability of obtaining test results as extreme or more extreme than the ones observed, assuming the null hypothesis is true. In hypothesis testing, a smaller p-value indicates stronger evidence against the null hypothesis. If the p-value is less than or equal to <span class="math inline">\(\alpha\)</span> (<span class="math inline">\(p \leq \alpha\)</span>), you reject the null hypothesis. If the p-value is greater than <span class="math inline">\(\alpha\)</span> ( <span class="math inline">\(p &gt; \alpha\)</span> ), you fail to reject the null hypothesis. A common threshold for determining statistical significance is to reject the null hypothesis when <span class="math inline">\(p\leq\alpha\)</span>.</p>
 <p>The p-value however does not give an assumption about the effect size, which can be quite insignificant <span class="citation" data-cites="Nuzzo_2014">(<a href="references.html#ref-Nuzzo_2014" role="doc-biblioref">Nuzzo 2014</a>)</span>. While the p-value therefore is the probability of accepting <span class="math inline">\(H_a\)</span> as true, it is not a measure of magnitude or relative importance of an effect. Therefore the <a href="#ci">CI</a> and the effect size should always be reported with a p-value. Some Researchers even claim that most of the research today is false <span class="citation" data-cites="Ioannidis_2005">(<a href="references.html#ref-Ioannidis_2005" role="doc-biblioref">Ioannidis 2005</a>)</span>. In practice, especially in the manufacturing industry, the p-value and its use is still popular. Before implementing any measures in a series production, those questions will be asked. The confident and reliable engineer asks them beforehand and is always his own greatest critique.</p>
 </section>
-<section id="statistical-errors" class="level2" data-number="3.8">
-<h2 data-number="3.8" class="anchored" data-anchor-id="statistical-errors"><span class="header-section-number">3.8</span> Statistical errors</h2>
+<section id="statistical-errors" class="level2" data-number="4.8">
+<h2 data-number="4.8" class="anchored" data-anchor-id="statistical-errors"><span class="header-section-number">4.8</span> Statistical errors</h2>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-stat-errors" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -639,26 +651,26 @@ Figure&nbsp;3.7: Type I and Type II error in the context of inferential statisti
 <img src="chapter002/007_StatisticalErrors.png" class="img-fluid figure-img" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-stat-errors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.8: The statistical Errors (Type I and Type II).
+Figure&nbsp;4.8: The statistical Errors (Type I and Type II).
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 <ul>
-<li>Type I Error (False Positive, see <a href="#fig-stat-errors" class="quarto-xref">Figure&nbsp;<span>3.8</span></a>):</li>
+<li>Type I Error (False Positive, see <a href="#fig-stat-errors" class="quarto-xref">Figure&nbsp;<span>4.8</span></a>):</li>
 </ul>
 <p>A Type I error occurs when a null hypothesis that is actually true is rejected. In other words, it’s a false alarm. It is concluded that there is a significant effect or difference when there is none. The probability of committing a Type I error is denoted by the <a href="#sign-level">significance level <span class="math inline">\(\alpha\)</span></a>. <em>Example:</em> Imagine a drug trial where the null hypothesis is that the drug has no effect (it’s ineffective), but due to random chance, the data appears to show a significant effect, and you incorrectly conclude that the drug is effective (Type I error).</p>
 <ul>
-<li>Type II Error (False Negative, see <a href="#fig-stat-errors" class="quarto-xref">Figure&nbsp;<span>3.8</span></a>):</li>
+<li>Type II Error (False Negative, see <a href="#fig-stat-errors" class="quarto-xref">Figure&nbsp;<span>4.8</span></a>):</li>
 </ul>
 <p>A Type II error occurs when a null hypothesis that is actually false is not rejected. It means failing to detect a significant effect or difference when one actually exists. The probability of committing a Type II error is denoted by the symbol <span class="math inline">\(\beta\)</span>. <em>Example:</em> In a criminal trial, the null hypothesis might be that the defendant is innocent, but they are actually guilty. If the jury fails to find enough evidence to convict the guilty person, it is a Type II error.</p>
 <p>Type I Error is falsely concluding, that there is an effect or difference when there is none (false positive). Type II Error failing to conclude that there is an effect or difference when there actually is one (false negative).</p>
-<p>The relationship between <em>Type I</em> and <em>Type II</em> errors is often described as a trade-off. As the risk of Type I errors is reduced by lowering the significance level (<span class="math inline">\(\alpha\)</span>), the risk of Type II errors (<span class="math inline">\(\beta\)</span>) is typically increased (<a href="#fig-stat-rates" class="quarto-xref">Figure&nbsp;<span>3.7</span></a>). This trade-off is inherent in hypothesis testing, and the choice of significance level depends on the specific goals and context of the study. Researchers often aim to strike a balance between these two types of errors based on the consequences and costs associated with each. This balance is a critical aspect of the design and interpretation of statistical tests.</p>
+<p>The relationship between <em>Type I</em> and <em>Type II</em> errors is often described as a trade-off. As the risk of Type I errors is reduced by lowering the significance level (<span class="math inline">\(\alpha\)</span>), the risk of Type II errors (<span class="math inline">\(\beta\)</span>) is typically increased (<a href="#fig-stat-rates" class="quarto-xref">Figure&nbsp;<span>4.7</span></a>). This trade-off is inherent in hypothesis testing, and the choice of significance level depends on the specific goals and context of the study. Researchers often aim to strike a balance between these two types of errors based on the consequences and costs associated with each. This balance is a critical aspect of the design and interpretation of statistical tests.</p>
 <div style="page-break-after: always;"></div>
 </section>
-<section id="parametric-and-non-parametric-tests" class="level2 r-stretch" data-number="3.9">
-<h2 class="r-stretch anchored" data-number="3.9" data-anchor-id="parametric-and-non-parametric-tests"><span class="header-section-number">3.9</span> Parametric and Non-parametric Tests</h2>
+<section id="parametric-and-non-parametric-tests" class="level2 r-stretch" data-number="4.9">
+<h2 class="r-stretch anchored" data-number="4.9" data-anchor-id="parametric-and-non-parametric-tests"><span class="header-section-number">4.9</span> Parametric and Non-parametric Tests</h2>
 <p>Parametric and non-parametric tests in statistics are methods used for analyzing data. The primary difference between them lies in the assumptions they make about the underlying data distribution:</p>
 <ol type="1">
 <li>Parametric Tests:
@@ -676,33 +688,33 @@ Figure&nbsp;3.8: The statistical Errors (Type I and Type II).
 <li>Examples of non-parametric tests include the Mann-Whitney U test, Wilcoxon signed-rank test, Kruskal-Wallis test, and Spearman’s rank correlation.</li>
 </ul></li>
 </ol>
-<p>The choice between parametric and non-parametric tests depends on the nature of the data and the assumptions. Parametric tests are appropriate when data follows the assumed distribution, while non-parametric tests are suitable when dealing with non-normally distributed data or ordinal data. Some examples for parametric and non-parametric tests are given in <a href="#tbl-ParamTestsvsNonParamTests" class="quarto-xref">Table&nbsp;<span>3.1</span></a>.</p>
+<p>The choice between parametric and non-parametric tests depends on the nature of the data and the assumptions. Parametric tests are appropriate when data follows the assumed distribution, while non-parametric tests are suitable when dealing with non-normally distributed data or ordinal data. Some examples for parametric and non-parametric tests are given in <a href="#tbl-ParamTestsvsNonParamTests" class="quarto-xref">Table&nbsp;<span>4.1</span></a>.</p>
 <!-- ::: {.v-center-container} -->
 <div class="cell">
 <div id="tbl-ParamTestsvsNonParamTests" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ParamTestsvsNonParamTests-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3.1: Some parametric and non-parametric statistical tests.
+Table&nbsp;4.1: Some parametric and non-parametric statistical tests.
 </figcaption>
 <div aria-describedby="tbl-ParamTestsvsNonParamTests-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="ipsblwsmro" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ipsblwsmro table {
+<div id="mfuwmvslzu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#mfuwmvslzu table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ipsblwsmro thead, #ipsblwsmro tbody, #ipsblwsmro tfoot, #ipsblwsmro tr, #ipsblwsmro td, #ipsblwsmro th {
+#mfuwmvslzu thead, #mfuwmvslzu tbody, #mfuwmvslzu tfoot, #mfuwmvslzu tr, #mfuwmvslzu td, #mfuwmvslzu th {
   border-style: none;
 }
 
-#ipsblwsmro p {
+#mfuwmvslzu p {
   margin: 0;
   padding: 0;
 }
 
-#ipsblwsmro .gt_table {
+#mfuwmvslzu .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -728,12 +740,12 @@ Table&nbsp;3.1: Some parametric and non-parametric statistical tests.
   border-left-color: #D3D3D3;
 }
 
-#ipsblwsmro .gt_caption {
+#mfuwmvslzu .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ipsblwsmro .gt_title {
+#mfuwmvslzu .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -745,7 +757,7 @@ Table&nbsp;3.1: Some parametric and non-parametric statistical tests.
   border-bottom-width: 0;
 }
 
-#ipsblwsmro .gt_subtitle {
+#mfuwmvslzu .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -757,7 +769,7 @@ Table&nbsp;3.1: Some parametric and non-parametric statistical tests.
   border-top-width: 0;
 }
 
-#ipsblwsmro .gt_heading {
+#mfuwmvslzu .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -769,13 +781,13 @@ Table&nbsp;3.1: Some parametric and non-parametric statistical tests.
   border-right-color: #D3D3D3;
 }
 
-#ipsblwsmro .gt_bottom_border {
+#mfuwmvslzu .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ipsblwsmro .gt_col_headings {
+#mfuwmvslzu .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -790,7 +802,7 @@ Table&nbsp;3.1: Some parametric and non-parametric statistical tests.
   border-right-color: #D3D3D3;
 }
 
-#ipsblwsmro .gt_col_heading {
+#mfuwmvslzu .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -810,7 +822,7 @@ Table&nbsp;3.1: Some parametric and non-parametric statistical tests.
   overflow-x: hidden;
 }
 
-#ipsblwsmro .gt_column_spanner_outer {
+#mfuwmvslzu .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -822,15 +834,15 @@ Table&nbsp;3.1: Some parametric and non-parametric statistical tests.
   padding-right: 4px;
 }
 
-#ipsblwsmro .gt_column_spanner_outer:first-child {
+#mfuwmvslzu .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ipsblwsmro .gt_column_spanner_outer:last-child {
+#mfuwmvslzu .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ipsblwsmro .gt_column_spanner {
+#mfuwmvslzu .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -842,11 +854,11 @@ Table&nbsp;3.1: Some parametric and non-parametric statistical tests.
   width: 100%;
 }
 
-#ipsblwsmro .gt_spanner_row {
+#mfuwmvslzu .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ipsblwsmro .gt_group_heading {
+#mfuwmvslzu .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -872,7 +884,7 @@ Table&nbsp;3.1: Some parametric and non-parametric statistical tests.
   text-align: left;
 }
 
-#ipsblwsmro .gt_empty_group_heading {
+#mfuwmvslzu .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -887,15 +899,15 @@ Table&nbsp;3.1: Some parametric and non-parametric statistical tests.
   vertical-align: middle;
 }
 
-#ipsblwsmro .gt_from_md > :first-child {
+#mfuwmvslzu .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ipsblwsmro .gt_from_md > :last-child {
+#mfuwmvslzu .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ipsblwsmro .gt_row {
+#mfuwmvslzu .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -914,7 +926,7 @@ Table&nbsp;3.1: Some parametric and non-parametric statistical tests.
   overflow-x: hidden;
 }
 
-#ipsblwsmro .gt_stub {
+#mfuwmvslzu .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -927,7 +939,7 @@ Table&nbsp;3.1: Some parametric and non-parametric statistical tests.
   padding-right: 5px;
 }
 
-#ipsblwsmro .gt_stub_row_group {
+#mfuwmvslzu .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -941,15 +953,15 @@ Table&nbsp;3.1: Some parametric and non-parametric statistical tests.
   vertical-align: top;
 }
 
-#ipsblwsmro .gt_row_group_first td {
+#mfuwmvslzu .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ipsblwsmro .gt_row_group_first th {
+#mfuwmvslzu .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ipsblwsmro .gt_summary_row {
+#mfuwmvslzu .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -959,16 +971,16 @@ Table&nbsp;3.1: Some parametric and non-parametric statistical tests.
   padding-right: 5px;
 }
 
-#ipsblwsmro .gt_first_summary_row {
+#mfuwmvslzu .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ipsblwsmro .gt_first_summary_row.thick {
+#mfuwmvslzu .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ipsblwsmro .gt_last_summary_row {
+#mfuwmvslzu .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -978,7 +990,7 @@ Table&nbsp;3.1: Some parametric and non-parametric statistical tests.
   border-bottom-color: #D3D3D3;
 }
 
-#ipsblwsmro .gt_grand_summary_row {
+#mfuwmvslzu .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -988,7 +1000,7 @@ Table&nbsp;3.1: Some parametric and non-parametric statistical tests.
   padding-right: 5px;
 }
 
-#ipsblwsmro .gt_first_grand_summary_row {
+#mfuwmvslzu .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -998,7 +1010,7 @@ Table&nbsp;3.1: Some parametric and non-parametric statistical tests.
   border-top-color: #D3D3D3;
 }
 
-#ipsblwsmro .gt_last_grand_summary_row_top {
+#mfuwmvslzu .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1008,11 +1020,11 @@ Table&nbsp;3.1: Some parametric and non-parametric statistical tests.
   border-bottom-color: #D3D3D3;
 }
 
-#ipsblwsmro .gt_striped {
+#mfuwmvslzu .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ipsblwsmro .gt_table_body {
+#mfuwmvslzu .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1021,7 +1033,7 @@ Table&nbsp;3.1: Some parametric and non-parametric statistical tests.
   border-bottom-color: #D3D3D3;
 }
 
-#ipsblwsmro .gt_footnotes {
+#mfuwmvslzu .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1035,7 +1047,7 @@ Table&nbsp;3.1: Some parametric and non-parametric statistical tests.
   border-right-color: #D3D3D3;
 }
 
-#ipsblwsmro .gt_footnote {
+#mfuwmvslzu .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1044,7 +1056,7 @@ Table&nbsp;3.1: Some parametric and non-parametric statistical tests.
   padding-right: 5px;
 }
 
-#ipsblwsmro .gt_sourcenotes {
+#mfuwmvslzu .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1058,7 +1070,7 @@ Table&nbsp;3.1: Some parametric and non-parametric statistical tests.
   border-right-color: #D3D3D3;
 }
 
-#ipsblwsmro .gt_sourcenote {
+#mfuwmvslzu .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1066,72 +1078,72 @@ Table&nbsp;3.1: Some parametric and non-parametric statistical tests.
   padding-right: 5px;
 }
 
-#ipsblwsmro .gt_left {
+#mfuwmvslzu .gt_left {
   text-align: left;
 }
 
-#ipsblwsmro .gt_center {
+#mfuwmvslzu .gt_center {
   text-align: center;
 }
 
-#ipsblwsmro .gt_right {
+#mfuwmvslzu .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ipsblwsmro .gt_font_normal {
+#mfuwmvslzu .gt_font_normal {
   font-weight: normal;
 }
 
-#ipsblwsmro .gt_font_bold {
+#mfuwmvslzu .gt_font_bold {
   font-weight: bold;
 }
 
-#ipsblwsmro .gt_font_italic {
+#mfuwmvslzu .gt_font_italic {
   font-style: italic;
 }
 
-#ipsblwsmro .gt_super {
+#mfuwmvslzu .gt_super {
   font-size: 65%;
 }
 
-#ipsblwsmro .gt_footnote_marks {
+#mfuwmvslzu .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ipsblwsmro .gt_asterisk {
+#mfuwmvslzu .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ipsblwsmro .gt_indent_1 {
+#mfuwmvslzu .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ipsblwsmro .gt_indent_2 {
+#mfuwmvslzu .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ipsblwsmro .gt_indent_3 {
+#mfuwmvslzu .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ipsblwsmro .gt_indent_4 {
+#mfuwmvslzu .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ipsblwsmro .gt_indent_5 {
+#mfuwmvslzu .gt_indent_5 {
   text-indent: 25px;
 }
 
-#ipsblwsmro .katex-display {
+#mfuwmvslzu .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#ipsblwsmro div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#mfuwmvslzu div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1177,8 +1189,8 @@ Table&nbsp;3.1: Some parametric and non-parametric statistical tests.
 </div>
 <!-- ::: -->
 </section>
-<section id="paired-and-independent-tests" class="level2" data-number="3.10">
-<h2 data-number="3.10" class="anchored" data-anchor-id="paired-and-independent-tests"><span class="header-section-number">3.10</span> Paired and Independent Tests</h2>
+<section id="paired-and-independent-tests" class="level2" data-number="4.10">
+<h2 data-number="4.10" class="anchored" data-anchor-id="paired-and-independent-tests"><span class="header-section-number">4.10</span> Paired and Independent Tests</h2>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-pairedvsindep" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
@@ -1187,7 +1199,7 @@ Table&nbsp;3.1: Some parametric and non-parametric statistical tests.
 <img src="chapter002/018_Paired_Independent.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pairedvsindep-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.9: The difference between paired and independent Tests.
+Figure&nbsp;4.9: The difference between paired and independent Tests.
 </figcaption>
 </figure>
 </div>
@@ -1209,27 +1221,27 @@ Figure&nbsp;3.9: The difference between paired and independent Tests.
 <li>These tests are typically applied to compare two separate and unrelated groups or samples.</li>
 <li>They assume that the data in each group is independent of the other, meaning that the value in one group doesn’t affect the value in the other group.</li>
 </ul>
-<p>An example for a paired test is, if two groups of data are to be compared in two different points in time (see <a href="#fig-pairedvsindep" class="quarto-xref">Figure&nbsp;<span>3.9</span></a>).</p>
+<p>An example for a paired test is, if two groups of data are to be compared in two different points in time (see <a href="#fig-pairedvsindep" class="quarto-xref">Figure&nbsp;<span>4.9</span></a>).</p>
 <div style="page-break-after: always;"></div>
 </section>
-<section id="distribution-tests" class="level2" data-number="3.11">
-<h2 data-number="3.11" class="anchored" data-anchor-id="distribution-tests"><span class="header-section-number">3.11</span> Distribution Tests</h2>
+<section id="distribution-tests" class="level2" data-number="4.11">
+<h2 data-number="4.11" class="anchored" data-anchor-id="distribution-tests"><span class="header-section-number">4.11</span> Distribution Tests</h2>
 <p>The importance of testing for normality (or other distributions) lies in the fact that various statistical techniques, such as parametric tests (e.g., t-tests, ANOVA), are based on the assumption of for example normality. When data deviates significantly from a normal distribution, using these parametric methods can lead to incorrect conclusions and biased results. Therefore, it is essential to determine how a dataset is approximately distributed before applying such techniques.</p>
 <p>Several tests for normality are available, with the most common ones being the Kolmogorov-Smirnov test, the Shapiro-Wilk test, and the Anderson-Darling test. These tests provide a quantitative measure of how well the data conforms to a normal distribution.</p>
 <p>In practice, it is important to interpret the results of these tests cautiously. Sometimes, a minor departure from normality may not affect the validity of parametric tests, especially when the sample size is large. In such cases, using non-parametric methods may be an alternative. However, in cases where normality assumptions are crucial, transformations of the data or choosing appropriate non-parametric tests may be necessary to ensure the reliability of statistical analyses.</p>
 <p>Tests for normality do not free you from the burden of thinking for yourself.</p>
-<section id="sec-qq-plot" class="level3" data-number="3.11.1">
-<h3 data-number="3.11.1" class="anchored" data-anchor-id="sec-qq-plot"><span class="header-section-number">3.11.1</span> Quantile-Quantile plots</h3>
+<section id="sec-qq-plot" class="level3" data-number="4.11.1">
+<h3 data-number="4.11.1" class="anchored" data-anchor-id="sec-qq-plot"><span class="header-section-number">4.11.1</span> Quantile-Quantile plots</h3>
 <p><a href="#qq">Quantile-Quantile</a> plots are a graphical tool used in statistics to assess whether a dataset follows a particular theoretical distribution, typically the normal distribution. They provide a visual comparison between the observed quantiles<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> of the data and the quantiles expected from the chosen theoretical distribution.</p>
 <p>A neutral explanation of how <a href="#qq">QQ</a> plots work:</p>
-<section id="sample-data" class="level4" data-number="3.11.1.1">
-<h4 data-number="3.11.1.1" class="anchored" data-anchor-id="sample-data"><span class="header-section-number">3.11.1.1</span> Sample data</h4>
-<p>In <a href="#tbl-qq-smpl-dat" class="quarto-xref">Table&nbsp;<span>3.2</span></a> <span class="math inline">\(n=10\)</span> datapoints are shown as a sample dataset.</p>
+<section id="sample-data" class="level4" data-number="4.11.1.1">
+<h4 data-number="4.11.1.1" class="anchored" data-anchor-id="sample-data"><span class="header-section-number">4.11.1.1</span> Sample data</h4>
+<p>In <a href="#tbl-qq-smpl-dat" class="quarto-xref">Table&nbsp;<span>4.2</span></a> <span class="math inline">\(n=10\)</span> datapoints are shown as a sample dataset.</p>
 <div class="cell">
 <div id="tbl-qq-smpl-dat" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-qq-smpl-dat-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3.2: 10 randomly sampled datapoints for the creation of the QQ-plot
+Table&nbsp;4.2: 10 randomly sampled datapoints for the creation of the QQ-plot
 </figcaption>
 <div aria-describedby="tbl-qq-smpl-dat-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -1741,14 +1753,14 @@ Table&nbsp;3.2: 10 randomly sampled datapoints for the creation of the QQ-plot
 </div>
 </div>
 </section>
-<section id="data-sorting" class="level4" data-number="3.11.1.2">
-<h4 data-number="3.11.1.2" class="anchored" data-anchor-id="data-sorting"><span class="header-section-number">3.11.1.2</span> Data Sorting</h4>
+<section id="data-sorting" class="level4" data-number="4.11.1.2">
+<h4 data-number="4.11.1.2" class="anchored" data-anchor-id="data-sorting"><span class="header-section-number">4.11.1.2</span> Data Sorting</h4>
 <p>To create a <a href="#qq">QQ</a> plot, the data must be sorted in ascending order.</p>
 <div class="cell">
 <div id="tbl-qq-smpl-sort" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-qq-smpl-sort-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3.3: The sorted data points.
+Table&nbsp;4.3: The sorted data points.
 </figcaption>
 <div aria-describedby="tbl-qq-smpl-sort-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -2260,14 +2272,14 @@ Table&nbsp;3.3: The sorted data points.
 </div>
 </div>
 </section>
-<section id="theoretical-quantiles" class="level4" data-number="3.11.1.3">
-<h4 data-number="3.11.1.3" class="anchored" data-anchor-id="theoretical-quantiles"><span class="header-section-number">3.11.1.3</span> Theoretical Quantiles</h4>
+<section id="theoretical-quantiles" class="level4" data-number="4.11.1.3">
+<h4 data-number="4.11.1.3" class="anchored" data-anchor-id="theoretical-quantiles"><span class="header-section-number">4.11.1.3</span> Theoretical Quantiles</h4>
 <p>Theoretical quantiles are calculated based on the chosen distribution (e.g., the normal distribution). These quantiles represent the expected values if the data perfectly follows that distribution.</p>
 <div class="cell">
 <div id="tbl-qq-smpl-thrtcl" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-qq-smpl-thrtcl-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3.4: The calculated theoretical quantiles
+Table&nbsp;4.4: The calculated theoretical quantiles
 </figcaption>
 <div aria-describedby="tbl-qq-smpl-thrtcl-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -2801,8 +2813,8 @@ Table&nbsp;3.4: The calculated theoretical quantiles
 </div>
 </div>
 </section>
-<section id="plotting-points" class="level4" data-number="3.11.1.4">
-<h4 data-number="3.11.1.4" class="anchored" data-anchor-id="plotting-points"><span class="header-section-number">3.11.1.4</span> Plotting Points</h4>
+<section id="plotting-points" class="level4" data-number="4.11.1.4">
+<h4 data-number="4.11.1.4" class="anchored" data-anchor-id="plotting-points"><span class="header-section-number">4.11.1.4</span> Plotting Points</h4>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-qq-pts" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
@@ -2811,16 +2823,16 @@ Table&nbsp;3.4: The calculated theoretical quantiles
 <img src="chapter002_InferentialStatistics_files/figure-html/fig-qq-pts-1.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-qq-pts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.10: The QQ points as calculated before.
+Figure&nbsp;4.10: The QQ points as calculated before.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>For each data point, a point is plotted in the <a href="#qq">QQ</a> plot. The x-coordinate of the point corresponds to the theoretical quantile, and the y-coordinate corresponds to the observed quantile from the data, see <a href="#fig-qq-pts" class="quarto-xref">Figure&nbsp;<span>3.10</span></a>.</p>
+<p>For each data point, a point is plotted in the <a href="#qq">QQ</a> plot. The x-coordinate of the point corresponds to the theoretical quantile, and the y-coordinate corresponds to the observed quantile from the data, see <a href="#fig-qq-pts" class="quarto-xref">Figure&nbsp;<span>4.10</span></a>.</p>
 </section>
-<section id="perfect-normal-distribution" class="level4" data-number="3.11.1.5">
-<h4 data-number="3.11.1.5" class="anchored" data-anchor-id="perfect-normal-distribution"><span class="header-section-number">3.11.1.5</span> Perfect Normal Distribution</h4>
+<section id="perfect-normal-distribution" class="level4" data-number="4.11.1.5">
+<h4 data-number="4.11.1.5" class="anchored" data-anchor-id="perfect-normal-distribution"><span class="header-section-number">4.11.1.5</span> Perfect Normal Distribution</h4>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-qq-abline" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
@@ -2829,16 +2841,16 @@ Figure&nbsp;3.10: The QQ points as calculated before.
 <img src="chapter002_InferentialStatistics_files/figure-html/fig-qq-abline-1.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-qq-abline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.11: A perfect normal distribution would be indicated if all points would fall on this straight line.
+Figure&nbsp;4.11: A perfect normal distribution would be indicated if all points would fall on this straight line.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>In the case of a perfect normal distribution, all the points would fall along a straight line at a 45-degree angle. If the data deviates from normality, the points may deviate from this line in specific ways, see <a href="#fig-qq-abline" class="quarto-xref">Figure&nbsp;<span>3.11</span></a>.</p>
+<p>In the case of a perfect normal distribution, all the points would fall along a straight line at a 45-degree angle. If the data deviates from normality, the points may deviate from this line in specific ways, see <a href="#fig-qq-abline" class="quarto-xref">Figure&nbsp;<span>4.11</span></a>.</p>
 </section>
-<section id="interpretation" class="level4" data-number="3.11.1.6">
-<h4 data-number="3.11.1.6" class="anchored" data-anchor-id="interpretation"><span class="header-section-number">3.11.1.6</span> Interpretation</h4>
+<section id="interpretation" class="level4" data-number="4.11.1.6">
+<h4 data-number="4.11.1.6" class="anchored" data-anchor-id="interpretation"><span class="header-section-number">4.11.1.6</span> Interpretation</h4>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-qq-line" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
@@ -2847,16 +2859,16 @@ Figure&nbsp;3.11: A perfect normal distribution would be indicated if all points
 <img src="chapter002_InferentialStatistics_files/figure-html/fig-qq-line-1.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-qq-line-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.12: The QQ line as plotted using the theoretical and sample quantiles.
+Figure&nbsp;4.12: The QQ line as plotted using the theoretical and sample quantiles.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Deviations from the straight line suggest departures from the assumed distribution. For example, if points curve upward, it indicates that the data has heavier tails than a normal distribution. If points curve downward, it suggests lighter tails. S-shaped curves or other patterns can reveal additional information about the data’s distribution. In <a href="#fig-qq-line" class="quarto-xref">Figure&nbsp;<span>3.12</span></a> the QQ-points are shown together with the respective QQ-line and a line of perfectly normal distributed points. Some deviations can be seen, but it is hard to judge, if the data is normally distributed or not.</p>
+<p>Deviations from the straight line suggest departures from the assumed distribution. For example, if points curve upward, it indicates that the data has heavier tails than a normal distribution. If points curve downward, it suggests lighter tails. S-shaped curves or other patterns can reveal additional information about the data’s distribution. In <a href="#fig-qq-line" class="quarto-xref">Figure&nbsp;<span>4.12</span></a> the QQ-points are shown together with the respective QQ-line and a line of perfectly normal distributed points. Some deviations can be seen, but it is hard to judge, if the data is normally distributed or not.</p>
 </section>
-<section id="confidence-interval" class="level4" data-number="3.11.1.7">
-<h4 data-number="3.11.1.7" class="anchored" data-anchor-id="confidence-interval"><span class="header-section-number">3.11.1.7</span> Confidence Interval</h4>
+<section id="confidence-interval" class="level4" data-number="4.11.1.7">
+<h4 data-number="4.11.1.7" class="anchored" data-anchor-id="confidence-interval"><span class="header-section-number">4.11.1.7</span> Confidence Interval</h4>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-qq-bands" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
@@ -2865,16 +2877,16 @@ Figure&nbsp;3.12: The QQ line as plotted using the theoretical and sample quanti
 <img src="chapter002_InferentialStatistics_files/figure-html/fig-qq-bands-1.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-qq-bands-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.13: The QQ plot with confidence bands.
+Figure&nbsp;4.13: The QQ plot with confidence bands.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Because it is hard to judge from <a href="#fig-qq-line" class="quarto-xref">Figure&nbsp;<span>3.12</span></a> if the points are normally distributed, it makes sense to get limits for normally disitrbuted points. This is shown in <a href="#fig-qq-bands" class="quarto-xref">Figure&nbsp;<span>3.13</span></a>. The gray area depicts the (<span class="math inline">\(95\%\)</span>) confidence bands for a normal distribution. All the points fall into the area, as well as the line. This shows, that the points are likely to be normally distributed.</p>
+<p>Because it is hard to judge from <a href="#fig-qq-line" class="quarto-xref">Figure&nbsp;<span>4.12</span></a> if the points are normally distributed, it makes sense to get limits for normally disitrbuted points. This is shown in <a href="#fig-qq-bands" class="quarto-xref">Figure&nbsp;<span>4.13</span></a>. The gray area depicts the (<span class="math inline">\(95\%\)</span>) confidence bands for a normal distribution. All the points fall into the area, as well as the line. This shows, that the points are likely to be normally distributed.</p>
 </section>
-<section id="the-drive-shaft-exercise" class="level4" data-number="3.11.1.8">
-<h4 data-number="3.11.1.8" class="anchored" data-anchor-id="the-drive-shaft-exercise"><span class="header-section-number">3.11.1.8</span> The drive shaft exercise</h4>
+<section id="the-drive-shaft-exercise" class="level4" data-number="4.11.1.8">
+<h4 data-number="4.11.1.8" class="anchored" data-anchor-id="the-drive-shaft-exercise"><span class="header-section-number">4.11.1.8</span> The drive shaft exercise</h4>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-qq-ds" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
@@ -2883,17 +2895,17 @@ Figure&nbsp;3.13: The QQ plot with confidence bands.
 <img src="chapter002_InferentialStatistics_files/figure-html/fig-qq-ds-1.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-qq-ds-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.14: The QQ plots for each drive shaft group shown in subplots.
+Figure&nbsp;4.14: The QQ plots for each drive shaft group shown in subplots.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>The <a href="#qq">QQ</a> plot method is extended to the drive shaft exercise in <a href="#fig-qq-ds" class="quarto-xref">Figure&nbsp;<span>3.14</span></a>. In each subplot the plot for the respective group is shown together with the QQ-points, the QQ-line and the respective confidence bands. The scaling for each plot is different to enhance visibility of every subplot. A line for the perfect normal distribution is also shown in solid linestyle. From group <span class="math inline">\(1 \ldots 4\)</span> all points fall into the QQ confidence bands. Group05 differs however. The points from visible categories, which is a strong indicator, that the measurement system may be to inaccurate.</p>
+<p>The <a href="#qq">QQ</a> plot method is extended to the drive shaft exercise in <a href="#fig-qq-ds" class="quarto-xref">Figure&nbsp;<span>4.14</span></a>. In each subplot the plot for the respective group is shown together with the QQ-points, the QQ-line and the respective confidence bands. The scaling for each plot is different to enhance visibility of every subplot. A line for the perfect normal distribution is also shown in solid linestyle. From group <span class="math inline">\(1 \ldots 4\)</span> all points fall into the QQ confidence bands. Group05 differs however. The points from visible categories, which is a strong indicator, that the measurement system may be to inaccurate.</p>
 </section>
 </section>
-<section id="sec-ks-test" class="level3" data-number="3.11.2">
-<h3 data-number="3.11.2" class="anchored" data-anchor-id="sec-ks-test"><span class="header-section-number">3.11.2</span> Quantitative Methods</h3>
+<section id="sec-ks-test" class="level3" data-number="4.11.2">
+<h3 data-number="4.11.2" class="anchored" data-anchor-id="sec-ks-test"><span class="header-section-number">4.11.2</span> Quantitative Methods</h3>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-ks-smpl" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
@@ -2902,7 +2914,7 @@ Figure&nbsp;3.14: The QQ plots for each drive shaft group shown in subplots.
 <img src="chapter002_InferentialStatistics_files/figure-html/fig-ks-smpl-1.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ks-smpl-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.15: A visualisation of the KS test using the 10 datapoints from before
+Figure&nbsp;4.15: A visualisation of the KS test using the 10 datapoints from before
 </figcaption>
 </figure>
 </div>
@@ -2912,14 +2924,14 @@ Figure&nbsp;3.15: A visualisation of the KS test using the 10 datapoints from be
 <ol type="1">
 <li><p><strong>Null Hypothesis (H0):</strong> The null hypothesis in the KS test states that the sample data follows a normal distribution.</p></li>
 <li><p><strong>Alternative Hypothesis (Ha):</strong> The alternative hypothesis suggests that the sample data significantly deviates from a normal distribution.</p></li>
-<li><p><strong>Test Statistic (D):</strong> The KS test calculates a test statistic, denoted as <em>D</em> which measures the maximum vertical difference between the empirical <a href="#cdf">CDF</a> of the data and the theoretical <a href="#cdf">CDF</a> of a normal distribution. It quantifies how far the observed data diverges from the expected normal distribution. A visualization of the <a href="#KS">KS</a>-test is shown in <a href="#fig-ks-smpl" class="quarto-xref">Figure&nbsp;<span>3.15</span></a>. The red line denotes a perfect normal distribution, whereas the step function shows the empirical <a href="#cdf">CDF</a> of the data itself.</p></li>
+<li><p><strong>Test Statistic (D):</strong> The KS test calculates a test statistic, denoted as <em>D</em> which measures the maximum vertical difference between the empirical <a href="#cdf">CDF</a> of the data and the theoretical <a href="#cdf">CDF</a> of a normal distribution. It quantifies how far the observed data diverges from the expected normal distribution. A visualization of the <a href="#KS">KS</a>-test is shown in <a href="#fig-ks-smpl" class="quarto-xref">Figure&nbsp;<span>4.15</span></a>. The red line denotes a perfect normal distribution, whereas the step function shows the empirical <a href="#cdf">CDF</a> of the data itself.</p></li>
 <li><p><strong>Critical Value:</strong> To assess the significance of D, a critical value is determined based on the sample size and the chosen significance level (<span class="math inline">\(\alpha\)</span>). If D exceeds the critical value, it indicates that the dataset deviates significantly from a normal distribution.</p></li>
 <li><p><strong>Decision:</strong> If D is greater than the critical value, the null hypothesis is rejected, and it is concluded that the data is not normally distributed. If D is less than or equal to the critical value, there is not enough evidence to reject the null hypothesis, suggesting that the data may follow a normal distribution.</p></li>
 </ol>
 <p>It is important to note that the KS test is sensitive to departures from normality in both tails of the distribution. There are other normality tests, like the <em>Shapiro-Wilk test</em> and <em>Anderson-Darling test</em>, which may be more suitable in certain situations. Researchers typically choose the most appropriate test based on the characteristics of their data and the assumptions they want to test.</p>
 </section>
-<section id="expanding-to-non-normal-disitributions" class="level3" data-number="3.11.3">
-<h3 data-number="3.11.3" class="anchored" data-anchor-id="expanding-to-non-normal-disitributions"><span class="header-section-number">3.11.3</span> Expanding to non-normal disitributions</h3>
+<section id="expanding-to-non-normal-disitributions" class="level3" data-number="4.11.3">
+<h3 data-number="4.11.3" class="anchored" data-anchor-id="expanding-to-non-normal-disitributions"><span class="header-section-number">4.11.3</span> Expanding to non-normal disitributions</h3>
 <div id="fig-qq-wbll" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-qq-wbll-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -2951,15 +2963,15 @@ Figure&nbsp;3.15: A visualisation of the KS test using the 10 datapoints from be
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-qq-wbll-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.16: The QQ-plot can easily be extended to non-normal distributions.
+Figure&nbsp;4.16: The QQ-plot can easily be extended to non-normal distributions.
 </figcaption>
 </figure>
 </div>
-<p>The <a href="#qq">QQ</a>-plot can easily be extended to non-normal disitributions as well. This is shown in <a href="#fig-qq-wbll" class="quarto-xref">Figure&nbsp;<span>3.16</span></a>. In <a href="#fig-qq-wbll-1" class="quarto-xref">Figure&nbsp;<span>3.16 (a)</span></a> a classic <a href="#qq">QQ</a>-plot for <a href="chapter001_Distributions.html#fig-ds-wbll" class="quarto-xref">Figure&nbsp;<span>2.26</span></a> is shown. The same rules as before still apply, they are <em>only</em> extended to the weibull distribution. In <a href="#fig-qq-wbll-2" class="quarto-xref">Figure&nbsp;<span>3.16 (b)</span></a> a <em>detrended</em> <a href="#qq">QQ</a>-plot is shown in order to account for visual bias. It is of course known, that the data follows a <em>weibull</em> disitribution with a shape parameter <span class="math inline">\(\beta=2\)</span> and a scale parameter <span class="math inline">\(\lambda = 500\)</span>, but such distributional parameters can also be estimated <span class="citation" data-cites="fitdistrplus">(<a href="references.html#ref-fitdistrplus" role="doc-biblioref">Delignette-Muller and Dutang 2015</a>)</span>.</p>
+<p>The <a href="#qq">QQ</a>-plot can easily be extended to non-normal disitributions as well. This is shown in <a href="#fig-qq-wbll" class="quarto-xref">Figure&nbsp;<span>4.16</span></a>. In <a href="#fig-qq-wbll-1" class="quarto-xref">Figure&nbsp;<span>4.16 (a)</span></a> a classic <a href="#qq">QQ</a>-plot for <a href="chapter001_Distributions.html#fig-ds-wbll" class="quarto-xref">Figure&nbsp;<span>2.26</span></a> is shown. The same rules as before still apply, they are <em>only</em> extended to the weibull distribution. In <a href="#fig-qq-wbll-2" class="quarto-xref">Figure&nbsp;<span>4.16 (b)</span></a> a <em>detrended</em> <a href="#qq">QQ</a>-plot is shown in order to account for visual bias. It is of course known, that the data follows a <em>weibull</em> disitribution with a shape parameter <span class="math inline">\(\beta=2\)</span> and a scale parameter <span class="math inline">\(\lambda = 500\)</span>, but such distributional parameters can also be estimated <span class="citation" data-cites="fitdistrplus">(<a href="references.html#ref-fitdistrplus" role="doc-biblioref">Delignette-Muller and Dutang 2015</a>)</span>.</p>
 </section>
 </section>
-<section id="test-1-variable" class="level2" data-number="3.12">
-<h2 data-number="3.12" class="anchored" data-anchor-id="test-1-variable"><span class="header-section-number">3.12</span> Test 1 Variable</h2>
+<section id="test-1-variable" class="level2" data-number="4.12">
+<h2 data-number="4.12" class="anchored" data-anchor-id="test-1-variable"><span class="header-section-number">4.12</span> Test 1 Variable</h2>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-tests-OneVar" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
@@ -2968,19 +2980,19 @@ Figure&nbsp;3.16: The QQ-plot can easily be extended to non-normal distributions
 <img src="chapter002/019_StatisticalTests_OneVar.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tests-OneVar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.17: Statistical tests for one variable.
+Figure&nbsp;4.17: Statistical tests for one variable.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<section id="one-proportion-test" class="level3" data-number="3.12.1">
-<h3 data-number="3.12.1" class="anchored" data-anchor-id="one-proportion-test"><span class="header-section-number">3.12.1</span> One Proportion Test</h3>
+<section id="one-proportion-test" class="level3" data-number="4.12.1">
+<h3 data-number="4.12.1" class="anchored" data-anchor-id="one-proportion-test"><span class="header-section-number">4.12.1</span> One Proportion Test</h3>
 <div class="cell">
 <div id="tbl-prop-test-data" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-prop-test-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3.5: The raw data for the proportion test.
+Table&nbsp;4.5: The raw data for the proportion test.
 </figcaption>
 <div aria-describedby="tbl-prop-test-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -3470,7 +3482,7 @@ Table&nbsp;3.5: The raw data for the proportion test.
 <div id="tbl-prop-test-res" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-prop-test-res-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3.6: The test results for the proportion test.
+Table&nbsp;4.6: The test results for the proportion test.
 </figcaption>
 <div aria-describedby="tbl-prop-test-res-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -3958,15 +3970,15 @@ Table&nbsp;3.6: The test results for the proportion test.
 </div>
 </div>
 </section>
-<section id="chi2-goodness-of-fit-test" class="level3 incremental" data-number="3.12.2">
-<h3 class="incremental anchored" data-number="3.12.2" data-anchor-id="chi2-goodness-of-fit-test"><span class="header-section-number">3.12.2</span> Chi<sup>2</sup> goodness of fit test</h3>
+<section id="chi2-goodness-of-fit-test" class="level3 incremental" data-number="4.12.2">
+<h3 class="incremental anchored" data-number="4.12.2" data-anchor-id="chi2-goodness-of-fit-test"><span class="header-section-number">4.12.2</span> Chi<sup>2</sup> goodness of fit test</h3>
 <div class="r-stack">
 <div class="fragment fade-out">
 <div class="cell">
 <div id="tbl-chi-gof-data" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-chi-gof-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3.7: The raw data for the gof <span class="math inline">\(\chi^2\)</span> test.
+Table&nbsp;4.7: The raw data for the gof <span class="math inline">\(\chi^2\)</span> test.
 </figcaption>
 <div aria-describedby="tbl-chi-gof-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -4463,7 +4475,7 @@ Table&nbsp;3.7: The raw data for the gof <span class="math inline">\(\chi^2\)</s
 <div id="tbl-chi-gof-res" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-chi-gof-res-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3.8: The test results for the gof <span class="math inline">\(\chi^2\)</span> test.
+Table&nbsp;4.8: The test results for the gof <span class="math inline">\(\chi^2\)</span> test.
 </figcaption>
 <div aria-describedby="tbl-chi-gof-res-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -4944,17 +4956,17 @@ Table&nbsp;3.8: The test results for the gof <span class="math inline">\(\chi^2\
 </div>
 <p>The <span class="math inline">\(\chi^2\)</span> goodness of Fit Test (<a href="#gof">gof</a>) is applied on categorical data with expected frequencies. It is suitable for analyzing nominal or ordinal data. This test assesses whether there is a significant difference between the observed and expected frequencies in your dataset, making it useful for determining if the data fits an expected distribution.</p>
 </section>
-<section id="one-sample-t-test" class="level3" data-number="3.12.3">
-<h3 data-number="3.12.3" class="anchored" data-anchor-id="one-sample-t-test"><span class="header-section-number">3.12.3</span> One-sample t-test</h3>
+<section id="one-sample-t-test" class="level3" data-number="4.12.3">
+<h3 data-number="4.12.3" class="anchored" data-anchor-id="one-sample-t-test"><span class="header-section-number">4.12.3</span> One-sample t-test</h3>
 <p>The one-sample t-test is designed for continuous data when you have a known or hypothesized population mean that you want to compare your sample mean to. It relies on the assumption of normal distribution, making it applicable when assessing whether a sample’s mean differs significantly from a specified population mean.</p>
-<p>The test can be applied in various settings. One is, to test if measured data comes from a population with a certain mean (for exampe a test against a specification). To show the application, the <em>drive shaft data</em> is employed. In <a href="#tbl-t-one-data" class="quarto-xref">Table&nbsp;<span>3.9</span></a> the <em>per group</em> summarised data of the dirve shaft data is shown.</p>
+<p>The test can be applied in various settings. One is, to test if measured data comes from a population with a certain mean (for exampe a test against a specification). To show the application, the <em>drive shaft data</em> is employed. In <a href="#tbl-t-one-data" class="quarto-xref">Table&nbsp;<span>4.9</span></a> the <em>per group</em> summarised data of the dirve shaft data is shown.</p>
 <div class="r-stack">
 <div class="fragment fade-out">
 <div class="cell">
 <div id="tbl-t-one-data" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-t-one-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3.9: The raw data for the one sample t-test.
+Table&nbsp;4.9: The raw data for the one sample t-test.
 </figcaption>
 <div aria-describedby="tbl-t-one-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -5452,7 +5464,7 @@ Table&nbsp;3.9: The raw data for the one sample t-test.
 </div>
 </div>
 </div>
-<p>One important prerequisite for the One sample t-test normally distributed data. For this, graphical and numerical methods have been introduced in previous chapters. First, a classic <a href="#qq">QQ</a>-plot is created for every group (see <a href="#fig-t-one-qq" class="quarto-xref">Figure&nbsp;<span>3.18</span></a>). From a first glance, the data appears to be normally distributed.</p>
+<p>One important prerequisite for the One sample t-test normally distributed data. For this, graphical and numerical methods have been introduced in previous chapters. First, a classic <a href="#qq">QQ</a>-plot is created for every group (see <a href="#fig-t-one-qq" class="quarto-xref">Figure&nbsp;<span>4.18</span></a>). From a first glance, the data appears to be normally distributed.</p>
 <div class="fragment fade-in-then-out">
 <div class="cell">
 <div class="cell-output-display">
@@ -5462,20 +5474,20 @@ Table&nbsp;3.9: The raw data for the one sample t-test.
 <img src="chapter002_InferentialStatistics_files/figure-html/fig-t-one-qq-1.png" class="img-fluid figure-img" style="width:95.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-t-one-qq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.18: The qq-plot for the drive shaft data
+Figure&nbsp;4.18: The qq-plot for the drive shaft data
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<p>A more quantitative approach to tests for normality is shown in <a href="#tbl-t-one-ks-test" class="quarto-xref">Table&nbsp;<span>3.10</span></a>. Here, each group is tested with the <a href="#KS">KS</a>-test for normality. <a href="#H0">H0</a> is accepted (the data is normal distributed) because the computed p-value is larger than the significance level (<span class="math inline">\(\alpha  = 0.05\)</span>).</p>
+<p>A more quantitative approach to tests for normality is shown in <a href="#tbl-t-one-ks-test" class="quarto-xref">Table&nbsp;<span>4.10</span></a>. Here, each group is tested with the <a href="#KS">KS</a>-test for normality. <a href="#H0">H0</a> is accepted (the data is normal distributed) because the computed p-value is larger than the significance level (<span class="math inline">\(\alpha  = 0.05\)</span>).</p>
 <div class="fragment fade-in-then-out">
 <div class="cell">
 <div id="tbl-t-one-ks-test" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-t-one-ks-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3.10: The results for the one KS normality test for each group.
+Table&nbsp;4.10: The results for the one KS normality test for each group.
 </figcaption>
 <div aria-describedby="tbl-t-one-ks-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -5551,7 +5563,7 @@ Table&nbsp;3.10: The results for the one KS normality test for each group.
 <div id="tbl-t-one-res" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-t-one-res-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3.11: The results for the one sample t-test (against mean = 12mm).
+Table&nbsp;4.11: The results for the one sample t-test (against mean = 12mm).
 </figcaption>
 <div aria-describedby="tbl-t-one-res-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -5651,8 +5663,8 @@ Table&nbsp;3.11: The results for the one sample t-test (against mean = 12mm).
 </div>
 </div>
 </section>
-<section id="one-sample-wilcoxon-test" class="level3 incremental" data-number="3.12.4">
-<h3 class="incremental anchored" data-number="3.12.4" data-anchor-id="one-sample-wilcoxon-test"><span class="header-section-number">3.12.4</span> One sample Wilcoxon test</h3>
+<section id="one-sample-wilcoxon-test" class="level3 incremental" data-number="4.12.4">
+<h3 class="incremental anchored" data-number="4.12.4" data-anchor-id="one-sample-wilcoxon-test"><span class="header-section-number">4.12.4</span> One sample Wilcoxon test</h3>
 <p>For situations where your data may not follow a normal distribution or when dealing with ordinal data, the one-sample Wilcoxon test is a non-parametric alternative to the t-test. It is used to evaluate whether a sample’s median significantly differs from a specified population median.</p>
 <p>The wear and tear of drive shafts can occur due to various factors related to the vehicle’s operation and maintenance. Some common causes include:</p>
 <ol type="1">
@@ -5674,7 +5686,7 @@ Table&nbsp;3.11: The results for the one sample t-test (against mean = 12mm).
 <img src="chapter002_InferentialStatistics_files/figure-html/fig-wilcox-one-hist-1.png" class="img-fluid figure-img" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wilcox-one-hist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.19: The wear and tear rating data histograms.
+Figure&nbsp;4.19: The wear and tear rating data histograms.
 </figcaption>
 </figure>
 </div>
@@ -5687,7 +5699,7 @@ Figure&nbsp;3.19: The wear and tear rating data histograms.
 <div id="tbl-wilcox-one-res" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-wilcox-one-res-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3.12: The results for the one sample Wilcoxon test for every group against the reference value.
+Table&nbsp;4.12: The results for the one sample Wilcoxon test for every group against the reference value.
 </figcaption>
 <div aria-describedby="tbl-wilcox-one-res-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -5756,7 +5768,7 @@ Table&nbsp;3.12: The results for the one sample Wilcoxon test for every group ag
 <div id="tbl-wilcox-one-compare" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-wilcox-one-compare-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3.13: The results for the one sample t-test compared to the results of a one sample Wilcoxon test.
+Table&nbsp;4.13: The results for the one sample t-test compared to the results of a one sample Wilcoxon test.
 </figcaption>
 <div aria-describedby="tbl-wilcox-one-compare-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -5815,8 +5827,8 @@ Table&nbsp;3.13: The results for the one sample t-test compared to the results o
 </div>
 </section>
 </section>
-<section id="test-2-variable-qualitative-or-quantitative" class="level2" data-number="3.13">
-<h2 data-number="3.13" class="anchored" data-anchor-id="test-2-variable-qualitative-or-quantitative"><span class="header-section-number">3.13</span> Test 2 Variable (Qualitative or Quantitative)</h2>
+<section id="test-2-variable-qualitative-or-quantitative" class="level2" data-number="4.13">
+<h2 data-number="4.13" class="anchored" data-anchor-id="test-2-variable-qualitative-or-quantitative"><span class="header-section-number">4.13</span> Test 2 Variable (Qualitative or Quantitative)</h2>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-tests-TwoVar-same" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
@@ -5825,28 +5837,28 @@ Table&nbsp;3.13: The results for the one sample t-test compared to the results o
 <img src="chapter002/020_StatisticalTests_TwoVar_same.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tests-TwoVar-same-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.20: Statistical tests for two variables.
+Figure&nbsp;4.20: Statistical tests for two variables.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<section id="cochranes-q-test" class="level3" data-number="3.13.1">
-<h3 data-number="3.13.1" class="anchored" data-anchor-id="cochranes-q-test"><span class="header-section-number">3.13.1</span> Cochrane’s Q-test</h3>
+<section id="cochranes-q-test" class="level3" data-number="4.13.1">
+<h3 data-number="4.13.1" class="anchored" data-anchor-id="cochranes-q-test"><span class="header-section-number">4.13.1</span> Cochrane’s Q-test</h3>
 <p>Cochran’s Q test is employed when you have categorical data with three or more related groups, often collected over time or with repeated measurements. It assesses if there is a significant difference in proportions between the related groups.</p>
 </section>
-<section id="chi2-test-of-independence" class="level3" data-number="3.13.2">
-<h3 data-number="3.13.2" class="anchored" data-anchor-id="chi2-test-of-independence"><span class="header-section-number">3.13.2</span> Chi<sup>2</sup> test of independence</h3>
+<section id="chi2-test-of-independence" class="level3" data-number="4.13.2">
+<h3 data-number="4.13.2" class="anchored" data-anchor-id="chi2-test-of-independence"><span class="header-section-number">4.13.2</span> Chi<sup>2</sup> test of independence</h3>
 <p>This test is appropriate when you have two categorical variables, and you want to determine if there is an association between them. It is useful for assessing whether the two variables are dependent or independent of each other.</p>
 <p>In the context of the drive shaft production the example assumes a dataset with categorical variables like “Defects” (Yes/No) and “Operator” (Operator A/B).</p>
-<section id="contingency-tables" class="level4" data-number="3.13.2.1">
-<h4 data-number="3.13.2.1" class="anchored" data-anchor-id="contingency-tables"><span class="header-section-number">3.13.2.1</span> Contingency tables</h4>
+<section id="contingency-tables" class="level4" data-number="4.13.2.1">
+<h4 data-number="4.13.2.1" class="anchored" data-anchor-id="contingency-tables"><span class="header-section-number">4.13.2.1</span> Contingency tables</h4>
 <p>A contingency table, also known as a cross-tabulation or crosstab, is a statistical table that displays the frequency distribution of variables. It organizes data into rows and columns to show the frequency or relationship between two or more categorical variables. Each cell in the table represents the count or frequency of occurrences that fall into a specific combination of categories for the variables being analyzed. It is commonly used in statistics to examine the association between categorical variables and to understand patterns within data sets.</p>
 <div class="cell">
 <div id="tbl-chi-sq-indep-tbl" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-chi-sq-indep-tbl-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3.14: The contingency table for this example.
+Table&nbsp;4.14: The contingency table for this example.
 </figcaption>
 <div aria-describedby="tbl-chi-sq-indep-tbl-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -5887,8 +5899,8 @@ Table&nbsp;3.14: The contingency table for this example.
 </div>
 </div>
 </section>
-<section id="test-results" class="level4" data-number="3.13.2.2">
-<h4 data-number="3.13.2.2" class="anchored" data-anchor-id="test-results"><span class="header-section-number">3.13.2.2</span> test results</h4>
+<section id="test-results" class="level4" data-number="4.13.2.2">
+<h4 data-number="4.13.2.2" class="anchored" data-anchor-id="test-results"><span class="header-section-number">4.13.2.2</span> test results</h4>
 <p>With <span class="math inline">\(p\approx1&gt;0.05\)</span> the <span class="math inline">\(p\)</span>-value is greater than the significance level of <span class="math inline">\(\alpha = 0.05\)</span>. The <span class="math inline">\(H_0\)</span> is therefore proven, there is no difference between the operators. The test results are depicted below-</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -5901,8 +5913,8 @@ X-squared = 0, df = 1, p-value = 1</code></pre>
 </div>
 </section>
 </section>
-<section id="correlation" class="level3" data-number="3.13.3">
-<h3 data-number="3.13.3" class="anchored" data-anchor-id="correlation"><span class="header-section-number">3.13.3</span> Correlation</h3>
+<section id="correlation" class="level3" data-number="4.13.3">
+<h3 data-number="4.13.3" class="anchored" data-anchor-id="correlation"><span class="header-section-number">4.13.3</span> Correlation</h3>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-corr" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -5911,7 +5923,7 @@ X-squared = 0, df = 1, p-value = 1</code></pre>
 <img src="chapter002/024_Correlation.png" class="img-fluid figure-img" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.21: Correlation between two variables and the quantification thereof.
+Figure&nbsp;4.21: Correlation between two variables and the quantification thereof.
 </figcaption>
 </figure>
 </div>
@@ -5925,8 +5937,8 @@ Figure&nbsp;3.21: Correlation between two variables and the quantification there
 <li><p>A correlation close to 0 suggests a weak or no relationship between the variables.</p></li>
 </ul>
 <p>Correlation doesn’t imply causation; it only indicates that two variables change together but doesn’t determine if one causes the change in the other.</p>
-<section id="pearson-corrrelation" class="level4" data-number="3.13.3.1">
-<h4 data-number="3.13.3.1" class="anchored" data-anchor-id="pearson-corrrelation"><span class="header-section-number">3.13.3.1</span> Pearson Corrrelation</h4>
+<section id="pearson-corrrelation" class="level4" data-number="4.13.3.1">
+<h4 data-number="4.13.3.1" class="anchored" data-anchor-id="pearson-corrrelation"><span class="header-section-number">4.13.3.1</span> Pearson Corrrelation</h4>
 <div class="r-stack">
 <div class="fragment fade-out">
 <div class="cell">
@@ -5937,7 +5949,7 @@ Figure&nbsp;3.21: Correlation between two variables and the quantification there
 <img src="chapter002_InferentialStatistics_files/figure-html/fig-drive-shaft-pearson-qq-1.png" class="img-fluid figure-img" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-drive-shaft-pearson-qq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.22: The QQ-plot of both variables. There is strong evidence that they are normally disitrbuted.
+Figure&nbsp;4.22: The QQ-plot of both variables. There is strong evidence that they are normally disitrbuted.
 </figcaption>
 </figure>
 </div>
@@ -5953,7 +5965,7 @@ Figure&nbsp;3.22: The QQ-plot of both variables. There is strong evidence that t
 <img src="chapter002_InferentialStatistics_files/figure-html/fig-drive-shaft-corr-pear-1.png" class="img-fluid figure-img" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-drive-shaft-corr-pear-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.23: Correlation between rpm of lathe machine and the diameter of the drive shaft.
+Figure&nbsp;4.23: Correlation between rpm of lathe machine and the diameter of the drive shaft.
 </figcaption>
 </figure>
 </div>
@@ -5982,15 +5994,15 @@ sample estimates:
 <p><span class="math display">\[\begin{align}
 R = \frac{\sum_{i = 1}^{n}(x_i - \bar{x}) \times (y_i - \bar{y})}{\sqrt{\sum_{i=1}^{n}(x_i-\bar{x})^2}\times \sum_{i=1}^{n}(y_i-\bar{y})^2} \label{pearcorr}
 \end{align}\]</span></p>
-<p>The <a href="#PCC">Pearson Correlation Coeffcient</a> works best with normal disitributed data. The normal distribution of the data is verified in <a href="#fig-drive-shaft-pearson-qq" class="quarto-xref">Figure&nbsp;<span>3.22</span></a>.</p>
+<p>The <a href="#PCC">Pearson Correlation Coeffcient</a> works best with normal disitributed data. The normal distribution of the data is verified in <a href="#fig-drive-shaft-pearson-qq" class="quarto-xref">Figure&nbsp;<span>4.22</span></a>.</p>
 </section>
-<section id="spearman-correlation" class="level4" data-number="3.13.3.2">
-<h4 data-number="3.13.3.2" class="anchored" data-anchor-id="spearman-correlation"><span class="header-section-number">3.13.3.2</span> Spearman Correlation</h4>
+<section id="spearman-correlation" class="level4" data-number="4.13.3.2">
+<h4 data-number="4.13.3.2" class="anchored" data-anchor-id="spearman-correlation"><span class="header-section-number">4.13.3.2</span> Spearman Correlation</h4>
 <p>Spearman <span class="citation" data-cites="Spearman1904">(<a href="references.html#ref-Spearman1904" role="doc-biblioref">Spearman 1904</a>)</span> correlation is a non-parametric alternative to Pearson correlation. It is used when the data is not normally distributed or when the relationship between variables is monotonic but not necessarily linear.</p>
 <p><span class="math display">\[\begin{align}
 \rho = 1 - \frac{6 \sum d_i^2}{n(n^2 - 1)} \label{spearcorr}
 \end{align}\]</span></p>
-<p>In <a href="#fig-drive-shaft-corr-spear" class="quarto-xref">Figure&nbsp;<span>3.24</span></a> the example data for a drive shaft production is shown. The <code>Production_Time</code> and the <code>Defects</code> seem to form a relationship, but the data does not appear to be normally distributed. This can also be seen in the QQ-plots of both variables in <a href="#fig-drive-shaft-spear-qq" class="quarto-xref">Figure&nbsp;<span>3.25</span></a>.</p>
+<p>In <a href="#fig-drive-shaft-corr-spear" class="quarto-xref">Figure&nbsp;<span>4.24</span></a> the example data for a drive shaft production is shown. The <code>Production_Time</code> and the <code>Defects</code> seem to form a relationship, but the data does not appear to be normally distributed. This can also be seen in the QQ-plots of both variables in <a href="#fig-drive-shaft-spear-qq" class="quarto-xref">Figure&nbsp;<span>4.25</span></a>.</p>
 <div class="r-stack">
 <div class="fragment fade-out">
 <div class="cell">
@@ -6001,7 +6013,7 @@ R = \frac{\sum_{i = 1}^{n}(x_i - \bar{x}) \times (y_i - \bar{y})}{\sqrt{\sum_{i=
 <img src="chapter002_InferentialStatistics_files/figure-html/fig-drive-shaft-corr-spear-1.png" class="img-fluid figure-img" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-drive-shaft-corr-spear-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.24: The relationship between the production time and the number of defects. The data seems to have a relationship, but it is clearly not linear.
+Figure&nbsp;4.24: The relationship between the production time and the number of defects. The data seems to have a relationship, but it is clearly not linear.
 </figcaption>
 </figure>
 </div>
@@ -6017,7 +6029,7 @@ Figure&nbsp;3.24: The relationship between the production time and the number of
 <img src="chapter002_InferentialStatistics_files/figure-html/fig-drive-shaft-spear-qq-1.png" class="img-fluid figure-img" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-drive-shaft-spear-qq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.25: The QQ-plots of both variables.
+Figure&nbsp;4.25: The QQ-plots of both variables.
 </figcaption>
 </figure>
 </div>
@@ -6058,9 +6070,9 @@ sample estimates:
 </div>
 </div>
 </section>
-<section id="correlation---methodogical-limits" class="level4" data-number="3.13.3.3">
-<h4 data-number="3.13.3.3" class="anchored" data-anchor-id="correlation---methodogical-limits"><span class="header-section-number">3.13.3.3</span> Correlation - methodogical limits</h4>
-<p>While correlation analysis and summary statistics are certainly useful, one must always consider the raw data. The data taken from <span class="citation" data-cites="datasauRus">Davies, Locke, and D’Agostino McGowan (<a href="references.html#ref-datasauRus" role="doc-biblioref">2022</a>)</span> showcases this. The summary statistics in <a href="#tbl-corr-limits" class="quarto-xref">Table&nbsp;<span>3.15</span></a> are practically the same, one would not suspect different underlying data. When the raw data is plotted though (<a href="#fig-corr-limits" class="quarto-xref">Figure&nbsp;<span>3.26</span></a>), it can be seen that the data appears to be highly non linear, forming different shapes as well as different categories etc.</p>
+<section id="correlation---methodogical-limits" class="level4" data-number="4.13.3.3">
+<h4 data-number="4.13.3.3" class="anchored" data-anchor-id="correlation---methodogical-limits"><span class="header-section-number">4.13.3.3</span> Correlation - methodogical limits</h4>
+<p>While correlation analysis and summary statistics are certainly useful, one must always consider the raw data. The data taken from <span class="citation" data-cites="datasauRus">Davies, Locke, and D’Agostino McGowan (<a href="references.html#ref-datasauRus" role="doc-biblioref">2022</a>)</span> showcases this. The summary statistics in <a href="#tbl-corr-limits" class="quarto-xref">Table&nbsp;<span>4.15</span></a> are practically the same, one would not suspect different underlying data. When the raw data is plotted though (<a href="#fig-corr-limits" class="quarto-xref">Figure&nbsp;<span>4.26</span></a>), it can be seen that the data appears to be highly non linear, forming different shapes as well as different categories etc.</p>
 <p>Always check the raw data.</p>
 <div class="r-stack">
 <div class="fragment fade-out">
@@ -6068,7 +6080,7 @@ sample estimates:
 <div id="tbl-corr-limits" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-corr-limits-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3.15: The datasauRus data and the respective summary statistics.
+Table&nbsp;4.15: The datasauRus data and the respective summary statistics.
 </figcaption>
 <div aria-describedby="tbl-corr-limits-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -6210,7 +6222,7 @@ Table&nbsp;3.15: The datasauRus data and the respective summary statistics.
 <img src="chapter002_InferentialStatistics_files/figure-html/fig-corr-limits-1.png" class="img-fluid figure-img" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corr-limits-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.26: The raw data from the datasauRus packages shows, that summary statistics may be misleading.
+Figure&nbsp;4.26: The raw data from the datasauRus packages shows, that summary statistics may be misleading.
 </figcaption>
 </figure>
 </div>
@@ -6221,8 +6233,8 @@ Figure&nbsp;3.26: The raw data from the datasauRus packages shows, that summary 
 </section>
 </section>
 </section>
-<section id="test-2-variables-2-groups" class="level2" data-number="3.14">
-<h2 data-number="3.14" class="anchored" data-anchor-id="test-2-variables-2-groups"><span class="header-section-number">3.14</span> Test 2 Variables (2 Groups)</h2>
+<section id="test-2-variables-2-groups" class="level2" data-number="4.14">
+<h2 data-number="4.14" class="anchored" data-anchor-id="test-2-variables-2-groups"><span class="header-section-number">4.14</span> Test 2 Variables (2 Groups)</h2>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-tests-TwoVar-TwoGrps" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
@@ -6231,14 +6243,14 @@ Figure&nbsp;3.26: The raw data from the datasauRus packages shows, that summary 
 <img src="chapter002/021_StatisticalTests_TwoVar_TwoGrps.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tests-TwoVar-TwoGrps-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.27: Statistical tests for teo variable.
+Figure&nbsp;4.27: Statistical tests for teo variable.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<section id="test-for-equal-variance-homoscedasticity" class="level3" data-number="3.14.1">
-<h3 data-number="3.14.1" class="anchored" data-anchor-id="test-for-equal-variance-homoscedasticity"><span class="header-section-number">3.14.1</span> Test for equal variance (homoscedasticity)</h3>
+<section id="test-for-equal-variance-homoscedasticity" class="level3" data-number="4.14.1">
+<h3 data-number="4.14.1" class="anchored" data-anchor-id="test-for-equal-variance-homoscedasticity"><span class="header-section-number">4.14.1</span> Test for equal variance (homoscedasticity)</h3>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-tst-var" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -6247,7 +6259,7 @@ Figure&nbsp;3.27: Statistical tests for teo variable.
 <img src="chapter002_InferentialStatistics_files/figure-html/fig-tst-var-1.png" class="img-fluid figure-img" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tst-var-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.28: The variances (<span class="math inline">\(sd^2\)</span>) for the drive shaft data.
+Figure&nbsp;4.28: The variances (<span class="math inline">\(sd^2\)</span>) for the drive shaft data.
 </figcaption>
 </figure>
 </div>
@@ -6255,8 +6267,8 @@ Figure&nbsp;3.28: The variances (<span class="math inline">\(sd^2\)</span>) for 
 </div>
 <p>Tests for equal variances, also known as tests for homoscedasticity, are used to determine if the variances of two or more groups or samples are equal. Equal variances are an assumption in various statistical tests, such as the t-test and analysis of variance (<a href="#anova">ANOVA</a>). When the variances are not equal, it can affect the validity of these tests. Two common tests for equal variances are:</p>
 <p>Certainly, here are bullet points outlining the null hypothesis, prerequisites, and decisions for each of the three tests:</p>
-<section id="sec-f-test" class="level4 smaller" data-number="3.14.1.1">
-<h4 class="smaller anchored" data-number="3.14.1.1" data-anchor-id="sec-f-test"><span class="header-section-number">3.14.1.1</span> F-Test <span class="citation" data-cites="Hahs_Vaughn_2013">(<a href="references.html#ref-Hahs_Vaughn_2013" role="doc-biblioref">Hahs-Vaughn and Lomax 2013</a>)</span></h4>
+<section id="sec-f-test" class="level4 smaller" data-number="4.14.1.1">
+<h4 class="smaller anchored" data-number="4.14.1.1" data-anchor-id="sec-f-test"><span class="header-section-number">4.14.1.1</span> F-Test <span class="citation" data-cites="Hahs_Vaughn_2013">(<a href="references.html#ref-Hahs_Vaughn_2013" role="doc-biblioref">Hahs-Vaughn and Lomax 2013</a>)</span></h4>
 <div class="columns">
 <div class="column" data-wwidth="50%">
 <ul>
@@ -6294,8 +6306,8 @@ ratio of variances
 </div>
 </div>
 </section>
-<section id="sec-bartlett" class="level4 smaller" data-number="3.14.1.2">
-<h4 class="smaller anchored" data-number="3.14.1.2" data-anchor-id="sec-bartlett"><span class="header-section-number">3.14.1.2</span> Bartlett Test <span class="citation" data-cites="Bartlett1937">(<a href="references.html#ref-Bartlett1937" role="doc-biblioref">Bartlett 1937</a>)</span></h4>
+<section id="sec-bartlett" class="level4 smaller" data-number="4.14.1.2">
+<h4 class="smaller anchored" data-number="4.14.1.2" data-anchor-id="sec-bartlett"><span class="header-section-number">4.14.1.2</span> Bartlett Test <span class="citation" data-cites="Bartlett1937">(<a href="references.html#ref-Bartlett1937" role="doc-biblioref">Bartlett 1937</a>)</span></h4>
 <div class="columns">
 <div class="column" data-wwidth="50%">
 <ul>
@@ -6327,8 +6339,8 @@ Bartlett's K-squared = 275.61, df = 4, p-value &lt; 2.2e-16</code></pre>
 </div>
 </div>
 </section>
-<section id="levene-test-0-8047-0596-8" class="level4 smaller" data-number="3.14.1.3">
-<h4 class="smaller anchored" data-number="3.14.1.3" data-anchor-id="levene-test-0-8047-0596-8"><span class="header-section-number">3.14.1.3</span> Levene Test <span class="citation" data-cites="0-8047-0596-8">(<a href="references.html#ref-0-8047-0596-8" role="doc-biblioref">Olkin June</a>)</span></h4>
+<section id="levene-test-0-8047-0596-8" class="level4 smaller" data-number="4.14.1.3">
+<h4 class="smaller anchored" data-number="4.14.1.3" data-anchor-id="levene-test-0-8047-0596-8"><span class="header-section-number">4.14.1.3</span> Levene Test <span class="citation" data-cites="0-8047-0596-8">(<a href="references.html#ref-0-8047-0596-8" role="doc-biblioref">Olkin June</a>)</span></h4>
 <div class="columns">
 <div class="column" data-wwidth="50%">
 <ul>
@@ -6361,8 +6373,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </section>
 </section>
-<section id="t-test-for-independent-samples" class="level3" data-number="3.14.2">
-<h3 data-number="3.14.2" class="anchored" data-anchor-id="t-test-for-independent-samples"><span class="header-section-number">3.14.2</span> t-test for independent samples</h3>
+<section id="t-test-for-independent-samples" class="level3" data-number="4.14.2">
+<h3 data-number="4.14.2" class="anchored" data-anchor-id="t-test-for-independent-samples"><span class="header-section-number">4.14.2</span> t-test for independent samples</h3>
 <p>The independent samples t-test is applied when you have continuous data from two independent groups. It evaluates whether there is a significant difference in means between these groups, assuming a normal distribution of the data.</p>
 <div class="r-stack">
 <div class="fragment fade-out">
@@ -6378,7 +6390,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </ul>
 </div>
 <div class="fragment fade-in-then-out">
-<p>First, the variances are compared in order to check if they are equal using the F-Test (as described in <a href="#sec-f-test" class="quarto-xref"><span>Section 3.14.1.1</span></a>).</p>
+<p>First, the variances are compared in order to check if they are equal using the F-Test (as described in <a href="#sec-f-test" class="quarto-xref"><span>Section 4.14.1.1</span></a>).</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -6397,7 +6409,7 @@ ratio of variances
 <p>With <span class="math inline">\(p&gt;\alpha = 0.05\)</span> the <span class="math inline">\(H_0\)</span> is accepted, the variances are equal.</p>
 </div>
 <div class="fragment fade-in-then-out">
-<p>The next step is to check the data for normality using the KS-test (as described in <a href="#sec-ks-test" class="quarto-xref"><span>Section 3.11.2</span></a>).</p>
+<p>The next step is to check the data for normality using the KS-test (as described in <a href="#sec-ks-test" class="quarto-xref"><span>Section 4.11.2</span></a>).</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -6427,7 +6439,7 @@ alternative hypothesis: two-sided</code></pre>
 <img src="chapter002_InferentialStatistics_files/figure-html/fig-t-tst-two-indep-1.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-t-tst-two-indep-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.29: The data within the two groups for comparing the sample means using the t-test for independent samples.
+Figure&nbsp;4.29: The data within the two groups for comparing the sample means using the t-test for independent samples.
 </figcaption>
 </figure>
 </div>
@@ -6454,8 +6466,8 @@ mean of x mean of y
 </div>
 </div>
 </section>
-<section id="welch-t-test-for-independent-samples" class="level3" data-number="3.14.3">
-<h3 data-number="3.14.3" class="anchored" data-anchor-id="welch-t-test-for-independent-samples"><span class="header-section-number">3.14.3</span> Welch t-test for independent samples</h3>
+<section id="welch-t-test-for-independent-samples" class="level3" data-number="4.14.3">
+<h3 data-number="4.14.3" class="anchored" data-anchor-id="welch-t-test-for-independent-samples"><span class="header-section-number">4.14.3</span> Welch t-test for independent samples</h3>
 <p>Similar to the independent samples t-test, the Welch t-test is used for continuous data with two independent groups <span class="citation" data-cites="Welch1947">(<a href="references.html#ref-Welch1947" role="doc-biblioref">WELCH 1947</a>)</span>. However, it is employed when there are unequal variances between the groups, relaxing the assumption of equal variances in the standard t-test.</p>
 <div class="r-stack">
 <div class="fragment fade-out">
@@ -6470,7 +6482,7 @@ mean of x mean of y
 </ul>
 </div>
 <div class="fragment fade-in-then-out">
-<p>First, the variances are compared in order to check if they are equal using the F-Test (as described in <a href="#sec-f-test" class="quarto-xref"><span>Section 3.14.1.1</span></a>).</p>
+<p>First, the variances are compared in order to check if they are equal using the F-Test (as described in <a href="#sec-f-test" class="quarto-xref"><span>Section 4.14.1.1</span></a>).</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -6489,7 +6501,7 @@ ratio of variances
 <p>With <span class="math inline">\(p&lt;\alpha = 0.05\)</span> <span class="math inline">\(H_0\)</span> is rejected and <span class="math inline">\(H_a\)</span> is accepted. The variances are different.</p>
 </div>
 <div class="fragment fade-in-then-out">
-<p>Using the KS-test (see <a href="#sec-ks-test" class="quarto-xref"><span>Section 3.11.2</span></a>) the data is checked for normality.</p>
+<p>Using the KS-test (see <a href="#sec-ks-test" class="quarto-xref"><span>Section 4.11.2</span></a>) the data is checked for normality.</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -6519,7 +6531,7 @@ alternative hypothesis: two-sided</code></pre>
 <img src="chapter002_InferentialStatistics_files/figure-html/fig-welch-tst-two-indep-1.png" class="img-fluid figure-img" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-welch-tst-two-indep-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.30: The data within the two groups for comparing the sample means using the Welch-test for independent samples.
+Figure&nbsp;4.30: The data within the two groups for comparing the sample means using the Welch-test for independent samples.
 </figcaption>
 </figure>
 </div>
@@ -6547,8 +6559,8 @@ mean of x mean of y
 </div>
 </div>
 </section>
-<section id="mann-whitney-u-test" class="level3" data-number="3.14.4">
-<h3 data-number="3.14.4" class="anchored" data-anchor-id="mann-whitney-u-test"><span class="header-section-number">3.14.4</span> Mann-Whitney U test</h3>
+<section id="mann-whitney-u-test" class="level3" data-number="4.14.4">
+<h3 data-number="4.14.4" class="anchored" data-anchor-id="mann-whitney-u-test"><span class="header-section-number">4.14.4</span> Mann-Whitney U test</h3>
 <p>For non-normally distributed data or small sample sizes, the Mann-Whitney U test serves as a non-parametric alternative to the independent samples t-test <span class="citation" data-cites="MannWhitney1947">(<a href="references.html#ref-MannWhitney1947" role="doc-biblioref">Mann and Whitney 1947</a>)</span>. It assesses whether there is a significant difference in medians between two independent groups.</p>
 <div class="r-stack">
 <div class="fragment fade-out">
@@ -6571,7 +6583,7 @@ mean of x mean of y
 <img src="chapter002_InferentialStatistics_files/figure-html/fig-mannu-tst-data-1.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mannu-tst-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.31: The data within the two groups for comparing the sample medians using the Mann-Whitney-U Test.
+Figure&nbsp;4.31: The data within the two groups for comparing the sample medians using the Mann-Whitney-U Test.
 </figcaption>
 </figure>
 </div>
@@ -6579,7 +6591,7 @@ Figure&nbsp;3.31: The data within the two groups for comparing the sample median
 </div>
 </div>
 <div class="fragment fade-in-then-out">
-<p>This time a graphical method to check for normality is employed (QQ-plot, see <a href="#sec-qq-plot" class="quarto-xref"><span>Section 3.11.1</span></a>). From the <a href="#fig-mannu-tst-qq" class="quarto-xref">Figure&nbsp;<span>3.32</span></a> it is pretty clear, that the data is not normally distributed. Furthermore, the variances seem to be unequal as well.</p>
+<p>This time a graphical method to check for normality is employed (QQ-plot, see <a href="#sec-qq-plot" class="quarto-xref"><span>Section 4.11.1</span></a>). From the <a href="#fig-mannu-tst-qq" class="quarto-xref">Figure&nbsp;<span>4.32</span></a> it is pretty clear, that the data is not normally distributed. Furthermore, the variances seem to be unequal as well.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-mannu-tst-qq" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
@@ -6588,7 +6600,7 @@ Figure&nbsp;3.31: The data within the two groups for comparing the sample median
 <img src="chapter002_InferentialStatistics_files/figure-html/fig-mannu-tst-qq-1.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mannu-tst-qq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.32: The data within the two groups for comparing the sample medians using the Mann-Whitney-U Test.
+Figure&nbsp;4.32: The data within the two groups for comparing the sample medians using the Mann-Whitney-U Test.
 </figcaption>
 </figure>
 </div>
@@ -6610,8 +6622,8 @@ alternative hypothesis: true location shift is not equal to 0</code></pre>
 </div>
 </div>
 </section>
-<section id="t-test-for-paired-samples" class="level3" data-number="3.14.5">
-<h3 data-number="3.14.5" class="anchored" data-anchor-id="t-test-for-paired-samples"><span class="header-section-number">3.14.5</span> t-test for paired samples</h3>
+<section id="t-test-for-paired-samples" class="level3" data-number="4.14.5">
+<h3 data-number="4.14.5" class="anchored" data-anchor-id="t-test-for-paired-samples"><span class="header-section-number">4.14.5</span> t-test for paired samples</h3>
 <p>The paired samples t-test is suitable when you have continuous data from two related groups or repeated measures. It helps determine if there is a significant difference in means between the related groups, assuming normally distributed data.</p>
 <div class="r-stack">
 <div class="fragment fade-out">
@@ -6667,7 +6679,7 @@ ratio of variances
 <img src="chapter002_InferentialStatistics_files/figure-html/fig-t-tst-paired-1.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-t-tst-paired-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.33: A boxplot of the data, showing the connections between the datapoints.
+Figure&nbsp;4.33: A boxplot of the data, showing the connections between the datapoints.
 </figcaption>
 </figure>
 </div>
@@ -6688,8 +6700,8 @@ Figure&nbsp;3.33: A boxplot of the data, showing the connections between the dat
 </div>
 </div>
 </section>
-<section id="wilcoxon-signed-rank-test" class="level3" data-number="3.14.6">
-<h3 data-number="3.14.6" class="anchored" data-anchor-id="wilcoxon-signed-rank-test"><span class="header-section-number">3.14.6</span> Wilcoxon signed rank test</h3>
+<section id="wilcoxon-signed-rank-test" class="level3" data-number="4.14.6">
+<h3 data-number="4.14.6" class="anchored" data-anchor-id="wilcoxon-signed-rank-test"><span class="header-section-number">4.14.6</span> Wilcoxon signed rank test</h3>
 <p>For non-normally distributed data or situations involving paired samples, the Wilcoxon signed rank test is a non-parametric alternative to the paired samples t-test. It evaluates whether there is a significant difference in medians between the related groups.</p>
 <div class="r-stack">
 <div class="fragment fade-out">
@@ -6738,8 +6750,8 @@ Figure&nbsp;3.33: A boxplot of the data, showing the connections between the dat
 <div style="page-break-after: always;"></div>
 </section>
 </section>
-<section id="test-2-variables-2-groups-1" class="level2" data-number="3.15">
-<h2 data-number="3.15" class="anchored" data-anchor-id="test-2-variables-2-groups-1"><span class="header-section-number">3.15</span> Test 2 Variables (&gt; 2 Groups)</h2>
+<section id="test-2-variables-2-groups-1" class="level2" data-number="4.15">
+<h2 data-number="4.15" class="anchored" data-anchor-id="test-2-variables-2-groups-1"><span class="header-section-number">4.15</span> Test 2 Variables (&gt; 2 Groups)</h2>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-tests-TwoVar-nGrps" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
@@ -6748,14 +6760,14 @@ Figure&nbsp;3.33: A boxplot of the data, showing the connections between the dat
 <img src="chapter000/022_StatisticalTests_TwoVars_nGrps.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tests-TwoVar-nGrps-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.34: Statistical tests for one variable.
+Figure&nbsp;4.34: Statistical tests for one variable.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<section id="analysis-of-variance-anova---basic-idea" class="level3" data-number="3.15.1">
-<h3 data-number="3.15.1" class="anchored" data-anchor-id="analysis-of-variance-anova---basic-idea"><span class="header-section-number">3.15.1</span> Analysis of Variance (ANOVA) - Basic Idea</h3>
+<section id="analysis-of-variance-anova---basic-idea" class="level3" data-number="4.15.1">
+<h3 data-number="4.15.1" class="anchored" data-anchor-id="analysis-of-variance-anova---basic-idea"><span class="header-section-number">4.15.1</span> Analysis of Variance (ANOVA) - Basic Idea</h3>
 <p><a href="#anova">ANOVA</a>’s ability to compare multiple groups or factors makes it widely applicable across diverse fields for analyzing variance and understanding relationships within data. In the context of engineering sciences the application of ANOVA include:</p>
 <ol type="1">
 <li><p><strong>Experimental Design and Analysis:</strong> Engineers often conduct experiments to optimize processes, test materials, or evaluate designs. ANOVA aids in analyzing these experiments by assessing the effects of various factors (like temperature, pressure, or material composition) on the performance of systems or products. It helps identify significant factors and their interactions to improve engineering processes.</p></li>
@@ -6772,7 +6784,7 @@ Figure&nbsp;3.34: Statistical tests for one variable.
 <img src="chapter002/025_ANOVA_nd.png" class="img-fluid figure-img" style="width:95.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ANOVA-basic-idea-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.35: The basic idea of an ANOVA.
+Figure&nbsp;4.35: The basic idea of an ANOVA.
 </figcaption>
 </figure>
 </div>
@@ -6783,8 +6795,8 @@ Figure&nbsp;3.35: The basic idea of an ANOVA.
 <p><strong>Modeling Dependencies:</strong> ANOVA can be extended to model dependencies among variables in more complex designs. For instance, in factorial ANOVA, it’s used to study the interaction effects among multiple independent variables on a dependent variable. This allows researchers to understand how different factors might interact to influence an outcome.</p>
 <p><strong>Measurement System Analysis (MSA):</strong> ANOVA is integral in MSA to evaluate the variation contributed by different components of a measurement system. In assessing the reliability and consistency of measurement instruments or processes, ANOVA helps in dissecting the total variance into components attributed to equipment variation, operator variability, and measurement error.</p>
 <p>As with statistical tests before, the applicability of the ANOVA depends on various factors.</p>
-<section id="sum-of-squared-error-sse" class="level4" data-number="3.15.1.1">
-<h4 data-number="3.15.1.1" class="anchored" data-anchor-id="sum-of-squared-error-sse"><span class="header-section-number">3.15.1.1</span> Sum of squared error (SSE)</h4>
+<section id="sum-of-squared-error-sse" class="level4" data-number="4.15.1.1">
+<h4 data-number="4.15.1.1" class="anchored" data-anchor-id="sum-of-squared-error-sse"><span class="header-section-number">4.15.1.1</span> Sum of squared error (SSE)</h4>
 <p>The <a href="#sse">sum of squared errors</a> is a statistical measure used to assess the goodness of fit of a model to its data. It is calculated by squaring the differences between the observed values and the values predicted by the model for each data point, then summing up these squared differences. The SSE indicates the total variability or dispersion of the observed data points around the fitted regression line or model. Lower SSE values generally indicate a better fit of the model to the data.</p>
 <p><span class="math display">\[\begin{align}
 SSE = \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 \label{sse}
@@ -6797,15 +6809,15 @@ SSE = \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 \label{sse}
 <img src="chapter002/027_SSE.png" class="img-fluid figure-img" style="width:70.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sse-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.36: A graphical depiction of the SSE.
+Figure&nbsp;4.36: A graphical depiction of the SSE.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="mean-squared-error-mse" class="level4" data-number="3.15.1.2">
-<h4 data-number="3.15.1.2" class="anchored" data-anchor-id="mean-squared-error-mse"><span class="header-section-number">3.15.1.2</span> Mean squared error (MSE)</h4>
+<section id="mean-squared-error-mse" class="level4" data-number="4.15.1.2">
+<h4 data-number="4.15.1.2" class="anchored" data-anchor-id="mean-squared-error-mse"><span class="header-section-number">4.15.1.2</span> Mean squared error (MSE)</h4>
 <p>The <a href="#mse">mean squared error</a> is a measure used to assess the average squared difference between the predicted and actual values in a dataset. It is frequently employed in regression analysis to evaluate the accuracy of a predictive model. The MSE is calculated by taking the average of the squared differences between predicted values and observed values. A lower MSE indicates that the model’s predictions are closer to the actual values, reflecting better accuracy.</p>
 <div class="v-center-container">
 <p><span class="math display">\[\begin{align}
@@ -6814,8 +6826,8 @@ MSE = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 \label{mse}
 </div>
 </section>
 </section>
-<section id="one-way-anova" class="level3" data-number="3.15.2">
-<h3 data-number="3.15.2" class="anchored" data-anchor-id="one-way-anova"><span class="header-section-number">3.15.2</span> One-way ANOVA</h3>
+<section id="one-way-anova" class="level3" data-number="4.15.2">
+<h3 data-number="4.15.2" class="anchored" data-anchor-id="one-way-anova"><span class="header-section-number">4.15.2</span> One-way ANOVA</h3>
 <p>The one-way analysis of variance (ANOVA) is used for continuous data with three or more independent groups. It assesses whether there are significant differences in means among these groups, assuming a normal distribution.</p>
 <div class="r-stack">
 <div class="fragment fade-in-then-out v-center-container" data-fragment-index="1">
@@ -6838,7 +6850,7 @@ MSE = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 \label{mse}
 <img src="chapter002/026_One-Way-ANOVA.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-one-way-ANOVA-basic-idea-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.37: The basic idea of a One-way ANOVA.
+Figure&nbsp;4.37: The basic idea of a One-way ANOVA.
 </figcaption>
 </figure>
 </div>
@@ -6846,7 +6858,7 @@ Figure&nbsp;3.37: The basic idea of a One-way ANOVA.
 </div>
 </div>
 <div class="fragment fade-in-then-out" data-fragment-index="3">
-<p>The most important prerequisite for a One-way ANOVA are equal variances. Because there are more than two groups, the Bartlett test (as introduced in <a href="#sec-bartlett" class="quarto-xref"><span>Section 3.14.1.2</span></a>) is chosen (data is normally distributed).</p>
+<p>The most important prerequisite for a One-way ANOVA are equal variances. Because there are more than two groups, the Bartlett test (as introduced in <a href="#sec-bartlett" class="quarto-xref"><span>Section 4.14.1.2</span></a>) is chosen (data is normally distributed).</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -6869,7 +6881,7 @@ Bartlett's K-squared = 275.61, df = 4, p-value &lt; 2.2e-16</code></pre>
 <img src="chapter002_InferentialStatistics_files/figure-html/fig-one-way-ANOVA-boxplot-1.png" class="img-fluid figure-img" style="width:95.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-one-way-ANOVA-boxplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.38: The groups with equal variance are highlighted.
+Figure&nbsp;4.38: The groups with equal variance are highlighted.
 </figcaption>
 </figure>
 </div>
@@ -6902,7 +6914,7 @@ Y \sim X + \epsilon \label{onewayanova}
 <p>For a One-way ANOVA the <a href="#X">predictor variable</a> <span class="math inline">\(X\)</span> is the mean (<span class="math inline">\(\bar{x}\)</span>) of all datapoints <span class="math inline">\(x_i\)</span>.</p>
 </div>
 <div class="fragment fade-in-then-out" data-fragment-index="9">
-<p>First the SSE and the MSE is calculated for the complete model (<span class="math inline">\(H_a\)</span> is true), see <a href="#tbl-anova-ow-complete" class="quarto-xref">Table&nbsp;<span>3.16</span></a>. The complete model means, that every mean, for every group is calculated and the <a href="#sse"><span class="math inline">\(SSE\)</span></a> according to <span class="math inline">\(\eqref{sse}\)</span> is calculated.</p>
+<p>First the SSE and the MSE is calculated for the complete model (<span class="math inline">\(H_a\)</span> is true), see <a href="#tbl-anova-ow-complete" class="quarto-xref">Table&nbsp;<span>4.16</span></a>. The complete model means, that every mean, for every group is calculated and the <a href="#sse"><span class="math inline">\(SSE\)</span></a> according to <span class="math inline">\(\eqref{sse}\)</span> is calculated.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-anova-mdls-comp" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -6911,7 +6923,7 @@ Y \sim X + \epsilon \label{onewayanova}
 <img src="chapter002_InferentialStatistics_files/figure-html/fig-anova-mdls-comp-1.png" class="img-fluid figure-img" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-anova-mdls-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.39: Computation of error for the complete model (mean per group as model)
+Figure&nbsp;4.39: Computation of error for the complete model (mean per group as model)
 </figcaption>
 </figure>
 </div>
@@ -6927,7 +6939,7 @@ Figure&nbsp;3.39: Computation of error for the complete model (mean per group as
 <img src="chapter002_InferentialStatistics_files/figure-html/fig-anova-mdls-red-1.png" class="img-fluid figure-img" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-anova-mdls-red-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.40: Computation of error for the reduced model (overall mean as model)
+Figure&nbsp;4.40: Computation of error for the reduced model (overall mean as model)
 </figcaption>
 </figure>
 </div>
@@ -6939,7 +6951,7 @@ Figure&nbsp;3.40: Computation of error for the reduced model (overall mean as mo
 <div id="tbl-anova-ow-complete" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-anova-ow-complete-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3.16: The SSE and MSE for the complete model.
+Table&nbsp;4.16: The SSE and MSE for the complete model.
 </figcaption>
 <div aria-describedby="tbl-anova-ow-complete-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -6975,12 +6987,12 @@ Table&nbsp;3.16: The SSE and MSE for the complete model.
 </div>
 </div>
 <div class="fragment fade-in-then-out" data-fragment-index="12">
-<p>Then, the SSE and the MSE is calculated for the reduced model (<span class="math inline">\(H_0\)</span> is true). In the reduced model, the mean is not calculated per group, the overall mean is calculated (results in <a href="#tbl-anova-ow-reduced" class="quarto-xref">Table&nbsp;<span>3.17</span></a>).</p>
+<p>Then, the SSE and the MSE is calculated for the reduced model (<span class="math inline">\(H_0\)</span> is true). In the reduced model, the mean is not calculated per group, the overall mean is calculated (results in <a href="#tbl-anova-ow-reduced" class="quarto-xref">Table&nbsp;<span>4.17</span></a>).</p>
 <div class="cell">
 <div id="tbl-anova-ow-reduced" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-anova-ow-reduced-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3.17: The SSE and MSE from the reduced model.
+Table&nbsp;4.17: The SSE and MSE from the reduced model.
 </figcaption>
 <div aria-describedby="tbl-anova-ow-reduced-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -7033,12 +7045,12 @@ MSE_{explained} &amp;= \frac{SSE_{explained}}{df_{explained}} = 59.18
 <p>The probability of a F-statistic with <span class="math inline">\(pf = 5579.207\)</span> is <span class="math inline">\(0\)</span>.</p>
 </div>
 <div class="fragment fade-in-then-out" data-fragment-index="15">
-<p>A crosscheck with a automated solution (<code>aov</code>-function) yields the results shown in <a href="#tbl-anova-ow-r-sol" class="quarto-xref">Table&nbsp;<span>3.18</span></a>.</p>
+<p>A crosscheck with a automated solution (<code>aov</code>-function) yields the results shown in <a href="#tbl-anova-ow-r-sol" class="quarto-xref">Table&nbsp;<span>4.18</span></a>.</p>
 <div class="cell">
 <div id="tbl-anova-ow-r-sol" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-anova-ow-r-sol-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3.18: The ANOVA results from the aov function.
+Table&nbsp;4.18: The ANOVA results from the aov function.
 </figcaption>
 <div aria-describedby="tbl-anova-ow-r-sol-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -7084,7 +7096,7 @@ Table&nbsp;3.18: The ANOVA results from the aov function.
 </div>
 </div>
 <div class="fragment fade-in-then-out smaller" data-fragment-index="16">
-<p>Some sanity checks are of course required to ensure the validity of the results. First, the variance of the residuals must be equal along the groups (see <a href="#fig-anova-ow-variance" class="quarto-xref">Figure&nbsp;<span>3.41</span></a>).</p>
+<p>Some sanity checks are of course required to ensure the validity of the results. First, the variance of the residuals must be equal along the groups (see <a href="#fig-anova-ow-variance" class="quarto-xref">Figure&nbsp;<span>4.41</span></a>).</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-anova-ow-variance" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
@@ -7093,7 +7105,7 @@ Table&nbsp;3.18: The ANOVA results from the aov function.
 <img src="chapter002_InferentialStatistics_files/figure-html/fig-anova-ow-variance-1.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-anova-ow-variance-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.41: The variances of the residuals.
+Figure&nbsp;4.41: The variances of the residuals.
 </figcaption>
 </figure>
 </div>
@@ -7101,7 +7113,7 @@ Figure&nbsp;3.41: The variances of the residuals.
 </div>
 </div>
 <div class="fragment fade-in-then-out" data-fragment-index="17">
-<p>Also, the residuals from the model must be normally distributed (see <a href="#fig-anova-ow-qq" class="quarto-xref">Figure&nbsp;<span>3.42</span></a>).</p>
+<p>Also, the residuals from the model must be normally distributed (see <a href="#fig-anova-ow-qq" class="quarto-xref">Figure&nbsp;<span>4.42</span></a>).</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-anova-ow-qq" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
@@ -7110,7 +7122,7 @@ Figure&nbsp;3.41: The variances of the residuals.
 <img src="chapter002_InferentialStatistics_files/figure-html/fig-anova-ow-qq-1.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-anova-ow-qq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.42: The distribution of the residuals.
+Figure&nbsp;4.42: The distribution of the residuals.
 </figcaption>
 </figure>
 </div>
@@ -7123,8 +7135,8 @@ Figure&nbsp;3.42: The distribution of the residuals.
 </div>
 </div>
 </section>
-<section id="welch-anova" class="level3" data-number="3.15.3">
-<h3 data-number="3.15.3" class="anchored" data-anchor-id="welch-anova"><span class="header-section-number">3.15.3</span> Welch ANOVA</h3>
+<section id="welch-anova" class="level3" data-number="4.15.3">
+<h3 data-number="4.15.3" class="anchored" data-anchor-id="welch-anova"><span class="header-section-number">4.15.3</span> Welch ANOVA</h3>
 <p><strong>Welch ANOVA:</strong> Similar to one-way ANOVA, the Welch ANOVA is employed when there are unequal variances between the groups being compared. It relaxes the assumption of equal variances, making it suitable for situations where variance heterogeneity exists.</p>
 <div class="r-stack">
 <div class="fragment fade-in-then-out v-center-container" data-fragment-index="1">
@@ -7138,7 +7150,7 @@ Figure&nbsp;3.42: The distribution of the residuals.
 </ul>
 </div>
 <div class="fragment fade-in-then-out" data-fragment-index="2">
-<p>The Welch ANOVA drops the prerequisite of equal variances in groups. Because there are more than two groups, the Bartlett test (as introduced in <a href="#sec-bartlett" class="quarto-xref"><span>Section 3.14.1.2</span></a>) is chosen (data is normally distributed).</p>
+<p>The Welch ANOVA drops the prerequisite of equal variances in groups. Because there are more than two groups, the Bartlett test (as introduced in <a href="#sec-bartlett" class="quarto-xref"><span>Section 4.14.1.2</span></a>) is chosen (data is normally distributed).</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -7151,12 +7163,12 @@ Bartlett's K-squared = 275.61, df = 4, p-value &lt; 2.2e-16</code></pre>
 <p>With <span class="math inline">\(p&lt;\alpha = 0.05\)</span> <span class="math inline">\(H_0\)</span> can be rejected, the variances are not equal.</p>
 </div>
 <div class="fragment fade-in-then-out" data-fragment-index="3">
-<p>The ANOVA table for the Welch ANOVA is shown in <a href="#tbl-anova-ow-welch" class="quarto-xref">Table&nbsp;<span>3.19</span></a>.</p>
+<p>The ANOVA table for the Welch ANOVA is shown in <a href="#tbl-anova-ow-welch" class="quarto-xref">Table&nbsp;<span>4.19</span></a>.</p>
 <div class="cell">
 <div id="tbl-anova-ow-welch" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-anova-ow-welch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3.19: The ANOVA results from the ANOVA Welch Test (not assuming equal variances).
+Table&nbsp;4.19: The ANOVA results from the ANOVA Welch Test (not assuming equal variances).
 </figcaption>
 <div aria-describedby="tbl-anova-ow-welch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -7200,8 +7212,8 @@ Table&nbsp;3.19: The ANOVA results from the ANOVA Welch Test (not assuming equal
 </div>
 </div>
 </section>
-<section id="kruskal-wallis" class="level3" data-number="3.15.4">
-<h3 data-number="3.15.4" class="anchored" data-anchor-id="kruskal-wallis"><span class="header-section-number">3.15.4</span> Kruskal Wallis</h3>
+<section id="kruskal-wallis" class="level3" data-number="4.15.4">
+<h3 data-number="4.15.4" class="anchored" data-anchor-id="kruskal-wallis"><span class="header-section-number">4.15.4</span> Kruskal Wallis</h3>
 <div class="r-stack">
 <p><strong>Kruskal-Wallis Test:</strong> When dealing with non-normally distributed data, the Kruskal-Wallis test is a non-parametric alternative to one-way ANOVA. It is used to evaluate whether there are significant differences in medians among three or more independent groups.</p>
 <p>In this example the drive strength is measured using three-point bending. Three different methods are employed to increase the strength of the drive shaft.</p>
@@ -7214,7 +7226,7 @@ Table&nbsp;3.19: The ANOVA results from the ANOVA Welch Test (not assuming equal
 <img src="chapter000/028_three_point_bending.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-kruskal-three-point-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.43: The mechanical Background for a three-point bending test
+Figure&nbsp;4.43: The mechanical Background for a three-point bending test
 </figcaption>
 </figure>
 </div>
@@ -7227,7 +7239,7 @@ Figure&nbsp;3.43: The mechanical Background for a three-point bending test
 </ul>
 </div>
 <div class="fragment fade-in-then-out v-center-container" data-fragment-index="2">
-<p>In <a href="#fig-kruskal-raw-dat" class="quarto-xref">Figure&nbsp;<span>3.44</span></a> the raw drive shaft strength data for Method A, B and C is shown. At first glance, the data does not appear to be normally distributed.</p>
+<p>In <a href="#fig-kruskal-raw-dat" class="quarto-xref">Figure&nbsp;<span>4.44</span></a> the raw drive shaft strength data for Method A, B and C is shown. At first glance, the data does not appear to be normally distributed.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-kruskal-raw-dat" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
@@ -7236,7 +7248,7 @@ Figure&nbsp;3.43: The mechanical Background for a three-point bending test
 <img src="chapter002_InferentialStatistics_files/figure-html/fig-kruskal-raw-dat-1.png" class="img-fluid figure-img" style="width:80.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-kruskal-raw-dat-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.44: The raw data from the drive shaft strength testing.
+Figure&nbsp;4.44: The raw data from the drive shaft strength testing.
 </figcaption>
 </figure>
 </div>
@@ -7244,7 +7256,7 @@ Figure&nbsp;3.44: The raw data from the drive shaft strength testing.
 </div>
 </div>
 <div class="fragment fade-in-then-out v-center-container" data-fragment-index="3">
-<p>In <a href="#fig-kruskal-qq" class="quarto-xref">Figure&nbsp;<span>3.45</span></a> the visual test for normal distribution is performed. The data does not appear to be normally distributed.</p>
+<p>In <a href="#fig-kruskal-qq" class="quarto-xref">Figure&nbsp;<span>4.45</span></a> the visual test for normal distribution is performed. The data does not appear to be normally distributed.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-kruskal-qq" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
@@ -7253,7 +7265,7 @@ Figure&nbsp;3.44: The raw data from the drive shaft strength testing.
 <img src="chapter002_InferentialStatistics_files/figure-html/fig-kruskal-qq-1.png" class="img-fluid figure-img" style="width:80.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-kruskal-qq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.45: The qq-plot for the drive shaft strength testing data.
+Figure&nbsp;4.45: The qq-plot for the drive shaft strength testing data.
 </figcaption>
 </figure>
 </div>
@@ -7292,8 +7304,8 @@ P value adjustment method: bonferroni </code></pre>
 </div>
 </div>
 </section>
-<section id="repeated-measures-anova" class="level3" data-number="3.15.5">
-<h3 data-number="3.15.5" class="anchored" data-anchor-id="repeated-measures-anova"><span class="header-section-number">3.15.5</span> repeated measures ANOVA</h3>
+<section id="repeated-measures-anova" class="level3" data-number="4.15.5">
+<h3 data-number="4.15.5" class="anchored" data-anchor-id="repeated-measures-anova"><span class="header-section-number">4.15.5</span> repeated measures ANOVA</h3>
 <div class="r-stack">
 <div class="fragment fade-out">
 <p><strong>Repeated Measures ANOVA:</strong> The repeated measures ANOVA is applicable when you have continuous data with multiple measurements within the same subjects or units over time. It is used to assess whether there are significant differences in means over the repeated measurements, under the assumptions of sphericity and normal distribution.</p>
@@ -7311,7 +7323,7 @@ P value adjustment method: bonferroni </code></pre>
 <img src="chapter002_InferentialStatistics_files/figure-html/fig-rep-meas-raw-1.png" class="img-fluid figure-img" style="width:80.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rep-meas-raw-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.46: The raw data for the repeated measures ANOVA.
+Figure&nbsp;4.46: The raw data for the repeated measures ANOVA.
 </figcaption>
 </figure>
 </div>
@@ -7491,8 +7503,8 @@ x_i &amp; &lt;Q1 - 1.5 \cdot IQR
 </div>
 </div>
 </section>
-<section id="friedman-test" class="level3" data-number="3.15.6">
-<h3 data-number="3.15.6" class="anchored" data-anchor-id="friedman-test"><span class="header-section-number">3.15.6</span> Friedman test</h3>
+<section id="friedman-test" class="level3" data-number="4.15.6">
+<h3 data-number="4.15.6" class="anchored" data-anchor-id="friedman-test"><span class="header-section-number">4.15.6</span> Friedman test</h3>
 <div class="r-stack">
 <div class="fragment fade-in">
 <p>The Friedman test is a non-parametric alternative to repeated measures ANOVA <span class="citation" data-cites="Friedman1937">(<a href="references.html#ref-Friedman1937" role="doc-biblioref">Friedman 1937</a>)</span>. It is utilized when dealing with non-normally distributed data and multiple measurements within the same subjects. This test helps determine if there are significant differences in medians over the repeated measurements.</p>
@@ -8024,13 +8036,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./chapter001_Distributions.html" class="pagination-link" aria-label="Statistical Distributions">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Statistical Distributions</span></span>
+      <a href="./SamplingMethods.html" class="pagination-link" aria-label="Sampling Methods">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sampling Methods</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./references.html" class="pagination-link" aria-label="References {.unnumbered}">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">References {.unnumbered}</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./chapter003_Regression.html" class="pagination-link" aria-label="Regression Analysis">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regression Analysis</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

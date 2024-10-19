@@ -29,7 +29,27 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
-  </style>
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+      margin-bottom: 0em;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
   <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto.css">
   <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
@@ -377,18 +397,299 @@ Prof.&nbsp;Dr.&nbsp;Tim Weber
 <h2 id="toc-title">Table of contents</h2>
 <ul>
 <li><a href="#/preface" id="/toc-preface">Preface</a></li>
+<li><a href="#/glossary" id="/toc-glossary">Glossary</a></li>
 </ul>
 </nav>
 </section>
 <section id="preface" class="title-slide slide level1 unnumbered center">
 <h1>Preface</h1>
-<p>This is the script for the lecture “Advanced Statistical Methods and Optimization” at the DIT/Campus Cham. I do realize, that this body of knowledge has been repeated over and over, but have decided to do my own nonetheless so I can add my own flavor to the realms of statistics. Please note that this material is copyrighted, you are not allowed to copy, at least ask for permission - you are likely to get it.</p>
+<p>This is the script for the lecture “Advanced Statistical Methods and Optimization” at the DIT/Campus Cham. I do realize, that this body of knowledge has been repeated over and over, but have decided to do my own nonetheless so I can add my own flavor to the realms of statistics. This work is heavily inspired by <span class="citation" data-cites="r_wickhamgrolemund_2016">(<a href="#/symbol-abbreviations" role="doc-biblioref" onclick="">Wickham and Grolemund 2016</a>)</span>. Please note that this material is copyrighted, you are not allowed to copy, at least ask for permission - you are likely to get it.</p>
 <p>Tim Weber, Oct.&nbsp;2024</p>
+</section>
+
+<section>
+<section id="glossary" class="title-slide slide level1 unnumbered center">
+<h1>Glossary</h1>
+
+</section>
+<section id="text-abbreviations" class="title-slide slide level2 unnumbered unlisted center">
+<h2>Text Abbreviations</h2>
+<dl>
+<dt><span id="anova">ANOVA</span></dt>
+<dd>
+<p>Analysis of Variance</p>
+</dd>
+<dt><span id="ci">CI</span></dt>
+<dd>
+<p>Confidence Interval</p>
+</dd>
+<dt><span id="cl">CL</span></dt>
+<dd>
+<p>Confidence Level</p>
+</dd>
+<dt><span id="cdf">CDF</span></dt>
+<dd>
+<p>cumulative function</p>
+</dd>
+<dt><span id="clt">CLT</span></dt>
+<dd>
+<p>Central Limit Theorem</p>
+</dd>
+<dt><span id="CTQ">CTQ</span></dt>
+<dd>
+<p>Critical To Quality</p>
+</dd>
+<dt><span id="clt">dof</span></dt>
+<dd>
+<p>degree of freedom</p>
+</dd>
+<dt><span id="DoE">DoE</span></dt>
+<dd>
+<p>Design of Experiments</p>
+</dd>
+<dt><span id="eda">EDA</span></dt>
+<dd>
+<p>Exploratory Data Analysis</p>
+</dd>
+<dt><span id="FN">FN</span></dt>
+<dd>
+<p>false negative</p>
+</dd>
+<dt><span id="FP">FP</span></dt>
+<dd>
+<p>false positive</p>
+</dd>
+<dt><span id="gof">gof</span></dt>
+<dd>
+<p>goodness of fit</p>
+</dd>
+<dt><span id="H0">H0</span></dt>
+<dd>
+<p>Null Hypothesis</p>
+</dd>
+<dt><span id="Ha">Ha</span></dt>
+<dd>
+<p>Alternative Hypothesis</p>
+</dd>
+<dt><span id="iqr">IQR</span></dt>
+<dd>
+<p>Interquartile Range</p>
+</dd>
+<dt><span id="KPI">KPI</span></dt>
+<dd>
+<p>Key Performance Indicator</p>
+</dd>
+<dt><span id="KS">KS</span></dt>
+<dd>
+<p>Kolmogorov Smirnov</p>
+</dd>
+<dt><span id="lln">LLN</span></dt>
+<dd>
+<p>Law of Large Numbers</p>
+</dd>
+<dt><span id="MLE">MLE</span></dt>
+<dd>
+<p>Maximum Likelihood Estimation</p>
+</dd>
+<dt><span id="MSA1">MSA1</span></dt>
+<dd>
+<p>Measurement System Analysis Type I</p>
+</dd>
+<dt><span id="UCL">UCL</span></dt>
+<dd>
+<p>Upper Control Limit</p>
+</dd>
+<dt><span id="LCL">LCL</span></dt>
+<dd>
+<p>Lower Control Limit</p>
+</dd>
+<dt><span id="UWL">UWL</span></dt>
+<dd>
+<p>Upper Warning Limit</p>
+</dd>
+<dt><span id="LWL">LWL</span></dt>
+<dd>
+<p>Lower Warning Limit</p>
+</dd>
+<dt><span id="PCC">PCC</span></dt>
+<dd>
+<p>Pearson Correlation Coefficient</p>
+</dd>
+<dt><span id="PDF">PDF</span></dt>
+<dd>
+<p>Probability Density Function</p>
+</dd>
+<dt><span id="PMF">PMF</span></dt>
+<dd>
+<p>Probability Mass Function</p>
+</dd>
+<dt><span id="poi">PoI</span></dt>
+<dd>
+<p>Parameter of Interest</p>
+</dd>
+<dt><span id="popprop-gloss">p</span></dt>
+<dd>
+<p>Population proportion</p>
+</dd>
+<dt><span id="ppm">ppm</span></dt>
+<dd>
+<p>parts per million</p>
+</dd>
+<dt><span id="QC">QC</span></dt>
+<dd>
+<p>Quality Control</p>
+</dd>
+<dt><span id="qq">QQ</span></dt>
+<dd>
+<p>Quantile-Quantie</p>
+</dd>
+<dt><span id="se">SE</span></dt>
+<dd>
+<p>Standard Error</p>
+</dd>
+<dt><span id="TTF">TTF</span></dt>
+<dd>
+<p>Time to failure</p>
+</dd>
+<dt><span id="TN">TN</span></dt>
+<dd>
+<p>true negative</p>
+</dd>
+<dt><span id="TP">TP</span></dt>
+<dd>
+<p>true positive</p>
+</dd>
+<dt><span id="wrt">.w.r.t</span></dt>
+<dd>
+<p>with respect to</p>
+</dd>
+<dt><span id="Z">Z</span></dt>
+<dd>
+<p>Z-standardization</p>
+</dd>
+</dl>
+</section>
+
+<section id="symbol-abbreviations" class="title-slide slide level2 unnumbered unlisted smaller scrollable">
+<h2>Symbol Abbreviations</h2>
+<dl>
+<dt><span id="sign-level"><span class="math inline">\(\alpha\)</span></span></dt>
+<dd>
+<p>significance level</p>
+</dd>
+<dt><span id="beta-risk"><span class="math inline">\(\beta\)</span></span></dt>
+<dd>
+<p>false negative risk</p>
+</dd>
+<dt><span id="epsilon"><span class="math inline">\(\epsilon\)</span></span></dt>
+<dd>
+<p>residuals</p>
+</dd>
+<dt><span id="truemean-gloss"><span class="math inline">\(\mu_0\)</span></span></dt>
+<dd>
+<p>the true mean of a population</p>
+</dd>
+<dt><span id="pdf-gloss"><span class="math inline">\(\varphi(x)\)</span></span></dt>
+<dd>
+<p>probability density function</p>
+</dd>
+<dt><span id="cdf-gloss"><span class="math inline">\(\phi(x)\)</span></span></dt>
+<dd>
+<p>cumulative probability density function or cumulative distribution function</p>
+</dd>
+<dt><span id="truevariance-gloss"><span class="math inline">\(\sigma_0^2\)</span></span></dt>
+<dd>
+<p>the true variance of a population</p>
+</dd>
+<dt><span id="truesd-gloss"><span class="math inline">\(\sigma_0\)</span></span></dt>
+<dd>
+<p>the true standard deviation of a population</p>
+</dd>
+<dt><span id="Cg"><span class="math inline">\(C_g\)</span></span></dt>
+<dd>
+<p>potential Measurement System Capability Index</p>
+</dd>
+<dt><span id="Cgk"><span class="math inline">\(C_{gk}\)</span></span></dt>
+<dd>
+<p>Measurement Capability Index with systematic error</p>
+</dd>
+<dt><span id="Cp"><span class="math inline">\(C_p\)</span></span></dt>
+<dd>
+<p>potential process capability as caluclated by <span class="math inline">\(\eqref{CpCalc}\)</span></p>
+</dd>
+<dt><span id="Cpk"><span class="math inline">\(C_{pk}\)</span></span></dt>
+<dd>
+<p>actual process capability including centering as calculated by <span class="math inline">\(\eqref{CpkCalc}\)</span></p>
+</dd>
+<dt><span id="numpred"><span class="math inline">\(k\)</span></span></dt>
+<dd>
+<p>number of predictors in a model</p>
+</dd>
+<dt><span id="mse"><span class="math inline">\(MSE\)</span></span></dt>
+<dd>
+<p>mean squared errors as calculated by <span class="math inline">\(\eqref{mse}\)</span></p>
+</dd>
+<dt><span id="n-gloss"><span class="math inline">\(n\)</span></span></dt>
+<dd>
+<p>number of datapoints/observations</p>
+</dd>
+<dt><span id="probabilities"><span class="math inline">\(P\)</span></span></dt>
+<dd>
+<p>Probabilities</p>
+</dd>
+<dt><span id="r2"><span class="math inline">\(r^2\)</span></span></dt>
+<dd>
+<p>Coefficient of determination <span class="math inline">\(\eqref{r2}\)</span></p>
+</dd>
+<dt><span id="r2adj"><span class="math inline">\(r^2_{adjusted}\)</span></span></dt>
+<dd>
+<p>adjusted Coefficient of determination <span class="math inline">\(\eqref{r2adj}\)</span></p>
+</dd>
+<dt><span id="sd-gloss"><span class="math inline">\(sd\)</span></span></dt>
+<dd>
+<p>the standard deviation of a dataset as computed via <span class="math inline">\(\eqref{sd}\)</span></p>
+</dd>
+<dt><span id="sse"><span class="math inline">\(SSE\)</span></span></dt>
+<dd>
+<p>Sum of squared errors as calculated by <span class="math inline">\(\eqref{sse}\)</span></p>
+</dd>
+<dt><span id="xi-gloss"><span class="math inline">\(x_i\)</span></span></dt>
+<dd>
+<p>the individual datapoints</p>
+</dd>
+<dt><span id="mean-gloss"><span class="math inline">\(\bar{x}\)</span></span></dt>
+<dd>
+<p>the mean value of the dataset as computed via <span class="math inline">\(\eqref{mean}\)</span></p>
+</dd>
+<dt><span id="X"><span class="math inline">\(X\)</span></span></dt>
+<dd>
+<p>Predictor Variable</p>
+</dd>
+<dt><span id="Y"><span class="math inline">\(Y\)</span></span></dt>
+<dd>
+<p>Response Variable</p>
+</dd>
+<dt><span id="yhat"><span class="math inline">\(\hat{y}\)</span></span></dt>
+<dd>
+<p>predicted value</p>
+</dd>
+<dt><span id="yi"><span class="math inline">\(y_i\)</span></span></dt>
+<dd>
+<p>true value</p>
+</dd>
+</dl>
+<p></p>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 <p>Prof.&nbsp;Dr.&nbsp;Tim Weber</p>
 </div>
 </div>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-r_wickhamgrolemund_2016" class="csl-entry" role="listitem">
+Wickham, Hadley, and Garrett Grolemund. 2016. <em>R for Data Science</em>. "O’Reilly Media, Inc.".
+</div>
+</div>
+</section>
 </section>
     </div>
   </div>

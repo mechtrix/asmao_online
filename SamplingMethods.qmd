@@ -1,0 +1,409 @@
+---
+title: "Sampling Methods"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+library(tidyverse)
+library(gtExtras)
+library(here)
+
+
+```
+
+## Random Sampling {.smaller}
+
+:::{.r-stack}
+
+:::{.fragment .fade-in-then-out}
+
+```{r}
+#| label: fig-rand-smpl
+#| out-width: 85%
+#| fig-cap: The idea of random sampling (Dan Kernler).
+#| fig-pos: "H"
+
+knitr::include_graphics(here("SamplingMethods","Simple_random_sampling.png"))
+
+```
+:::
+
+:::{.fragment .fade-in-then-out}
+
+- **Definition:** Selecting a sample from a population in a purely random manner, where every individual has an equal chance of being chosen.
+- **Advantages:**
+  - Eliminates bias in selection.
+  - Results are often representative of the population.
+- **Disadvantages:**
+  - Possibility of unequal representation of subgroups.
+  - Time-consuming and may not be practical for large populations.
+
+:::
+
+:::
+
+## Stratified Sampling {.smaller}
+
+:::{.r-stack}
+
+:::{.fragment .fade-in-then-out}
+
+```{r}
+#| label: fig-strat-smpl
+#| out-width: 85%
+#| fig-cap: The idea of stratified sampling (Dan Kernler)
+#| fig-pos: "H"
+
+knitr::include_graphics(here("SamplingMethods","Stratified_sampling.png"))
+
+```
+:::
+
+:::{.fragment .fade-in-then-out}
+
+- **Definition:** Dividing the population into subgroups or strata based on certain characteristics and then randomly sampling from each stratum.
+- **Advantages:**
+  - Ensures representation from all relevant subgroups.
+  - Increased precision in estimating population parameters.
+- **Disadvantages:**
+  - Requires accurate classification of the population into strata.
+  - Complexity in implementation and analysis.
+
+:::
+
+:::
+
+## Systematic Sampling {.smaller}
+
+:::{.r-stack}
+
+:::{.fragment .fade-in-then-out}
+
+```{r}
+#| label: fig-syst-smpl
+#| out-width: 75%
+#| fig-cap: The idea of systematic sampling (Dan Kernler)
+#| fig-pos: "H"
+
+knitr::include_graphics(here("SamplingMethods","Systematic_sampling.png"))
+
+```
+:::
+
+:::{.fragment .fade-in-then-out}
+
+- **Definition:** Choosing every kth individual from a list after selecting a random starting point.
+- **Advantages:**
+  - Simplicity in execution compared to random sampling.
+  - Suitable for large populations.
+- **Disadvantages:**
+  - Susceptible to periodic patterns in the population.
+  - If the periodicity aligns with the sampling interval, it can introduce bias.
+
+:::
+
+:::
+
+## Cluster Sampling {.smaller}
+
+:::{.r-stack}
+
+:::{.fragment .fade-in-then-out}
+
+```{r}
+#| label: fig-clust-smpl
+#| out-width: 75%
+#| fig-cap: The idea of clustered sampling (Dan Kernler).
+#| fig-pos: "H"
+
+knitr::include_graphics(here("SamplingMethods","Cluster_sampling.png"))
+
+```
+:::
+
+:::{.fragment .fade-in-then-out}
+
+- **Definition:** Dividing the population into clusters, randomly selecting some clusters, and then including all individuals from the chosen clusters in the sample.
+
+- **Advantages:**
+  - Cost-effective, especially for geographically dispersed populations.
+  - Reduces logistical challenges compared to other methods.
+- **Disadvantages:**
+  - Increased variability within clusters compared to other methods.
+  - Requires accurate information on cluster characteristics.
+
+:::
+
+:::
+
+## Example - The Star Wars dataset
+
+```{r}
+#| include: false
+
+data(starwars) 
+starwars <- starwars |> select(-films, -vehicles, -starships)   
+head(starwars)                                            
+ 
+set.seed(984362)                                         
+```
+
+### Get to know the data
+
+```{r}
+#| label: tbl-starwarsdata
+#| tbl-cap: The starwars dataset
+
+starwars |> summary()
+```
+
+### Simple Random Sampling
+
+```{r}
+#| echo: true
+#| output: true
+
+
+starwars_srswor <- starwars %>%                         
+  sample_n(size = 5)
+starwars_srswor                                          
+```
+
+### Simple Random Sampling with replacment
+
+```{r}
+#| echo: true
+#| output: true
+
+
+starwars_srswr <- starwars %>%                            
+  sample_n(size = 5,
+           replace = TRUE)
+starwars_srswr                                           
+```
+
+### Sampling with replacment, sample larger than original data
+
+```{r}
+#| echo: true
+#| output: true
+
+
+starwars_srswr2 <- starwars %>%                           
+  sample_n(size = 200,
+           replace = TRUE)
+starwars_srswr2                                          
+ 
+mean(starwars$height, na.rm = TRUE)                      
+mean(starwars_srswr2$height, na.rm = TRUE)
+```
+
+### Systematic Sampling
+
+Sample always the $5th$.
+
+```{r}
+#| echo: true
+#| output: true
+
+
+starwars_syst <- starwars %>%                            
+  slice(seq(sample(1:5, 1),                              
+            nrow(starwars),                              
+            by = 5))                                   
+starwars_syst                                           
+
+
+```
+
+### Stratified Sampling
+
+```{r}
+#| echo: true
+#| output: true
+
+table(starwars$sex)                                      
+ 
+starwars_strat <- starwars %>%                          
+  group_by(sex) %>%
+  sample_frac(size = 0.3)
+starwars_strat                                           
+ 
+table(starwars_strat$sex)                               
+
+```
+
+### Clustered Sampling
+
+```{r}
+#| label: tbl-starwarsdata-clust
+#| tbl-cap: The starwars dataset with clustered sampling
+
+starwars_clust <- starwars %>%                          
+  filter(homeworld %in% sample(unique(homeworld),
+                               size = 10))
+starwars_clust |> summary()
+
+```
+
+
+## Bootstrapping {.smaller}
+
+:::{.r-stack}
+
+:::{.fragment .fade-in-then-out}
+
+```{r}
+#| label: fig-smpl-btstrp
+#| out-width: 75%
+#| fig-cap: The idea of bootstrapping (Biggerj1, Marsupilami)
+#| fig-pos: "H"
+
+knitr::include_graphics(here("SamplingMethods","Illustration_bootstrap.png"))
+
+```
+
+:::
+
+:::{.fragment .fade-in-then-out}
+
+- **Definition:** Estimating sample statistic distribution by drawing new samples with replacement from observed data, providing insights into variability without strict population distribution assumptions.
+
+- **Advantages:**
+  - Non-parametric: Works without assuming a specific data distribution.
+  - Confidence Intervals: Facilitates easy estimation of confidence intervals.
+  - Robustness: Reliable for small sample sizes or unknown data distributions.
+
+- **Disadvantages:**
+  - Computationally Intensive: Resource-intensive for large datasets.
+  - Results quality relies on the representativeness of the initial sample (garbage in - garbage out).
+  - Cannot compensate for inadequate information in the original sample.
+  - Not Always Optimal: Traditional methods may be better in cases meeting distribution assumptions.
+
+:::
+
+:::
+
+::: {.content-visible when-profile="slides"}
+
+### Bootstrapping in the classroom
+
+:::{.r-stack}
+
+:::{.fragment .fade-in-then-out}
+
+:::{style="font-size: 80%;"}
+
+![](chapter003/50_cent.jpg){fig-align="center" width=50%}
+
+* imagine all $0.50€$ coins that are used today
+* we are interested in the average minting year
+* we can not just look at all the coins, we have to estimate the average minting year
+* we assume the 50 coins to be a representative sample (is it though?)
+
+:::
+
+:::
+
+:::{.fragment .fade-in-then-out}
+
+```{r}
+#| include: false
+
+# coins_sample <- pennies_sample
+set.seed(1253)
+coins_sample <- data.frame(
+  year = sample(seq(2002,2023),50, replace = TRUE)) %>% 
+  rowid_to_column(var = "ID")
+
+```
+
+
+```{r}
+
+plt_dist_coins <- coins_sample %>% 
+  ggplot(
+    aes(
+      x = year
+    )
+  )+
+  geom_histogram(
+    binwidth = 2.5,
+    color = "white"
+  )+
+  scale_y_continuous(
+    expand = c(0,0,0.05,0)
+  )+
+  scale_x_continuous(
+    breaks = seq(1900,2500,2)
+  )+
+  labs(
+    title = "Distribution of the minting year in the 50 coins"
+  )+
+  theme_bw(
+    base_size = 20
+  )
+
+plt_dist_coins
+
+```
+
+:::
+
+:::{.fragment .fade-in-then-out}
+
+```{r}
+
+plt_dist_coins+
+  geom_vline(
+    xintercept = mean(coins_sample$year), 
+    color = "red",
+    linewidth = 2
+    )
+
+```
+
+:::
+
+:::{.fragment .fade-in-then-out}
+
+<!-- ![](chapter003/CoinResamplingPrint.svg){fig-align="center" width=30%} -->
+
+:::{style="font-size: 80%;"}
+
+* Population $N = ?$
+* Population $\mu = ? \rightarrow$ we want to know that!
+* sample mean $\bar{x} = `r mean(coins_sample$year)`$
+
+
+* $\bar{x} = `r mean(coins_sample$year)`$ is the *point estimate*
+* Strategy to be saver about the *mean minting year*? $\rightarrow$ MORE SAMPLES
+
+:::
+
+:::
+
+:::{.fragment .fade-in-then-out}
+
+![](chapter003/batman.jpg){.r-stretch}
+
+:::
+
+:::{.fragment .fade-in-then-out}
+
+* What is a good sample size to resample (how often)?
+* Draw a number from the hat.
+* Put the number back into the hat. (This is called: *resampling with replacement*)
+* Why do we put the number back into the hat?
+* Now do it.
+
+:::
+
+:::
+
+:::

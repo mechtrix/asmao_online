@@ -7,7 +7,9 @@ book:
     - index.qmd
     - chapter000_BasicConcepts.qmd
     - chapter001_Distributions.qmd
+    - SamplingMethods.qmd
     - chapter002_InferentialStatistics.qmd
+    - chapter003_Regression.qmd
     - references.qmd
   downloads: [pdf]
     
