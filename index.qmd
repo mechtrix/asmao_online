@@ -208,11 +208,11 @@ Tim Weber, Oct. 2024
 
 [$C_p$]{#Cp}
 
-:   potential process capability as caluclated by \eqref{CpCalc}
+:   potential process capability 
 
 [$C_{pk}$]{#Cpk}
 
-:   actual process capability including centering as calculated by \eqref{CpkCalc}
+:   actual process capability including centering 
 
 [$k$]{#numpred}
 
@@ -220,7 +220,7 @@ Tim Weber, Oct. 2024
 
 [$MSE$]{#mse}
 
-: mean squared errors as calculated by \eqref{mse}
+: mean squared errors 
 
 [$n$]{#n-gloss}
 
@@ -232,19 +232,19 @@ Tim Weber, Oct. 2024
 
 [$r^2$]{#r2}
 
-: Coefficient of determination \eqref{r2}
+: Coefficient of determination 
 
 [$r^2_{adjusted}$]{#r2adj}
 
-: adjusted Coefficient of determination \eqref{r2adj}
+: adjusted Coefficient of determination 
 
 [$sd$]{#sd-gloss}
 
-:   the standard deviation of a dataset as computed via \eqref{sd}
+:   the standard deviation of a dataset 
 
 [$SSE$]{#sse}
 
-: Sum of squared errors as calculated by \eqref{sse}
+: Sum of squared errors as calculated by 
 
 [$x_i$]{#xi-gloss}
 
@@ -252,7 +252,7 @@ Tim Weber, Oct. 2024
 
 [$\bar{x}$]{#mean-gloss}
 
-:   the mean value of the dataset as computed via \eqref{mean}
+:   the mean value of the datas
 
 [$X$]{#X}
 
