@@ -1,0 +1,680 @@
+---
+title: "Introduction to Design of Experiments (DoE)"
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+library(tidyverse)
+library(SixSigma)
+library(gt)
+library(broom)
+library(qqplotr)
+library(ggeffects)
+
+```
+
+## (O)ne (F)actor (A)t a (T)ime
+
+
+```{r}
+#| label: fig-ofat
+#| fig-height: 6
+#| out-width: 85%
+#| fig-cap: OFAT quickly becomes cumbersome
+
+
+ofat <- expand_grid(
+  no_lvls = seq(2,10,0.01),
+  no_var = seq(2,4)
+) |> 
+  mutate(
+    no_exp = no_lvls^no_var,
+    no_var = no_var |> as_factor()
+  )
+
+ofat |> 
+  ggplot(
+    aes(
+      x = no_lvls,
+      y = no_exp,
+      # color = no_var,
+      linetype = no_var
+    )
+  )+
+  geom_line()+
+  theme_classic(
+    base_size = 15
+  )+
+  scale_x_continuous(
+    breaks = seq(2,10,1)
+  )+
+  scale_y_continuous(
+    breaks = c(100,1000,2000,3000,4000,5000,6000,7000,8000,9000,10000)
+  )+
+  labs(
+    title = "OFAT number of experiments",
+    x = "number of factor levels",
+    y = "number of experiments",
+    linetype = "number of factors\n(investigated variables)"
+  )+
+  theme(
+    legend.position = "bottom"
+  )
+
+```
+
+## curse of dimensionality
+
+\begin{align}
+n_{experiments} = n_{levels}^{n_{factors}}
+\end{align}
+
+## Concept of ANOVA
+
+```{r}
+#| label: fig-ANOVA-01
+#| out-width: 75%
+#| fig-cap: classical ANOVA concept
+
+knitr::include_graphics(here::here("chapter005","025_ANOVA_nd.png"))
+
+```
+
+## Basics of Experimental Design
+
+```{r}
+#| label: fig-DoE-01
+#| out-width: 75%
+#| fig-cap: The connection between ANOVA and DoE.
+
+knitr::include_graphics(here::here("chapter005","ANOVA_DoE.png"))
+
+```
+
+::: {.content-visible when-profile="script"}
+
+[Design of Experiments](#DoE)
+
+:::
+
+## Experimental planning strategies
+
+:::{style="font-size: 65%;"}
+
+::: {.incremental}
+
+1.No planning 
+
+* bad way of conducting an experiment
+* happens often enough (trial-and-error approach)
+
+2.Plan everything at the beginning
+
+* after definition the entire budget is allocated to perform all possible experiments
+* does not take into account intermediate results
+* spend money on experiments that contributed nothing to our knowledge of the process
+
+3.Sequential planning
+
+* first stage, a reduced number of trials will be conducted to make decisions about the next stage
+* first stage should consume between $25\%$ and $40\%$ of the budget
+* most of the budget should be spent in subsequent stages, taking into account previous results.
+
+:::
+
+:::
+
+## pizza dough example
+
+- representation of factors and levels for a designed experiment
+- example: pizza dough
+  * food manufacturer is looking for the best recipe for its main product: pizza dough sold in retailers
+  * three factors shall be determined: `flour`, `salt`, baking powder: `bakPow`
+  * response will be determined by experts as `score`
+  * factors are to be set `low` ($-$) and `high` ($+$)
+  
+## design matrix
+
+```{r}
+#| label: tbl-dm
+#| tbl-cap: The design matrix for the pizza dough experimentation
+
+pizzaDesign <- expand.grid(
+  flour = gl(2, 1, labels = c("-","+")),
+  salt = gl(2, 1, labels = c("-", "+")),
+  bakPow = gl(2, 1, labels = c("-", "+")),
+  score = NA)
+
+pizzaDesign |> 
+  gt()
+
+```
+
+---
+
+::: {.r-fit-text .v-c}
+
+Be bold, but not stupid!
+
+:::
+
+
+### progressive experimentation
+
+::: {.incremental}
+
+- OFAT
+  * will leave out **interactions** of variables
+- $2^k$: two-level factor experimentation
+- including replications 
+
+1. *Screening* experiments: to select the most important factors
+2. *Characterizing* experiments: to study the model (residuals) of $Y = f(X)$
+3. *Optimization* experiments: operational minimum value for the process
+
+:::
+
+## Model assumptions
+
+- randomization!
+
+```{r}
+#| label: tbl-dm-rnd
+#| tbl-cap: The randomized design matrix for experimental runs
+#| echo: FALSE
+
+
+pizzaDesign$ord <- sample(1:8, 8)
+pizzaDesign <- pizzaDesign |> arrange(ord)
+
+pizzaDesign |> 
+  gt()
+
+```
+
+
+## experimental model
+
+```{r}
+#| label: fig-exp-mdl
+#| out-width: 75%
+#| fig-cap: The experimental model for a DoE
+
+knitr::include_graphics(here::here("chapter005","mm_doe.png"))
+
+```
+
+## analytical model
+
+
+```{r}
+#| label: fig-ana-mdl
+#| fig-cap: The experimental model with the fitted linear model.
+
+knitr::include_graphics(here::here("chapter005","mm_doe_02.png"))
+
+```
+
+
+## $2^k$ factorial Designs
+
+$k$
+
+:   number of factors to be studied, all with $2$ levels
+
+$n$
+
+:   number of replications $\rightarrow \text{total number of experiments} = n \times 2^k$
+
+$A,B, \ldots$
+
+:   factors (uppercase latin letters)
+
+$\alpha, \beta, \ldots$
+
+:   main effects
+
+## complete analytical model
+
+::: {.r-stack}
+
+::: {.fragment .fade-in-then-out}
+
+* three factors, $n$ replications
+
+\begin{align}
+\begin{split}
+y_{ijkl} = \mu &+ \alpha_i + \beta_j + \gamma_k\\
+&+ (\alpha\beta)_{ij} + (\alpha\gamma)_{ik} + (\beta\gamma)_{kl}\\
+&+(\alpha\beta\gamma)_{ijk}+\epsilon_{ijkl} \\
+\end{split}\\
+\begin{split}
+i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
+\epsilon_{ijkl} \sim N(0,\sigma)
+\end{split} \nonumber \\
+\end{align}
+
+:::
+
+::: {.fragment .fade-in-then-out}
+
+:::{style="font-size: 65%;"}
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+$\mu$
+
+:   global mean of the response
+
+$\alpha_i$
+
+:   effect of factor $A$ at level $i$
+
+$\beta_j$
+
+:   effect of factor $B$ at level $j$
+
+$\gamma_k$
+
+:   effect of factor $C$ at level $k$
+
+$(\alpha\beta)_{ij}$
+
+:   effect of the interaction of factors $A$ and $B$ at levels $i$ and $j$
+
+:::
+
+::: {.column width="50%"}
+
+$(\alpha\gamma)_{ik}$
+
+:   effect of the interaction of factors $A$ and $C$ at levels $i$ and $k$
+
+$(\beta\gamma)_{jk}$
+
+:   effect of the interaction of factors $B$ and $C$ at levels $j$ and $k$
+
+$(\alpha\beta\gamma)_{ijk}$
+
+:   effect of the interaction of factors $A,B$ and $C$ at levels $i,j$ and $k$
+
+$\epsilon_{ijkl}$
+
+:   random error component of the model
+
+:::
+
+::::
+
+:::
+
+:::
+
+:::
+
+### pizza dough example raw data
+
+"... bake the pizza for 9min at 180°C ..."
+
+```{r}
+ss.data.doe1 |> gt()
+
+pizzaData <- ss.data.doe1
+```
+
+[@CanoUnknownTitle2012]
+
+### pizza dough example summarised data
+
+```{r}
+pizzaSum <- pizzaData |> 
+  group_by(
+    flour,salt,bakPow
+  ) |> 
+  summarise(
+    mean_score = mean(score)
+  ) |> 
+  ungroup() 
+
+pizzaSum |> 
+  gt()  
+  # gt_highlight_rows(
+  #   rows = 5,
+  #   fill = "lightgrey",
+  #   bold_target_only = TRUE,
+  #   # target_col = car
+  #  )
+
+```
+
+### pizza dough recipe full model
+
+```{r}
+#| echo: true
+
+doe.model1 <- lm(score ~ flour + salt + bakPow +
+flour * salt + flour * bakPow +
+salt * bakPow + flour * salt * bakPow,
+data = ss.data.doe1)
+
+summary(doe.model1)
+
+```
+
+### pizza dough recipe elimination model
+
+```{r}
+#| echo: true
+
+doe.model2 <- lm(score ~ flour + bakPow,data = ss.data.doe1)
+
+summary(doe.model2)
+
+```
+
+### pizza dough statistical model
+
+\begin{align}
+\widehat{score} = `r coef(doe.model2)[1] |> round(digits = 2)` + `r coef(doe.model2)[2] |> round(digits = 2)`\times flour  `r coef(doe.model2)[3]|> round(digits = 2)` \times bakPow \\
+\widehat{score} = `r mean(pizzaData$score)|> round(digits = 2)` + `r (coef(doe.model2)[2]/2)|> round(digits = 2)`\times flour  `r (coef(doe.model2)[3]/2)|> round(digits = 2)` \times bakPow
+\end{align}
+
+### main effect plot
+
+```{r}
+#| label: fig-pd-me
+#| out-width: 95%
+#| fig-cap: The main effect plot for the pizza dough model
+
+ggME <- data.frame(
+  Factor = rep(c("A_Flour","C_Baking Powder"), each = 2),
+  Level = rep(c(-1, 1), 2),
+  Score = c(aggregate(score ~ flour, FUN = mean, data = ss.data.doe1)[,2],aggregate(score ~ bakPow, FUN = mean, data =ss.data.doe1)[,2]))
+
+ggME |> 
+  ggplot(
+    aes(
+      x = Level,
+      y = Score
+    )
+  )+
+  geom_point()+
+  geom_line()+
+  geom_hline(
+    yintercept = mean(ggME$Score),
+    linetype = "dashed"
+  )+
+  scale_x_continuous(
+    breaks = c(-1,1)
+  )+
+  facet_wrap(~Factor)+
+  labs(
+    title = "main effect plot"
+  )+
+  theme_bw(
+    base_size = 15
+  )
+
+```
+
+### interaction plot
+
+```{r}
+#| label: fig-pd-ie
+#| out-width: 95%
+#| fig-cap: The interaction plot for the pizza dough model
+#| 
+intEf <- aggregate(score ~ flour + bakPow,
+FUN = mean, data = ss.data.doe1)
+intEf |> 
+  ggplot(
+    aes(
+      x = flour, 
+      y = score, 
+      color = bakPow
+      )
+    ) +
+  geom_point() +
+  geom_line(
+    aes(
+      group=bakPow
+      )
+    ) +
+  geom_hline(
+    yintercept = mean(ss.data.doe1$score),
+    linetype = "dashed",
+    color = "black"
+    )+
+  labs(
+    title = "interaction plot"
+  )+
+  theme_bw(
+    base_size = 15
+  )
+
+
+
+```
+
+### model validity
+
+#### residual patterns
+
+```{r}
+#| label: fig-pd-resid-seq
+#| out-width: 95%
+#| fig-cap: Check for any pattern in the model residuals
+
+doe.model2_aug <- doe.model2 |> 
+  augment() |> 
+  rowid_to_column(
+    var = "idx"
+  )
+
+doe.model2_aug |> 
+  ggplot(
+    aes(
+      x = idx, 
+      y = .resid
+    )
+  )+
+  geom_point()+
+  labs(
+    title = "residual patterns in sequential plotting"
+  )+
+  theme_bw(
+    base_size = 15
+  )
+
+```
+
+####  residual distribution
+
+```{r}
+#| label: fig-pd-resid-qq
+#| out-width: 95%
+#| fig-cap: Check for the residuals normality (QQ plot)
+#| 
+doe.model2_aug |> 
+  ggplot(
+    aes(
+      sample = .resid
+    )
+  )+
+  stat_qq_band()+
+  stat_qq_line()+
+  stat_qq_point()+
+  theme_bw(
+    base_size = 15
+  )+
+  labs(
+    title = "QQ-plot of the residuals"
+  )
+
+```
+
+```{r}
+#| echo: true
+shapiro.test(doe.model2_aug$.resid)
+```
+
+## Design of Experiments for process improvement
+
+What if ...
+
+::: {.fragment}
+... not all influencing factors ($X$) on the process have been identified?
+
+:::
+
+::: {.fragment}
+... some $X$ depend on external conditions and are not under control?
+
+:::
+
+::: {.fragment}
+**robust design**
+:::
+
+::: {.fragment}
+... means also including *noise* factors that are not under our control.
+:::
+
+### pizza dough example
+
+* pizzas came out pretty bad as reported by the customers
+* pizza quality heavily relies on baking conditions! ($T = 180°C, t = 9min$)
+* almost **nobody** followed the recipe
+
+* noise factors are included with two levels
+  * $7min$ and $11min$ as $t+$ and $t-$
+  * $160°C$ and $200°C$ as $T+$ and $t-$
+* $2^5$ factorial design with $2$ replications $=64$ experimental runs
+
+## linear model - first run
+
+```{r}
+
+model.prob1 <- lm(score ~ (.-repl)^3 , data = ss.data.doe2)
+summary(model.prob1)
+# 
+# model.prob1 |> 
+#   tbl_regression(
+#     show_single_row = everything()
+#   ) |> 
+#   bold_p() |> 
+#   as_gt() |>  
+#   tab_style(
+#     style = list(
+#       cell_fill(color = "green4"),
+#       cell_text(color = "white")
+#     ),
+#     locations = cells_body(rows = p.value<0.5)
+#   )
+
+```
+
+## linear model - stepwise elimination
+
+### get rid of non-significant
+
+```{r}
+#| echo: true
+
+selectionvar <- step(model.prob1, method="backwards")
+
+
+```
+
+### main effect and interaction
+
+```{r}
+
+pred <- ggpredict(selectionvar)
+
+plot(pred,
+     facets = TRUE,
+     connect_lines = TRUE,
+     one_plot = TRUE,
+     ci_style = "errorbar"
+     )+
+  labs(
+    x = "level",
+    color = ""
+  )+
+  theme_classic(
+    base_size = 15
+  )
+
+```
+
+### check residuals
+
+```{r}
+
+selectionvar |> 
+  augment() |> 
+  ggplot(
+    aes(
+      sample = .resid
+    )
+  )+
+  stat_qq_band()+
+  stat_qq_line()+
+  stat_qq_point()+
+  theme_classic(
+    base_size = 15
+  )
+
+```
+
+### pragmatic result
+
+```{r}
+#| label: tbl-pragm-res
+#| tbl-cap: The pragmatic results for the DoE
+
+pizzaDesign2 <- expand.grid(flour = gl(2, 1, labels = c("-", "+")), 
+		salt = gl(2, 1, labels = c("-", "+")), 
+		bakPow = gl(2, 1, labels = c("-", "+")),
+		temp = gl(2, 1, labels = c("-", "+")),
+		time = gl(2, 1, labels = c("-", "+")),
+		score = NA)
+
+orimean2 <- matrix(nrow=8,ncol=4) 
+orimean2[,1] <- c(3.4, 3.2, 1.1, 3.8, 2.1, 3.1, 1.3, 5.8)
+orimean2[,2] <- c(5.0, 4.5, 5.1, 5.8, 3.2, 5.3, 2.1, 6.1)
+orimean2[,3] <- c(4.1, 5.0, 5.4, 5.4, 1.7, 5.4, 3.1, 6.0)
+orimean2[,4] <- c(3.8, 2.8, 1.3, 4.0, 1.8, 2.7, 1.5, 5.9)
+
+set.seed(666)
+exp2 <- round(sapply(orimean2, function(x){
+					rnorm(2, x, 0.2)
+				}),2)
+ss.data.doe2 <- data.frame(repl = rep(1:2,each=32), 
+		rbind(pizzaDesign2,pizzaDesign2))
+ss.data.doe2$score <- as.vector(t(exp2))
+doe2Ag <- aggregate(score~flour+salt+bakPow+temp+time, FUN=mean, 
+		data=ss.data.doe2)
+means1 <- aggregate(score ~ flour + salt + bakPow, 
+		FUN = mean, data = ss.data.doe1[,-6])
+doe2Means <- data.frame(means1, T1t1 = doe2Ag[1:8,6],
+		T2t1 = doe2Ag[9:16,6],
+		T1t2 = doe2Ag[17:24,6],
+		T2t2 = doe2Ag[25:32,6])
+
+doe2Means <- data.frame(doe2Means, 
+		Mean = rowSums(doe2Means[, 4:8]) / 5,
+		SD = sapply(as.data.frame(t(doe2Means[,5:8])), 
+				function(x){sd(x)})) 
+
+doe2Means |> gt()
+
+```
+

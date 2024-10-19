@@ -50,7 +50,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./chapter003_Regression.html" rel="prev">
+<link href="./chapter005_DoE.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -129,7 +129,7 @@ MathJax.Hub.Config({
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./references.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">References {.unnumbered}</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./references.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">References {.unnumbered}</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -195,8 +195,20 @@ MathJax.Hub.Config({
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./chapter004_ProductionStatistics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Production Statistics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter005_DoE.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Introduction to Design of Experiments (DoE)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">References {.unnumbered}</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">References {.unnumbered}</span></span></a>
   </div>
 </li>
     </ul>
@@ -253,6 +265,10 @@ London. Series A - Mathematical and Physical Sciences</em> 160 (901):
 Bonferroni, C. E. 1936. <em>Teoria Statistica Delle Classi e Calcolo
 Delle Probabilit<span>à</span></em>. Pubblicazioni Del r. Istituto
 Superiore Di Scienze Economiche e Commerciali Di Firenze. Seeber. <a href="https://books.google.de/books?id=3CY-HQAACAAJ">https://books.google.de/books?id=3CY-HQAACAAJ</a>.
+</div>
+<div id="ref-CanoUnknownTitle2012" class="csl-entry" role="listitem">
+Cano, Emilio L., Javier M. Moguerza, and Andrés Redchuk. 2012.
+<span>“Six Sigma with r”</span> Not available: Not available. <a href="https://doi.org/10.1007/978-1-4614-3652-2">https://doi.org/10.1007/978-1-4614-3652-2</a>.
 </div>
 <div id="ref-pwr" class="csl-entry" role="listitem">
 Champely, Stephane. 2020. <em>Pwr: Basic Functions for Power
@@ -340,10 +356,20 @@ Shapiro, S. S., and M. B. Wilk. 1965. <span>“An Analysis of Variance
 Test for Normality (Complete Samples).”</span> <em>Biometrika</em> 52
 (December): 591–611. <a href="https://doi.org/10.1093/biomet/52.3-4.591">https://doi.org/10.1093/biomet/52.3-4.591</a>.
 </div>
+<div id="ref-0486652327" class="csl-entry" role="listitem">
+Shewhart, Walter Andrew, and William Edwards Deming. 1986.
+<em>Statistical Method from the Viewpoint of Quality Control</em>.
+Courier Corporation.
+</div>
 <div id="ref-Spearman1904" class="csl-entry" role="listitem">
 Spearman, C. 1904. <span>“The Proof and Measurement of Association
 Between Two Things.”</span> <em>The American Journal of Psychology</em>.
 <a href="https://doi.org/10.2307/1412159">https://doi.org/10.2307/1412159</a>.
+</div>
+<div id="ref-NISTHandbook" class="csl-entry" role="listitem">
+Standards, National Institute of, Technology (U.S.), and International
+SEMATECH. 2002. <span>“NIST/SEMATECH Engineering Statistics
+Handbook,”</span> January. <a href="https://doi.org/10.18434/M32189">https://doi.org/10.18434/M32189</a>.
 </div>
 <div id="ref-StatQuest" class="csl-entry" role="listitem">
 Starmer, J. 2022. <em>The StatQuest Illustrated Guide to Machine
@@ -822,8 +848,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./chapter003_Regression.html" class="pagination-link" aria-label="Regression Analysis">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regression Analysis</span></span>
+      <a href="./chapter005_DoE.html" class="pagination-link" aria-label="Introduction to Design of Experiments (DoE)">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Introduction to Design of Experiments (DoE)</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

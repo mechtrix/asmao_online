@@ -10,6 +10,8 @@ book:
     - SamplingMethods.qmd
     - chapter002_InferentialStatistics.qmd
     - chapter003_Regression.qmd
+    - chapter004_ProductionStatistics.qmd
+    - chapter005_DoE.qmd
     - references.qmd
   downloads: [pdf]
     

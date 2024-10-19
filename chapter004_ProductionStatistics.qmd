@@ -1,0 +1,2052 @@
+---
+title: "Production Statistics"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+library(tidyverse)
+library(SixSigma)
+library(here)
+library(ggthemes)
+library(SensorLab)
+library(rstatix)
+library(ggh4x)
+library(gtsummary)
+library(qqplotr)
+library(gt)
+
+```
+
+## Introduction to Production Statistics 
+
+::: {.content-visible when-profile="script"}
+
+```{r}
+#| label: production-statistics-001-script
+#| out-width: 75%
+#| fig-cap: What Production Statistics tries to quanitfy.
+knitr::include_graphics(here::here("chapter004","001_ProductionStatistics.png"))
+```
+
+1. **Output and Yield** statistics refer to the measurement of both the *quantity* and *quality* of products or services produced during a specific period. This includes tracking metrics such as the *number of units produced*, *yield rates*, and *defect rates*, as well as assessing production *cycle times*.
+
+2. **Resource Utilization** statistics involve the monitoring and analysis of how efficiently resources such as *labor*, *machinery*, *materials*, and *energy* are used in production processes. Key metrics in this category include *machine uptime*, *downtime*, and overall resource *efficiency*.
+
+3. **Quality Control** statistics play a vital role in evaluating the quality of products or services by tracking *defects*, *errors*, and *variations* in the production process. These statistics encompass *defect rates*, *reject rates*, and variation analysis to ensure products meet specified quality standards.
+
+4. **Cost Analysis** through production statistics involves assessing the cost-effectiveness of production processes. This includes analyzing production *costs*, *overhead expenses*, and calculating the *cost per unit produced*. Such data aids in making informed decisions related to cost reduction and budgeting.
+
+5. **Inventory and Stock** statistics pertain to the management of inventory levels and *turnover rates*. These statistics also encompass *lead times* and tracking *stockouts*, which are crucial for efficient inventory management and ensuring product availability.
+
+6. **Production Planning** statistics are essential for optimizing production processes. Metrics include *capacity utilization*, *order fulfillment rates*, and production *lead times*. This data assists in scheduling and ensuring the efficient use of resources.
+
+7. **Downtime and Maintenance** statistics track equipment *breakdowns*, *maintenance schedules*, and production *interruptions*. Monitoring such data is vital for minimizing production downtime and ensuring equipment operates efficiently.
+
+8. **Employee Productivity** statistics evaluate workforce performance and efficiency. Metrics such as *output per worker* and *labor efficiency* are used to assess employee contributions and identify areas for improvement, including *training needs*.
+
+9. **Supply Chain Performance** statistics extend beyond production to evaluate the entire supply chain, including suppliers, logistics, and distribution. Metrics like *lead times*, *order fulfillment rates*, and supplier performance data help ensure the efficiency of the supply chain.
+
+10. **Environmental and Sustainability Metrics** encompass *resource consumption*, *waste generation*, and *environmental impact*. They are used to assess an organization's environmental footprint and implement sustainable practices.
+
+
+:::
+
+::: {.content-visible when-profile="slides"}
+
+::: {.r-stack}
+![](chapter004/001_ProductionStatistics_000.svg){.fragment .fade-in-then-out width=75% fig-align="center" auto-animate=true}
+
+![](chapter004/001_ProductionStatistics_001.svg){.fragment .fade-in-then-out width=75% fig-align="center" auto-animate=true}
+
+![](chapter004/001_ProductionStatistics_002.svg){.fragment .fade-in-then-out width=75% fig-align="center" auto-animate=true}
+
+![](chapter004/001_ProductionStatistics_003.svg){.fragment .fade-in-then-out width=75% fig-align="center" auto-animate=true}
+
+![](chapter004/001_ProductionStatistics_004.svg){.fragment .fade-in-then-out width=75% fig-align="center" auto-animate=true}
+:::
+
+:::
+
+
+## Control Charts for Variables
+
+### The production
+
+::: {.content-visible when-profile="script"}
+
+```{r}
+#| label: fig-production
+#| out-width: 75%
+#| fig-cap: The drive shaft production over time
+
+load(here("data","drive_shaft_data.Rdata"))
+
+drive_shaft <- drive_shaft %>% 
+  mutate(
+    pass_1_fail_0 = 
+      case_when(
+        (diameter<12.5)&(diameter>11.5)~"PASS",
+        TRUE~"FAIL"
+      )
+  )
+
+
+drive_shaft %>% 
+  filter(group=="group02") %>% 
+  ggplot(
+    aes(
+      x = sample_no, 
+      y = diameter,
+      group = sample_no
+    )
+  )+
+  geom_point(
+    aes(
+    ),
+    size =5
+  )+
+  geom_line(
+    aes(group = 1),
+    color = "gray"
+  )+
+  scale_y_continuous(
+    # limits = c(10,14),
+    # expand = c(0,0,0,0)
+  )+
+  scale_x_continuous(
+    breaks = seq(0,100,5),
+    expand = c(0.005,0,0,0)
+  )+
+  theme_bw(base_size = 10)+
+  theme(
+    legend.position = "bottom"
+  )+
+  labs(
+    title = "drive shaft diameter production",
+    x = "time index",
+    y = "diameter"
+  )
+
+```
+
+In @fig-production the drive shaft production and the behaviour of the mission critical parameter `diameter` is shown over time.
+
+:::
+
+::: {.content-visible when-profile="slides"}
+
+```{r}
+#| label: fig-prod-time
+#| out-width: 85%
+#| fig-cap: The production data
+#| fig-pos: "H"
+
+knitr::include_graphics(here::here("chapter004","002_production_data.gif"))
+
+
+```
+
+:::
+
+### Run Chart
+
+:::{.r-stack}
+
+:::{.fragment .fade-out}
+
+```{r}
+#| label: fig-run-chart
+#| out-width: 85%
+#| fig-cap: A run chart with control and warning limits without subgroups.
+#| fig-pos: "H"
+
+load(here("data","drive_shaft_data.Rdata"))
+# source("spc_helpers.R")
+
+grp02 <- drive_shaft %>% 
+  filter(group == "group02")
+
+subgroup <- data.frame(subgroup = rep(seq(1,20),each = 5))
+
+grp02 <- bind_cols(
+  grp02, subgroup
+)
+
+grp02_mean <- grp02 %>% 
+  group_by(subgroup) %>% 
+  summarise(
+    mean_dia = mean(diameter),
+    min_dia = min(diameter),
+    max_dia = max(diameter),
+    med_dia = median(diameter),
+    sd_dia = sd(diameter)
+  ) %>% 
+  ungroup() %>% 
+  add_column(sample_no = as.integer(seq(5,100,5)))
+
+#run chart
+
+grp02 %>% 
+  ggplot(
+    aes(x = sample_no,
+        y = diameter)
+  )+
+  geom_point()+
+  geom_hline(
+    aes(
+      yintercept = mean(diameter),
+      linetype = "mean"
+      )
+  )+
+  geom_hline(
+    aes(
+      yintercept = cmp_UCL(diameter,n = 1),
+      linetype = "UCL"
+    )
+  )+
+  geom_hline(
+    aes(
+      yintercept = cmp_LCL(diameter,n=1),
+      linetype = "LCL"
+    )
+  )+
+  geom_hline(
+    aes(
+      yintercept = cmp_UWL(diameter,n=1),
+      linetype = "UWL"
+    )
+  )+
+  geom_hline(
+    aes(
+      yintercept = cmp_LWL(diameter,n=1),
+      linetype = "LWL"
+    )
+  )+
+  labs(
+    title = "run chart",
+    linetype = ""
+    )+
+  scale_linetype_manual(
+    values = c(
+      "mean" = "solid",
+      "UCL" = "dashed",
+      "LCL" = "dashed",
+      "UWL" = "dotted",
+      "LWL" = "dotted"
+    )
+  )+
+  theme_few(base_size = 15)+
+  theme(
+    legend.position = "bottom"
+  )
+
+```
+
+:::
+
+:::{.fragment .fade-in}
+
+\begin{align}
+UCL &= \bar{x} + 2.58\frac{sd(x)}{\sqrt{n}} \;\text{with}\;n=1 \\
+LCL &= \bar{x} - 2.58\frac{sd(x)}{\sqrt{n}} \;\text{with}\;n=1 \\
+UWL &= \bar{x} + 1.96\frac{sd(x)}{\sqrt{n}} \;\text{with}\;n=1 \\
+LWL &= \bar{x} - 1.96\frac{sd(x)}{\sqrt{n}} \;\text{with}\;n=1
+\end{align}
+
+:::
+
+::: {.content-visible when-profile="script"}
+
+In Shewhart [@0486652327] charts for statistical process control, control limits such as the [Upper Control Limit (UCL)](#UCL), [Lower Control Limit (LCL)](#LCL), [Upper Warning Limit (UWL)](#UWL), and [Lower Warning Limit (LWL)](#LWL) play a crucial role. 
+These limits establish boundaries for normal process variability. 
+By incorporating confidence intervals, such as $97\%$ or $99\%$, into these limits, a statistical framework is added, providing a nuanced understanding of process variability. 
+A $97\%$ confidence interval implies that $97\%$ of data points should fall within the calculated range, while a $99\%$ interval accommodates $99\%$. 
+This approach enhances the sensitivity of Shewhart charts, aiding in the timely detection of significant process shifts. 
+The choice of confidence level depends on the desired balance between false alarms and the risk of missing genuine deviations from the norm.
+
+:::
+
+:::
+
+### X-bar chart
+
+:::{.r-stack}
+
+:::{.fragment .fade-out}
+
+```{r}
+#| label: fig-xbar
+#| out-width: 85%
+#| fig-cap: A X-bar chart with control and warning limits based on subgroups of $n=5$
+#| fig-pos: "H"
+
+grp02 %>%   
+  ggplot()+
+  geom_point(
+    aes(
+      x = subgroup,
+      y = diameter,
+      ),
+    color = "gray",
+    size = 2,
+    # shape = 8
+    )+
+  geom_linerange(
+    data = grp02_mean,
+    aes(
+      x = subgroup,
+      ymin = min_dia,
+      ymax = max_dia),
+    color = "gray"
+  )+
+  geom_point(
+    data = grp02_mean,
+    aes(x = subgroup,
+        y = mean_dia,
+        group = 1
+        ),
+    size = 5
+  )+
+  geom_line(
+    data = grp02_mean,
+    aes(x = subgroup,
+        y = mean_dia,
+        group = 1)
+  )+
+  geom_hline(
+    aes(
+      yintercept = median(diameter)
+    )
+  )+
+  geom_hline(
+    aes(
+      yintercept = cmp_UCL(diameter,n = 5),
+      linetype = "UCL"
+    )
+  )+
+  geom_hline(
+    aes(
+      yintercept = cmp_LCL(diameter,n=5),
+      linetype = "LCL"
+    )
+  )+
+  geom_hline(
+    aes(
+      yintercept = cmp_UWL(diameter,n=5),
+      linetype = "UWL"
+    )
+  )+
+  geom_hline(
+    aes(
+      yintercept = cmp_LWL(diameter,n=5),
+      linetype = "LWL"
+    )
+  )+
+  scale_x_continuous(
+    breaks = seq(1,20,2),
+  )+
+  labs(
+    title = "X-bar chart",
+    x = "sample",
+    linetype = ""
+  )+
+  scale_linetype_manual(
+    values = c(
+      "mean" = "solid",
+      "UCL" = "dashed",
+      "LCL" = "dashed",
+      "UWL" = "dotted",
+      "LWL" = "dotted"
+    )
+  )+
+  theme_bw(base_size = 15)+
+  theme(
+    legend.position = "bottom"
+  )
+
+
+```
+
+:::
+
+:::{.fragment .fade-in}
+
+\begin{align}
+UCL &= \bar{x} + 2.58\frac{sd(x)}{\sqrt{n}} \;\text{with}\;n=5 \\
+LCL &= \bar{x} - 2.58\frac{sd(x)}{\sqrt{n}} \;\text{with}\;n=5 \\
+UWL &= \bar{x} + 1.96\frac{sd(x)}{\sqrt{n}} \;\text{with}\;n=5 \\
+LWL &= \bar{x} - 1.96\frac{sd(x)}{\sqrt{n}} \;\text{with}\;n=5
+\end{align}
+
+:::
+
+::: {.content-visible when-profile="script"}
+
+An X-bar chart is a statistical tool for quality control, used to monitor process stability over time. 
+It involves collecting data, calculating subgroup means, determining control limits, and plotting the data on a chart. 
+By monitoring points relative to the control limits, it helps identify shifts in the process mean, allowing corrective action for consistent quality.
+
+It is effective in quality control because it focuses on detecting changes in the process mean. 
+By setting statistical control limits, it distinguishes between common and special causes of variation. 
+When data points fall outside these limits, it signals the presence of external factors, prompting corrective action. 
+The chart's visual representation of data points over time facilitates early issue detection, supporting a proactive approach to maintaining process stability and continuous improvement in quality control.
+
+:::
+
+:::
+
+### S-Chart
+
+:::{.r-stack}
+
+:::{.fragment .fade-out}
+
+```{r}
+#| label: fig-s-chart
+#| out-width: 75%
+#| fig-cap: The s chart with control and warning limits.
+#| fig-pos: "H"
+
+
+grp02_mean %>% 
+  ggplot(aes(x = subgroup,y = sd_dia))+
+  geom_point()+
+  geom_hline(
+    aes(
+      yintercept = cmp_s_mean(sd_dia,n=5),
+      linetype = "mean"
+    )
+  )+
+  geom_hline(
+    aes(
+      yintercept = cmp_UCL_s(sd_dia, n = 5),
+      linetype = "UCL"
+    )
+  )+
+  geom_hline(
+    aes(
+      yintercept = cmp_LCL_s(sd_dia, n = 5),
+      linetype = "LCL"
+    )
+  )+
+  geom_hline(
+    aes(
+      yintercept = cmp_UWL_s(sd_dia, n = 5),
+      linetype = "UWL"
+    )
+  )+
+  geom_hline(
+    aes(
+      yintercept = cmp_LWL_s(sd_dia, n = 5),
+      linetype = "LWL"
+    )
+  )+
+  scale_linetype_manual(
+    values = c(
+      "mean" = "solid",
+      "UCL" = "dashed",
+      "LCL" = "dashed",
+      "UWL" = "dotted",
+      "LWL" = "dotted"
+    )
+  )+
+  scale_x_continuous(
+    breaks = seq(1,20,2),
+  )+
+  geom_line()+
+  geom_point(
+    data = 
+  )+
+  labs(
+    title = "S - Chart",
+    y = "standard deviation",
+    x = "sample",
+    linetype = ""
+  )+
+  theme_bw(base_size = 15)+
+  theme(
+    legend.position = "bottom"
+  )
+
+```
+
+:::
+
+:::{.fragment .fade-in}
+
+\begin{align}
+UCL &= \sigma * \sqrt{\frac{\chi^2_{1-\beta=0.995;n-1}}{n-1}} \;\text{with}\;n=5 \\
+LCL &= \sigma * \sqrt{\frac{\chi^2_{1-\beta=0.005;n-1}}{n-1}} \;\text{with}\;n=5 \\
+UWL &= \sigma * \sqrt{\frac{\chi^2_{1-\beta=0.975;n-1}}{n-1}} \;\text{with}\;n=5 \\
+LWL &= \sigma * \sqrt{\frac{\chi^2_{1-\beta=0.025;n-1}}{n-1}} \;\text{with}\;n=5
+\end{align}
+
+:::
+
+::: {.content-visible when-profile="script"}
+
+An S chart, or standard deviation chart, is a type of control chart used in statistical process control. 
+It is designed to monitor the variability or dispersion of a process over time. 
+The S chart displays the sample standard deviation of a process by plotting it against time or the sequence of samples. 
+Similar to other control charts, it typically includes a central line representing the average standard deviation and upper and lower control limits. 
+The S chart is useful for detecting shifts or trends in the variability of a process, allowing for timely adjustments or interventions if needed.
+
+:::
+
+:::
+
+## Control Charts for Attributes
+
+### P Chart
+
+:::{.r-stack}
+
+:::{.fragment .fade-out}
+
+```{r}
+#| label: fig-p-chart
+#| out-width: 75%
+#| fig-cap: A P-Chart with control limits.
+#| fig-pos: "H"
+
+set.seed(123)
+
+prop_fail = data.frame(
+  failed_units = rbinom(n = 10,size = 100,0.1)) %>% 
+  mutate(
+    prop = failed_units/sum(failed_units)
+  ) %>% 
+  rowid_to_column(var = "sample_no")
+
+
+prop_fail %>% 
+  ggplot(aes(x = sample_no,y = prop))+
+  geom_point()+
+  geom_line()+
+  geom_hline(
+    aes(yintercept = 0.1)
+  )+
+  geom_hline(
+    aes(yintercept = 0.1+3*sqrt((0.1*(1-0.1))/10))
+  )+
+  scale_y_continuous(
+    limits = c(0,NA),
+    expand = c(0,0,0.05,0)
+  )+
+  scale_x_continuous(
+    breaks = seq(1,10)
+  )+
+  labs(
+    title = "P Chart",
+    x = "sample",
+    y = "fraction non-conforming"
+  )+
+  theme_bw(base_size = 15)
+
+
+```
+
+:::
+
+:::{.fragment .fade-in}
+
+\begin{align}
+CL = \bar{p} \pm 3\sqrt{\frac{\bar{p}(1-\bar{p})}{n}}
+\end{align}
+
+:::
+
+::: {.content-visible when-profile="script"}
+
+The P chart is designed to track the proportion of nonconforming items or defects within a sample or subgroup over consecutive periods. 
+The chart typically consists of a horizontal axis representing time periods and a vertical axis representing the proportion of nonconforming items. 
+It helps identify variations and trends in the process, allowing for timely corrective actions when necessary.
+
+P charts are commonly used in industries where the output is binary, such as the presence or absence of a specific attribute, and provide a visual representation of the process's performance, aiding in quality improvement efforts.
+:::
+
+:::
+
+### NP Chart
+
+:::{.r-stack}
+
+:::{.fragment .fade-out}
+
+```{r}
+#| label: fig-np-chart
+#| out-width: 75%
+#| fig-cap: A NP-Chart with control limits.
+#| fig-pos: "H"
+
+set.seed(123)
+
+prop_fail = data.frame(
+  failed_units = rbinom(n = 10,size = 100,0.1)) %>% 
+  mutate(
+    prop = failed_units/sum(failed_units),
+  ) %>% 
+  rowid_to_column(var = "sample_no")
+
+
+prop_fail %>% 
+  ggplot(aes(x = sample_no,y = failed_units))+
+  geom_point()+
+  geom_line()+
+  geom_hline(
+    aes(yintercept = 10)
+  )+
+  geom_hline(
+    aes(yintercept = 10+3*sqrt((10*(1-0.1))))
+  )+
+  scale_y_continuous(
+    limits = c(0,NA),
+    expand = c(0,0,0.05,0),
+    breaks = seq(0,100)
+  )+
+  scale_x_continuous(
+    breaks = seq(1,10)
+  )+
+  labs(
+    title = "P Chart",
+    x = "sample",
+    y = "fraction non-conforming"
+  )+
+  theme_bw(base_size = 15)
+
+
+```
+
+:::
+
+:::{.fragment .fade-in}
+
+\begin{align}
+CL = n\bar{p} \pm 3\sqrt{n\bar{p}(1-\bar{p})}
+\end{align}
+
+:::
+
+::: {.content-visible when-profile="script"}
+
+An NP chart, also known as a Number of Defects Per Unit chart, is a statistical tool used in quality control to monitor the number of defects or errors in a process over time. 
+It is commonly employed in manufacturing and other industries to assess the stability and performance of a production process. 
+The chart typically displays the number of defects observed in a sample of units or products, allowing for the identification of trends, patterns, or variations in the defect rates. 
+This information aids in quality improvement efforts by enabling organizations to take corrective actions and maintain consistent product or service quality.
+:::
+
+:::
+
+
+
+## Process Capability and Six Sigma
+
+### How good is good enough?
+
+::: {.content-visible when-profile="slides"}
+
+:::{.r-stack}
+
+:::{.fragment .fade-out}
+
+![What are the joint probabilities?](chapter004/jnt_prob.png)
+
+$$ P_{ges} = ?$$
+
+:::
+
+::: {.fragment .fade-in-then-out}
+
+```{r}
+#| label: fig-prodprob
+#| out-width: 95%
+#| fig-cap: Probabilities for success in sequence.
+
+fun.1 <- function(x) 0.9^x
+fun.2 <- function(x) 0.95^x
+fun.3 <- function(x) 0.997^x
+fun.4 <- function(x) 0.99975^x
+fun.5 <- function(x) 0.98^x
+
+
+limit_x <- c(0,5)
+
+ggplot(data = data.frame(x = 0), mapping = aes(x = x))+
+  stat_function(fun = fun.2,mapping = aes(linetype = "95%"),lwd=1) + 
+  stat_function(fun = fun.3,mapping = aes(linetype = "99.7%"),lwd=1) + 
+  stat_function(fun = fun.4,mapping = aes(linetype = "99.975%"),lwd=1) + 
+  stat_function(fun = fun.5,mapping = aes(linetype = "98%"),lwd=1) + 
+  labs(title = 'Probability for success in sequence',
+       x='Step Nr',
+       y='Probability for success',
+       linetype='Probability in\nsingle step')+
+  scale_x_continuous(limits = c(1,limit_x[2]),breaks = seq(limit_x[1],limit_x[2],by=1),expand = c(0,0))+
+  scale_y_continuous(breaks = seq(0.2,1,by=0.025))+
+  scale_color_brewer(palette = 'Spectral')+
+  theme_minimal(base_size = 15)+
+  theme(panel.grid.minor = element_blank())
+
+```
+
+:::
+
+:::{.fragment .fade-in-then-out}
+
+```{r}
+#| label: fig-sixsigma
+#| out-width: 75%
+#| fig-cap: The idea of process capabilities
+#| fig-pos: "H"
+
+knitr::include_graphics(here::here("chapter004","SixSigma.png"))
+
+
+```
+
+:::
+
+:::
+
+:::
+
+::: {.content-visible when-profile="script"}
+
+
+```{r}
+#| label: fig-steps-prob-script
+#| out-width: 75%
+#| fig-cap: What are the joint probabilities?
+#| fig-pos: "H"
+
+knitr::include_graphics(here::here("chapter004","jnt_prob.png"))
+
+
+```
+
+A success rate of $95\%$ per step (@fig-steps-prob-script) sounds at first glance like a successful process.
+After all, having a $95\%$ chance of winning the lottery would be awesome.
+Yet, the question is: What are the joint probabilities when we connect five steps sequentially?
+From previous chapters we know that the joint probability can be calculated in \eqref{jntprob}.
+
+\begin{align}
+P_{ges} = P_1 * P_2 * P_3 * P_4 * P_5 = 0.95^{(n=5)}=0.774 \approx 77.4\% \label{jntprob}
+\end{align}
+
+
+```{r}
+#| label: fig-prodprob-scr
+#| out-width: 95%
+#| fig-cap: Probabilities for success in sequence.
+
+fun.1 <- function(x) 0.9^x
+fun.2 <- function(x) 0.95^x
+fun.3 <- function(x) 0.997^x
+fun.4 <- function(x) 0.99975^x
+fun.5 <- function(x) 0.98^x
+
+
+limit_x <- c(0,5)
+
+ggplot(data = data.frame(x = 0), mapping = aes(x = x))+
+  stat_function(fun = fun.2,mapping = aes(linetype = "95%"),lwd=1) + 
+  stat_function(fun = fun.3,mapping = aes(linetype = "99.7%"),lwd=1) + 
+  stat_function(fun = fun.4,mapping = aes(linetype = "99.975%"),lwd=1) + 
+  stat_function(fun = fun.5,mapping = aes(linetype = "98%"),lwd=1) + 
+  labs(title = 'Probability for success in sequence',
+       x='Step Nr',
+       y='Probability for success',
+       linetype='Probability in\nsingle step')+
+  scale_x_continuous(limits = c(1,limit_x[2]),breaks = seq(limit_x[1],limit_x[2],by=1),expand = c(0,0))+
+  scale_y_continuous(breaks = seq(0.2,1,by=0.025))+
+  scale_color_brewer(palette = 'Spectral')+
+  theme_minimal()+
+  theme(panel.grid.minor = element_blank())
+
+```
+
+The joint probability for n-steps in sequence can therefore be estimated using \eqref{jntprob} and visually represented in @fig-prodprob-scr.
+On the x-axis the number of steps is depicted whereas on the y-axis the joint probability is shown for the respective step index.
+As also calculated in \eqref{jntprob} after $n=5$ steps the joint probability for a good part drops to around $77\%$, which is not acceptable.
+@fig-prodprob-scr shows that not even $98\%$ probability for a good part for a single step results in an acceptable joint probability ($P = 0.98^{n=5} = 0.904$).
+A staggering probability of $99.7\%$ for a single step is necessary to still reach a probability for a good part of $98\%$, and this is only true for $n = 5$steps.
+For an acceptable [parts per milltion (ppm)](#ppm) rate the acceptable single step probability is $99.975\%$ as shown in @fig-prodprob-scr.
+
+```{r}
+#| label: fig-sixsigma-scr
+#| out-width: 90%
+#| fig-cap: The origin of the term Six Sigma ($6\sigma$)
+#| fig-pos: "H"
+
+knitr::include_graphics(here::here("chapter004","SixSigma.png"))
+
+
+```
+
+What that means in a tolerance-specification setting is shown in @fig-sixsigma-scr.
+In order to ensure a $99.975\%$ for a continuous variable, the process variation (here measured as process standard deviation) must fit **at least 6** times into the actual tolerance/specification window of the [Critical to Quality (CTQ)](#CTQ) measure. 
+Additionally, this is only true if the process is *centered*.
+The term $6\sigma$ carries this inherent property for a $0ppm$ production, which is favoured by many, but achieved by few.
+
+:::
+
+### The Six Sigma Project Model (DMAIC)
+
+
+```{r}
+#| label: fig-dmaic
+#| out-width: 95%
+#| fig-cap: DMAIC Process
+
+knitr::include_graphics(here::here("chapter004","dmaic.png"))
+
+```
+
+::: {.content-visible when-profile="script"}
+
+The Six Sigma Project model consists of five phases in total: (D)efine, (M)easure, (A)nalyse, (I)mprove, (C)ontrol.
+In essence these project phases are the application of the scientific method, but in a systematic and industry friendly way.
+
+The *Define* Phase involves setting the project's goals and objectives, identifying key stakeholders, developing a high-level process map, and defining customer requirements and [critical-to-quality (CTQ)](#CTQ) characteristics. 
+Additionally, the project scope is established, and a project charter is developed to guide the overall initiative.
+
+In the *Measure* Phase, key process metrics are identified, and relevant data is collected to assess the current state of the process. This phase includes analyzing process capability, creating detailed process maps, performing baseline measurements, and identifying potential data sources to ensure comprehensive data collection.
+
+During the *Analyze* Phase, potential root causes of process variation are identified through data analysis using statistical tools. 
+Hypotheses for root causes are developed and verified through further data analysis. 
+Root causes are then prioritized based on their impact and feasibility, and findings are validated with stakeholders to ensure accuracy and relevance.
+
+The *Improve* Phase focuses on generating and evaluating potential solutions for process improvement. 
+Implementing these improvements involves developing an implementation plan, conducting pilot tests if applicable, and optimizing the process based on feedback. 
+Control measures are implemented to sustain the improvements achieved.
+
+Finally, the *Control* Phase involves developing control plans to monitor process performance continuously. 
+This includes establishing process controls and standard operating procedures, implementing mistake-proofing measures, and defining [key performance indicators (KPIs)](#KPI). 
+Additionally, training programs for process stakeholders are developed, and a system for ongoing monitoring and feedback is established to ensure the process remains effective over time.
+
+:::
+
+{{< pagebreak >}}
+
+### Process Capability - idea
+
+```{r}
+#| label: fig-bullseye
+#| out-width: 90%
+#| fig-cap: The idea of process capabilities
+#| fig-pos: "H"
+
+knitr::include_graphics(here::here("chapter004","003_bullseye.png"))
+
+
+```
+
+::: {.content-visible when-profile="script"}
+
+Process capability refers to the ability of a process to consistently produce outputs that meet predetermined specifications or requirements. 
+It is a measure of how well a process performs relative to its specifications. 
+The general idea behind process capability is to assess the inherent variability of a process and determine whether it is capable of producing products or services within the desired quality limits.
+
+1. **Specification Limits**: These are the predetermined limits or requirements for a particular process output, defining the range within which the product or service should fall to meet customer expectations.
+
+2. **Process Variation**: This refers to the natural variability inherent in the process. Sources of variation can include factors such as machine performance, material properties, human factors, and environmental conditions.
+
+3. **Process Capability Indices**: These are statistical measures used to quantify the relationship between process variation and specification limits. Common indices include $C_p$, $C_{pk}$, $P_p$, and $P_{pk}$, which provide insights into whether a process is capable of meeting specifications and how well it is centered within the specification limits.
+
+4. **Assessment and Improvement**: Once process capability is assessed, steps can be taken to improve it if necessary. This may involve reducing process variation, adjusting process parameters, implementing quality control measures, or redesigning the process altogether.
+
+Overall, the goal of analyzing process capability is to ensure that processes are capable of consistently delivering products or services that meet customer requirements, minimize defects, and optimize quality and efficiency.
+
+:::
+
+### High Accuracy - Low Precision
+
+```{r}
+#| label: fig-halp
+#| out-width: 90%
+#| fig-cap: The spreaded - High Accuracy, Low Precision
+#| fig-pos: "H"
+
+knitr::include_graphics(here::here("chapter004","004_HALP.png"))
+
+```
+
+::: {.content-visible when-profile="script"}
+
+In this scenario, the process consistently produces results that are very close to the target or desired value (high accuracy). However, the variation among individual measurements is large, meaning they are not tightly clustered around the target value (low precision).
+For example, if a machine consistently produces parts with dimensions close to the desired specifications but with significant variation in each part's dimensions, it exhibits high accuracy but low precision.
+
+:::
+
+### Low Accuracy - Low Precision
+
+```{r}
+#| label: fig-lalp
+#| out-width: 90%
+#| fig-cap: The worst - Low Accuracy, Low Precision
+#| fig-pos: "H"
+
+knitr::include_graphics(here::here("chapter004","005_LALP.png"))
+
+```
+
+::: {.content-visible when-profile="script"}
+
+Here, the process consistently produces results that are far from the target or desired value (low accuracy). 
+Additionally, the variation among individual measurements is large, indicating low precision.
+An example could be a manufacturing process that consistently produces parts with dimensions that are both far from the desired specifications and vary significantly from one part to another.
+
+:::
+
+### Low Accuracy - High Precision
+
+```{r}
+#| label: fig-lahp
+#| out-width: 90%
+#| fig-cap: The missing the mark - Low Accuracy, High Precision
+#| fig-pos: "H"
+
+knitr::include_graphics(here::here("chapter004","006_LAHP.png"))
+
+```
+
+::: {.content-visible when-profile="script"}
+
+This scenario involves a process that consistently produces results that are tightly clustered around a single point, but that point is far from the target or desired value (low accuracy).
+For instance, if a weighing scale consistently displays a weight that is slightly off from the true weight but shows very little variation between repeated measurements, it demonstrates low accuracy but high precision.
+
+:::
+
+### High Accuracy - High Precision
+
+```{r}
+#| label: fig-hahp
+#| out-width: 90%
+#| fig-cap: The desired - High Accuracy, High Precision
+#| fig-pos: "H"
+
+knitr::include_graphics(here::here("chapter004","007_HAHP.png"))
+
+```
+
+::: {.content-visible when-profile="script"}
+
+This is the ideal scenario where the process consistently produces results that are both very close to the target or desired value (high accuracy) and tightly clustered around that value (high precision).
+For example, a manufacturing process that consistently produces parts with dimensions very close to the desired specifications and with minimal variation between individual parts exhibits both high accuracy and high precision.
+
+:::
+
+{{< pagebreak >}}
+
+### Computing Process Capabilities
+
+:::{.r-stack}
+
+:::{.fragment .fade-out}
+
+```{r}
+#| label: fig-calc-cpk
+#| out-width: 95%
+#| fig-cap: The idea to calculate the $C_{pk}$
+
+knitr::include_graphics(here::here("chapter004","calc_Cpk.png"))
+
+```
+
+:::
+
+:::{.fragment .fade-in-then-out}
+
+\begin{align}
+C_{p} &= \frac{USL-LSL}{6*sd} \label{CpCalc} \\
+C_{pk} &= \frac{\min(USL-\bar{x},\bar{x}-LSL)}{3*sd} \label{CpkCalc}
+\end{align}
+
+:::
+
+:::
+
+::: {.content-visible when-profile="script"}
+
+$C_p$ compares the spread of the process variation to the width of the specification limits \eqref{CpCalc}. 
+A $C_p$ value greater than $1$ indicates that the process spread fits within the specification limits, suggesting that the process has the *potential* to meet specifications.
+However, $C_p$ does not take into account the process mean, so it does *not* provide information about process centering. 
+For a more comprehensive assessment of process capability, both $C_p$ and $C_{pk}$ are often used together.
+
+The $C_{pk}$ value indicates the capability of the process relative to the specified limits \eqref{CpkCalc}. 
+A $C_{pk}$ value greater than 1 indicates that the process spread (6 standard deviations) fits within the specification limits. 
+A value less than 1 indicates that the process spread exceeds the specification limits, indicating potential issues with meeting specifications. 
+A higher $C_{pk}$ value indicates better process capability.
+
+:::
+
+### Process Capabilities and ppm
+
+```{r}
+#| label: fig-cpk-ppm
+#| out-width: 95%
+#| fig-cap: The failed parts per million vs. the $C_{pk}$
+#| fig-pos: "H"
+
+ppm <- data.frame(
+  Cpk = seq(0.5,2.2,0.01)
+) %>% 
+  mutate(
+    ppm = cmp_ppm_cpk(Cpk)
+  )
+
+
+ppm %>% 
+  ggplot(aes(x = Cpk,y= ppm))+
+  geom_line(
+    linewidth = 2
+  )+
+  scale_x_continuous(
+    breaks = seq(0,3,0.2),
+    expand = c(0,0,0,0),
+  )+
+  scale_y_continuous(
+    labels = scales::label_number(),
+breaks = c(1000,10000,25000,50000,75000,100000,125000,150000,200000,250000)
+  )+
+  geom_vline(
+    xintercept = 1.33,
+    linetype = "dashed"
+  )+
+  geom_vline(
+    xintercept = 1.68,
+    linetype = "dashed"
+  )+
+   geom_vline(
+    xintercept = 2,
+    linetype = "dashed"
+  )+
+  geom_label(
+    aes(
+      x = 1.33,
+      y = 70000,
+      label = paste0('Cpk: 1.33\nppm: ',cmp_ppm_cpk(1.33))
+    ),
+    # angle = 90,
+    # nudge_x = -0.05
+  )+
+  geom_label(
+    aes(
+      x = 1.67,
+      y = 70000,
+      label = paste0("Cpk: 1.67\nppm: ",cmp_ppm_cpk(1.67))
+    ),
+    # nudge_x = -0.05
+  )+
+  geom_label(
+    aes(
+      x = 2,
+      y = 70000,
+      label = paste0("Cpk: 2.00\nppm: ",cmp_ppm_cpk(2))
+    ),
+    # nudge_x = -Cpk: 2.000.1
+  )+
+  labs(
+    title = "ppm vs.Cpk"
+  )+
+  theme_few(
+    base_size = 15
+  )
+
+```
+
+::: {.content-visible when-profile="script"}
+
+[Process capability](#Cpk) and [parts per million (PPM)](#ppm) are closely related metrics used to assess the performance of manufacturing processes.
+They provide a statistical measure of how well a process can produce output within specified limits. 
+[PPM](#ppm) is a measure of the number of defective parts per million produced by the process. 
+The connection between [process capability](#Cpk) indices and [PPM](#ppm) can be understood through statistical distributions, primarily the normal distribution, and the concept of defects or non-conformance.
+
+The connection between process capability indices and PPM can be established through the Z-score ([Z-standardization](#Z)), which translates process capability into the probability of defects.
+
+1. Using $C_p$:
+Assuming the process is centered and follows a normal distribution: $Z = 3C_p$.
+The corresponding [PPM](#ppm) can be found from standard normal distribution tables. 
+For example, if $C_p = 1$, then $Z = 3$, and the area under the normal curve beyond $3$ standard deviations on either side is approximately $0.0027$, or $2700PPM$.
+
+2. Using $C_{pk}$
+$C_{pk}$ directly relates to the Z-score: $Z = 3C_{pk}$.
+The [PPM](#ppm) can be calculated using the [cumulative distribution function](#cdf) for the normal distribution. 
+For example, if $C_{pk} = 1.33$, then $Z = 3 \times 1.33 = 3.99$. 
+Using standard normal distribution tables, the area beyond $Z = 3.99$ is approximately $0.000066$, or $66ppm$.
+
+:::
+
+## The role of measurement accuracy in production
+
+### Measurement Errors 
+
+```{r}
+#| label: fig-measurement-error
+#| out-width: 75%
+#| fig-cap: Measurement Errors arise during every measurement.
+
+knitr::include_graphics(here::here("chapter004","006_MeasurementError.png"))
+```
+
+::: {.content-visible when-profile="script"}
+
+In scientific experiments and real-world measurements, there are often inherent sources of random error [@Nuzzo_2014]. 
+These errors can introduce variability into measurements, and the accumulation of these errors often conforms to a normal distribution. 
+For instance, when measuring the diameter of an object with a caliper, small measurement errors can cause the observed values to follow a normal distribution.
+Even during such a simple measurement some random errors may include:
+
+1. Parallax Error: Parallax can introduce random errors if the observer's eye is not consistently aligned with the scale or graduations during measurements.
+
+2. Dirt or Debris: Foreign particles or debris on the measuring surfaces can lead to random measurement errors by causing slight variations in the contact points between the caliper and the object.
+
+3. Jaw Alignment: Small variations in the alignment of the caliper jaws from one measurement to another can introduce random errors in measurements.
+
+4. Material Deformation: When measuring soft or deformable materials, random errors can occur due to variations in the material's response to pressure during different measurements.
+
+5. Human Error: Random errors can arise from misreading the scale or not positioning the caliper precisely on the object, especially if different operators are involved.
+
+6. Slop or Play in the Jaws: Variability in the amount of play or slop in the caliper's jaws from one measurement to another can lead to random errors in measurements.
+
+:::
+
+
+### Significant Digits in Production
+
+```{r}
+#| label: fig-sign-digits
+#| out-width: 85%
+#| fig-cap: Drawings and specifications are just an approximation of reality.
+
+knitr::include_graphics(here::here("chapter004","significant_digits.png"))
+```
+
+
+::: {.content-visible when-profile="script"}
+
+Significant digits, or significant figures, are vital for precision and quality in production.
+They ensure precision, quality, and consistency in production, leading to better efficiency and customer satisfaction.
+Significant digits indicate the precision of measurements, ensuring products meet quality standards and specifications.
+
+Applications:
+
+1. Quality Control: Accurate measurements ensure consistent product quality.
+2. Tolerances: Precise tolerances (e.g., $\pm0.05 mm$) must be adhered to.
+3. Fit and Interchangeability: Parts must fit together correctly, requiring precise measurements.
+4. Calibration: Instruments must match the required significant digits for accuracy.
+5. Documentation: Accurate recording of measurements is essential for quality reports and compliance.
+6. Training: Employees must understand and apply significant digits to maintain standards.
+
+Best Practices:
+
+- Reduce Human Error: Training and audits are essential.
+- Use Proper Instruments: Ensure tools can measure accurately.
+- Control Environment: Manage factors like temperature and humidity.
+- Follow Rounding Rules: Apply proper rounding to maintain precision.
+
+:::
+
+
+#### General Rule of Thumb 
+
+To maintain accuracy and avoid overestimating the precision of results, it's advisable not to report more significant digits than justified by the precision of the input measurements.
+
+#### Rule of Ten 
+
+In practical terms, for a number to be considered significant, it should be at least ten times greater than the smallest unit of measure (i.e., the least significant digit). This helps in avoiding overestimating the precision and ensures that the reported figures are meaningful.
+
+#### Addition and Subtraction 
+
+When performing addition or subtraction, the result should be reported with the same number of decimal places as the measurement with the fewest decimal places. For instance, if you add $12.11$ (two decimal places) to $0.4$ (one decimal place), the result should be reported with one decimal place, as $12.5$.
+
+#### Multiplication and Division 
+
+When performing multiplication or division, the result should be reported with the same number of significant digits as the measurement with the fewest significant digits. For example, if you multiply $2.34$ (three significant digits) by $0.0$5 (one significant digit), the result should be reported with one significant digit, as $0.1$.
+
+#### edge cases
+
+```{r}
+#| label: fig-edge-case
+#| out-width: 75%
+#| fig-cap: Edge cases during measuring a simple part.
+
+knitr::include_graphics(here::here("chapter004","edge_case.png"))
+
+```
+
+::: {.content-visible when-profile="script"}
+
+Significant digits can help with edge cases that naturally occur during measurement processes.
+As depicted in @fig-edge-case, the first two measurements are well within specification.
+The third measurement can actually not be interpreted, as the measurement instrument seems not to be fit for purpose.
+The fourth measurement shows, that the product is within the specification, it always holds the number with the smallest number of digits.
+The measurement of the fifth product is just within specification, the gage that shoed the last reading is not accurate enough.
+
+There are many rules involved in these kind of edge cases including the rounding of number.
+It is referred to [@NISTHandbook] or the national standards for more elaborate discussions about this manner.
+
+:::
+
+### Measurement System Analysis Type I
+
+In conducting a [Measurement System Analysis Type I (MSA1)](#MSA1), the initial step involves focusing on gage as the sole source of variation. 
+To achieve this, 50 measurements are performed, each repeated on a reference part. 
+This process allows for the isolation and assessment of the gage's impact on the overall measurement system, ensuring that any observed variability is attributed solely to the gage.
+The process of doing a [MSA1](#MSA1) is fairly standardized.
+
+#### Potential Capability index $C_g$ {.smaller}
+
+::: {.content-visible when-profile="script"}
+
+From a [MSA1](#MSA1) the [potential Measurement System Capability Index $C_g$](#Cg) can be computed via \eqref{Cg}.
+
+:::
+
+\begin{align}
+C_g = \frac{K/100*Tol}{L*\sigma} \label{Cg}
+\end{align}
+
+$Tol$
+:   Tolerance
+
+$C_g$
+:   Capability Gage
+
+K
+: percentage of the tolerance ($20\%$)
+
+$\sigma$
+:   standard deviations of the tolerance
+
+L
+:   number of standard deviations that represent the process ($6\times$)
+
+##### Capability index with systematic error $C_{gk}$ {.smaller}
+
+::: {.content-visible when-profile="script"}
+
+Very similar to the process capability, a [$C_g$](#Cg) gives only the *potential* capability as it does not include if the measures are centered around a mean.
+This is overcome by computing the [Measurement Capability Index with systematic error $C_{gk}$](#Cgk), which incorporates the mean via \eqref{Cgk}.
+
+:::
+
+\begin{align}
+C_{gk} = \frac{(0.5*K/100)*Tol - |\bar{x}-x_{true}|}{3*\sigma} \label{Cgk}
+\end{align}
+
+$Tol$
+:   Tolerance
+
+$\bar{x}$
+:   mean of the measurements
+
+K
+: percentage of the tolerance ($20\%$)
+
+$x_{true}$
+:   the "true" value of the reference (calibration)
+
+$\sigma$
+:   standard deviation of the measurements
+
+#### MSA1 example
+
+::: {.content-visible when-profile="script"}
+
+```{r}
+#| label: tbl-msa1-summary
+#| tbl-cap: The summary of the raw data for the MSA1.
+
+source(here("data","msa1_plots.R"))
+
+measured_data %>% 
+  gtsummary::tbl_summary(
+    statistic = list(
+      all_continuous() ~ "{mean} ({sd})"),
+    include = "measured_data"
+  )
+
+```
+
+In @tbl-msa1-summary the raw data that was collected during the experiments is depicted, whereas in @fig-msa1-plt the same data is shown in graphical format.
+
+```{r}
+#| label: fig-msa1-plt
+#| out-width: 95%
+#| fig-cap: The data as measured during the MSA1 with all measures included.
+
+plt_msa
+
+```
+
+On the `x-axis` the measurement index is shown, the `y-axis` shows the measurment value.
+One of the main advantages of a [MSA1](#MSA1) is, that a reference value is known, because the values are taken agains a standard reference normal.
+This true value (`x_true` in @fig-msa1-plt, dashed black line) allows the estimation of a systematic error.
+The $20\%$ tolerance \eqref{Cgk} is shown as dashed green line. 
+This is the reduced tolerance in which the gage shall be capable to produce good measurement values.
+
+:::
+
+::: {.content-visible when-profile="slides"}
+
+::: {.r-stack}
+
+::: {.fragment .fade-out}
+
+![ring gauge $20mm$](chapter004/msa1_ring.jpg){width=50%}
+
+* $x_{true} = 20.3020$
+
+:::
+
+::: {.fragment .fade-in-then-out}
+
+![MSA 1 data](chapter004/msa1_data.gif){width=95%}
+
+:::
+
+:::
+
+---
+
+```{r}
+
+knitr::include_graphics(here::here("chapter004","Will_it_blend.png"))
+
+```
+
+:::
+
+##### Data Distribution
+
+```{r}
+#| label: fig-msa1-qq
+#| fig-cap: By definition, measurement errors shoul be normally disitrbuted.
+
+measured_data %>% 
+  ggplot(
+    aes(
+      sample = measured_data
+    )
+  )+
+  stat_qq_band()+
+  stat_qq_line()+
+  stat_qq_point()+
+  labs(
+    title = "QQ-Plot of the MSA1 data"
+  )+
+  theme_few(
+    base_size = 15
+  )
+
+```
+
+::: {.content-visible when-profile="script"}
+Measurement errors are often assumed to be normally distributed due to the [CLT](#clt) and the nature of random processes involved. 
+The [CLT](#clt) states that the sum of many independent, random variables tends to follow a normal distribution, even if the original variables are not normally distributed. 
+Measurement errors typically result from the combination of numerous small, independent errors, such as instrument precision, environmental factors, and human mistakes. This aggregation leads to a normal distribution of the overall errors.
+
+Additionally, many error sources are random and independent, further supporting the normal distribution assumption. 
+The normal distribution is mathematically convenient, being fully described by its mean and variance, which simplifies statistical analysis and hypothesis testing.
+Empirical evidence across various fields also shows that measurement errors often approximate a normal distribution.
+
+While the normal distribution is a useful assumption, it may not always be valid. In cases with asymmetric errors, heavy tails, or significant outliers, other distributions may be more appropriate. 
+Nonetheless, for many practical purposes, assuming a normal distribution for measurement errors is reasonable and effective.
+:::
+
+##### computed values 
+
+```{r}
+#| label: tbl-CgCgk
+#| out-width: 75%
+#| tbl-cap: $C_g, C_{gk}$ for the measured values
+
+x_mean <- measured_data %>% 
+  pull(measured_data) %>% 
+  mean() %>% 
+  round(.,digits = 4)
+
+x_sd <- measured_data %>% 
+  pull(measured_data) %>% 
+  sd()%>% 
+  round(.,digits = 4)
+
+data.frame(Cg = Cg(x_sd,0.3) |> round(digits = 2), 
+           Cgk = Cgk(x_mean,x_sd,x_true, Tol = Tol) |> round(digits = 2)) %>% 
+  gt() %>% 
+  tab_options(
+  table.font.size = 30
+)
+
+```
+
+::: {.content-visible when-profile="script"}
+
+In @tbl-CgCgk the numeric values for $C_g$ and $C_{gk}$ are shown.
+Both values are well above $1.33$ which indicates that the gage is fit for the measurement purpose at hand (defined by the tolerance).
+The *potential* gage capability ($C_g$) is greater than the *actual* gage capability $C_{gk}$ which implies a systematic error, but the numeric values being $>2$ there seems not to be any reason to take serious action.
+If the systematic error is significant could be tested using the *t-test for one variable*.
+
+:::
+
+::: {.content-visible when-profile="slides"}
+
+#### MSA1 in the era of AI?
+
+::: {.r-stack}
+
+::: {.fragment .fade-out}
+
+![](chapter004/i_blistering.svg){width=1500px}
+
+:::
+
+::: {.fragment .fade-in-then-out}
+
+![](chapter004/mm_algo_wf.svg){width=2500px}
+
+:::
+
+::: {.fragment .fade-in-then-out}
+
+![](chapter004/mm_algo_out01.svg){width=2500px}
+
+:::
+
+::: {.fragment .fade-in-then-out}
+
+![](chapter004/mm_algo_out02.svg){width=2500px}
+
+:::
+
+::: {.fragment .fade-in-then-out}
+
+![](chapter004/res_algo_rr.svg){width=2500px}
+
+:::
+
+:::
+
+:::
+
+{{< pagebreak >}}
+
+### Measurement System Analysis Type II (Gage R&R) 
+
+::: {.r-stack}
+
+::: {.fragment .fade-in-then-out}
+
+
+```{r}
+#| label: fig-gagerr-raw
+#| out-width: 75%
+#| fig-cap: The general principle of a gage R & R
+
+knitr::include_graphics(here::here("chapter004","gage_rr.png"))
+
+```
+
+:::
+
+::: {.content-visible when-profile="script"}
+
+A Gage R&R study assesses the variation in measurements from a specific process by measuring the same parts multiple times with the same instrument by different operators. It helps determine the reliability of the measurement system and identifies areas for improvement.
+
+:::
+
+:::
+
+#### Definitions {.smaller}
+
+::: {.fragment .fade-in}
+
+Accuracy
+:   The closeness of agreement between a test result and the accepted reference value[@CanoUnknownTitle2012].
+
+:::
+
+::: {.fragment .fade-in}
+
+Trueness
+:   The closeness of agreement between the average value obtained from a large series of test results and an accepted reference value[@CanoUnknownTitle2012].
+
+:::
+
+::: {.fragment .fade-in}
+
+Precision 
+:   The closeness of agreement between independent test results obtained under stipulated conditions[@CanoUnknownTitle2012].
+
+:::
+
+::: {.fragment .fade-in}
+
+Repeatability 
+:   Precision under repeatability conditions (where independent test results are obtained using the same method on identical test items in the same laboratory by the same operator using the same equipment within short intervals of time)[@CanoUnknownTitle2012].
+
+:::
+
+::: {.fragment .fade-in}
+
+Reproducibility 
+:   Precision under reproducibility conditions (where test results are obtained using the same method on identical test items in different laboratories with different operators using different equipment)[@CanoUnknownTitle2012].
+
+:::
+
+#### Introductory example
+
+* A battery manufacturer makes several types of batteries for domestic use.
+* Voltage is **C**ritical **T**o **Q**uality (CTQ)
+
+::: {.incremental}
+
+* the parts are the batteries $a = 3$
+* the appraisers are the voltmeters $b = 2$
+* measurement is taken three times $n = 3$
+* $a \times b \times n = 3 \times 2 \times 3 = 18$ measurements
+
+:::
+
+#### The data
+
+```{r}
+#| label: fig-msa2-data
+#| out-width: 75%
+#| fig-cap: The data from the 18 experiments for the GageR&R
+
+data("ss.data.batteries")
+
+pos <- position_jitter(width = 0.3, seed = 2)
+
+
+ss.data.batteries %>% 
+  ggplot(
+    aes(
+      x = run,  
+      y = voltage
+      )
+    ) +
+  geom_point(
+    
+  )+
+  facet_nested(
+    ~battery+voltmeter,
+    labeller = label_both
+  )+
+  theme_bw(base_size = 20)+
+  theme(
+    legend.position = "bottom"
+  )
+
+```
+
+#### The analysis
+
+```{r}
+#| echo: true
+#| output: true
+
+anova(lm(voltage ~ battery + voltmeter + battery * voltmeter, 
+         data = ss.data.batteries))
+
+```
+
+---
+
+::: {.r-fit-text .v-c}
+
+WOW!
+
+:::
+
+#### Variance decomposition - the theory 
+
+![](chapter004/gage_rr.png){width=95%}
+
+##### Repeatability
+
+\begin{align}
+\sigma^2_{Repeatability} = MSE
+\end{align}
+
+* directly obtainable in ANOVA table
+
+##### Reproducibility {.smaller}
+
+::: {.r-stack}
+
+::: {.fragment .fade-out}
+
+\begin{align}
+\sigma^2_{Reproducibilty} = \sigma^2_{Appraiser} + \sigma^2_{Interaction}
+\end{align}
+
+:::
+
+::: {.fragment .fade-in-then-out}
+
+\begin{align}
+\sigma^2_{Appraiser} = \frac{MSB-MSAB}{a \times n}
+\end{align}
+
+$\sigma^2_{Appraiser}$
+:   Variance introduced by appraisers
+
+$MSB$
+:   Mean of squares - B
+
+$MSAB$
+:   Mean squares of interaction - AB
+
+$a$
+:   number of levels for factor - number of batteries: 3
+
+$n$
+:   number of replicated measures: 3
+
+:::
+
+::: {.fragment .fade-in-then-out}
+
+\begin{align}
+\sigma^2_{Interaction} = \frac{MSBA-MSE}{n}
+\end{align}
+
+$\sigma^2_{Interaction}$
+:   Variance introduced by interaction
+
+$MSAB$
+:   Mean squares of interaction - AB
+
+$MSE$
+:   Mean squares of error
+
+$n$
+:   number of replicated measures: 3
+
+:::
+
+:::
+
+##### Gage R&R
+
+\begin{align}
+\sigma^2_{Gage\;R\&R} = \sigma^2_{Repeatability} + \sigma^2_{Reproducibility}
+\end{align}
+
+::: {.fragment .fade-in}
+All variance is calculated that comes from the Gage!
+:::
+
+::: {.fragment .fade-in}
+Are we finished?
+:::
+
+::: {.fragment .fade-in}
+We measure *something*, so what about the part?
+:::
+
+##### Part to Part {.smaller}
+
+\begin{align}
+\sigma^2_{Part\; to \; Part} = \frac{MSA-MSAB}{b \times n}
+\end{align}
+
+$\sigma^2_{Part\; to \; Part}$
+:   Variance introduced by the parts
+
+$MSA$
+:   Mean of squares - A
+
+$MSAB$
+:   Mean squares of interaction - AB
+
+$b$
+:   number of appraisers - number of voltmeters: 2
+
+$n$
+:   number of replicated measures: 3
+
+##### Total Variability
+
+![](chapter004/gage_rr_total.png){width=95%}
+
+#### Variance decomposition - the values
+
+```{r}
+raw_gagerr <- anova(lm(voltage ~ battery + voltmeter + battery * voltmeter,  data=ss.data.batteries))
+
+n <- 3
+
+a <- 3
+
+b <- 2
+
+```
+
+\begin{align}
+\sigma^2_{Repeatability} &= `r raw_gagerr[3][4,1] %>% round(.,digits = 4)` \nonumber \\
+\sigma^2_{Appraiser} &= `r ((raw_gagerr[3][2,1] - raw_gagerr[3][3,1])/(a*n))%>% round(.,digits = 4)` \nonumber \\
+\sigma^2_{Interaction} &= `r ((raw_gagerr[3][3,1]-raw_gagerr[3][3,1])/(n))%>% round(.,digits = 4)` <0 \rightarrow 0 \nonumber \\
+\sigma^2_{Reproducibility} &= `r ((raw_gagerr[3][2,1] - raw_gagerr[3][3,1])/(a*n))%>% round(.,digits = 4)` \nonumber \\
+\sigma^2_{Gage\;R\&R} &= `r (raw_gagerr[3][4,1] + (raw_gagerr[3][2,1] - raw_gagerr[3][3,1])/(a*n))%>% round(.,digits = 4)` \nonumber \\
+\sigma^2_{Part\; to \; Part} &= `r ((raw_gagerr[3][1,1] - raw_gagerr[3][3,1])/(b*n))%>% round(.,digits = 4)` \nonumber \\
+\sigma^2_{Total} &= `r ((raw_gagerr[3][1,1] - raw_gagerr[3][3,1])/(b*n) + raw_gagerr[3][4,1] + (raw_gagerr[3][2,1] - raw_gagerr[3][3,1])/(a*n))%>% round(.,digits = 4)` \nonumber
+\end{align}
+
+#### Gage R&R "standardized output"
+
+```{r}
+#| echo: false
+#| output: false
+
+my.rr <- ss.rr(var = voltage, part = battery,appr = voltmeter,data = ss.data.batteries,main = "Six Sigma Gage R&R Measure",sub = "Batteries Project MSA",print_plot = FALSE,lsl = 1, usl = 2)
+
+```
+
+##### AVNOVA table
+
+```{r}
+my.rr$anovaTable
+```
+
+##### ANOVA reduced model
+
+```{r}
+my.rr$anovaRed
+```
+
+##### Variance decomposition
+
+```{r}
+my.rr$varComp
+```
+
+##### Study Variance
+
+```{r}
+my.rr$studyVar
+```
+
+##### ndc - number of distinct categories
+
+```{r}
+my.rr$ncat
+```
+
+
+##### standardized graphical output
+
+
+```{r}
+#| label: fig-gagerr-ex
+#| out-width: 50%
+#| fig-cap: A standardized graphical output after a complete GageR&R 
+
+knitr::include_graphics(here::here("chapter004","msa2_ss.png"))
+
+```
+
+#### Gage R&R in the classroom
+
+* 3 parts
+* 3 volunteers
+* 1 recorder
+* 1 gage
+* 10 experiments
+* 3 repetitions
+
+* randomize the trials
+* now do it
+
+#### Attribute Agreement Analysis
+
+Attribute Agreement Analysis (AAA) is a statistical method used to evaluate the agreement among multiple observers when assigning categorical ratings to items. 
+It involves defining attributes, selecting observers, collecting ratings, and analyzing the data to determine the level of agreement. 
+This helps ensure the reliability of assessments and informs decision-making processes.
+
+##### Setup
+
+![](chapter004/aaa.png){width=95%}
+
+##### Results
+
+
+```{r}
+#| label: tbl-aaa
+
+source(here("data","aaa.R"))
+
+aaa_df %>% 
+  gt()
+
+```
+
+##### Overall agreement
+
+\begin{align}
+Agreement_{overall} = 100 \times \frac{X}{N}
+\end{align}
+
+$X$
+:   number of times appraisers agree with reference
+
+$N$
+:   number of rows with valid data
+
+::: {.fragment .fade-in}
+
+\begin{align}
+Agreement_{overall} = `r overall_agreement`\% \nonumber
+\end{align}
+
+:::
+
+##### Appraiser Agreement
+
+\begin{align}
+Agreement_{appraiser} = 100 \times \frac{X}{N}
+\end{align}
+
+$X$
+:   number of times the single appraisers agrees with reference
+
+$N_i$
+:   number of runs for the $i$-th appraiser
+
+::: {.fragment .fade-in}
+
+\begin{align}
+Appraiser_{1} &= `r single_appraiser_agreement$overall_agreement[[1]] %>% round(.,digits = 1)`\% \nonumber \\
+Appraiser_{2} &= `r single_appraiser_agreement$overall_agreement[[2]] %>% round(.,digits = 1)`\% \nonumber
+\end{align}
+
+:::
+
+##### Reference Agreement
+
+\begin{align}
+Agreement_{reference} = 100 \times \frac{X}{N}
+\end{align}
+
+$X$
+:   number of times result agrees with the reference
+
+$N_i$
+:   number of runs for the $i$-th result
+
+::: {.fragment .fade-in}
+
+\begin{align}
+Reference_{bad} &= `r reference_agreement$overall_agreement[[1]] %>% round(.,digits = 1)`\% \nonumber \\
+Reference_{good} &= `r reference_agreement$overall_agreement[[2]] %>% round(.,digits = 1)`\% \nonumber
+\end{align}
+
+:::
+
+##### Run agreement
+
+\begin{align}
+Agreement_{run} = 100 \times \frac{X}{N}
+\end{align}
+
+$X$
+:   number of reference agreement in runs
+
+$N_i$
+:   number of runs for the $i$-th run
+
+::: {.fragment .fade-in}
+
+\begin{align}
+Reference_{1} &= `r run_agreement$overall_agreement[[1]] %>% round(.,digits = 1)`\% \nonumber \\
+Reference_{2} &= `r run_agreement$overall_agreement[[2]] %>% round(.,digits = 1)`\% \nonumber
+\end{align}
+
+:::
+
+##### Appraiser and reference agreement
+
+\begin{align}
+Agreement_{appraiser \; ref} = 100 \times \frac{X}{N}
+\end{align}
+
+$X$
+:   number of reference agreement in for appraisers in reference class
+
+$N_i$
+:   number of agreements for the $i$-th appraiser and the $i$-th standard
+
+
+```{r}
+#| label: tbl-app-ref-agree
+#| out-width: 75%
+
+appraiser_ref_agreement %>% 
+  select(
+    appraiser,
+    reference,
+    overall_agreement
+  ) %>% 
+  mutate(
+    overall_agreement = overall_agreement/100
+  ) %>% 
+  ungroup() %>% 
+  gt() %>% 
+  fmt_percent(columns = overall_agreement) 
+
+```
+
+##### graphical representation
+
+::: {.r-stack}
+
+::: {.fragment .fade-out}
+
+```{r}
+#| label: fig-sngl-app-ref
+#| out-width: 95%
+#| fig-cap: Single appraiser agreement to reference.
+
+plt_sngl_app <- single_appraiser_agreement %>% 
+  ggplot(
+    aes(
+      x = appraiser,
+      y = overall_agreement
+    )
+  )+
+  geom_col()+
+  scale_y_continuous(
+    expand = c(0,0,0.05,0)
+  )+
+  scale_x_continuous(
+    breaks = c(1,2)
+  )+
+  labs(
+    title = "single appraiser agreement to reference"
+  )+
+  theme_minimal(base_size = 20)
+
+plt_sngl_app
+
+```
+
+:::
+
+::: {.fragment .fade-in-then-out}
+
+```{r}
+#| label: fig-sngl-ref-agreement
+#| out-width: 95%
+#| fig-cap: How good is the agreement in the reference?
+
+plt_ref_agr <- reference_agreement %>% 
+  ggplot(
+    aes(
+      x = reference,
+      y = overall_agreement
+    )
+  )+
+  geom_col()+
+  scale_y_continuous(
+    expand = c(0,0,0.05,0)
+  )+
+  labs(
+    title = "single reference agreement to reference"
+  )+
+  theme_minimal(base_size = 20)
+
+plt_ref_agr
+
+```
+
+:::
+
+::: {.fragment .fade-in-then-out}
+
+```{r}
+#| label: fig-ref-agree
+#| out-width: 95%
+#| fig-cap: Single run agreement to reference.
+
+plt_sngl_run <- run_agreement %>% 
+  ggplot(
+    aes(
+      x = runs,
+      y = overall_agreement
+    )
+  )+
+  geom_col()+
+  scale_y_continuous(
+    expand = c(0,0,0.05,0)
+  )+
+  scale_x_continuous(
+    breaks = c(1,2)
+  )+
+  labs(
+    title = "single run agreement to reference"
+  )+
+  theme_minimal(base_size = 20)
+
+plt_sngl_run
+
+```
+
+:::
+
+::: {.fragment .fade-in-then-out}
+
+
+```{r}
+#| label: fig-asdf
+#| out-width: 75%
+#| fig-cap: 
+
+plt_appr_ref_agr <- appraiser_ref_agreement %>% 
+  ggplot(
+    aes(
+      x = appraiser,
+      y = overall_agreement,
+      fill = reference
+    )
+  )+
+  geom_col(position = "dodge")+
+  scale_y_continuous(
+    expand = c(0,0,0.05,0)
+  )+
+  scale_x_continuous(
+    breaks = c(1,2)
+  )+
+  scale_fill_brewer(
+    palette = "Set1"
+  )+
+  theme_minimal(base_size = 20)
+
+
+plt_appr_ref_agr
+
+```
+
+:::
+
+::: {.fragment .fade-in-then-out}
+
+```{r}
+#| layout-ncol: 2
+
+plt_sngl_app
+plt_sngl_run
+plt_ref_agr
+plt_appr_ref_agr
+
+```
+
+:::
+
+:::
+
