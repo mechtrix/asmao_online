@@ -212,6 +212,18 @@ The existence of the normal distribution in the real world is a result of the co
 
 :::
 
+::: {.content-visible when-profile="slides"}
+
+### The Normal Distribution in real life
+
+<center>
+
+{{< video chapter001/nd_running_cut.mp4 width="700" >}}
+
+</center>
+
+:::
+
 ### Central Limit Theorem (CLT)
 
 ::: {.r-stack}
