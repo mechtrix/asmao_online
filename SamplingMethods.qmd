@@ -12,9 +12,164 @@ editor_options:
 library(tidyverse)
 library(gtExtras)
 library(here)
-
+library(ggthemes)
 
 ```
+
+## Sample Size
+
+### Standard Error
+
+```{r}
+#| label: fig-se
+#| layout-ncol: 2
+#| out-width: 95%
+#| fig-height: 7 
+#| fig-cap: The SE for varying sample sizes $n$
+#| fig-subcap: 
+#|   - maximum sample size $n = 200$
+#|   - sample size for $n = 5 \ldots 50$
+
+se_dat <- data.frame(
+  sd = 1,
+  n = seq(1,200)
+) %>% 
+  mutate(
+    se = sd/sqrt(n)
+  )
+
+plt1 <- se_dat %>% 
+  ggplot(
+    aes(x = n, y = se)
+  )+
+  geom_line()+
+  scale_x_continuous(
+    expand = c(0,0,0,0)
+  )+
+  scale_y_continuous(
+    expand = c(0,0,0,0),
+    limits = c(0,NA)
+  )+
+  theme_few(
+    base_size = 20
+  )+
+  labs(
+    title = "The SE vs. the sample size"
+  )
+
+
+tmp_n_1020 <- se_dat %>% filter(n == 10 | n == 20) %>% 
+  rowid_to_column() %>%
+  pivot_wider(
+    names_from = rowid,
+    values_from = c(n,se)
+  )
+
+tmp_n_1030 <- se_dat %>% filter(n == 10 | n == 30) %>% 
+  rowid_to_column() %>%
+  pivot_wider(
+    names_from = rowid,
+    values_from = c(n,se)
+  )
+  
+tmp_n_1040 <- se_dat %>% filter(n == 10 | n == 40) %>% 
+  rowid_to_column() %>%
+  pivot_wider(
+    names_from = rowid,
+    values_from = c(n,se)
+  )
+
+
+tmp <- bind_rows(tmp_n_1020,tmp_n_1030,tmp_n_1040) %>% 
+  mutate(
+    diff_se = se_1 - se_2
+  )
+
+plt2 <- se_dat %>% 
+  filter(n>5&n<50) %>% 
+  ggplot(
+    aes(x = n, y = se)
+  )+
+  geom_line()+
+  scale_x_continuous(
+    expand = c(0.05,0,0.05,0),
+    # limits = c(5,50),
+    breaks = seq(0,50,5)
+  )+
+  scale_y_continuous(
+    expand = c(0,0.01,0.01,0),
+    # limits = c(0,0.5)
+  )+
+  geom_point(
+    data = se_dat %>% filter(n == 10 | n == 20 | n == 30 | n == 40),
+    shape = 1,
+    size = 4
+  )+
+  geom_segment(
+    data = tmp,
+    aes(x = n_2,
+        xend = n_2,
+        y = se_1,
+        yend = se_2)
+  )+
+  geom_segment(
+    data = tmp,
+    aes(x = n_1,
+        xend = n_2,
+        y = se_1,
+        yend = se_1)
+  )+
+  geom_text(
+    data = se_dat %>% filter(n == 10 | n == 20 | n == 30 | n == 40),
+    aes(
+      label = se %>% round(.,digits = 3),
+      ),
+    nudge_x = -1,
+    nudge_y = -0.01
+  )+
+  geom_label(
+    data = tmp,
+    aes(
+      x = n_2,
+      y = (se_1 + se_2)/2,
+      label = paste0(diff_se %>% round(.,digits = 3)*100,"%")
+    )
+  )+
+  theme_few(
+    base_size = 15
+  )+
+  labs(
+    title = "The SE vs. the sample size (n = 5 ... 50 and sd = 1)"
+  )
+
+plt1
+plt2
+
+```
+
+::: {.content-visible when-profile="script"}
+
+[Standard error](#se) is a statistical measure that quantifies the variation or uncertainty in sample statistics, particularly the mean (average). 
+It is a valuable tool in inferential statistics and provides an estimate of how much the sample mean is expected to vary from the true population mean.
+
+\begin{align}
+SE = \frac{sd}{\sqrt{n}}
+\end{align}
+
+A smaller [standard error](#se) indicates that the sample mean is likely very close to the population mean, while a larger standard error suggests greater variability and less precision in estimating the population mean. 
+[Standard error](#se) is crucial when constructing confidence intervals and performing hypothesis tests, as it helps in assessing the reliability of sample statistics as estimates of population parameters.
+
+**Variance vs. Standard Deviation:** The standard error formula is based on the standard deviation of the sample, not the variance. 
+The standard deviation is the square root of the variance. 
+
+**Scaling of Variability:** The purpose of the standard error is to measure the variability or spread of sample means. 
+The square root of the sample size reflects how that variability decreases as the sample size increases. 
+When the sample size is larger, the sample mean is expected to be closer to the population mean, and the standard error becomes smaller to reflect this reduced variability.
+
+**Central Limit Theorem:** The inclusion of $\sqrt{n}$ in the standard error formula is closely tied to the Central Limit Theorem, which states that the distribution of sample means approaches a normal distribution as the sample size increases. 
+$\sqrt{n}$ helps in this context to ensure that the standard error appropriately reflects the distribution's properties.
+
+:::
 
 ## Random Sampling {.smaller}
 

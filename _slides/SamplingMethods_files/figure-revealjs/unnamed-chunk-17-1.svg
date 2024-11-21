@@ -270,9 +270,6 @@
 <path clip-rule="nonzero" d="M 615 136 L 682 136 L 682 298.746094 L 615 298.746094 Z M 615 136 "/>
 </clipPath>
 <clipPath id="clip-51">
-<path clip-rule="nonzero" d="M 409 44.15625 L 414 44.15625 L 414 298.746094 L 409 298.746094 Z M 409 44.15625 "/>
-</clipPath>
-<clipPath id="clip-52">
 <path clip-rule="nonzero" d="M 66.679688 44.15625 L 710.039062 44.15625 L 710.039062 298.746094 L 66.679688 298.746094 Z M 66.679688 44.15625 "/>
 </clipPath>
 </defs>
@@ -433,9 +430,6 @@
 <path fill="none" stroke-width="1.066978" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(100%, 100%, 100%)" stroke-opacity="1" stroke-miterlimit="10" d="M 615.808594 298.742188 L 680.792969 298.742188 L 680.792969 137.097656 L 615.808594 137.097656 Z M 615.808594 298.742188 "/>
 </g>
 <g clip-path="url(#clip-51)">
-<path fill="none" stroke-width="4.267913" stroke-linecap="butt" stroke-linejoin="round" stroke="rgb(100%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 411.234375 298.742188 L 411.234375 44.15625 "/>
-</g>
-<g clip-path="url(#clip-52)">
 <path fill="none" stroke-width="1.939961" stroke-linecap="round" stroke-linejoin="round" stroke="rgb(20%, 20%, 20%)" stroke-opacity="1" stroke-miterlimit="10" d="M 66.679688 298.742188 L 710.039062 298.742188 L 710.039062 44.152344 L 66.679688 44.152344 Z M 66.679688 298.742188 "/>
 </g>
 <g fill="rgb(30.196078%, 30.196078%, 30.196078%)" fill-opacity="1">
