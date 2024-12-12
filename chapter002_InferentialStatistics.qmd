@@ -1887,7 +1887,7 @@ ggplot(datasaurus_dozen, aes(x = x, y = y))+
 ```{r}
 #| label: fig-tests-TwoVar-TwoGrps
 #| out-width: 75%
-#| fig-cap: Statistical tests for teo variable.
+#| fig-cap: Statistical tests for two variable.
 #| fig-pos: "H"
 
 knitr::include_graphics(here::here("chapter002","021_StatisticalTests_TwoVar_TwoGrps.png"))

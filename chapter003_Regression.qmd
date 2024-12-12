@@ -187,7 +187,7 @@ This adjustment helps prevent an inflated $r^2$ when including more predictors, 
 ```{r}
 #| label: fig-r2vsr2adj
 #| out-width: 75%
-#| fig-cap: The influence of k (number of predictors) on $r^2$ and $r^2_adjusted$.
+#| fig-cap: The influence of k (number of predictors) on $r^2$ and $r^2_{adjusted}$.
 #| fig-pos: "H"
 
 k <- seq(1,5)
@@ -1313,7 +1313,7 @@ R^2 = 1- \frac{\log(L_{model})}{\log(L_{null})} \label{mcfadden} = `r pscl::pR2(
 \end{align}
 
 It compares the `model` to the `null`-model.
-It is much smaller then the [coefficient of determination](#r2adj) with value ranging between $0.2 \ldots 0.4$ already indicating a good model fit in practice.
+It is much smaller then the [coefficient of determination](#r2adj) with values ranging between $0.2 \ldots 0.4$ already indicating a good model fit in practice.
 
 #### Confusion Matrix
 
@@ -1856,6 +1856,7 @@ roc_sngl_thresh |>
   # )+
   scale_x_continuous(
     breaks = seq(0,1,0.1),
+    limits = c(0,1),
     labels = scales::percent
   )+
   scale_y_continuous(
