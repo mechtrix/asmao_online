@@ -83,7 +83,7 @@ knitr::include_graphics(here::here("chapter003","030_lm_error.png"))
 
 :::{.fragment .fade-in-then-out}
 
-The computation of the residuals is based on \eqref{mse} and expanded to \eqref{rss} to the [residual sum of squares](#rss).
+The computation of the residuals is based on \eqref{rss} to the [residual sum of squares](#rss).
 
 \begin{align}
 RSS = \frac{1}{n} \sum_{i=1}^{n} (y_i - (\beta_1 x_i+\beta_0))^2 \label{rss}

@@ -3289,7 +3289,7 @@ Three different methods are employed to increase the strength of the drive shaft
 #| fig-cap: The mechanical Background for a three-point bending test
 #| fig-pos: "H"
 
-knitr::include_graphics(here::here("chapter000","028_three_point_bending.png"))
+knitr::include_graphics(here::here("chapter002","028_three_point_bending.png"))
 
 ```
 

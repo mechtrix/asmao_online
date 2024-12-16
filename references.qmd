@@ -1,5 +1,5 @@
 ---
-title: "References {.unnumbered}"
+title: "References"
 output: html_document
 number-sections: false
 editor_options: 
