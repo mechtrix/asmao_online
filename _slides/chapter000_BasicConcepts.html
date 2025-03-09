@@ -244,6 +244,65 @@ Figure&nbsp;1: This example’s sample space, as well as event A and event B.
 <img data-src="chapter000/011_Plinko.png" style="width:75.0%" class="r-stretch quarto-figure-center" id="fig-plinko"><p class="caption">
 Figure&nbsp;2: A Galton board in action.
 </p></section>
+<section id="statistics-and-probabbility" class="title-slide slide level4 center">
+<h4>Statistics and Probabbility</h4>
+<p>What is the probability for a ball to land in one of the bin?</p>
+</section>
+<section id="step-1-define-the-problem" class="slide level5">
+<h5>Step 1: Define the problem</h5>
+<ul>
+<li>The board has <span class="math inline">\(n\)</span> rows of pegs (columns)</li>
+<li>Each ball has an equal probability of moving left or right (assuming no bias)</li>
+<li>The number of rightward moves determinse the final position in the bins</li>
+</ul>
+</section>
+<section id="step-2-binomial-probability-distribution" class="slide level5">
+<h5>Step 2: Binomial Probability Distribution</h5>
+<p>Each ball independently moves right (<span class="math inline">\(R\)</span>) or left (<span class="math inline">\(L\)</span>) with a probability of <span class="math inline">\(p=0.5\)</span>.</p>
+<p>The number of rightwards moves follows a binomial distribution.</p>
+<p><span class="math display">\[\begin{align}
+P(k) = \binom{n}{k} p^k (1 - p)^{n - k}
+\end{align}\]</span></p>
+<dl>
+<dt><span class="math inline">\(n\)</span></dt>
+<dd>
+total number of columns (or pegs encountered)
+</dd>
+<dt><span class="math inline">\(k\)</span></dt>
+<dd>
+number of rightward moves
+</dd>
+<dt><span class="math inline">\(\binom{n}{k}\)</span></dt>
+<dd>
+biomial coefficient, given by <span class="math inline">\(\binom{n}{k} = \frac{n!}{k!(n-k)!}\)</span>
+</dd>
+</dl>
+<p>with <span class="math inline">\(p = 0.5\)</span> this simplifies to</p>
+<p><span class="math display">\[\begin{align}
+P(k) = \binom{n}{k} ( \frac{1}{2})^n
+\end{align}\]</span></p>
+</section>
+<section id="step-3-position-mapping" class="slide level5">
+<h5>Step 3: Position Mapping</h5>
+<ul>
+<li>ball posistion depends on the number of rightwards moves <span class="math inline">\(k\)</span></li>
+<li>bins are indexed from <span class="math inline">\(0\)</span> to <span class="math inline">\(n\)</span> (<span class="math inline">\(k = 0 \rightarrow \text{all left}; k = n \rightarrow \text{all right}\)</span>)</li>
+</ul>
+<p>for <span class="math inline">\(n = 4\)</span> bins there are <span class="math inline">\(4! = 24\)</span> ways for the ball to choose</p>
+<p>What is the probability for a ball to “choose” a bin?</p>
+</section>
+<section id="step-3.1-the-probability-for-a-specific-sequence" class="slide level5">
+<h5>Step 3.1: The probability for a specific sequence</h5>
+<p>Suppose we have <span class="math inline">\(n = 6\)</span> bins. What is the probability for this sequence:</p>
+<p><span class="math display">\[RRLLRL\]</span></p>
+<div class="fragment fade-in">
+<p><span class="math display">\[P(RRLLRL) = \frac{1}{2}\cdot\frac{1}{2}\cdot\frac{1}{2}\cdot\frac{1}{2}\cdot\frac{1}{2}\cdot\frac{1}{2} = \left( \frac{1}{2} \right)^n\]</span></p>
+</div>
+<div class="fragment fade-in">
+<p>Is it different for another sequence?</p>
+</div>
+</section>
+
 </section>
 <section id="population" class="title-slide slide level2 center">
 <h2>Population</h2>

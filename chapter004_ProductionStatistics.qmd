@@ -502,75 +502,6 @@ The S chart is useful for detecting shifts or trends in the variability of a pro
 
 ## Control Charts for Attributes
 
-### P Chart
-
-:::{.r-stack}
-
-:::{.fragment .fade-out}
-
-```{r}
-#| label: fig-p-chart
-#| out-width: 75%
-#| fig-cap: A P-Chart with control limits.
-#| fig-pos: "H"
-
-set.seed(123)
-
-prop_fail = data.frame(
-  failed_units = rbinom(n = 10,size = 100,0.1)) %>% 
-  mutate(
-    prop = failed_units/sum(failed_units)
-  ) %>% 
-  rowid_to_column(var = "sample_no")
-
-
-prop_fail %>% 
-  ggplot(aes(x = sample_no,y = prop))+
-  geom_point()+
-  geom_line()+
-  geom_hline(
-    aes(yintercept = 0.1)
-  )+
-  geom_hline(
-    aes(yintercept = 0.1+3*sqrt((0.1*(1-0.1))/10))
-  )+
-  scale_y_continuous(
-    limits = c(0,NA),
-    expand = c(0,0,0.05,0)
-  )+
-  scale_x_continuous(
-    breaks = seq(1,10)
-  )+
-  labs(
-    title = "P Chart",
-    x = "sample",
-    y = "fraction non-conforming"
-  )+
-  theme_bw(base_size = 15)
-
-
-```
-
-:::
-
-:::{.fragment .fade-in}
-
-\begin{align}
-CL = \bar{p} \pm 3\sqrt{\frac{\bar{p}(1-\bar{p})}{n}}
-\end{align}
-
-:::
-
-::: {.content-visible when-profile="script"}
-
-The P chart is designed to track the proportion of nonconforming items or defects within a sample or subgroup over consecutive periods. 
-The chart typically consists of a horizontal axis representing time periods and a vertical axis representing the proportion of nonconforming items. 
-It helps identify variations and trends in the process, allowing for timely corrective actions when necessary.
-
-P charts are commonly used in industries where the output is binary, such as the presence or absence of a specific attribute, and provide a visual representation of the process's performance, aiding in quality improvement efforts.
-:::
-
-:::
 
 ### NP Chart
 
@@ -642,7 +573,75 @@ This information aids in quality improvement efforts by enabling organizations t
 
 :::
 
+### P Chart
 
+:::{.r-stack}
+
+:::{.fragment .fade-out}
+
+```{r}
+#| label: fig-p-chart
+#| out-width: 75%
+#| fig-cap: A P-Chart with control limits.
+#| fig-pos: "H"
+
+set.seed(123)
+
+prop_fail = data.frame(
+  failed_units = rbinom(n = 10,size = 100,0.1)) %>% 
+  mutate(
+    prop = failed_units/sum(failed_units)
+  ) %>% 
+  rowid_to_column(var = "sample_no")
+
+
+prop_fail %>% 
+  ggplot(aes(x = sample_no,y = prop))+
+  geom_point()+
+  geom_line()+
+  geom_hline(
+    aes(yintercept = 0.1)
+  )+
+  geom_hline(
+    aes(yintercept = 0.1+3*sqrt((0.1*(1-0.1))/10))
+  )+
+  scale_y_continuous(
+    limits = c(0,NA),
+    expand = c(0,0,0.05,0)
+  )+
+  scale_x_continuous(
+    breaks = seq(1,10)
+  )+
+  labs(
+    title = "P Chart",
+    x = "sample",
+    y = "number non-conforming"
+  )+
+  theme_bw(base_size = 15)
+
+
+```
+
+:::
+
+:::{.fragment .fade-in}
+
+\begin{align}
+CL = \bar{p} \pm 3\sqrt{\frac{\bar{p}(1-\bar{p})}{n}}
+\end{align}
+
+:::
+
+::: {.content-visible when-profile="script"}
+
+The P chart is designed to track the proportion of nonconforming items or defects within a sample or subgroup over consecutive periods. 
+The chart typically consists of a horizontal axis representing time periods and a vertical axis representing the proportion of nonconforming items. 
+It helps identify variations and trends in the process, allowing for timely corrective actions when necessary.
+
+P charts are commonly used in industries where the output is binary, such as the presence or absence of a specific attribute, and provide a visual representation of the process's performance, aiding in quality improvement efforts.
+:::
+
+:::
 
 ## Process Capability and Six Sigma
 

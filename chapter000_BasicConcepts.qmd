@@ -211,6 +211,97 @@ knitr::include_graphics(here::here("chapter000","011_Plinko.png"))
 
 ```
 
+
+#### Statistics and Probabbility
+
+::: {.content-visible when-profile="slides"}
+
+What is the probability for a ball to land in one of the bin?
+
+:::
+
+::: {.content-visible when-profile="script"}
+
+The Galton board is a nice example how statistics emerge from probability.
+
+:::
+
+##### Step 1: Define the problem
+
+- The board has $n$ rows of pegs (columns)
+- Each ball has an equal probability of moving left or right (assuming no bias)
+- The number of rightward moves determines the final position in the bins
+
+::: {.content-visible when-profile="script"}
+
+
+##### Step 2: Binomial Probability Distribution
+
+Each ball independently moves right ($R$) or left ($L$) with a probability of $p=0.5$.
+
+The number of rightwards moves follows a binomial distribution.
+
+\begin{align}
+P(k) = \binom{n}{k} p^k (1 - p)^{n - k} 
+\end{align}
+
+$n$
+: total number of columns (or pegs encountered)
+
+$k$
+: number of rightward moves
+
+$\binom{n}{k}$
+: biomial coefficient, given by $\binom{n}{k} = \frac{n!}{k!(n-k)!}$
+
+with $p = 0.5$ this simplifies to
+
+\begin{align}
+P(k) = \binom{n}{k} ( \frac{1}{2})^n
+\end{align}
+
+##### Step 3: Position Mapping
+
+The final position of a ball in a bin corresponds to the number of rightwards moves $k$. 
+If the bins are indexed from $0$ to $n$ (where $k=0$ means all left moves and $k=n$ means all right moves) the probability of landing in bin $k$ is:
+
+\begin{align}
+P(k) = \frac{n!}{k!(n-k)!}(\frac{1}{2})^n
+\end{align}
+
+:::
+
+::: {.content-visible when-profile="slides"}
+
+##### Step 2: Formulate the Problem
+
+- ball posistion depends on the number of rightwards moves $k$
+- bins are indexed from $0$ to $n$ ($k = 0 \rightarrow \text{all left}; k = n \rightarrow \text{all right}$)
+
+for $n = 4$ bins there are $4! = 24$ ways for the ball to choose
+
+What is the probability for a ball to "choose" a bin?
+
+
+##### Step 2.1: The probability for a specific sequence
+
+Suppose we have $n = 6$ bins. 
+What is the probability for this sequence:
+
+$$RRLLRL$$
+
+::: {.fragment .fade-in}
+$$P(RRLLRL) = \frac{1}{2}\cdot\frac{1}{2}\cdot\frac{1}{2}\cdot\frac{1}{2}\cdot\frac{1}{2}\cdot\frac{1}{2} = \left( \frac{1}{2} \right)^n$$ 
+:::
+
+::: {.fragment .fade-in}
+
+Is it different for another sequence?
+
+:::
+
+:::
+
 ## Population 
 
 ```{r}
