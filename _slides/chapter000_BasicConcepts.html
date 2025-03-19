@@ -177,7 +177,7 @@ Prof.&nbsp;Dr.&nbsp;Tim Weber
 <section class="slide level5">
 
 
-<img data-src="chapter000/000_basics_root.png" style="width:75.0%" class="r-stretch quarto-figure-center"><p class="caption">The necessary statistical ingredients.</p></section>
+<img data-src="chapter000/000_basics_root.png" style="width:65.0%" class="r-stretch quarto-figure-center"><p class="caption">The necessary statistical ingredients.</p></section>
 <section>
 <section id="probability" class="title-slide slide level2 center">
 <h2>Probability</h2>
@@ -248,42 +248,16 @@ Figure&nbsp;2: A Galton board in action.
 <h4>Statistics and Probabbility</h4>
 <p>What is the probability for a ball to land in one of the bin?</p>
 </section>
-<section id="step-1-define-the-problem" class="slide level5">
-<h5>Step 1: Define the problem</h5>
+<section id="define-the-problem" class="slide level5">
+<h5>Define the problem</h5>
 <ul>
 <li>The board has <span class="math inline">\(n\)</span> rows of pegs (columns)</li>
 <li>Each ball has an equal probability of moving left or right (assuming no bias)</li>
-<li>The number of rightward moves determinse the final position in the bins</li>
+<li>The number of rightward moves determines the final position in the bins</li>
 </ul>
 </section>
-<section id="step-2-binomial-probability-distribution" class="slide level5">
-<h5>Step 2: Binomial Probability Distribution</h5>
-<p>Each ball independently moves right (<span class="math inline">\(R\)</span>) or left (<span class="math inline">\(L\)</span>) with a probability of <span class="math inline">\(p=0.5\)</span>.</p>
-<p>The number of rightwards moves follows a binomial distribution.</p>
-<p><span class="math display">\[\begin{align}
-P(k) = \binom{n}{k} p^k (1 - p)^{n - k}
-\end{align}\]</span></p>
-<dl>
-<dt><span class="math inline">\(n\)</span></dt>
-<dd>
-total number of columns (or pegs encountered)
-</dd>
-<dt><span class="math inline">\(k\)</span></dt>
-<dd>
-number of rightward moves
-</dd>
-<dt><span class="math inline">\(\binom{n}{k}\)</span></dt>
-<dd>
-biomial coefficient, given by <span class="math inline">\(\binom{n}{k} = \frac{n!}{k!(n-k)!}\)</span>
-</dd>
-</dl>
-<p>with <span class="math inline">\(p = 0.5\)</span> this simplifies to</p>
-<p><span class="math display">\[\begin{align}
-P(k) = \binom{n}{k} ( \frac{1}{2})^n
-\end{align}\]</span></p>
-</section>
-<section id="step-3-position-mapping" class="slide level5">
-<h5>Step 3: Position Mapping</h5>
+<section id="formulate-the-problem" class="slide level5">
+<h5>Formulate the Problem</h5>
 <ul>
 <li>ball posistion depends on the number of rightwards moves <span class="math inline">\(k\)</span></li>
 <li>bins are indexed from <span class="math inline">\(0\)</span> to <span class="math inline">\(n\)</span> (<span class="math inline">\(k = 0 \rightarrow \text{all left}; k = n \rightarrow \text{all right}\)</span>)</li>
@@ -291,8 +265,8 @@ P(k) = \binom{n}{k} ( \frac{1}{2})^n
 <p>for <span class="math inline">\(n = 4\)</span> bins there are <span class="math inline">\(4! = 24\)</span> ways for the ball to choose</p>
 <p>What is the probability for a ball to “choose” a bin?</p>
 </section>
-<section id="step-3.1-the-probability-for-a-specific-sequence" class="slide level5">
-<h5>Step 3.1: The probability for a specific sequence</h5>
+<section id="the-probability-for-a-specific-sequence" class="slide level5">
+<h5>The probability for a specific sequence</h5>
 <p>Suppose we have <span class="math inline">\(n = 6\)</span> bins. What is the probability for this sequence:</p>
 <p><span class="math display">\[RRLLRL\]</span></p>
 <div class="fragment fade-in">
@@ -300,6 +274,254 @@ P(k) = \binom{n}{k} ( \frac{1}{2})^n
 </div>
 <div class="fragment fade-in">
 <p>Is it different for another sequence?</p>
+</div>
+</section>
+<section id="bins-and-sequence" class="slide level5">
+<h5>Bins and Sequence</h5>
+<p>Is it sure, that every ball that follow a specific sequence lands in it’s own bin?</p>
+<div class="fragment fade-in">
+<p>Of course not.</p>
+</div>
+<div class="fragment fade-in">
+<p>How is that probability calculated?</p>
+</div>
+</section>
+<section id="generalizing-to-k-right-moves" class="slide level5">
+<h5>Generalizing to <span class="math inline">\(k\)</span> right moves</h5>
+<p>Calculate the probability of exactly <span class="math inline">\(k = 3\)</span> right moves in <span class="math inline">\(n = 6\)</span></p>
+<div class="fragment fade-in">
+<p>How many possibilities are there in total?</p>
+</div>
+<div class="fragment fade-in">
+<p><span class="math inline">\(6! = 6 \times 5\times 4 \times 3 \times 2 \times 1 = 720\)</span></p>
+</div>
+<div class="fragment fade-in">
+<p>The factorial takes ALL sequences into account, but does it matter?</p>
+</div>
+<div class="fragment fade-in">
+<p>We do not care for the order in which the turns are taken!</p>
+<p>How do we correct for that?</p>
+</div>
+</section>
+<section id="correction-for-order" class="slide level5">
+<h5>Correction for order</h5>
+<p>We correct for <span class="math inline">\(k! = 3 \times 2 \times 1 = 6\)</span>, the number of ways to arrange the <span class="math inline">\(k\)</span> chosen elements among themselves.</p>
+<p><span class="math display">\[\frac{n!}{k!} = \frac{720}{6} = 120\]</span></p>
+<div class="fragment fade-in">
+<p>Are we finished?</p>
+</div>
+</section>
+<section id="correction-for-unselected-elements" class="slide level5">
+<h5>Correction for Unselected Elements</h5>
+<p><span class="math inline">\((n-k)\)</span> elements are not <em>chosen</em>, so we divide by another factorial, to correct fo the <em>NOT</em> chosen ones.</p>
+<p><span class="math display">\[(n-k)! = (6-3)! = 3! = 6\]</span></p>
+</section>
+<section id="binomial-coefficient" class="slide level5">
+<h5>Binomial Coefficient</h5>
+<p><span class="math display">\[\frac{n!}{k!(n-k)!} = \frac{720}{6\times6} = 20\]</span></p>
+<p>This is called the *Binomial Coefficient and it is written</p>
+<p><span class="math display">\[\binom{n}{k}\]</span></p>
+<p>So, the number of ways to choose <span class="math inline">\(3\)</span> elements out of <span class="math inline">\(6\)</span> is <span class="math inline">\(20\)</span>.</p>
+</section>
+<section id="probability-1" class="slide level5">
+<h5>Probability??</h5>
+<p>Now we know how many ways are there to choose, but in order to cacluclate a probability we still need to multiply this with the probability for <strong>each</strong> sequence</p>
+<p><span class="math display">\[P(k) = \binom{n}{k}\cdot{\frac{1}{2}}^n\]</span></p>
+</section>
+<section id="detailed-calculation" class="slide level5">
+<h5>Detailed Calculation</h5>
+<div class="r-stack">
+<div class="fragment fade-out">
+<div style="font-size: 70%;">
+<table class="caption-top">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 17%">
+<col style="width: 26%">
+<col style="width: 39%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(k\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(n!\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(k!\)</span></th>
+<th style="text-align: center;"><span class="math inline">\((n-k)!\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\binom{n}{k} = \binom{6}{k}\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(P(k) = \binom{6}{k}\cdot{\frac{1}{2}}^{n=6}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(720\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((6-0)! = 6! = 720\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{720}{1 \cdot 720} = 1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(P(0) = 1 \cdot \frac{1}{64} = 0.015624\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(1\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(2\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(3\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(4\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(5\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(6\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="fragment fade-in-then-out">
+<div style="font-size: 70%;">
+<table class="caption-top">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 17%">
+<col style="width: 26%">
+<col style="width: 39%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(k\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(n!\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(k!\)</span></th>
+<th style="text-align: center;"><span class="math inline">\((n-k)!\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\binom{n}{k} = \binom{6}{k}\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(P(k) = \binom{6}{k}\cdot{\frac{1}{2}}^{n=6}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(720\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((6-0)! = 6! = 720\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{720}{1 \cdot 720} = 1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(P(0) = 1 \cdot \frac{1}{64} = 0.015624\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(720\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((6-1)! = 5! = 120\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{720}{1 \cdot 120} = 6\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(P(1) = 6 \cdot \frac{1}{64} = 0.093750\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(720\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((6-2)! = 4! = 24\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{720}{2 \cdot 24} = 15\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(P(2) = 15 \cdot \frac{1}{64} = 0.234375\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(3\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(720\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(6\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((6-3)! = 3! = 6\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{720}{6 \cdot 6} = 20\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(P(3) = 20 \cdot \frac{1}{64} = 0.312500\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(4\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(720\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(24\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((6-4)! = 2! = 2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{720}{24 \cdot 2} = 15\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(P(2) = 15 \cdot \frac{1}{64} = 0.234375\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(5\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(720\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(120\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((6-5)! = 1! = 1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{720}{120 \cdot 1} = 6\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(P(5) = 6 \cdot \frac{1}{64} = 0.093750\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(6\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(720\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(720\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((6-6)! = 0! = 1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{720}{720 \cdot 1} = 1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(P(6) = 1 \cdot \frac{1}{64} = 0.015624\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="graphical-representation" class="slide level5">
+<h5>Graphical representation</h5>
+<div class="r-stack">
+<div class="fragment fade-out">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="chapter000_BasicConcepts_files/figure-revealjs/unnamed-chunk-5-1.svg"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment fade-in">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="chapter000_BasicConcepts_files/figure-revealjs/unnamed-chunk-6-1.svg"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
 </div>
 </section>
 

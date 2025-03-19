@@ -22,7 +22,7 @@ library(gtsummary)
 
 ```{r}
 #| label: basics-001
-#| out-width: 75%
+#| out-width: 65%
 #| fig-cap: The necessary statistical ingredients.
 knitr::include_graphics(here::here("chapter000","000_basics_root.png"))
 ```
@@ -226,7 +226,7 @@ The Galton board is a nice example how statistics emerge from probability.
 
 :::
 
-##### Step 1: Define the problem
+##### Define the problem
 
 - The board has $n$ rows of pegs (columns)
 - Each ball has an equal probability of moving left or right (assuming no bias)
@@ -273,7 +273,7 @@ P(k) = \frac{n!}{k!(n-k)!}(\frac{1}{2})^n
 
 ::: {.content-visible when-profile="slides"}
 
-##### Step 2: Formulate the Problem
+##### Formulate the Problem
 
 - ball posistion depends on the number of rightwards moves $k$
 - bins are indexed from $0$ to $n$ ($k = 0 \rightarrow \text{all left}; k = n \rightarrow \text{all right}$)
@@ -283,7 +283,7 @@ for $n = 4$ bins there are $4! = 24$ ways for the ball to choose
 What is the probability for a ball to "choose" a bin?
 
 
-##### Step 2.1: The probability for a specific sequence
+##### The probability for a specific sequence
 
 Suppose we have $n = 6$ bins. 
 What is the probability for this sequence:
@@ -297,6 +297,209 @@ $$P(RRLLRL) = \frac{1}{2}\cdot\frac{1}{2}\cdot\frac{1}{2}\cdot\frac{1}{2}\cdot\f
 ::: {.fragment .fade-in}
 
 Is it different for another sequence?
+
+:::
+
+##### Bins and Sequence
+
+Is it sure, that every ball that follow a specific sequence lands in it's own bin?
+
+::: {.fragment .fade-in}
+
+Of course not.
+
+:::
+
+::: {.fragment .fade-in}
+
+How is that probability calculated?
+
+:::
+
+##### Generalizing to $k$ right moves
+
+Calculate the probability of exactly $k = 3$ right moves in $n = 6$
+
+::: {.fragment .fade-in}
+
+How many possibilities are there in total?
+
+:::
+
+::: {.fragment .fade-in}
+
+$6! = 6 \times 5\times 4 \times 3 \times 2 \times 1 = 720$
+
+:::
+
+::: {.fragment .fade-in}
+
+The factorial takes ALL sequences into account, but does it matter?
+
+:::
+
+::: {.fragment .fade-in}
+
+We do not care for the order in which the turns are taken!
+
+How do we correct for that?
+
+:::
+
+##### Correction for order
+
+
+We correct for $k! = 3 \times 2 \times 1 = 6$, the number of ways to arrange the $k$ chosen elements among themselves.
+
+$$\frac{n!}{k!} = \frac{720}{6} = 120$$
+
+::: {.fragment .fade-in}
+
+Are we finished?
+
+:::
+
+##### Correction for Unselected Elements
+
+$(n-k)$ elements are not *chosen*, so we divide by another factorial, to correct fo the *NOT* chosen ones.
+
+$$(n-k)! = (6-3)! = 3! = 6$$
+
+##### Binomial Coefficient
+
+$$\frac{n!}{k!(n-k)!} = \frac{720}{6\times6} = 20$$
+
+This is called the *Binomial Coefficient and it is written
+
+$$\binom{n}{k}$$
+
+So, the number of ways to choose $3$ elements out of $6$ is $20$.
+
+
+
+##### Probability??
+
+Now we know how many ways are there to choose, but in order to cacluclate a probability we still need to multiply this with the probability for **each** sequence
+
+$$P(k) = \binom{n}{k}\cdot{\frac{1}{2}}^n$$
+
+##### Detailed Calculation
+
+::: {.r-stack}
+
+::: {.fragment .fade-out}
+
+::: {style="font-size: 70%;"}
+
+| $k$ |  $n!$ |  $k!$ |       $(n-k)!$      | $\binom{n}{k} = \binom{6}{k}$ | $P(k) = \binom{6}{k}\cdot{\frac{1}{2}}^{n=6}$ |
+|:---:|:-----:|:-----:|:-------------------:|:-----------------------------:|:---------------------------------------------:|
+| $0$ | $720$ |  $1$  | $(6-0)! = 6! = 720$ | $\frac{720}{1 \cdot 720} = 1$ |    $P(0) = 1 \cdot \frac{1}{64} = 0.015624$   |
+| $1$ |       |       |                     |                               |                                               |
+| $2$ |       |       |                     |                               |                                               |
+| $3$ |       |       |                     |                               |                                               |
+| $4$ |       |       |                     |                               |                                               |
+| $5$ |       |       |                     |                               |                                               |
+| $6$ |       |       |                     |                               |                                               |
+
+:::
+
+:::
+
+::: {.fragment .fade-in-then-out}
+
+::: {style="font-size: 70%;"}
+
+| $k$ |  $n!$ |  $k!$ |       $(n-k)!$      | $\binom{n}{k} = \binom{6}{k}$ | $P(k) = \binom{6}{k}\cdot{\frac{1}{2}}^{n=6}$ |
+|:---:|:-----:|:-----:|:-------------------:|:-----------------------------:|:---------------------------------------------:|
+| $0$ | $720$ |  $1$  | $(6-0)! = 6! = 720$ | $\frac{720}{1 \cdot 720} = 1$ |    $P(0) = 1 \cdot \frac{1}{64} = 0.015624$   |
+| $1$ | $720$ |  $1$  | $(6-1)! = 5! = 120$ | $\frac{720}{1 \cdot 120} = 6$ |    $P(1) = 6 \cdot \frac{1}{64} = 0.093750$   |
+| $2$ | $720$ |  $2$  |  $(6-2)! = 4! = 24$ | $\frac{720}{2 \cdot 24} = 15$ |   $P(2) = 15 \cdot \frac{1}{64} = 0.234375$   |
+| $3$ | $720$ |  $6$  |  $(6-3)! = 3! = 6$  |  $\frac{720}{6 \cdot 6} = 20$ |   $P(3) = 20 \cdot \frac{1}{64} = 0.312500$   |
+| $4$ | $720$ |  $24$ |  $(6-4)! = 2! = 2$  | $\frac{720}{24 \cdot 2} = 15$ |   $P(2) = 15 \cdot \frac{1}{64} = 0.234375$   |
+| $5$ | $720$ | $120$ |  $(6-5)! = 1! = 1$  | $\frac{720}{120 \cdot 1} = 6$ |    $P(5) = 6 \cdot \frac{1}{64} = 0.093750$   |
+| $6$ | $720$ | $720$ |  $(6-6)! = 0! = 1$  | $\frac{720}{720 \cdot 1} = 1$ |    $P(6) = 1 \cdot \frac{1}{64} = 0.015624$   |
+
+:::
+
+:::
+
+:::
+
+##### Graphical representation
+
+::: {.r-stack}
+
+::: {.fragment .fade-out}
+
+```{r}
+#| fig-width: 15
+#| fig-height: 8
+
+
+galton_dat <- data.frame(
+  bin_nr = seq(0,6),
+  n = 6
+) |> 
+  rowwise() |> 
+  mutate(
+    binom_coef = pracma::nchoosek(n,bin_nr),
+    Prob = binom_coef*(0.5^n)
+  )
+
+galton_dat |> 
+  ggplot(
+    aes(
+      x = bin_nr,
+      y = Prob
+      )
+  )+
+  geom_col()+
+  scale_y_continuous(
+    expand = c(0,0,0.05,0)
+  )+
+  theme_minimal(
+    base_size = 15
+  )
+
+```
+
+:::
+
+::: {.fragment .fade-in}
+
+```{r}
+#| fig-width: 15
+#| fig-height: 8
+
+
+galton_dat <- data.frame(
+  bin_nr = seq(0,100),
+  n = 100
+) |> 
+  rowwise() |> 
+  mutate(
+    binom_coef = pracma::nchoosek(n,bin_nr),
+    Prob = binom_coef*(0.5^n)
+  )
+
+galton_dat |> 
+  ggplot(
+    aes(
+      x = bin_nr,
+      y = Prob
+      )
+  )+
+  geom_col()+
+  scale_y_continuous(
+    expand = c(0,0,0.05,0)
+  )+
+  theme_minimal(
+    base_size = 15
+  )
+
+```
+
+:::
 
 :::
 
