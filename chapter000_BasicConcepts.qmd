@@ -123,54 +123,6 @@ Consider rolling a fair six-sided die.
 knitr::include_graphics(here::here("chapter000","010_Probability.png"))
 ```
 
-::: {.content-visible when-profile="script"}
-
-Calculation of some probabilities:
-
-- Probability of Event A (P(A)): $P(A) = \frac{\text{Number of outcomes in A}}{\text{Total number of outcomes in S}} = \frac{3}{6} = \frac{1}{2}$
-
-- Probability of Event B (P(B)): $P(B) = \frac{3}{6} = \frac{1}{2}$
-
-- Probability of both A and B (P(A and B)): 4 and 6 satisfy both A and B, $P(A\;and\;B) = \frac{2}{6} = \frac{1}{3}$
-
-This example demonstrates the fundamental principles of probability and how they can be applied to real-world situations.
-
-In the subsequent chapters of this course, more advanced concepts in probability theory will be explored, including conditional probability, random variables, probability distributions, and statistical inference. 
-
-### Population Definition
-
-In the field of statistics, a population refers to the entire group or collection of individuals, objects, or events under study. 
-For example, when conducting a survey to examine the average income of households in a country, the population encompasses all the households within that country.
-
-### Random Sampling
-
-To study a population, statisticians often employ random sampling techniques as it may not be feasible or practical to gather data from every member of the population. 
-Probability principles come into play during the selection of a random sample, ensuring that the sampling process adheres to well-defined rules to represent the population adequately.
-
-### Sampling Distribution
-
-Once a random sample is acquired, probability theory becomes instrumental in analyzing and characterizing various sample statistics, such as the sample mean and variance. 
-The sampling distribution serves as a probability distribution, encompassing all possible values of sample statistics attainable through random sampling.
-
-### Inferential Statistics
-
-Probability plays a pivotal role in drawing conclusions about the population based on the data obtained from the sample. 
-Statistical methodologies, including hypothesis testing and constructing confidence intervals, rely on probability theory to assess the likelihood of specific outcomes and quantify the associated uncertainty.
-
-### Estimation
-
-Probability is a key element in parameter estimation. 
-For instance, when estimating population parameters like the mean or variance based on a sample, statisticians employ probability distributions such as the t-distribution or chi-squared distribution to create confidence intervals and determine margins of error.
-
-### Hypothesis Testing
-
-In hypothesis testing, probability is employed to ascertain whether observed differences or associations in sample data hold statistical significance. Probability calculations aid in evaluating whether the observed results are likely to be a product of random chance or if they genuinely reflect characteristics of the population.
-
-### Generalization
-
-The primary objective of statistical analysis is to generalize findings from the sample to the entire population. Probability allows for quantifying the likelihood that the characteristics observed in the sample accurately represent the entire population, while also considering the inherent uncertainty associated with the sampling process.
-
-:::
 
 ### Probability in action - The Galton Board
 ::: {.content-visible when-profile="script"}
@@ -276,16 +228,16 @@ P(k) = \frac{n!}{k!(n-k)!}(\frac{1}{2})^n
 ##### Formulate the Problem
 
 - ball posistion depends on the number of rightwards moves $k$
-- bins are indexed from $0$ to $n$ ($k = 0 \rightarrow \text{all left}; k = n \rightarrow \text{all right}$)
+- rows are indexed from $0$ to $n$ ($k = 0 \rightarrow \text{all left}; k = n \rightarrow \text{all right}$)
 
 for $n = 4$ bins there are $4! = 24$ ways for the ball to choose
 
-What is the probability for a ball to "choose" a bin?
+What is the probability for a ball to "choose"?
 
 
 ##### The probability for a specific sequence
 
-Suppose we have $n = 6$ bins. 
+Suppose we have $n = 6$ rows. 
 What is the probability for this sequence:
 
 $$RRLLRL$$
@@ -588,11 +540,32 @@ df <- industRial::syringe_diameter %>%
                names_to = "sample",
                values_to = "diameter")
 
+hist_bin_width <- (max(df$diameter)-min(df$diameter))/40
+
 df %>% 
   ggplot(aes(x = diameter))+
-  geom_histogram(color = "white")+
+  geom_histogram(
+    color = "white",
+    # binwidth = hist_bin_width,
+    bins = 40,
+    # binwidth = 0.0001594
+    breaks = seq(min(df$diameter), max(df$diameter), (max(df$diameter)-min(df$diameter))/40)
+    )+
+  stat_bin(
+    aes(
+      y=after_stat(count),
+      label=after_stat(count)
+      ),
+    bins = 40,
+    breaks = seq(min(df$diameter), max(df$diameter), (max(df$diameter)-min(df$diameter))/40),
+    geom="text",
+    hjust = 0.5, 
+    position = position_nudge(y = 0.2)
+    )+
   scale_y_continuous(
-    expand = c(0,0,0.05,0)
+    expand = c(0,0,0.05,0),
+    labels = scales::number_format(accuracy = 1),
+    breaks = seq(0,100,1)
   )+
   labs(
     x = "diameter in mm",
@@ -600,7 +573,10 @@ df %>%
     title = "A histogram of the syringe data."
   )+
   scale_x_continuous(
-    expand = c(0,0,0,0)
+    expand = c(0.01,0,0.01,0),
+    breaks = seq(min(df$diameter), max(df$diameter), (max(df$diameter)-min(df$diameter))/40),
+    guide = guide_axis(angle = 45),
+    labels = scales::number_format(accuracy = 0.001)
   )+
   ggthemes::theme_few()
   
@@ -648,7 +624,10 @@ plt1 <- df %>%
 
 plt2 <- df %>% 
   ggplot(aes(x = diameter))+
-  geom_histogram(color = "white",bins = 150)+
+  geom_histogram(
+    color = "white",
+   breaks = seq(min(df$diameter), max(df$diameter), (max(df$diameter)-min(df$diameter))/4000)
+   )+
   scale_y_continuous(
     expand = c(0,0,0.05,0)
   )+
@@ -1032,7 +1011,8 @@ This example will haunt us the rest of this lecture.
 ```{r}
 #| label: fig-ds-dist
 #| layout-ncol: 2
-#| out-width: 75%
+#| fig-width: 8
+#| fig-height: 5
 #| fig-cap: The raw data of the measured drive shaft diameter.
 #| fig-subcap: 
 #| - The drive shaft data shown in a histogram.
@@ -1049,7 +1029,8 @@ drive_shaft %>%
   )+
   scale_x_continuous(expand = c(0,0,0,0))+
   scale_y_continuous(expand = c(0,0,0.05,0))+
-  theme_few()
+  labs(y = "count")+
+  theme_few(base_size = 15)
   
 drive_shaft %>% 
   ggplot(aes(x = diameter))+
@@ -1059,7 +1040,7 @@ drive_shaft %>%
   )+
   scale_x_continuous(expand = c(0,0,0,0))+
   scale_y_continuous(expand = c(0,0,0.05,0))+
-  theme_few()
+  theme_few(base_size = 15)
 ```
 
 ::: {.content-visible when-profile="script"}
@@ -1107,7 +1088,8 @@ We will explore this possibility further.
 ```{r}
 #| label: fig-ds-grps
 #| layout-ncol: 2
-#| out-width: 75%
+#| fig-width: 8
+#| fig-height: 5
 #| fig-cap: The raw data of the measured drive shaft diameter.
 #| fig-subcap: 
 #| - The groups visualized as boxplots (including the specification)
@@ -1143,7 +1125,7 @@ drive_shaft %>%
     y = "diameter in mm",
     linetype = ""
   )+
-  theme_few()+
+  theme_few(base_size = 15)+
   theme(legend.position = "bottom")
 
 drive_shaft %>% 
@@ -1162,7 +1144,7 @@ drive_shaft %>%
   scale_linetype_manual(
     values = c("nominal" = "solid", "lower limit" = "dashed", "upper limit" = "dashed")
       )+
-  theme_few()+
+  theme_few(base_size = 15)+
   theme(legend.position = "bottom")
   
 
