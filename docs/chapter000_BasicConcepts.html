@@ -333,7 +333,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="chapter000/000_basics_root.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<p><img src="chapter000/000_basics_root.png" class="img-fluid figure-img" width="525"></p>
 <figcaption>The necessary statistical ingredients.</figcaption>
 </figure>
 </div>
@@ -481,6 +481,51 @@ Figure&nbsp;1.2: A Galton board in action.
 </div>
 </div>
 </div>
+<section id="statistics-and-probabbility" class="level4" data-number="1.1.14.1">
+<h4 data-number="1.1.14.1" class="anchored" data-anchor-id="statistics-and-probabbility"><span class="header-section-number">1.1.14.1</span> Statistics and Probabbility</h4>
+<p>The Galton board is a nice example how statistics emerge from probability.</p>
+<section id="define-the-problem" class="level5" data-number="1.1.14.1.1">
+<h5 data-number="1.1.14.1.1" class="anchored" data-anchor-id="define-the-problem"><span class="header-section-number">1.1.14.1.1</span> Define the problem</h5>
+<ul>
+<li>The board has <span class="math inline">\(n\)</span> rows of pegs (columns)</li>
+<li>Each ball has an equal probability of moving left or right (assuming no bias)</li>
+<li>The number of rightward moves determines the final position in the bins</li>
+</ul>
+</section>
+<section id="step-2-binomial-probability-distribution" class="level5" data-number="1.1.14.1.2">
+<h5 data-number="1.1.14.1.2" class="anchored" data-anchor-id="step-2-binomial-probability-distribution"><span class="header-section-number">1.1.14.1.2</span> Step 2: Binomial Probability Distribution</h5>
+<p>Each ball independently moves right (<span class="math inline">\(R\)</span>) or left (<span class="math inline">\(L\)</span>) with a probability of <span class="math inline">\(p=0.5\)</span>.</p>
+<p>The number of rightwards moves follows a binomial distribution.</p>
+<p><span class="math display">\[\begin{align}
+P(k) = \binom{n}{k} p^k (1 - p)^{n - k}
+\end{align}\]</span></p>
+<dl>
+<dt><span class="math inline">\(n\)</span></dt>
+<dd>
+total number of columns (or pegs encountered)
+</dd>
+<dt><span class="math inline">\(k\)</span></dt>
+<dd>
+number of rightward moves
+</dd>
+<dt><span class="math inline">\(\binom{n}{k}\)</span></dt>
+<dd>
+biomial coefficient, given by <span class="math inline">\(\binom{n}{k} = \frac{n!}{k!(n-k)!}\)</span>
+</dd>
+</dl>
+<p>with <span class="math inline">\(p = 0.5\)</span> this simplifies to</p>
+<p><span class="math display">\[\begin{align}
+P(k) = \binom{n}{k} ( \frac{1}{2})^n
+\end{align}\]</span></p>
+</section>
+<section id="step-3-position-mapping" class="level5" data-number="1.1.14.1.3">
+<h5 data-number="1.1.14.1.3" class="anchored" data-anchor-id="step-3-position-mapping"><span class="header-section-number">1.1.14.1.3</span> Step 3: Position Mapping</h5>
+<p>The final position of a ball in a bin corresponds to the number of rightwards moves <span class="math inline">\(k\)</span>. If the bins are indexed from <span class="math inline">\(0\)</span> to <span class="math inline">\(n\)</span> (where <span class="math inline">\(k=0\)</span> means all left moves and <span class="math inline">\(k=n\)</span> means all right moves) the probability of landing in bin <span class="math inline">\(k\)</span> is:</p>
+<p><span class="math display">\[\begin{align}
+P(k) = \frac{n!}{k!(n-k)!}(\frac{1}{2})^n
+\end{align}\]</span></p>
+</section>
+</section>
 </section>
 </section>
 <section id="population" class="level2" data-number="1.2">
@@ -791,23 +836,23 @@ Table&nbsp;1.1: The summary table of the drive shaft data
 </figcaption>
 <div aria-describedby="tbl-ds-sum-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="fowzactvnv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#fowzactvnv table {
+<div id="luiduzovdx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#luiduzovdx table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#fowzactvnv thead, #fowzactvnv tbody, #fowzactvnv tfoot, #fowzactvnv tr, #fowzactvnv td, #fowzactvnv th {
+#luiduzovdx thead, #luiduzovdx tbody, #luiduzovdx tfoot, #luiduzovdx tr, #luiduzovdx td, #luiduzovdx th {
   border-style: none;
 }
 
-#fowzactvnv p {
+#luiduzovdx p {
   margin: 0;
   padding: 0;
 }
 
-#fowzactvnv .gt_table {
+#luiduzovdx .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -833,12 +878,12 @@ Table&nbsp;1.1: The summary table of the drive shaft data
   border-left-color: #D3D3D3;
 }
 
-#fowzactvnv .gt_caption {
+#luiduzovdx .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#fowzactvnv .gt_title {
+#luiduzovdx .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -850,7 +895,7 @@ Table&nbsp;1.1: The summary table of the drive shaft data
   border-bottom-width: 0;
 }
 
-#fowzactvnv .gt_subtitle {
+#luiduzovdx .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -862,7 +907,7 @@ Table&nbsp;1.1: The summary table of the drive shaft data
   border-top-width: 0;
 }
 
-#fowzactvnv .gt_heading {
+#luiduzovdx .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -874,13 +919,13 @@ Table&nbsp;1.1: The summary table of the drive shaft data
   border-right-color: #D3D3D3;
 }
 
-#fowzactvnv .gt_bottom_border {
+#luiduzovdx .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#fowzactvnv .gt_col_headings {
+#luiduzovdx .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -895,7 +940,7 @@ Table&nbsp;1.1: The summary table of the drive shaft data
   border-right-color: #D3D3D3;
 }
 
-#fowzactvnv .gt_col_heading {
+#luiduzovdx .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -915,7 +960,7 @@ Table&nbsp;1.1: The summary table of the drive shaft data
   overflow-x: hidden;
 }
 
-#fowzactvnv .gt_column_spanner_outer {
+#luiduzovdx .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -927,15 +972,15 @@ Table&nbsp;1.1: The summary table of the drive shaft data
   padding-right: 4px;
 }
 
-#fowzactvnv .gt_column_spanner_outer:first-child {
+#luiduzovdx .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#fowzactvnv .gt_column_spanner_outer:last-child {
+#luiduzovdx .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#fowzactvnv .gt_column_spanner {
+#luiduzovdx .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -947,11 +992,11 @@ Table&nbsp;1.1: The summary table of the drive shaft data
   width: 100%;
 }
 
-#fowzactvnv .gt_spanner_row {
+#luiduzovdx .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#fowzactvnv .gt_group_heading {
+#luiduzovdx .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -977,7 +1022,7 @@ Table&nbsp;1.1: The summary table of the drive shaft data
   text-align: left;
 }
 
-#fowzactvnv .gt_empty_group_heading {
+#luiduzovdx .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -992,15 +1037,15 @@ Table&nbsp;1.1: The summary table of the drive shaft data
   vertical-align: middle;
 }
 
-#fowzactvnv .gt_from_md > :first-child {
+#luiduzovdx .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#fowzactvnv .gt_from_md > :last-child {
+#luiduzovdx .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#fowzactvnv .gt_row {
+#luiduzovdx .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1019,7 +1064,7 @@ Table&nbsp;1.1: The summary table of the drive shaft data
   overflow-x: hidden;
 }
 
-#fowzactvnv .gt_stub {
+#luiduzovdx .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1032,7 +1077,7 @@ Table&nbsp;1.1: The summary table of the drive shaft data
   padding-right: 5px;
 }
 
-#fowzactvnv .gt_stub_row_group {
+#luiduzovdx .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1046,15 +1091,15 @@ Table&nbsp;1.1: The summary table of the drive shaft data
   vertical-align: top;
 }
 
-#fowzactvnv .gt_row_group_first td {
+#luiduzovdx .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#fowzactvnv .gt_row_group_first th {
+#luiduzovdx .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#fowzactvnv .gt_summary_row {
+#luiduzovdx .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1064,16 +1109,16 @@ Table&nbsp;1.1: The summary table of the drive shaft data
   padding-right: 5px;
 }
 
-#fowzactvnv .gt_first_summary_row {
+#luiduzovdx .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#fowzactvnv .gt_first_summary_row.thick {
+#luiduzovdx .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#fowzactvnv .gt_last_summary_row {
+#luiduzovdx .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1083,7 +1128,7 @@ Table&nbsp;1.1: The summary table of the drive shaft data
   border-bottom-color: #D3D3D3;
 }
 
-#fowzactvnv .gt_grand_summary_row {
+#luiduzovdx .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1093,7 +1138,7 @@ Table&nbsp;1.1: The summary table of the drive shaft data
   padding-right: 5px;
 }
 
-#fowzactvnv .gt_first_grand_summary_row {
+#luiduzovdx .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1103,7 +1148,7 @@ Table&nbsp;1.1: The summary table of the drive shaft data
   border-top-color: #D3D3D3;
 }
 
-#fowzactvnv .gt_last_grand_summary_row_top {
+#luiduzovdx .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1113,11 +1158,11 @@ Table&nbsp;1.1: The summary table of the drive shaft data
   border-bottom-color: #D3D3D3;
 }
 
-#fowzactvnv .gt_striped {
+#luiduzovdx .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#fowzactvnv .gt_table_body {
+#luiduzovdx .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1126,7 +1171,7 @@ Table&nbsp;1.1: The summary table of the drive shaft data
   border-bottom-color: #D3D3D3;
 }
 
-#fowzactvnv .gt_footnotes {
+#luiduzovdx .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1140,7 +1185,7 @@ Table&nbsp;1.1: The summary table of the drive shaft data
   border-right-color: #D3D3D3;
 }
 
-#fowzactvnv .gt_footnote {
+#luiduzovdx .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1149,7 +1194,7 @@ Table&nbsp;1.1: The summary table of the drive shaft data
   padding-right: 5px;
 }
 
-#fowzactvnv .gt_sourcenotes {
+#luiduzovdx .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1163,7 +1208,7 @@ Table&nbsp;1.1: The summary table of the drive shaft data
   border-right-color: #D3D3D3;
 }
 
-#fowzactvnv .gt_sourcenote {
+#luiduzovdx .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1171,72 +1216,72 @@ Table&nbsp;1.1: The summary table of the drive shaft data
   padding-right: 5px;
 }
 
-#fowzactvnv .gt_left {
+#luiduzovdx .gt_left {
   text-align: left;
 }
 
-#fowzactvnv .gt_center {
+#luiduzovdx .gt_center {
   text-align: center;
 }
 
-#fowzactvnv .gt_right {
+#luiduzovdx .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#fowzactvnv .gt_font_normal {
+#luiduzovdx .gt_font_normal {
   font-weight: normal;
 }
 
-#fowzactvnv .gt_font_bold {
+#luiduzovdx .gt_font_bold {
   font-weight: bold;
 }
 
-#fowzactvnv .gt_font_italic {
+#luiduzovdx .gt_font_italic {
   font-style: italic;
 }
 
-#fowzactvnv .gt_super {
+#luiduzovdx .gt_super {
   font-size: 65%;
 }
 
-#fowzactvnv .gt_footnote_marks {
+#luiduzovdx .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#fowzactvnv .gt_asterisk {
+#luiduzovdx .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#fowzactvnv .gt_indent_1 {
+#luiduzovdx .gt_indent_1 {
   text-indent: 5px;
 }
 
-#fowzactvnv .gt_indent_2 {
+#luiduzovdx .gt_indent_2 {
   text-indent: 10px;
 }
 
-#fowzactvnv .gt_indent_3 {
+#luiduzovdx .gt_indent_3 {
   text-indent: 15px;
 }
 
-#fowzactvnv .gt_indent_4 {
+#luiduzovdx .gt_indent_4 {
   text-indent: 20px;
 }
 
-#fowzactvnv .gt_indent_5 {
+#luiduzovdx .gt_indent_5 {
   text-indent: 25px;
 }
 
-#fowzactvnv .katex-display {
+#luiduzovdx .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#fowzactvnv div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#luiduzovdx div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1323,23 +1368,23 @@ Table&nbsp;1.2: The group summary table of the drive shaft data
 </figcaption>
 <div aria-describedby="tbl-ds-sum-grps-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="eoslkksace" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#eoslkksace table {
+<div id="szmzfdoqnp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#szmzfdoqnp table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#eoslkksace thead, #eoslkksace tbody, #eoslkksace tfoot, #eoslkksace tr, #eoslkksace td, #eoslkksace th {
+#szmzfdoqnp thead, #szmzfdoqnp tbody, #szmzfdoqnp tfoot, #szmzfdoqnp tr, #szmzfdoqnp td, #szmzfdoqnp th {
   border-style: none;
 }
 
-#eoslkksace p {
+#szmzfdoqnp p {
   margin: 0;
   padding: 0;
 }
 
-#eoslkksace .gt_table {
+#szmzfdoqnp .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1365,12 +1410,12 @@ Table&nbsp;1.2: The group summary table of the drive shaft data
   border-left-color: #D3D3D3;
 }
 
-#eoslkksace .gt_caption {
+#szmzfdoqnp .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#eoslkksace .gt_title {
+#szmzfdoqnp .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1382,7 +1427,7 @@ Table&nbsp;1.2: The group summary table of the drive shaft data
   border-bottom-width: 0;
 }
 
-#eoslkksace .gt_subtitle {
+#szmzfdoqnp .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1394,7 +1439,7 @@ Table&nbsp;1.2: The group summary table of the drive shaft data
   border-top-width: 0;
 }
 
-#eoslkksace .gt_heading {
+#szmzfdoqnp .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1406,13 +1451,13 @@ Table&nbsp;1.2: The group summary table of the drive shaft data
   border-right-color: #D3D3D3;
 }
 
-#eoslkksace .gt_bottom_border {
+#szmzfdoqnp .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#eoslkksace .gt_col_headings {
+#szmzfdoqnp .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1427,7 +1472,7 @@ Table&nbsp;1.2: The group summary table of the drive shaft data
   border-right-color: #D3D3D3;
 }
 
-#eoslkksace .gt_col_heading {
+#szmzfdoqnp .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1447,7 +1492,7 @@ Table&nbsp;1.2: The group summary table of the drive shaft data
   overflow-x: hidden;
 }
 
-#eoslkksace .gt_column_spanner_outer {
+#szmzfdoqnp .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1459,15 +1504,15 @@ Table&nbsp;1.2: The group summary table of the drive shaft data
   padding-right: 4px;
 }
 
-#eoslkksace .gt_column_spanner_outer:first-child {
+#szmzfdoqnp .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#eoslkksace .gt_column_spanner_outer:last-child {
+#szmzfdoqnp .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#eoslkksace .gt_column_spanner {
+#szmzfdoqnp .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1479,11 +1524,11 @@ Table&nbsp;1.2: The group summary table of the drive shaft data
   width: 100%;
 }
 
-#eoslkksace .gt_spanner_row {
+#szmzfdoqnp .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#eoslkksace .gt_group_heading {
+#szmzfdoqnp .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1509,7 +1554,7 @@ Table&nbsp;1.2: The group summary table of the drive shaft data
   text-align: left;
 }
 
-#eoslkksace .gt_empty_group_heading {
+#szmzfdoqnp .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1524,15 +1569,15 @@ Table&nbsp;1.2: The group summary table of the drive shaft data
   vertical-align: middle;
 }
 
-#eoslkksace .gt_from_md > :first-child {
+#szmzfdoqnp .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#eoslkksace .gt_from_md > :last-child {
+#szmzfdoqnp .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#eoslkksace .gt_row {
+#szmzfdoqnp .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1551,7 +1596,7 @@ Table&nbsp;1.2: The group summary table of the drive shaft data
   overflow-x: hidden;
 }
 
-#eoslkksace .gt_stub {
+#szmzfdoqnp .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1564,7 +1609,7 @@ Table&nbsp;1.2: The group summary table of the drive shaft data
   padding-right: 5px;
 }
 
-#eoslkksace .gt_stub_row_group {
+#szmzfdoqnp .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1578,15 +1623,15 @@ Table&nbsp;1.2: The group summary table of the drive shaft data
   vertical-align: top;
 }
 
-#eoslkksace .gt_row_group_first td {
+#szmzfdoqnp .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#eoslkksace .gt_row_group_first th {
+#szmzfdoqnp .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#eoslkksace .gt_summary_row {
+#szmzfdoqnp .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1596,16 +1641,16 @@ Table&nbsp;1.2: The group summary table of the drive shaft data
   padding-right: 5px;
 }
 
-#eoslkksace .gt_first_summary_row {
+#szmzfdoqnp .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#eoslkksace .gt_first_summary_row.thick {
+#szmzfdoqnp .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#eoslkksace .gt_last_summary_row {
+#szmzfdoqnp .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1615,7 +1660,7 @@ Table&nbsp;1.2: The group summary table of the drive shaft data
   border-bottom-color: #D3D3D3;
 }
 
-#eoslkksace .gt_grand_summary_row {
+#szmzfdoqnp .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1625,7 +1670,7 @@ Table&nbsp;1.2: The group summary table of the drive shaft data
   padding-right: 5px;
 }
 
-#eoslkksace .gt_first_grand_summary_row {
+#szmzfdoqnp .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1635,7 +1680,7 @@ Table&nbsp;1.2: The group summary table of the drive shaft data
   border-top-color: #D3D3D3;
 }
 
-#eoslkksace .gt_last_grand_summary_row_top {
+#szmzfdoqnp .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1645,11 +1690,11 @@ Table&nbsp;1.2: The group summary table of the drive shaft data
   border-bottom-color: #D3D3D3;
 }
 
-#eoslkksace .gt_striped {
+#szmzfdoqnp .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#eoslkksace .gt_table_body {
+#szmzfdoqnp .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1658,7 +1703,7 @@ Table&nbsp;1.2: The group summary table of the drive shaft data
   border-bottom-color: #D3D3D3;
 }
 
-#eoslkksace .gt_footnotes {
+#szmzfdoqnp .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1672,7 +1717,7 @@ Table&nbsp;1.2: The group summary table of the drive shaft data
   border-right-color: #D3D3D3;
 }
 
-#eoslkksace .gt_footnote {
+#szmzfdoqnp .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1681,7 +1726,7 @@ Table&nbsp;1.2: The group summary table of the drive shaft data
   padding-right: 5px;
 }
 
-#eoslkksace .gt_sourcenotes {
+#szmzfdoqnp .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1695,7 +1740,7 @@ Table&nbsp;1.2: The group summary table of the drive shaft data
   border-right-color: #D3D3D3;
 }
 
-#eoslkksace .gt_sourcenote {
+#szmzfdoqnp .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1703,72 +1748,72 @@ Table&nbsp;1.2: The group summary table of the drive shaft data
   padding-right: 5px;
 }
 
-#eoslkksace .gt_left {
+#szmzfdoqnp .gt_left {
   text-align: left;
 }
 
-#eoslkksace .gt_center {
+#szmzfdoqnp .gt_center {
   text-align: center;
 }
 
-#eoslkksace .gt_right {
+#szmzfdoqnp .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#eoslkksace .gt_font_normal {
+#szmzfdoqnp .gt_font_normal {
   font-weight: normal;
 }
 
-#eoslkksace .gt_font_bold {
+#szmzfdoqnp .gt_font_bold {
   font-weight: bold;
 }
 
-#eoslkksace .gt_font_italic {
+#szmzfdoqnp .gt_font_italic {
   font-style: italic;
 }
 
-#eoslkksace .gt_super {
+#szmzfdoqnp .gt_super {
   font-size: 65%;
 }
 
-#eoslkksace .gt_footnote_marks {
+#szmzfdoqnp .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#eoslkksace .gt_asterisk {
+#szmzfdoqnp .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#eoslkksace .gt_indent_1 {
+#szmzfdoqnp .gt_indent_1 {
   text-indent: 5px;
 }
 
-#eoslkksace .gt_indent_2 {
+#szmzfdoqnp .gt_indent_2 {
   text-indent: 10px;
 }
 
-#eoslkksace .gt_indent_3 {
+#szmzfdoqnp .gt_indent_3 {
   text-indent: 15px;
 }
 
-#eoslkksace .gt_indent_4 {
+#szmzfdoqnp .gt_indent_4 {
   text-indent: 20px;
 }
 
-#eoslkksace .gt_indent_5 {
+#szmzfdoqnp .gt_indent_5 {
   text-indent: 25px;
 }
 
-#eoslkksace .katex-display {
+#szmzfdoqnp .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#eoslkksace div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#szmzfdoqnp div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>

@@ -296,8 +296,8 @@ window.Quarto = {
   </ul></li>
   <li><a href="#control-charts-for-attributes" id="toc-control-charts-for-attributes" class="nav-link" data-scroll-target="#control-charts-for-attributes"><span class="header-section-number">6.3</span> Control Charts for Attributes</a>
   <ul class="collapse">
-  <li><a href="#p-chart" id="toc-p-chart" class="nav-link" data-scroll-target="#p-chart"><span class="header-section-number">6.3.1</span> P Chart</a></li>
-  <li><a href="#np-chart" id="toc-np-chart" class="nav-link" data-scroll-target="#np-chart"><span class="header-section-number">6.3.2</span> NP Chart</a></li>
+  <li><a href="#np-chart" id="toc-np-chart" class="nav-link" data-scroll-target="#np-chart"><span class="header-section-number">6.3.1</span> NP Chart</a></li>
+  <li><a href="#p-chart" id="toc-p-chart" class="nav-link" data-scroll-target="#p-chart"><span class="header-section-number">6.3.2</span> P Chart</a></li>
   </ul></li>
   <li><a href="#process-capability-and-six-sigma" id="toc-process-capability-and-six-sigma" class="nav-link" data-scroll-target="#process-capability-and-six-sigma"><span class="header-section-number">6.4</span> Process Capability and Six Sigma</a>
   <ul class="collapse">
@@ -495,8 +495,35 @@ LWL &amp;= \sigma * \sqrt{\frac{\chi^2_{1-\beta=0.025;n-1}}{n-1}} \;\text{with}\
 </section>
 <section id="control-charts-for-attributes" class="level2" data-number="6.3">
 <h2 data-number="6.3" class="anchored" data-anchor-id="control-charts-for-attributes"><span class="header-section-number">6.3</span> Control Charts for Attributes</h2>
-<section id="p-chart" class="level3" data-number="6.3.1">
-<h3 data-number="6.3.1" class="anchored" data-anchor-id="p-chart"><span class="header-section-number">6.3.1</span> P Chart</h3>
+<section id="np-chart" class="level3" data-number="6.3.1">
+<h3 data-number="6.3.1" class="anchored" data-anchor-id="np-chart"><span class="header-section-number">6.3.1</span> NP Chart</h3>
+<div class="r-stack">
+<div class="fragment fade-out">
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-np-chart" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-np-chart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chapter004_ProductionStatistics_files/figure-html/fig-np-chart-1.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-np-chart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.5: A NP-Chart with control limits.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment fade-in">
+<p><span class="math display">\[\begin{align}
+CL = n\bar{p} \pm 3\sqrt{n\bar{p}(1-\bar{p})}
+\end{align}\]</span></p>
+</div>
+<p>An NP chart, also known as a Number of Defects Per Unit chart, is a statistical tool used in quality control to monitor the number of defects or errors in a process over time. It is commonly employed in manufacturing and other industries to assess the stability and performance of a production process. The chart typically displays the number of defects observed in a sample of units or products, allowing for the identification of trends, patterns, or variations in the defect rates. This information aids in quality improvement efforts by enabling organizations to take corrective actions and maintain consistent product or service quality.</p>
+</div>
+</section>
+<section id="p-chart" class="level3" data-number="6.3.2">
+<h3 data-number="6.3.2" class="anchored" data-anchor-id="p-chart"><span class="header-section-number">6.3.2</span> P Chart</h3>
 <div class="r-stack">
 <div class="fragment fade-out">
 <div class="cell">
@@ -507,7 +534,7 @@ LWL &amp;= \sigma * \sqrt{\frac{\chi^2_{1-\beta=0.025;n-1}}{n-1}} \;\text{with}\
 <img src="chapter004_ProductionStatistics_files/figure-html/fig-p-chart-1.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-p-chart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6.5: A P-Chart with control limits.
+Figure&nbsp;6.6: A P-Chart with control limits.
 </figcaption>
 </figure>
 </div>
@@ -521,33 +548,6 @@ CL = \bar{p} \pm 3\sqrt{\frac{\bar{p}(1-\bar{p})}{n}}
 </div>
 <p>The P chart is designed to track the proportion of nonconforming items or defects within a sample or subgroup over consecutive periods. The chart typically consists of a horizontal axis representing time periods and a vertical axis representing the proportion of nonconforming items. It helps identify variations and trends in the process, allowing for timely corrective actions when necessary.</p>
 <p>P charts are commonly used in industries where the output is binary, such as the presence or absence of a specific attribute, and provide a visual representation of the process’s performance, aiding in quality improvement efforts.</p>
-</div>
-</section>
-<section id="np-chart" class="level3" data-number="6.3.2">
-<h3 data-number="6.3.2" class="anchored" data-anchor-id="np-chart"><span class="header-section-number">6.3.2</span> NP Chart</h3>
-<div class="r-stack">
-<div class="fragment fade-out">
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-np-chart" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-np-chart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter004_ProductionStatistics_files/figure-html/fig-np-chart-1.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-np-chart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6.6: A NP-Chart with control limits.
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div class="fragment fade-in">
-<p><span class="math display">\[\begin{align}
-CL = n\bar{p} \pm 3\sqrt{n\bar{p}(1-\bar{p})}
-\end{align}\]</span></p>
-</div>
-<p>An NP chart, also known as a Number of Defects Per Unit chart, is a statistical tool used in quality control to monitor the number of defects or errors in a process over time. It is commonly employed in manufacturing and other industries to assess the stability and performance of a production process. The chart typically displays the number of defects observed in a sample of units or products, allowing for the identification of trends, patterns, or variations in the defect rates. This information aids in quality improvement efforts by enabling organizations to take corrective actions and maintain consistent product or service quality.</p>
 </div>
 </section>
 </section>

@@ -22,7 +22,7 @@ library(gtsummary)
 
 ```{r}
 #| label: basics-001
-#| out-width: 65%
+#| fig-width: 10
 #| fig-cap: The necessary statistical ingredients.
 knitr::include_graphics(here::here("chapter000","000_basics_root.png"))
 ```
@@ -216,7 +216,7 @@ knitr::include_graphics(here::here("chapter000","011_Plinko.png"))
 
 ::: {.content-visible when-profile="slides"}
 
-What is the probability for a ball to land in one of the bin?
+What is the probability for a ball to land in one of the bins?
 
 :::
 
@@ -302,7 +302,7 @@ Is it different for another sequence?
 
 ##### Bins and Sequence
 
-Is it sure, that every ball that follow a specific sequence lands in it's own bin?
+Is it sure, that every ball that follows a specific sequence lands in it's own bin?
 
 ::: {.fragment .fade-in}
 
@@ -369,7 +369,7 @@ $$(n-k)! = (6-3)! = 3! = 6$$
 
 $$\frac{n!}{k!(n-k)!} = \frac{720}{6\times6} = 20$$
 
-This is called the *Binomial Coefficient and it is written
+This is called the *Binomial Coefficient* and it is written
 
 $$\binom{n}{k}$$
 
@@ -473,8 +473,8 @@ galton_dat |>
 
 
 galton_dat <- data.frame(
-  bin_nr = seq(0,100),
-  n = 100
+  bin_nr = seq(0,1000),
+  n = 1000
 ) |> 
   rowwise() |> 
   mutate(
