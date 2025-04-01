@@ -258,6 +258,157 @@ Figure&nbsp;6: The standarized normal distribution
 </center>
 </section>
 
+<section id="emergence" class="title-slide slide level3 center">
+<h3>Emergence</h3>
+<div class="r-stack">
+<div class="fragment fade-out">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-8-1.svg"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment fade-in">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-9-1.svg"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="the-math-behind" class="title-slide slide level4 center">
+<h4>The math behind</h4>
+<p><span class="math display">\[P(k) = \binom{n}{k}\cdot{\frac{1}{2}}^n\]</span></p>
+<div style="font-size: 70%;">
+<table class="caption-top">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 17%">
+<col style="width: 26%">
+<col style="width: 39%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(k\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(n!\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(k!\)</span></th>
+<th style="text-align: center;"><span class="math inline">\((n-k)!\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\binom{n}{k} = \binom{6}{k}\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(P(k) = \binom{6}{k}\cdot{\frac{1}{2}}^{n=6}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(720\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((6-0)! = 6! = 720\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{720}{1 \cdot 720} = 1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(P(0) = 1 \cdot \frac{1}{64} = 0.015624\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(720\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((6-1)! = 5! = 120\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{720}{1 \cdot 120} = 6\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(P(1) = 6 \cdot \frac{1}{64} = 0.093750\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(720\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((6-2)! = 4! = 24\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{720}{2 \cdot 24} = 15\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(P(2) = 15 \cdot \frac{1}{64} = 0.234375\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(3\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(720\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(6\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((6-3)! = 3! = 6\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{720}{6 \cdot 6} = 20\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(P(3) = 20 \cdot \frac{1}{64} = 0.312500\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(4\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(720\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(24\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((6-4)! = 2! = 2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{720}{24 \cdot 2} = 15\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(P(2) = 15 \cdot \frac{1}{64} = 0.234375\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(5\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(720\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(120\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((6-5)! = 1! = 1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{720}{120 \cdot 1} = 6\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(P(5) = 6 \cdot \frac{1}{64} = 0.093750\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(6\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(720\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(720\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((6-6)! = 0! = 1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{720}{720 \cdot 1} = 1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(P(6) = 1 \cdot \frac{1}{64} = 0.015624\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section id="mean-and-standard-deviation-from-the-galton-board" class="title-slide slide level4 center">
+<h4>Mean and Standard Deviation from the Galton board</h4>
+<ul>
+<li>What is the expected value?</li>
+</ul>
+<div class="fragment fade-in">
+<p><span class="math display">\[\mu = E[X] = np\]</span> <span class="math display">\[p = 0.5 \rightarrow \mu = n \times 0.5 = \frac{1}{2}\]</span></p>
+<p>On <em>average</em> a ball will land in <span class="math inline">\(k=\frac{n}{2}\)</span></p>
+</div>
+<ul>
+<li>What is the spread</li>
+</ul>
+<div class="fragment fade-in">
+<p><span class="math display">\[\sigma = \sqrt{np(1-p)}\]</span> <span class="math inline">\(Var(X) = E[(X-\mu)^2]\)</span> (Variance in general)</p>
+<p><span class="math inline">\(Var(X) = np(1-p)\)</span> (number of right moves)</p>
+</div>
+</section>
+
+<section id="understanding-spread" class="title-slide slide level4 center">
+<h4>Understanding spread</h4>
+<p><span class="math display">\[\sigma^2=np(1-p)\]</span></p>
+<ul>
+<li>Every step is independent, for a single step (<span class="math inline">\(p=0.5\)</span>):</li>
+</ul>
+<p><span class="math display">\[Var(X) = p(1-p)\]</span></p>
+<ul>
+<li>Therefore for <span class="math inline">\(n\)</span> steps:</li>
+</ul>
+<p><span class="math display">\[Var(X) = np(1-p) \rightarrow \sigma = \frac{\sqrt{n}}{2}\]</span></p>
+</section>
+<section class="slide level5">
+
+<ul>
+<li>For <span class="math inline">\(n = 100\)</span></li>
+</ul>
+<p><span class="math inline">\(\sigma = \frac{\sqrt{100}}{2}\)</span> so most balls will land between <span class="math inline">\(45\)</span> and <span class="math inline">\(55\)</span></p>
+</section>
+
+
 <section id="central-limit-theorem-clt" class="title-slide slide level3 center">
 <h3>Central Limit Theorem (CLT)</h3>
 <div class="r-stack">
@@ -495,7 +646,7 @@ is a measure of the chance an event will occur, ranging from <span class="math i
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-23-1.svg" style="width:100.0%"></p>
+<p><img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-25-1.svg" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -506,7 +657,7 @@ is a measure of the chance an event will occur, ranging from <span class="math i
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-24-1.svg" style="width:100.0%"></p>
+<p><img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-26-1.svg" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -530,7 +681,7 @@ is a measure of the chance an event will occur, ranging from <span class="math i
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-25-1.svg" style="width:100.0%"></p>
+<p><img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-27-1.svg" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -743,7 +894,7 @@ F_{m,n} = \frac{\chi^2_m/m}{\chi^2_n/n} \nonumber
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-32-1.svg" style="width:100.0%"></p>
+<p><img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-34-1.svg" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -754,7 +905,7 @@ F_{m,n} = \frac{\chi^2_m/m}{\chi^2_n/n} \nonumber
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-33-1.svg" style="width:100.0%"></p>
+<p><img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-35-1.svg" style="width:100.0%"></p>
 </figure>
 </div>
 </div>

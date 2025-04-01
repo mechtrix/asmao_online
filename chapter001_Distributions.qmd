@@ -224,6 +224,145 @@ The existence of the normal distribution in the real world is a result of the co
 
 :::
 
+### Emergence
+
+::: {.r-stack}
+
+::: {.fragment .fade-out}
+
+```{r}
+#| fig-width: 15
+#| fig-height: 8
+
+
+galton_dat <- data.frame(
+  bin_nr = seq(0,6),
+  n = 6
+) |> 
+  rowwise() |> 
+  mutate(
+    binom_coef = pracma::nchoosek(n,bin_nr),
+    Prob = binom_coef*(0.5^n)
+  )
+
+galton_dat |> 
+  ggplot(
+    aes(
+      x = bin_nr,
+      y = Prob
+      )
+  )+
+  geom_col()+
+  scale_y_continuous(
+    expand = c(0,0,0.05,0)
+  )+
+  theme_minimal(
+    base_size = 15
+  )
+
+```
+
+:::
+
+::: {.fragment .fade-in}
+
+```{r}
+#| fig-width: 15
+#| fig-height: 8
+
+
+galton_dat <- data.frame(
+  bin_nr = seq(0,1000),
+  n = 1000
+) |> 
+  rowwise() |> 
+  mutate(
+    binom_coef = pracma::nchoosek(n,bin_nr),
+    Prob = binom_coef*(0.5^n)
+  )
+
+galton_dat |> 
+  ggplot(
+    aes(
+      x = bin_nr,
+      y = Prob
+      )
+  )+
+  geom_col()+
+  scale_y_continuous(
+    expand = c(0,0,0.05,0)
+  )+
+  theme_minimal(
+    base_size = 15
+  )
+
+```
+
+:::
+
+:::
+
+
+#### The math behind
+
+$$P(k) = \binom{n}{k}\cdot{\frac{1}{2}}^n$$
+
+::: {style="font-size: 70%;"}
+
+| $k$ |  $n!$ |  $k!$ |       $(n-k)!$      | $\binom{n}{k} = \binom{6}{k}$ | $P(k) = \binom{6}{k}\cdot{\frac{1}{2}}^{n=6}$ |
+|:---:|:-----:|:-----:|:-------------------:|:-----------------------------:|:---------------------------------------------:|
+| $0$ | $720$ |  $1$  | $(6-0)! = 6! = 720$ | $\frac{720}{1 \cdot 720} = 1$ |    $P(0) = 1 \cdot \frac{1}{64} = 0.015624$   |
+| $1$ | $720$ |  $1$  | $(6-1)! = 5! = 120$ | $\frac{720}{1 \cdot 120} = 6$ |    $P(1) = 6 \cdot \frac{1}{64} = 0.093750$   |
+| $2$ | $720$ |  $2$  |  $(6-2)! = 4! = 24$ | $\frac{720}{2 \cdot 24} = 15$ |   $P(2) = 15 \cdot \frac{1}{64} = 0.234375$   |
+| $3$ | $720$ |  $6$  |  $(6-3)! = 3! = 6$  |  $\frac{720}{6 \cdot 6} = 20$ |   $P(3) = 20 \cdot \frac{1}{64} = 0.312500$   |
+| $4$ | $720$ |  $24$ |  $(6-4)! = 2! = 2$  | $\frac{720}{24 \cdot 2} = 15$ |   $P(2) = 15 \cdot \frac{1}{64} = 0.234375$   |
+| $5$ | $720$ | $120$ |  $(6-5)! = 1! = 1$  | $\frac{720}{120 \cdot 1} = 6$ |    $P(5) = 6 \cdot \frac{1}{64} = 0.093750$   |
+| $6$ | $720$ | $720$ |  $(6-6)! = 0! = 1$  | $\frac{720}{720 \cdot 1} = 1$ |    $P(6) = 1 \cdot \frac{1}{64} = 0.015624$   |
+
+:::
+
+#### Mean and Standard Deviation from the Galton board
+
+- What is the expected value?
+
+::: {.fragment .fade-in}
+
+$$\mu = E[X] = np$$
+$$p = 0.5 \rightarrow \mu = n \times 0.5 = \frac{1}{2}$$
+
+On *average* a ball will land in $k=\frac{n}{2}$
+
+:::
+
+- What is the spread
+
+::: {.fragment .fade-in}
+
+$$\sigma = \sqrt{np(1-p)}$$
+$Var(X) = E[(X-\mu)^2]$ (Variance in general)
+
+$Var(X) = np(1-p)$ (number of right moves)
+
+:::
+
+#### Understanding spread
+
+$$\sigma^2=np(1-p)$$
+
+- Every step is independent, for a single step ($p=0.5$):
+
+$$Var(X) = p(1-p)$$
+
+- Therefore for $n$ steps:
+
+$$Var(X) = np(1-p) \rightarrow \sigma = \frac{\sqrt{n}}{2}$$
+
+---
+
+- For $n = 100$
+
+$\sigma = \frac{\sqrt{100}}{2}$ so most balls will land between $45$ and $55$
+
 ### Central Limit Theorem (CLT)
 
 ::: {.r-stack}
@@ -609,7 +748,7 @@ drive_shaft_scaled %>%
                                "data" = "azure3"))+
   labs(
     title = "The drive shaft data with overlayed normal distributions",
-    y = "count",
+    y = "density",
     x = "standard deviation",
     fill = "",
     linetype = "source"
