@@ -328,7 +328,7 @@ $$P(k) = \binom{n}{k}\cdot{\frac{1}{2}}^n$$
 ::: {.fragment .fade-in}
 
 $$\mu = E[X] = np$$
-$$p = 0.5 \rightarrow \mu = n \times 0.5 = \frac{1}{2}$$
+$$p = 0.5 \rightarrow \mu = n \times 0.5 = \frac{1}{2}n$$
 
 On *average* a ball will land in $k=\frac{n}{2}$
 
@@ -363,237 +363,6 @@ $$Var(X) = np(1-p) \rightarrow \sigma = \frac{\sqrt{n}}{2}$$
 
 $\sigma = \frac{\sqrt{100}}{2}$ so most balls will land between $45$ and $55$
 
-### Central Limit Theorem (CLT)
-
-::: {.r-stack}
-
-::: {.content-visible when-profile="slides"}
-
-::: {.fragment .fade-out}
-
-```{r}
-#| label: fig-clt-data
-#| out-width: 75%
-#| fig-cap: The population from which the samples to show the CLT are taken.
-
-# Set the parameters for the population distribution
-population_size <- 10000  # Size of the population
-population_distribution <- runif(population_size, min = 1, max = 100)  # Uniform distribution
-
-ggplot(data = data.frame(x = population_distribution),aes(x))+
-  geom_density(fill = "gray")+
-  scale_x_continuous(expand = c(0,0,0,0))+
-  scale_y_continuous(expand = c(0,0,0.05,0))+
-  labs(
-    title = "The uniform distribution from which the samples are drawn",
-    x = "value (min = 1, max = 100)"
-      )+
-  theme_few()
-```
-
-:::
-
-:::
-
-::: {.fragment}
-```{r}
-#| label: fig-clt
-#| out-width: 99%
-#| fig-cap: The central limit theorem in action.  
-
-# Number of samples to take
-num_samples <- 1000
-
-# Set the sample sizes for each iteration
-sample_sizes <- c(2, 10, 50,200)
-
-# Create a data frame to store results
-results <- data.frame()
-
-# Simulate sampling and calculate sample means
-for (sample_size in sample_sizes) {
-  sample_means <- replicate(num_samples, mean(sample(population_distribution, sample_size)))
-  result <- data.frame(Sample_Size = sample_size, Sample_Means = sample_means)
-  results <- bind_rows(results, result)
-}
-
-# Plot the CLT demonstration using ggplot2
-ggplot(results, aes(x = Sample_Means)) +
-  geom_histogram(binwidth = 2, fill = "gray", color = "black") +
-  facet_wrap(~ Sample_Size, scales = "free_x") +
-  geom_vline(aes(xintercept = mean(population_distribution), color = "Population Mean"), linetype = "solid", size = 1,key_glyph = draw_key_path) +
-  scale_color_manual(values = c("Population Mean" = "black")) +
-  labs(
-    title = "Central Limit Theorem Demonstration",
-    x = "Sample Mean",
-    y = "Frequency",
-    color = ""
-  ) +
-  theme_few()+
-  theme(legend.position = "bottom")
-```
-
-:::
-
-:::
-
-
-::: {.content-visible when-profile="script"}
-
-The primary reason for the existence of the normal distribution in many real-world datasets is the [Central Limit Theorem](#clt) [@1981369198]. 
-The [CLT](#clt) states that when you take a large enough number of random samples from any population, the distribution of the sample means will tend to follow a normal distribution, even if the original population distribution is not normal. 
-This means that the normal distribution emerges as a statistical consequence of aggregating random data points.
-This is shown in @fig-clt.
-
-From $n=10000$ uniformly disitrbuted data points (the *population*) ($min=1, max = 100$) either $2,10,50$ or $200$ samples are taken randomly (the *samples*).
-For each of the samples the mean is calculated, resulting in $1000$ mean values for each ($2,10,50$ or $200$) sample size.
-In @fig-clt the results from this numerical study are shown.
-The larger the sample size, the closer the mean calculated [$\bar{x}$](#mean-gloss)is to the population mean ([$\mu_0$](#truemean-gloss)).
-The effect is especially large on the standard deviation, resulting in a smaller standard deviation the larger the sample size is.
-
-:::
-
-
-### Randomness and Independence
-
-```{r}
-#| label: fig-indep
-#| out-width: 75%
-#| fig-cap: Two random and independent samples drawn from a normal distribution. They do not show any indepedence.
-
-# Generate two independent sets of random data from normal distributions
-set.seed(45)
-independent_data_x <- rnorm(100, mean = 0, sd = 1)
-independent_data_y <- rnorm(100, mean = 0, sd = 1)
-
-# Create a scatterplot to visualize the independence
-independence_plot <- ggplot(data.frame(x = independent_data_x, y = independent_data_y), aes(x = x, y = y)) +
-  geom_point() +
-  labs(title = "Independence of Two Normal Distributions",
-       subtitle = "Mean = 0, Standard Deviation = 1 for both X and Y",
-       x = "X",
-       y = "Y") +
-  theme_few()
-
-ggMarginal(independence_plot,type = "histogram")
-
-```
-
-::: {.content-visible when-profile="script"}
-
-In nature and society, many processes involve a large number of random, independent, and additive factors. 
-When these factors combine, their individual effects tend to follow a normal distribution, as predicted by the [CLT](#clt). 
-This principle is observed in various contexts, such as the behavior of particles in a gas (Brownian motion), the genetics of traits in populations, or the variability in the heights and weights of individuals in a population.
-
-:::
-
-
-### Law of Large Numbers 
-
-```{r}
-#| label: fig-lln
-#| out-width: 75%
-#| fig-cap: The Law of Large Numbers in Action with die rolls as an example.
-#| fig-pos: "H"
-
-# Number of die rolls to simulate
-num_rolls <- 1000
-
-# Simulate die rolls
-set.seed(123)  # For reproducibility
-die_rolls <- sample(1:6, num_rolls, replace = TRUE)
-
-# Calculate running average
-running_average <- cumsum(die_rolls) / (1:num_rolls)
-
-# Create a data frame
-rolls_data <- data.frame(
-  Roll_Number = 1:num_rolls,
-  Die_Result = die_rolls,
-  Running_Average = running_average
-)
-
-# Create a plot using ggplot2
-ggplot(rolls_data, aes(x = Roll_Number)) +
-  geom_line(aes(y = Running_Average)) +
-  geom_hline(yintercept = 3.5, linetype = "dashed") +
-  labs(
-    title = "Law of Large Numbers",
-    x = "Number of Die Rolls",
-    y = "Running Average"
-  ) +
-  scale_y_continuous(breaks = c(1,2,3,3.5,4,5,6),
-                     limits = c(1,6))+
-  theme_few()
-
-
-```
-
-::: {.content-visible when-profile="script"}
-
-The [Law of Large Numbers](#lln) states that as the size of a random sample increases, the sample average converges to the population mean. 
-This law, along with the [CLT](#clt), explains why the normal distribution frequently arises. 
-When you take many small, independent, and identically distributed measurements and compute their averages, these averages tend to cluster around the true population mean, forming a normal distribution [@1981369198, @johnson1994continuous].
-
-The [LLN](#lln) ar work is shown in @fig-lln.
-A fair six-sided die is rolled 1000 times and the running average of the roll results after each roll is calculated. 
-The resulting line plot shows how the running average approaches the expected value of $3.5$, which is the average of all possible outcomes of the die. 
-The  line in the plot represents the running average
-It fluctuates at the beginning but gradually converges toward the expected value of $3.5$. 
-To emphasize this convergence, a dashed line indicating the theoretical expected value which is essentially the expected value applied to each roll. 
-This visualization demonstrates the Law of Large Numbers, which states that as the number of trials or rolls increases, the *sample mean* (running average in this case) approaches the *population mean* (expected value) with greater accuracy, showing the predictability and stability of random processes over a large number of observations.
-
-:::
-
-### The drive shaft exercise - Normal Distribution
-
-```{r}
-#| label: fig-ds-nd
-#| out-width: 75%
-#| fig-cap: The drive shaft data with the respective normal distributions.
-
-load(here("data","drive_shaft_data.Rdata"))
-
-drive_shaft %>% 
-  ggplot(aes(x = diameter))+
-  geom_histogram()+
-  stat_theodensity(
-    aes(y = stat(density)*4, 
-        fill = "Normal Distribution"),
-    distri = "norm", 
-    geom = "area",
-    color = "black",
-    alpha = 0.5)+
-  geom_vline(aes(xintercept = 12,linetype = "nominal"),key_glyph = draw_key_path)+
-  geom_vline(aes(xintercept = 11.9,linetype = "lower limit"),key_glyph = draw_key_path)+
-  geom_vline(aes(xintercept = 12.1,linetype = "upper limit"),key_glyph = draw_key_path)+
-  facet_wrap(~group,
-             scales = "free_y")+
-  scale_linetype_manual(
-    values = c("nominal" = "solid", "lower limit" = "dashed", "upper limit" = "dashed")
-      )+
-  scale_y_continuous(expand = c(0,0,0.05,0))+
-  scale_x_continuous(expand = c(0,0,0,0))+
-  scale_fill_manual(values = c("Normal Distribution"="azure3"))+
-  labs(
-    title = "The drive shaft data with overlayed normal distributions",
-    y = "count",
-    fill = "",
-    linetype = "Specification")+
-  theme_few()+
-  theme(legend.position = "bottom")
-
-
-```
-
-::: {.content-visible when-profile="script"}
-
-In @fig-ds-nd the `drive shaft data` is shown for each group in a histogram.
-As an overlay, the respective *normal distribution* (with the groups $\bar{x},sd$) is overlayed.
-If the data is normally distributed, is a different question.
-
-:::
-
 ## Z - Standardization
 
 ::: {.r-stack}
@@ -603,6 +372,8 @@ If the data is normally distributed, is a different question.
 ```{r}
 #| label: fig-z-scores-raw
 #| out-width: 75%
+#| fig-width: 8
+#| fig-height: 5
 #| fig-cap: The original data of group X and group Y
 
 data <- data.frame(
@@ -771,7 +542,271 @@ We will dwelve more into such investigation in another chapter, but this is a fi
 
 :::
 
-{{< pagebreak >}}
+### Central Limit Theorem (CLT)
+
+::: {.r-stack}
+
+::: {.content-visible when-profile="slides"}
+
+::: {.fragment .fade-out}
+
+```{r}
+#| label: fig-clt-data
+#| out-width: 75%
+#| fig-cap: The population from which the samples to show the CLT are taken.
+
+# Set the parameters for the population distribution
+population_size <- 10000  # Size of the population
+population_distribution <- runif(population_size, min = 1, max = 100)  # Uniform distribution
+
+ggplot(data = data.frame(x = population_distribution),aes(x))+
+  geom_density(fill = "gray")+
+  scale_x_continuous(expand = c(0,0,0,0))+
+  scale_y_continuous(expand = c(0,0,0.05,0))+
+  labs(
+    title = "The uniform distribution from which the samples are drawn",
+    x = "value (min = 1, max = 100)"
+      )+
+  theme_few()
+```
+
+:::
+
+:::
+
+::: {.fragment}
+```{r}
+#| label: fig-clt
+#| out-width: 99%
+#| fig-cap: The central limit theorem in action.  
+
+# Number of samples to take
+num_samples <- 1000
+
+# Set the sample sizes for each iteration
+sample_sizes <- c(2, 10, 50,200)
+
+# Create a data frame to store results
+results <- data.frame()
+
+# Simulate sampling and calculate sample means
+for (sample_size in sample_sizes) {
+  sample_means <- replicate(num_samples, mean(sample(population_distribution, sample_size)))
+  result <- data.frame(Sample_Size = sample_size, Sample_Means = sample_means)
+  results <- bind_rows(results, result)
+}
+
+# Plot the CLT demonstration using ggplot2
+ggplot(results, aes(x = Sample_Means)) +
+  geom_histogram(binwidth = 2, fill = "gray", color = "black") +
+  facet_wrap(~ Sample_Size, scales = "free_x") +
+  geom_vline(aes(xintercept = mean(population_distribution), color = "Population Mean"), linetype = "solid", size = 1,key_glyph = draw_key_path) +
+  scale_color_manual(values = c("Population Mean" = "black")) +
+  labs(
+    title = "Central Limit Theorem Demonstration",
+    x = "Sample Mean",
+    y = "Frequency",
+    color = ""
+  ) +
+  theme_few()+
+  theme(legend.position = "bottom")
+```
+
+:::
+
+:::
+
+
+::: {.content-visible when-profile="script"}
+
+The primary reason for the existence of the normal distribution in many real-world datasets is the [Central Limit Theorem](#clt) [@1981369198]. 
+The [CLT](#clt) states that when you take a large enough number of random samples from any population, the distribution of the sample means will tend to follow a normal distribution, even if the original population distribution is not normal. 
+This means that the normal distribution emerges as a statistical consequence of aggregating random data points.
+This is shown in @fig-clt.
+
+From $n=10000$ uniformly disitrbuted data points (the *population*) ($min=1, max = 100$) either $2,10,50$ or $200$ samples are taken randomly (the *samples*).
+For each of the samples the mean is calculated, resulting in $1000$ mean values for each ($2,10,50$ or $200$) sample size.
+In @fig-clt the results from this numerical study are shown.
+The larger the sample size, the closer the mean calculated [$\bar{x}$](#mean-gloss)is to the population mean ([$\mu_0$](#truemean-gloss)).
+The effect is especially large on the standard deviation, resulting in a smaller standard deviation the larger the sample size is.
+
+:::
+
+
+
+### Law of Large Numbers 
+
+```{r}
+#| label: fig-lln
+#| out-width: 75%
+#| fig-cap: The Law of Large Numbers in Action with die rolls as an example.
+#| fig-pos: "H"
+
+# Number of die rolls to simulate
+num_rolls <- 1000
+
+# Simulate die rolls
+set.seed(123)  # For reproducibility
+die_rolls <- sample(1:6, num_rolls, replace = TRUE)
+
+# Calculate running average
+running_average <- cumsum(die_rolls) / (1:num_rolls)
+
+# Create a data frame
+rolls_data <- data.frame(
+  Roll_Number = 1:num_rolls,
+  Die_Result = die_rolls,
+  Running_Average = running_average
+)
+
+# Create a plot using ggplot2
+ggplot(rolls_data, aes(x = Roll_Number)) +
+  geom_line(aes(y = Running_Average)) +
+  geom_hline(yintercept = 3.5, linetype = "dashed") +
+  labs(
+    title = "Law of Large Numbers",
+    x = "Number of Die Rolls",
+    y = "Running Average"
+  ) +
+  scale_y_continuous(breaks = c(1,2,3,3.5,4,5,6),
+                     limits = c(1,6))+
+  theme_few()
+
+
+```
+
+::: {.content-visible when-profile="script"}
+
+The [Law of Large Numbers](#lln) states that as the size of a random sample increases, the sample average converges to the population mean. 
+This law, along with the [CLT](#clt), explains why the normal distribution frequently arises. 
+When you take many small, independent, and identically distributed measurements and compute their averages, these averages tend to cluster around the true population mean, forming a normal distribution [@1981369198, @johnson1994continuous].
+
+The [LLN](#lln) ar work is shown in @fig-lln.
+A fair six-sided die is rolled 1000 times and the running average of the roll results after each roll is calculated. 
+The resulting line plot shows how the running average approaches the expected value of $3.5$, which is the average of all possible outcomes of the die. 
+The  line in the plot represents the running average
+It fluctuates at the beginning but gradually converges toward the expected value of $3.5$. 
+To emphasize this convergence, a dashed line indicating the theoretical expected value which is essentially the expected value applied to each roll. 
+This visualization demonstrates the Law of Large Numbers, which states that as the number of trials or rolls increases, the *sample mean* (running average in this case) approaches the *population mean* (expected value) with greater accuracy, showing the predictability and stability of random processes over a large number of observations.
+
+:::
+
+
+
+
+### The Z-transform and the Galton Board
+
+```{r}
+#| fig-width: 15
+#| fig-height: 8
+
+
+galton_dat <- data.frame(
+  bin_nr = seq(0,1000),
+  n = 1000
+) |> 
+  rowwise() |> 
+  mutate(
+    binom_coef = pracma::nchoosek(n,bin_nr),
+    Prob = binom_coef*(0.5^n)
+  )
+
+galton_dat |> 
+  ggplot(
+    aes(
+      x = bin_nr,
+      y = Prob
+      )
+  )+
+  geom_col()+
+  scale_y_continuous(
+    expand = c(0,0,0.05,0)
+  )+
+  theme_minimal(
+    base_size = 15
+  )
+
+```
+
+#### Applying the Z-transform
+
+$$Z = \frac{X-\mu}{\sigma}$$
+
+::: {.fragment .fade-in}
+
+$$Z = \frac{X-\frac{n}{2}}{\frac{\sqrt{n}}{2}}$$
+:::
+
+::: {.fragment .fade-in}
+
+$$\lim_{n\to\infty} P(a\leq Z \leq b)= \int_a^b \frac{1}{\sqrt{2\pi}}e^\frac{-z^2}{2} \,dz $$
+
+:::
+
+#### Converting the bionmial Formula to a Normal Form
+
+Stirling appoximation: $n!\approx\sqrt{2\pi n} \left( \frac{n}{e} \right)^n$
+
+Appprox: $\binom{n}{k} \approx \frac{\sqrt{2\pi n} \left( \frac{n}{e} \right)^n}{\sqrt{2\pi n} \left( \frac{k}{e} \right)^k \cdot \sqrt{2\pi(n-k)} \left( \frac{n-k}{e} \right)^{n-k}}$
+
+simplifies to: $\binom{n}{k} = \frac{1}{\sqrt{2\pi n p (1-p)}}e^{-\frac{(k-np)^2}{2np(1-p)}}$
+
+substituting $p=0.5$: $P(X = k) \approx \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(k-\mu)^2}{2\sigma^2}}$
+
+<center>
+
+Which is the **Probability Density Function**
+
+</center>
+
+### The drive shaft exercise - Normal Distribution
+
+```{r}
+#| label: fig-ds-nd
+#| out-width: 75%
+#| fig-cap: The drive shaft data with the respective normal distributions.
+
+load(here("data","drive_shaft_data.Rdata"))
+
+drive_shaft %>% 
+  ggplot(aes(x = diameter))+
+  geom_histogram()+
+  stat_theodensity(
+    aes(y = stat(density)*4, 
+        fill = "Normal Distribution"),
+    distri = "norm", 
+    geom = "area",
+    color = "black",
+    alpha = 0.5)+
+  geom_vline(aes(xintercept = 12,linetype = "nominal"),key_glyph = draw_key_path)+
+  geom_vline(aes(xintercept = 11.9,linetype = "lower limit"),key_glyph = draw_key_path)+
+  geom_vline(aes(xintercept = 12.1,linetype = "upper limit"),key_glyph = draw_key_path)+
+  facet_wrap(~group,
+             scales = "free_y")+
+  scale_linetype_manual(
+    values = c("nominal" = "solid", "lower limit" = "dashed", "upper limit" = "dashed")
+      )+
+  scale_y_continuous(expand = c(0,0,0.05,0))+
+  scale_x_continuous(expand = c(0,0,0,0))+
+  scale_fill_manual(values = c("Normal Distribution"="azure3"))+
+  labs(
+    title = "The drive shaft data with overlayed normal distributions",
+    y = "count",
+    fill = "",
+    linetype = "Specification")+
+  theme_few()+
+  theme(legend.position = "bottom")
+
+
+```
+
+::: {.content-visible when-profile="script"}
+
+In @fig-ds-nd the `drive shaft data` is shown for each group in a histogram.
+As an overlay, the respective *normal distribution* (with the groups $\bar{x},sd$) is overlayed.
+If the data is normally distributed, is a different question.
+
+:::
 
 ## Probability Density Function (PDF)
 
