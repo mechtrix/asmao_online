@@ -124,6 +124,302 @@ The continuous distribution is a mathematical construction, suitable for mathema
 
 :::
 
+## Bionmimal Distribution
+
+::: {.content-visible when-profile="script"}
+
+```{r}
+#| label: fig-bn-dist
+#| out-width: 95%
+#| fig-cap: The binomial distribution
+
+df <- expand.grid(x = seq(0,100), size = c(20,40,100),prob = c(0.5,0.7,0.95))
+
+plt_df <- df %>% 
+  mutate(probability = dbinom(x, size = size, prob = prob)) %>% 
+  filter(probability>0.0001)
+
+plt_theo <- expand.grid(
+  size = c(20,40,100),
+  prob = c(0.5,0.7,0.95)) %>% 
+  mutate(xintercept = prob*size)
+
+plt_binom <- plt_df %>% 
+  ggplot(aes(x = x, y = probability, shape = as.factor(prob))) +
+  geom_point()+
+  geom_path(
+    alpha = 0.4,
+    linetype = "dotted"
+    )+
+  geom_vline(data = plt_theo,
+    aes(xintercept = xintercept),
+    linetype = "dashed",
+    alpha = 0.5
+    )+
+  geom_label(
+    data = plt_theo,
+    aes(x = xintercept,
+        y = 0.45,
+        label = xintercept)
+  )+
+  facet_wrap(~size,
+             scales = "free_x",
+             labeller = label_both)+
+  scale_y_continuous(
+    expand = c(0,0,0.05,0)
+  )+
+  labs(
+    title = "The binomial distribution and the influence of different parameter",
+    x = "number of successes",
+    shape = "probability for success"
+  )+
+  ggthemes::theme_few()+
+  theme(legend.position = "bottom")
+
+plt_binom
+
+```
+
+The binomial distribution is a **discrete** probability distribution that describes the number of successes in a fixed number of independent Bernoulli trials, each with the same probability of success. 
+A Bernoulli trial, named after Swiss mathematician Jacob Bernoulli[^2], is a random experiment or trial with two possible outcomes: success and failure. 
+These outcomes are typically labeled as $1$ for success and $0$ for failure. 
+The key characteristics of a Bernoulli trial are:
+
+1. **Two Outcomes:** There are only two possible outcomes in each trial, and they are mutually exclusive. 
+For example, in a coin toss, the outcomes could be heads (success, represented as $1$) or tails (failure, represented as $0$).
+
+2. **Constant Probability:** The probability of success  remains the same for each trial. 
+This means that the likelihood of success and failure is consistent from one trial to the next.
+
+3. **Independence:** Each trial is independent of others, meaning that the outcome of one trial does not influence the outcome of subsequent trials. 
+For instance, the result of one coin toss doesn't affect the result of the next coin toss.
+
+Examples of Bernoulli trials include:
+
+- Flipping a coin (heads as success, tails as failure).
+- Rolling a die and checking if a specific number appears (the number as success, others as failure).
+- Testing whether a manufactured product is defective or non-defective (defective as success, non-defective as failure).
+
+The Bernoulli trial is the fundamental building block for many other probability distributions, including the binomial distribution, which models the number of successes in a fixed number of Bernoulli trials.
+
+:::
+
+::: {.content-visible when-profile="slides"}
+
+::: {.r-stack}
+
+::: {.fragment .fade-out}
+
+* probability disitribution for discrete outcomes
+
+* n repeated trials.
+
+* two possible outcomes (e.g., success or failure).
+
+* probability of success remains the same 
+
+* each trial is independent 
+
+
+:::
+
+::: {.fragment .fade-in-then-out}
+
+```{r}
+#| label: fig-bn-dist-slides
+#| out-width: 95%
+#| fig-cap: The binomial distribution
+
+plt_binom
+
+```
+
+:::
+
+:::
+
+:::
+
+
+
+### Probability Mass Function (PMF)
+
+::: {.content-visible when-profile="script"}
+
+The [probability mass function (PMF)](#PMF), also known as the discrete probability density function, is a fundamental concept in probability and statistics. 
+
+* Definition:
+The PMF describes the probability distribution of a discrete random variable. 
+It gives the probability that the random variable takes on a specific value.
+In other words, the PMF assigns probabilities to each possible outcome of the random variable.
+
+* Formal Representation:
+For a discrete random variable X, the PMF is denoted as P(X = x), where x represents a specific value.
+Mathematically, the PMF is defined as: $P(X = x) = \text{{probability that }} X \text{{ takes the value }} x$
+
+* Properties:
+The probabilities associated with all hypothetical values must be non-negative and sum up to 1.
+Thinking of probability as “mass” helps avoid mistakes, as the total probability for all possible outcomes is conserved (similar to how physical mass is conserved).
+
+* Comparison with [Probability Density Function (PDF)](#PDF):
+A [PMF](#PMF) is specific to *discrete* random variables, while a [PDF](#PDF) is associated with continuous random variables.
+Unlike a PDF, which requires integration over an interval, the PMF **directly** provides probabilities for individual values.
+
+* Mode:
+The value of the random variable with the largest probability mass is called the mode.
+
+* Measure-Theoretic Formulation:
+The [PMF](#PMF) can be seen as a special case of more general measure-theoretic constructions.
+It relates to the distribution of a random variable and the probability density function with respect to the counting measure.
+
+The [PMF](#PMF) for the binomial distribution is given in \eqref{PMFbinom}
+
+\begin{align}
+P(X = k) = \binom{n}{k} p^k (1 - p)^{n - k} \label{PMFbinom}
+\end{align}
+
+:::
+
+::: {.content-visible when-profile="slides"}
+
+::: {.r-stack}
+
+::: {.fragment .fade-out}
+
+* The PMF describes the probability distribution of a discrete random variable. 
+
+* The probabilities associated with all hypothetical values must be non-negative and sum up to 1.
+
+* A [PMF](#PMF) is specific to *discrete* random variables, while a [PDF](#PDF) is associated with continuous random variables.
+
+* Unlike a PDF, which requires integration over an interval, the PMF **directly** provides probabilities for individual values.
+
+* “mass” is conserved (similar to how physical mass is conserved).
+
+:::
+
+::: {.fragment .fade-in style="font-size: 75%;"}
+
+The [PMF](#PMF) for the binomial distribution is
+
+\begin{align}
+P(X = k) = \binom{n}{k} p^k (1 - p)^{n - k} \nonumber
+\end{align}
+
+* $X$ random variable
+* $k$ specific value of the random variable ($X$), represents the number of successes 
+* $n$ total number of independent trials or experiments
+* $p$ probability of success in a single trial $0<p<1$
+* $(1 - p)$ probability of failure in a single trial
+* $\binom{n}{k}$ binomial coefficient (“n choose k”)$\rightarrow \binom{n}{k} = \frac{n!}{k! \cdot (n - k)!}$ 
+
+:::
+
+:::
+
+### Classroom example: Binomial Distribution
+
+::: {.r-stack}
+
+::: {.fragment .fade-out}
+
+If we roll a fair six-sided die 10 times, how many times do you expect to get a specific outcome?
+
+* 10 trials
+* $P?$ to roll a $6$ (expected value)?
+* record the number of times a specific outcome occurs
+* repeat for 2-4 students
+
+:::
+
+::: {.notes}
+
+* $P = 1/6 \approx 16\% \rightarrow P_{10\;times} = 10 * 1/6 = 1.6 times \approx 2$
+
+:::
+
+::: {.fragment .fade-in-then-out}
+
+```{r}
+#| label: fig-sim-dice
+#| out-width: 75%
+#| fig-cap: Simulated die rolls (The die is rolle $10$ times, the experiment is repeated $5$ times)
+
+roll_dice(times = 10, rounds = 5) %>% plot_dice()
+
+```
+
+:::
+
+::: {.fragment .fade-in-then-out}
+
+```{r}
+#| label: fig-sim-likely
+#| out-width: 75%
+#| fig-cap: Is the outcome likely?
+
+num_success <- 5
+sum_num_rolls <- 50
+
+binom_dice(times = 50) |> 
+  plot_binom(highlight = c(num_success:sum_num_rolls))
+
+```
+
+:::
+
+:::
+
+:::
+
+### The drive shaft exercise - Binomial Distribution
+
+::: {.content-visible when-profile="script"}
+
+
+In the context of a drive shaft, you can think of it as a model for the number of defective drive shafts in a production batch. Each drive shaft is either good (success) or defective (failure).
+
+Let's say you have a batch of 100 drive shafts, and the probability of any single drive shaft being defective is $0.05 (5\%)$. 
+You want to find the probability of having a certain number of defective drive shafts in this batch. 
+
+
+[^2]: Jacob Bernoulli (1654-1705): Notable Swiss mathematician, known for Bernoulli's principle and significant contributions to calculus and probability theory.
+
+:::
+
+```{r}
+#| label: fig-bn-ds
+#| out-width: 75%
+#| fig-cap: The binomial disitribution and the drive shaft exercise.
+#| 
+# Parameters
+n <- 100  # Total number of drive shafts
+p <- 0.05  # Probability of a defective drive shaft
+
+# Generate a sequence of possible outcomes
+x <- 0:n
+
+# Calculate the probability mass function (PMF) of the binomial distribution
+pmf <- dbinom(x, size = n, prob = p)
+
+# Create a data frame for plotting
+data <- data.frame(x = x, pmf = pmf)
+
+# Create a probability distribution plot using ggplot2
+ggplot(data, aes(x = x, y = pmf)) +
+  geom_vline(xintercept = 5,linetype = "dashed")+
+  geom_bar(stat = "identity", color = "white") +
+  labs(title = "Binomial Distribution for 100 Drive Shafts",
+       x = "Number of Defective Drive Shafts",
+       y = "probability") +
+  scale_x_continuous(expand = c(0,0,0,0))+
+  scale_y_continuous(expand = c(0,0,0.05,0))+
+  theme_few()
+
+
+```
+
+
 ### Continous Data
 
 ```{r}
@@ -2109,300 +2405,6 @@ It is used for comparing variances between groups in statistical tests like [ANO
 knitr::include_graphics(here::here("chapter000","009_DistributionConnection.png"))
 ```
 
-## Bionmimal Distribution
-
-::: {.content-visible when-profile="script"}
-
-```{r}
-#| label: fig-bn-dist
-#| out-width: 95%
-#| fig-cap: The binomial distribution
-
-df <- expand.grid(x = seq(0,100), size = c(20,40,100),prob = c(0.5,0.7,0.95))
-
-plt_df <- df %>% 
-  mutate(probability = dbinom(x, size = size, prob = prob)) %>% 
-  filter(probability>0.0001)
-
-plt_theo <- expand.grid(
-  size = c(20,40,100),
-  prob = c(0.5,0.7,0.95)) %>% 
-  mutate(xintercept = prob*size)
-
-plt_binom <- plt_df %>% 
-  ggplot(aes(x = x, y = probability, shape = as.factor(prob))) +
-  geom_point()+
-  geom_path(
-    alpha = 0.4,
-    linetype = "dotted"
-    )+
-  geom_vline(data = plt_theo,
-    aes(xintercept = xintercept),
-    linetype = "dashed",
-    alpha = 0.5
-    )+
-  geom_label(
-    data = plt_theo,
-    aes(x = xintercept,
-        y = 0.45,
-        label = xintercept)
-  )+
-  facet_wrap(~size,
-             scales = "free_x",
-             labeller = label_both)+
-  scale_y_continuous(
-    expand = c(0,0,0.05,0)
-  )+
-  labs(
-    title = "The binomial distribution and the influence of different parameter",
-    x = "number of successes",
-    shape = "probability for success"
-  )+
-  ggthemes::theme_few()+
-  theme(legend.position = "bottom")
-
-plt_binom
-
-```
-
-The binomial distribution is a **discrete** probability distribution that describes the number of successes in a fixed number of independent Bernoulli trials, each with the same probability of success. 
-A Bernoulli trial, named after Swiss mathematician Jacob Bernoulli[^2], is a random experiment or trial with two possible outcomes: success and failure. 
-These outcomes are typically labeled as $1$ for success and $0$ for failure. 
-The key characteristics of a Bernoulli trial are:
-
-1. **Two Outcomes:** There are only two possible outcomes in each trial, and they are mutually exclusive. 
-For example, in a coin toss, the outcomes could be heads (success, represented as $1$) or tails (failure, represented as $0$).
-
-2. **Constant Probability:** The probability of success  remains the same for each trial. 
-This means that the likelihood of success and failure is consistent from one trial to the next.
-
-3. **Independence:** Each trial is independent of others, meaning that the outcome of one trial does not influence the outcome of subsequent trials. 
-For instance, the result of one coin toss doesn't affect the result of the next coin toss.
-
-Examples of Bernoulli trials include:
-
-- Flipping a coin (heads as success, tails as failure).
-- Rolling a die and checking if a specific number appears (the number as success, others as failure).
-- Testing whether a manufactured product is defective or non-defective (defective as success, non-defective as failure).
-
-The Bernoulli trial is the fundamental building block for many other probability distributions, including the binomial distribution, which models the number of successes in a fixed number of Bernoulli trials.
-
-:::
-
-::: {.content-visible when-profile="slides"}
-
-::: {.r-stack}
-
-::: {.fragment .fade-out}
-
-* probability disitribution for discrete outcomes
-
-* n repeated trials.
-
-* two possible outcomes (e.g., success or failure).
-
-* probability of success remains the same 
-
-* each trial is independent 
-
-
-:::
-
-::: {.fragment .fade-in-then-out}
-
-```{r}
-#| label: fig-bn-dist-slides
-#| out-width: 95%
-#| fig-cap: The binomial distribution
-
-plt_binom
-
-```
-
-:::
-
-:::
-
-:::
-
-
-
-### Probability Mass Function (PMF)
-
-::: {.content-visible when-profile="script"}
-
-The [probability mass function (PMF)](#PMF), also known as the discrete probability density function, is a fundamental concept in probability and statistics. 
-
-* Definition:
-The PMF describes the probability distribution of a discrete random variable. 
-It gives the probability that the random variable takes on a specific value.
-In other words, the PMF assigns probabilities to each possible outcome of the random variable.
-
-* Formal Representation:
-For a discrete random variable X, the PMF is denoted as P(X = x), where x represents a specific value.
-Mathematically, the PMF is defined as: $P(X = x) = \text{{probability that }} X \text{{ takes the value }} x$
-
-* Properties:
-The probabilities associated with all hypothetical values must be non-negative and sum up to 1.
-Thinking of probability as “mass” helps avoid mistakes, as the total probability for all possible outcomes is conserved (similar to how physical mass is conserved).
-
-* Comparison with [Probability Density Function (PDF)](#PDF):
-A [PMF](#PMF) is specific to *discrete* random variables, while a [PDF](#PDF) is associated with continuous random variables.
-Unlike a PDF, which requires integration over an interval, the PMF **directly** provides probabilities for individual values.
-
-* Mode:
-The value of the random variable with the largest probability mass is called the mode.
-
-* Measure-Theoretic Formulation:
-The [PMF](#PMF) can be seen as a special case of more general measure-theoretic constructions.
-It relates to the distribution of a random variable and the probability density function with respect to the counting measure.
-
-The [PMF](#PMF) for the binomial distribution is given in \eqref{PMFbinom}
-
-\begin{align}
-P(X = k) = \binom{n}{k} p^k (1 - p)^{n - k} \label{PMFbinom}
-\end{align}
-
-:::
-
-::: {.content-visible when-profile="slides"}
-
-::: {.r-stack}
-
-::: {.fragment .fade-out}
-
-* The PMF describes the probability distribution of a discrete random variable. 
-
-* The probabilities associated with all hypothetical values must be non-negative and sum up to 1.
-
-* A [PMF](#PMF) is specific to *discrete* random variables, while a [PDF](#PDF) is associated with continuous random variables.
-
-* Unlike a PDF, which requires integration over an interval, the PMF **directly** provides probabilities for individual values.
-
-* “mass” is conserved (similar to how physical mass is conserved).
-
-:::
-
-::: {.fragment .fade-in style="font-size: 75%;"}
-
-The [PMF](#PMF) for the binomial distribution is
-
-\begin{align}
-P(X = k) = \binom{n}{k} p^k (1 - p)^{n - k} \nonumber
-\end{align}
-
-* $X$ random variable
-* $k$ specific value of the random variable ($X$), represents the number of successes 
-* $n$ total number of independent trials or experiments
-* $p$ probability of success in a single trial $0<p<1$
-* $(1 - p)$ probability of failure in a single trial
-* $\binom{n}{k}$ binomial coefficient (“n choose k”)$\rightarrow \binom{n}{k} = \frac{n!}{k! \cdot (n - k)!}$ 
-
-:::
-
-:::
-
-### Classroom example: Binomial Distribution
-
-::: {.r-stack}
-
-::: {.fragment .fade-out}
-
-If we roll a fair six-sided die 10 times, how many times do you expect to get a specific outcome?
-
-* 10 trials
-* $P?$ to roll a $6$ (expected value)?
-* record the number of times a specific outcome occurs
-* repeat for 2-4 students
-
-:::
-
-::: {.notes}
-
-* $P = 1/6 \approx 16\% \rightarrow P_{10\;times} = 10 * 1/6 = 1.6 times \approx 2$
-
-:::
-
-::: {.fragment .fade-in-then-out}
-
-```{r}
-#| label: fig-sim-dice
-#| out-width: 75%
-#| fig-cap: Simulated die rolls (The die is rolle $10$ times, the experiment is repeated $5$ times)
-
-roll_dice(times = 10, rounds = 5) %>% plot_dice()
-
-```
-
-:::
-
-::: {.fragment .fade-in-then-out}
-
-```{r}
-#| label: fig-sim-likely
-#| out-width: 75%
-#| fig-cap: Is the outcome likely?
-
-num_success <- 5
-sum_num_rolls <- 50
-
-binom_dice(times = 50) |> 
-  plot_binom(highlight = c(num_success:sum_num_rolls))
-
-```
-
-:::
-
-:::
-
-:::
-
-### The drive shaft exercise - Binomial Distribution
-
-::: {.content-visible when-profile="script"}
-
-
-In the context of a drive shaft, you can think of it as a model for the number of defective drive shafts in a production batch. Each drive shaft is either good (success) or defective (failure).
-
-Let's say you have a batch of 100 drive shafts, and the probability of any single drive shaft being defective is $0.05 (5\%)$. 
-You want to find the probability of having a certain number of defective drive shafts in this batch. 
-
-
-[^2]: Jacob Bernoulli (1654-1705): Notable Swiss mathematician, known for Bernoulli's principle and significant contributions to calculus and probability theory.
-
-:::
-
-```{r}
-#| label: fig-bn-ds
-#| out-width: 75%
-#| fig-cap: The binomial disitribution and the drive shaft exercise.
-#| 
-# Parameters
-n <- 100  # Total number of drive shafts
-p <- 0.05  # Probability of a defective drive shaft
-
-# Generate a sequence of possible outcomes
-x <- 0:n
-
-# Calculate the probability mass function (PMF) of the binomial distribution
-pmf <- dbinom(x, size = n, prob = p)
-
-# Create a data frame for plotting
-data <- data.frame(x = x, pmf = pmf)
-
-# Create a probability distribution plot using ggplot2
-ggplot(data, aes(x = x, y = pmf)) +
-  geom_vline(xintercept = 5,linetype = "dashed")+
-  geom_bar(stat = "identity", color = "white") +
-  labs(title = "Binomial Distribution for 100 Drive Shafts",
-       x = "Number of Defective Drive Shafts",
-       y = "probability") +
-  scale_x_continuous(expand = c(0,0,0,0))+
-  scale_y_continuous(expand = c(0,0,0.05,0))+
-  theme_few()
-
-
-```
 
 
 ## Weibull - Distribution
