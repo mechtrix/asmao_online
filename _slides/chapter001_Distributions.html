@@ -236,12 +236,141 @@ Figure&nbsp;3: Some example for ordinal data.
 <img data-src="chapter001/016_DiscreteData.png" style="width:65.0%" class="r-stretch quarto-figure-center" id="fig-discretedata"><p class="caption">
 Figure&nbsp;4: Some example for discrete data.
 </p></section>
+</section>
+<section>
+<section id="bionmimal-distribution" class="title-slide slide level2 center">
+<h2>Bionmimal Distribution</h2>
+<div class="r-stack">
+<div class="fragment fade-out">
+<ul>
+<li><p>probability disitribution for discrete outcomes</p></li>
+<li><p>n repeated trials.</p></li>
+<li><p>two possible outcomes (e.g., success or failure).</p></li>
+<li><p>probability of success remains the same</p></li>
+<li><p>each trial is independent</p></li>
+</ul>
+</div>
+<div class="fragment fade-in-then-out">
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-bn-dist-slides" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-bn-dist-slides-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="chapter001_Distributions_files/figure-revealjs/fig-bn-dist-slides-1.svg" style="width:95.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bn-dist-slides-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: The binomial distribution
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="probability-mass-function-pmf" class="title-slide slide level3 center">
+<h3>Probability Mass Function (PMF)</h3>
+<div class="r-stack">
+<div class="fragment fade-out">
+<ul>
+<li><p>The PMF describes the probability distribution of a discrete random variable.</p></li>
+<li><p>The probabilities associated with all hypothetical values must be non-negative and sum up to 1.</p></li>
+<li><p>A <a href="#/PMF">PMF</a> is specific to <em>discrete</em> random variables, while a <a href="#/PDF">PDF</a> is associated with continuous random variables.</p></li>
+<li><p>Unlike a PDF, which requires integration over an interval, the PMF <strong>directly</strong> provides probabilities for individual values.</p></li>
+<li><p>“mass” is conserved (similar to how physical mass is conserved).</p></li>
+</ul>
+</div>
+<div class="fragment fade-in" style="font-size: 75%;">
+<p>The <a href="#/PMF">PMF</a> for the binomial distribution is</p>
+<p><span class="math display">\[\begin{align}
+P(X = k) = \binom{n}{k} p^k (1 - p)^{n - k} \nonumber
+\end{align}\]</span></p>
+<ul>
+<li><span class="math inline">\(X\)</span> random variable</li>
+<li><span class="math inline">\(k\)</span> specific value of the random variable (<span class="math inline">\(X\)</span>), represents the number of successes</li>
+<li><span class="math inline">\(n\)</span> total number of independent trials or experiments</li>
+<li><span class="math inline">\(p\)</span> probability of success in a single trial <span class="math inline">\(0&lt;p&lt;1\)</span></li>
+<li><span class="math inline">\((1 - p)\)</span> probability of failure in a single trial</li>
+<li><span class="math inline">\(\binom{n}{k}\)</span> binomial coefficient (“n choose k”)<span class="math inline">\(\rightarrow \binom{n}{k} = \frac{n!}{k! \cdot (n - k)!}\)</span></li>
+</ul>
+</div>
+</div>
+</section>
+
+<section id="classroom-example-binomial-distribution" class="title-slide slide level3 center">
+<h3>Classroom example: Binomial Distribution</h3>
+<div class="r-stack">
+<div class="fragment fade-out">
+<p>If we roll a fair six-sided die 10 times, how many times do you expect to get a specific outcome?</p>
+<ul>
+<li>10 trials</li>
+<li><span class="math inline">\(P?\)</span> to roll a <span class="math inline">\(6\)</span> (expected value)?</li>
+<li>record the number of times a specific outcome occurs</li>
+<li>repeat for 2-4 students</li>
+</ul>
+</div>
+<aside class="notes">
+<ul>
+<li><span class="math inline">\(P = 1/6 \approx 16\% \rightarrow P_{10\;times} = 10 * 1/6 = 1.6 times \approx 2\)</span></li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<div class="fragment fade-in-then-out">
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-sim-dice" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-sim-dice-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="chapter001_Distributions_files/figure-revealjs/fig-sim-dice-1.svg" style="width:75.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sim-dice-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Simulated die rolls (The die is rolle <span class="math inline">\(10\)</span> times, the experiment is repeated <span class="math inline">\(5\)</span> times)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment fade-in-then-out">
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-sim-likely" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-sim-likely-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="chapter001_Distributions_files/figure-revealjs/fig-sim-likely-1.svg" style="width:75.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sim-likely-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: Is the outcome likely?
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="the-drive-shaft-exercise---binomial-distribution" class="title-slide slide level3 center">
+<h3>The drive shaft exercise - Binomial Distribution</h3>
+
+<img data-src="chapter001_Distributions_files/figure-revealjs/fig-bn-ds-1.svg" style="width:75.0%" class="r-stretch quarto-figure-center" id="fig-bn-ds"><p class="caption">
+Figure&nbsp;8: The binomial disitribution and the drive shaft exercise.
+</p></section>
 
 <section id="continous-data" class="title-slide slide level3 center">
 <h3>Continous Data</h3>
 
 <img data-src="chapter001/017_ContinousData.png" style="width:65.0%" class="r-stretch quarto-figure-center" id="fig-continousdata"><p class="caption">
-Figure&nbsp;5: Some example for continous data.
+Figure&nbsp;9: Some example for continous data.
 </p></section>
 </section>
 <section>
@@ -249,7 +378,7 @@ Figure&nbsp;5: Some example for continous data.
 <h2>The Normal Distribution</h2>
 
 <img data-src="chapter001_Distributions_files/figure-revealjs/fig-normal-dist-1.svg" style="width:75.0%" class="r-stretch quarto-figure-center" id="fig-normal-dist"><p class="caption">
-Figure&nbsp;6: The standarized normal distribution
+Figure&nbsp;10: The standarized normal distribution
 </p></section>
 <section id="the-normal-distribution-in-real-life" class="title-slide slide level3 center">
 <h3>The Normal Distribution in real life</h3>
@@ -266,7 +395,7 @@ Figure&nbsp;6: The standarized normal distribution
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-8-1.svg"></p>
+<p><img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-13-1.svg"></p>
 </figure>
 </div>
 </div>
@@ -277,7 +406,7 @@ Figure&nbsp;6: The standarized normal distribution
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-9-1.svg"></p>
+<p><img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-14-1.svg"></p>
 </figure>
 </div>
 </div>
@@ -288,87 +417,8 @@ Figure&nbsp;6: The standarized normal distribution
 <section id="the-math-behind" class="title-slide slide level4 center">
 <h4>The math behind</h4>
 <p><span class="math display">\[P(k) = \binom{n}{k}\cdot{\frac{1}{2}}^n\]</span></p>
-<div style="font-size: 70%;">
-<table class="caption-top">
-<colgroup>
-<col style="width: 4%">
-<col style="width: 5%">
-<col style="width: 5%">
-<col style="width: 17%">
-<col style="width: 26%">
-<col style="width: 39%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: center;"><span class="math inline">\(k\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(n!\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(k!\)</span></th>
-<th style="text-align: center;"><span class="math inline">\((n-k)!\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(\binom{n}{k} = \binom{6}{k}\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(P(k) = \binom{6}{k}\cdot{\frac{1}{2}}^{n=6}\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;"><span class="math inline">\(0\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(720\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(1\)</span></td>
-<td style="text-align: center;"><span class="math inline">\((6-0)! = 6! = 720\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\frac{720}{1 \cdot 720} = 1\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(P(0) = 1 \cdot \frac{1}{64} = 0.015624\)</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><span class="math inline">\(1\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(720\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(1\)</span></td>
-<td style="text-align: center;"><span class="math inline">\((6-1)! = 5! = 120\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\frac{720}{1 \cdot 120} = 6\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(P(1) = 6 \cdot \frac{1}{64} = 0.093750\)</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><span class="math inline">\(2\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(720\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(2\)</span></td>
-<td style="text-align: center;"><span class="math inline">\((6-2)! = 4! = 24\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\frac{720}{2 \cdot 24} = 15\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(P(2) = 15 \cdot \frac{1}{64} = 0.234375\)</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><span class="math inline">\(3\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(720\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(6\)</span></td>
-<td style="text-align: center;"><span class="math inline">\((6-3)! = 3! = 6\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\frac{720}{6 \cdot 6} = 20\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(P(3) = 20 \cdot \frac{1}{64} = 0.312500\)</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><span class="math inline">\(4\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(720\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(24\)</span></td>
-<td style="text-align: center;"><span class="math inline">\((6-4)! = 2! = 2\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\frac{720}{24 \cdot 2} = 15\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(P(2) = 15 \cdot \frac{1}{64} = 0.234375\)</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><span class="math inline">\(5\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(720\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(120\)</span></td>
-<td style="text-align: center;"><span class="math inline">\((6-5)! = 1! = 1\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\frac{720}{120 \cdot 1} = 6\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(P(5) = 6 \cdot \frac{1}{64} = 0.093750\)</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><span class="math inline">\(6\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(720\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(720\)</span></td>
-<td style="text-align: center;"><span class="math inline">\((6-6)! = 0! = 1\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\frac{720}{720 \cdot 1} = 1\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(P(6) = 1 \cdot \frac{1}{64} = 0.015624\)</span></td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
+
+<img data-src="chapter000/galton_tbl.png" style="width:75.0%" class="r-stretch"></section>
 
 <section id="mean-and-standard-deviation-from-the-galton-board" class="title-slide slide level4 center">
 <h4>Mean and Standard Deviation from the Galton board</h4>
@@ -422,7 +472,7 @@ Figure&nbsp;6: The standarized normal distribution
 <img data-src="chapter001_Distributions_files/figure-revealjs/fig-z-scores-raw-1.svg" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-z-scores-raw-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7: The original data of group X and group Y
+Figure&nbsp;11: The original data of group X and group Y
 </figcaption>
 </figure>
 </div>
@@ -443,7 +493,7 @@ Z = \frac{x_i - \bar{x}}{sd} \nonumber
 <img data-src="chapter001_Distributions_files/figure-revealjs/fig-z-scores-scaled-1.svg" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-z-scores-scaled-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;8: The correlation of the z-score shows, that every point <span class="math inline">\(x_i\)</span> is equally probable
+Figure&nbsp;12: The correlation of the z-score shows, that every point <span class="math inline">\(x_i\)</span> is equally probable
 </figcaption>
 </figure>
 </div>
@@ -456,7 +506,7 @@ Figure&nbsp;8: The correlation of the z-score shows, that every point <span clas
 <h3>The drive shaft exercise - Z-Standardization</h3>
 
 <img data-src="chapter001_Distributions_files/figure-revealjs/fig-ds-z-1.svg" style="width:75.0%" data-fig-pos="H" class="r-stretch quarto-figure-center" id="fig-ds-z"><p class="caption">
-Figure&nbsp;9: The standardized data of the drive shaft data.
+Figure&nbsp;13: The standardized data of the drive shaft data.
 </p></section>
 
 <section id="central-limit-theorem-clt" class="title-slide slide level3 center">
@@ -471,7 +521,7 @@ Figure&nbsp;9: The standardized data of the drive shaft data.
 <img data-src="chapter001_Distributions_files/figure-revealjs/fig-clt-data-1.svg" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-clt-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;10: The population from which the samples to show the CLT are taken.
+Figure&nbsp;14: The population from which the samples to show the CLT are taken.
 </figcaption>
 </figure>
 </div>
@@ -487,7 +537,7 @@ Figure&nbsp;10: The population from which the samples to show the CLT are taken.
 <img data-src="chapter001_Distributions_files/figure-revealjs/fig-clt-1.svg" style="width:99.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-clt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;11: The central limit theorem in action.
+Figure&nbsp;15: The central limit theorem in action.
 </figcaption>
 </figure>
 </div>
@@ -501,13 +551,13 @@ Figure&nbsp;11: The central limit theorem in action.
 <h3>Law of Large Numbers</h3>
 
 <img data-src="chapter001_Distributions_files/figure-revealjs/fig-lln-1.svg" style="width:75.0%" data-fig-pos="H" class="r-stretch quarto-figure-center" id="fig-lln"><p class="caption">
-Figure&nbsp;12: The Law of Large Numbers in Action with die rolls as an example.
+Figure&nbsp;16: The Law of Large Numbers in Action with die rolls as an example.
 </p></section>
 
 <section id="the-z-transform-and-the-galton-board" class="title-slide slide level3 center">
 <h3>The Z-transform and the Galton Board</h3>
 
-<img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-17-1.svg" class="r-stretch"></section>
+<img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-23-1.svg" class="r-stretch"></section>
 <section id="applying-the-z-transform" class="title-slide slide level4 center">
 <h4>Applying the Z-transform</h4>
 <p><span class="math display">\[Z = \frac{X-\mu}{\sigma}\]</span></p>
@@ -525,7 +575,9 @@ Figure&nbsp;12: The Law of Large Numbers in Action with die rolls as an example.
 <p>Appprox: <span class="math inline">\(\binom{n}{k} \approx \frac{\sqrt{2\pi n} \left( \frac{n}{e} \right)^n}{\sqrt{2\pi n} \left( \frac{k}{e} \right)^k \cdot \sqrt{2\pi(n-k)} \left( \frac{n-k}{e} \right)^{n-k}}\)</span></p>
 <p>simplifies to: <span class="math inline">\(\binom{n}{k} = \frac{1}{\sqrt{2\pi n p (1-p)}}e^{-\frac{(k-np)^2}{2np(1-p)}}\)</span></p>
 <p>substituting <span class="math inline">\(p=0.5\)</span>: <span class="math inline">\(P(X = k) \approx \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(k-\mu)^2}{2\sigma^2}}\)</span></p>
+<center>
 <p>Which is the <strong>Probability Density Function</strong></p>
+</center>
 </section>
 
 
@@ -533,7 +585,7 @@ Figure&nbsp;12: The Law of Large Numbers in Action with die rolls as an example.
 <h3>The drive shaft exercise - Normal Distribution</h3>
 
 <img data-src="chapter001_Distributions_files/figure-revealjs/fig-ds-nd-1.svg" style="width:75.0%" class="r-stretch quarto-figure-center" id="fig-ds-nd"><p class="caption">
-Figure&nbsp;13: The drive shaft data with the respective normal distributions.
+Figure&nbsp;17: The drive shaft data with the respective normal distributions.
 </p></section>
 </section>
 <section id="probability-density-function-pdf" class="title-slide slide level2 center">
@@ -558,7 +610,7 @@ Figure&nbsp;13: The drive shaft data with the respective normal distributions.
 <img data-src="chapter001/PDF_000.png" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pdf-000-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;14: A visual represenstation of the PDF for the normal distribution
+Figure&nbsp;18: A visual represenstation of the PDF for the normal distribution
 </figcaption>
 </figure>
 </div>
@@ -596,7 +648,7 @@ z &amp;= \frac{x-\mu}{\sigma} \nonumber \\
 <img data-src="chapter001/CDF_000.png" class="quarto-figure quarto-figure-center" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cdf-000-sli-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;15: A visual represenstation of the CDF for the normal distribution.
+Figure&nbsp;19: A visual represenstation of the CDF for the normal distribution.
 </figcaption>
 </figure>
 </div>
@@ -663,7 +715,7 @@ is a measure of the chance an event will occur, ranging from <span class="math i
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-25-1.svg" style="width:100.0%"></p>
+<p><img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-31-1.svg" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -674,7 +726,7 @@ is a measure of the chance an event will occur, ranging from <span class="math i
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-26-1.svg" style="width:100.0%"></p>
+<p><img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-32-1.svg" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -698,7 +750,7 @@ is a measure of the chance an event will occur, ranging from <span class="math i
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-27-1.svg" style="width:100.0%"></p>
+<p><img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-33-1.svg" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -761,7 +813,7 @@ is a measure of the chance an event will occur, ranging from <span class="math i
 <h3>The drive shaft exercise - Chi<sup>2</sup> Distribution</h3>
 
 <img data-src="chapter001_Distributions_files/figure-revealjs/fig-ds-chi-1.svg" style="width:95.0%" class="r-stretch quarto-figure-center" id="fig-ds-chi"><p class="caption">
-Figure&nbsp;16: The <span class="math inline">\(\chi^2\)</span> disitribution of the drive shaft data.
+Figure&nbsp;20: The <span class="math inline">\(\chi^2\)</span> disitribution of the drive shaft data.
 </p></section>
 </section>
 <section>
@@ -788,7 +840,7 @@ t_i = \frac{\bar{x} - \mu_0}{sd/\sqrt{n}} \label{tscore}
 <img data-src="chapter001_Distributions_files/figure-revealjs/fig-t-dist-sl-1.svg" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-t-dist-sl-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;17: PDF of t-distribution with varying <span class="math inline">\(dof\)</span>
+Figure&nbsp;21: PDF of t-distribution with varying <span class="math inline">\(dof\)</span>
 </figcaption>
 </figure>
 </div>
@@ -891,7 +943,7 @@ Figure&nbsp;17: PDF of t-distribution with varying <span class="math inline">\(d
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ds-t-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;18: The drive shaft data and the application of the t-Distribution
+Figure&nbsp;22: The drive shaft data and the application of the t-Distribution
 </figcaption>
 </figure>
 </div>
@@ -911,7 +963,7 @@ F_{m,n} = \frac{\chi^2_m/m}{\chi^2_n/n} \nonumber
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-34-1.svg" style="width:100.0%"></p>
+<p><img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-40-1.svg" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -922,7 +974,7 @@ F_{m,n} = \frac{\chi^2_m/m}{\chi^2_n/n} \nonumber
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-35-1.svg" style="width:100.0%"></p>
+<p><img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-41-1.svg" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -959,138 +1011,9 @@ F_{m,n} = \frac{\chi^2_m/m}{\chi^2_n/n} \nonumber
 <h2>Interconnections</h2>
 
 <img data-src="chapter000/009_DistributionConnection.png" style="width:75.0%" data-fig-pos="H" class="r-stretch quarto-figure-center" id="fig-interconnections"><p class="caption">
-Figure&nbsp;19: The distributions are interconnected in several different ways.
+Figure&nbsp;23: The distributions are interconnected in several different ways.
 </p></section>
 
-<section>
-<section id="bionmimal-distribution" class="title-slide slide level2 center">
-<h2>Bionmimal Distribution</h2>
-<div class="r-stack">
-<div class="fragment fade-out">
-<ul>
-<li><p>probability disitribution for discrete outcomes</p></li>
-<li><p>n repeated trials.</p></li>
-<li><p>two possible outcomes (e.g., success or failure).</p></li>
-<li><p>probability of success remains the same</p></li>
-<li><p>each trial is independent</p></li>
-</ul>
-</div>
-<div class="fragment fade-in-then-out">
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-bn-dist-slides" class="quarto-float quarto-figure quarto-figure-center">
-<figure class="quarto-float quarto-float-fig">
-<div aria-describedby="fig-bn-dist-slides-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="chapter001_Distributions_files/figure-revealjs/fig-bn-dist-slides-1.svg" style="width:95.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bn-dist-slides-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;20: The binomial distribution
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="probability-mass-function-pmf" class="title-slide slide level3 center">
-<h3>Probability Mass Function (PMF)</h3>
-<div class="r-stack">
-<div class="fragment fade-out">
-<ul>
-<li><p>The PMF describes the probability distribution of a discrete random variable.</p></li>
-<li><p>The probabilities associated with all hypothetical values must be non-negative and sum up to 1.</p></li>
-<li><p>A <a href="#/PMF">PMF</a> is specific to <em>discrete</em> random variables, while a <a href="#/PDF">PDF</a> is associated with continuous random variables.</p></li>
-<li><p>Unlike a PDF, which requires integration over an interval, the PMF <strong>directly</strong> provides probabilities for individual values.</p></li>
-<li><p>“mass” is conserved (similar to how physical mass is conserved).</p></li>
-</ul>
-</div>
-<div class="fragment fade-in" style="font-size: 75%;">
-<p>The <a href="#/PMF">PMF</a> for the binomial distribution is</p>
-<p><span class="math display">\[\begin{align}
-P(X = k) = \binom{n}{k} p^k (1 - p)^{n - k} \nonumber
-\end{align}\]</span></p>
-<ul>
-<li><span class="math inline">\(X\)</span> random variable</li>
-<li><span class="math inline">\(k\)</span> specific value of the random variable (<span class="math inline">\(X\)</span>), represents the number of successes</li>
-<li><span class="math inline">\(n\)</span> total number of independent trials or experiments</li>
-<li><span class="math inline">\(p\)</span> probability of success in a single trial <span class="math inline">\(0&lt;p&lt;1\)</span></li>
-<li><span class="math inline">\((1 - p)\)</span> probability of failure in a single trial</li>
-<li><span class="math inline">\(\binom{n}{k}\)</span> binomial coefficient (“n choose k”)<span class="math inline">\(\rightarrow \binom{n}{k} = \frac{n!}{k! \cdot (n - k)!}\)</span></li>
-</ul>
-</div>
-</div>
-</section>
-
-<section id="classroom-example-binomial-distribution" class="title-slide slide level3 center">
-<h3>Classroom example: Binomial Distribution</h3>
-<div class="r-stack">
-<div class="fragment fade-out">
-<p>If we roll a fair six-sided die 10 times, how many times do you expect to get a specific outcome?</p>
-<ul>
-<li>10 trials</li>
-<li><span class="math inline">\(P?\)</span> to roll a <span class="math inline">\(6\)</span> (expected value)?</li>
-<li>record the number of times a specific outcome occurs</li>
-<li>repeat for 2-4 students</li>
-</ul>
-</div>
-<aside class="notes">
-<ul>
-<li><span class="math inline">\(P = 1/6 \approx 16\% \rightarrow P_{10\;times} = 10 * 1/6 = 1.6 times \approx 2\)</span></li>
-</ul>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-<div class="fragment fade-in-then-out">
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-sim-dice" class="quarto-float quarto-figure quarto-figure-center">
-<figure class="quarto-float quarto-float-fig">
-<div aria-describedby="fig-sim-dice-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="chapter001_Distributions_files/figure-revealjs/fig-sim-dice-1.svg" style="width:75.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sim-dice-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;21: Simulated die rolls (The die is rolle <span class="math inline">\(10\)</span> times, the experiment is repeated <span class="math inline">\(5\)</span> times)
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div class="fragment fade-in-then-out">
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-sim-likely" class="quarto-float quarto-figure quarto-figure-center">
-<figure class="quarto-float quarto-float-fig">
-<div aria-describedby="fig-sim-likely-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="chapter001_Distributions_files/figure-revealjs/fig-sim-likely-1.svg" style="width:75.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sim-likely-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;22: Is the outcome likely?
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-
-<section id="the-drive-shaft-exercise---binomial-distribution" class="title-slide slide level3 center">
-<h3>The drive shaft exercise - Binomial Distribution</h3>
-
-<img data-src="chapter001_Distributions_files/figure-revealjs/fig-bn-ds-1.svg" style="width:75.0%" class="r-stretch quarto-figure-center" id="fig-bn-ds"><p class="caption">
-Figure&nbsp;23: The binomial disitribution and the drive shaft exercise.
-</p></section>
-</section>
 <section>
 <section id="weibull---distribution" class="title-slide slide level2 center">
 <h2>Weibull - Distribution</h2>
