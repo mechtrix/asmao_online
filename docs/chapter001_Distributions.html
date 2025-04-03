@@ -257,12 +257,12 @@ window.Quarto = {
   <li><a href="#nominal-data" id="toc-nominal-data" class="nav-link" data-scroll-target="#nominal-data"><span class="header-section-number">2.1.1</span> Nominal Data</a></li>
   <li><a href="#ordinal-data" id="toc-ordinal-data" class="nav-link" data-scroll-target="#ordinal-data"><span class="header-section-number">2.1.2</span> Ordinal Data</a></li>
   <li><a href="#discrete-data" id="toc-discrete-data" class="nav-link" data-scroll-target="#discrete-data"><span class="header-section-number">2.1.3</span> Discrete Data</a></li>
+  <li><a href="#continous-data" id="toc-continous-data" class="nav-link" data-scroll-target="#continous-data"><span class="header-section-number">2.1.4</span> Continous Data</a></li>
   </ul></li>
   <li><a href="#bionmimal-distribution" id="toc-bionmimal-distribution" class="nav-link" data-scroll-target="#bionmimal-distribution"><span class="header-section-number">2.2</span> Bionmimal Distribution</a>
   <ul class="collapse">
   <li><a href="#probability-mass-function-pmf" id="toc-probability-mass-function-pmf" class="nav-link" data-scroll-target="#probability-mass-function-pmf"><span class="header-section-number">2.2.1</span> Probability Mass Function (PMF)</a></li>
   <li><a href="#the-drive-shaft-exercise---binomial-distribution" id="toc-the-drive-shaft-exercise---binomial-distribution" class="nav-link" data-scroll-target="#the-drive-shaft-exercise---binomial-distribution"><span class="header-section-number">2.2.2</span> The drive shaft exercise - Binomial Distribution</a></li>
-  <li><a href="#continous-data" id="toc-continous-data" class="nav-link" data-scroll-target="#continous-data"><span class="header-section-number">2.2.3</span> Continous Data</a></li>
   </ul></li>
   <li><a href="#the-normal-distribution" id="toc-the-normal-distribution" class="nav-link" data-scroll-target="#the-normal-distribution"><span class="header-section-number">2.3</span> The Normal Distribution</a>
   <ul class="collapse">
@@ -432,6 +432,24 @@ Figure&nbsp;2.4: Some example for discrete data.
 <p>Discrete data consists of distinct, separate values that can be counted and usually come in whole numbers. These values can be finite or infinite, but they are not continuous. Examples include the number of students in a class, the count of cars in a parking lot, or the quantity of books in a library. Discrete data is often used in counting and can be represented as integers.</p>
 <p>One quote in the literature about discrete data, shows how difficult the classification of data types can become (<span class="citation" data-cites="Bibby_1980">J. Bibby (<a href="references.html#ref-Bibby_1980" role="doc-biblioref">1980</a>)</span>): “… All actual sample spaces are discrete, and all observable random variables have discrete distributions. The continuous distribution is a mathematical construction, suitable for mathematical treatment, but not practically observable. …”</p>
 </section>
+<section id="continous-data" class="level3" data-number="2.1.4">
+<h3 data-number="2.1.4" class="anchored" data-anchor-id="continous-data"><span class="header-section-number">2.1.4</span> Continous Data</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-continousdata" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-continousdata-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chapter001/017_ContinousData.png" class="img-fluid figure-img" style="width:65.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-continousdata-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.5: Some example for continous data.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Continuous data encompasses a wide range of values within a given interval and can take on any real number. There are infinite possibilities between any two points in a continuous dataset, making it suitable for measurements with high precision. Examples of continuous data include temperature, height, weight, and time. It is important to note that continuous data can be measured with decimals or fractions and is not limited to whole numbers.</p>
+</section>
 </section>
 <section id="bionmimal-distribution" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="bionmimal-distribution"><span class="header-section-number">2.2</span> Bionmimal Distribution</h2>
@@ -443,7 +461,7 @@ Figure&nbsp;2.4: Some example for discrete data.
 <img src="chapter001_Distributions_files/figure-html/fig-bn-dist-1.png" class="img-fluid figure-img" style="width:95.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bn-dist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.5: The binomial distribution
+Figure&nbsp;2.6: The binomial distribution
 </figcaption>
 </figure>
 </div>
@@ -490,30 +508,12 @@ P(X = k) = \binom{n}{k} p^k (1 - p)^{n - k} \label{PMFbinom}
 <img src="chapter001_Distributions_files/figure-html/fig-bn-ds-1.png" class="img-fluid figure-img" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bn-ds-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.6: The binomial disitribution and the drive shaft exercise.
+Figure&nbsp;2.7: The binomial disitribution and the drive shaft exercise.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-</section>
-<section id="continous-data" class="level3" data-number="2.2.3">
-<h3 data-number="2.2.3" class="anchored" data-anchor-id="continous-data"><span class="header-section-number">2.2.3</span> Continous Data</h3>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-continousdata" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-continousdata-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter001/017_ContinousData.png" class="img-fluid figure-img" style="width:65.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-continousdata-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.7: Some example for continous data.
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>Continuous data encompasses a wide range of values within a given interval and can take on any real number. There are infinite possibilities between any two points in a continuous dataset, making it suitable for measurements with high precision. Examples of continuous data include temperature, height, weight, and time. It is important to note that continuous data can be measured with decimals or fractions and is not limited to whole numbers.</p>
 </section>
 </section>
 <section id="the-normal-distribution" class="level2" data-number="2.3">
@@ -562,85 +562,14 @@ Figure&nbsp;2.8: The standarized normal distribution
 <section id="the-math-behind" class="level4" data-number="2.3.1.1">
 <h4 data-number="2.3.1.1" class="anchored" data-anchor-id="the-math-behind"><span class="header-section-number">2.3.1.1</span> The math behind</h4>
 <p><span class="math display">\[P(k) = \binom{n}{k}\cdot{\frac{1}{2}}^n\]</span></p>
-<div style="font-size: 70%;">
-<table class="caption-top table">
-<colgroup>
-<col style="width: 4%">
-<col style="width: 5%">
-<col style="width: 5%">
-<col style="width: 17%">
-<col style="width: 26%">
-<col style="width: 39%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: center;"><span class="math inline">\(k\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(n!\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(k!\)</span></th>
-<th style="text-align: center;"><span class="math inline">\((n-k)!\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(\binom{n}{k} = \binom{6}{k}\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(P(k) = \binom{6}{k}\cdot{\frac{1}{2}}^{n=6}\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;"><span class="math inline">\(0\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(720\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(1\)</span></td>
-<td style="text-align: center;"><span class="math inline">\((6-0)! = 6! = 720\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\frac{720}{1 \cdot 720} = 1\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(P(0) = 1 \cdot \frac{1}{64} = 0.015624\)</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><span class="math inline">\(1\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(720\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(1\)</span></td>
-<td style="text-align: center;"><span class="math inline">\((6-1)! = 5! = 120\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\frac{720}{1 \cdot 120} = 6\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(P(1) = 6 \cdot \frac{1}{64} = 0.093750\)</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><span class="math inline">\(2\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(720\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(2\)</span></td>
-<td style="text-align: center;"><span class="math inline">\((6-2)! = 4! = 24\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\frac{720}{2 \cdot 24} = 15\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(P(2) = 15 \cdot \frac{1}{64} = 0.234375\)</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><span class="math inline">\(3\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(720\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(6\)</span></td>
-<td style="text-align: center;"><span class="math inline">\((6-3)! = 3! = 6\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\frac{720}{6 \cdot 6} = 20\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(P(3) = 20 \cdot \frac{1}{64} = 0.312500\)</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><span class="math inline">\(4\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(720\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(24\)</span></td>
-<td style="text-align: center;"><span class="math inline">\((6-4)! = 2! = 2\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\frac{720}{24 \cdot 2} = 15\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(P(2) = 15 \cdot \frac{1}{64} = 0.234375\)</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><span class="math inline">\(5\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(720\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(120\)</span></td>
-<td style="text-align: center;"><span class="math inline">\((6-5)! = 1! = 1\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\frac{720}{120 \cdot 1} = 6\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(P(5) = 6 \cdot \frac{1}{64} = 0.093750\)</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><span class="math inline">\(6\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(720\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(720\)</span></td>
-<td style="text-align: center;"><span class="math inline">\((6-6)! = 0! = 1\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\frac{720}{720 \cdot 1} = 1\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(P(6) = 1 \cdot \frac{1}{64} = 0.015624\)</span></td>
-</tr>
-</tbody>
-</table>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="chapter000/galton_tbl.png" class="img-fluid figure-img" style="width:75.0%"></p>
+</figure>
+</div>
+</div>
 </div>
 </section>
 <section id="mean-and-standard-deviation-from-the-galton-board" class="level4" data-number="2.3.1.2">
@@ -786,7 +715,7 @@ Figure&nbsp;2.13: The Law of Large Numbers in Action with die rolls as an exampl
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="chapter001_Distributions_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="1440"></p>
+<p><img src="chapter001_Distributions_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="1440"></p>
 </figure>
 </div>
 </div>

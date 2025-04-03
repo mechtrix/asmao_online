@@ -124,6 +124,29 @@ The continuous distribution is a mathematical construction, suitable for mathema
 
 :::
 
+
+
+### Continous Data
+
+```{r}
+#| label: fig-continousdata
+#| out-width: 65%
+#| fig-cap: Some example for continous data.
+
+knitr::include_graphics(here("chapter001","017_ContinousData.png"))
+
+
+```
+
+::: {.content-visible when-profile="script"}
+
+Continuous data encompasses a wide range of values within a given interval and can take on any real number. 
+There are infinite possibilities between any two points in a continuous dataset, making it suitable for measurements with high precision.
+Examples of continuous data include temperature, height, weight, and time. 
+It is important to note that continuous data can be measured with decimals or fractions and is not limited to whole numbers.
+
+:::
+
 ## Bionmimal Distribution
 
 ::: {.content-visible when-profile="script"}
@@ -355,14 +378,18 @@ roll_dice(times = 10, rounds = 5) %>% plot_dice()
 
 ```{r}
 #| label: fig-sim-likely
-#| out-width: 75%
+#| fig-width: 15
+#| fig-height: 8
 #| fig-cap: Is the outcome likely?
 
 num_success <- 5
 sum_num_rolls <- 50
 
 binom_dice(times = 50) |> 
-  plot_binom(highlight = c(num_success:sum_num_rolls))
+  plot_binom(highlight = c(7:9))+
+  scale_x_continuous(
+    breaks = seq(0,30)
+  )
 
 ```
 
@@ -419,27 +446,6 @@ ggplot(data, aes(x = x, y = pmf)) +
 
 ```
 
-
-### Continous Data
-
-```{r}
-#| label: fig-continousdata
-#| out-width: 65%
-#| fig-cap: Some example for continous data.
-
-knitr::include_graphics(here("chapter001","017_ContinousData.png"))
-
-
-```
-
-::: {.content-visible when-profile="script"}
-
-Continuous data encompasses a wide range of values within a given interval and can take on any real number. 
-There are infinite possibilities between any two points in a continuous dataset, making it suitable for measurements with high precision.
-Examples of continuous data include temperature, height, weight, and time. 
-It is important to note that continuous data can be measured with decimals or fractions and is not limited to whole numbers.
-
-:::
 
 ## The Normal Distribution
 
