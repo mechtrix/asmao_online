@@ -233,7 +233,7 @@ The Bernoulli trial is the fundamental building block for many other probability
 
 ::: {.fragment .fade-out}
 
-* probability disitribution for discrete outcomes
+* probability distribution for discrete outcomes
 
 * n repeated trials.
 
