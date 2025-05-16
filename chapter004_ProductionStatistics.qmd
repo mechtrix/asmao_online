@@ -2004,7 +2004,7 @@ plt_sngl_run
 ```{r}
 #| label: fig-asdf
 #| out-width: 75%
-#| fig-cap: 
+#| fig-cap: Appraiser ref agreement
 
 plt_appr_ref_agr <- appraiser_ref_agreement %>% 
   ggplot(

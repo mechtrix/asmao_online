@@ -6,8 +6,8 @@
 <script src="chapter005_DoE_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="chapter005_DoE_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="chapter005_DoE_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="chapter005_DoE_files/libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.6.39">
+<link href="chapter005_DoE_files/libs/quarto-html/quarto-syntax-highlighting-a37c72dd2dbac68997fcdc15a3622e78.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.7.24">
 
   <meta name="author" content="Prof.&nbsp;Dr.&nbsp;Tim Weber">
   <title>Introduction to Design of Experiments (DoE)</title>
@@ -29,8 +29,9 @@
       vertical-align: middle;
     }
     /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -41,7 +42,7 @@
     }
     @media print {
     pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
     }
     pre.numberSource code
       { counter-reset: source-line 0; }
@@ -114,7 +115,7 @@
     div.csl-indent {
       margin-left: 2em;
     }  </style>
-  <link rel="stylesheet" href="chapter005_DoE_files/libs/revealjs/dist/theme/quarto-bbe7401fe57d4b791b917637bb662036.css">
+  <link rel="stylesheet" href="chapter005_DoE_files/libs/revealjs/dist/theme/quarto-f563837468303362081e247dddd440d0.css">
   <link href="chapter005_DoE_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="chapter005_DoE_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="chapter005_DoE_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -290,7 +291,6 @@ Figure&nbsp;3: The connection between ANOVA and DoE.
 <section id="experimental-planning-strategies" class="title-slide slide level2 center">
 <h2>Experimental planning strategies</h2>
 <div style="font-size: 65%;">
-<div>
 <p>1.No planning</p>
 <ul>
 <li class="fragment">bad way of conducting an experiment</li>
@@ -308,7 +308,6 @@ Figure&nbsp;3: The connection between ANOVA and DoE.
 <li class="fragment">first stage should consume between <span class="math inline">\(25\%\)</span> and <span class="math inline">\(40\%\)</span> of the budget</li>
 <li class="fragment">most of the budget should be spent in subsequent stages, taking into account previous results.</li>
 </ul>
-</div>
 </div>
 </section>
 
@@ -337,23 +336,23 @@ Table&nbsp;1: The design matrix for the pizza dough experimentation
 </figcaption>
 <div aria-describedby="tbl-dm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="iuzjthaooy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#iuzjthaooy table {
+<div id="mqmrmjfkre" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#mqmrmjfkre table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#iuzjthaooy thead, #iuzjthaooy tbody, #iuzjthaooy tfoot, #iuzjthaooy tr, #iuzjthaooy td, #iuzjthaooy th {
+#mqmrmjfkre thead, #mqmrmjfkre tbody, #mqmrmjfkre tfoot, #mqmrmjfkre tr, #mqmrmjfkre td, #mqmrmjfkre th {
   border-style: none;
 }
 
-#iuzjthaooy p {
+#mqmrmjfkre p {
   margin: 0;
   padding: 0;
 }
 
-#iuzjthaooy .gt_table {
+#mqmrmjfkre .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -379,12 +378,12 @@ Table&nbsp;1: The design matrix for the pizza dough experimentation
   border-left-color: #D3D3D3;
 }
 
-#iuzjthaooy .gt_caption {
+#mqmrmjfkre .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#iuzjthaooy .gt_title {
+#mqmrmjfkre .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -396,7 +395,7 @@ Table&nbsp;1: The design matrix for the pizza dough experimentation
   border-bottom-width: 0;
 }
 
-#iuzjthaooy .gt_subtitle {
+#mqmrmjfkre .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -408,7 +407,7 @@ Table&nbsp;1: The design matrix for the pizza dough experimentation
   border-top-width: 0;
 }
 
-#iuzjthaooy .gt_heading {
+#mqmrmjfkre .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -420,13 +419,13 @@ Table&nbsp;1: The design matrix for the pizza dough experimentation
   border-right-color: #D3D3D3;
 }
 
-#iuzjthaooy .gt_bottom_border {
+#mqmrmjfkre .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#iuzjthaooy .gt_col_headings {
+#mqmrmjfkre .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -441,7 +440,7 @@ Table&nbsp;1: The design matrix for the pizza dough experimentation
   border-right-color: #D3D3D3;
 }
 
-#iuzjthaooy .gt_col_heading {
+#mqmrmjfkre .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -461,7 +460,7 @@ Table&nbsp;1: The design matrix for the pizza dough experimentation
   overflow-x: hidden;
 }
 
-#iuzjthaooy .gt_column_spanner_outer {
+#mqmrmjfkre .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -473,15 +472,15 @@ Table&nbsp;1: The design matrix for the pizza dough experimentation
   padding-right: 4px;
 }
 
-#iuzjthaooy .gt_column_spanner_outer:first-child {
+#mqmrmjfkre .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#iuzjthaooy .gt_column_spanner_outer:last-child {
+#mqmrmjfkre .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#iuzjthaooy .gt_column_spanner {
+#mqmrmjfkre .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -493,11 +492,11 @@ Table&nbsp;1: The design matrix for the pizza dough experimentation
   width: 100%;
 }
 
-#iuzjthaooy .gt_spanner_row {
+#mqmrmjfkre .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#iuzjthaooy .gt_group_heading {
+#mqmrmjfkre .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -523,7 +522,7 @@ Table&nbsp;1: The design matrix for the pizza dough experimentation
   text-align: left;
 }
 
-#iuzjthaooy .gt_empty_group_heading {
+#mqmrmjfkre .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -538,15 +537,15 @@ Table&nbsp;1: The design matrix for the pizza dough experimentation
   vertical-align: middle;
 }
 
-#iuzjthaooy .gt_from_md > :first-child {
+#mqmrmjfkre .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#iuzjthaooy .gt_from_md > :last-child {
+#mqmrmjfkre .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#iuzjthaooy .gt_row {
+#mqmrmjfkre .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -565,7 +564,7 @@ Table&nbsp;1: The design matrix for the pizza dough experimentation
   overflow-x: hidden;
 }
 
-#iuzjthaooy .gt_stub {
+#mqmrmjfkre .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -578,7 +577,7 @@ Table&nbsp;1: The design matrix for the pizza dough experimentation
   padding-right: 5px;
 }
 
-#iuzjthaooy .gt_stub_row_group {
+#mqmrmjfkre .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -592,15 +591,15 @@ Table&nbsp;1: The design matrix for the pizza dough experimentation
   vertical-align: top;
 }
 
-#iuzjthaooy .gt_row_group_first td {
+#mqmrmjfkre .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#iuzjthaooy .gt_row_group_first th {
+#mqmrmjfkre .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#iuzjthaooy .gt_summary_row {
+#mqmrmjfkre .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -610,16 +609,16 @@ Table&nbsp;1: The design matrix for the pizza dough experimentation
   padding-right: 5px;
 }
 
-#iuzjthaooy .gt_first_summary_row {
+#mqmrmjfkre .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#iuzjthaooy .gt_first_summary_row.thick {
+#mqmrmjfkre .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#iuzjthaooy .gt_last_summary_row {
+#mqmrmjfkre .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -629,7 +628,7 @@ Table&nbsp;1: The design matrix for the pizza dough experimentation
   border-bottom-color: #D3D3D3;
 }
 
-#iuzjthaooy .gt_grand_summary_row {
+#mqmrmjfkre .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -639,7 +638,7 @@ Table&nbsp;1: The design matrix for the pizza dough experimentation
   padding-right: 5px;
 }
 
-#iuzjthaooy .gt_first_grand_summary_row {
+#mqmrmjfkre .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -649,7 +648,7 @@ Table&nbsp;1: The design matrix for the pizza dough experimentation
   border-top-color: #D3D3D3;
 }
 
-#iuzjthaooy .gt_last_grand_summary_row_top {
+#mqmrmjfkre .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -659,11 +658,11 @@ Table&nbsp;1: The design matrix for the pizza dough experimentation
   border-bottom-color: #D3D3D3;
 }
 
-#iuzjthaooy .gt_striped {
+#mqmrmjfkre .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#iuzjthaooy .gt_table_body {
+#mqmrmjfkre .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -672,7 +671,7 @@ Table&nbsp;1: The design matrix for the pizza dough experimentation
   border-bottom-color: #D3D3D3;
 }
 
-#iuzjthaooy .gt_footnotes {
+#mqmrmjfkre .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -686,7 +685,7 @@ Table&nbsp;1: The design matrix for the pizza dough experimentation
   border-right-color: #D3D3D3;
 }
 
-#iuzjthaooy .gt_footnote {
+#mqmrmjfkre .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -695,7 +694,7 @@ Table&nbsp;1: The design matrix for the pizza dough experimentation
   padding-right: 5px;
 }
 
-#iuzjthaooy .gt_sourcenotes {
+#mqmrmjfkre .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -709,7 +708,7 @@ Table&nbsp;1: The design matrix for the pizza dough experimentation
   border-right-color: #D3D3D3;
 }
 
-#iuzjthaooy .gt_sourcenote {
+#mqmrmjfkre .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -717,72 +716,72 @@ Table&nbsp;1: The design matrix for the pizza dough experimentation
   padding-right: 5px;
 }
 
-#iuzjthaooy .gt_left {
+#mqmrmjfkre .gt_left {
   text-align: left;
 }
 
-#iuzjthaooy .gt_center {
+#mqmrmjfkre .gt_center {
   text-align: center;
 }
 
-#iuzjthaooy .gt_right {
+#mqmrmjfkre .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#iuzjthaooy .gt_font_normal {
+#mqmrmjfkre .gt_font_normal {
   font-weight: normal;
 }
 
-#iuzjthaooy .gt_font_bold {
+#mqmrmjfkre .gt_font_bold {
   font-weight: bold;
 }
 
-#iuzjthaooy .gt_font_italic {
+#mqmrmjfkre .gt_font_italic {
   font-style: italic;
 }
 
-#iuzjthaooy .gt_super {
+#mqmrmjfkre .gt_super {
   font-size: 65%;
 }
 
-#iuzjthaooy .gt_footnote_marks {
+#mqmrmjfkre .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#iuzjthaooy .gt_asterisk {
+#mqmrmjfkre .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#iuzjthaooy .gt_indent_1 {
+#mqmrmjfkre .gt_indent_1 {
   text-indent: 5px;
 }
 
-#iuzjthaooy .gt_indent_2 {
+#mqmrmjfkre .gt_indent_2 {
   text-indent: 10px;
 }
 
-#iuzjthaooy .gt_indent_3 {
+#mqmrmjfkre .gt_indent_3 {
   text-indent: 15px;
 }
 
-#iuzjthaooy .gt_indent_4 {
+#mqmrmjfkre .gt_indent_4 {
   text-indent: 20px;
 }
 
-#iuzjthaooy .gt_indent_5 {
+#mqmrmjfkre .gt_indent_5 {
   text-indent: 25px;
 }
 
-#iuzjthaooy .katex-display {
+#mqmrmjfkre .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#iuzjthaooy div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#mqmrmjfkre div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -863,7 +862,6 @@ Table&nbsp;1: The design matrix for the pizza dough experimentation
 </section>
 <section id="progressive-experimentation" class="title-slide slide level3 center scrollable">
 <h3>progressive experimentation</h3>
-<div>
 <ul>
 <li class="fragment">OFAT
 <ul>
@@ -877,7 +875,6 @@ Table&nbsp;1: The design matrix for the pizza dough experimentation
 <li class="fragment"><em>Characterizing</em> experiments: to study the model (residuals) of <span class="math inline">\(Y = f(X)\)</span></li>
 <li class="fragment"><em>Optimization</em> experiments: operational minimum value for the process</li>
 </ol>
-</div>
 </section>
 </section>
 <section id="model-assumptions" class="title-slide slide level2 center">
@@ -893,23 +890,23 @@ Table&nbsp;2: The randomized design matrix for experimental runs
 </figcaption>
 <div aria-describedby="tbl-dm-rnd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="bhqrvaiwjq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#bhqrvaiwjq table {
+<div id="koeoeejtzo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#koeoeejtzo table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#bhqrvaiwjq thead, #bhqrvaiwjq tbody, #bhqrvaiwjq tfoot, #bhqrvaiwjq tr, #bhqrvaiwjq td, #bhqrvaiwjq th {
+#koeoeejtzo thead, #koeoeejtzo tbody, #koeoeejtzo tfoot, #koeoeejtzo tr, #koeoeejtzo td, #koeoeejtzo th {
   border-style: none;
 }
 
-#bhqrvaiwjq p {
+#koeoeejtzo p {
   margin: 0;
   padding: 0;
 }
 
-#bhqrvaiwjq .gt_table {
+#koeoeejtzo .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -935,12 +932,12 @@ Table&nbsp;2: The randomized design matrix for experimental runs
   border-left-color: #D3D3D3;
 }
 
-#bhqrvaiwjq .gt_caption {
+#koeoeejtzo .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#bhqrvaiwjq .gt_title {
+#koeoeejtzo .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -952,7 +949,7 @@ Table&nbsp;2: The randomized design matrix for experimental runs
   border-bottom-width: 0;
 }
 
-#bhqrvaiwjq .gt_subtitle {
+#koeoeejtzo .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -964,7 +961,7 @@ Table&nbsp;2: The randomized design matrix for experimental runs
   border-top-width: 0;
 }
 
-#bhqrvaiwjq .gt_heading {
+#koeoeejtzo .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -976,13 +973,13 @@ Table&nbsp;2: The randomized design matrix for experimental runs
   border-right-color: #D3D3D3;
 }
 
-#bhqrvaiwjq .gt_bottom_border {
+#koeoeejtzo .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#bhqrvaiwjq .gt_col_headings {
+#koeoeejtzo .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -997,7 +994,7 @@ Table&nbsp;2: The randomized design matrix for experimental runs
   border-right-color: #D3D3D3;
 }
 
-#bhqrvaiwjq .gt_col_heading {
+#koeoeejtzo .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1017,7 +1014,7 @@ Table&nbsp;2: The randomized design matrix for experimental runs
   overflow-x: hidden;
 }
 
-#bhqrvaiwjq .gt_column_spanner_outer {
+#koeoeejtzo .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1029,15 +1026,15 @@ Table&nbsp;2: The randomized design matrix for experimental runs
   padding-right: 4px;
 }
 
-#bhqrvaiwjq .gt_column_spanner_outer:first-child {
+#koeoeejtzo .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#bhqrvaiwjq .gt_column_spanner_outer:last-child {
+#koeoeejtzo .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#bhqrvaiwjq .gt_column_spanner {
+#koeoeejtzo .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1049,11 +1046,11 @@ Table&nbsp;2: The randomized design matrix for experimental runs
   width: 100%;
 }
 
-#bhqrvaiwjq .gt_spanner_row {
+#koeoeejtzo .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#bhqrvaiwjq .gt_group_heading {
+#koeoeejtzo .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1079,7 +1076,7 @@ Table&nbsp;2: The randomized design matrix for experimental runs
   text-align: left;
 }
 
-#bhqrvaiwjq .gt_empty_group_heading {
+#koeoeejtzo .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1094,15 +1091,15 @@ Table&nbsp;2: The randomized design matrix for experimental runs
   vertical-align: middle;
 }
 
-#bhqrvaiwjq .gt_from_md > :first-child {
+#koeoeejtzo .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#bhqrvaiwjq .gt_from_md > :last-child {
+#koeoeejtzo .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#bhqrvaiwjq .gt_row {
+#koeoeejtzo .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1121,7 +1118,7 @@ Table&nbsp;2: The randomized design matrix for experimental runs
   overflow-x: hidden;
 }
 
-#bhqrvaiwjq .gt_stub {
+#koeoeejtzo .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1134,7 +1131,7 @@ Table&nbsp;2: The randomized design matrix for experimental runs
   padding-right: 5px;
 }
 
-#bhqrvaiwjq .gt_stub_row_group {
+#koeoeejtzo .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1148,15 +1145,15 @@ Table&nbsp;2: The randomized design matrix for experimental runs
   vertical-align: top;
 }
 
-#bhqrvaiwjq .gt_row_group_first td {
+#koeoeejtzo .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#bhqrvaiwjq .gt_row_group_first th {
+#koeoeejtzo .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#bhqrvaiwjq .gt_summary_row {
+#koeoeejtzo .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1166,16 +1163,16 @@ Table&nbsp;2: The randomized design matrix for experimental runs
   padding-right: 5px;
 }
 
-#bhqrvaiwjq .gt_first_summary_row {
+#koeoeejtzo .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#bhqrvaiwjq .gt_first_summary_row.thick {
+#koeoeejtzo .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#bhqrvaiwjq .gt_last_summary_row {
+#koeoeejtzo .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1185,7 +1182,7 @@ Table&nbsp;2: The randomized design matrix for experimental runs
   border-bottom-color: #D3D3D3;
 }
 
-#bhqrvaiwjq .gt_grand_summary_row {
+#koeoeejtzo .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1195,7 +1192,7 @@ Table&nbsp;2: The randomized design matrix for experimental runs
   padding-right: 5px;
 }
 
-#bhqrvaiwjq .gt_first_grand_summary_row {
+#koeoeejtzo .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1205,7 +1202,7 @@ Table&nbsp;2: The randomized design matrix for experimental runs
   border-top-color: #D3D3D3;
 }
 
-#bhqrvaiwjq .gt_last_grand_summary_row_top {
+#koeoeejtzo .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1215,11 +1212,11 @@ Table&nbsp;2: The randomized design matrix for experimental runs
   border-bottom-color: #D3D3D3;
 }
 
-#bhqrvaiwjq .gt_striped {
+#koeoeejtzo .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#bhqrvaiwjq .gt_table_body {
+#koeoeejtzo .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1228,7 +1225,7 @@ Table&nbsp;2: The randomized design matrix for experimental runs
   border-bottom-color: #D3D3D3;
 }
 
-#bhqrvaiwjq .gt_footnotes {
+#koeoeejtzo .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1242,7 +1239,7 @@ Table&nbsp;2: The randomized design matrix for experimental runs
   border-right-color: #D3D3D3;
 }
 
-#bhqrvaiwjq .gt_footnote {
+#koeoeejtzo .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1251,7 +1248,7 @@ Table&nbsp;2: The randomized design matrix for experimental runs
   padding-right: 5px;
 }
 
-#bhqrvaiwjq .gt_sourcenotes {
+#koeoeejtzo .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1265,7 +1262,7 @@ Table&nbsp;2: The randomized design matrix for experimental runs
   border-right-color: #D3D3D3;
 }
 
-#bhqrvaiwjq .gt_sourcenote {
+#koeoeejtzo .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1273,72 +1270,72 @@ Table&nbsp;2: The randomized design matrix for experimental runs
   padding-right: 5px;
 }
 
-#bhqrvaiwjq .gt_left {
+#koeoeejtzo .gt_left {
   text-align: left;
 }
 
-#bhqrvaiwjq .gt_center {
+#koeoeejtzo .gt_center {
   text-align: center;
 }
 
-#bhqrvaiwjq .gt_right {
+#koeoeejtzo .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#bhqrvaiwjq .gt_font_normal {
+#koeoeejtzo .gt_font_normal {
   font-weight: normal;
 }
 
-#bhqrvaiwjq .gt_font_bold {
+#koeoeejtzo .gt_font_bold {
   font-weight: bold;
 }
 
-#bhqrvaiwjq .gt_font_italic {
+#koeoeejtzo .gt_font_italic {
   font-style: italic;
 }
 
-#bhqrvaiwjq .gt_super {
+#koeoeejtzo .gt_super {
   font-size: 65%;
 }
 
-#bhqrvaiwjq .gt_footnote_marks {
+#koeoeejtzo .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#bhqrvaiwjq .gt_asterisk {
+#koeoeejtzo .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#bhqrvaiwjq .gt_indent_1 {
+#koeoeejtzo .gt_indent_1 {
   text-indent: 5px;
 }
 
-#bhqrvaiwjq .gt_indent_2 {
+#koeoeejtzo .gt_indent_2 {
   text-indent: 10px;
 }
 
-#bhqrvaiwjq .gt_indent_3 {
+#koeoeejtzo .gt_indent_3 {
   text-indent: 15px;
 }
 
-#bhqrvaiwjq .gt_indent_4 {
+#koeoeejtzo .gt_indent_4 {
   text-indent: 20px;
 }
 
-#bhqrvaiwjq .gt_indent_5 {
+#koeoeejtzo .gt_indent_5 {
   text-indent: 25px;
 }
 
-#bhqrvaiwjq .katex-display {
+#koeoeejtzo .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#bhqrvaiwjq div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#koeoeejtzo div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1355,9 +1352,9 @@ Table&nbsp;2: The randomized design matrix for experimental runs
 </thead>
 <tbody class="gt_table_body">
 <tr class="odd">
-<td class="gt_row gt_center" headers="flour">-</td>
+<td class="gt_row gt_center" headers="flour">+</td>
 <td class="gt_row gt_center" headers="salt">+</td>
-<td class="gt_row gt_center" headers="bakPow">+</td>
+<td class="gt_row gt_center" headers="bakPow">-</td>
 <td class="gt_row gt_center" headers="score">NA</td>
 <td class="gt_row gt_right" headers="ord">1</td>
 </tr>
@@ -1369,37 +1366,37 @@ Table&nbsp;2: The randomized design matrix for experimental runs
 <td class="gt_row gt_right" headers="ord">2</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_center" headers="flour">-</td>
+<td class="gt_row gt_center" headers="flour">+</td>
 <td class="gt_row gt_center" headers="salt">-</td>
-<td class="gt_row gt_center" headers="bakPow">-</td>
+<td class="gt_row gt_center" headers="bakPow">+</td>
 <td class="gt_row gt_center" headers="score">NA</td>
 <td class="gt_row gt_right" headers="ord">3</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_center" headers="flour">+</td>
-<td class="gt_row gt_center" headers="salt">-</td>
-<td class="gt_row gt_center" headers="bakPow">-</td>
+<td class="gt_row gt_center" headers="flour">-</td>
+<td class="gt_row gt_center" headers="salt">+</td>
+<td class="gt_row gt_center" headers="bakPow">+</td>
 <td class="gt_row gt_center" headers="score">NA</td>
 <td class="gt_row gt_right" headers="ord">4</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_center" headers="flour">-</td>
-<td class="gt_row gt_center" headers="salt">+</td>
+<td class="gt_row gt_center" headers="salt">-</td>
 <td class="gt_row gt_center" headers="bakPow">-</td>
 <td class="gt_row gt_center" headers="score">NA</td>
 <td class="gt_row gt_right" headers="ord">5</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_center" headers="flour">+</td>
-<td class="gt_row gt_center" headers="salt">+</td>
+<td class="gt_row gt_center" headers="salt">-</td>
 <td class="gt_row gt_center" headers="bakPow">-</td>
 <td class="gt_row gt_center" headers="score">NA</td>
 <td class="gt_row gt_right" headers="ord">6</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_center" headers="flour">+</td>
-<td class="gt_row gt_center" headers="salt">-</td>
-<td class="gt_row gt_center" headers="bakPow">+</td>
+<td class="gt_row gt_center" headers="flour">-</td>
+<td class="gt_row gt_center" headers="salt">+</td>
+<td class="gt_row gt_center" headers="bakPow">-</td>
 <td class="gt_row gt_center" headers="score">NA</td>
 <td class="gt_row gt_right" headers="ord">7</td>
 </tr>
@@ -1532,23 +1529,23 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
 <p>“… bake the pizza for 9min at 180°C …”</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="bikiklvzbh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#bikiklvzbh table {
+<div id="mwmketadzb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#mwmketadzb table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#bikiklvzbh thead, #bikiklvzbh tbody, #bikiklvzbh tfoot, #bikiklvzbh tr, #bikiklvzbh td, #bikiklvzbh th {
+#mwmketadzb thead, #mwmketadzb tbody, #mwmketadzb tfoot, #mwmketadzb tr, #mwmketadzb td, #mwmketadzb th {
   border-style: none;
 }
 
-#bikiklvzbh p {
+#mwmketadzb p {
   margin: 0;
   padding: 0;
 }
 
-#bikiklvzbh .gt_table {
+#mwmketadzb .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1574,12 +1571,12 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   border-left-color: #D3D3D3;
 }
 
-#bikiklvzbh .gt_caption {
+#mwmketadzb .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#bikiklvzbh .gt_title {
+#mwmketadzb .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1591,7 +1588,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   border-bottom-width: 0;
 }
 
-#bikiklvzbh .gt_subtitle {
+#mwmketadzb .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1603,7 +1600,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   border-top-width: 0;
 }
 
-#bikiklvzbh .gt_heading {
+#mwmketadzb .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1615,13 +1612,13 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   border-right-color: #D3D3D3;
 }
 
-#bikiklvzbh .gt_bottom_border {
+#mwmketadzb .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#bikiklvzbh .gt_col_headings {
+#mwmketadzb .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1636,7 +1633,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   border-right-color: #D3D3D3;
 }
 
-#bikiklvzbh .gt_col_heading {
+#mwmketadzb .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1656,7 +1653,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   overflow-x: hidden;
 }
 
-#bikiklvzbh .gt_column_spanner_outer {
+#mwmketadzb .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1668,15 +1665,15 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   padding-right: 4px;
 }
 
-#bikiklvzbh .gt_column_spanner_outer:first-child {
+#mwmketadzb .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#bikiklvzbh .gt_column_spanner_outer:last-child {
+#mwmketadzb .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#bikiklvzbh .gt_column_spanner {
+#mwmketadzb .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1688,11 +1685,11 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   width: 100%;
 }
 
-#bikiklvzbh .gt_spanner_row {
+#mwmketadzb .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#bikiklvzbh .gt_group_heading {
+#mwmketadzb .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1718,7 +1715,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   text-align: left;
 }
 
-#bikiklvzbh .gt_empty_group_heading {
+#mwmketadzb .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1733,15 +1730,15 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   vertical-align: middle;
 }
 
-#bikiklvzbh .gt_from_md > :first-child {
+#mwmketadzb .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#bikiklvzbh .gt_from_md > :last-child {
+#mwmketadzb .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#bikiklvzbh .gt_row {
+#mwmketadzb .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1760,7 +1757,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   overflow-x: hidden;
 }
 
-#bikiklvzbh .gt_stub {
+#mwmketadzb .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1773,7 +1770,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   padding-right: 5px;
 }
 
-#bikiklvzbh .gt_stub_row_group {
+#mwmketadzb .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1787,15 +1784,15 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   vertical-align: top;
 }
 
-#bikiklvzbh .gt_row_group_first td {
+#mwmketadzb .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#bikiklvzbh .gt_row_group_first th {
+#mwmketadzb .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#bikiklvzbh .gt_summary_row {
+#mwmketadzb .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1805,16 +1802,16 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   padding-right: 5px;
 }
 
-#bikiklvzbh .gt_first_summary_row {
+#mwmketadzb .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#bikiklvzbh .gt_first_summary_row.thick {
+#mwmketadzb .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#bikiklvzbh .gt_last_summary_row {
+#mwmketadzb .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1824,7 +1821,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   border-bottom-color: #D3D3D3;
 }
 
-#bikiklvzbh .gt_grand_summary_row {
+#mwmketadzb .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1834,7 +1831,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   padding-right: 5px;
 }
 
-#bikiklvzbh .gt_first_grand_summary_row {
+#mwmketadzb .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1844,7 +1841,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   border-top-color: #D3D3D3;
 }
 
-#bikiklvzbh .gt_last_grand_summary_row_top {
+#mwmketadzb .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1854,11 +1851,11 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   border-bottom-color: #D3D3D3;
 }
 
-#bikiklvzbh .gt_striped {
+#mwmketadzb .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#bikiklvzbh .gt_table_body {
+#mwmketadzb .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1867,7 +1864,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   border-bottom-color: #D3D3D3;
 }
 
-#bikiklvzbh .gt_footnotes {
+#mwmketadzb .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1881,7 +1878,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   border-right-color: #D3D3D3;
 }
 
-#bikiklvzbh .gt_footnote {
+#mwmketadzb .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1890,7 +1887,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   padding-right: 5px;
 }
 
-#bikiklvzbh .gt_sourcenotes {
+#mwmketadzb .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1904,7 +1901,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   border-right-color: #D3D3D3;
 }
 
-#bikiklvzbh .gt_sourcenote {
+#mwmketadzb .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1912,72 +1909,72 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   padding-right: 5px;
 }
 
-#bikiklvzbh .gt_left {
+#mwmketadzb .gt_left {
   text-align: left;
 }
 
-#bikiklvzbh .gt_center {
+#mwmketadzb .gt_center {
   text-align: center;
 }
 
-#bikiklvzbh .gt_right {
+#mwmketadzb .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#bikiklvzbh .gt_font_normal {
+#mwmketadzb .gt_font_normal {
   font-weight: normal;
 }
 
-#bikiklvzbh .gt_font_bold {
+#mwmketadzb .gt_font_bold {
   font-weight: bold;
 }
 
-#bikiklvzbh .gt_font_italic {
+#mwmketadzb .gt_font_italic {
   font-style: italic;
 }
 
-#bikiklvzbh .gt_super {
+#mwmketadzb .gt_super {
   font-size: 65%;
 }
 
-#bikiklvzbh .gt_footnote_marks {
+#mwmketadzb .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#bikiklvzbh .gt_asterisk {
+#mwmketadzb .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#bikiklvzbh .gt_indent_1 {
+#mwmketadzb .gt_indent_1 {
   text-indent: 5px;
 }
 
-#bikiklvzbh .gt_indent_2 {
+#mwmketadzb .gt_indent_2 {
   text-indent: 10px;
 }
 
-#bikiklvzbh .gt_indent_3 {
+#mwmketadzb .gt_indent_3 {
   text-indent: 15px;
 }
 
-#bikiklvzbh .gt_indent_4 {
+#mwmketadzb .gt_indent_4 {
   text-indent: 20px;
 }
 
-#bikiklvzbh .gt_indent_5 {
+#mwmketadzb .gt_indent_5 {
   text-indent: 25px;
 }
 
-#bikiklvzbh .katex-display {
+#mwmketadzb .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#bikiklvzbh div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#mwmketadzb div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2135,23 +2132,23 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
 <h3>pizza dough example summarised data</h3>
 <div class="cell">
 <div class="cell-output-display">
-<div id="cpfivkfckk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#cpfivkfckk table {
+<div id="aglonhdcet" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#aglonhdcet table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#cpfivkfckk thead, #cpfivkfckk tbody, #cpfivkfckk tfoot, #cpfivkfckk tr, #cpfivkfckk td, #cpfivkfckk th {
+#aglonhdcet thead, #aglonhdcet tbody, #aglonhdcet tfoot, #aglonhdcet tr, #aglonhdcet td, #aglonhdcet th {
   border-style: none;
 }
 
-#cpfivkfckk p {
+#aglonhdcet p {
   margin: 0;
   padding: 0;
 }
 
-#cpfivkfckk .gt_table {
+#aglonhdcet .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2177,12 +2174,12 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   border-left-color: #D3D3D3;
 }
 
-#cpfivkfckk .gt_caption {
+#aglonhdcet .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#cpfivkfckk .gt_title {
+#aglonhdcet .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2194,7 +2191,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   border-bottom-width: 0;
 }
 
-#cpfivkfckk .gt_subtitle {
+#aglonhdcet .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2206,7 +2203,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   border-top-width: 0;
 }
 
-#cpfivkfckk .gt_heading {
+#aglonhdcet .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2218,13 +2215,13 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   border-right-color: #D3D3D3;
 }
 
-#cpfivkfckk .gt_bottom_border {
+#aglonhdcet .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#cpfivkfckk .gt_col_headings {
+#aglonhdcet .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2239,7 +2236,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   border-right-color: #D3D3D3;
 }
 
-#cpfivkfckk .gt_col_heading {
+#aglonhdcet .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2259,7 +2256,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   overflow-x: hidden;
 }
 
-#cpfivkfckk .gt_column_spanner_outer {
+#aglonhdcet .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2271,15 +2268,15 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   padding-right: 4px;
 }
 
-#cpfivkfckk .gt_column_spanner_outer:first-child {
+#aglonhdcet .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#cpfivkfckk .gt_column_spanner_outer:last-child {
+#aglonhdcet .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#cpfivkfckk .gt_column_spanner {
+#aglonhdcet .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2291,11 +2288,11 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   width: 100%;
 }
 
-#cpfivkfckk .gt_spanner_row {
+#aglonhdcet .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#cpfivkfckk .gt_group_heading {
+#aglonhdcet .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2321,7 +2318,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   text-align: left;
 }
 
-#cpfivkfckk .gt_empty_group_heading {
+#aglonhdcet .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2336,15 +2333,15 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   vertical-align: middle;
 }
 
-#cpfivkfckk .gt_from_md > :first-child {
+#aglonhdcet .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#cpfivkfckk .gt_from_md > :last-child {
+#aglonhdcet .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#cpfivkfckk .gt_row {
+#aglonhdcet .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2363,7 +2360,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   overflow-x: hidden;
 }
 
-#cpfivkfckk .gt_stub {
+#aglonhdcet .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2376,7 +2373,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   padding-right: 5px;
 }
 
-#cpfivkfckk .gt_stub_row_group {
+#aglonhdcet .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2390,15 +2387,15 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   vertical-align: top;
 }
 
-#cpfivkfckk .gt_row_group_first td {
+#aglonhdcet .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#cpfivkfckk .gt_row_group_first th {
+#aglonhdcet .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#cpfivkfckk .gt_summary_row {
+#aglonhdcet .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2408,16 +2405,16 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   padding-right: 5px;
 }
 
-#cpfivkfckk .gt_first_summary_row {
+#aglonhdcet .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#cpfivkfckk .gt_first_summary_row.thick {
+#aglonhdcet .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#cpfivkfckk .gt_last_summary_row {
+#aglonhdcet .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2427,7 +2424,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   border-bottom-color: #D3D3D3;
 }
 
-#cpfivkfckk .gt_grand_summary_row {
+#aglonhdcet .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2437,7 +2434,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   padding-right: 5px;
 }
 
-#cpfivkfckk .gt_first_grand_summary_row {
+#aglonhdcet .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2447,7 +2444,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   border-top-color: #D3D3D3;
 }
 
-#cpfivkfckk .gt_last_grand_summary_row_top {
+#aglonhdcet .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2457,11 +2454,11 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   border-bottom-color: #D3D3D3;
 }
 
-#cpfivkfckk .gt_striped {
+#aglonhdcet .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#cpfivkfckk .gt_table_body {
+#aglonhdcet .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2470,7 +2467,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   border-bottom-color: #D3D3D3;
 }
 
-#cpfivkfckk .gt_footnotes {
+#aglonhdcet .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2484,7 +2481,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   border-right-color: #D3D3D3;
 }
 
-#cpfivkfckk .gt_footnote {
+#aglonhdcet .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2493,7 +2490,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   padding-right: 5px;
 }
 
-#cpfivkfckk .gt_sourcenotes {
+#aglonhdcet .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2507,7 +2504,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   border-right-color: #D3D3D3;
 }
 
-#cpfivkfckk .gt_sourcenote {
+#aglonhdcet .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2515,72 +2512,72 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   padding-right: 5px;
 }
 
-#cpfivkfckk .gt_left {
+#aglonhdcet .gt_left {
   text-align: left;
 }
 
-#cpfivkfckk .gt_center {
+#aglonhdcet .gt_center {
   text-align: center;
 }
 
-#cpfivkfckk .gt_right {
+#aglonhdcet .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#cpfivkfckk .gt_font_normal {
+#aglonhdcet .gt_font_normal {
   font-weight: normal;
 }
 
-#cpfivkfckk .gt_font_bold {
+#aglonhdcet .gt_font_bold {
   font-weight: bold;
 }
 
-#cpfivkfckk .gt_font_italic {
+#aglonhdcet .gt_font_italic {
   font-style: italic;
 }
 
-#cpfivkfckk .gt_super {
+#aglonhdcet .gt_super {
   font-size: 65%;
 }
 
-#cpfivkfckk .gt_footnote_marks {
+#aglonhdcet .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#cpfivkfckk .gt_asterisk {
+#aglonhdcet .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#cpfivkfckk .gt_indent_1 {
+#aglonhdcet .gt_indent_1 {
   text-indent: 5px;
 }
 
-#cpfivkfckk .gt_indent_2 {
+#aglonhdcet .gt_indent_2 {
   text-indent: 10px;
 }
 
-#cpfivkfckk .gt_indent_3 {
+#aglonhdcet .gt_indent_3 {
   text-indent: 15px;
 }
 
-#cpfivkfckk .gt_indent_4 {
+#aglonhdcet .gt_indent_4 {
   text-indent: 20px;
 }
 
-#cpfivkfckk .gt_indent_5 {
+#aglonhdcet .gt_indent_5 {
   text-indent: 25px;
 }
 
-#cpfivkfckk .katex-display {
+#aglonhdcet .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#cpfivkfckk div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#aglonhdcet div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -3875,190 +3872,172 @@ Cano, Emilio L., Javier M. Moguerza, and Andrés Redchuk. 2012. <span>“Six Sig
     
 
     <script id="quarto-html-after-body" type="application/javascript">
-    window.document.addEventListener("DOMContentLoaded", function (event) {
-      const toggleBodyColorMode = (bsSheetEl) => {
-        const mode = bsSheetEl.getAttribute("data-mode");
-        const bodyEl = window.document.querySelector("body");
-        if (mode === "dark") {
-          bodyEl.classList.add("quarto-dark");
-          bodyEl.classList.remove("quarto-light");
-        } else {
-          bodyEl.classList.add("quarto-light");
-          bodyEl.classList.remove("quarto-dark");
-        }
-      }
-      const toggleBodyColorPrimary = () => {
-        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-        if (bsSheetEl) {
-          toggleBodyColorMode(bsSheetEl);
-        }
-      }
-      toggleBodyColorPrimary();  
-      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
-      tabsets.forEach(function(tabset) {
-        const tabby = new Tabby('#' + tabset.id);
-      });
-      const isCodeAnnotation = (el) => {
-        for (const clz of el.classList) {
-          if (clz.startsWith('code-annotation-')) {                     
-            return true;
-          }
-        }
-        return false;
-      }
-      const onCopySuccess = function(e) {
-        // button target
-        const button = e.trigger;
-        // don't keep focus
-        button.blur();
-        // flash "checked"
-        button.classList.add('code-copy-button-checked');
-        var currentTitle = button.getAttribute("title");
-        button.setAttribute("title", "Copied!");
-        let tooltip;
-        if (window.bootstrap) {
-          button.setAttribute("data-bs-toggle", "tooltip");
-          button.setAttribute("data-bs-placement", "left");
-          button.setAttribute("data-bs-title", "Copied!");
-          tooltip = new bootstrap.Tooltip(button, 
-            { trigger: "manual", 
-              customClass: "code-copy-button-tooltip",
-              offset: [0, -8]});
-          tooltip.show();    
-        }
-        setTimeout(function() {
-          if (tooltip) {
-            tooltip.hide();
-            button.removeAttribute("data-bs-title");
-            button.removeAttribute("data-bs-toggle");
-            button.removeAttribute("data-bs-placement");
-          }
-          button.setAttribute("title", currentTitle);
-          button.classList.remove('code-copy-button-checked');
-        }, 1000);
-        // clear code selection
-        e.clearSelection();
-      }
-      const getTextToCopy = function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
             }
           }
-          return codeEl.innerText;
-      }
-      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-        text: getTextToCopy
-      });
-      clipboard.on('success', onCopySuccess);
-      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-          text: getTextToCopy,
-          container: window.document.getElementById('quarto-embedded-source-code-modal')
-        });
-        clipboardModal.on('success', onCopySuccess);
-      }
-        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-        var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp('/' + window.location.host + '/');
-        var isInternal = (href) => {
-            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          return false;
         }
-        // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-        for (var i=0; i<links.length; i++) {
-          const link = links[i];
-          if (!isInternal(link.href)) {
-            // undo the damage that might have been done by quarto-nav.js in the case of
-            // links that we want to consider external
-            if (link.dataset.originalHref !== undefined) {
-              link.href = link.dataset.originalHref;
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
             }
-          }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
         }
-      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-        const config = {
-          allowHTML: true,
-          maxWidth: 500,
-          delay: 100,
-          arrow: false,
-          appendTo: function(el) {
-              return el.closest('section.slide') || el.parentElement;
-          },
-          interactive: true,
-          interactiveBorder: 10,
-          theme: 'light-border',
-          placement: 'bottom-start',
-        };
-        if (contentFn) {
-          config.content = contentFn;
-        }
-        if (onTriggerFn) {
-          config.onTrigger = onTriggerFn;
-        }
-        if (onUntriggerFn) {
-          config.onUntrigger = onUntriggerFn;
-        }
-          config['offset'] = [0,0];
-          config['maxWidth'] = 700;
-        window.tippy(el, config); 
-      }
-      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-      for (var i=0; i<noterefs.length; i++) {
-        const ref = noterefs[i];
-        tippyHover(ref, function() {
-          // use id or data attribute instead here
-          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-          try { href = new URL(href).hash; } catch {}
-          const id = href.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note) {
-            return note.innerHTML;
-          } else {
-            return "";
-          }
-        });
-      }
-      const findCites = (el) => {
-        const parentEl = el.parentElement;
-        if (parentEl) {
-          const cites = parentEl.dataset.cites;
-          if (cites) {
-            return {
-              el,
-              cites: cites.split(' ')
-            };
-          } else {
-            return findCites(el.parentElement)
-          }
-        } else {
-          return undefined;
-        }
-      };
-      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-      for (var i=0; i<bibliorefs.length; i++) {
-        const ref = bibliorefs[i];
-        const citeInfo = findCites(ref);
-        if (citeInfo) {
-          tippyHover(citeInfo.el, function() {
-            var popup = window.document.createElement('div');
-            citeInfo.cites.forEach(function(cite) {
-              var citeDiv = window.document.createElement('div');
-              citeDiv.classList.add('hanging-indent');
-              citeDiv.classList.add('csl-entry');
-              var biblioDiv = window.document.getElementById('ref-' + cite);
-              if (biblioDiv) {
-                citeDiv.innerHTML = biblioDiv.innerHTML;
+        const getTextToCopy = function(trigger) {
+            const codeEl = trigger.previousElementSibling.cloneNode(true);
+            for (const childEl of codeEl.children) {
+              if (isCodeAnnotation(childEl)) {
+                childEl.remove();
               }
-              popup.appendChild(citeDiv);
-            });
-            return popup.innerHTML;
+            }
+            return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
           });
         }
-      }
-    });
-    </script>
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
     
 
 </body></html>

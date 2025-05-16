@@ -1892,13 +1892,10 @@ With $n>30$ (as for this dataset), the difference between disitrbution is very s
 
 ```{r}
 #| label: fig-ds-t
-#| layout: [30,70]
 #| out-width: 95%
-#| fig-cap: The drive shaft data and the application of the t-Distribution
-#| fig-subcap: 
-#| - the raw data
-#| - normal disitribution, t-distribution and confidence intervalls using the t-distribution
-#| 
+#| fig-cap: The drive shaft data with normal disitribution, t-distribution and confidence intervalls using the t-distribution
+
+
 load (here("data","drive_shaft_data.Rdata"))
 
 
@@ -1913,19 +1910,19 @@ drive_shaft <- drive_shaft %>%
 drive_shaft_scaled <- drive_shaft %>% 
   unnest(cols = c("data"))
          
-drive_shaft_scaled %>% 
-  ggplot(aes(x = diameter,y = group,fill = group))+
-  geom_rect(aes(ymin = -Inf, ymax = Inf, xmin = spec_lo, xmax = spec_hi,fill = "spec"),
-            alpha = 0.3)+
-  geom_density_ridges()+
-  scale_fill_grey()+
-  scale_x_continuous(expand = c(0,0,0,0))+
-  theme_few()+
-  labs(title = "The raw data",
-       x = "diameter",
-       y = ""
-         )+
-  scale_y_discrete(expand = c(0,0,0,0))
+# drive_shaft_scaled %>% 
+#   ggplot(aes(x = diameter,y = group,fill = group))+
+#   geom_rect(aes(ymin = -Inf, ymax = Inf, xmin = spec_lo, xmax = spec_hi,fill = "spec"),
+#             alpha = 0.3)+
+#   geom_density_ridges()+
+#   scale_fill_grey()+
+#   scale_x_continuous(expand = c(0,0,0,0))+
+#   theme_few()+
+#   labs(title = "The raw data",
+#        x = "diameter",
+#        y = ""
+#          )+
+#   scale_y_discrete(expand = c(0,0,0,0))
 
 
 drive_shaft_t_score <- drive_shaft %>% 

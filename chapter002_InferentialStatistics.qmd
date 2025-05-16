@@ -1646,12 +1646,235 @@ Correlation doesn't imply causation; it only indicates that two variables change
 
 ::: {.r-stack}
 
-:::{.fragment .fade-out}
+:::{.fragment .fade-in-then-out}
+
+::: {.r-fit-text}
+
+The pearson correlation coefficient is a normalized version of the covariance.
+
+:::
+
+::::
+
+::: {.content-visible when-profile="slides"}
+
+:::{.fragment .fade-in-then-out}
+
+<center>
+Covariance?
+</center>
+
+:::
+
+:::{.fragment .fade-in-then-out}
+
+Covariance is a measure of joint variability.
+
+Covariance is a generalized formulation of the variance.
+
+:::
+
+:::{.fragment .fade-in-then-out}
+
+You and your friend are swinging back and forth.
+
+When you swing forward, your friend also swings forward.
+
+When you swing backward, your friend also swings backward.
+
+You’re moving together — that’s like **positive** covariance.
+
+:::
+
+:::{.fragment .fade-in-then-out}
+
+When you swing forward, this friend swings backward.
+
+When you swing backward, they swing forward.
+
+Now you’re moving in opposite directions — that’s like **negative** covariance.
+
+:::
+
+
+:::{.fragment .fade-in-then-out}
+
+Sometimes you go forward, and they go backward.
+
+Other times, they go forward, and you go backward.
+
+No pattern at all.
+
+That means no covariance — you’re not moving together in any consistent way.
+
+:::
+
+:::{.fragment .fade-in-then-out}
+
+Covariance is a **number** that tells us:
+
+How two things change together.
+
+If they both go up or down at the same time (positive covariance).
+
+If one goes up while the other goes down (negative covariance).
+
+Or if they don’t match at all (covariance near zero).
+
+:::
+
+
+:::{.fragment .fade-in-then-out}
+
+\begin{align}
+\mathrm{Cov}(X,Y) = \frac{1}{n}\sum{(X_i - \bar{X})(Y_i - \bar{Y})}
+\end{align}
+
+
+:::
+
+:::{.fragment .fade-in-then-out}
+
+
+```{r}
+#| label: tbl-example-data-cov
+#| tbl-cap: Example data on the calculation of the covariance for two variables.
+
+
+cov_data <- data.frame(
+  temp_c = c(20,22,24,26,28),
+  rod_length_mm = c(100.2,100.5,100.9,101.3,101.6)
+)
+
+cov_data |> 
+  gt() |> 
+  cols_label(
+    temp_c = "Temperature in °C",
+    rod_length_mm = "Rod Length in mm"
+  ) |> 
+  cols_align(
+    align = "center",
+    columns = everything()
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = pct(80)
+  )
+
+```
+
+:::
+
+:::{.fragment .fade-in-then-out}
+
+computing means
+
+\begin{align}
+\bar{X} = \frac{`r cov_data$temp_c[1]`+`r cov_data$temp_c[2]`+`r cov_data$temp_c[3]`+`r cov_data$temp_c[4]`+`r cov_data$temp_c[5]`}{`r nrow(cov_data)`} = `r mean(cov_data$temp_c)`
+\end{align}
+
+\begin{align}
+\bar{X} = \frac{`r cov_data$rod_length_mm[1]`+`r cov_data$rod_length_mm[2]`+`r cov_data$rod_length_mm[3]`+`r cov_data$rod_length_mm[4]`+`r cov_data$rod_length_mm[5]`}{`r nrow(cov_data)`} = `r mean(cov_data$rod_length_mm)`
+\end{align}
+
+:::
+
+:::{.fragment .fade-in-then-out}
+
+```{r}
+#| label: tbl-example-data-cov-calc
+#| tbl-cap: Hand calculation of the XY-covariance
+
+cov_data_calc <- cov_data |> 
+  mutate(
+    Xi_X = temp_c-mean(temp_c),
+    Yi_Y = rod_length_mm-mean(rod_length_mm),
+    products = Xi_X*Yi_Y
+  ) 
+
+cov_data_calc |> 
+  gt() |> 
+  cols_label(
+    temp_c = "Temperature in °C",
+    rod_length_mm = "Rod Length in mm",
+    Xi_X = "$X_i - \\bar{X}$",
+    Yi_Y = "$Y_i - \\bar{Y}$",
+    products = "$(X_i - \\bar{X}) \\cdot (Y_i - \\bar{Y})$"
+  ) |> 
+  cols_align(
+    align = "center",
+    columns = everything()
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = pct(70)
+  )
+```
+
+:::
+
+:::{.fragment .fade-in-then-out}
+
+Sum the products
+
+\begin{align}
+\sum(X_i - \bar{X})(Y_i - \bar{Y}) = `r cov_data_calc$products[1]` + `r cov_data_calc$products[2]` + `r cov_data_calc$products[3]` + `r cov_data_calc$products[4]` + `r cov_data_calc$products[5]` = `r sum(cov_data_calc$products)`
+\end{align}
+
+Compute Covariance
+
+\begin{align}
+\mathrm{Cov}(X,Y) = \frac{`r sum(cov_data_calc$products)`}{`r nrow(cov_data_calc)`} = `r  sum(cov_data_calc$products)/nrow(cov_data_calc)`
+\end{align}
+
+:::
+
+:::{.fragment .fade-in-then-out}
+
+Interpretation:
+
+* **Covariance** $= 1.44\;°C\cdot mm$
+* It's **positive**, meaning:
+  * When the machine runs hotter, the rods are longer (thermal expansion)
+* It's **not standardized**
+  * The number $1.44$ is not "large" or "small" until compared with variance or a **correlation** is computed
+
+:::
+
+:::{.fragment .fade-in-then-out}
+
+* $(X_i-\bar{X}) \rightarrow$ How different is this temperature from average?
+* $(Y_i-\bar{Y}) \rightarrow$ How different is this rod length from average?
+* Multiply them:
+  * Positive $x$ Positive $\rightarrow$ rods are longer at higher temp $\rightarrow$ $+$ contribution
+  * Negative $x$ Negative $\rightarrow$ rods are shorter at lower temp $\rightarrow$ $+$ contribution
+  * Different signs $\rightarrow$ one high, one low $\rightarrow$ $-$ contribution
+  
+<center>
+The average of all contributions is the **Covariance**
+</center>
+
+:::
+
+:::
+
+:::{.fragment .fade-in-then-out}
+
+\begin{align}
+R = \frac{\mathrm{Cov}(X,Y)}{\sigma_x \sigma_y}
+\end{align}
+
+* Covariance is sensitive to **scale** ($mm$ vs. $cm$)
+* Pearson correlation **removes** units, allowing for meaningful comparisons across datasets
+
+:::
+
+:::{.fragment .fade-in-then-out}
 
 ```{r}
 #| label: fig-drive-shaft-pearson-qq
 #| out-width: 75%
-#| fig-cap: The QQ-plot of both variables. There is strong evidence that they are normally disitrbuted.
+#| fig-cap: The QQ-plot of both variables. There is strong evidence that they are normally distributed.
 
 load(here("data","drive_shaft_rpm_dia.Rdata"))
 
@@ -1746,12 +1969,228 @@ This can also be seen in the QQ-plots of both variables in @fig-drive-shaft-spea
 
 ::: {.r-stack}
 
-:::{.fragment .fade-out}
+::: {.fragment .fade-in-then-out}
+
+The **spearman** correlation coefficient ($\rho$) is based on the pearson correlation, but applied to **ranked** data
+
+:::
+
+::: {.content-visible when-profile="slides"}
+
+::: {.fragment .fade-in-then-out}
+
+::: {.r-fit-text}
+
+<center>
+Rank?
+</center>
+
+:::
+
+:::
+
+::: {.fragment .fade-in-then-out}
+
+A **rank** is a position number assigned to an item in a sorted list. 
+It tells you where the item stands relative to others.
+
+:::
+
+::: {.fragment .fade-in-then-out}
+
+```{r}
+#| label: tbl-spear-rank
+#| tbl-cap: Example data on ranking items in a list.
+
+rnk_ex <- data.frame(
+  name = c("Alice","Bob","Clara","David","Elena"),
+  height = c(160,165,170,175,180),
+  rnk = c(1,2,3,4,5)
+) 
+rnk_ex |> 
+  gt() |> 
+  cols_label(
+    name = "Name",
+    height = "Height in cm",
+    rnk = "rank"
+  ) |> 
+  cols_align(
+    align = "center",
+    columns = everything()
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = pct(70)
+  )
+
+```
+
+:::
+
+::: {.fragment .fade-in-then-out}
+
+```{r}
+#| label: tbl-spear-ex-raw
+#| tbl-cap: The data is now subject to outliers.
+
+spear_dat <- data.frame(
+  obs = seq(1,8,1),
+  temp_c = c(20,22,24,26,28,30,32,34),
+  rod_length_mm = c(100.2,100.4,100.7, 101.0, 101.3, 110, 120.0, 130.0)
+) |> 
+  add_column(
+    comment = c("normal","normal","normal","normal","normal","steep increase","very steep","extreme")
+  ) 
+
+spear_dat |> 
+  gt() |> 
+  cols_label(
+    obs = "Obersvation",
+    temp_c = "Temperature in °C",
+    rod_length_mm = "Rod Length in mm",
+    comment = "Comment"
+  ) |> 
+  cols_align(
+    align = "center",
+    columns = everything()
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = pct(70)
+  ) |> 
+    tab_style(
+    style = cell_fill(color = 'grey'),
+    locations = cells_body(
+      columns = c(rod_length_mm), 
+      rows = c(6,7,8)
+    ))
+
+```
+
+:::
+
+::: {.fragment .fade-in-then-out}
+
+```{r}
+#| label: tbl-spear-ex-calc
+#| tbl-cap: The steps in calculating the spearman correlation.
+
+spear_dat_calc <- spear_dat |> 
+  mutate(
+    rnk_temp = dense_rank(temp_c),
+    rnk_leng = dense_rank(rod_length_mm),
+    di = rnk_temp-rnk_leng,
+    di2 = di^2
+  )
+
+spear_dat_calc |> 
+  gt() |> 
+  cols_label(
+    obs = "Obersvation",
+    temp_c = "Temperature in °C",
+    rod_length_mm = "Rod Length in mm",
+    comment = "Comment",
+    rnk_temp = "Rank $X$",
+    rnk_leng = "Rank $Y$",
+    di = "$d = R_X-R_Y$",
+    di2 = "$d^2$"
+  ) |> 
+  cols_align(
+    align = "center",
+    columns = everything()
+  ) |> 
+  tab_options(
+    table.width = pct(100),
+    table.font.size = pct(70)
+  ) |> 
+    tab_style(
+    style = cell_fill(color = 'grey'),
+    locations = cells_body(
+      columns = c(rod_length_mm), 
+      rows = c(6,7,8)
+    ))
+
+```
+
+
+:::
+
+:::{.fragment .fade-in-then-out}
+
+\begin{align}
+\rho = 1- \frac{6\sum{d^2}}{n(n^2-1)} = 1 - \frac{0}{8(64-1)} = 1
+\end{align}
+
+Pearson correlation:
+
+$R = `r round(cor(spear_dat$temp_c,spear_dat$rod_length_mm),digits = 2)`$
+
+:::
+
+:::{.fragment .fade-in-then-out}
+
+```{r}
+#| label: fig-spear-dat
+#| fig-width: 15
+#| fig-height: 8
+#| out-width: 95%
+#| fig-cap: The data for which the spearman correlation is computed
+
+spear_dat_calc |> 
+  ggplot(
+    aes(
+      x = temp_c,
+      y = rod_length_mm
+    )
+  )+
+  geom_point(
+    shape  = 4,
+    size = 5
+  )+
+  geom_line()+
+  geom_smooth(method = "lm",se = TRUE)+
+  labs(
+    title = "The data for the correlation computation",
+    x = "Temperature in °C",
+    y = "Rod Length in mm"
+  )+
+  stat_cor(method = "pearson", label.x = 20, label.y = 125)+
+  stat_cor(method = "spearman", label.x = 20, label.y = 130)+
+  theme_few(
+    base_size = 15
+  )
+
+
+
+```
+
+:::
+
+:::{.fragment .fade-in-then-out}
+
+The spearman $\rho$ calculates the pearson correlation, but between the *rank* difference of the variables.
+
+::: {style="font-size: 80%;"}
+
+| Part                  | Meaning                                                                       |
+| --------------------- | ----------------------------------------------------------------------------- |
+| $\sum d_i^2$          | Total squared difference in ranks (rank disagreement)                         |
+| $6$                   | Derived from algebraic simplification of Pearson’s r using rank variance      |
+| $n(n^2 - 1)$          | Comes from variance of ranks and number of comparisons                        |
+| $1 - \text{fraction}$ | Ensures perfect agreement yields $\rho = 1$; increasing $d_i^2$ lowers $\rho$ |
+
+:::
+
+:::
+
+:::
+
+:::{.fragment .fade-in-then-out}
 
 ```{r}
 #| label: fig-drive-shaft-corr-spear
-#| out-width: 75%
-#| fig-cap: The relationship between the production time and the number of defects. The data seems to have a relationship, but it is clearly not linear.
+#| out-width: 95%
+#| fig-cap: The relationship between the production time and the number of defects. 
 
 
 load(file = here("data","drive_shaft_time_defects.Rdata"))
@@ -1778,7 +2217,7 @@ drive_shaft_time_defect %>%
 
 ```{r}
 #| label: fig-drive-shaft-spear-qq
-#| out-width: 75%
+#| out-width: 95%
 #| fig-cap: The QQ-plots of both variables.
 
 load(file = here("data","drive_shaft_time_defects.Rdata"))
@@ -1803,23 +2242,25 @@ drive_shaft_time_defect %>%
 
 :::
 
-:::{.fragment .fade-in}
-
-```{r}
-out_spearman <- cor.test(drive_shaft_time_defect$Production_Time,drive_shaft_time_defect$Defects,method = "spearman") %>% print()
-```
-
 :::
 
-:::{.fragment .fade-in}
+<!-- :::{.fragment .fade-in} -->
 
-```{r}
-out_pearson <- cor.test(drive_shaft_time_defect$Production_Time,drive_shaft_time_defect$Defects,method = "pearson") %>% print()
+<!-- ```{r} -->
+<!-- out_spearman <- cor.test(drive_shaft_time_defect$Production_Time,drive_shaft_time_defect$Defects,method = "spearman") %>% print() -->
+<!-- ``` -->
 
-```
-:::
+<!-- ::: -->
 
-:::
+<!-- :::{.fragment .fade-in} -->
+
+<!-- ```{r} -->
+<!-- out_pearson <- cor.test(drive_shaft_time_defect$Production_Time,drive_shaft_time_defect$Defects,method = "pearson") %>% print() -->
+
+<!-- ``` -->
+<!-- ::: -->
+
+<!-- ::: -->
 
 #### Correlation - methodogical limits
 
