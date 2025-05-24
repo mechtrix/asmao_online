@@ -499,34 +499,408 @@ A samples *true mean* is depicted with [$\bar{x}$](#mean-gloss) and the variance
 
 ::: {.content-visible when-profile="script"}
 
-Descriptive Statistics:
 Descriptive statistics are used to summarize and describe the main features of a data set. 
 They provide a way to organize, present, and analyze data in a meaningful and concise manner. 
 Descriptive statistics do not involve making inferences or drawing conclusions beyond the data that is being analyzed.
 Instead, they aim to provide a clear and accurate representation of the data set. 
 Some common techniques and measures used in descriptive statistics include:
 
-1. Measures of Central Tendency:
-   - Mean (average)
-   - Median (middle value)
-   - Mode (most frequent value)
+:::
 
-2. Measures of Variability or Dispersion:
-   - Range (difference between the maximum and minimum values)
-   - Variance (average of the squared differences from the mean)
-   - Standard Deviation (square root of the variance)
+### Example Data: The drive shaft exercise
 
-3. Frequency Distributions:
-   - Histograms
-   - Density plots
-   - Frequency tables
-   - Bar charts 
+::: {.r-stack}
 
-4. Summary Statistics:
-   - Percentiles
-   - Quantiles
+::: {.fragment .fade-out}
+
+```{r}
+#| label: fig-drive-shaft-intro
+#| out-width: 75%
+#| fig-cap: The drive shaft specification.
+
+knitr::include_graphics(here::here("chapter000","005_DriveShaft.png"))
+```
 
 :::
+
+::: {.fragment .fade-in-then-out}
+
+```{r}
+#| label: fig-drive-shaft-pop-smpl
+#| out-width: 95%
+#| fig-cap: Difference between the population of ALL drive shafts and a sample of drive shafts.
+
+knitr::include_graphics(here::here("chapter000","DriveShaft_Intro.png"))
+
+```
+
+:::
+
+:::
+
+### Measures of Central Tendency
+
+::: {.content-visible when-profile="script"}
+
+Measures of central tendency are essential in statistics because they provide a single value that summarizes or represents the center point or typical value of a dataset. The main reasons for using these measures include:
+
+* Simplification of Data: They condense large sets of data into a single representative value, making the data easier to understand and interpret.
+
+* Comparison Across Datasets: They allow for straightforward comparison between different groups or datasets by providing a common reference point.
+
+* Foundation for Further Analysis: Many statistical techniques and models rely on an understanding of central tendency as a starting point, such as in regression analysis or hypothesis testing.
+
+* Decision-Making: In fields such as economics, education, and public policy, central tendency helps inform decisions based on typical outcomes or behaviors (e.g., average income, median test scores).
+
+* Identification of Patterns: They help identify patterns and trends over time, especially in time-series data or longitudinal studies.
+
+:::
+
+::: {.r-stack}
+
+::: {.fragment .fade-out}
+
+```{r}
+#| label: fig-dat
+#| out-width: 95%
+#| fig-cap: Some drive shaft sample data in a 2D plot of sample index vs. variable value
+
+knitr::include_graphics(here::here("chapter000","DriveShaft_central_tendency.png"))
+```
+
+:::
+
+::: {.fragment .fade-in-then-out}
+
+```{r}
+#| label: fig-central-tend
+#| out-width: 95%
+#| fig-cap: Some drive shaft sample data in a 2D plot of sample index vs. variable value
+
+knitr::include_graphics(here::here("chapter000","DriveShaft_ct_data.png"))
+```
+
+:::
+
+:::
+
+#### Mean 
+
+```{r}
+#| label: fig-mean-ds
+#| out-width: 95%
+#| fig-cap: A graphical depiction of the mean
+
+knitr::include_graphics(here::here("chapter000","mean_ds.png"))
+```
+
+\begin{align}
+\text{population:} \; \mu &= \frac{1}{N}\sum_i^{N} x_i \\
+\text{sample:} \; \bar{x} &= \frac{1}{n}\sum_i^{n} x_i 
+\end{align}
+
+#### Median
+
+```{r}
+#| label: fig-median-ds
+#| out-width: 95%
+#| fig-cap: A graphical depiction of the median
+
+knitr::include_graphics(here::here("chapter000","median_ds.png"))
+```
+
+\begin{align}
+\text{population:} \; m &= 
+\begin{cases}
+x_{\left(\frac{N+1}{2}\right)} & \text{if } N \text{ is odd} \\
+\frac{1}{2} \left( x_{\left(\frac{N}{2}\right)} + x_{\left(\frac{N}{2} + 1\right)} \right) & \text{if } N \text{ is even}
+\end{cases} \\ 
+\text{sample:} \; \tilde{x} &= 
+\begin{cases}
+x_{\left(\frac{n+1}{2}\right)} & \text{if } n \text{ is odd} \\
+\frac{1}{2} \left( x_{\left(\frac{n}{2}\right)} + x_{\left(\frac{n}{2} + 1\right)} \right) & \text{if } n \text{ is even}
+\end{cases} 
+\end{align}
+
+### Measures of Spread
+
+```{r}
+#| label: fig-spread
+#| out-width: 95%
+#| fig-cap: Spread, Dispersion, Variance ... many names for measuring variability of data
+
+knitr::include_graphics(here::here("chapter000","spread_ds.png"))
+```
+
+::: {.content-visible when-profile="script"}
+
+Measures of spread (also called measures of dispersion or variability) are essential in statistics to  provide information about the distribution of data — specifically, how much the data values differ from each other and from the central tendency. 
+
+* Contextualizing Central Tendency: The mean or median alone does not give a complete picture of the data. Two datasets can have the same mean but very different spreads.
+
+* Understanding Data Consistency: Measures of spread indicate how consistent or reliable the data are. A small spread suggests the values are closely clustered around the mean, while a large spread indicates greater variability and less predictability.
+
+* Identifying Outliers: Large measures of spread may indicate the presence of outliers — values that are significantly different from others in the dataset. This can be important in quality control, risk assessment, and anomaly detection.
+
+* Comparing Distributions: Spread allows for meaningful comparison between different datasets.
+
+* Informing Statistical Models: Many statistical methods, such as regression, hypothesis testing, and confidence intervals, rely on measures of spread (like variance or standard deviation) to estimate error, assess significance, or make predictions.
+
+:::
+
+#### Range 
+
+```{r}
+#| label: fig-range-ds
+#| out-width: 95%
+#| fig-cap: A graphical depiction of the range
+
+knitr::include_graphics(here::here("chapter000","range_ds.png"))
+```
+
+\begin{align}
+\text{Range} = x_{\text{max}} - x_{\text{min}}
+\end{align}
+
+There is no difference in computing the range for the population or the sample
+
+#### Variance 
+
+::: {.r-stack}
+
+::: {.fragment .fade-out}
+
+```{r}
+#| label: fig-variance-ds
+#| out-width: 75%
+#| fig-cap: A graphical depiction of the variance
+
+knitr::include_graphics(here::here("chapter000","variance_ds.png"))
+```
+
+\begin{align}
+\text{population:}\; \sigma^2 =& \frac{1}{N}\sum_{i=1}^N (x_i - \mu)^2 \\
+\text{sample:} \; sd^2 =& \frac{1}{n-1} \sum_{i=1}^n (x_i - \bar{x})^2
+\end{align}
+
+:::
+
+::: {.content-visible when-profile="slides"}
+
+::: {.fragment .fade-in-then-out}
+
+```{r}
+#| label: fig-bessel-intro
+#| out-width: 95%
+#| fig-cap: Why do we divide by n-1 for the sample variance?
+
+knitr::include_graphics(here::here("chapter000","bessel_intro.png"))
+```
+
+:::
+
+:::
+
+:::
+
+##### The Bessel's correction
+
+::: {.r-stack}
+
+::: {.fragment .fade-out}
+
+The variance calculated from a sample has one *degree of freedom* less, then the population variance.
+
+:::
+
+::: {.content-visible when-profile="slides"}
+
+::: {.fragment .fade-in-then-out}
+
+::: {.r-fit-text}
+
+<center>
+
+degree of freedom?
+
+</center>
+
+:::
+
+:::
+
+::: {.fragment .fade-in-then-out}
+
+In statistics, a **degree of freedom (dof)** refers to the number of independent values or quantities that can vary in an analysis without violating any given constraints.
+
+:::
+
+:::
+
+::: {.fragment .fade-in-then-out}
+
+::: {style="font-size: 70%;"}
+
+Imagine you have 5 candies, and you want to give them to 5 friends — one candy to each. 
+You decide how to give the first candy, then the second, third, and fourth. 
+But when you get to the last candy, you have no choice — you have to give it to the last friend, so everyone gets one.
+
+That’s kind of like degrees of freedom in statistics. 
+It means how many things you’re free to choose before something has to be a certain way.
+
+So if you're working with 5 numbers, and they all have to add up to a certain total (like a mean), you can choose 4 of them freely, but the last one has to be whatever makes the total come out right. 
+That’s why we say there are 4 degrees of freedom — 4 numbers you can choose any way you want.
+
+:::
+
+:::
+
+
+::: {.fragment .fade-in-then-out}
+
+::: {style="font-size: 80%;"}
+
+$$\{2,4,6\}$$
+
+* Mean: $\bar{x} = \frac{2+4+6}{3} = 4$
+* Deviations: $-2,0,2$
+* Squared Deviations: $4,0,4$
+* Sum of squared deviations: $8$
+
+
+**with Bessel's correction: ** $sd^2 = \frac{8}{3-1} = 4$
+
+**without Bessel's correction: ** $sd^2 = \frac{8}{3} \approx 2.67$ (biased, underestimates variance)
+
+:::
+
+:::
+
+::: {.fragment .fade-in-then-out}
+
+When computing the variance from a sample, we need to calculate $\bar{x}$, which *uses up* one degree of freedom and biases our estimate
+
+:::
+
+:::
+
+##### Bessel's correction with increasing sample size
+
+```{r}
+#| include: false
+
+# Set seed for reproducibility
+set.seed(42)
+
+# Create a large population from which to sample
+population <- rnorm(100000, mean = 0, sd = 1)
+
+true_population_variance <- var(population) * (length(population) - 1) / length(population)
+
+# Define sample sizes
+sample_sizes <- c(2,10,20,30,40,50,60,70,80,90,100,200,300,400,500,600,700,800,900,1000,2000,3000,4000,5000,6000,7000,8000,9000,10000)
+
+# Initialize list to store results
+results <- data.frame()
+
+# Loop through sample sizes
+for (n in sample_sizes) {
+  sample <- sample(population, size = n, replace = FALSE)
+  sample_mean <- mean(sample)
+  ssq <- sum((sample - sample_mean)^2)
+  
+  biased_var <- ssq / n
+  unbiased_var <- ssq / (n - 1)
+  
+  results <- rbind(results, data.frame(
+    SampleSize = n,
+    BiasedVariance = biased_var,
+    UnbiasedVariance = unbiased_var,
+    Difference = unbiased_var - biased_var
+  ))
+}
+
+# Reshape data for ggplot
+results_long <- results %>%
+  pivot_longer(cols = c("BiasedVariance", "UnbiasedVariance"),
+               names_to = "Type", values_to = "Variance") |> 
+  mutate(
+    diff_to_true_var = abs(1-Variance)
+  )
+
+```
+
+::: {.r-stack}
+
+::: {.fragment .fade-out}
+
+```{r}
+#| label: fig-bessel-large-n
+#| out-width: 90%
+#| fig-cap: The biased (n) variance is not as prcises as the unbiased (n-1) variance estimate. This effect decreases with increasing sample size.
+
+results_long |> 
+  ggplot(
+    aes(
+      x = SampleSize, 
+      y = Variance, 
+      color = Type)) +
+  geom_line(
+    size = 1
+    ) +
+  geom_hline(yintercept = 1)+
+  geom_vline(xintercept = 30)+
+  labs(
+    title = "Biased (n) and unbiased (n - 1) variance estimates",
+    subtitle = "population size: 100000, drawn with: seed = 42, mean = 0, sd = 1 from rnorm",
+    x = "Sample Size", 
+    y = "Estimated Variance",
+    color = "Variance Type") +
+  theme_minimal(base_size = 15) +
+  scale_x_log10()+
+  scale_color_manual(values = c("steelblue", "firebrick")) +
+  theme(legend.position = "top")
+
+```
+
+:::
+
+::: {.fragment .fade-in-then-out}
+
+```{r}
+#| label: fig-bessel-large-n-diff
+#| out-width: 90%
+#| fig-cap: The difference  between the biased (n) and unbiased (n-1) shows, that the Bessel's correction increases variation while decreasing bias
+
+results_long |> 
+  ggplot(
+    aes(
+      x = SampleSize,
+      y = Difference
+    )
+  )+
+  geom_line(size = 1)+
+  geom_vline(xintercept = 30)+
+  scale_x_log10()+
+  labs(
+    title = "Difference between biased (n) and unbiased (n - 1) variance estimates",
+    subtitle = "population size: 100000, drawn with: seed = 42, mean = 0, sd = 1 from rnorm",
+    x = "Sample Size", 
+    y = "biased (n) variance - unbiased (n-1) variance",
+    color = "Variance Type") +
+  theme_minimal(base_size = 15) +
+  theme(legend.position = "top")
+
+```
+
+:::
+
+:::
+
+#### Standard Deviation 
+
+#### Percentiles, quantiles
+
 
 ### Histogram
 

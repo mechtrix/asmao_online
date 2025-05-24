@@ -224,7 +224,11 @@ Tim Weber, Oct. 2024
 
 [$n$]{#n-gloss}
 
-:   number of datapoints/observations
+:   number of data points/observations in the sample
+
+[$N$]{#N-gloss}
+
+:   number of datapoints/observations in the population
 
 [$P$]{#probabilities}
 

@@ -2045,7 +2045,7 @@ spear_dat <- data.frame(
 spear_dat |> 
   gt() |> 
   cols_label(
-    obs = "Obersvation",
+    obs = "Observation",
     temp_c = "Temperature in °C",
     rod_length_mm = "Rod Length in mm",
     comment = "Comment"
