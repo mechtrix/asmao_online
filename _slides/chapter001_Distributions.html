@@ -196,6 +196,16 @@ Prof.&nbsp;Dr.&nbsp;Tim Weber
 </div>
 
 </section>
+<section id="why-distributions" class="title-slide slide level2 center">
+<h2>Why distributions?</h2>
+<center>
+Distributions are <em>models</em> of the <em>reality</em>.
+</center>
+
+<img data-src="chapter001_Distributions_files/figure-revealjs/fig-intro-1.svg" style="width:95.0%" class="r-stretch quarto-figure-center" id="fig-intro"><p class="caption">
+Figure&nbsp;1: The model is perfect, but the real world is not.
+</p></section>
+
 <section>
 <section id="types-of-data" class="title-slide slide level2 center">
 <h2>Types of data</h2>
@@ -208,7 +218,7 @@ Prof.&nbsp;Dr.&nbsp;Tim Weber
 <img data-src="chapter001/013_DataTypes.png" style="width:95.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-datatypes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Data can be classified as different types.
+Figure&nbsp;2: Data can be classified as different types.
 </figcaption>
 </figure>
 </div>
@@ -220,29 +230,625 @@ Figure&nbsp;1: Data can be classified as different types.
 <h3>Nominal Data</h3>
 
 <img data-src="chapter001/014_NominalData.png" style="width:65.0%" class="r-stretch quarto-figure-center" id="fig-nomialdata"><p class="caption">
-Figure&nbsp;2: Some example for nominal data.
+Figure&nbsp;3: Some example for nominal data.
 </p></section>
 
 <section id="ordinal-data" class="title-slide slide level3 center">
 <h3>Ordinal Data</h3>
 
 <img data-src="chapter001/015_OrdinalData.png" style="width:65.0%" class="r-stretch quarto-figure-center" id="fig-ordinaldata"><p class="caption">
-Figure&nbsp;3: Some example for ordinal data.
+Figure&nbsp;4: Some example for ordinal data.
 </p></section>
 
 <section id="discrete-data" class="title-slide slide level3 center">
 <h3>Discrete Data</h3>
 
 <img data-src="chapter001/016_DiscreteData.png" style="width:65.0%" class="r-stretch quarto-figure-center" id="fig-discretedata"><p class="caption">
-Figure&nbsp;4: Some example for discrete data.
+Figure&nbsp;5: Some example for discrete data.
 </p></section>
 
 <section id="continous-data" class="title-slide slide level3 center">
 <h3>Continous Data</h3>
 
 <img data-src="chapter001/017_ContinousData.png" style="width:65.0%" class="r-stretch quarto-figure-center" id="fig-continousdata"><p class="caption">
-Figure&nbsp;5: Some example for continous data.
+Figure&nbsp;6: Some example for continous data.
 </p></section>
+</section>
+<section>
+<section id="uniform-distribution" class="title-slide slide level2 center">
+<h2>Uniform Distribution</h2>
+
+</section>
+<section id="fairness" class="title-slide slide level3 center">
+<h3>Fairness</h3>
+<center>
+<p>If you had to guess a number between 1 and 10 with no other information, what is the <strong>fairest</strong> way to assign probabilities to each number?</p>
+<p>What if the range were 0 to 1 instead?</p>
+<div class="fragment fade-in">
+<p>Every outcome is <strong>equally</strong> likely</p>
+</div>
+</center>
+</section>
+
+<section id="dice" class="title-slide slide level3 center">
+<h3>Dice</h3>
+<div class="r-stack">
+<div class="fragment fade-out">
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-unif-die" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-unif-die-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="chapter001/die.png" style="width:35.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unif-die-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: The probability for every face to turn up during a roll is uniformly distributed.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment fade-in">
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-unif-pmf" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-unif-pmf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="chapter001_Distributions_files/figure-revealjs/fig-unif-pmf-1.svg" style="width:95.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unif-pmf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8: A plot of the probabilities that every face of a die turns up. They are all the same.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="types-of-uniform-distributions" class="title-slide slide level3 center">
+<h3>Types of uniform distributions</h3>
+<ul>
+<li>All outcomes in the range are <em>equally probable</em></li>
+<li>The “range” can be:
+<ul>
+<li>a finite set of values (discrete)</li>
+<li>a continuous interval (continuous)</li>
+</ul></li>
+</ul>
+<p><span class="math display">\[\begin{align}
+X \sim \mathrm{Uniform}(a,b) \text{ continuous}\\
+X \sim \mathrm{Uniform}\{a,a+1,\ldots,b\} \text{ discrete}
+\end{align}\]</span></p>
+</section>
+
+<section id="visual-comparison-of-discrete-and-continuous" class="title-slide slide level3 center">
+<h3>Visual comparison of discrete and continuous</h3>
+
+<img data-src="chapter001_Distributions_files/figure-revealjs/fig-unif-pmf-pdf-1.svg" style="width:95.0%" class="r-stretch quarto-figure-center" id="fig-unif-pmf-pdf"><p class="caption">
+Figure&nbsp;9: A comparison of continnuous and discrete uniformly distributed data.
+</p></section>
+
+<section id="core-properties" class="title-slide slide level3 center">
+<h3>Core properties</h3>
+<div class="cell">
+<div id="tbl-unif-prop" class="cell quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-tbl">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-unif-prop-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: The core properties between the discrete and continuous disitrbution are very similar.
+</figcaption>
+<div aria-describedby="tbl-unif-prop-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div id="aqrjikabky" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#aqrjikabky table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#aqrjikabky thead, #aqrjikabky tbody, #aqrjikabky tfoot, #aqrjikabky tr, #aqrjikabky td, #aqrjikabky th {
+  border-style: none;
+}
+
+#aqrjikabky p {
+  margin: 0;
+  padding: 0;
+}
+
+#aqrjikabky .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#aqrjikabky .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#aqrjikabky .gt_title {
+  color: #333333;
+  font-size: 18px;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#aqrjikabky .gt_subtitle {
+  color: #333333;
+  font-size: 16px;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#aqrjikabky .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#aqrjikabky .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#aqrjikabky .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#aqrjikabky .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#aqrjikabky .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#aqrjikabky .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#aqrjikabky .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#aqrjikabky .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#aqrjikabky .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#aqrjikabky .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#aqrjikabky .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#aqrjikabky .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#aqrjikabky .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#aqrjikabky .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#aqrjikabky .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#aqrjikabky .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#aqrjikabky .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#aqrjikabky .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#aqrjikabky .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#aqrjikabky .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#aqrjikabky .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#aqrjikabky .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#aqrjikabky .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#aqrjikabky .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#aqrjikabky .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#aqrjikabky .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#aqrjikabky .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#aqrjikabky .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#aqrjikabky .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#aqrjikabky .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#aqrjikabky .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#aqrjikabky .gt_left {
+  text-align: left;
+}
+
+#aqrjikabky .gt_center {
+  text-align: center;
+}
+
+#aqrjikabky .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#aqrjikabky .gt_font_normal {
+  font-weight: normal;
+}
+
+#aqrjikabky .gt_font_bold {
+  font-weight: bold;
+}
+
+#aqrjikabky .gt_font_italic {
+  font-style: italic;
+}
+
+#aqrjikabky .gt_super {
+  font-size: 65%;
+}
+
+#aqrjikabky .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#aqrjikabky .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#aqrjikabky .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#aqrjikabky .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#aqrjikabky .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#aqrjikabky .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#aqrjikabky .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#aqrjikabky .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#aqrjikabky div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table do-not-create-environment cell caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="gt_heading header">
+<th colspan="3" class="gt_heading gt_title gt_font_normal" style="text-align: center;"><p><strong>Core Properties: Discrete vs.&nbsp;Continuous Uniform Distributions</strong></p></th>
+</tr>
+<tr class="gt_heading even">
+<th colspan="3" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="text-align: center;"><p><em>Equal probability everywhere, but for different types of data</em></p></th>
+</tr>
+<tr class="gt_col_headings header">
+<th id="<div data-qmd-base64=&quot;KipQcm9wZXJ0eSoq&quot;><div class='gt_from_md'><p><strong>Property</strong></p>
+</div></div>" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="text-align: center; color: #FFFFFF; font-weight: bold;" scope="col"><p><strong>Property</strong></p></th>
+<th id="<div data-qmd-base64=&quot;KipEaXNjcmV0ZSBVbmlmb3JtKio=&quot;><div class='gt_from_md'><p><strong>Discrete Uniform</strong></p>
+</div></div>" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="text-align: center; color: #FFFFFF; font-weight: bold;" scope="col"><p><strong>Discrete Uniform</strong></p></th>
+<th id="<div data-qmd-base64=&quot;KipDb250aW51b3VzIFVuaWZvcm0qKg==&quot;><div class='gt_from_md'><p><strong>Continuous Uniform</strong></p>
+</div></div>" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="text-align: center; color: #FFFFFF; font-weight: bold;" scope="col"><p><strong>Continuous Uniform</strong></p></th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" style="text-align: center;" headers="Property"><p>Probability</p></td>
+<td class="gt_row gt_left" headers="Discrete" style="text-align: center; background-color: #F0F0F0;"><p>Equal for each outcome.</p></td>
+<td class="gt_row gt_left" headers="Continuous" style="text-align: center; background-color: #E6F3FF;"><p>Equal density over the interval.</p></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" style="text-align: center;" headers="Property"><p>Symmetry</p></td>
+<td class="gt_row gt_left" headers="Discrete" style="text-align: center; background-color: #F0F0F0;"><p>Mean = midpoint of the range.</p></td>
+<td class="gt_row gt_left" headers="Continuous" style="text-align: center; background-color: #E6F3FF;"><p>Mean = midpoint of the interval.</p></td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" style="text-align: center;" headers="Property"><p>Intuition</p></td>
+<td class="gt_row gt_left" headers="Discrete" style="text-align: center; background-color: #F0F0F0;"><p>‘Fair die’ with <i>n</i> sides.</p></td>
+<td class="gt_row gt_left" headers="Continuous" style="text-align: center; background-color: #E6F3FF;"><p>‘Fair spinner’ on a line segment.</p></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" style="text-align: center;" headers="Property"><p>Use Cases</p></td>
+<td class="gt_row gt_left" headers="Discrete" style="text-align: center; background-color: #F0F0F0;"><p>Counting problems (e.g., dice, cards).</p></td>
+<td class="gt_row gt_left" headers="Continuous" style="text-align: center; background-color: #E6F3FF;"><p>Measuring problems (e.g., time, space).</p></td>
+</tr>
+</tbody><tfoot class="gt_sourcenotes">
+<tr class="odd">
+<td colspan="3" class="gt_sourcenote" style="text-align: center;"><p><em>Note: Both distributions share the ‘fairness’ property but apply to different data types.</em></p></td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+</section>
 </section>
 <section>
 <section id="bionmimal-distribution" class="title-slide slide level2 center">
@@ -266,7 +872,7 @@ Figure&nbsp;5: Some example for continous data.
 <img data-src="chapter001_Distributions_files/figure-revealjs/fig-bn-dist-slides-1.svg" style="width:95.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bn-dist-slides-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6: The binomial distribution
+Figure&nbsp;10: The binomial distribution
 </figcaption>
 </figure>
 </div>
@@ -340,7 +946,7 @@ P(X = k) = \binom{n}{k} p^k (1 - p)^{n - k} \nonumber
 <img data-src="chapter001_Distributions_files/figure-revealjs/fig-sim-dice-1.svg" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sim-dice-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7: Simulated die rolls (The die is rolle <span class="math inline">\(10\)</span> times, the experiment is repeated <span class="math inline">\(5\)</span> times)
+Figure&nbsp;11: Simulated die rolls (The die is rolle <span class="math inline">\(10\)</span> times, the experiment is repeated <span class="math inline">\(5\)</span> times)
 </figcaption>
 </figure>
 </div>
@@ -356,7 +962,7 @@ Figure&nbsp;7: Simulated die rolls (The die is rolle <span class="math inline">\
 <img data-src="chapter001_Distributions_files/figure-revealjs/fig-sim-likely-1.svg">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sim-likely-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;8: Is the outcome likely?
+Figure&nbsp;12: Is the outcome likely?
 </figcaption>
 </figure>
 </div>
@@ -370,7 +976,7 @@ Figure&nbsp;8: Is the outcome likely?
 <h3>The drive shaft exercise - Binomial Distribution</h3>
 
 <img data-src="chapter001_Distributions_files/figure-revealjs/fig-bn-ds-1.svg" style="width:75.0%" class="r-stretch quarto-figure-center" id="fig-bn-ds"><p class="caption">
-Figure&nbsp;9: The binomial disitribution and the drive shaft exercise.
+Figure&nbsp;13: The binomial disitribution and the drive shaft exercise.
 </p></section>
 </section>
 <section>
@@ -378,7 +984,7 @@ Figure&nbsp;9: The binomial disitribution and the drive shaft exercise.
 <h2>The Normal Distribution</h2>
 
 <img data-src="chapter001_Distributions_files/figure-revealjs/fig-normal-dist-1.svg" style="width:75.0%" class="r-stretch quarto-figure-center" id="fig-normal-dist"><p class="caption">
-Figure&nbsp;10: The standarized normal distribution
+Figure&nbsp;14: The standarized normal distribution
 </p></section>
 <section id="the-normal-distribution-in-real-life" class="title-slide slide level3 center">
 <h3>The Normal Distribution in real life</h3>
@@ -395,7 +1001,7 @@ Figure&nbsp;10: The standarized normal distribution
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-13-1.svg"></p>
+<p><img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-18-1.svg"></p>
 </figure>
 </div>
 </div>
@@ -406,7 +1012,7 @@ Figure&nbsp;10: The standarized normal distribution
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-14-1.svg"></p>
+<p><img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-19-1.svg"></p>
 </figure>
 </div>
 </div>
@@ -472,7 +1078,7 @@ Figure&nbsp;10: The standarized normal distribution
 <img data-src="chapter001_Distributions_files/figure-revealjs/fig-z-scores-raw-1.svg" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-z-scores-raw-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;11: The original data of group X and group Y
+Figure&nbsp;15: The original data of group X and group Y
 </figcaption>
 </figure>
 </div>
@@ -493,7 +1099,7 @@ Z = \frac{x_i - \bar{x}}{sd} \nonumber
 <img data-src="chapter001_Distributions_files/figure-revealjs/fig-z-scores-scaled-1.svg" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-z-scores-scaled-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;12: The correlation of the z-score shows, that every point <span class="math inline">\(x_i\)</span> is equally probable
+Figure&nbsp;16: The correlation of the z-score shows, that every point <span class="math inline">\(x_i\)</span> is equally probable
 </figcaption>
 </figure>
 </div>
@@ -506,7 +1112,7 @@ Figure&nbsp;12: The correlation of the z-score shows, that every point <span cla
 <h3>The drive shaft exercise - Z-Standardization</h3>
 
 <img data-src="chapter001_Distributions_files/figure-revealjs/fig-ds-z-1.svg" style="width:75.0%" data-fig-pos="H" class="r-stretch quarto-figure-center" id="fig-ds-z"><p class="caption">
-Figure&nbsp;13: The standardized data of the drive shaft data.
+Figure&nbsp;17: The standardized data of the drive shaft data.
 </p></section>
 
 <section id="central-limit-theorem-clt" class="title-slide slide level3 center">
@@ -521,7 +1127,7 @@ Figure&nbsp;13: The standardized data of the drive shaft data.
 <img data-src="chapter001_Distributions_files/figure-revealjs/fig-clt-data-1.svg" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-clt-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;14: The population from which the samples to show the CLT are taken.
+Figure&nbsp;18: The population from which the samples to show the CLT are taken.
 </figcaption>
 </figure>
 </div>
@@ -537,7 +1143,7 @@ Figure&nbsp;14: The population from which the samples to show the CLT are taken.
 <img data-src="chapter001_Distributions_files/figure-revealjs/fig-clt-1.svg" style="width:99.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-clt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;15: The central limit theorem in action.
+Figure&nbsp;19: The central limit theorem in action.
 </figcaption>
 </figure>
 </div>
@@ -551,13 +1157,13 @@ Figure&nbsp;15: The central limit theorem in action.
 <h3>Law of Large Numbers</h3>
 
 <img data-src="chapter001_Distributions_files/figure-revealjs/fig-lln-1.svg" style="width:75.0%" data-fig-pos="H" class="r-stretch quarto-figure-center" id="fig-lln"><p class="caption">
-Figure&nbsp;16: The Law of Large Numbers in Action with die rolls as an example.
+Figure&nbsp;20: The Law of Large Numbers in Action with die rolls as an example.
 </p></section>
 
 <section id="the-z-transform-and-the-galton-board" class="title-slide slide level3 center">
 <h3>The Z-transform and the Galton Board</h3>
 
-<img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-23-1.svg" class="r-stretch"></section>
+<img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-28-1.svg" class="r-stretch"></section>
 <section id="applying-the-z-transform" class="title-slide slide level4 center">
 <h4>Applying the Z-transform</h4>
 <p><span class="math display">\[Z = \frac{X-\mu}{\sigma}\]</span></p>
@@ -585,7 +1191,7 @@ Figure&nbsp;16: The Law of Large Numbers in Action with die rolls as an example.
 <h3>The drive shaft exercise - Normal Distribution</h3>
 
 <img data-src="chapter001_Distributions_files/figure-revealjs/fig-ds-nd-1.svg" style="width:75.0%" class="r-stretch quarto-figure-center" id="fig-ds-nd"><p class="caption">
-Figure&nbsp;17: The drive shaft data with the respective normal distributions.
+Figure&nbsp;21: The drive shaft data with the respective normal distributions.
 </p></section>
 </section>
 <section id="probability-density-function-pdf" class="title-slide slide level2 center">
@@ -610,7 +1216,7 @@ Figure&nbsp;17: The drive shaft data with the respective normal distributions.
 <img data-src="chapter001/PDF_000.png" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pdf-000-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;18: A visual represenstation of the PDF for the normal distribution
+Figure&nbsp;22: A visual represenstation of the PDF for the normal distribution
 </figcaption>
 </figure>
 </div>
@@ -648,7 +1254,7 @@ z &amp;= \frac{x-\mu}{\sigma} \nonumber \\
 <img data-src="chapter001/CDF_000.png" class="quarto-figure quarto-figure-center" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cdf-000-sli-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;19: A visual represenstation of the CDF for the normal distribution.
+Figure&nbsp;23: A visual represenstation of the CDF for the normal distribution.
 </figcaption>
 </figure>
 </div>
@@ -715,7 +1321,7 @@ is a measure of the chance an event will occur, ranging from <span class="math i
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-31-1.svg" style="width:100.0%"></p>
+<p><img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-36-1.svg" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -726,7 +1332,7 @@ is a measure of the chance an event will occur, ranging from <span class="math i
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-32-1.svg" style="width:100.0%"></p>
+<p><img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-37-1.svg" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -750,7 +1356,7 @@ is a measure of the chance an event will occur, ranging from <span class="math i
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-33-1.svg" style="width:100.0%"></p>
+<p><img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-38-1.svg" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -813,7 +1419,7 @@ is a measure of the chance an event will occur, ranging from <span class="math i
 <h3>The drive shaft exercise - Chi<sup>2</sup> Distribution</h3>
 
 <img data-src="chapter001_Distributions_files/figure-revealjs/fig-ds-chi-1.svg" style="width:95.0%" class="r-stretch quarto-figure-center" id="fig-ds-chi"><p class="caption">
-Figure&nbsp;20: The <span class="math inline">\(\chi^2\)</span> disitribution of the drive shaft data.
+Figure&nbsp;24: The <span class="math inline">\(\chi^2\)</span> disitribution of the drive shaft data.
 </p></section>
 </section>
 <section>
@@ -840,7 +1446,7 @@ t_i = \frac{\bar{x} - \mu_0}{sd/\sqrt{n}} \label{tscore}
 <img data-src="chapter001_Distributions_files/figure-revealjs/fig-t-dist-sl-1.svg" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-t-dist-sl-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;21: PDF of t-distribution with varying <span class="math inline">\(dof\)</span>
+Figure&nbsp;25: PDF of t-distribution with varying <span class="math inline">\(dof\)</span>
 </figcaption>
 </figure>
 </div>
@@ -913,7 +1519,7 @@ Figure&nbsp;21: PDF of t-distribution with varying <span class="math inline">\(d
 <h3>The drive shaft exercise - t-Distribution</h3>
 
 <img data-src="chapter001_Distributions_files/figure-revealjs/fig-ds-t-1.svg" style="width:95.0%" class="r-stretch quarto-figure-center" id="fig-ds-t"><p class="caption">
-Figure&nbsp;22: The drive shaft data with normal disitribution, t-distribution and confidence intervalls using the t-distribution
+Figure&nbsp;26: The drive shaft data with normal disitribution, t-distribution and confidence intervalls using the t-distribution
 </p></section>
 </section>
 <section id="f---statistics" class="title-slide slide level2 center scrollable">
@@ -929,7 +1535,7 @@ F_{m,n} = \frac{\chi^2_m/m}{\chi^2_n/n} \nonumber
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-40-1.svg" style="width:100.0%"></p>
+<p><img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-45-1.svg" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -940,7 +1546,7 @@ F_{m,n} = \frac{\chi^2_m/m}{\chi^2_n/n} \nonumber
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-41-1.svg" style="width:100.0%"></p>
+<p><img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-46-1.svg" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -977,7 +1583,7 @@ F_{m,n} = \frac{\chi^2_m/m}{\chi^2_n/n} \nonumber
 <h2>Interconnections</h2>
 
 <img data-src="chapter000/009_DistributionConnection.png" style="width:75.0%" data-fig-pos="H" class="r-stretch quarto-figure-center" id="fig-interconnections"><p class="caption">
-Figure&nbsp;23: The distributions are interconnected in several different ways.
+Figure&nbsp;27: The distributions are interconnected in several different ways.
 </p></section>
 
 <section>
@@ -999,7 +1605,7 @@ Figure&nbsp;23: The distributions are interconnected in several different ways.
 <img data-src="chapter001/bathtub.png" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bathtub-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;24: The classical bathtub curve <span class="citation" data-cites="LienigUnknownTitle2017">(<a href="#/gamma---distribution" role="doc-biblioref" onclick="">Lienig and Bruemmer 2017</a>)</span>
+Figure&nbsp;28: The classical bathtub curve <span class="citation" data-cites="LienigUnknownTitle2017">(<a href="#/poisson---distribution" role="doc-biblioref" onclick="">Lienig and Bruemmer 2017</a>)</span>
 </figcaption>
 </figure>
 </div>
@@ -1032,7 +1638,7 @@ f_X(x; \lambda, \beta) = \left\{ \begin{array}{cl}
 <img data-src="chapter001_Distributions_files/figure-revealjs/fig-wbll-dist-slides-1.svg" style="width:85.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wbll-dist-slides-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;25: The influence of scale (<span class="math inline">\(\lambda\)</span>) and shape (<span class="math inline">\(\beta\)</span>) parameter on the disitribution.
+Figure&nbsp;29: The influence of scale (<span class="math inline">\(\lambda\)</span>) and shape (<span class="math inline">\(\beta\)</span>) parameter on the disitribution.
 </figcaption>
 </figure>
 </div>
@@ -1055,14 +1661,14 @@ Figure&nbsp;25: The influence of scale (<span class="math inline">\(\lambda\)</s
 <h3>The drive shaft exercise - Weibull distribution</h3>
 
 <img data-src="chapter001_Distributions_files/figure-revealjs/fig-ds-wbll-1.svg" style="width:95.0%" class="r-stretch quarto-figure-center" id="fig-ds-wbll"><p class="caption">
-Figure&nbsp;26: The measured hours how long the drive shafts lasted in the test stand.
+Figure&nbsp;30: The measured hours how long the drive shafts lasted in the test stand.
 </p></section>
 </section>
-<section id="poisson---distribution" class="title-slide slide level2 center">
+<section id="poisson---distribution" class="title-slide slide level2 smaller scrollable">
 <h2>Poisson - Distribution</h2>
 
 <img data-src="chapter001_Distributions_files/figure-revealjs/fig-pois-1.svg" style="width:75.0%" class="r-stretch quarto-figure-center" id="fig-pois"><p class="caption">
-Figure&nbsp;27: The poisson distribution with different <span class="math inline">\(\lambda\)</span> values.
+Figure&nbsp;31: The poisson distribution with different <span class="math inline">\(\lambda\)</span> values.
 </p><aside class="notes">
 <p>Certainly. Let’s consider a classroom scenario where you want to showcase the Poisson distribution. Imagine a class where students typically ask questions during lectures, and on average, there are 4 questions asked per hour.</p>
 <p>In this case, you can use the Poisson distribution to model the number of questions asked in a given hour. The probability of a specific number of questions (k) being asked can be calculated using the Poisson probability mass function:</p>
@@ -1080,36 +1686,56 @@ Figure&nbsp;27: The poisson distribution with different <span class="math inline
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
-</section>
-
-<section id="gamma---distribution" class="title-slide slide level2 smaller scrollable">
-<h2>Gamma - Distribution</h2>
-
-<img data-src="chapter001_Distributions_files/figure-revealjs/fig-gam-1.svg" style="width:75.0%" class="r-stretch quarto-figure-center" id="fig-gam"><p class="caption">
-Figure&nbsp;28: The Gamma distribution with varying <span class="math inline">\(\alpha\)</span> (shape) and <span class="math inline">\(\beta\)</span> (scale)
-</p><aside class="notes">
-<p>Certainly, let’s consider a classroom example involving the gamma distribution:</p>
-<p>Suppose you are teaching a statistics class, and you want to demonstrate the concept of the gamma distribution to your students. The gamma distribution is often used to model the waiting time until a Poisson process reaches a certain number of events.</p>
-<p>You could set up an experiment in which students take turns rolling a fair six-sided die. The goal is to roll the die until it lands on a specific number, say 4. The number of rolls required to achieve this can be modeled using a gamma distribution.</p>
-<p>Here’s how you can proceed:</p>
-<ol type="1">
-<li><p>Have a student start rolling the die and record the number of rolls it takes for them to get a 4.</p></li>
-<li><p>Continue this process with different students until you have a reasonable amount of data.</p></li>
-<li><p>Plot the data as a histogram, showing the number of rolls on the x-axis and the frequency on the y-axis.</p></li>
-<li><p>Discuss how the distribution of the number of rolls to get a 4 resembles a gamma distribution. You can explain the shape of the gamma distribution, its parameters, and how it relates to the Poisson process.</p></li>
-</ol>
-<p>This classroom example demonstrates the practical application of the gamma distribution in modeling random processes like the time until a specific event occurs. It helps students understand the concept using a hands-on approach and real-world data.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+<!-- ## Gamma - Distribution -->
+<!-- ::: {.content-visible when-profile="script"} -->
+<!-- The gamma distribution is a probability distribution that is often used in statistics to model the waiting time until a Poisson process reaches a certain number of events.  -->
+<!-- It is a continuous probability distribution with two parameters, typically denoted as $\alpha$ (shape parameter) and $\beta$ (rate parameter).  -->
+<!-- Key points about the gamma distribution: -->
+<!-- 1. It is often used to model the waiting times for events that occur at a constant rate, such as the time between arrivals in a Poisson process. -->
+<!-- 2. The exponential distribution is a special case of the gamma distribution when $\alpha = 1$ (@fig-gam). -->
+<!-- 3. The gamma distribution is right-skewed for $\alpha > 1$ and left-skewed for $0<\alpha<1$ (@fig-gam). -->
+<!-- 4. The mean of the gamma distribution is $\frac{\alpha}{\beta}$, and its variance is $\frac{\alpha}{\beta^2}$ (@fig-gam). -->
+<!-- It is widely used in various fields, including reliability analysis, queuing theory, and finance. -->
+<!-- The connection to other distributions: -->
+<!-- Exponential Distribution: The exponential distribution is a special case of the gamma distribution with $\alpha = 1$. -->
+<!-- $\chi^2$: When $\alpha$ is an integer, the gamma distribution with shape parameter $\alpha$ is equivalent to the chi-squared distribution with $2\alpha$ degrees of freedom. -->
+<!-- Erlang Distribution: The Erlang distribution is a specific case of the gamma distribution where $\alpha$ is an integer, representing the sum of $\alpha$ exponentially distributed random variables. -->
+<!-- ::: -->
+<!-- ```{r} -->
+<!-- #| label: fig-gam -->
+<!-- #| out-width: 75% -->
+<!-- #| fig-cap: The Gamma distribution with varying $\alpha$ (shape) and $\beta$ (scale) -->
+<!-- alpha_values <- c(0.1,1,3)   # Different shape parameters -->
+<!-- beta_values <- c(0.5, 1, 2)  # Different scale parameters -->
+<!-- # Generate data for each combination of parameters -->
+<!-- data <- expand.grid(alpha = alpha_values, beta = beta_values, x = seq(0, 10, by = 0.1)) -->
+<!-- # Calculate PDF for each combination -->
+<!-- data <- data %>% -->
+<!--   mutate(pdf = (beta^alpha * x^(alpha-1) * exp(-beta*x)) / gamma(alpha)) %>%  -->
+<!--   mutate(plt_alpha = paste0("alpha==",alpha), -->
+<!--          plt_beta = paste0("beta==",beta)) -->
+<!-- # Create a facetted plot -->
+<!-- ggplot(data, aes(x)) + -->
+<!--   geom_line(aes(y = pdf), color = "black") + -->
+<!--   labs(title = "Gamma Distribution", x = "x", y = "p") + -->
+<!--   facet_grid(plt_alpha ~ plt_beta, scales = "free", labeller = label_parsed) + -->
+<!--   scale_x_continuous(expand = c(0,0,0,0))+ -->
+<!--   scale_y_continuous(expand = c(0,0,00.05,0))+ -->
+<!--   theme_few() -->
+<!-- ``` -->
+<!-- ::: {.content-visible when-profile="slides"} -->
+<!-- ::: {.notes} -->
+<!-- Certainly, let's consider a classroom example involving the gamma distribution: -->
+<!-- Suppose you are teaching a statistics class, and you want to demonstrate the concept of the gamma distribution to your students. The gamma distribution is often used to model the waiting time until a Poisson process reaches a certain number of events.  -->
+<!-- You could set up an experiment in which students take turns rolling a fair six-sided die. The goal is to roll the die until it lands on a specific number, say 4. The number of rolls required to achieve this can be modeled using a gamma distribution. -->
+<!-- Here's how you can proceed: -->
+<!-- 1. Have a student start rolling the die and record the number of rolls it takes for them to get a 4. -->
+<!-- 2. Continue this process with different students until you have a reasonable amount of data. -->
+<!-- 3. Plot the data as a histogram, showing the number of rolls on the x-axis and the frequency on the y-axis. -->
+<!-- 4. Discuss how the distribution of the number of rolls to get a 4 resembles a gamma distribution. You can explain the shape of the gamma distribution, its parameters, and how it relates to the Poisson process. -->
+<!-- This classroom example demonstrates the practical application of the gamma distribution in modeling random processes like the time until a specific event occurs. It helps students understand the concept using a hands-on approach and real-world data. -->
+<!-- ::: -->
+<!-- ::: -->
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-LienigUnknownTitle2017" class="csl-entry" role="listitem">

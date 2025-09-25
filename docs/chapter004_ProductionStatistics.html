@@ -392,7 +392,7 @@ window.Quarto = {
 <div id="fig-production" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-production-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter004_ProductionStatistics_files/figure-html/fig-production-1.png" class="img-fluid figure-img" style="width:75.0%">
+<img src="chapter004_ProductionStatistics_files/figure-revealjs/fig-production-1.svg" class="img-fluid figure-img" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-production-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;6.1: The drive shaft production over time
@@ -412,7 +412,7 @@ Figure&nbsp;6.1: The drive shaft production over time
 <div id="fig-run-chart" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-run-chart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter004_ProductionStatistics_files/figure-html/fig-run-chart-1.png" class="img-fluid figure-img" style="width:85.0%" data-fig-pos="H">
+<img src="chapter004_ProductionStatistics_files/figure-revealjs/fig-run-chart-1.svg" class="img-fluid figure-img" style="width:85.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-run-chart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;6.2: A run chart with control and warning limits without subgroups.
@@ -424,10 +424,10 @@ Figure&nbsp;6.2: A run chart with control and warning limits without subgroups.
 </div>
 <div class="fragment fade-in">
 <p><span class="math display">\[\begin{align}
-UCL &amp;= \bar{x} + 2.58\frac{sd(x)}{\sqrt{n}} \;\text{with}\;n=1 \\
-LCL &amp;= \bar{x} - 2.58\frac{sd(x)}{\sqrt{n}} \;\text{with}\;n=1 \\
-UWL &amp;= \bar{x} + 1.96\frac{sd(x)}{\sqrt{n}} \;\text{with}\;n=1 \\
-LWL &amp;= \bar{x} - 1.96\frac{sd(x)}{\sqrt{n}} \;\text{with}\;n=1
+UCL &amp;= \bar{x} + 2.58\frac{sd(x)}{\sqrt{n}} \;\text{with}\;GroupSize=1 \\
+LCL &amp;= \bar{x} - 2.58\frac{sd(x)}{\sqrt{n}} \;\text{with}\;GroupSize=1 \\
+UWL &amp;= \bar{x} + 1.96\frac{sd(x)}{\sqrt{n}} \;\text{with}\;GroupSize=1 \\
+LWL &amp;= \bar{x} - 1.96\frac{sd(x)}{\sqrt{n}} \;\text{with}\;GroupSize=1
 \end{align}\]</span></p>
 </div>
 <p>In Shewhart <span class="citation" data-cites="0486652327">(<a href="references.html#ref-0486652327" role="doc-biblioref">Shewhart and Deming 1986</a>)</span> charts for statistical process control, control limits such as the <a href="#UCL">Upper Control Limit (UCL)</a>, <a href="#LCL">Lower Control Limit (LCL)</a>, <a href="#UWL">Upper Warning Limit (UWL)</a>, and <a href="#LWL">Lower Warning Limit (LWL)</a> play a crucial role. These limits establish boundaries for normal process variability. By incorporating confidence intervals, such as <span class="math inline">\(97\%\)</span> or <span class="math inline">\(99\%\)</span>, into these limits, a statistical framework is added, providing a nuanced understanding of process variability. A <span class="math inline">\(97\%\)</span> confidence interval implies that <span class="math inline">\(97\%\)</span> of data points should fall within the calculated range, while a <span class="math inline">\(99\%\)</span> interval accommodates <span class="math inline">\(99\%\)</span>. This approach enhances the sensitivity of Shewhart charts, aiding in the timely detection of significant process shifts. The choice of confidence level depends on the desired balance between false alarms and the risk of missing genuine deviations from the norm.</p>
@@ -442,7 +442,7 @@ LWL &amp;= \bar{x} - 1.96\frac{sd(x)}{\sqrt{n}} \;\text{with}\;n=1
 <div id="fig-xbar" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-xbar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter004_ProductionStatistics_files/figure-html/fig-xbar-1.png" class="img-fluid figure-img" style="width:85.0%" data-fig-pos="H">
+<img src="chapter004_ProductionStatistics_files/figure-revealjs/fig-xbar-1.svg" class="img-fluid figure-img" style="width:85.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-xbar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;6.3: A X-bar chart with control and warning limits based on subgroups of <span class="math inline">\(n=5\)</span>
@@ -454,10 +454,10 @@ Figure&nbsp;6.3: A X-bar chart with control and warning limits based on subgroup
 </div>
 <div class="fragment fade-in">
 <p><span class="math display">\[\begin{align}
-UCL &amp;= \bar{x} + 2.58\frac{sd(x)}{\sqrt{n}} \;\text{with}\;n=5 \\
-LCL &amp;= \bar{x} - 2.58\frac{sd(x)}{\sqrt{n}} \;\text{with}\;n=5 \\
-UWL &amp;= \bar{x} + 1.96\frac{sd(x)}{\sqrt{n}} \;\text{with}\;n=5 \\
-LWL &amp;= \bar{x} - 1.96\frac{sd(x)}{\sqrt{n}} \;\text{with}\;n=5
+UCL &amp;= \bar{x} + 2.58\frac{sd(x)}{\sqrt{n}} \;\text{with}\;GroupSize=5 \\
+LCL &amp;= \bar{x} - 2.58\frac{sd(x)}{\sqrt{n}} \;\text{with}\;GroupSize=5 \\
+UWL &amp;= \bar{x} + 1.96\frac{sd(x)}{\sqrt{n}} \;\text{with}\;GroupSize=5 \\
+LWL &amp;= \bar{x} - 1.96\frac{sd(x)}{\sqrt{n}} \;\text{with}\;GroupSize=5
 \end{align}\]</span></p>
 </div>
 <p>An X-bar chart is a statistical tool for quality control, used to monitor process stability over time. It involves collecting data, calculating subgroup means, determining control limits, and plotting the data on a chart. By monitoring points relative to the control limits, it helps identify shifts in the process mean, allowing corrective action for consistent quality.</p>
@@ -473,7 +473,7 @@ LWL &amp;= \bar{x} - 1.96\frac{sd(x)}{\sqrt{n}} \;\text{with}\;n=5
 <div id="fig-s-chart" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-s-chart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter004_ProductionStatistics_files/figure-html/fig-s-chart-1.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
+<img src="chapter004_ProductionStatistics_files/figure-revealjs/fig-s-chart-1.svg" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-s-chart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;6.4: The s chart with control and warning limits.
@@ -506,10 +506,10 @@ LWL &amp;= \sigma * \sqrt{\frac{\chi^2_{1-\beta=0.025;n-1}}{n-1}} \;\text{with}\
 <div id="fig-np-chart" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-np-chart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter004_ProductionStatistics_files/figure-html/fig-np-chart-1.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
+<img src="chapter004_ProductionStatistics_files/figure-revealjs/fig-np-chart-1.svg" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-np-chart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6.5: A NP-Chart with control limits.
+Figure&nbsp;6.5: A N-Chart with control limits.
 </figcaption>
 </figure>
 </div>
@@ -533,7 +533,7 @@ CL = n\bar{p} \pm 3\sqrt{n\bar{p}(1-\bar{p})}
 <div id="fig-p-chart" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-p-chart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter004_ProductionStatistics_files/figure-html/fig-p-chart-1.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
+<img src="chapter004_ProductionStatistics_files/figure-revealjs/fig-p-chart-1.svg" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-p-chart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;6.6: A P-Chart with control limits.
@@ -580,7 +580,7 @@ P_{ges} = P_1 * P_2 * P_3 * P_4 * P_5 = 0.95^{(n=5)}=0.774 \approx 77.4\% \label
 <div id="fig-prodprob-scr" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-prodprob-scr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter004_ProductionStatistics_files/figure-html/fig-prodprob-scr-1.png" class="img-fluid figure-img" style="width:95.0%">
+<img src="chapter004_ProductionStatistics_files/figure-revealjs/fig-prodprob-scr-1.svg" class="img-fluid figure-img" style="width:95.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-prodprob-scr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;6.8: Probabilities for success in sequence.
@@ -764,7 +764,7 @@ C_{pk} &amp;= \frac{\min(USL-\bar{x},\bar{x}-LSL)}{3*sd} \label{CpkCalc}
 <div id="fig-cpk-ppm" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-cpk-ppm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter004_ProductionStatistics_files/figure-html/fig-cpk-ppm-1.png" class="img-fluid figure-img" style="width:95.0%" data-fig-pos="H">
+<img src="chapter004_ProductionStatistics_files/figure-revealjs/fig-cpk-ppm-1.svg" class="img-fluid figure-img" style="width:95.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cpk-ppm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;6.17: The failed parts per million vs.&nbsp;the <span class="math inline">\(C_{pk}\)</span>
@@ -1439,7 +1439,7 @@ Table&nbsp;6.1: The summary of the raw data for the MSA1.
 <div id="fig-msa1-plt" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-msa1-plt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter004_ProductionStatistics_files/figure-html/fig-msa1-plt-1.png" class="img-fluid figure-img" style="width:95.0%">
+<img src="chapter004_ProductionStatistics_files/figure-revealjs/fig-msa1-plt-1.svg" class="img-fluid figure-img" style="width:95.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-msa1-plt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;6.21: The data as measured during the MSA1 with all measures included.
@@ -1456,7 +1456,7 @@ Figure&nbsp;6.21: The data as measured during the MSA1 with all measures include
 <div id="fig-msa1-qq" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-msa1-qq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter004_ProductionStatistics_files/figure-html/fig-msa1-qq-1.png" class="img-fluid figure-img" width="672">
+<img src="chapter004_ProductionStatistics_files/figure-revealjs/fig-msa1-qq-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-msa1-qq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;6.22: By definition, measurement errors shoul be normally disitrbuted.
@@ -2041,7 +2041,7 @@ Precision under reproducibility conditions (where test results are obtained usin
 <div id="fig-msa2-data" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-msa2-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter004_ProductionStatistics_files/figure-html/fig-msa2-data-1.png" class="img-fluid figure-img" style="width:75.0%">
+<img src="chapter004_ProductionStatistics_files/figure-revealjs/fig-msa2-data-1.svg" class="img-fluid figure-img" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-msa2-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;6.24: The data from the 18 experiments for the GageR&amp;R
@@ -3478,7 +3478,7 @@ Table&nbsp;6.4
 <div id="fig-sngl-app-ref" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-sngl-app-ref-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter004_ProductionStatistics_files/figure-html/fig-sngl-app-ref-1.png" class="img-fluid figure-img" style="width:95.0%">
+<img src="chapter004_ProductionStatistics_files/figure-revealjs/fig-sngl-app-ref-1.svg" class="img-fluid figure-img" style="width:95.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sngl-app-ref-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;6.26: Single appraiser agreement to reference.
@@ -3494,7 +3494,7 @@ Figure&nbsp;6.26: Single appraiser agreement to reference.
 <div id="fig-sngl-ref-agreement" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-sngl-ref-agreement-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter004_ProductionStatistics_files/figure-html/fig-sngl-ref-agreement-1.png" class="img-fluid figure-img" style="width:95.0%">
+<img src="chapter004_ProductionStatistics_files/figure-revealjs/fig-sngl-ref-agreement-1.svg" class="img-fluid figure-img" style="width:95.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sngl-ref-agreement-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;6.27: How good is the agreement in the reference?
@@ -3510,7 +3510,7 @@ Figure&nbsp;6.27: How good is the agreement in the reference?
 <div id="fig-ref-agree" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-ref-agree-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter004_ProductionStatistics_files/figure-html/fig-ref-agree-1.png" class="img-fluid figure-img" style="width:95.0%">
+<img src="chapter004_ProductionStatistics_files/figure-revealjs/fig-ref-agree-1.svg" class="img-fluid figure-img" style="width:95.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ref-agree-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;6.28: Single run agreement to reference.
@@ -3526,7 +3526,7 @@ Figure&nbsp;6.28: Single run agreement to reference.
 <div id="fig-asdf" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-asdf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter004_ProductionStatistics_files/figure-html/fig-asdf-1.png" class="img-fluid figure-img" style="width:75.0%">
+<img src="chapter004_ProductionStatistics_files/figure-revealjs/fig-asdf-1.svg" class="img-fluid figure-img" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-asdf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;6.29: Appraiser ref agreement
@@ -3540,18 +3540,18 @@ Figure&nbsp;6.29: Appraiser ref agreement
 <div class="cell quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="chapter004_ProductionStatistics_files/figure-html/unnamed-chunk-48-1.png" class="img-fluid" width="672"></p>
+<p><img src="chapter004_ProductionStatistics_files/figure-revealjs/unnamed-chunk-48-1.svg" class="img-fluid"></p>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="chapter004_ProductionStatistics_files/figure-html/unnamed-chunk-48-2.png" class="img-fluid" width="672"></p>
+<p><img src="chapter004_ProductionStatistics_files/figure-revealjs/unnamed-chunk-48-2.svg" class="img-fluid"></p>
 </div>
 </div>
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="chapter004_ProductionStatistics_files/figure-html/unnamed-chunk-48-3.png" class="img-fluid" width="672"></p>
+<p><img src="chapter004_ProductionStatistics_files/figure-revealjs/unnamed-chunk-48-3.svg" class="img-fluid"></p>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="chapter004_ProductionStatistics_files/figure-html/unnamed-chunk-48-4.png" class="img-fluid" width="672"></p>
+<p><img src="chapter004_ProductionStatistics_files/figure-revealjs/unnamed-chunk-48-4.svg" class="img-fluid"></p>
 </div>
 </div>
 </div>
@@ -3579,6 +3579,82 @@ Standards, National Institute of, Technology (U.S.), and International SEMATECH.
 </section>
 
 </main> <!-- /main -->
+
+
+<script>
+
+  // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+
+  // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+
+  // slide changes (different for each slide format).
+
+  (function () {
+
+    // dispatch for htmlwidgets
+
+    function fireSlideEnter() {
+
+      const event = window.document.createEvent("Event");
+
+      event.initEvent("slideenter", true, true);
+
+      window.document.dispatchEvent(event);
+
+    }
+
+
+
+    function fireSlideChanged(previousSlide, currentSlide) {
+
+      fireSlideEnter();
+
+
+
+      // dispatch for shiny
+
+      if (window.jQuery) {
+
+        if (previousSlide) {
+
+          window.jQuery(previousSlide).trigger("hidden");
+
+        }
+
+        if (currentSlide) {
+
+          window.jQuery(currentSlide).trigger("shown");
+
+        }
+
+      }
+
+    }
+
+
+
+    // hookup for slidy
+
+    if (window.w3c_slidy) {
+
+      window.w3c_slidy.add_observer(function (slide_num) {
+
+        // slide_num starts at position 1
+
+        fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+
+      });
+
+    }
+
+
+
+  })();
+
+</script>
+
+
+
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

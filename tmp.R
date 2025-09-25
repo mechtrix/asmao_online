@@ -1,89 +1,59 @@
-# Load libraries
 library(ggplot2)
-library(dplyr)
-library(tidyr)
-library(patchwork)
 
-# Set seed for reproducibility
-set.seed(42)
+# Parameters
+min_val <- 1 # Minimum value
+max_val <- 10 # Maximum value
+n_discrete <- 10 # Number of discrete points
+n_continuous <- 1000 # Points for continuous curve
 
-# Create a large population from which to sample
-population <- rnorm(100000, mean = 0, sd = 1)
+# Create data frames
+discrete_data <- data.frame(
+  x = min_val:max_val,
+  y = rep(1 / n_discrete, n_discrete),
+  type = "Discrete Uniform"
+)
 
-true_population_variance <- var(population) * (length(population) - 1) / length(population)
+continuous_data <- data.frame(
+  x = seq(min_val, max_val, length.out = n_continuous),
+  y = dunif(seq(min_val, max_val, length.out = n_continuous), min_val, max_val),
+  type = "Continuous Uniform"
+)
 
-# Define sample sizes
-sample_sizes <- c(2,10,20,30,40,50,60,70,80,90,100,200,300,400,500,600,700,800,900,1000,2000,3000,4000,5000,6000,7000,8000,9000,10000)
+# Combine data for plotting
+plot_data <- rbind(
+  transform(discrete_data, distribution = "Discrete"),
+  transform(continuous_data, distribution = "Continuous")
+)
 
-# Initialize list to store results
-results <- data.frame()
-
-# Loop through sample sizes
-for (n in sample_sizes) {
-  sample <- sample(population, size = n, replace = FALSE)
-  sample_mean <- mean(sample)
-  ssq <- sum((sample - sample_mean)^2)
-  
-  biased_var <- ssq / n
-  unbiased_var <- ssq / (n - 1)
-  
-  results <- rbind(results, data.frame(
-    SampleSize = n,
-    BiasedVariance = biased_var,
-    UnbiasedVariance = unbiased_var,
-    Difference = unbiased_var - biased_var
-  ))
-}
-
-# Reshape data for ggplot
-results_long <- results %>%
-  pivot_longer(cols = c("BiasedVariance", "UnbiasedVariance"),
-               names_to = "Type", values_to = "Variance") |> 
-  mutate(
-    diff_to_true_var = abs(1-Variance)
-  )
-
-
-
-
-results_long |> 
-  ggplot(
-    aes(
-      x = SampleSize,
-      y = Difference
-    )
-  )+
-  geom_line(size = 1)+
-  scale_x_log10()+
-  labs(
-    title = "Difference between biased (n) and unbiased (n - 1) variance estimates",
-    x = "Sample Size", 
-    y = "biased (n) variance - unbiased (n-1) variance",
-    color = "Variance Type") +
-  theme_minimal(base_size = 14) +
-  theme(legend.position = "top")
-
-# Plot
-results_long |> 
-  ggplot(
-    aes(
-      x = SampleSize, 
-      y = Variance, 
-      color = Type)) +
+# Create plot
+ggplot() +
+  # Continuous uniform distribution
   geom_line(
+    data = subset(plot_data, distribution == "Continuous"),
+    aes(x = x, y = y, color = type),
     size = 1
-    ) +
-  geom_hline(yintercept = 1)+
+  ) +
+  # Discrete uniform distribution
+  geom_point(
+    data = subset(plot_data, distribution == "Discrete"),
+    aes(x = x, y = y, color = type),
+    size = 3
+  ) +
+  geom_segment(
+    data = subset(plot_data, distribution == "Discrete"),
+    aes(x = x, xend = x, y = 0, yend = y, color = type),
+    linetype = "dashed",
+    size = 0.5
+  ) +
+  # Aesthetics
+  scale_color_manual(
+    values = c("Continuous Uniform" = "blue", "Discrete Uniform" = "red")
+  ) +
   labs(
-    title = "Biased (n) and unbiased (n - 1) variance estimates",
-    x = "Sample Size", 
-    y = "Estimated Variance",
-    color = "Variance Type") +
-  theme_minimal(base_size = 14) +
-  scale_x_log10()+
-  scale_color_manual(values = c("steelblue", "firebrick")) +
+    title = "Discrete vs Continuous Uniform Distribution",
+    x = "Value",
+    y = "Probability/Density",
+    color = "Distribution Type"
+  ) +
+  theme_minimal() +
   theme(legend.position = "top")
-
-# title = "Impact of Bessel's Correction on Sample Variance Estimates",
-
-plt <- plt_var+plt_diff

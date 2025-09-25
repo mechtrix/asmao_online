@@ -252,10 +252,10 @@ grp02 %>%
 :::{.fragment .fade-in}
 
 \begin{align}
-UCL &= \bar{x} + 2.58\frac{sd(x)}{\sqrt{n}} \;\text{with}\;n=1 \\
-LCL &= \bar{x} - 2.58\frac{sd(x)}{\sqrt{n}} \;\text{with}\;n=1 \\
-UWL &= \bar{x} + 1.96\frac{sd(x)}{\sqrt{n}} \;\text{with}\;n=1 \\
-LWL &= \bar{x} - 1.96\frac{sd(x)}{\sqrt{n}} \;\text{with}\;n=1
+UCL &= \bar{x} + 2.58\frac{sd(x)}{\sqrt{n}} \;\text{with}\;GroupSize=1 \\
+LCL &= \bar{x} - 2.58\frac{sd(x)}{\sqrt{n}} \;\text{with}\;GroupSize=1 \\
+UWL &= \bar{x} + 1.96\frac{sd(x)}{\sqrt{n}} \;\text{with}\;GroupSize=1 \\
+LWL &= \bar{x} - 1.96\frac{sd(x)}{\sqrt{n}} \;\text{with}\;GroupSize=1
 \end{align}
 
 :::
@@ -377,10 +377,10 @@ grp02 %>%
 :::{.fragment .fade-in}
 
 \begin{align}
-UCL &= \bar{x} + 2.58\frac{sd(x)}{\sqrt{n}} \;\text{with}\;n=5 \\
-LCL &= \bar{x} - 2.58\frac{sd(x)}{\sqrt{n}} \;\text{with}\;n=5 \\
-UWL &= \bar{x} + 1.96\frac{sd(x)}{\sqrt{n}} \;\text{with}\;n=5 \\
-LWL &= \bar{x} - 1.96\frac{sd(x)}{\sqrt{n}} \;\text{with}\;n=5
+UCL &= \bar{x} + 2.58\frac{sd(x)}{\sqrt{n}} \;\text{with}\;GroupSize=5 \\
+LCL &= \bar{x} - 2.58\frac{sd(x)}{\sqrt{n}} \;\text{with}\;GroupSize=5 \\
+UWL &= \bar{x} + 1.96\frac{sd(x)}{\sqrt{n}} \;\text{with}\;GroupSize=5 \\
+LWL &= \bar{x} - 1.96\frac{sd(x)}{\sqrt{n}} \;\text{with}\;GroupSize=5
 \end{align}
 
 :::
@@ -512,7 +512,7 @@ The S chart is useful for detecting shifts or trends in the variability of a pro
 ```{r}
 #| label: fig-np-chart
 #| out-width: 75%
-#| fig-cap: A NP-Chart with control limits.
+#| fig-cap: A N-Chart with control limits.
 #| fig-pos: "H"
 
 set.seed(123)
@@ -544,9 +544,9 @@ prop_fail %>%
     breaks = seq(1,10)
   )+
   labs(
-    title = "P Chart",
+    title = "N Chart",
     x = "sample",
-    y = "fraction non-conforming"
+    y = "number non-conforming"
   )+
   theme_bw(base_size = 15)
 
@@ -615,7 +615,7 @@ prop_fail %>%
   labs(
     title = "P Chart",
     x = "sample",
-    y = "number non-conforming"
+    y = "fraction non-conforming"
   )+
   theme_bw(base_size = 15)
 

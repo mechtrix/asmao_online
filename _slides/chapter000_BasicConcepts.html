@@ -618,13 +618,52 @@ Figure&nbsp;6: Some drive shaft sample data in a 2D plot of sample index vs.&nbs
 </section>
 <section id="mean" class="title-slide slide level4 center">
 <h4>Mean</h4>
-
-<img data-src="chapter000/mean_ds.png" style="width:95.0%" class="r-stretch quarto-figure-center" id="fig-mean-ds"><p class="caption">
+<div class="r-stack">
+<div class="fragment fade-out">
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-mean-ds" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-mean-ds-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="chapter000/mean_ds.png" style="width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mean-ds-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;7: A graphical depiction of the mean
-</p><p><span class="math display">\[\begin{align}
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><span class="math display">\[\begin{align}
+\text{discrete: } \mu = \mathbb{E}[X] &amp;= \sum_{i=1}^{n} x_i \, p_i \\
+\text{continous: }\mu = \mathbb{E}[X] &amp;= \int_{-\infty}^{\infty} x \, f(x) \, dx
+\end{align}\]</span></p>
+</div>
+<div class="fragment fade-in-then-out">
+<div style="font-size: 200%;">
+<p>? <span class="math display">\[\mathbb{E}[X]\]</span> ?</p>
+</div>
+</div>
+<div class="fragment fade-in-then-out">
+<div style="font-size: 200%;">
+<p>Expected Value!</p>
+<p>Do we know it?</p>
+</div>
+</div>
+<div class="fragment fade-in-then-out">
+<p><em>Intuition:</em> The mean (expected value) represents the <strong>center of mass</strong> of the distribution. It is the value around which the random variable tends to cluster.</p>
+<ul>
+<li>For a fair die, <span class="math inline">\(X = 1,2,3,4,5,6\)</span>:</li>
+<li><span class="math inline">\(\mu = \frac{1+2+3+4+5+6}{6} = 3.5\)</span></li>
+</ul>
+</div>
+<div class="fragment fade-in-then-out">
+<p><span class="math display">\[\begin{align}
 \text{population:} \; \mu &amp;= \frac{1}{N}\sum_i^{N} x_i \\
 \text{sample:} \; \bar{x} &amp;= \frac{1}{n}\sum_i^{n} x_i
 \end{align}\]</span></p>
+</div>
+</div>
 </section>
 
 <section id="median" class="title-slide slide level4 center">
@@ -682,9 +721,40 @@ Figure&nbsp;11: A graphical depiction of the variance
 </div>
 </div>
 </div>
+<p>For a random variable <span class="math inline">\(X\)</span> with mean <span class="math inline">\(\mu=\mathbb{E}\!(X)\)</span>:</p>
 <p><span class="math display">\[\begin{align}
-\text{population:}\; \sigma^2 =&amp; \frac{1}{N}\sum_{i=1}^N (x_i - \mu)^2 \\
-\text{sample:} \; sd^2 =&amp; \frac{1}{n-1} \sum_{i=1}^n (x_i - \bar{x})^2
+\mathrm{Var}(X) &amp;= \mathbb{E}\!\big[(X - \mu)^2\big]\\
+\mathrm{Var}(X) &amp;= \mathbb{E}[X^2] - \big(\mathbb{E}[X]\big)^2
+\end{align}\]</span></p>
+</div>
+<div class="fragment fade-in-then-out">
+<p>It is the <strong>expected squared deviation</strong> from the mean.</p>
+<ul>
+<li><p>Always non-negative.</p></li>
+<li><p>Units: square of the units of <span class="math inline">\(X\)</span></p></li>
+</ul>
+</div>
+</div>
+</section>
+
+<section id="standad-deviation" class="title-slide slide level4 center">
+<h4>Standad Deviation</h4>
+<div class="r-stack">
+<div class="fragment fade-out">
+<p><span class="math display">\[\begin{align}
+\sigma &amp;= \sqrt{\mathrm{Var}}
+\end{align}\]</span></p>
+</div>
+<div class="fragment fade-in-then-out">
+<p>?</p>
+</div>
+<div class="fragment fade-in-then-out">
+<p><strong>Interpretability!</strong></p>
+</div>
+<div class="fragment fade-in-then-out">
+<p><span class="math display">\[\begin{align}
+\text{population: } \sigma &amp;= \sqrt{\frac{1}{N} \sum_{i=1}^{N} (x_i - \mu)^2}\\
+\text{sample: } sd &amp;= \sqrt{\frac{1}{n-1} \sum_{i=1}^{n} (x_i - \bar{x})^2}
 \end{align}\]</span></p>
 </div>
 <div class="fragment fade-in-then-out">
@@ -765,16 +835,33 @@ Figure&nbsp;13: The biased (n) variance is not as prcises as the unbiased (n-1) 
 </div>
 </div>
 </div>
-<div class="fragment fade-in-then-out">
+</div>
+</section>
+
+<section id="percentiles-quantiles" class="title-slide slide level4 center">
+<h4>Percentiles, quantiles</h4>
+<div class="r-stack">
+<div class="fragment fade-out">
+<ul>
+<li><p>Percentiles: Divide data into <span class="math inline">\(100\)</span> equal parts. The <span class="math inline">\(p\)</span>th percentile is the value below which p% of the observations fall.</p></li>
+<li><p>Quantiles: Generalization of percentiles. The q-th quantile is the value below which a fraction q of the data falls. For example:</p>
+<ul>
+<li><p><span class="math inline">\(0.25\)</span> quantile: <span class="math inline">\(25\)</span>th percentile - first quartile (Q1)</p></li>
+<li><p><span class="math inline">\(0.50\)</span> quantile: <span class="math inline">\(50\)</span>th percentile - median</p></li>
+<li><p><span class="math inline">\(0.75\)</span> quantile: <span class="math inline">\(75\)</span>th percentile - third quartile (Q3)</p></li>
+</ul></li>
+</ul>
+</div>
+<div class="fragment fade-in">
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-bessel-large-n-diff" class="quarto-float quarto-figure quarto-figure-center">
+<div id="fig-percentile-quantile" class="quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-fig">
-<div aria-describedby="fig-bessel-large-n-diff-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="chapter000_BasicConcepts_files/figure-revealjs/fig-bessel-large-n-diff-1.svg" style="width:90.0%">
+<div aria-describedby="fig-percentile-quantile-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="chapter000_BasicConcepts_files/figure-revealjs/fig-percentile-quantile-1.svg" style="width:100.0%">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bessel-large-n-diff-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;14: The difference between the biased (n) and unbiased (n-1) shows, that the Bessel’s correction increases variation while decreasing bias
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-percentile-quantile-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14: A graphical depiction of various percentiles, quantiles
 </figcaption>
 </figure>
 </div>
@@ -782,16 +869,6 @@ Figure&nbsp;14: The difference between the biased (n) and unbiased (n-1) shows, 
 </div>
 </div>
 </div>
-</section>
-
-<section id="standard-deviation" class="title-slide slide level4 center">
-<h4>Standard Deviation</h4>
-
-</section>
-
-<section id="percentiles-quantiles" class="title-slide slide level4 center">
-<h4>Percentiles, quantiles</h4>
-
 </section>
 
 

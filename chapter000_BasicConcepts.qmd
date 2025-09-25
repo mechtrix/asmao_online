@@ -586,18 +586,78 @@ knitr::include_graphics(here::here("chapter000","DriveShaft_ct_data.png"))
 
 #### Mean 
 
+::: {.r-stack}
+
+::: {.fragment .fade-out}
+
 ```{r}
 #| label: fig-mean-ds
-#| out-width: 95%
+#| out-width: 50%
 #| fig-cap: A graphical depiction of the mean
 
 knitr::include_graphics(here::here("chapter000","mean_ds.png"))
+
 ```
+
+\begin{align}
+\text{discrete: } \mu = \mathbb{E}[X] &= \sum_{i=1}^{n} x_i \, p_i \\
+\text{continous: }\mu = \mathbb{E}[X] &= \int_{-\infty}^{\infty} x \, f(x) \, dx
+\end{align}
+
+:::
+
+::: {.content-visible when-profile="slides"}
+
+
+::: {.fragment .fade-in-then-out}
+
+::: {style="font-size: 200%;"}
+
+? $$\mathbb{E}[X]$$ ?
+
+:::
+
+:::
+
+::: {.fragment .fade-in-then-out}
+
+::: {style="font-size: 200%;"}
+
+Expected Value!
+
+Do we know it?
+
+:::
+
+:::
+
+::: {.content-visible when-profile="slides"}
+
+
+::: {.fragment .fade-in-then-out}
+
+*Intuition:* The mean (expected value) represents the **center of mass** of the distribution. 
+It is the value around which the random variable tends to cluster. 
+
+* For a fair die, $X = 1,2,3,4,5,6$:
+* $\mu = \frac{1+2+3+4+5+6}{6} = 3.5$
+
+:::
+
+:::
+
+:::
+
+::: {.fragment .fade-in-then-out}
 
 \begin{align}
 \text{population:} \; \mu &= \frac{1}{N}\sum_i^{N} x_i \\
 \text{sample:} \; \bar{x} &= \frac{1}{n}\sum_i^{n} x_i 
 \end{align}
+
+:::
+
+:::
 
 #### Median
 
@@ -678,14 +738,64 @@ There is no difference in computing the range for the population or the sample
 knitr::include_graphics(here::here("chapter000","variance_ds.png"))
 ```
 
+For a random variable $X$ with mean $\mu=\mathbb{E}\!(X)$:
+
 \begin{align}
-\text{population:}\; \sigma^2 =& \frac{1}{N}\sum_{i=1}^N (x_i - \mu)^2 \\
-\text{sample:} \; sd^2 =& \frac{1}{n-1} \sum_{i=1}^n (x_i - \bar{x})^2
+\mathrm{Var}(X) &= \mathbb{E}\!\big[(X - \mu)^2\big]\\
+\mathrm{Var}(X) &= \mathbb{E}[X^2] - \big(\mathbb{E}[X]\big)^2
+\end{align}
+
+:::
+
+::: {.fragment .fade-in-then-out}
+
+It is the **expected squared deviation** from the mean.
+
+* Always non-negative.
+
+* Units: square of the units of $X$
+
+:::
+
+:::
+
+#### Standad Deviation
+
+::: {.r-stack}
+
+::: {.fragment .fade-out}
+
+\begin{align}
+\sigma &= \sqrt{\mathrm{Var}}
 \end{align}
 
 :::
 
 ::: {.content-visible when-profile="slides"}
+
+::: {.fragment .fade-in-then-out}
+
+?
+
+:::
+
+::: {.fragment .fade-in-then-out}
+
+**Interpretability!**
+
+:::
+
+:::
+
+::: {.fragment .fade-in-then-out}
+
+\begin{align}
+\text{population: } \sigma &= \sqrt{\frac{1}{N} \sum_{i=1}^{N} (x_i - \mu)^2}\\
+\text{sample: } sd &= \sqrt{\frac{1}{n-1} \sum_{i=1}^{n} (x_i - \bar{x})^2}
+\end{align}
+
+
+:::
 
 ::: {.fragment .fade-in-then-out}
 
@@ -701,7 +811,6 @@ knitr::include_graphics(here::here("chapter000","bessel_intro.png"))
 
 :::
 
-:::
 
 ##### The Bessel's correction
 
@@ -865,42 +974,65 @@ results_long |>
 
 :::
 
-::: {.fragment .fade-in-then-out}
-
-```{r}
-#| label: fig-bessel-large-n-diff
-#| out-width: 90%
-#| fig-cap: The difference  between the biased (n) and unbiased (n-1) shows, that the Bessel's correction increases variation while decreasing bias
-
-results_long |> 
-  ggplot(
-    aes(
-      x = SampleSize,
-      y = Difference
-    )
-  )+
-  geom_line(size = 1)+
-  geom_vline(xintercept = 30)+
-  scale_x_log10()+
-  labs(
-    title = "Difference between biased (n) and unbiased (n - 1) variance estimates",
-    subtitle = "population size: 100000, drawn with: seed = 42, mean = 0, sd = 1 from rnorm",
-    x = "Sample Size", 
-    y = "biased (n) variance - unbiased (n-1) variance",
-    color = "Variance Type") +
-  theme_minimal(base_size = 15) +
-  theme(legend.position = "top")
-
-```
 
 :::
 
-:::
 
-#### Standard Deviation 
 
 #### Percentiles, quantiles
 
+::: {.r-stack}
+
+::: {.fragment .fade-out}
+
+* Percentiles: Divide data into $100$ equal parts. The $p$th percentile is the value below which p\% of the observations fall.
+
+* Quantiles: Generalization of percentiles. The q-th quantile is the value below which a fraction q of the data falls. For example:
+
+  * $0.25$ quantile: $25$th percentile - first quartile (Q1)
+
+  * $0.50$ quantile: $50$th percentile - median
+
+  * $0.75$ quantile: $75$th percentile - third quartile (Q3)
+
+:::
+
+::: {.fragment .fade-in}
+  
+```{r}
+#| label: fig-percentile-quantile
+#| out-width: 100%
+#| fig-width: 8
+#| fig-height: 5
+#| fig-cap: A graphical depiction of various percentiles, quantiles
+
+# Sample dataset
+scores <- c(55, 67, 78, 81, 90, 95, 100, 45, 60, 72)
+scores_df <- data.frame(score = scores)
+
+# Compute percentiles
+p <- quantile(scores, probs = c(0.25, 0.5, 0.75))
+
+# Create plot
+ggplot(scores_df, aes(x = score)) +
+  geom_histogram(binwidth = 5, fill = "lightblue", color = "black", alpha = 0.7) +
+  geom_vline(xintercept = p[1], linetype = "dashed", size = 1) +
+  geom_vline(xintercept = p[2], linetype = "dashed", size = 1) +
+  geom_vline(xintercept = p[3], linetype = "dashed", size = 1) +
+  labs(title = "Exam Scores with 25th, 50th, 75th Percentiles",
+       x = "Score",
+       y = "Count") +
+  annotate("text", x = p[1], y = 2, label = "25th",  angle = 90, vjust = -0.5) +
+  annotate("text", x = p[2], y = 2, label = "50th",  angle = 90, vjust = -0.5) +
+  annotate("text", x = p[3], y = 2, label = "75th",  angle = 90, vjust = -0.5)+
+  scale_y_continuous(breaks = c(0,1,2))+
+  theme_minimal(base_size = 15) 
+
+```
+  
+:::
+
+:::
 
 ### Histogram
 
@@ -1271,11 +1403,11 @@ The plot follows the same logic as for the boxplots (`x-axis-data`, `y-axis-data
 
 df %>% 
   ggplot(aes(y = diameter,x = sample))+
-  geom_half_violin()+
-  geom_half_point()+
+  geom_half_violin(side = "l")+
+    geom_dotplot(binaxis = "y", method="histodot", stackdir="up")+
   labs(
     x = "diameter in mm",
-    title = "Half-Half plots including violin plots (PDF)\nand jittered raw-data"
+    title = "Half-Half plots including violin plots (PDF)\nand dotplots"
   )+
   scale_x_discrete(
     expand = c(0,0,0,0)

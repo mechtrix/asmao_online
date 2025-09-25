@@ -19,6 +19,8 @@ format:
   html:
     include-in-header: mathjax.html
     theme: cosmo
+    fig-width: 8
+    fig-height: 5
   titlepage-pdf:
     documentclass: scrbook
     titlepage: "academic"
@@ -53,5 +55,7 @@ format:
     fig-align: center
     fig-pos: 'ht'
     fig-format: pdf
+    fig-width: 8
+    fig-height: 5
 
 

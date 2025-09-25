@@ -5,6 +5,8 @@ I do realize, that this body of knowledge has been repeated over and over, but h
 This work is heavily inspired by [@r_wickhamgrolemund_2016].
 Please note that this material is copyrighted, you are not allowed to copy, at least ask for permission - you are likely to get it.
 
+Content is subject to change.
+
 Tim Weber, Oct. 2024
 
 # Glossary {.unnumbered}

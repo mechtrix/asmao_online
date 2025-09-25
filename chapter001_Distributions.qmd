@@ -19,9 +19,70 @@ library(ggh4x)
 library(ggridges)
 library(ggdist)
 library(tidydice)
+library(patchwork)
 
 
 ```
+
+## Why distributions?
+
+<center>
+Distributions are *models* of the *reality*.
+</center>
+
+```{r}
+#| label: fig-intro
+#| out-width: 95%
+#| fig-cap: The model is perfect, but the real world is not.
+
+# Generate data for a standard normal distribution (mean = 0, sd = 1)
+x <- seq(-4, 4, length.out = 1000)  # Range of x-values (z-scores)
+y <- dnorm(x, mean = 0, sd = 1)    # Probability density function (PDF)
+
+# Create a data frame
+df <- data.frame(x = x, y = y)
+
+# Plot the normal distribution
+plt_model <- ggplot(df, aes(x = x, y = y)) +
+  geom_area(fill = "lightblue", alpha = 0.6) +  # Shaded area under the curve
+  geom_line(color = "darkblue", size = 1) +     # Line for the curve
+  # geom_vline(xintercept = 0, linetype = "dashed", color = "red", size = 1) +  # Mean line
+  labs(
+    title = "Model"
+  ) +
+  theme_void()+
+  theme(
+    plot.title = element_text(hjust = 0.5, face = "bold"),
+  )
+
+# Set seed for reproducibility
+set.seed(123)
+
+# Simulate 1000 random data points from a normal distribution (mean = 50, sd = 10)
+simulated_data <- data.frame(
+  values = rnorm(1000, mean = 50, sd = 10)
+)
+
+# Create histogram with ggplot2
+plt_data <- ggplot(simulated_data, aes(x = values)) +
+  geom_histogram(
+    bins = 30,                     # Number of bins
+    fill = "skyblue",             # Fill color
+    color = "black",              # Border color
+    alpha = 0.7                   # Transparency
+  ) +
+  labs(
+    title = "real World"
+  ) +
+  theme_void() +
+  theme(
+    plot.title = element_text(hjust = 0.5, face = "bold"),
+  )
+
+plt_model+plt_data
+
+```
+
 
 ## Types of data
 
@@ -146,6 +207,232 @@ Examples of continuous data include temperature, height, weight, and time.
 It is important to note that continuous data can be measured with decimals or fractions and is not limited to whole numbers.
 
 :::
+
+## Uniform Distribution
+
+::: {.content-visible when-profile="slides"}
+
+### Fairness
+
+<center>
+
+If you had to guess a number between 1 and 10 with no other information, what is the **fairest** way to assign probabilities to each number? 
+
+What if the range were 0 to 1 instead?
+
+::: {.fragment .fade-in}
+
+Every outcome is **equally** likely
+
+:::
+
+</center>
+
+:::
+
+### Dice
+
+::: {.r-stack}
+
+::: {.fragment .fade-out}
+
+```{r}
+#| label: fig-unif-die
+#| out-width: 35%
+#| fig-cap: The probability for every face to turn up during a roll is uniformly distributed.
+
+knitr::include_graphics(here("chapter001","die.png"))
+
+
+```
+
+:::
+
+::: {.fragment .fade-in}
+
+```{r}
+#| label: fig-unif-pmf
+#| out-width: 95%
+#| fig-cap: A plot of the probabilities that every face of a die turns up. They are all the same.
+#| 
+df <- data.frame(
+  face = factor(1:6),
+  p    = rep(1/6, 6)
+)
+
+ggplot(df, aes(x = face, y = p)) +
+  geom_col(fill = "#2C7FB8") +
+  geom_text(aes(label = "1/6"), vjust = -0.4, size = 4) +
+  scale_y_continuous(limits = c(0, 0.22), expand = expansion(mult = c(0, 0.05))) +
+  labs(
+    title = "PMF of a Fair Six-Sided Die",
+    x = "Die face",
+    y = "Probability"
+  ) +
+  theme_minimal(base_size = 12)
+```
+
+:::
+
+:::
+
+### Types of uniform distributions
+
+* All outcomes in the range are *equally probable*
+* The "range" can be:
+  * a finite set of values (discrete)
+  * a continuous interval (continuous)
+  
+\begin{align}
+X \sim \mathrm{Uniform}(a,b) \text{ continuous}\\
+X \sim \mathrm{Uniform}\{a,a+1,\ldots,b\} \text{ discrete}
+\end{align}
+
+::: {.content-visible when-profile="slides"}
+
+### Visual comparison of discrete and continuous
+
+```{r}
+#| label: fig-unif-pmf-pdf
+#| out-width: 95%
+#| fig-cap: A comparison of continnuous and discrete uniformly distributed data. 
+
+# Parameters
+min_val <- 1 # Minimum value
+max_val <- 10 # Maximum value
+n_discrete <- 10 # Number of discrete points
+n_continuous <- 1000 # Points for continuous curve
+
+# Create data frames
+discrete_data <- data.frame(
+  x = min_val:max_val,
+  y = rep(1 / n_discrete, n_discrete),
+  type = "Discrete Uniform"
+)
+
+continuous_data <- data.frame(
+  x = seq(min_val, max_val, length.out = n_continuous),
+  y = dunif(seq(min_val, max_val, length.out = n_continuous), min_val, max_val),
+  type = "Continuous Uniform"
+)
+
+# Combine data for plotting
+plot_data <- rbind(
+  transform(discrete_data, distribution = "Discrete"),
+  transform(continuous_data, distribution = "Continuous")
+)
+
+# Create plot
+ggplot() +
+  # Continuous uniform distribution
+  geom_line(
+    data = subset(plot_data, distribution == "Continuous"),
+    aes(x = x, y = y, color = type),
+    size = 1
+  ) +
+  # Discrete uniform distribution
+  geom_point(
+    data = subset(plot_data, distribution == "Discrete"),
+    aes(x = x, y = y, color = type),
+    size = 3
+  ) +
+scale_x_continuous(
+breaks = c(1,2,3,4,5,6,7,8,9,10)
+  )+
+  geom_segment(
+    data = subset(plot_data, distribution == "Discrete"),
+    aes(x = x, xend = x, y = 0, yend = y, color = type),
+    linetype = "dashed",
+    size = 0.5
+  ) +
+  # Aesthetics
+  scale_color_manual(
+    values = c("Continuous Uniform" = "blue", "Discrete Uniform" = "red")
+  ) +
+  labs(
+    title = "Discrete vs Continuous Uniform Distribution",
+    x = "Value",
+    y = "Probability/Density",
+    color = "Distribution Type"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "top")
+
+```
+
+:::
+
+### Core properties
+
+```{r}
+#| label: tbl-unif-prop
+#| tbl-cap: The core properties between the discrete and continuous disitrbution are very similar.
+#| 
+# Load required packages
+library(gt)
+library(dplyr)
+
+# Create the data frame for the table
+uniform_table <- tibble(
+  Property       = c("Probability", "Symmetry", "Intuition", "Use Cases"),
+  Discrete       = c(
+    "Equal for each outcome.",
+    "Mean = midpoint of the range.",
+    html("'Fair die' with <i>n</i> sides."),
+    "Counting problems (e.g., dice, cards)."
+  ),
+  Continuous     = c(
+    "Equal density over the interval.",
+    "Mean = midpoint of the interval.",
+    html("'Fair spinner' on a line segment."),
+    "Measuring problems (e.g., time, space)."
+  )
+)
+
+# Create the gt table with custom formatting
+gt_uniform_table <- uniform_table %>%
+  gt() %>%
+  tab_header(
+    title = md("**Core Properties: Discrete vs. Continuous Uniform Distributions**"),
+    subtitle = md("*Equal probability everywhere, but for different types of data*")
+  ) %>%
+  cols_label(
+    Property = md("**Property**"),
+    Discrete = md("**Discrete Uniform**"),
+    Continuous = md("**Continuous Uniform**")
+  ) %>%
+  fmt_markdown(columns = everything()) %>%
+  tab_style(
+    style = cell_text(weight = "bold", color = "white", align = "center"),
+    locations = cells_column_labels()
+  ) %>%
+  tab_style(
+    style = cell_text(align = "center"),
+    locations = cells_body()
+  ) %>%
+  tab_style(
+    style = cell_fill(color = "#f0f0f0"),
+    locations = cells_body(columns = Discrete)
+  ) %>%
+  tab_style(
+    style = cell_fill(color = "#e6f3ff"),
+    locations = cells_body(columns = Continuous)
+  ) %>%
+  tab_options(
+    table.font.size = px(16),
+    heading.title.font.size = px(18),
+    heading.subtitle.font.size = px(16)
+  ) %>%
+  tab_source_note(
+    md("*Note: Both distributions share the 'fairness' property but apply to different data types.*")
+  )
+
+# Display the table
+gt_uniform_table
+
+```
+
+
 
 ## Bionmimal Distribution
 
@@ -484,10 +771,7 @@ ggplot(data, aes(x, y)) +
     x = c(0,0,0),
     y = c(0.23,0.13,0.03),
     label = c("68%","95%","99.7%"),
-    label.size = NA
   )+
-  annotate("text", x = -2, y = 0.2,
-           label = expression(f(x == frac(1, sqrt(2*pi)*sigma)*e^frac(-(x-mu)^2,2*sigma^2))))+
   scale_x_continuous(
     breaks = seq(-4,4,1),
     expand = c(0,0,0,0)
@@ -682,7 +966,9 @@ data <- data.frame(
 
 data %>% ggplot(aes(x = name, y = value)) +
   geom_half_boxplot()+
-  geom_half_point()+
+  geom_point(
+    position = position_nudge (x = 0.15)
+  )+
   labs(
     title = "Two datasets that are measured in\ndifferent (arbritary) units."
   )+
@@ -1971,7 +2257,7 @@ drive_shaft_t_score %>%
         label = paste0("SE: ",round(se,digits = 2))),
     force_pull = -1)+
   scale_fill_grey()+
-  geom_errorbarh(aes(y = group, xmin = conf_int_lo, xmax = conf_int_hi),height = 0.3)+
+  geom_errorbarh(aes(y = group, xmin = conf_int_lo, xmax = conf_int_hi),width = 0.3)+
   # scale_fill_manual(
   #   values = c("spec" = "azure2","t" = "gray","normal" = "black")
   #   )+
@@ -2717,86 +3003,86 @@ cat("The probability of exactly", k, "questions in an hour is:", poisson_prob, "
 
 :::
 
-## Gamma - Distribution
+<!-- ## Gamma - Distribution -->
 
-::: {.content-visible when-profile="script"}
+<!-- ::: {.content-visible when-profile="script"} -->
 
-The gamma distribution is a probability distribution that is often used in statistics to model the waiting time until a Poisson process reaches a certain number of events. 
-It is a continuous probability distribution with two parameters, typically denoted as $\alpha$ (shape parameter) and $\beta$ (rate parameter). 
+<!-- The gamma distribution is a probability distribution that is often used in statistics to model the waiting time until a Poisson process reaches a certain number of events.  -->
+<!-- It is a continuous probability distribution with two parameters, typically denoted as $\alpha$ (shape parameter) and $\beta$ (rate parameter).  -->
 
-Key points about the gamma distribution:
+<!-- Key points about the gamma distribution: -->
 
-1. It is often used to model the waiting times for events that occur at a constant rate, such as the time between arrivals in a Poisson process.
-2. The exponential distribution is a special case of the gamma distribution when $\alpha = 1$ (@fig-gam).
-3. The gamma distribution is right-skewed for $\alpha > 1$ and left-skewed for $0<\alpha<1$ (@fig-gam).
-4. The mean of the gamma distribution is $\frac{\alpha}{\beta}$, and its variance is $\frac{\alpha}{\beta^2}$ (@fig-gam).
+<!-- 1. It is often used to model the waiting times for events that occur at a constant rate, such as the time between arrivals in a Poisson process. -->
+<!-- 2. The exponential distribution is a special case of the gamma distribution when $\alpha = 1$ (@fig-gam). -->
+<!-- 3. The gamma distribution is right-skewed for $\alpha > 1$ and left-skewed for $0<\alpha<1$ (@fig-gam). -->
+<!-- 4. The mean of the gamma distribution is $\frac{\alpha}{\beta}$, and its variance is $\frac{\alpha}{\beta^2}$ (@fig-gam). -->
 
-It is widely used in various fields, including reliability analysis, queuing theory, and finance.
+<!-- It is widely used in various fields, including reliability analysis, queuing theory, and finance. -->
 
-The connection to other distributions:
+<!-- The connection to other distributions: -->
 
-Exponential Distribution: The exponential distribution is a special case of the gamma distribution with $\alpha = 1$.
+<!-- Exponential Distribution: The exponential distribution is a special case of the gamma distribution with $\alpha = 1$. -->
 
-$\chi^2$: When $\alpha$ is an integer, the gamma distribution with shape parameter $\alpha$ is equivalent to the chi-squared distribution with $2\alpha$ degrees of freedom.
+<!-- $\chi^2$: When $\alpha$ is an integer, the gamma distribution with shape parameter $\alpha$ is equivalent to the chi-squared distribution with $2\alpha$ degrees of freedom. -->
 
-Erlang Distribution: The Erlang distribution is a specific case of the gamma distribution where $\alpha$ is an integer, representing the sum of $\alpha$ exponentially distributed random variables.
+<!-- Erlang Distribution: The Erlang distribution is a specific case of the gamma distribution where $\alpha$ is an integer, representing the sum of $\alpha$ exponentially distributed random variables. -->
 
-:::
+<!-- ::: -->
 
-```{r}
-#| label: fig-gam
-#| out-width: 75%
-#| fig-cap: The Gamma distribution with varying $\alpha$ (shape) and $\beta$ (scale)
+<!-- ```{r} -->
+<!-- #| label: fig-gam -->
+<!-- #| out-width: 75% -->
+<!-- #| fig-cap: The Gamma distribution with varying $\alpha$ (shape) and $\beta$ (scale) -->
 
-alpha_values <- c(0.1,1,3)   # Different shape parameters
-beta_values <- c(0.5, 1, 2)  # Different scale parameters
+<!-- alpha_values <- c(0.1,1,3)   # Different shape parameters -->
+<!-- beta_values <- c(0.5, 1, 2)  # Different scale parameters -->
 
-# Generate data for each combination of parameters
-data <- expand.grid(alpha = alpha_values, beta = beta_values, x = seq(0, 10, by = 0.1))
+<!-- # Generate data for each combination of parameters -->
+<!-- data <- expand.grid(alpha = alpha_values, beta = beta_values, x = seq(0, 10, by = 0.1)) -->
 
-# Calculate PDF for each combination
-data <- data %>%
-  mutate(pdf = (beta^alpha * x^(alpha-1) * exp(-beta*x)) / gamma(alpha)) %>% 
-  mutate(plt_alpha = paste0("alpha==",alpha),
-         plt_beta = paste0("beta==",beta))
+<!-- # Calculate PDF for each combination -->
+<!-- data <- data %>% -->
+<!--   mutate(pdf = (beta^alpha * x^(alpha-1) * exp(-beta*x)) / gamma(alpha)) %>%  -->
+<!--   mutate(plt_alpha = paste0("alpha==",alpha), -->
+<!--          plt_beta = paste0("beta==",beta)) -->
 
-# Create a facetted plot
-ggplot(data, aes(x)) +
-  geom_line(aes(y = pdf), color = "black") +
-  labs(title = "Gamma Distribution", x = "x", y = "p") +
-  facet_grid(plt_alpha ~ plt_beta, scales = "free", labeller = label_parsed) +
-  scale_x_continuous(expand = c(0,0,0,0))+
-  scale_y_continuous(expand = c(0,0,00.05,0))+
-  theme_few()
+<!-- # Create a facetted plot -->
+<!-- ggplot(data, aes(x)) + -->
+<!--   geom_line(aes(y = pdf), color = "black") + -->
+<!--   labs(title = "Gamma Distribution", x = "x", y = "p") + -->
+<!--   facet_grid(plt_alpha ~ plt_beta, scales = "free", labeller = label_parsed) + -->
+<!--   scale_x_continuous(expand = c(0,0,0,0))+ -->
+<!--   scale_y_continuous(expand = c(0,0,00.05,0))+ -->
+<!--   theme_few() -->
 
-```
+<!-- ``` -->
 
-::: {.content-visible when-profile="slides"}
+<!-- ::: {.content-visible when-profile="slides"} -->
 
-::: {.notes}
+<!-- ::: {.notes} -->
 
-Certainly, let's consider a classroom example involving the gamma distribution:
+<!-- Certainly, let's consider a classroom example involving the gamma distribution: -->
 
-Suppose you are teaching a statistics class, and you want to demonstrate the concept of the gamma distribution to your students. The gamma distribution is often used to model the waiting time until a Poisson process reaches a certain number of events. 
+<!-- Suppose you are teaching a statistics class, and you want to demonstrate the concept of the gamma distribution to your students. The gamma distribution is often used to model the waiting time until a Poisson process reaches a certain number of events.  -->
 
-You could set up an experiment in which students take turns rolling a fair six-sided die. The goal is to roll the die until it lands on a specific number, say 4. The number of rolls required to achieve this can be modeled using a gamma distribution.
+<!-- You could set up an experiment in which students take turns rolling a fair six-sided die. The goal is to roll the die until it lands on a specific number, say 4. The number of rolls required to achieve this can be modeled using a gamma distribution. -->
 
-Here's how you can proceed:
+<!-- Here's how you can proceed: -->
 
-1. Have a student start rolling the die and record the number of rolls it takes for them to get a 4.
+<!-- 1. Have a student start rolling the die and record the number of rolls it takes for them to get a 4. -->
 
-2. Continue this process with different students until you have a reasonable amount of data.
+<!-- 2. Continue this process with different students until you have a reasonable amount of data. -->
 
-3. Plot the data as a histogram, showing the number of rolls on the x-axis and the frequency on the y-axis.
+<!-- 3. Plot the data as a histogram, showing the number of rolls on the x-axis and the frequency on the y-axis. -->
 
-4. Discuss how the distribution of the number of rolls to get a 4 resembles a gamma distribution. You can explain the shape of the gamma distribution, its parameters, and how it relates to the Poisson process.
+<!-- 4. Discuss how the distribution of the number of rolls to get a 4 resembles a gamma distribution. You can explain the shape of the gamma distribution, its parameters, and how it relates to the Poisson process. -->
 
-This classroom example demonstrates the practical application of the gamma distribution in modeling random processes like the time until a specific event occurs. It helps students understand the concept using a hands-on approach and real-world data.
+<!-- This classroom example demonstrates the practical application of the gamma distribution in modeling random processes like the time until a specific event occurs. It helps students understand the concept using a hands-on approach and real-world data. -->
 
 
-:::
+<!-- ::: -->
 
-:::
+<!-- ::: -->
 
 
 
