@@ -851,40 +851,135 @@ Table&nbsp;1: The core properties between the discrete and continuous disitrbuti
 </section>
 </section>
 <section>
-<section id="bionmimal-distribution" class="title-slide slide level2 center">
-<h2>Bionmimal Distribution</h2>
-<div class="r-stack">
-<div class="fragment fade-out">
+<section id="probability-mass-function-pmf" class="title-slide slide level2 center">
+<h2>Probability Mass Function (PMF)</h2>
+
+</section>
+<section id="but-why" class="title-slide slide level3 center">
+<h3>But why?</h3>
 <ul>
-<li><p>probability distribution for discrete outcomes</p></li>
-<li><p>n repeated trials.</p></li>
-<li><p>two possible outcomes (e.g., success or failure).</p></li>
-<li><p>probability of success remains the same</p></li>
-<li><p>each trial is independent</p></li>
+<li>PMFs provide a way to calculate and assign probabilities to each distinct outcome.</li>
+<li>Each outcome is assigned a probability that corresponds to its position in the total number of outcomes.</li>
+</ul>
+</section>
+
+<section id="basics" class="title-slide slide level3 center">
+<h3>Basics</h3>
+<div class="fragment fade-in">
+<p>… assigns each outcome the same probability that always sum up to <span class="math inline">\(1\)</span> (example: six-sided die)</p>
+</div>
+<div class="fragment fade-in">
+<p><span class="math inline">\(X \sim \mathrm{Uniform}\{a,b\}\)</span> where <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are integers and <span class="math inline">\(a\leq b\)</span></p>
+<p><span class="math display">\[\begin{align}
+f(k) = P (X = k)
+\end{align}\]</span></p>
+</div>
+<div class="fragment fade-in">
+<ul>
+<li><span class="math inline">\(k\)</span> meaning a specific value that <span class="math inline">\(X\)</span> can take (e.g., <span class="math inline">\(k = 0,1,2, ...\)</span>)</li>
+<li><span class="math inline">\(f(k)\)</span> is the probability that <span class="math inline">\(X\)</span> equals <span class="math inline">\(k\)</span></li>
 </ul>
 </div>
-<div class="fragment fade-in-then-out">
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-bn-dist-slides" class="quarto-float quarto-figure quarto-figure-center">
-<figure class="quarto-float quarto-float-fig">
-<div aria-describedby="fig-bn-dist-slides-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="chapter001_Distributions_files/figure-revealjs/fig-bn-dist-slides-1.svg" style="width:95.0%">
+</section>
+
+<section id="key-properties" class="title-slide slide level3 center scrollable">
+<h3>Key Properties</h3>
+<ol type="1">
+<li><span class="math inline">\(0 \leq f(k) \leq 1\)</span> for all <span class="math inline">\(k\)</span></li>
+<li>The of probabilities over all possible <span class="math inline">\(k\)</span> must equal <span class="math inline">\(1\)</span></li>
+</ol>
+<p><span class="math display">\[\begin{align}
+\sum_{all \; k}f(k) = 1
+\end{align}\]</span></p>
+</section>
+
+<section id="sided-die" class="title-slide slide level3 center">
+<h3>6-sided die</h3>
+<div class="fragment fade-in">
+<p><span class="math display">\[\begin{align}
+X &amp;\sim \mathrm{Uniform}\{a,a+1, ..., b\} \\
+X &amp;\sim \mathrm{Uniform}\{1,2,3,4,5,6\}
+\end{align}\]</span></p>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bn-dist-slides-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;10: The binomial distribution
-</figcaption>
-</figure>
+<div class="fragment fade-in">
+<p>Number of outcomes:</p>
+<p><span class="math display">\[\begin{align}
+N &amp;= b-a+1\\
+N &amp;= 6-1+1=6
+\end{align}\]</span></p>
 </div>
-</div>
-</div>
-</div>
+<div class="fragment fade-in">
+<p>Equal probability for each outcome: <span class="math inline">\(f(k) = P (X = k)\)</span></p>
+<p><span class="math display">\[\begin{align}
+f(a) = f(a+1)= ... = f(b) = c \text{ (some constant)}
+\end{align}\]</span></p>
 </div>
 </section>
-<section id="probability-mass-function-pmf" class="title-slide slide level3 center">
-<h3>Probability Mass Function (PMF)</h3>
-<div class="r-stack">
-<div class="fragment fade-out">
+<section class="slide level5">
+
+<p>Sum of all probabilities must equal 1</p>
+<p><span class="math display">\[\begin{align}
+\sum_{k = a}^b f(k) = \underbrace{c+c+ ... +}_{N\text{times}} = N \cdot c = 1
+\end{align}\]</span></p>
+<div class="fragment fade-in">
+<p>Solving for <span class="math inline">\(c\)</span></p>
+<p><span class="math display">\[\begin{align}
+c = \frac{1}{N} = \frac{1}{b-a+1}
+\end{align}\]</span></p>
+</div>
+</section>
+<section class="slide level5">
+
+<div class="fragment fade-in">
+<p>Formal PMF:</p>
+<p><span class="math display">\[\begin{align}
+f(k) = \begin{cases}
+\frac{1}{b - a + 1} &amp; \text{if } k \in \{a, a+1, \dots, b\}, \\
+0 &amp; \text{otherwise.}
+\end{cases}
+\end{align}\]</span></p>
+</div>
+</section>
+
+<section id="exercise" class="title-slide slide level3 center">
+<h3>Exercise</h3>
+<p>A tool changer in production randomly selects one of four tools (labeled 1 to 4) with equal probability.</p>
+<ul>
+<li>Describe the formal set in <span class="math inline">\(X \sim ...\)</span></li>
+</ul>
+<div class="fragment fade-in">
+<p><span class="math inline">\(X \sim \mathrm{Uniform}\{1,2,3,4\}\)</span></p>
+</div>
+<ul>
+<li>Formally calculate the number of outcomes (<span class="math inline">\(N\)</span>)</li>
+</ul>
+<div class="fragment fade-in">
+<p><span class="math inline">\(N = 4-1+1 = 4\)</span></p>
+</div>
+</section>
+<section class="slide level5">
+
+<ul>
+<li>Describe the PMF formally</li>
+</ul>
+<div class="fragment fade-in">
+<p><span class="math display">\[\begin{align}
+f(k) = \begin{cases}
+\frac{1}{4} &amp; \text{if } k \in \{1,2,3,4\}, \\
+0 &amp; \text{otherwise.}
+\end{cases}
+\end{align}\]</span></p>
+</div>
+<ul>
+<li>What is the probability to select tool <span class="math inline">\(2\)</span></li>
+</ul>
+<div class="fragment fade-in">
+<p><span class="math inline">\(P(X = 2) = f(2) = \frac{1}{4} = 0.25\)</span></p>
+</div>
+</section>
+
+<section id="summary-pmf" class="title-slide slide level3 center">
+<h3>Summary PMF</h3>
 <ul>
 <li><p>The PMF describes the probability distribution of a discrete random variable.</p></li>
 <li><p>The probabilities associated with all hypothetical values must be non-negative and sum up to 1.</p></li>
@@ -892,26 +987,15 @@ Figure&nbsp;10: The binomial distribution
 <li><p>Unlike a PDF, which requires integration over an interval, the PMF <strong>directly</strong> provides probabilities for individual values.</p></li>
 <li><p>“mass” is conserved (similar to how physical mass is conserved).</p></li>
 </ul>
-</div>
-<div class="fragment fade-in" style="font-size: 75%;">
-<p>The <a href="#/PMF">PMF</a> for the binomial distribution is</p>
-<p><span class="math display">\[\begin{align}
-P(X = k) = \binom{n}{k} p^k (1 - p)^{n - k} \nonumber
-\end{align}\]</span></p>
-<ul>
-<li><span class="math inline">\(X\)</span> random variable</li>
-<li><span class="math inline">\(k\)</span> specific value of the random variable (<span class="math inline">\(X\)</span>), represents the number of successes</li>
-<li><span class="math inline">\(n\)</span> total number of independent trials or experiments</li>
-<li><span class="math inline">\(p\)</span> probability of success in a single trial <span class="math inline">\(0&lt;p&lt;1\)</span></li>
-<li><span class="math inline">\((1 - p)\)</span> probability of failure in a single trial</li>
-<li><span class="math inline">\(\binom{n}{k}\)</span> binomial coefficient (“n choose k”)<span class="math inline">\(\rightarrow \binom{n}{k} = \frac{n!}{k! \cdot (n - k)!}\)</span></li>
-</ul>
-</div>
-</div>
 </section>
+</section>
+<section>
+<section id="binomial-distribution" class="title-slide slide level2 center">
+<h2>Binomial Distribution</h2>
 
-<section id="classroom-example-binomial-distribution" class="title-slide slide level3 center">
-<h3>Classroom example: Binomial Distribution</h3>
+</section>
+<section id="classroom-example" class="title-slide slide level3 center">
+<h3>Classroom example</h3>
 <div class="r-stack">
 <div class="fragment fade-out">
 <p>If we roll a fair six-sided die 10 times, how many times do you expect to get a specific outcome?</p>
@@ -946,7 +1030,7 @@ P(X = k) = \binom{n}{k} p^k (1 - p)^{n - k} \nonumber
 <img data-src="chapter001_Distributions_files/figure-revealjs/fig-sim-dice-1.svg" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sim-dice-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;11: Simulated die rolls (The die is rolle <span class="math inline">\(10\)</span> times, the experiment is repeated <span class="math inline">\(5\)</span> times)
+Figure&nbsp;10: Simulated die rolls (The die is rolle <span class="math inline">\(10\)</span> times, the experiment is repeated <span class="math inline">\(5\)</span> times)
 </figcaption>
 </figure>
 </div>
@@ -962,12 +1046,57 @@ Figure&nbsp;11: Simulated die rolls (The die is rolle <span class="math inline">
 <img data-src="chapter001_Distributions_files/figure-revealjs/fig-sim-likely-1.svg">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sim-likely-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;12: Is the outcome likely?
+Figure&nbsp;11: Is the outcome likely?
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
+</div>
+</div>
+</section>
+
+<section id="theory" class="title-slide slide level3 center">
+<h3>Theory</h3>
+<div class="r-stack">
+<div class="fragment fade-out">
+<ul>
+<li><p>probability distribution for discrete outcomes</p></li>
+<li><p>n repeated trials.</p></li>
+<li><p>two possible outcomes (e.g., success or failure).</p></li>
+<li><p>probability of success remains the same</p></li>
+<li><p>each trial is independent</p></li>
+</ul>
+</div>
+<div class="fragment fade-in-then-out">
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-bn-dist-slides" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-bn-dist-slides-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="chapter001_Distributions_files/figure-revealjs/fig-bn-dist-slides-1.svg" style="width:95.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bn-dist-slides-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12: The binomial distribution
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment fade-in" style="font-size: 75%;">
+<p>The <a href="#/PMF">PMF</a> for the binomial distribution is</p>
+<p><span class="math display">\[\begin{align}
+P(X = k) = \binom{n}{k} p^k (1 - p)^{n - k} \nonumber
+\end{align}\]</span></p>
+<ul>
+<li><span class="math inline">\(X\)</span> random variable</li>
+<li><span class="math inline">\(k\)</span> specific value of the random variable (<span class="math inline">\(X\)</span>), represents the number of successes</li>
+<li><span class="math inline">\(n\)</span> total number of independent trials or experiments</li>
+<li><span class="math inline">\(p\)</span> probability of success in a single trial <span class="math inline">\(0&lt;p&lt;1\)</span></li>
+<li><span class="math inline">\((1 - p)\)</span> probability of failure in a single trial</li>
+<li><span class="math inline">\(\binom{n}{k}\)</span> binomial coefficient (“n choose k”)<span class="math inline">\(\rightarrow \binom{n}{k} = \frac{n!}{k! \cdot (n - k)!}\)</span></li>
+</ul>
 </div>
 </div>
 </section>

@@ -432,9 +432,231 @@ gt_uniform_table
 
 ```
 
+## Probability Mass Function (PMF)
 
 
-## Bionmimal Distribution
+::: {.content-visible when-profile="slides"}
+
+### But why?
+
+* PMFs provide a way to calculate and assign probabilities to each distinct outcome.
+* Each outcome is assigned a probability that corresponds to its position in the total number of outcomes.
+
+### Basics
+
+::: {.fragment .fade-in}
+
+... assigns each outcome the same probability that always sum up to $1$ (example: six-sided die)
+
+:::
+
+::: {.fragment .fade-in}
+
+$X \sim \mathrm{Uniform}\{a,b\}$ where $a$ and $b$ are integers and $a\leq b$
+
+\begin{align}
+f(k) = P (X = k)
+\end{align}
+
+:::
+
+::: {.fragment .fade-in}
+
+* $k$ meaning a specific value that $X$ can take (e.g., $k = 0,1,2, ...$)
+* $f(k)$ is the probability that $X$ equals $k$
+
+:::
+
+### Key Properties 
+
+1. $0 \leq f(k) \leq 1$ for all $k$
+2. The of probabilities over all possible $k$ must equal $1$
+
+\begin{align}
+\sum_{all \; k}f(k) = 1
+\end{align}
+
+### 6-sided die
+
+::: {.fragment .fade-in}
+
+\begin{align}
+X &\sim \mathrm{Uniform}\{a,a+1, ..., b\} \\
+X &\sim \mathrm{Uniform}\{1,2,3,4,5,6\}
+\end{align}
+
+:::
+
+::: {.fragment .fade-in}
+
+Number of outcomes:
+
+\begin{align}
+N &= b-a+1\\
+N &= 6-1+1=6
+\end{align}
+
+:::
+
+::: {.fragment .fade-in}
+
+Equal probability for each outcome: $f(k) = P (X = k)$
+
+\begin{align}
+f(a) = f(a+1)= ... = f(b) = c \text{ (some constant)}
+\end{align}
+
+:::
+
+---
+
+
+Sum of all probabilities must equal 1
+
+\begin{align}
+\sum_{k = a}^b f(k) = \underbrace{c+c+ ... +}_{N\text{times}} = N \cdot c = 1
+\end{align}
+
+::: {.fragment .fade-in}
+
+Solving for $c$
+
+\begin{align}
+c = \frac{1}{N} = \frac{1}{b-a+1}
+\end{align}
+
+:::
+
+---
+
+::: {.fragment .fade-in}
+
+Formal PMF:
+
+\begin{align}
+f(k) = \begin{cases}
+\frac{1}{b - a + 1} & \text{if } k \in \{a, a+1, \dots, b\}, \\
+0 & \text{otherwise.}
+\end{cases}
+\end{align}
+
+:::
+
+### Exercise
+
+A tool changer in production randomly selects one of four tools (labeled 1 to 4) with equal probability.
+
+* Describe the formal set in $X \sim ...$
+
+::: {.fragment .fade-in}
+
+$X \sim \mathrm{Uniform}\{1,2,3,4\}$
+
+:::
+
+* Formally calculate the number of outcomes ($N$)
+
+::: {.fragment .fade-in}
+
+$N = 4-1+1 = 4$
+
+:::
+
+---
+
+* Describe the PMF formally
+
+::: {.fragment .fade-in}
+
+\begin{align}
+f(k) = \begin{cases}
+\frac{1}{4} & \text{if } k \in \{1,2,3,4\}, \\
+0 & \text{otherwise.}
+\end{cases}
+\end{align}
+
+:::
+
+* What is the probability to select tool $2$
+
+::: {.fragment .fade-in}
+
+$P(X = 2) = f(2) = \frac{1}{4} = 0.25$
+
+:::
+
+### Summary PMF
+
+* The PMF describes the probability distribution of a discrete random variable. 
+
+* The probabilities associated with all hypothetical values must be non-negative and sum up to 1.
+
+* A [PMF](#PMF) is specific to *discrete* random variables, while a [PDF](#PDF) is associated with continuous random variables.
+
+* Unlike a PDF, which requires integration over an interval, the PMF **directly** provides probabilities for individual values.
+
+* “mass” is conserved (similar to how physical mass is conserved).
+
+## Binomial Distribution
+
+### Classroom example
+
+::: {.r-stack}
+
+::: {.fragment .fade-out}
+
+If we roll a fair six-sided die 10 times, how many times do you expect to get a specific outcome?
+
+* 10 trials
+* $P?$ to roll a $6$ (expected value)?
+* record the number of times a specific outcome occurs
+* repeat for 2-4 students
+
+:::
+
+::: {.notes}
+
+* $P = 1/6 \approx 16\% \rightarrow P_{10\;times} = 10 * 1/6 = 1.6 times \approx 2$
+
+:::
+
+::: {.fragment .fade-in-then-out}
+
+```{r}
+#| label: fig-sim-dice
+#| out-width: 75%
+#| fig-cap: Simulated die rolls (The die is rolle $10$ times, the experiment is repeated $5$ times)
+
+roll_dice(times = 10, rounds = 5) %>% plot_dice()
+
+```
+
+:::
+
+::: {.fragment .fade-in-then-out}
+
+```{r}
+#| label: fig-sim-likely
+#| fig-width: 15
+#| fig-height: 8
+#| fig-cap: Is the outcome likely?
+
+num_success <- 5
+sum_num_rolls <- 50
+
+binom_dice(times = 50) |> 
+  plot_binom(highlight = c(7:9))+
+  scale_x_continuous(
+    breaks = seq(0,30)
+  )
+
+```
+
+:::
+
+:::
+
+### Theory
 
 ::: {.content-visible when-profile="script"}
 
@@ -546,13 +768,25 @@ plt_binom
 
 :::
 
-:::
+::: {.fragment .fade-in style="font-size: 75%;"}
+
+The [PMF](#PMF) for the binomial distribution is
+
+\begin{align}
+P(X = k) = \binom{n}{k} p^k (1 - p)^{n - k} \nonumber
+\end{align}
+
+* $X$ random variable
+* $k$ specific value of the random variable ($X$), represents the number of successes 
+* $n$ total number of independent trials or experiments
+* $p$ probability of success in a single trial $0<p<1$
+* $(1 - p)$ probability of failure in a single trial
+* $\binom{n}{k}$ binomial coefficient (“n choose k”)$\rightarrow \binom{n}{k} = \frac{n!}{k! \cdot (n - k)!}$ 
 
 :::
 
+:::
 
-
-### Probability Mass Function (PMF)
 
 ::: {.content-visible when-profile="script"}
 
@@ -590,101 +824,8 @@ P(X = k) = \binom{n}{k} p^k (1 - p)^{n - k} \label{PMFbinom}
 
 :::
 
-::: {.content-visible when-profile="slides"}
 
-::: {.r-stack}
 
-::: {.fragment .fade-out}
-
-* The PMF describes the probability distribution of a discrete random variable. 
-
-* The probabilities associated with all hypothetical values must be non-negative and sum up to 1.
-
-* A [PMF](#PMF) is specific to *discrete* random variables, while a [PDF](#PDF) is associated with continuous random variables.
-
-* Unlike a PDF, which requires integration over an interval, the PMF **directly** provides probabilities for individual values.
-
-* “mass” is conserved (similar to how physical mass is conserved).
-
-:::
-
-::: {.fragment .fade-in style="font-size: 75%;"}
-
-The [PMF](#PMF) for the binomial distribution is
-
-\begin{align}
-P(X = k) = \binom{n}{k} p^k (1 - p)^{n - k} \nonumber
-\end{align}
-
-* $X$ random variable
-* $k$ specific value of the random variable ($X$), represents the number of successes 
-* $n$ total number of independent trials or experiments
-* $p$ probability of success in a single trial $0<p<1$
-* $(1 - p)$ probability of failure in a single trial
-* $\binom{n}{k}$ binomial coefficient (“n choose k”)$\rightarrow \binom{n}{k} = \frac{n!}{k! \cdot (n - k)!}$ 
-
-:::
-
-:::
-
-### Classroom example: Binomial Distribution
-
-::: {.r-stack}
-
-::: {.fragment .fade-out}
-
-If we roll a fair six-sided die 10 times, how many times do you expect to get a specific outcome?
-
-* 10 trials
-* $P?$ to roll a $6$ (expected value)?
-* record the number of times a specific outcome occurs
-* repeat for 2-4 students
-
-:::
-
-::: {.notes}
-
-* $P = 1/6 \approx 16\% \rightarrow P_{10\;times} = 10 * 1/6 = 1.6 times \approx 2$
-
-:::
-
-::: {.fragment .fade-in-then-out}
-
-```{r}
-#| label: fig-sim-dice
-#| out-width: 75%
-#| fig-cap: Simulated die rolls (The die is rolle $10$ times, the experiment is repeated $5$ times)
-
-roll_dice(times = 10, rounds = 5) %>% plot_dice()
-
-```
-
-:::
-
-::: {.fragment .fade-in-then-out}
-
-```{r}
-#| label: fig-sim-likely
-#| fig-width: 15
-#| fig-height: 8
-#| fig-cap: Is the outcome likely?
-
-num_success <- 5
-sum_num_rolls <- 50
-
-binom_dice(times = 50) |> 
-  plot_binom(highlight = c(7:9))+
-  scale_x_continuous(
-    breaks = seq(0,30)
-  )
-
-```
-
-:::
-
-:::
-
-:::
 
 ### The drive shaft exercise - Binomial Distribution
 
