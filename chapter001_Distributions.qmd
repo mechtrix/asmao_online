@@ -220,13 +220,20 @@ If you had to guess a number between 1 and 10 with no other information, what is
 
 What if the range were 0 to 1 instead?
 
+</center>
+
+
 ::: {.fragment .fade-in}
+
+<center>
 
 Every outcome is **equally** likely
 
+</center>
+
+
 :::
 
-</center>
 
 :::
 
@@ -434,8 +441,6 @@ gt_uniform_table
 
 ## Probability Mass Function (PMF)
 
-
-::: {.content-visible when-profile="slides"}
 
 ### But why?
 
@@ -787,6 +792,7 @@ P(X = k) = \binom{n}{k} p^k (1 - p)^{n - k} \nonumber
 
 :::
 
+:::
 
 ::: {.content-visible when-profile="script"}
 
@@ -823,8 +829,6 @@ P(X = k) = \binom{n}{k} p^k (1 - p)^{n - k} \label{PMFbinom}
 \end{align}
 
 :::
-
-
 
 
 ### The drive shaft exercise - Binomial Distribution
