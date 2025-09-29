@@ -23,6 +23,37 @@ format:
     fig-height: 5
   titlepage-pdf:
     documentclass: scrbook
+    coverpage: true
+    coverpage-bg-image: "img/cover.jpg"
+    coverpage-author: "T. A. Weber"
+    coverpage-header: "Applied AI for Digital Production Management"
+    coverpage-footer: "Deggendorf Institute of Technology"
+    coverpage-theme:
+      title-fontfamily: "QTFuture.otf"
+      title-fontsize: 30
+      title-align: "center"
+      title-bottom: "10.25in"
+      header-fontfamily: "QTFuture.otf"
+      header-bottom: "9in"
+      header-width: "0.9\\textwidth"
+      header-align: center
+      page-html-color: "F6D5A8"
+      footer-fontfamily: "QTFuture.otf"
+      footer-fontsize: 15
+      footer-align: "center"
+      footer-bottom: "0.1\\textwidth"
+      date-style: "none"
+      bg-image-fading: "north"
+      author-style: "plain"
+      author-fontfamily: "QTFuture.otf"
+      author-fontsize: 14
+      author-spacing: 16
+      author-fontstyle: ["textsc"]
+      author-rotate: 0
+      author-align: center
+      author-left: "0.5\\paperwidth"
+      author-bottom: "0.5\\paperheight"
+      author-width: 6in
     titlepage: "academic"
     titlepage-theme:
       elements: ["\\headerblock", "\\logoblock", "\\titleblock" , "\\authorblock", "\\affiliationblock", "\\vfill","\\dateblock"]
