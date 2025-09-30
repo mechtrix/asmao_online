@@ -472,7 +472,7 @@ In statistics, a population is the complete set of individuals, items, or data p
 Understanding populations and how to work with them is fundamental in statistical analysis, as it forms the basis for making meaningful inferences and drawing conclusions about the broader group being studied.
 It is the complete collection of all elements that share a common characteristic or feature and is of interest to the researcher. 
 The population can vary widely depending on the research question or problem at hand.
-A populations *true mean* is depicted with [$\mu_0$](#truemean-gloss) and the variance is depicted with [$\sigma_0^2$](#truevariance-gloss).
+A populations *true mean* is depicted with [$\mu_0$](index.qmd#truemean-gloss) and the variance is depicted with [$\sigma_0^2$](index.qmd#truevariance-gloss).
 
 :::
 
@@ -492,7 +492,7 @@ Ideally, it should be representative, reflecting the characteristics and diversi
 Statistical techniques are then applied to this sample to make inferences, estimate population parameters, or test hypotheses. 
 The size of the sample matters, as a larger sample often leads to more precise estimates, but it should be determined based on research goals and available resources. 
 Various sampling methods, such as random sampling, stratified sampling, or cluster sampling, can be employed depending on the research objectives and population characteristics.
-A samples *true mean* is depicted with [$\bar{x}$](#mean-gloss) and the variance is depicted with [$sd$](#sd-gloss).
+A samples *true mean* is depicted with [$\bar{x}$](index.qmd#mean-gloss) and the variance is depicted with [$sd$](index.qmd#sd-gloss).
 :::
 
 ## Descriptive Statistics
@@ -640,7 +640,7 @@ Do we know it?
 It is the value around which the random variable tends to cluster. 
 
 * For a fair die, $X = 1,2,3,4,5,6$:
-* $\mu = \frac{1+2+3+4+5+6}{6} = 3.5$
+* $\mu_0 = \frac{1+2+3+4+5+6}{6} = 3.5$
 
 :::
 
@@ -741,7 +741,7 @@ knitr::include_graphics(here::here("chapter000","variance_ds.png"))
 For a random variable $X$ with mean $\mu=\mathbb{E}\!(X)$:
 
 \begin{align}
-\mathrm{Var}(X) &= \mathbb{E}\!\big[(X - \mu)^2\big]\\
+\mathrm{Var}(X) &= \mathbb{E}\!\big[(X - \mu)^2\big] \label{var} \\
 \mathrm{Var}(X) &= \mathbb{E}[X^2] - \big(\mathbb{E}[X]\big)^2
 \end{align}
 
@@ -766,7 +766,7 @@ It is the **expected squared deviation** from the mean.
 ::: {.fragment .fade-out}
 
 \begin{align}
-\sigma &= \sqrt{\mathrm{Var}}
+\sigma_0 &= \sqrt{\mathrm{Var}}
 \end{align}
 
 :::
@@ -818,7 +818,7 @@ knitr::include_graphics(here::here("chapter000","bessel_intro.png"))
 
 ::: {.fragment .fade-out}
 
-The variance calculated from a sample has one *degree of freedom* less, then the population variance.
+The variance calculated from a sample has one {{< acr dof >}} less, then the population variance.
 
 :::
 
@@ -830,7 +830,7 @@ The variance calculated from a sample has one *degree of freedom* less, then the
 
 <center>
 
-degree of freedom?
+{{< acr dof >}}
 
 </center>
 
@@ -840,7 +840,7 @@ degree of freedom?
 
 ::: {.fragment .fade-in-then-out}
 
-In statistics, a **degree of freedom (dof)** refers to the number of independent values or quantities that can vary in an analysis without violating any given constraints.
+In statistics, a {{< acr dof >}} refers to the number of independent values or quantities that can vary in an analysis without violating any given constraints.
 
 :::
 
@@ -1093,9 +1093,9 @@ df %>%
 
 An example for descriptive statistics is shown in @fig-plot-sample-001 as a histogram.
 It shows data from a company that produces pharmaceutical syringes, taken from @Ram2021.
-During the production of those syringes, the so called *barrel diameter* is a critical parameter to the function of the syringe and therefore of special interest for the [Quality Control](#QC).
+During the production of those syringes, the so called *barrel diameter* is a critical parameter to the function of the syringe and therefore of special interest for the [Quality Control](index.qmd#QC).
 
-A histogram as shown in @fig-plot-sample-001 shows the data of `r nrow(df)` measurements during the [QC](#QC).
+A histogram as shown in @fig-plot-sample-001 shows the data of `r nrow(df)` measurements during the [QC](index.qmd#QC).
 On the `x-axis` the *barrel diameter* is shown, while the count of each *binned* diameter is shown on the `y-axis`.
 The binning and of data is a crucial parameter for such a plot, because it already changes the appearance and width of the bars.
 Binning is a trade-off between visibility and readability.
@@ -1186,7 +1186,7 @@ The biggest strength of those plots is, that no binning is necessary in order to
 The limitation of this kind of plot is the interpretability.
 An example of a density plot for the syringe data is shown in @fig-plot-density.
 On the `x-axis` the syringe barrel diameter is shown (as in a histogram).
-The `y-axis` in contrast does not display the count of a binned category, but rather the [Probability Density Function](#PDf) for the specific diameter.
+The `y-axis` in contrast does not display the count of a binned category, but rather the {{< acr PDF >}} for the specific diameter.
 The grey area under the density curve depicts the probability of a syringe diameter to appear in the data.
 The complete area under the curve equals to $1$ meaning that a certain diameter is sure to appear in the data.
 
@@ -1280,31 +1280,31 @@ df %>%
 ::: {.content-visible when-profile="script"}
 
 Very popular measures of central tendency include the *average* (mean) and the *standard deviation* (variance) of a dataset.
-The computed mean from an actual dataset is depicted with [$\bar{x}$](#mean-gloss) and calculated via \eqref{mean}.
+The computed mean from an actual dataset is depicted with [$\bar{x}$](index.qmd#mean-gloss) and calculated via \eqref{mean}.
 
 \begin{align}
 \bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i \label{mean}
 \end{align}
 
-With [$n$]{#n-gloss} being the number of datapoints and [$x_i$](#n-gloss) being the datapoints.
+With [$n$]{index.qmd#n-gloss} being the number of datapoints and [$x_i$](index.qmd#xi-gloss) being the datapoints.
 The *mean* is therefore the sum of all datapoints divided by the total number $n$ of all datapoints.
-It is not to be confused with the true mean [$\mu_0$](#truemean-gloss) of a population.
+It is not to be confused with the true mean [$\mu_0$](index.qmd#truemean-gloss) of a population.
 
-The computed *standard deviation* from an actual dataset is depicted with [$sd$]{#sd-gloss} and calculated via \eqref{sd}.
+The computed *standard deviation* from an actual dataset is depicted with [$sd$]{index.qmd#sd-gloss} and calculated via \eqref{sd}.
 
 \begin{align}
 sd = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (x_i - \bar{x})^2} \label{sd}
 \end{align}
 
 The *standard deviation* can therefore be explained as the square root of the sum of all differences of each individual datapoints to the mean of a dataset divided by the number of datapoints.
-It is not to be confused with the true variance [$\sigma_0^2$](#truevariance-gloss) of a population.
-The variance of a dataset can be calculatd via \eqref{var}.
+It is not to be confused with the true variance [$\sigma_0^2$](index.qmd#truevariance-gloss) of a population.
+The variance of a dataset can be calculated via \eqref{var2}.
 
 \begin{align}
-\sigma = sd^2 \label{var}
+\sigma = sd^2 \label{var2}
 \end{align}
 
-The *range* from an actual dataset is depicted with [$r$](#range-gloss) and calculated via \eqref{range}.
+The *range* from an actual dataset is depicted with [$r$](index.qmd#range-gloss) and calculated via \eqref{range}.
 
 \begin{align}
 r = \max(x_i) - \min(x_i) \label{range}
@@ -1350,7 +1350,7 @@ The syringe data from @Ram2021 contains six different groups, one for every samp
 Each sample consists of 25 observations in total.
 On the `x-axis` the *diameter* in mm is shown, the `y-axis` depicts the sample number.
 The `boxplots` are then drawn as described above (median, $25^{th}$ and $75^{th}$ percentile box, $5^{th}$ and $95^{th}$ whisker).
-The $25^{th}$ and $75^{th}$ percentile box is also known as the [Interquartile Range](#iqr)
+The $25^{th}$ and $75^{th}$ percentile box is also known as the {{< acr IQR >}}.
 
 :::
 
@@ -1423,7 +1423,7 @@ df %>%
 
 Boxplots and mean-and-standard-deviation plots sometimes hide some details within the data, that may be of interest or simply important.
 Half-half plots, as shown in shown in @fig-groups-halves, incorporate different plot mechanisms.
-The left half shows a violin plot, which outlines the underlying distribution of the data using the PDF.
+The left half shows a violin plot, which outlines the underlying distribution of the data using the {{< acr PDF >}}.
 This is very similar to a density plot.
 The right half shows the original data points and give the user a visible clue about the sample size in the data size.
 Note that the `y`-position of the points is jittered to counter *overplotting*.
@@ -1582,7 +1582,7 @@ drive_shaft %>%
 
 In @fig-ds-dist the data and the distribution thereof is visualized using different modalities.
 The complete `drive shaft data` is shown as a histogram (@fig-ds-dist-1) and as a density plot (@fig-ds-dist-2).
-A single boxplot is plotted over the histogram data in @fig-ds-dist-1, providing a link to @tbl-ds-sum (median and [IQR](#iqr)).
+A single boxplot is plotted over the histogram data in @fig-ds-dist-1, providing a link to @tbl-ds-sum (median and {{< acr IQR >}}).
 One important conclusion may be draw from those plots already:
 There may be more than one dataset hidden inside the data. 
 We will explore this possibility further.
@@ -1696,8 +1696,8 @@ Again, the table is good to have, but not as engagingi for ourself and our co-wo
 In order to make the data more approachable, we will use some techniques shown in @sec-vis-grps.
 
 First in @fig-ds-grps-1 the raw data points are shown as points with overlayed boxplots.
-On the `x-axis` the groups are depicted, while the [Parameter of Interest](#poi) (in this case the *end diameter* of the drive shaft) is shown on the `y-axis`.
-Because we are interested how the manufactured drive shafts behave [with respect to](#wrt) the specification limit, the `nominal` value as well as the `uppper` and the `lower` specification limit is also shown in the plot as horizontal lines.
+On the `x-axis` the groups are depicted, while the {{< acr PoI >}} (in this case the *end diameter* of the drive shaft) is shown on the `y-axis`.
+Because we are interested how the manufactured drive shafts behave {{< acr wrt >}} the specification limit, the `nominal` value as well as the `uppper` and the `lower` specification limit is also shown in the plot as horizontal lines.
 
 In @fig-ds-grps-2 the data is shown as ridgeline density plots.
 On the `x-axis` the diameter is depiected, while the `y-axis` shows two types of data.

@@ -11,162 +11,162 @@ Tim Weber, Oct. 2024
 
 # Glossary {.unnumbered}
 
-## Text Abbreviations {.unnumbered .unlisted}
+\printacronyms
 
-[ANOVA]{#anova}
+<!-- [ANOVA]{#anova} -->
 
-:   Analysis of Variance
+<!-- :   Analysis of Variance -->
 
-[CI]{#ci}
+<!-- [CI]{#ci} -->
 
-:   Confidence Interval
+<!-- :   Confidence Interval -->
 
-[CL]{#cl}
+<!-- [CL]{#cl} -->
 
-: Confidence Level
+<!-- : Confidence Level -->
 
-[CDF]{#cdf}
+<!-- [CDF]{#cdf} -->
 
-:   cumulative function
+<!-- :   cumulative function -->
 
-[CLT]{#clt}
+<!-- [CLT]{#clt} -->
 
-:   Central Limit Theorem
+<!-- :   Central Limit Theorem -->
 
-[CTQ]{#CTQ}
+<!-- [CTQ]{#CTQ} -->
 
-:   Critical To Quality
+<!-- :   Critical To Quality -->
 
-[dof]{#clt}
+<!-- [dof]{#clt} -->
 
-:   degree of freedom
+<!-- :   degree of freedom -->
 
-[DoE]{#DoE}
+<!-- [DoE]{#DoE} -->
 
-:   Design of Experiments
+<!-- :   Design of Experiments -->
 
-[EDA]{#eda}
+<!-- [EDA]{#eda} -->
 
-:   Exploratory Data Analysis
+<!-- :   Exploratory Data Analysis -->
 
-[FN]{#FN}
+<!-- [FN]{#FN} -->
 
-:   false negative
+<!-- :   false negative -->
 
-[FP]{#FP}
+<!-- [FP]{#FP} -->
 
-:   false positive
+<!-- :   false positive -->
 
-[gof]{#gof}
+<!-- [gof]{#gof} -->
 
-:   goodness of fit
+<!-- :   goodness of fit -->
 
-[H0]{#H0}
+<!-- [H0]{#H0} -->
 
-: Null Hypothesis
+<!-- : Null Hypothesis -->
 
-[Ha]{#Ha}
+<!-- [Ha]{#Ha} -->
 
-: Alternative Hypothesis
+<!-- : Alternative Hypothesis -->
 
-[IQR]{#iqr}
+<!-- [IQR]{#iqr} -->
 
-: Interquartile Range
+<!-- : Interquartile Range -->
 
-[KPI]{#KPI}
+<!-- [KPI]{#KPI} -->
 
-: Key Performance Indicator
+<!-- : Key Performance Indicator -->
 
-[KS]{#KS}
+<!-- [KS]{#KS} -->
 
-: Kolmogorov Smirnov
+<!-- : Kolmogorov Smirnov -->
 
-[LLN]{#lln}
+<!-- [LLN]{#lln} -->
 
-: Law of Large Numbers
+<!-- : Law of Large Numbers -->
 
-[MLE]{#MLE}
+<!-- [MLE]{#MLE} -->
 
-: Maximum Likelihood Estimation
+<!-- : Maximum Likelihood Estimation -->
 
-[MSA1]{#MSA1}
+<!-- [MSA1]{#MSA1} -->
 
-: Measurement System Analysis Type I
+<!-- : Measurement System Analysis Type I -->
 
-[UCL]{#UCL}
+<!-- [UCL]{#UCL} -->
 
-: Upper Control Limit
+<!-- : Upper Control Limit -->
 
-[LCL]{#LCL}
+<!-- [LCL]{#LCL} -->
 
-: Lower Control Limit
+<!-- : Lower Control Limit -->
 
-[UWL]{#UWL}
+<!-- [UWL]{#UWL} -->
 
-: Upper Warning Limit
+<!-- : Upper Warning Limit -->
 
-[LWL]{#LWL}
+<!-- [LWL]{#LWL} -->
 
-: Lower Warning Limit
+<!-- : Lower Warning Limit -->
 
-[PCC]{#PCC}
+<!-- [PCC]{#PCC} -->
 
-:   Pearson Correlation Coefficient
+<!-- :   Pearson Correlation Coefficient -->
 
-[PDF]{#PDF}
+<!-- [PDF]{#PDF} -->
 
-:   Probability Density Function
+<!-- :   Probability Density Function -->
 
-[PMF]{#PMF}
+<!-- [PMF]{#PMF} -->
 
-:   Probability Mass Function
+<!-- :   Probability Mass Function -->
 
-[PoI]{#poi}
+<!-- [PoI]{#poi} -->
 
-:   Parameter of Interest
+<!-- :   Parameter of Interest -->
 
-[p]{#popprop-gloss}
+<!-- [p]{#popprop-gloss} -->
 
-:   Population proportion
+<!-- :   Population proportion -->
 
-[ppm]{#ppm}
+<!-- [ppm]{#ppm} -->
 
-:   parts per million
+<!-- :   parts per million -->
 
-[QC]{#QC}
+<!-- [QC]{#QC} -->
 
-:   Quality Control
+<!-- :   Quality Control -->
 
-[QQ]{#qq}
+<!-- [QQ]{#qq} -->
 
-:   Quantile-Quantie
+<!-- :   Quantile-Quantie -->
 
-[SE]{#se}
+<!-- [SE]{#se} -->
 
-: Standard Error
+<!-- : Standard Error -->
 
-[TTF]{#TTF}
+<!-- [TTF]{#TTF} -->
 
-: Time to failure
+<!-- : Time to failure -->
 
-[TN]{#TN}
+<!-- [TN]{#TN} -->
 
-: true negative
+<!-- : true negative -->
 
-[TP]{#TP}
+<!-- [TP]{#TP} -->
 
-: true positive
+<!-- : true positive -->
 
-[.w.r.t]{#wrt}
+<!-- [.w.r.t]{#wrt} -->
 
-: with respect to
+<!-- : with respect to -->
 
-[Z]{#Z}
+<!-- [Z]{#Z} -->
 
-: Z-standardization
+<!-- : Z-standardization -->
 
 
-## Symbol Abbreviations {.unnumbered .unlisted}
+## Symbol Abbreviations {.unnumbered}
 
 [$\alpha$]{#sign-level}
 
@@ -179,6 +179,10 @@ Tim Weber, Oct. 2024
 [$\epsilon$]{#epsilon}
 
 :   residuals
+
+[$\mathbb{E}[X]$]{#expected-value-gloss}
+
+:   expected value
 
 [$\mu_0$]{#truemean-gloss}
 
@@ -195,6 +199,10 @@ Tim Weber, Oct. 2024
 [$\sigma_0^2$]{#truevariance-gloss}
 
 :   the true variance of a population
+
+[$\sigma_0$]{#truesd-gloss}
+
+:   the true standard deviation
 
 [$\sigma_0$]{#truesd-gloss}
 
@@ -236,6 +244,10 @@ Tim Weber, Oct. 2024
 
 :   Probabilities
 
+[$r$]{#r-gloss}
+
+: range of values
+
 [$r^2$]{#r2}
 
 : Coefficient of determination 
@@ -252,9 +264,13 @@ Tim Weber, Oct. 2024
 
 : Sum of squared errors as calculated by 
 
+[$\mathrm{Var}$]{#Var-gloss}
+
+: Variance
+
 [$x_i$]{#xi-gloss}
 
-:   the individual datapoints
+:   the $i$th datapoint
 
 [$\bar{x}$]{#mean-gloss}
 
@@ -262,7 +278,7 @@ Tim Weber, Oct. 2024
 
 [$X$]{#X}
 
-: Predictor Variable
+: Predictor Variable / Random Variable
 
 [$Y$]{#Y}
 

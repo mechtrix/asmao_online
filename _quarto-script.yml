@@ -23,6 +23,10 @@ format:
     fig-height: 5
   titlepage-pdf:
     documentclass: scrbook
+    coverpage-include-file:
+      - tex/copyright.tex
+    titlepage-include-file:
+      - tex/dedication.tex
     coverpage: true
     coverpage-bg-image: "img/cover.jpg"
     coverpage-author: "T. A. Weber"
@@ -54,30 +58,29 @@ format:
       author-left: "0.5\\paperwidth"
       author-bottom: "0.5\\paperheight"
       author-width: 6in
-    titlepage: "academic"
-    titlepage-theme:
-      elements: ["\\headerblock", "\\logoblock", "\\titleblock" , "\\authorblock", "\\affiliationblock", "\\vfill","\\dateblock"]
-      title-space-after: "0.08\\paperheight"
-      author-style: "superscript"
-      author-space-between: "10pt"
-      affiliation-sep: "newline"
-      # author-sep: ",\ "
-      # author-color: "white" 
-      # author-fontfamily: "Arial"
-      author-fontsize: 16
-      author-spacing: 16
-      author-fontstyle: ["textsc"]
-      # author-align: center
-      author-space-after: "0.08\\paperheight"
-      affiliation-style: "numbered-list-with-correspondence"
-      affiliation-fontfamily: "Arial"
-      affiliation-fontsize: 16
-      affiliation-spacing: 16
-      # affiliation-fontstyle: ["textsc"]
-      affiliation-align: left
-      affiliation-space-after: "0.08\\paperheight"
+    titlepage: "none"
     titlepage-logo: "img/siegel.png"
-    titlepage-header: "Deggendorf Institute of Technology"
+    titlepage-footer: "Deggendorf Institute of Technology"
+    titlepage-theme:
+      elements: ["\\titleblock", "\\authorblock", "\\vfill", "\\logoblock", "\\footerblock"]
+      page-align: "center"
+      title-style: "doublelinewide"
+      title-fontsize: 30
+      title-fontstyle: "uppercase"
+      title-space-after: "0.1\\textheight"
+      subtitle-fontstyle: ["Large", "textit"]
+      author-style: "plain"
+      author-sep: "\\hskip1em"
+      author-fontstyle: "Large"
+      author-space-after: "2\\baselineskip"
+      affiliation-style: "numbered-list-with-correspondence"
+      affiliation-fontstyle: "large"
+      affiliation-space-after: "0pt"
+      footer-style: "plain"
+      footer-fontstyle: ["large", "textsc"]
+      footer-space-after: "0pt"
+      logo-size: "0.25\\textheight"
+      logo-space-after: "1cm"
     papersize: A4
     number-sections: true
     toc: true
@@ -89,4 +92,10 @@ format:
     fig-width: 8
     fig-height: 5
 
-
+filters:
+  - acronyms
+acronyms:
+  loa_header_level: 2
+  fromfile:
+    - acronyms.yml
+  insert_loa: false

@@ -439,7 +439,7 @@ gt_uniform_table
 
 ```
 
-## Probability Mass Function (PMF)
+## {{< acr PMF >}}
 
 
 ### But why?
