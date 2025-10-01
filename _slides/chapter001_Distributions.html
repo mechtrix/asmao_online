@@ -853,8 +853,8 @@ Table&nbsp;1: The core properties between the discrete and continuous disitrbuti
 </section>
 </section>
 <section>
-<section id="probability-mass-function-pmf" class="title-slide slide level2 center">
-<h2>Probability Mass Function (PMF)</h2>
+<section id="section" class="title-slide slide level2 center">
+<h2>PMF</h2>
 
 </section>
 <section id="but-why" class="title-slide slide level3 center">
@@ -980,12 +980,12 @@ f(k) = \begin{cases}
 </div>
 </section>
 
-<section id="summary-pmf" class="title-slide slide level3 center">
+<section id="summary" class="title-slide slide level3 center">
 <h3>Summary PMF</h3>
 <ul>
 <li><p>The PMF describes the probability distribution of a discrete random variable.</p></li>
 <li><p>The probabilities associated with all hypothetical values must be non-negative and sum up to 1.</p></li>
-<li><p>A <a href="#/PMF">PMF</a> is specific to <em>discrete</em> random variables, while a <a href="#/PDF">PDF</a> is associated with continuous random variables.</p></li>
+<li><p>A PMF is specific to <em>discrete</em> random variables, while a PDF is associated with continuous random variables.</p></li>
 <li><p>Unlike a PDF, which requires integration over an interval, the PMF <strong>directly</strong> provides probabilities for individual values.</p></li>
 <li><p>“mass” is conserved (similar to how physical mass is conserved).</p></li>
 </ul>
@@ -1087,7 +1087,7 @@ Figure&nbsp;12: The binomial distribution
 </div>
 </div>
 <div class="fragment fade-in" style="font-size: 75%;">
-<p>The <a href="#/PMF">PMF</a> for the binomial distribution is</p>
+<p>The PMF for the binomial distribution is</p>
 <p><span class="math display">\[\begin{align}
 P(X = k) = \binom{n}{k} p^k (1 - p)^{n - k} \nonumber
 \end{align}\]</span></p>
@@ -1163,14 +1163,14 @@ Figure&nbsp;14: The standarized normal distribution
 <li>What is the expected value?</li>
 </ul>
 <div class="fragment fade-in">
-<p><span class="math display">\[\mu = E[X] = np\]</span> <span class="math display">\[p = 0.5 \rightarrow \mu = n \times 0.5 = \frac{1}{2}n\]</span></p>
+<p><span class="math display">\[\mu_0 = \mathrm{E}[X] = np\]</span> <span class="math display">\[p = 0.5 \rightarrow \mu = n \times 0.5 = \frac{1}{2}n\]</span></p>
 <p>On <em>average</em> a ball will land in <span class="math inline">\(k=\frac{n}{2}\)</span></p>
 </div>
 <ul>
 <li>What is the spread</li>
 </ul>
 <div class="fragment fade-in">
-<p><span class="math display">\[\sigma = \sqrt{np(1-p)}\]</span> <span class="math inline">\(Var(X) = E[(X-\mu)^2]\)</span> (Variance in general)</p>
+<p><span class="math display">\[\sigma_0 = \sqrt{Var} = \sqrt{np(1-p)}\]</span> <span class="math inline">\(Var(X) = \mathrm{E}[(X-\mu)^2]\)</span> (Variance in general)</p>
 <p><span class="math inline">\(Var(X) = np(1-p)\)</span> (number of right moves)</p>
 </div>
 </section>
@@ -1246,55 +1246,10 @@ Figure&nbsp;16: The correlation of the z-score shows, that every point <span cla
 Figure&nbsp;17: The standardized data of the drive shaft data.
 </p></section>
 
-<section id="central-limit-theorem-clt" class="title-slide slide level3 center">
-<h3>Central Limit Theorem (CLT)</h3>
-<div class="r-stack">
-<div class="fragment fade-out">
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-clt-data" class="quarto-float quarto-figure quarto-figure-center">
-<figure class="quarto-float quarto-float-fig">
-<div aria-describedby="fig-clt-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="chapter001_Distributions_files/figure-revealjs/fig-clt-data-1.svg" style="width:75.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-clt-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;18: The population from which the samples to show the CLT are taken.
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div class="fragment">
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-clt" class="quarto-float quarto-figure quarto-figure-center">
-<figure class="quarto-float quarto-float-fig">
-<div aria-describedby="fig-clt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="chapter001_Distributions_files/figure-revealjs/fig-clt-1.svg" style="width:99.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-clt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;19: The central limit theorem in action.
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-
-<section id="law-of-large-numbers" class="title-slide slide level3 center">
-<h3>Law of Large Numbers</h3>
-
-<img data-src="chapter001_Distributions_files/figure-revealjs/fig-lln-1.svg" style="width:75.0%" data-fig-pos="H" class="r-stretch quarto-figure-center" id="fig-lln"><p class="caption">
-Figure&nbsp;20: The Law of Large Numbers in Action with die rolls as an example.
-</p></section>
-
 <section id="the-z-transform-and-the-galton-board" class="title-slide slide level3 center">
 <h3>The Z-transform and the Galton Board</h3>
 
-<img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-28-1.svg" class="r-stretch"></section>
+<img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-25-1.svg" class="r-stretch"></section>
 <section id="applying-the-z-transform" class="title-slide slide level4 center">
 <h4>Applying the Z-transform</h4>
 <p><span class="math display">\[Z = \frac{X-\mu}{\sigma}\]</span></p>
@@ -1322,7 +1277,7 @@ Figure&nbsp;20: The Law of Large Numbers in Action with die rolls as an example.
 <h3>The drive shaft exercise - Normal Distribution</h3>
 
 <img data-src="chapter001_Distributions_files/figure-revealjs/fig-ds-nd-1.svg" style="width:75.0%" class="r-stretch quarto-figure-center" id="fig-ds-nd"><p class="caption">
-Figure&nbsp;21: The drive shaft data with the respective normal distributions.
+Figure&nbsp;18: The drive shaft data with the respective normal distributions.
 </p></section>
 </section>
 <section id="probability-density-function-pdf" class="title-slide slide level2 center">
@@ -1347,7 +1302,7 @@ Figure&nbsp;21: The drive shaft data with the respective normal distributions.
 <img data-src="chapter001/PDF_000.png" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pdf-000-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;22: A visual represenstation of the PDF for the normal distribution
+Figure&nbsp;19: A visual represenstation of the PDF for the normal distribution
 </figcaption>
 </figure>
 </div>
@@ -1385,7 +1340,7 @@ z &amp;= \frac{x-\mu}{\sigma} \nonumber \\
 <img data-src="chapter001/CDF_000.png" class="quarto-figure quarto-figure-center" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cdf-000-sli-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;23: A visual represenstation of the CDF for the normal distribution.
+Figure&nbsp;20: A visual represenstation of the CDF for the normal distribution.
 </figcaption>
 </figure>
 </div>
@@ -1452,7 +1407,7 @@ is a measure of the chance an event will occur, ranging from <span class="math i
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-36-1.svg" style="width:100.0%"></p>
+<p><img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-33-1.svg" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1463,7 +1418,7 @@ is a measure of the chance an event will occur, ranging from <span class="math i
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-37-1.svg" style="width:100.0%"></p>
+<p><img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-34-1.svg" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1487,7 +1442,7 @@ is a measure of the chance an event will occur, ranging from <span class="math i
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-38-1.svg" style="width:100.0%"></p>
+<p><img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-35-1.svg" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1550,7 +1505,7 @@ is a measure of the chance an event will occur, ranging from <span class="math i
 <h3>The drive shaft exercise - Chi<sup>2</sup> Distribution</h3>
 
 <img data-src="chapter001_Distributions_files/figure-revealjs/fig-ds-chi-1.svg" style="width:95.0%" class="r-stretch quarto-figure-center" id="fig-ds-chi"><p class="caption">
-Figure&nbsp;24: The <span class="math inline">\(\chi^2\)</span> disitribution of the drive shaft data.
+Figure&nbsp;21: The <span class="math inline">\(\chi^2\)</span> disitribution of the drive shaft data.
 </p></section>
 </section>
 <section>
@@ -1577,7 +1532,7 @@ t_i = \frac{\bar{x} - \mu_0}{sd/\sqrt{n}} \label{tscore}
 <img data-src="chapter001_Distributions_files/figure-revealjs/fig-t-dist-sl-1.svg" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-t-dist-sl-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;25: PDF of t-distribution with varying <span class="math inline">\(dof\)</span>
+Figure&nbsp;22: PDF of t-distribution with varying <span class="math inline">\(dof\)</span>
 </figcaption>
 </figure>
 </div>
@@ -1650,7 +1605,7 @@ Figure&nbsp;25: PDF of t-distribution with varying <span class="math inline">\(d
 <h3>The drive shaft exercise - t-Distribution</h3>
 
 <img data-src="chapter001_Distributions_files/figure-revealjs/fig-ds-t-1.svg" style="width:95.0%" class="r-stretch quarto-figure-center" id="fig-ds-t"><p class="caption">
-Figure&nbsp;26: The drive shaft data with normal disitribution, t-distribution and confidence intervalls using the t-distribution
+Figure&nbsp;23: The drive shaft data with normal disitribution, t-distribution and confidence intervalls using the t-distribution
 </p></section>
 </section>
 <section id="f---statistics" class="title-slide slide level2 center scrollable">
@@ -1666,7 +1621,7 @@ F_{m,n} = \frac{\chi^2_m/m}{\chi^2_n/n} \nonumber
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-45-1.svg" style="width:100.0%"></p>
+<p><img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-42-1.svg" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1677,7 +1632,7 @@ F_{m,n} = \frac{\chi^2_m/m}{\chi^2_n/n} \nonumber
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-46-1.svg" style="width:100.0%"></p>
+<p><img data-src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-43-1.svg" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1714,7 +1669,7 @@ F_{m,n} = \frac{\chi^2_m/m}{\chi^2_n/n} \nonumber
 <h2>Interconnections</h2>
 
 <img data-src="chapter000/009_DistributionConnection.png" style="width:75.0%" data-fig-pos="H" class="r-stretch quarto-figure-center" id="fig-interconnections"><p class="caption">
-Figure&nbsp;27: The distributions are interconnected in several different ways.
+Figure&nbsp;24: The distributions are interconnected in several different ways.
 </p></section>
 
 <section>
@@ -1736,7 +1691,7 @@ Figure&nbsp;27: The distributions are interconnected in several different ways.
 <img data-src="chapter001/bathtub.png" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bathtub-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;28: The classical bathtub curve <span class="citation" data-cites="LienigUnknownTitle2017">(<a href="#/poisson---distribution" role="doc-biblioref" onclick="">Lienig and Bruemmer 2017</a>)</span>
+Figure&nbsp;25: The classical bathtub curve <span class="citation" data-cites="LienigUnknownTitle2017">(<a href="#/poisson---distribution" role="doc-biblioref" onclick="">Lienig and Bruemmer 2017</a>)</span>
 </figcaption>
 </figure>
 </div>
@@ -1769,7 +1724,7 @@ f_X(x; \lambda, \beta) = \left\{ \begin{array}{cl}
 <img data-src="chapter001_Distributions_files/figure-revealjs/fig-wbll-dist-slides-1.svg" style="width:85.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wbll-dist-slides-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;29: The influence of scale (<span class="math inline">\(\lambda\)</span>) and shape (<span class="math inline">\(\beta\)</span>) parameter on the disitribution.
+Figure&nbsp;26: The influence of scale (<span class="math inline">\(\lambda\)</span>) and shape (<span class="math inline">\(\beta\)</span>) parameter on the disitribution.
 </figcaption>
 </figure>
 </div>
@@ -1792,14 +1747,14 @@ Figure&nbsp;29: The influence of scale (<span class="math inline">\(\lambda\)</s
 <h3>The drive shaft exercise - Weibull distribution</h3>
 
 <img data-src="chapter001_Distributions_files/figure-revealjs/fig-ds-wbll-1.svg" style="width:95.0%" class="r-stretch quarto-figure-center" id="fig-ds-wbll"><p class="caption">
-Figure&nbsp;30: The measured hours how long the drive shafts lasted in the test stand.
+Figure&nbsp;27: The measured hours how long the drive shafts lasted in the test stand.
 </p></section>
 </section>
 <section id="poisson---distribution" class="title-slide slide level2 smaller scrollable">
 <h2>Poisson - Distribution</h2>
 
 <img data-src="chapter001_Distributions_files/figure-revealjs/fig-pois-1.svg" style="width:75.0%" class="r-stretch quarto-figure-center" id="fig-pois"><p class="caption">
-Figure&nbsp;31: The poisson distribution with different <span class="math inline">\(\lambda\)</span> values.
+Figure&nbsp;28: The poisson distribution with different <span class="math inline">\(\lambda\)</span> values.
 </p><aside class="notes">
 <p>Certainly. Let’s consider a classroom scenario where you want to showcase the Poisson distribution. Imagine a class where students typically ask questions during lectures, and on average, there are 4 questions asked per hour.</p>
 <p>In this case, you can use the Poisson distribution to model the number of questions asked in a given hour. The probability of a specific number of questions (k) being asked can be calculated using the Poisson probability mass function:</p>

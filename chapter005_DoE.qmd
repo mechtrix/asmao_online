@@ -677,4 +677,3 @@ doe2Means <- data.frame(doe2Means,
 doe2Means |> gt()
 
 ```
-

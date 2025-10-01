@@ -444,7 +444,7 @@ gt_uniform_table
 
 ### But why?
 
-* PMFs provide a way to calculate and assign probabilities to each distinct outcome.
+* {{< acr PMF >}}s provide a way to calculate and assign probabilities to each distinct outcome.
 * Each outcome is assigned a probability that corresponds to its position in the total number of outcomes.
 
 ### Basics
@@ -536,7 +536,7 @@ c = \frac{1}{N} = \frac{1}{b-a+1}
 
 ::: {.fragment .fade-in}
 
-Formal PMF:
+Formal {{< acr PMF >}}:
 
 \begin{align}
 f(k) = \begin{cases}
@@ -569,7 +569,7 @@ $N = 4-1+1 = 4$
 
 ---
 
-* Describe the PMF formally
+* Describe the {{< acr PMF >}} formally
 
 ::: {.fragment .fade-in}
 
@@ -590,13 +590,13 @@ $P(X = 2) = f(2) = \frac{1}{4} = 0.25$
 
 :::
 
-### Summary PMF
+### Summary {{< acr PMF >}}
 
-* The PMF describes the probability distribution of a discrete random variable. 
+* The {{< acr PMF >}} describes the probability distribution of a discrete random variable. 
 
 * The probabilities associated with all hypothetical values must be non-negative and sum up to 1.
 
-* A [PMF](#PMF) is specific to *discrete* random variables, while a [PDF](#PDF) is associated with continuous random variables.
+* A {{< acr PMF >}} is specific to *discrete* random variables, while a {{< acr PDF >}} is associated with continuous random variables.
 
 * Unlike a PDF, which requires integration over an interval, the PMF **directly** provides probabilities for individual values.
 
@@ -775,7 +775,7 @@ plt_binom
 
 ::: {.fragment .fade-in style="font-size: 75%;"}
 
-The [PMF](#PMF) for the binomial distribution is
+The {{< acr PMF >}} for the binomial distribution is
 
 \begin{align}
 P(X = k) = \binom{n}{k} p^k (1 - p)^{n - k} \nonumber
@@ -796,33 +796,33 @@ P(X = k) = \binom{n}{k} p^k (1 - p)^{n - k} \nonumber
 
 ::: {.content-visible when-profile="script"}
 
-The [probability mass function (PMF)](#PMF), also known as the discrete probability density function, is a fundamental concept in probability and statistics. 
+The {{< acr PMF >}}, also known as the discrete probability density function, is a fundamental concept in probability and statistics. 
 
 * Definition:
-The PMF describes the probability distribution of a discrete random variable. 
+The {{< acr PMF >}} describes the probability distribution of a discrete random variable. 
 It gives the probability that the random variable takes on a specific value.
 In other words, the PMF assigns probabilities to each possible outcome of the random variable.
 
 * Formal Representation:
-For a discrete random variable X, the PMF is denoted as P(X = x), where x represents a specific value.
+For a discrete random variable X, the PMF is denoted as $P(X = x)$, where $x$ represents a specific value.
 Mathematically, the PMF is defined as: $P(X = x) = \text{{probability that }} X \text{{ takes the value }} x$
 
 * Properties:
 The probabilities associated with all hypothetical values must be non-negative and sum up to 1.
 Thinking of probability as “mass” helps avoid mistakes, as the total probability for all possible outcomes is conserved (similar to how physical mass is conserved).
 
-* Comparison with [Probability Density Function (PDF)](#PDF):
-A [PMF](#PMF) is specific to *discrete* random variables, while a [PDF](#PDF) is associated with continuous random variables.
-Unlike a PDF, which requires integration over an interval, the PMF **directly** provides probabilities for individual values.
+* Comparison with {{< acr PDF >}}:
+A {{< acr PMF >}} is specific to *discrete* random variables, while a {{< acr PDF >}} is associated with continuous random variables.
+Unlike a {{< acr PDF >}}, which requires integration over an interval, the {{< acr PMF >}} **directly** provides probabilities for individual values.
 
 * Mode:
 The value of the random variable with the largest probability mass is called the mode.
 
 * Measure-Theoretic Formulation:
-The [PMF](#PMF) can be seen as a special case of more general measure-theoretic constructions.
+The {{< acr PMF >}} can be seen as a special case of more general measure-theoretic constructions.
 It relates to the distribution of a random variable and the probability density function with respect to the counting measure.
 
-The [PMF](#PMF) for the binomial distribution is given in \eqref{PMFbinom}
+The {{< acr PMF >}} for the binomial distribution is given in \eqref{PMFbinom}.
 
 \begin{align}
 P(X = k) = \binom{n}{k} p^k (1 - p)^{n - k} \label{PMFbinom}
@@ -935,11 +935,11 @@ ggplot(data, aes(x, y)) +
 
 The normal distribution is a fundamental statistical concept that holds immense significance in the realms of engineering and production. 
 It is often referred to as the Gaussian distribution or the bell curve, is a mathematical model that describes the distribution of data in various natural and human-made phenomena, see @johnson1994continuous. 
-It forms a symmetrical curve when plotted, is centered around a mean ([$\mu_0$](#truemean-gloss)) and balanced on both sides (@fig-normal-dist).
-The spread or dispersion of the data points is characterized by [$\sigma_0^2$](#truevariance-gloss).
-Those two parameters completley define the normal distribution.
+It forms a symmetrical curve when plotted, is centered around a mean ([$\mu_0$](index.qmd#truemean-gloss)) and balanced on both sides (@fig-normal-dist).
+The spread or dispersion of the data points is characterized by [$\sigma_0^2$](index.qmd#truevariance-gloss).
+Those two parameters completely define the normal distribution.
 A remarkable property of the normal distribution is the empirical rule, which states that approximately $68\%$ of the data falls within one standard deviation from the mean, $95\%$ falls within two standard deviations, and $99.7\%$ falls within three standard deviations (@fig-normal-dist).
-The existence of the normal distribution in the real world is a result of the combination of several factors, including the principles of statistics and probability, the [Central Limit Theorem](#clt), and the behavior of random processes in nature and society. 
+The existence of the normal distribution in the real world is a result of the combination of several factors, including the principles of statistics and probability, the {{< acr CLT >}}, and the behavior of random processes in nature and society. 
 
 :::
 
@@ -1051,7 +1051,7 @@ knitr::include_graphics(here::here("chapter000","galton_tbl.png"))
 
 ::: {.fragment .fade-in}
 
-$$\mu = E[X] = np$$
+$$\mu_0 = \mathrm{E}[X] = np$$
 $$p = 0.5 \rightarrow \mu = n \times 0.5 = \frac{1}{2}n$$
 
 On *average* a ball will land in $k=\frac{n}{2}$
@@ -1062,8 +1062,8 @@ On *average* a ball will land in $k=\frac{n}{2}$
 
 ::: {.fragment .fade-in}
 
-$$\sigma = \sqrt{np(1-p)}$$
-$Var(X) = E[(X-\mu)^2]$ (Variance in general)
+$$\sigma_0 = \sqrt{Var} = \sqrt{np(1-p)}$$
+$Var(X) = \mathrm{E}[(X-\mu)^2]$ (Variance in general)
 
 $Var(X) = np(1-p)$ (number of right moves)
 
@@ -1159,17 +1159,17 @@ data %>% ggplot(aes(x = Z_X, y = Z_Y)) +
 
 ::: {.content-visible when-profile="script"}
 
-The [Z](#Z)-standardization, also known as [standard score](#Z) or [z-score](#Z), is a common statistical technique used to transform data into a standard normal distribution with a mean of $0$ and a standard deviation of $1$ [@1981369198]. 
+The {{< acr Z >}}-standardization, also known as {{< acr Z >}} or {{< acr Z >}}, is a common statistical technique used to transform data into a standard normal distribution with a mean of $0$ and a standard deviation of $1$ [@1981369198]. 
 This transformation is useful for comparing and analyzing data that have different scales and units \eqref{zscore}.
 
 \begin{align}
 Z = \frac{x_i - \bar{x}}{sd} \label{zscore}
 \end{align}
 
-How the [z-score](#Z) can be applied is shown in @fig-z-scores-raw and @fig-z-scores-scaled.
+How the {{< acr Z >}} can be applied is shown in @fig-z-scores-raw and @fig-z-scores-scaled.
 The data for group `X` and group `Y` may be measured in different units ( @fig-z-scores-raw).
 To answer the question, which of the values $x_i (i=1\ldots5)$ is more probable, the single data points are transformed to the respective z-score using \eqref{zscore}.
-In @fig-z-scores-scaled, the [z-scores](#Z) for both groups are plotted against each other.
+In @fig-z-scores-scaled, the {{< acr Z >}} for both groups are plotted against each other.
 The perfect correlation of the datapoints shows, that for every $x_i$ the same probability applies.
 Thus, the datapoints are comparable.
 
@@ -1259,7 +1259,7 @@ drive_shaft_scaled %>%
 
 In @fig-ds-z the standardized drive shaft data is shown.
 The mean of the data ($\bar{x}$) is now centered at $0$ and the standard deviation is $1$.
-For this case, the specification limits have also been transferred to the respective [z-score](#zscore) (even though they can not be interpreted as such anymore).
+For this case, the specification limits have also been transferred to the respective {{< acr Z >}}-score (even though they can not be interpreted as such anymore).
 For every $x_i$ the probability to be within a normal distribution is now known.
 When comparing this to the transferred specification limits, it is clear to see that for `group01` "most" of the data points are within the limits in contrast to `group03` where none of the data points lies within the specification limits.
 When looking at `group03` we see, that the *nominal* specification limit is `r round(spec_scaled$spec_nom_scl[[3]],digits = 2)` standard deviations away from the centered mean of the datapoints.
@@ -1267,157 +1267,6 @@ The probability of a data point being located there is `r pnorm(round(spec_scale
 We will dwelve more into such investigation in another chapter, but this is a first step in the direction of inferential statistics.
 
 :::
-
-### Central Limit Theorem (CLT)
-
-::: {.r-stack}
-
-::: {.content-visible when-profile="slides"}
-
-::: {.fragment .fade-out}
-
-```{r}
-#| label: fig-clt-data
-#| out-width: 75%
-#| fig-cap: The population from which the samples to show the CLT are taken.
-
-# Set the parameters for the population distribution
-population_size <- 10000  # Size of the population
-population_distribution <- runif(population_size, min = 1, max = 100)  # Uniform distribution
-
-ggplot(data = data.frame(x = population_distribution),aes(x))+
-  geom_density(fill = "gray")+
-  scale_x_continuous(expand = c(0,0,0,0))+
-  scale_y_continuous(expand = c(0,0,0.05,0))+
-  labs(
-    title = "The uniform distribution from which the samples are drawn",
-    x = "value (min = 1, max = 100)"
-      )+
-  theme_few()
-```
-
-:::
-
-:::
-
-::: {.fragment}
-```{r}
-#| label: fig-clt
-#| out-width: 99%
-#| fig-cap: The central limit theorem in action.  
-
-# Number of samples to take
-num_samples <- 1000
-
-# Set the sample sizes for each iteration
-sample_sizes <- c(2, 10, 50,200)
-
-# Create a data frame to store results
-results <- data.frame()
-
-# Simulate sampling and calculate sample means
-for (sample_size in sample_sizes) {
-  sample_means <- replicate(num_samples, mean(sample(population_distribution, sample_size)))
-  result <- data.frame(Sample_Size = sample_size, Sample_Means = sample_means)
-  results <- bind_rows(results, result)
-}
-
-# Plot the CLT demonstration using ggplot2
-ggplot(results, aes(x = Sample_Means)) +
-  geom_histogram(binwidth = 2, fill = "gray", color = "black") +
-  facet_wrap(~ Sample_Size, scales = "free_x") +
-  geom_vline(aes(xintercept = mean(population_distribution), color = "Population Mean"), linetype = "solid", size = 1,key_glyph = draw_key_path) +
-  scale_color_manual(values = c("Population Mean" = "black")) +
-  labs(
-    title = "Central Limit Theorem Demonstration",
-    x = "Sample Mean",
-    y = "Frequency",
-    color = ""
-  ) +
-  theme_few()+
-  theme(legend.position = "bottom")
-```
-
-:::
-
-:::
-
-
-::: {.content-visible when-profile="script"}
-
-The primary reason for the existence of the normal distribution in many real-world datasets is the [Central Limit Theorem](#clt) [@1981369198]. 
-The [CLT](#clt) states that when you take a large enough number of random samples from any population, the distribution of the sample means will tend to follow a normal distribution, even if the original population distribution is not normal. 
-This means that the normal distribution emerges as a statistical consequence of aggregating random data points.
-This is shown in @fig-clt.
-
-From $n=10000$ uniformly disitrbuted data points (the *population*) ($min=1, max = 100$) either $2,10,50$ or $200$ samples are taken randomly (the *samples*).
-For each of the samples the mean is calculated, resulting in $1000$ mean values for each ($2,10,50$ or $200$) sample size.
-In @fig-clt the results from this numerical study are shown.
-The larger the sample size, the closer the mean calculated [$\bar{x}$](#mean-gloss)is to the population mean ([$\mu_0$](#truemean-gloss)).
-The effect is especially large on the standard deviation, resulting in a smaller standard deviation the larger the sample size is.
-
-:::
-
-
-
-### Law of Large Numbers 
-
-```{r}
-#| label: fig-lln
-#| out-width: 75%
-#| fig-cap: The Law of Large Numbers in Action with die rolls as an example.
-#| fig-pos: "H"
-
-# Number of die rolls to simulate
-num_rolls <- 1000
-
-# Simulate die rolls
-set.seed(123)  # For reproducibility
-die_rolls <- sample(1:6, num_rolls, replace = TRUE)
-
-# Calculate running average
-running_average <- cumsum(die_rolls) / (1:num_rolls)
-
-# Create a data frame
-rolls_data <- data.frame(
-  Roll_Number = 1:num_rolls,
-  Die_Result = die_rolls,
-  Running_Average = running_average
-)
-
-# Create a plot using ggplot2
-ggplot(rolls_data, aes(x = Roll_Number)) +
-  geom_line(aes(y = Running_Average)) +
-  geom_hline(yintercept = 3.5, linetype = "dashed") +
-  labs(
-    title = "Law of Large Numbers",
-    x = "Number of Die Rolls",
-    y = "Running Average"
-  ) +
-  scale_y_continuous(breaks = c(1,2,3,3.5,4,5,6),
-                     limits = c(1,6))+
-  theme_few()
-
-
-```
-
-::: {.content-visible when-profile="script"}
-
-The [Law of Large Numbers](#lln) states that as the size of a random sample increases, the sample average converges to the population mean. 
-This law, along with the [CLT](#clt), explains why the normal distribution frequently arises. 
-When you take many small, independent, and identically distributed measurements and compute their averages, these averages tend to cluster around the true population mean, forming a normal distribution [@1981369198, @johnson1994continuous].
-
-The [LLN](#lln) ar work is shown in @fig-lln.
-A fair six-sided die is rolled 1000 times and the running average of the roll results after each roll is calculated. 
-The resulting line plot shows how the running average approaches the expected value of $3.5$, which is the average of all possible outcomes of the die. 
-The  line in the plot represents the running average
-It fluctuates at the beginning but gradually converges toward the expected value of $3.5$. 
-To emphasize this convergence, a dashed line indicating the theoretical expected value which is essentially the expected value applied to each roll. 
-This visualization demonstrates the Law of Large Numbers, which states that as the number of trials or rolls increases, the *sample mean* (running average in this case) approaches the *population mean* (expected value) with greater accuracy, showing the predictability and stability of random processes over a large number of observations.
-
-:::
-
-
 
 
 ### The Z-transform and the Galton Board
@@ -3147,6 +2996,7 @@ cat("The probability of exactly", k, "questions in an hour is:", poisson_prob, "
 :::
 
 :::
+
 
 <!-- ## Gamma - Distribution -->
 

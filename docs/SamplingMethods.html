@@ -337,7 +337,7 @@ window.Quarto = {
 <div id="fig-se-1" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-se-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="SamplingMethods_files/figure-html/fig-se-1.png" class="img-fluid figure-img" style="width:95.0%" data-ref-parent="fig-se">
+<img src="SamplingMethods_files/figure-revealjs/fig-se-1.svg" class="img-fluid figure-img" style="width:95.0%" data-ref-parent="fig-se">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-se-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) maximum sample size <span class="math inline">\(n = 200\)</span>
@@ -349,7 +349,7 @@ window.Quarto = {
 <div id="fig-se-2" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-se-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="SamplingMethods_files/figure-html/fig-se-2.png" class="img-fluid figure-img" style="width:95.0%" data-ref-parent="fig-se">
+<img src="SamplingMethods_files/figure-revealjs/fig-se-2.svg" class="img-fluid figure-img" style="width:95.0%" data-ref-parent="fig-se">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-se-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) sample size for <span class="math inline">\(n = 5 \ldots 50\)</span>
@@ -786,6 +786,82 @@ Figure&nbsp;3.6: The idea of bootstrapping (Biggerj1, Marsupilami)
 </section>
 
 </main> <!-- /main -->
+
+
+<script>
+
+  // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+
+  // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+
+  // slide changes (different for each slide format).
+
+  (function () {
+
+    // dispatch for htmlwidgets
+
+    function fireSlideEnter() {
+
+      const event = window.document.createEvent("Event");
+
+      event.initEvent("slideenter", true, true);
+
+      window.document.dispatchEvent(event);
+
+    }
+
+
+
+    function fireSlideChanged(previousSlide, currentSlide) {
+
+      fireSlideEnter();
+
+
+
+      // dispatch for shiny
+
+      if (window.jQuery) {
+
+        if (previousSlide) {
+
+          window.jQuery(previousSlide).trigger("hidden");
+
+        }
+
+        if (currentSlide) {
+
+          window.jQuery(currentSlide).trigger("shown");
+
+        }
+
+      }
+
+    }
+
+
+
+    // hookup for slidy
+
+    if (window.w3c_slidy) {
+
+      window.w3c_slidy.add_observer(function (slide_num) {
+
+        // slide_num starts at position 1
+
+        fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+
+      });
+
+    }
+
+
+
+  })();
+
+</script>
+
+
+
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

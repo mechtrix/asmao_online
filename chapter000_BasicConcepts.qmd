@@ -457,6 +457,155 @@ galton_dat |>
 
 :::
 
+## {{< acr CLT >}}
+
+::: {.r-stack}
+
+::: {.content-visible when-profile="slides"}
+
+::: {.fragment .fade-out}
+
+```{r}
+#| label: fig-clt-data
+#| out-width: 75%
+#| fig-cap: The population from which the samples to show the CLT are taken.
+
+# Set the parameters for the population distribution
+population_size <- 10000  # Size of the population
+population_distribution <- runif(population_size, min = 1, max = 100)  # Uniform distribution
+
+ggplot(data = data.frame(x = population_distribution),aes(x))+
+  geom_density(fill = "gray")+
+  scale_x_continuous(expand = c(0,0,0,0))+
+  scale_y_continuous(expand = c(0,0,0.05,0))+
+  labs(
+    title = "The uniform distribution from which the samples are drawn",
+    x = "value (min = 1, max = 100)"
+      )+
+  theme_few()
+```
+
+:::
+
+:::
+
+::: {.fragment}
+```{r}
+#| label: fig-clt
+#| out-width: 99%
+#| fig-cap: The central limit theorem in action.  
+
+# Number of samples to take
+num_samples <- 1000
+
+# Set the sample sizes for each iteration
+sample_sizes <- c(2, 10, 50,200)
+
+# Create a data frame to store results
+results <- data.frame()
+
+# Simulate sampling and calculate sample means
+for (sample_size in sample_sizes) {
+  sample_means <- replicate(num_samples, mean(sample(population_distribution, sample_size)))
+  result <- data.frame(Sample_Size = sample_size, Sample_Means = sample_means)
+  results <- bind_rows(results, result)
+}
+
+# Plot the CLT demonstration using ggplot2
+ggplot(results, aes(x = Sample_Means)) +
+  geom_histogram(binwidth = 2, fill = "gray", color = "black") +
+  facet_wrap(~ Sample_Size, scales = "free_x") +
+  geom_vline(aes(xintercept = mean(population_distribution), color = "Population Mean"), linetype = "solid", size = 1,key_glyph = draw_key_path) +
+  scale_color_manual(values = c("Population Mean" = "black")) +
+  labs(
+    title = "Central Limit Theorem Demonstration",
+    x = "Sample Mean",
+    y = "Frequency",
+    color = ""
+  ) +
+  theme_few()+
+  theme(legend.position = "bottom")
+```
+
+:::
+
+:::
+
+
+::: {.content-visible when-profile="script"}
+
+The primary reason for the existence of the normal distribution in many real-world datasets is the {{< acr CLT >}} [@1981369198]. 
+The {{< acr CLT >}} states that when you take a large enough number of random samples from any population, the distribution of the sample means will tend to follow a normal distribution, even if the original population distribution is not normal. 
+This means that the normal distribution emerges as a statistical consequence of aggregating random data points.
+This is shown in @fig-clt.
+
+From $n=10000$ uniformly distributed data points (the *population*) ($min=1, max = 100$) either $2,10,50$ or $200$ samples are taken randomly (the *samples*).
+For each of the samples the mean is calculated, resulting in $1000$ mean values for each ($2,10,50$ or $200$) sample size.
+In @fig-clt the results from this numerical study are shown.
+The larger the sample size, the closer the mean calculated [$\bar{x}$](index.qmd#mean-gloss)is to the population mean ([$\mu_0$](index.qmd#truemean-gloss)).
+The effect is especially large on the standard deviation, resulting in a smaller standard deviation the larger the sample size is.
+
+:::
+
+## {{< acr LLN >}}
+
+```{r}
+#| label: fig-lln
+#| out-width: 75%
+#| fig-cap: The Law of Large Numbers in Action with die rolls as an example.
+#| fig-pos: "H"
+
+# Number of die rolls to simulate
+num_rolls <- 1000
+
+# Simulate die rolls
+set.seed(123)  # For reproducibility
+die_rolls <- sample(1:6, num_rolls, replace = TRUE)
+
+# Calculate running average
+running_average <- cumsum(die_rolls) / (1:num_rolls)
+
+# Create a data frame
+rolls_data <- data.frame(
+  Roll_Number = 1:num_rolls,
+  Die_Result = die_rolls,
+  Running_Average = running_average
+)
+
+# Create a plot using ggplot2
+ggplot(rolls_data, aes(x = Roll_Number)) +
+  geom_line(aes(y = Running_Average)) +
+  geom_hline(yintercept = 3.5, linetype = "dashed") +
+  labs(
+    title = "Law of Large Numbers",
+    x = "Number of Die Rolls",
+    y = "Running Average"
+  ) +
+  scale_y_continuous(breaks = c(1,2,3,3.5,4,5,6),
+                     limits = c(1,6))+
+  theme_few()
+
+
+```
+
+::: {.content-visible when-profile="script"}
+
+The {{< acr CLT >}} states that as the size of a random sample increases, the sample average converges to the population mean. 
+This law, along with the {{< acr CLT >}}, explains why the normal distribution frequently arises. 
+When you take many small, independent, and identically distributed measurements and compute their averages, these averages tend to cluster around the true population mean, forming a normal distribution [@1981369198, @johnson1994continuous].
+
+The [LLN](#lln) ar work is shown in @fig-lln.
+A fair six-sided die is rolled 1000 times and the running average of the roll results after each roll is calculated. 
+The resulting line plot shows how the running average approaches the expected value of $3.5$, which is the average of all possible outcomes of the die. 
+The  line in the plot represents the running average
+It fluctuates at the beginning but gradually converges toward the expected value of $3.5$. 
+To emphasize this convergence, a dashed line indicating the theoretical expected value which is essentially the expected value applied to each roll. 
+This visualization demonstrates the Law of Large Numbers, which states that as the number of trials or rolls increases, the *sample mean* (running average in this case) approaches the *population mean* (expected value) with greater accuracy, showing the predictability and stability of random processes over a large number of observations.
+
+:::
+
+
+
 ## Population 
 
 ```{r}
@@ -1706,5 +1855,4 @@ For the individual groups, the probability is depicted as a line, therefore indi
 Again, because we are interested how the manufactured drive shafts behave .w.r.t the specification limit, the `nominal` value as well as the `uppper` and the `lower` specification limit is also shown in the plot as vertical lines.
 
 :::
-
 

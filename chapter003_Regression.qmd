@@ -22,6 +22,7 @@ library(ggridges)
 library(ggeffects)
 library(modelr)
 library(patchwork)
+library(cardx)
 
 ```
 
@@ -2030,3 +2031,4 @@ knitr::include_graphics(here::here("chapter003","012_StatisticalTests.pdf"))
 ```
 
 :::
+
