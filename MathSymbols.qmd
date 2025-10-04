@@ -1,0 +1,72 @@
+### Greek
+
+::: {layout="[[45,-5,45]]"}
+
+[$\alpha$]{#sign-level}: significance level
+
+[$\beta$]{#beta-risk}: false negative risk, $\beta$-risk
+
+[$\epsilon$]{#epsilon}: residuals
+
+[$\mu_0$, $\mu$]{#truemean-gloss}: the true mean of a population
+
+[$\varphi(x)$]{#pdf-gloss}: probability density function
+
+[$\phi(x)$]{#cdf-gloss}: cumulative probability density function or cumulative distribution function
+
+[$\sigma_0^2$, $\sigma^2$]{#truevariance-gloss}: the true variance of a population
+
+[$\sigma_0$]{#truesd-gloss}: the true standard deviation of a population
+
+:::
+
+### Latin
+
+::: {layout="[[45,-5,45]]"}
+
+[$C_g$]{#Cg}: potential Measurement System Capability Index
+
+[$C_{gk}$]{#Cgk}: Measurement Capability Index with systematic error
+
+[$C_p$]{#Cp}: potential process capability
+
+[$C_{pk}$]{#Cpk}: actual process capability including centering
+
+[$\mathbb{E}[X]$]{#expected-value-gloss}: expected value of random variable $X$
+
+[$k$]{#numpred}: number of predictors in a model
+
+[$n$]{#n-gloss}: number of data points/observations in the sample
+
+[$N$]{#N-gloss}: number of datapoints/observations in the population
+
+[$MSE$]{#mse}: mean squared error
+
+[$P$]{#probabilities}: Probabilities
+
+[$r$]{#r-gloss}: range of values
+
+[$r^2$]{#r2}: Coefficient of determination
+
+[$r^2_{adjusted}$]{#r2adj}: adjusted Coefficient of determination
+
+[$sd$]{#sd-gloss}: the standard deviation of a dataset
+
+[$SSE$]{#sse}: Sum of squared errors as calculated by
+
+[$\mathrm{Var}$]{#Var-gloss}: Variance
+
+[$x_i$]{#xi-gloss}: the $i$th datapoint
+
+[$\bar{x}$]{#mean-gloss}: the mean value of the data
+
+[$X$]{#X}: Predictor Variable / Random Variable
+
+[$Y$]{#Y}: Response Variable
+
+[$\hat{y}$]{#yhat}: predicted value
+
+[$y_i$]{#yi}: true value
+
+:::
+

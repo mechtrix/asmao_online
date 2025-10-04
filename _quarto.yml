@@ -21,3 +21,16 @@ execute:
 bibliography: https://api.citedrive.com/bib/7b31a31e-82bb-4876-b2b4-38de828ab88c/references.bib?x=eyJpZCI6ICI3YjMxYTMxZS04MmJiLTQ4NzYtYjJiNC0zOGRlODI4YWI4OGMiLCAidXNlciI6ICI1NjQ5IiwgInNpZ25hdHVyZSI6ICJmNjlhOGFkMjFiOTUyMTExYzBiNjExNDM2OGRlNzkwN2U3OWQ0OWU3Y2M2OWM0MGVmNzcwZjQwZjdlY2E0MWE0In0=/bibliography.bib
 toc: true
 
+filters:
+  - acronyms
+# reference-section-title: References
+# section-bibliographies:
+#   bibliography: https://api.citedrive.com/bib/7b31a31e-82bb-4876-b2b4-38de828ab88c/references.bib?x=eyJpZCI6ICI3YjMxYTMxZS04MmJiLTQ4NzYtYjJiNC0zOGRlODI4YWI4OGMiLCAidXNlciI6ICI1NjQ5IiwgInNpZ25hdHVyZSI6ICJmNjlhOGFkMjFiOTUyMTExYzBiNjExNDM2OGRlNzkwN2U3OWQ0OWU3Y2M2OWM0MGVmNzcwZjQwZjdlY2E0MWE0In0=/bibliography.bib
+
+acronyms:
+  loa_header_level: 2
+  fromfile:
+    - acronyms.yml
+  insert_loa: false
+
+citeproc: true

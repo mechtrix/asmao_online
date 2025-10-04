@@ -18,6 +18,11 @@ library(ggthemes)
 library(gt)
 library(gtsummary)
 
+
+ggplot2::theme_set(
+  ggthemes::theme_few(base_size = 15)
+  )
+
 ```
 
 ```{r}
@@ -523,7 +528,6 @@ ggplot(results, aes(x = Sample_Means)) +
     y = "Frequency",
     color = ""
   ) +
-  theme_few()+
   theme(legend.position = "bottom")
 ```
 
@@ -582,8 +586,7 @@ ggplot(rolls_data, aes(x = Roll_Number)) +
     y = "Running Average"
   ) +
   scale_y_continuous(breaks = c(1,2,3,3.5,4,5,6),
-                     limits = c(1,6))+
-  theme_few()
+                     limits = c(1,6))
 
 
 ```
@@ -1094,7 +1097,7 @@ results_long <- results %>%
 
 ```{r}
 #| label: fig-bessel-large-n
-#| out-width: 90%
+#| out-width: 95%
 #| fig-cap: The biased (n) variance is not as prcises as the unbiased (n-1) variance estimate. This effect decreases with increasing sample size.
 
 results_long |> 
@@ -1114,7 +1117,6 @@ results_long |>
     x = "Sample Size", 
     y = "Estimated Variance",
     color = "Variance Type") +
-  theme_minimal(base_size = 15) +
   scale_x_log10()+
   scale_color_manual(values = c("steelblue", "firebrick")) +
   theme(legend.position = "top")
@@ -1150,9 +1152,7 @@ results_long |>
   
 ```{r}
 #| label: fig-percentile-quantile
-#| out-width: 100%
-#| fig-width: 8
-#| fig-height: 5
+#| out-width: 95%
 #| fig-cap: A graphical depiction of various percentiles, quantiles
 
 # Sample dataset
@@ -1174,8 +1174,7 @@ ggplot(scores_df, aes(x = score)) +
   annotate("text", x = p[1], y = 2, label = "25th",  angle = 90, vjust = -0.5) +
   annotate("text", x = p[2], y = 2, label = "50th",  angle = 90, vjust = -0.5) +
   annotate("text", x = p[3], y = 2, label = "75th",  angle = 90, vjust = -0.5)+
-  scale_y_continuous(breaks = c(0,1,2))+
-  theme_minimal(base_size = 15) 
+  scale_y_continuous(breaks = c(0,1,2))
 
 ```
   
@@ -1187,7 +1186,7 @@ ggplot(scores_df, aes(x = score)) +
 
 ```{r}
 #| label: fig-plot-sample-001
-#| out-width: 75%
+#| out-width: 95%
 #| fig-cap: An example for descriptive statistics (histogramm)
 
 df <- industRial::syringe_diameter %>% 
@@ -1232,8 +1231,7 @@ df %>%
     breaks = seq(min(df$diameter), max(df$diameter), (max(df$diameter)-min(df$diameter))/40),
     guide = guide_axis(angle = 45),
     labels = scales::number_format(accuracy = 0.001)
-  )+
-  ggthemes::theme_few()
+  )
   
 
 ```
@@ -1257,7 +1255,7 @@ Binning is a trade-off between visibility and readability.
 
 ```{r}
 #| label: fig-plot-sample-002
-#| out-width: 75%
+#| out-width: 95%
 #| fig-cap: A bad example for histograms.
 
 
@@ -1274,8 +1272,7 @@ plt1 <- df %>%
   )+
   scale_x_continuous(
     expand = c(0,0,0,0)
-  )+
-  ggthemes::theme_few()
+  )
 
 plt2 <- df %>% 
   ggplot(aes(x = diameter))+
@@ -1293,8 +1290,7 @@ plt2 <- df %>%
   )+
   scale_x_continuous(
     expand = c(0,0,0,0)
-  )+
-  ggthemes::theme_few()
+  )
 
 plt1+plt2  
 
@@ -1306,7 +1302,7 @@ plt1+plt2
 
 ```{r}
 #| label: fig-plot-density
-#| out-width: 75%
+#| out-width: 95%
 #| fig-cap: An example for a density plot for the syringe data (barrel diameter).
 
 df %>% 
@@ -1322,8 +1318,7 @@ df %>%
   )+
   scale_x_continuous(
     expand = c(0,0,0,0)
-  )+
-  ggthemes::theme_few()
+  )
   
 
 ```
@@ -1345,7 +1340,7 @@ The complete area under the curve equals to $1$ meaning that a certain diameter 
 
 ```{r}
 #| label: fig-plot-sample-003
-#| out-width: 75%
+#| out-width: 95%
 #| fig-cap: A boxplot of the same syringe data combined with the according histogram.
 #| fig-pos: "H"
 
@@ -1364,8 +1359,7 @@ df %>%
   )+
   scale_x_continuous(
     expand = c(0,0,0,0)
-  )+
-  ggthemes::theme_few()
+  )
   
 
 ```
@@ -1392,7 +1386,7 @@ Boxplots are useful for quickly understanding the central tendency, spread, and 
 
 ```{r}
 #| label: fig-plot-sample-031
-#| out-width: 75%
+#| out-width: 95%
 #| fig-cap: A histogram of the syringe data with mean, standard deviation and range.
 
 
@@ -1420,7 +1414,6 @@ df %>%
   scale_x_continuous(
     expand = c(0,0,0,0)
   )+
-  ggthemes::theme_few()+
   theme(legend.position = "bottom")
   
 
@@ -1469,7 +1462,7 @@ The *range* can therefore be interpreted as the range from minimum to maximum in
 
 ```{r}
 #| label: fig-groups-boxplot
-#| out-width: 75%
+#| out-width: 95%
 #| fig-cap: Boxplots of the syringe data with the samples as groups.
 
 df %>% 
@@ -1481,8 +1474,7 @@ df %>%
   )+
   scale_x_continuous(
     expand = c(0,0,0,0)
-  )+
-  ggthemes::theme_few()
+  )
   
 
 ```
@@ -1507,7 +1499,7 @@ The $25^{th}$ and $75^{th}$ percentile box is also known as the {{< acr IQR >}}.
 
 ```{r}
 #| label: fig-groups-mean-sd
-#| out-width: 75%
+#| out-width: 95%
 #| fig-cap: Mean and standard deviation plots of the groups in the dataset.
 
 df_grouped <- df %>% 
@@ -1528,8 +1520,7 @@ df_grouped %>%
   )+
   scale_x_continuous(
     expand = c(0.05,0,0.05,0)
-  )+
-  ggthemes::theme_few()
+  )
   
 
 ```
@@ -1547,7 +1538,7 @@ The plot follows the same logic as for the boxplots (`x-axis-data`, `y-axis-data
 
 ```{r}
 #| label: fig-groups-halves
-#| out-width: 70%
+#| out-width: 95%
 #| fig-cap: Half-half plots that incooperate different types of plots
 
 df %>% 
@@ -1563,8 +1554,7 @@ df %>%
   )+
   scale_y_continuous(
     expand = c(0.05,0,0.05,0)
-  )+
-  ggthemes::theme_few(base_size = 11)
+  )
 
 ```
 
@@ -1584,7 +1574,7 @@ Details can be found in @Tiedemann2022.
 
 ```{r}
 #| label: fig-groups-ridge
-#| out-width: 75%
+#| out-width: 95%
 #| fig-cap: Ridgeline plots for distributions within groups.
 
 df %>% 
@@ -1599,8 +1589,7 @@ df %>%
   )+
   scale_y_discrete(
     expand = c(0,0,0,0)
-  )+
-  ggthemes::theme_few()
+  )
 
 ```
 
@@ -1619,7 +1608,7 @@ More info on the creation of these plots and graphics is available in @Wickham20
 
 ```{r}
 #| label: fig-drive-shaft-spec
-#| out-width: 75%
+#| out-width: 95%
 #| fig-cap: The drive shaft specification.
 
 knitr::include_graphics(here::here("chapter000","005_DriveShaft.png"))
@@ -1666,8 +1655,7 @@ This example will haunt us the rest of this lecture.
 ```{r}
 #| label: fig-ds-dist
 #| layout-ncol: 2
-#| fig-width: 8
-#| fig-height: 5
+#| out-width: 95%
 #| fig-cap: The raw data of the measured drive shaft diameter.
 #| fig-subcap: 
 #| - The drive shaft data shown in a histogram.
@@ -1684,8 +1672,7 @@ drive_shaft %>%
   )+
   scale_x_continuous(expand = c(0,0,0,0))+
   scale_y_continuous(expand = c(0,0,0.05,0))+
-  labs(y = "count")+
-  theme_few(base_size = 15)
+  labs(y = "count")
   
 drive_shaft %>% 
   ggplot(aes(x = diameter))+
@@ -1694,8 +1681,8 @@ drive_shaft %>%
     title = "A density plot of the drive shaft data"
   )+
   scale_x_continuous(expand = c(0,0,0,0))+
-  scale_y_continuous(expand = c(0,0,0.05,0))+
-  theme_few(base_size = 15)
+  scale_y_continuous(expand = c(0,0,0.05,0))
+
 ```
 
 ::: {.content-visible when-profile="script"}
@@ -1743,8 +1730,7 @@ We will explore this possibility further.
 ```{r}
 #| label: fig-ds-grps
 #| layout-ncol: 2
-#| fig-width: 8
-#| fig-height: 5
+#| out-width: 95%
 #| fig-cap: The raw data of the measured drive shaft diameter.
 #| fig-subcap: 
 #| - The groups visualized as boxplots (including the specification)
@@ -1780,7 +1766,6 @@ drive_shaft %>%
     y = "diameter in mm",
     linetype = ""
   )+
-  theme_few(base_size = 15)+
   theme(legend.position = "bottom")
 
 drive_shaft %>% 
@@ -1799,7 +1784,6 @@ drive_shaft %>%
   scale_linetype_manual(
     values = c("nominal" = "solid", "lower limit" = "dashed", "upper limit" = "dashed")
       )+
-  theme_few(base_size = 15)+
   theme(legend.position = "bottom")
   
 
@@ -1852,7 +1836,8 @@ In @fig-ds-grps-2 the data is shown as ridgeline density plots.
 On the `x-axis` the diameter is depiected, while the `y-axis` shows two types of data.
 First, the groups $1\ldots5$ are shown. 
 For the individual groups, the probability is depicted as a line, therefore indicating which values are most probable in the given group.
-Again, because we are interested how the manufactured drive shafts behave .w.r.t the specification limit, the `nominal` value as well as the `uppper` and the `lower` specification limit is also shown in the plot as vertical lines.
+Again, because we are interested how the  manufactured drive shafts behave .w.r.t the specification limit, the `nominal` value as well as the `uppper` and the `lower` specification limit is also shown in the plot as vertical lines.
 
 :::
+
 

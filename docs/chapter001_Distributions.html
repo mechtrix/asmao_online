@@ -292,8 +292,8 @@ window.Quarto = {
   <li><a href="#the-z-transform-and-the-galton-board" id="toc-the-z-transform-and-the-galton-board" class="nav-link" data-scroll-target="#the-z-transform-and-the-galton-board"><span class="header-section-number">2.7.2</span> The Z-transform and the Galton Board</a></li>
   <li><a href="#the-drive-shaft-exercise---normal-distribution" id="toc-the-drive-shaft-exercise---normal-distribution" class="nav-link" data-scroll-target="#the-drive-shaft-exercise---normal-distribution"><span class="header-section-number">2.7.3</span> The drive shaft exercise - Normal Distribution</a></li>
   </ul></li>
-  <li><a href="#probability-density-function-pdf" id="toc-probability-density-function-pdf" class="nav-link" data-scroll-target="#probability-density-function-pdf"><span class="header-section-number">2.8</span> Probability Density Function (PDF)</a></li>
-  <li><a href="#cumulative-density-function-cdf" id="toc-cumulative-density-function-cdf" class="nav-link" data-scroll-target="#cumulative-density-function-cdf"><span class="header-section-number">2.9</span> Cumulative Density Function (CDF)</a></li>
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"><span class="header-section-number">2.8</span> PDF</a></li>
+  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2"><span class="header-section-number">2.9</span> Cumulative Density Function (CDF)</a></li>
   <li><a href="#likelihood-and-probability" id="toc-likelihood-and-probability" class="nav-link" data-scroll-target="#likelihood-and-probability"><span class="header-section-number">2.10</span> Likelihood and Probability</a></li>
   <li><a href="#chi2---distribution" id="toc-chi2---distribution" class="nav-link" data-scroll-target="#chi2---distribution"><span class="header-section-number">2.11</span> Chi<sup>2</sup> - Distribution</a>
   <ul class="collapse">
@@ -358,7 +358,7 @@ Distributions are <em>models</em> of the <em>reality</em>.
 <div id="fig-intro" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-intro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter001_Distributions_files/figure-revealjs/fig-intro-1.svg" class="img-fluid figure-img" style="width:95.0%">
+<img src="chapter001_Distributions_files/figure-html/fig-intro-1.png" class="img-fluid figure-img" style="width:95.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-intro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.1: The model is perfect, but the real world is not.
@@ -419,7 +419,7 @@ Figure&nbsp;2.2: Data can be classified as different types.
 <div id="fig-nomialdata" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-nomialdata-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter001/014_NominalData.png" class="img-fluid figure-img" style="width:65.0%">
+<img src="chapter001/014_NominalData.png" class="img-fluid figure-img" style="width:95.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nomialdata-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.3: Some example for nominal data.
@@ -437,7 +437,7 @@ Figure&nbsp;2.3: Some example for nominal data.
 <div id="fig-ordinaldata" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-ordinaldata-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter001/015_OrdinalData.png" class="img-fluid figure-img" style="width:65.0%">
+<img src="chapter001/015_OrdinalData.png" class="img-fluid figure-img" style="width:95.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ordinaldata-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.4: Some example for ordinal data.
@@ -455,7 +455,7 @@ Figure&nbsp;2.4: Some example for ordinal data.
 <div id="fig-discretedata" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-discretedata-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter001/016_DiscreteData.png" class="img-fluid figure-img" style="width:65.0%">
+<img src="chapter001/016_DiscreteData.png" class="img-fluid figure-img" style="width:95.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-discretedata-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.5: Some example for discrete data.
@@ -474,7 +474,7 @@ Figure&nbsp;2.5: Some example for discrete data.
 <div id="fig-continousdata" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-continousdata-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter001/017_ContinousData.png" class="img-fluid figure-img" style="width:65.0%">
+<img src="chapter001/017_ContinousData.png" class="img-fluid figure-img" style="width:95.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-continousdata-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.6: Some example for continous data.
@@ -513,7 +513,7 @@ Figure&nbsp;2.7: The probability for every face to turn up during a roll is unif
 <div id="fig-unif-pmf" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-unif-pmf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter001_Distributions_files/figure-revealjs/fig-unif-pmf-1.svg" class="img-fluid figure-img" style="width:95.0%">
+<img src="chapter001_Distributions_files/figure-html/fig-unif-pmf-1.png" class="img-fluid figure-img" style="width:95.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unif-pmf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.8: A plot of the probabilities that every face of a die turns up. They are all the same.
@@ -1209,7 +1209,7 @@ f(k) = \begin{cases}
 <div id="fig-sim-dice" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-sim-dice-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter001_Distributions_files/figure-revealjs/fig-sim-dice-1.svg" class="img-fluid figure-img" style="width:75.0%">
+<img src="chapter001_Distributions_files/figure-html/fig-sim-dice-1.png" class="img-fluid figure-img" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sim-dice-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.9: Simulated die rolls (The die is rolle <span class="math inline">\(10\)</span> times, the experiment is repeated <span class="math inline">\(5\)</span> times)
@@ -1225,7 +1225,7 @@ Figure&nbsp;2.9: Simulated die rolls (The die is rolle <span class="math inline"
 <div id="fig-sim-likely" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-sim-likely-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter001_Distributions_files/figure-revealjs/fig-sim-likely-1.svg" class="img-fluid figure-img">
+<img src="chapter001_Distributions_files/figure-html/fig-sim-likely-1.png" class="img-fluid figure-img" width="1440">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sim-likely-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.10: Is the outcome likely?
@@ -1244,7 +1244,7 @@ Figure&nbsp;2.10: Is the outcome likely?
 <div id="fig-bn-dist" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-bn-dist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter001_Distributions_files/figure-revealjs/fig-bn-dist-1.svg" class="img-fluid figure-img" style="width:95.0%">
+<img src="chapter001_Distributions_files/figure-html/fig-bn-dist-1.png" class="img-fluid figure-img" style="width:95.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bn-dist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.11: The binomial distribution
@@ -1289,7 +1289,7 @@ P(X = k) = \binom{n}{k} p^k (1 - p)^{n - k} \label{PMFbinom}
 <div id="fig-bn-ds" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-bn-ds-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter001_Distributions_files/figure-revealjs/fig-bn-ds-1.svg" class="img-fluid figure-img" style="width:75.0%">
+<img src="chapter001_Distributions_files/figure-html/fig-bn-ds-1.png" class="img-fluid figure-img" style="width:95.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bn-ds-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.12: The binomial disitribution and the drive shaft exercise.
@@ -1307,7 +1307,7 @@ Figure&nbsp;2.12: The binomial disitribution and the drive shaft exercise.
 <div id="fig-normal-dist" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-normal-dist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter001_Distributions_files/figure-revealjs/fig-normal-dist-1.svg" class="img-fluid figure-img" style="width:75.0%">
+<img src="chapter001_Distributions_files/figure-html/fig-normal-dist-1.png" class="img-fluid figure-img" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-normal-dist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.13: The standarized normal distribution
@@ -1325,7 +1325,7 @@ Figure&nbsp;2.13: The standarized normal distribution
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-18-1.svg" class="img-fluid figure-img"></p>
+<p><img src="chapter001_Distributions_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="1440"></p>
 </figure>
 </div>
 </div>
@@ -1336,7 +1336,7 @@ Figure&nbsp;2.13: The standarized normal distribution
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-19-1.svg" class="img-fluid figure-img"></p>
+<p><img src="chapter001_Distributions_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="1440"></p>
 </figure>
 </div>
 </div>
@@ -1401,7 +1401,7 @@ Figure&nbsp;2.13: The standarized normal distribution
 <div id="fig-z-scores-raw" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-z-scores-raw-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter001_Distributions_files/figure-revealjs/fig-z-scores-raw-1.svg" class="img-fluid figure-img" style="width:75.0%">
+<img src="chapter001_Distributions_files/figure-html/fig-z-scores-raw-1.png" class="img-fluid figure-img" style="width:95.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-z-scores-raw-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.14: The original data of group X and group Y
@@ -1417,7 +1417,7 @@ Figure&nbsp;2.14: The original data of group X and group Y
 <div id="fig-z-scores-scaled" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-z-scores-scaled-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter001_Distributions_files/figure-revealjs/fig-z-scores-scaled-1.svg" class="img-fluid figure-img" style="width:75.0%">
+<img src="chapter001_Distributions_files/figure-html/fig-z-scores-scaled-1.png" class="img-fluid figure-img" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-z-scores-scaled-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.15: The correlation of the z-score shows, that every point <span class="math inline">\(x_i\)</span> is equally probable
@@ -1440,7 +1440,7 @@ Z = \frac{x_i - \bar{x}}{sd} \label{zscore}
 <div id="fig-ds-z" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-ds-z-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter001_Distributions_files/figure-revealjs/fig-ds-z-1.svg" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
+<img src="chapter001_Distributions_files/figure-html/fig-ds-z-1.png" class="img-fluid figure-img" style="width:95.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ds-z-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.16: The standardized data of the drive shaft data.
@@ -1457,7 +1457,7 @@ Figure&nbsp;2.16: The standardized data of the drive shaft data.
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-25-1.svg" class="img-fluid figure-img"></p>
+<p><img src="chapter001_Distributions_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="1440"></p>
 </figure>
 </div>
 </div>
@@ -1479,7 +1479,7 @@ Figure&nbsp;2.16: The standardized data of the drive shaft data.
 <p>simplifies to: <span class="math inline">\(\binom{n}{k} = \frac{1}{\sqrt{2\pi n p (1-p)}}e^{-\frac{(k-np)^2}{2np(1-p)}}\)</span></p>
 <p>substituting <span class="math inline">\(p=0.5\)</span>: <span class="math inline">\(P(X = k) \approx \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(k-\mu)^2}{2\sigma^2}}\)</span></p>
 <center>
-<p>Which is the <strong>Probability Density Function</strong></p>
+<p>Which is the <a href="#acronyms_PDF">PDF</a></p>
 </center>
 </section>
 </section>
@@ -1490,7 +1490,7 @@ Figure&nbsp;2.16: The standardized data of the drive shaft data.
 <div id="fig-ds-nd" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-ds-nd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter001_Distributions_files/figure-revealjs/fig-ds-nd-1.svg" class="img-fluid figure-img" style="width:75.0%">
+<img src="chapter001_Distributions_files/figure-html/fig-ds-nd-1.png" class="img-fluid figure-img" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ds-nd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.17: The drive shaft data with the respective normal distributions.
@@ -1502,8 +1502,8 @@ Figure&nbsp;2.17: The drive shaft data with the respective normal distributions.
 <p>In <a href="#fig-ds-nd" class="quarto-xref">Figure&nbsp;<span>2.17</span></a> the <code>drive shaft data</code> is shown for each group in a histogram. As an overlay, the respective <em>normal distribution</em> (with the groups <span class="math inline">\(\bar{x},sd\)</span>) is overlayed. If the data is normally distributed, is a different question.</p>
 </section>
 </section>
-<section id="probability-density-function-pdf" class="level2" data-number="2.8">
-<h2 data-number="2.8" class="anchored" data-anchor-id="probability-density-function-pdf"><span class="header-section-number">2.8</span> Probability Density Function (PDF)</h2>
+<section id="section-1" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="section-1"><span class="header-section-number">2.8</span> <a href="#acronyms_PDF">PDF</a></h2>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-pdf-000-scr" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1521,10 +1521,10 @@ Figure&nbsp;2.18: A visual represenstation of the PDF for the normal distributio
 <p><span class="math display">\[\begin{align}
 f(x) = \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{1}{2}(\frac{x-\mu}{\sigma})^2}
 \end{align}\]</span></p>
-<p>A <a href="#PDF">probability density function (PDF)</a> is a mathematical function that describes the <em>likelihood</em> of a continuous random variable taking on a particular value. Unlike discrete probability distributions, which assign probabilities to specific values of a discrete random variable, a <a href="#PDF">PDF</a> describes the relative likelihood of the variable falling within a particular range of values. The total area under the curve of a PDF over its entire range is equal to 1, indicating that the variable must take on some value within that range. In other words, the integral of the PDF over its entire domain equals 1. The probability of a continuous random variable falling within a specific interval is given by the integral of the PDF over that interval.</p>
+<p>A <a href="#acronyms_PDF">PDF</a> is a mathematical function that describes the <em>likelihood</em> of a continuous random variable taking on a particular value. Unlike discrete probability distributions, which assign probabilities to specific values of a discrete random variable, a <a href="#acronyms_PDF">PDF</a> describes the relative likelihood of the variable falling within a particular range of values. The total area under the curve of a <a href="#acronyms_PDF">PDF</a> over its entire range is equal to 1, indicating that the variable must take on some value within that range. In other words, the integral of the <a href="#acronyms_PDF">PDF</a> over its entire domain equals 1. The probability of a continuous random variable falling within a specific interval is given by the integral of the <a href="#acronyms_PDF">PDF</a> over that interval.</p>
 </section>
-<section id="cumulative-density-function-cdf" class="level2" data-number="2.9">
-<h2 data-number="2.9" class="anchored" data-anchor-id="cumulative-density-function-cdf"><span class="header-section-number">2.9</span> Cumulative Density Function (CDF)</h2>
+<section id="section-2" class="level2" data-number="2.9">
+<h2 data-number="2.9" class="anchored" data-anchor-id="section-2"><span class="header-section-number">2.9</span> <a href="#acronyms_CDF">Cumulative Density Function (CDF)</a></h2>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-cdf-000-scr" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1539,7 +1539,7 @@ Figure&nbsp;2.19: A visual represenstation of the CDF for the normal distributio
 </div>
 </div>
 </div>
-<p>A <a href="#CDF">cumulative density function (CDF)</a>, also known as a cumulative distribution function, describes the probability that a random variable will take on a value less than or equal to a given point. It is the integral of the <a href="#PDF">PDF</a> from negative infinity to a certain value. The <a href="#CDF">CDF</a> provides a comprehensive view of the probability distribution of a random variable by showing how the probability accumulates as the value of the random variable increases. Unlike the PDF, which gives the probability density at a particular point, the CDF gives the cumulative probability up to that point.</p>
+<p>A <a href="#CDF">cumulative density function (CDF)</a>, also known as a cumulative distribution function, describes the probability that a random variable will take on a value less than or equal to a given point. It is the integral of the <a href="#acronyms_PDF">PDF</a> from negative infinity to a certain value. The <a href="#acronyms_CDF">CDF</a> provides a comprehensive view of the probability distribution of a random variable by showing how the probability accumulates as the value of the random variable increases. Unlike the <a href="#acronyms_PDF">PDF</a>, which gives the probability density at a particular point, the CDF gives the cumulative probability up to that point.</p>
 <p><span class="math display">\[\begin{align}
 z &amp;= \frac{x-\mu}{\sigma} \nonumber \\
 \varphi(x) &amp;= \frac{1}{2\pi}e^{\frac{-z^2}{2}} \\
@@ -1587,7 +1587,7 @@ represents the measure of the likelihood that an event will occur. It is a quant
 <div id="fig-chi-2-1" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-chi-2-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter001_Distributions_files/figure-revealjs/fig-chi-2-1.svg" class="img-fluid figure-img" data-fig-pos="H" data-ref-parent="fig-chi-2">
+<img src="chapter001_Distributions_files/figure-html/fig-chi-2-1.png" class="img-fluid figure-img" data-fig-pos="H" data-ref-parent="fig-chi-2" width="768">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-chi-2-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) a normal distribution
@@ -1602,7 +1602,7 @@ represents the measure of the likelihood that an event will occur. It is a quant
 <div id="fig-chi-2-2" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-chi-2-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter001_Distributions_files/figure-revealjs/fig-chi-2-2.svg" class="img-fluid figure-img" data-fig-pos="H" data-ref-parent="fig-chi-2">
+<img src="chapter001_Distributions_files/figure-html/fig-chi-2-2.png" class="img-fluid figure-img" data-fig-pos="H" data-ref-parent="fig-chi-2" width="768">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-chi-2-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) the standard normal variable square (<span class="math inline">\(dof = 1\)</span>)
@@ -1616,7 +1616,7 @@ represents the measure of the likelihood that an event will occur. It is a quant
 <div id="fig-chi-2-3" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-chi-2-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter001_Distributions_files/figure-revealjs/fig-chi-2-3.svg" class="img-fluid figure-img" data-fig-pos="H" data-ref-parent="fig-chi-2">
+<img src="chapter001_Distributions_files/figure-html/fig-chi-2-3.png" class="img-fluid figure-img" data-fig-pos="H" data-ref-parent="fig-chi-2" width="768">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-chi-2-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (c) the <span class="math inline">\(\chi^2\)</span> distributions with varying degrees of freedom
@@ -1638,7 +1638,7 @@ Figure&nbsp;2.21: What a <span class="math inline">\(\chi^2\)</span> distributio
 \end{align}\]</span></p>
 <p>The connection between the chi-squared distribution and sample variance holds significant importance in statistics.</p>
 <ol type="1">
-<li><p><strong>Distribution of Sample Variance:</strong> When calculating the sample variance from a dataset, it follows a chi-squared distribution. Specifically, for a random sample from a normally distributed population with mean <a href="#truemean-gloss"><span class="math inline">\(\mu_0\)</span></a> and variance <a href="#truevariance-gloss"><span class="math inline">\(\sigma_0^2\)</span></a>, the sample variance (adjusted for bias) divided by <a href="#truevariance-gloss"><span class="math inline">\(\sigma_0^2\)</span></a> follows a <span class="math inline">\(\chi^2\)</span> distribution with <span class="math inline">\(n-1\)</span> <a href="#dof">degrees of freedom</a>, where <span class="math inline">\(n\)</span> is the sample size.</p></li>
+<li><p><strong>Distribution of Sample Variance:</strong> When calculating the sample variance from a dataset, it follows a chi-squared distribution. Specifically, for a random sample from a normally distributed population with mean <a href="./index.html#truemean-gloss"><span class="math inline">\(\mu_0\)</span></a> and variance <a href="./index.html#truevariance-gloss"><span class="math inline">\(\sigma_0^2\)</span></a>, the sample variance (adjusted for bias) divided by <a href="./index.html#truevariance-gloss"><span class="math inline">\(\sigma_0^2\)</span></a> follows a <span class="math inline">\(\chi^2\)</span> distribution with <span class="math inline">\(n-1\)</span> <a href="#acronyms_dof">degree of freedom (dof)</a>, where <span class="math inline">\(n\)</span> is the sample size.</p></li>
 <li><p><strong>Hypothesis Testing:</strong> In statistical analysis, hypothesis testing is a common technique for making inferences about populations using sample data. The <span class="math inline">\(\chi^2\)</span> distribution plays a crucial role in hypothesis testing, especially when comparing variances between samples.</p>
 <ul>
 <li><strong><span class="math inline">\(\chi^2\)</span> Test for Variance:</strong> The <span class="math inline">\(\chi^2\)</span> distribution is used to test whether the variance of a sample matches a hypothesized variance. This is applicable in various scenarios, such as quality control, to assess the consistency of a manufacturing process.</li>
@@ -1654,7 +1654,7 @@ Figure&nbsp;2.21: What a <span class="math inline">\(\chi^2\)</span> distributio
 <div id="fig-ds-chi" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-ds-chi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter001_Distributions_files/figure-revealjs/fig-ds-chi-1.svg" class="img-fluid figure-img" style="width:95.0%">
+<img src="chapter001_Distributions_files/figure-html/fig-ds-chi-1.png" class="img-fluid figure-img" style="width:95.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ds-chi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.22: The <span class="math inline">\(\chi^2\)</span> disitribution of the drive shaft data.
@@ -1673,7 +1673,7 @@ Figure&nbsp;2.22: The <span class="math inline">\(\chi^2\)</span> disitribution 
 <div id="fig-t-dist" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-t-dist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter001_Distributions_files/figure-revealjs/fig-t-dist-1.svg" class="img-fluid figure-img" style="width:75.0%">
+<img src="chapter001_Distributions_files/figure-html/fig-t-dist-1.png" class="img-fluid figure-img" style="width:95.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-t-dist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.23: PDF of t-distribution with varying <span class="math inline">\(dof\)</span>
@@ -1686,30 +1686,30 @@ Figure&nbsp;2.23: PDF of t-distribution with varying <span class="math inline">\
 <ol type="1">
 <li><p><strong>Small Sample Sizes:</strong> When dealing with small sample sizes (typically less than 30), the t-distribution is used to make inferences about population parameters, such as the mean. This is crucial because the normal distribution assumptions are often violated with small samples.</p></li>
 <li><p><strong>Accounting for Variability:</strong> The t-distribution accounts for the variability inherent in small samples. It provides wider confidence intervals and more conservative hypothesis tests compared to the normal distribution, making it more suitable for situations where sample size is limited.</p></li>
-<li><p><strong>Degrees of Freedom:</strong> The shape of the t-distribution is determined by a parameter called degrees of freedom (df). As the df increases, the t-distribution approaches the normal distribution. When df is small, the tails of the t-distribution are fatter, allowing for greater uncertainty in estimates.</p></li>
+<li><p><strong>Degrees of Freedom:</strong> The shape of the t-distribution is determined by a parameter called <a href="#acronyms_dof">dof</a>. As the <a href="#acronyms_dof">dof</a> increases, the t-distribution approaches the normal distribution. When df is small, the tails of the t-distribution are fatter, allowing for greater uncertainty in estimates.</p></li>
 </ol>
 <p>Statisticians found that if they took samples of a constant size from a normal population, computed a statistic called a <em>t-score</em> for each sample, and put those into a relative frequency distribution, the distribution would be the same for samples of the same size drawn from any normal population. The shape of this sampling distribution of t’s varies somewhat as sample size varies, but for any <span class="math inline">\(n\)</span>, it is always the same. For example, for samples of <span class="math inline">\(5\)</span>, <span class="math inline">\(90\%\)</span> of the samples have t-scores between <span class="math inline">\(-1.943\)</span> and <span class="math inline">\(+1.943\)</span>, while for samples of <span class="math inline">\(15\)</span>, <span class="math inline">\(90\%\)</span> have t-scores between <span class="math inline">\(\pm 1.761\)</span>. The bigger the samples, the narrower the range of scores that covers any particular proportion of the samples <span class="math inline">\(\eqref{tscore}\)</span> (Note the similarity to <span class="math inline">\(\eqref{zscore}\)</span>). Since the <em>t-score</em> is computed for every <span class="math inline">\(x_i\)</span> the resulting sampling distribution is called the <em>t-disitribution</em>.</p>
 <p><span class="math display">\[\begin{align}
 t_i = \frac{x_i - \mu_o}{sd/\sqrt{n}} \label{tscore}
 \end{align}\]</span></p>
-<p>In <a href="#fig-t-dist" class="quarto-xref">Figure&nbsp;<span>2.23</span></a> it is shown, that with increasing <a href="#dof"><span class="math inline">\(dof\)</span></a> (in this case <em>sample size</em>), the <em>t-distribution</em> approximates a normal distribution (gray area). <a href="#fig-t-dist" class="quarto-xref">Figure&nbsp;<span>2.23</span></a> also shows an example of the <em>t-distribution</em> in action. Of all possible samples with 9 <a href="#dof"><span class="math inline">\(dof\)</span></a> <span class="math inline">\(0.025\;(2\frac{1}{2}\%)\)</span> of those samples would have t-scores greater than <span class="math inline">\(2.262\)</span>, and <span class="math inline">\(.975\;(97.5\%)\)</span> would have t-scores less than <span class="math inline">\(2.262\)</span>. The advantage of the <em>t-score</em> and <em>t-distribution</em> is clearly visible. All these values can be computed from sampled data, the population can remain <em>estimated</em> <span class="math inline">\(\eqref{tscore}\)</span>.</p>
+<p>In <a href="#fig-t-dist" class="quarto-xref">Figure&nbsp;<span>2.23</span></a> it is shown, that with increasing <a href="#acronyms_dof">dof</a> (in this case <em>sample size</em>), the <em>t-distribution</em> approximates a normal distribution (gray area). <a href="#fig-t-dist" class="quarto-xref">Figure&nbsp;<span>2.23</span></a> also shows an example of the <em>t-distribution</em> in action. Of all possible samples with 9 <a href="#dof"><span class="math inline">\(dof\)</span></a> <span class="math inline">\(0.025\;(2\frac{1}{2}\%)\)</span> of those samples would have t-scores greater than <span class="math inline">\(2.262\)</span>, and <span class="math inline">\(.975\;(97.5\%)\)</span> would have t-scores less than <span class="math inline">\(2.262\)</span>. The advantage of the <em>t-score</em> and <em>t-distribution</em> is clearly visible. All these values can be computed from sampled data, the population can remain <em>estimated</em> <span class="math inline">\(\eqref{tscore}\)</span>.</p>
 <section id="the-drive-shaft-exercise---t-distribution" class="level3" data-number="2.12.1">
 <h3 data-number="2.12.1" class="anchored" data-anchor-id="the-drive-shaft-exercise---t-distribution"><span class="header-section-number">2.12.1</span> The drive shaft exercise - t-Distribution</h3>
 <p>The t-score computation and the z-standardization look very familiar. While the z-score calculation needs some population parameters, the t-score calculation does not need such. It therefore allows us, to estimate population parameters based on a sample - a very frequent use case in statistics.</p>
-<p>Suppose we have some data (maybe the drive shaft exercise?) with which calculations can be done. First, the mean <span class="math inline">\(\bar{x}\)</span> and <span class="math inline">\(sd\)</span> is calculated according to <span class="math inline">\(\eqref{mean}\)</span> and <span class="math inline">\(\eqref{sd}\)</span>. After this, the <a href="#cl">confidence level</a> (we will get to this later in more detail) is specified. A value of <span class="math inline">\(95\%\)</span> is a common choice of <a href="#cl">cl</a>.</p>
+<p>Suppose we have some data (maybe the drive shaft exercise?) with which calculations can be done. First, the mean <span class="math inline">\(\bar{x}\)</span> and <span class="math inline">\(sd\)</span> is calculated according to <span class="math inline">\(\eqref{mean}\)</span> and <span class="math inline">\(\eqref{sd}\)</span>. After this, the <a href="#acronyms_cl">confidence level (cl)</a> (we will get to this later in more detail) is specified. A value of <span class="math inline">\(95\%\)</span> is a common choice of <a href="#acronyms_cl">cl</a>.</p>
 <p><span class="math display">\[\begin{align}
 ci &amp;= 0.95 \quad \text{(for a 95\% confidence level)}
 \end{align}\]</span></p>
-<p>Then the <a href="#se">Standard Error (SE)</a> is calculated using <span class="math inline">\(\eqref{se}\)</span>, which takes the <span class="math inline">\(sd\)</span> and <span class="math inline">\(n\)</span> of a sample into account (notice, how we did not use any population estimation?).</p>
+<p>Then the <a href="#acronyms_SE">Standard Error (SE)</a> is calculated using <span class="math inline">\(\eqref{se}\)</span>, which takes the <span class="math inline">\(sd\)</span> and <span class="math inline">\(n\)</span> of a sample into account (notice, how we did not use any population estimation?).</p>
 <p><span class="math display">\[\begin{align}
 SE &amp;= \frac{sd}{\sqrt{n}} \label{se}
 \end{align}\]</span></p>
-<p>In the next step, the critical <em>t-score</em> is calculated using the <a href="#cl">cl</a> as shown in <span class="math inline">\(\eqref{tscore}\)</span>. <em>qt</em> in this case returns the value of the inverse <a href="#cdf">cumulative function</a> of the t-distribution given a certain random variable (or datapoint <span class="math inline">\(x_i\)</span>) and <span class="math inline">\(n-1\)</span> <a href="#dof">dof</a>. Think of it as an automated look up in long statistical tables.</p>
+<p>In the next step, the critical <em>t-score</em> is calculated using the <a href="#acronyms_cl">cl</a> as shown in <span class="math inline">\(\eqref{tscore}\)</span>. <em>qt</em> in this case returns the value of the inverse <a href="#acronyms_CDF">CDF</a> of the t-distribution given a certain random variable (or datapoint <span class="math inline">\(x_i\)</span>) and <span class="math inline">\(n-1\)</span> <a href="#acronyms_dof">dof</a>. Think of it as an automated look up in long statistical tables.</p>
 <p><span class="math display">\[\begin{align}
 % Step 5: Calculate the T-score
 t_{score} &amp;= qt\left(\frac{1 - ci}{2}, df = n - 1\right) \label{tscore}
 \end{align}\]</span></p>
-<p>With this, the <em>margin of error</em> can be calculated using the <a href="#se">SE</a> and the <em>t-score</em> as shown in <span class="math inline">\(\eqref{errormargin}\)</span>.</p>
+<p>With this, the <em>margin of error</em> can be calculated using the <a href="#acronyms_SE">SE</a> and the <em>t-score</em> as shown in <span class="math inline">\(\eqref{errormargin}\)</span>.</p>
 <p><span class="math display">\[\begin{align}
 % Step 6: Calculate the margin of error
 margin\;of\;error &amp;= t_{score} \times SE \label{errormargin}
@@ -1720,13 +1720,13 @@ margin\;of\;error &amp;= t_{score} \times SE \label{errormargin}
 lo &amp;= \bar{x} - margin\;of\;error \label{cilobound} \\
 hi &amp;= \bar{x} + margin\;of\;error \label{cihibound}
 \end{align}\]</span></p>
-<p>It all looks and feels very similar to using the normal disitrbution. Why this is the case, is shown in <a href="#fig-ds-t" class="quarto-xref">Figure&nbsp;<span>2.24</span></a>. In <span class="quarto-unresolved-ref">?fig-ds-t-1</span> the raw dataset is shown with the underlayed specification limits for the manufacturing of the drive shaft. For some groups the judgement if the drive shaft is wihtin specification is quite clear (<code>group 1</code>, <code>group 2</code> and <code>group 5</code>). For the other groups, this can not be done so easily. For the drive shaft data, we of course now some population data, therefore the <em>normal distribution</em> can be compared to the <em>t-distribution</em>. This is done in <span class="quarto-unresolved-ref">?fig-ds-t-2</span>. On the <code>x-axis</code> the diameter is shown, the <code>y-axis</code> depicts the groups (as before). The distribution on top of the estimated parameters is the population (normal distribution), the distribution on the bottom follow a <em>t-distribution</em>. With <span class="math inline">\(n&gt;30\)</span> (as for this dataset), the difference between disitrbution is very small, further showcasing the use of the <em>t-distribution</em> (also see <a href="#fig-t-dist" class="quarto-xref">Figure&nbsp;<span>2.23</span></a> for comparison).</p>
+<p>It all looks and feels very similar to using the normal disitrbution. Why this is the case, is shown in <a href="#fig-ds-t" class="quarto-xref">Figure&nbsp;<span>2.24</span></a>. In <span class="quarto-unresolved-ref">?fig-ds-t-1</span> the raw dataset is shown with the underlayed specification limits for the manufacturing of the drive shaft. For some groups the judgement if the drive shaft is wihtin specification is quite clear (<code>group 1</code>, <code>group 2</code> and <code>group 5</code>). For the other groups, this can not be done so easily. For the drive shaft data, we of course now some population data, therefore the <em>normal distribution</em> can be compared to the <em>t-distribution</em>. This is done in <span class="quarto-unresolved-ref">?fig-ds-t-2</span>. On the <code>x-axis</code> the diameter is shown, the <code>y-axis</code> depicts the groups (as before). The distribution on top of the estimated parameters is the population (normal distribution), the distribution on the bottom follow a <em>t-distribution</em>. With <span class="math inline">\(n&gt;30\)</span> (as for this dataset), the difference between distribution is very small, further showcasing the use of the <em>t-distribution</em> (also see <a href="#fig-t-dist" class="quarto-xref">Figure&nbsp;<span>2.23</span></a> for comparison).</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-ds-t" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-ds-t-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter001_Distributions_files/figure-revealjs/fig-ds-t-1.svg" class="img-fluid figure-img" style="width:95.0%">
+<img src="chapter001_Distributions_files/figure-html/fig-ds-t-1.png" class="img-fluid figure-img" style="width:95.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ds-t-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.24: The drive shaft data with normal disitribution, t-distribution and confidence intervalls using the t-distribution
@@ -1739,70 +1739,61 @@ Figure&nbsp;2.24: The drive shaft data with normal disitribution, t-distribution
 </section>
 <section id="f---statistics" class="level2" data-number="2.13">
 <h2 data-number="2.13" class="anchored" data-anchor-id="f---statistics"><span class="header-section-number">2.13</span> F - Statistics</h2>
-<div class="cell" data-layout-nrow="2">
-<div id="fig-f-dist" class="quarto-layout-panel">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-f-dist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="quarto-layout-row">
-<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-f-dist" style="flex-basis: 100.0%;justify-content: flex-start;">
-<div id="fig-f-dist-1" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-f-dist-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter001_Distributions_files/figure-revealjs/fig-f-dist-1.svg" class="img-fluid figure-img" style="width:50.0%" data-ref-parent="fig-f-dist">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-f-dist-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(a) F-distribution for <span class="math inline">\(dof_1\)</span> on the horizontal and <span class="math inline">\(dof_2\)</span> on the vertical axis
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div class="quarto-layout-row">
-<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-f-dist" style="flex-basis: 100.0%;justify-content: flex-start;">
-<div id="fig-f-dist-2" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-f-dist-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter001_Distributions_files/figure-revealjs/fig-f-dist-2.svg" class="img-fluid figure-img" style="width:50.0%" data-ref-parent="fig-f-dist">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-f-dist-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(b) the maximum density as a function of <span class="math inline">\(dof_1\)</span> and <span class="math inline">\(dof_2\)</span> in a continous parameter space
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-f-dist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.25: The influence of <span class="math inline">\(dof_1\)</span> and <span class="math inline">\(dof_2\)</span> on the density in the F-disitribution
-</figcaption>
-</figure>
-</div>
-</div>
-<p><em>F-statistics</em>, also known as the <em>F-test</em> or <em>F-ratio</em>, is a statistical measure used in <a href="#anova">analysis of variance</a> and regression analysis <span class="citation" data-cites="1981369198">(<a href="references.html#ref-1981369198" role="doc-biblioref">Taboga 2017</a>)</span>. It assesses the ratio of two variances, indicating the extent to which the variability between groups or models is greater than the variability within those groups or models. The <em>F-statistic</em> plays a crucial role in hypothesis testing and model comparison.</p>
-<p>Significance of F-statistics: The significance of the F-statistic lies in its ability to help researchers determine whether the differences between group means or the goodness-of-fit of a regression model are statistically significant. In <a href="#anova">ANOVA</a>, a high F-statistic suggests that at least one group mean differs significantly from the others, while in regression analysis, it indicates whether the regression model as a whole is a good fit for the data.</p>
-<p>Applications of F-statistics: 1. <strong>Analysis of Variance (ANOVA):</strong> F-statistics are extensively used in <a href="#anova">ANOVA</a> to compare means across two or more groups. It helps determine whether there are significant differences among the means of these groups. For example, an <a href="#anova">ANOVA</a> might be used to compare the mean test scores of students taught using different teaching methods.</p>
+<p><em>F-statistics</em>, also known as the <em>F-test</em> or <em>F-ratio</em>, is a statistical measure used in <a href="#acronyms_ANOVA">Analysis of Variance (ANOVA)</a> and regression analysis <span class="citation" data-cites="1981369198">(<a href="references.html#ref-1981369198" role="doc-biblioref">Taboga 2017</a>)</span>. It assesses the ratio of two variances, indicating the extent to which the variability between groups or models is greater than the variability within those groups or models. The <em>F-statistic</em> plays a crucial role in hypothesis testing and model comparison.</p>
+<p>Significance of F-statistics: The significance of the F-statistic lies in its ability to help researchers determine whether the differences between group means or the goodness-of-fit of a regression model are statistically significant. In <a href="#acronyms_ANOVA">ANOVA</a>, a high F-statistic suggests that at least one group mean differs significantly from the others, while in regression analysis, it indicates whether the regression model as a whole is a good fit for the data.</p>
+<p>Applications of F-statistics: 1. <strong>Analysis of Variance <a href="#acronyms_ANOVA">ANOVA</a>:</strong> F-statistics are extensively used in <a href="#acronyms_ANOVA">ANOVA</a> to compare means across two or more groups. It helps determine whether there are significant differences among the means of these groups. For example, an <a href="#acronyms_ANOVA">ANOVA</a> might be used to compare the mean test scores of students taught using different teaching methods.</p>
 <ol start="2" type="1">
 <li><strong>Regression Analysis:</strong> F-statistics are used in regression analysis to assess the overall significance of a regression model. Specifically, in multiple linear regression, it helps determine whether the model, which includes multiple predictor variables, is better at explaining the variance in the response variable compared to a model with no predictors. It tests the null hypothesis that all coefficients of the model are equal to zero.</li>
 </ol>
-<p>The <a href="#dof">degrees of freedom</a> in an <em>F-distribution</em> refer to the two sets of numbers that determine the shape and properties of the distribution (<a href="#fig-f-dist" class="quarto-xref">Figure&nbsp;<span>2.25</span></a>).</p>
-<p>Numerator Degrees of Freedom (<span class="math inline">\(dof_1\)</span>): The numerator degrees of freedom, often denoted as <span class="math inline">\(dof_1\)</span>, is associated with the variability between groups or models in statistical analyses (<a href="#fig-f-dist-1" class="quarto-xref">Figure&nbsp;<span>2.25 (a)</span></a> - horizontal axis). In the context of <a href="#anova">ANOVA</a>, it represents the <a href="#dof">dof</a> associated with the differences among group means. In regression analysis, it is related to the number of predictors or coefficients being tested simultaneously.</p>
-<p>Denominator Degrees of Freedom (<span class="math inline">\(dof_2\)</span>): The denominator degrees of freedom, often denoted as <span class="math inline">\(dof_2\)</span>, is associated with the variability within groups or models (<a href="#fig-f-dist-2" class="quarto-xref">Figure&nbsp;<span>2.25 (b)</span></a> - vertical axis). In <a href="#anova">ANOVA</a>, it represents the degrees of freedom associated with the variability within each group. In regression analysis, it is related to the error or residual degrees of freedom, indicating the remaining variability not explained by the model.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-f-dist-01" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-f-dist-01-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chapter001_Distributions_files/figure-html/fig-f-dist-01-1.png" class="img-fluid figure-img" style="width:95.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-f-dist-01-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.25: F-distribution for <span class="math inline">\(dof_1\)</span> on the horizontal and <span class="math inline">\(dof_2\)</span> on the vertical axis
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The <a href="#acronyms_dof">dof</a> in an <em>F-distribution</em> refer to the two sets of numbers that determine the shape and properties of the distribution (<a href="#fig-f-dist-01" class="quarto-xref">Figure&nbsp;<span>2.25</span></a>).</p>
+<p>Numerator Degrees of Freedom (<span class="math inline">\(dof_1\)</span>): The numerator degrees of freedom, often denoted as <span class="math inline">\(dof_1\)</span>, is associated with the variability between groups or models in statistical analyses (<a href="#fig-f-dist-01" class="quarto-xref">Figure&nbsp;<span>2.25</span></a> - horizontal axis). In the context of <a href="#acronyms_ANOVA">ANOVA</a>, it represents the <a href="#acronyms_dof">dof</a> associated with the differences among group means. In regression analysis, it is related to the number of predictors or coefficients being tested simultaneously.</p>
+<p>Denominator Degrees of Freedom (<span class="math inline">\(dof_2\)</span>): The denominator degrees of freedom, often denoted as <span class="math inline">\(dof_2\)</span>, is associated with the variability within groups or models (<a href="#fig-f-dist-02" class="quarto-xref">Figure&nbsp;<span>2.26</span></a> - vertical axis). In <a href="#acronyms_ANOVA">ANOVA</a>, it represents the degrees of freedom associated with the variability within each group. In regression analysis, it is related to the error or residual degrees of freedom, indicating the remaining variability not explained by the model.</p>
 <p>The F-distribution is used to compare two variances: one from the numerator and the other from the denominator. The F-statistic, calculated as the ratio of these variances, follows an F-distribution <span class="math inline">\(\eqref{fdist}\)</span>.</p>
 <p><span class="math display">\[\begin{align}
 f(x; dof_1, dof_2) = \frac{{\Gamma\left(\frac{{dof_1 + dof_2}}{2}\right)}}{{\Gamma\left(\frac{{dof_1}}{2}\right)\Gamma\left(\frac{{dof_2}}{2}\right)}} \left(\frac{{dof_1}}{{dof_2}}\right)^{\frac{{dof_1}}{2}} \frac{{x^{\frac{{dof_1}}{2} - 1}}}{{\left(1 + \frac{{dof_1}}{{dof_2}}x\right)^{\frac{{dof_1 + dof_2}}{2}}}} \label{fdist} \\
 F_{m,n} = \frac{\chi^2_m/m}{\chi^2_n/n}
 \end{align}\]</span></p>
-<p>In practical terms: A higher numerator degrees of freedom (<span class="math inline">\(dof_1\)</span>) suggests that there are more groups or predictors being compared, which may result in larger F-statistic values. A higher denominator degrees of freedom (<span class="math inline">\(dof_2\)</span>) implies that there is more data within each group or model, which may lead to smaller F-statistic values. The F-distribution is right-skewed and always positive. It has different shapes depending on the values of <span class="math inline">\(dof_1\)</span> and <span class="math inline">\(dof_2\)</span> (<a href="#fig-f-dist-2" class="quarto-xref">Figure&nbsp;<span>2.25 (b)</span></a>). The exact shape is determined by these degrees of freedom and cannot be altered by changing sample sizes or data values (<a href="#fig-f-dist-2" class="quarto-xref">Figure&nbsp;<span>2.25 (b)</span></a>). Researchers use F-distributions to conduct hypothesis tests, such as F-tests in ANOVA and F-tests in regression, to determine if there are significant differences between groups or if a regression model is statistically significant.</p>
-<p>In summary, <a href="#dof">degrees of freedom</a> in the F-distribution are critical in hypothesis testing and model comparisons. They help quantify the variability between and within groups or models, allowing statisticians to assess the significance of observed differences and make informed statistical decisions.</p>
+<div class="cell quarto-layout-panel" data-layout-nrow="2">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="fig-f-dist-02" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-f-dist-02-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chapter001_Distributions_files/figure-html/fig-f-dist-02-1.png" class="img-fluid figure-img" style="width:95.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-f-dist-02-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.26: the maximum density as a function of <span class="math inline">\(dof_1\)</span> and <span class="math inline">\(dof_2\)</span> in a continous parameter space
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>In practical terms: A higher numerator degrees of freedom (<span class="math inline">\(dof_1\)</span>) suggests that there are more groups or predictors being compared, which may result in larger F-statistic values. A higher denominator degrees of freedom (<span class="math inline">\(dof_2\)</span>) implies that there is more data within each group or model, which may lead to smaller F-statistic values. The F-distribution is right-skewed and always positive. It has different shapes depending on the values of <span class="math inline">\(dof_1\)</span> and <span class="math inline">\(dof_2\)</span> (<a href="#fig-f-dist-02" class="quarto-xref">Figure&nbsp;<span>2.26</span></a>). The exact shape is determined by these degrees of freedom and cannot be altered by changing sample sizes or data values (<a href="#fig-f-dist-02" class="quarto-xref">Figure&nbsp;<span>2.26</span></a>). Researchers use F-distributions to conduct hypothesis tests, such as F-tests in ANOVA and F-tests in regression, to determine if there are significant differences between groups or if a regression model is statistically significant.</p>
+<p>In summary, <a href="#acronyms_dof">dof</a> in the F-distribution are critical in hypothesis testing and model comparisons. They help quantify the variability between and within groups or models, allowing statisticians to assess the significance of observed differences and make informed statistical decisions.</p>
 </section>
 <section id="interconnections" class="level2" data-number="2.14">
 <h2 data-number="2.14" class="anchored" data-anchor-id="interconnections"><span class="header-section-number">2.14</span> Interconnections</h2>
 <ol type="1">
-<li><p>Normal Distribution The <strong>Normal Distribution</strong> is characterized by its mean (<span class="math inline">\(\mu\)</span>) and standard deviation (<span class="math inline">\(\sigma\)</span>), see <a href="#fig-interconnections" class="quarto-xref">Figure&nbsp;<span>2.26</span></a>. It serves as the foundation for many statistical analyses.</p></li>
-<li><p>Standardized Normal Distribution The <strong>Standardized Normal Distribution</strong>, denoted as <span class="math inline">\(Z \sim N(0, 1)\)</span>, is a special case of the normal distribution. It has a mean (<span class="math inline">\(\mu\)</span>) of <span class="math inline">\(0\)</span> and a standard deviation (<span class="math inline">\(\sigma\)</span>) of <span class="math inline">\(1\)</span>. It is obtained by standardizing a normal distribution variable <span class="math inline">\(X\)</span>: <span class="math inline">\(Z = \frac{X - \mu}{\sigma}\)</span> (<a href="#fig-interconnections" class="quarto-xref">Figure&nbsp;<span>2.26</span></a>).</p></li>
-<li><p>t Distribution The <strong>t Distribution</strong> is related to the normal distribution and depends on <a href="#dof">degrees of freedom</a>. As <a href="#dof">dof</a> increases, the t-distribution approaches the standard normal distribution (<a href="#fig-interconnections" class="quarto-xref">Figure&nbsp;<span>2.26</span></a>).</p></li>
+<li><p>Normal Distribution The <strong>Normal Distribution</strong> is characterized by its mean (<span class="math inline">\(\mu\)</span>) and standard deviation (<span class="math inline">\(\sigma\)</span>), see <a href="#fig-interconnections" class="quarto-xref">Figure&nbsp;<span>2.27</span></a>. It serves as the foundation for many statistical analyses.</p></li>
+<li><p>Standardized Normal Distribution The <strong>Standardized Normal Distribution</strong>, denoted as <span class="math inline">\(Z \sim N(0, 1)\)</span>, is a special case of the normal distribution. It has a mean (<span class="math inline">\(\mu\)</span>) of <span class="math inline">\(0\)</span> and a standard deviation (<span class="math inline">\(\sigma\)</span>) of <span class="math inline">\(1\)</span>. It is obtained by standardizing a normal distribution variable <span class="math inline">\(X\)</span>: <span class="math inline">\(Z = \frac{X - \mu}{\sigma}\)</span> (<a href="#fig-interconnections" class="quarto-xref">Figure&nbsp;<span>2.27</span></a>).</p></li>
+<li><p>t Distribution The <strong>t Distribution</strong> is related to the normal distribution and depends on <a href="#acronyms_dof">dof</a>. As <a href="#acronyms_dof">dof</a> increases, the t-distribution approaches the standard normal distribution (<a href="#fig-interconnections" class="quarto-xref">Figure&nbsp;<span>2.27</span></a>).</p></li>
 <li><p>Chi-Square Distribution The <strong>Chi-Square Distribution</strong> is indirectly connected to the normal distribution through the concept of “sum of squared standard normals.” When standard normal random variables (<span class="math inline">\(Z\)</span>) are squared and summed, the resulting distribution follows a chi-square distribution.</p></li>
-<li><p>F Distribution The <strong>F Distribution</strong> arises from the ratio of two independent chi-square distributed random variables. It is used for comparing variances between groups in statistical tests like <a href="#anova">ANOVA</a>.</p></li>
+<li><p>F Distribution The <strong>F Distribution</strong> arises from the ratio of two independent chi-square distributed random variables. It is used for comparing variances between groups in statistical tests like <a href="#acronyms_ANOVA">ANOVA</a>.</p></li>
 </ol>
 <div class="cell">
 <div class="cell-output-display">
@@ -1812,7 +1803,7 @@ F_{m,n} = \frac{\chi^2_m/m}{\chi^2_n/n}
 <img src="chapter000/009_DistributionConnection.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-interconnections-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.26: The distributions are interconnected in several different ways.
+Figure&nbsp;2.27: The distributions are interconnected in several different ways.
 </figcaption>
 </figure>
 </div>
@@ -1826,10 +1817,10 @@ Figure&nbsp;2.26: The distributions are interconnected in several different ways
 <div id="fig-wbll-dist" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-wbll-dist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter001_Distributions_files/figure-revealjs/fig-wbll-dist-1.svg" class="img-fluid figure-img" style="width:95.0%">
+<img src="chapter001_Distributions_files/figure-html/fig-wbll-dist-1.png" class="img-fluid figure-img" style="width:95.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wbll-dist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.27: The weibull distribution and the influence of <span class="math inline">\(\beta\)</span> and <span class="math inline">\(\lambda\)</span>
+Figure&nbsp;2.28: The weibull distribution and the influence of <span class="math inline">\(\beta\)</span> and <span class="math inline">\(\lambda\)</span>
 </figcaption>
 </figure>
 </div>
@@ -1847,16 +1838,16 @@ Figure&nbsp;2.27: The weibull distribution and the influence of <span class="mat
 </ul>
 <section id="the-drive-shaft-exercise---weibull-distribution" class="level3" data-number="2.15.1">
 <h3 data-number="2.15.1" class="anchored" data-anchor-id="the-drive-shaft-exercise---weibull-distribution"><span class="header-section-number">2.15.1</span> The drive shaft exercise - Weibull distribution</h3>
-<p>The weibull distribution can be applied to estimate the probability of a part to fail after a given time. Suppose there have been <span class="math inline">\(n=100\)</span> drive shafts produced. In order to assure that the assembled drive shaft would last during their service time, they have been tested in a test-stand that mimics the mission profile<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> of the product. This process is called <em>qualification</em> and a big part of any product development <span class="citation" data-cites="Meyna2023">(<a href="references.html#ref-Meyna2023" role="doc-biblioref">Meyna 2023</a>)</span>. The measured hours are shown in <a href="#fig-ds-wbll" class="quarto-xref">Figure&nbsp;<span>2.28</span></a> in a histogram of the data. On the <code>x-axis</code> the <code>Time to failure</code>is shown, while the <code>y-axis</code> shows the number of parts that failed within the time. They histogram plot is overlayed with an empirical density plot as a solid line, as well as the theoretical distribution as a dotted line (Luckily, we know the distribution parameters).</p>
+<p>The Weibull distribution can be applied to estimate the probability of a part to fail after a given time. Suppose there have been <span class="math inline">\(n=100\)</span> drive shafts produced. In order to assure that the assembled drive shaft would last during their service time, they have been tested in a test-stand that mimics the mission profile<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> of the product. This process is called <em>qualification</em> and a big part of any product development <span class="citation" data-cites="Meyna2023">(<a href="references.html#ref-Meyna2023" role="doc-biblioref">Meyna 2023</a>)</span>. The measured hours are shown in <a href="#fig-ds-wbll" class="quarto-xref">Figure&nbsp;<span>2.29</span></a> in a histogram of the data. On the <code>x-axis</code> the <code>Time to failure</code>is shown, while the <code>y-axis</code> shows the number of parts that failed within the time. They histogram plot is overlayed with an empirical density plot as a solid line, as well as the theoretical distribution as a dotted line (Luckily, we know the distribution parameters).</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-ds-wbll" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-ds-wbll-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter001_Distributions_files/figure-revealjs/fig-ds-wbll-1.svg" class="img-fluid figure-img" style="width:95.0%">
+<img src="chapter001_Distributions_files/figure-html/fig-ds-wbll-1.png" class="img-fluid figure-img" style="width:95.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ds-wbll-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.28: The measured hours how long the drive shafts lasted in the test stand.
+Figure&nbsp;2.29: The measured hours how long the drive shafts lasted in the test stand.
 </figcaption>
 </figure>
 </div>
@@ -1879,16 +1870,16 @@ Figure&nbsp;2.28: The measured hours how long the drive shafts lasted in the tes
 <p><strong>Average Rate:</strong> <span class="math inline">\(\lambda\)</span> is a positive real number that represents the average or expected number of events that occur in the specified interval. It tells you, on average, how many events you would expect to observe in that interval.</p>
 <p><strong>Rate of Occurrence:</strong> <span class="math inline">\(\lambda\)</span> quantifies the rate at which events happen. A higher value of <span class="math inline">\(\lambda\)</span> indicates a higher rate of occurrence, while a lower value of <span class="math inline">\(\lambda\)</span> indicates a lower rate.</p>
 <p><strong>Shape of the Distribution:</strong> The value of <span class="math inline">\(\lambda\)</span> determines the shape of the Poisson distribution. Specifically:</p>
-<p>When <span class="math inline">\(\lambda\)</span> is small, the distribution is skewed to the right and is more concentrated toward zero (<a href="#fig-pois" class="quarto-xref">Figure&nbsp;<span>2.29</span></a>). When <span class="math inline">\(\lambda\)</span> is moderate, the distribution approaches a symmetric bell shape (<a href="#fig-pois" class="quarto-xref">Figure&nbsp;<span>2.29</span></a>). When <span class="math inline">\(\lambda\)</span> is large, the distribution becomes increasingly similar to a normal distribution(<a href="#fig-pois" class="quarto-xref">Figure&nbsp;<span>2.29</span></a>).</p>
+<p>When <span class="math inline">\(\lambda\)</span> is small, the distribution is skewed to the right and is more concentrated toward zero (<a href="#fig-pois" class="quarto-xref">Figure&nbsp;<span>2.30</span></a>). When <span class="math inline">\(\lambda\)</span> is moderate, the distribution approaches a symmetric bell shape (<a href="#fig-pois" class="quarto-xref">Figure&nbsp;<span>2.30</span></a>). When <span class="math inline">\(\lambda\)</span> is large, the distribution becomes increasingly similar to a normal distribution(<a href="#fig-pois" class="quarto-xref">Figure&nbsp;<span>2.30</span></a>).</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-pois" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-pois-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter001_Distributions_files/figure-revealjs/fig-pois-1.svg" class="img-fluid figure-img" style="width:75.0%">
+<img src="chapter001_Distributions_files/figure-html/fig-pois-1.png" class="img-fluid figure-img" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pois-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.29: The poisson distribution with different <span class="math inline">\(\lambda\)</span> values.
+Figure&nbsp;2.30: The poisson distribution with different <span class="math inline">\(\lambda\)</span> values.
 </figcaption>
 </figure>
 </div>
@@ -1979,82 +1970,6 @@ Weibull, Waloddi. 1951. <span>“A Statistical Distribution Function of Wide App
 </section>
 
 </main> <!-- /main -->
-
-
-<script>
-
-  // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-
-  // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-
-  // slide changes (different for each slide format).
-
-  (function () {
-
-    // dispatch for htmlwidgets
-
-    function fireSlideEnter() {
-
-      const event = window.document.createEvent("Event");
-
-      event.initEvent("slideenter", true, true);
-
-      window.document.dispatchEvent(event);
-
-    }
-
-
-
-    function fireSlideChanged(previousSlide, currentSlide) {
-
-      fireSlideEnter();
-
-
-
-      // dispatch for shiny
-
-      if (window.jQuery) {
-
-        if (previousSlide) {
-
-          window.jQuery(previousSlide).trigger("hidden");
-
-        }
-
-        if (currentSlide) {
-
-          window.jQuery(currentSlide).trigger("shown");
-
-        }
-
-      }
-
-    }
-
-
-
-    // hookup for slidy
-
-    if (window.w3c_slidy) {
-
-      window.w3c_slidy.add_observer(function (slide_num) {
-
-        // slide_num starts at position 1
-
-        fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-
-      });
-
-    }
-
-
-
-  })();
-
-</script>
-
-
-
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

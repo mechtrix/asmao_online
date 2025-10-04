@@ -22,6 +22,7 @@ format:
     fig-width: 8
     fig-height: 5
   titlepage-pdf:
+    include-in-header: tex/preamble.tex
     documentclass: scrbook
     coverpage-include-file:
       - tex/copyright.tex
@@ -84,6 +85,7 @@ format:
     papersize: A4
     number-sections: true
     toc: true
+    toc-depth: 2
     lof: true
     lot: true
     fig-align: center
@@ -91,11 +93,7 @@ format:
     fig-format: pdf
     fig-width: 8
     fig-height: 5
+    keep-tex: true
 
-filters:
-  - acronyms
-acronyms:
-  loa_header_level: 2
-  fromfile:
-    - acronyms.yml
-  insert_loa: false
+
+

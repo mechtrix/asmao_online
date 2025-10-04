@@ -51,11 +51,11 @@ knitr::include_graphics(here::here("chapter002","004_Hypothesis.png"))
 
 ::: {.content-visible when-profile="script"}
 
-**[Null Hypothesis (H0)](#H0):** This is the default or status quo assumption. 
+**{{< acr H0 >}}** This is the default or status quo assumption. 
 It represents the belief that there is no significant change, effect, or difference in the production process. 
 It is often denoted as a statement of equality (e.g., the mean production rate is equal to a certain value).
 
-**[Alternative Hypothesis (Ha)](#Ha):** This is the claim or statement we want to test. 
+**{{< acr Ha >}}:** This is the claim or statement we want to test. 
 It represents the opposite of the null hypothesis, suggesting that there is a significant change, effect, or difference in the production process (e.g., the mean production rate is not equal to a certain value).
 
 :::
@@ -66,10 +66,10 @@ It represents the opposite of the null hypothesis, suggesting that there is a si
 
 :::{.incremental .v-center-container}
 
-H0:
+{{< acr H0 >}}:
 : The drive shaft diameter is within the specification.
 
-Ha:
+{{< acr Ha >}}:
 : The drive shaft diameter is not within the specification.
 
 :::
@@ -80,15 +80,15 @@ Ha:
 
 ### The drive shaft exercise - Hypotheses
 
-During the [QC](#QC) of the drive shaft $n=100$ samples are taken and the diameter is measured with an accuracy of $\pm 0.01mm$.
+During the {{< acr QC >}} of the drive shaft $n=100$ samples are taken and the diameter is measured with an accuracy of $\pm 0.01mm$.
 Is the true mean of all produced drive shafts within the specification?
 
 For this we can formulate the hypotheses.
 
-H0:
+{{< acr H0 >}}
 : The drive shaft diameter is within the specification.
 
-Ha:
+{{< acr Ha >}}:
 : The drive shaft diameter is not within the specification.
 
 In the following we will explore, how to test for these hypotheses.
@@ -100,7 +100,7 @@ In the following we will explore, how to test for these hypotheses.
 
 ::: {.content-visible when-profile="script"}
 
-A [Confidence Interval](#ci) is a statistical concept used to estimate a range of values within which a population parameter, such as a population mean or proportion, is likely to fall. 
+A {{< acr CI >}} is a statistical concept used to estimate a range of values within which a population parameter, such as a population mean or proportion, is likely to fall. 
 It provides a way to express the uncertainty or variability in our sample data when making inferences about the population. 
 In other words, it quantifies the level of confidence we have in our estimate of a population parameter.
 
@@ -108,9 +108,9 @@ Confidence intervals are typically expressed as a range with an associated confi
 The confidence level, often denoted as $1-\alpha$, represents the probability that the calculated interval contains the true population parameter. 
 Common confidence levels include $90\%$, $95\%$, and $99\%$.
 
-There are different ways of calculating [CI](#ci).
+There are different ways of calculating {{< acr CI >}}).
 
-1. For the population mean [$\mu_0$](#truemean-gloss) when the population standard deviation [$\sigma_0^2$](#truevariance-gloss) is known (\eqref{ci01}).
+1. For the population mean [$\mu_0$](index.qmd#truemean-gloss) when the population standard deviation [$\sigma_0^2$](index.qmd#truevariance-gloss) is known (\eqref{ci01}).
 
 \begin{align}
 CI = \bar{X} \pm t \frac{\sigma_0}{\sqrt{n}} \label{ci01}
@@ -124,7 +124,7 @@ CI = \bar{X} \pm t \frac{\sigma_0}{\sqrt{n}} \label{ci01}
 
 * $n$ is the sample size
 
-2.For the population mean [$\mu_0$](#truemean-gloss) when the population standard deviation [$\sigma_0$](#truevariance-gloss) is Unknown (t-confidence interval), see \eqref{ci02}.
+2.For the population mean [$\mu_0$](index.qmd#truemean-gloss) when the population standard deviation [$\sigma_0^2$](index.qmd#truevariance-gloss) is Unknown (t-confidence interval), see \eqref{ci02}.
 
 \begin{align}
 CI = \bar{X} \pm t \frac{sd}{\sqrt{n}} \label{ci02}
@@ -138,7 +138,7 @@ CI = \bar{X} \pm t \frac{sd}{\sqrt{n}} \label{ci02}
 
 * $n$ is the sample size
 
-3. For a population proportion [p](#popprop-gloss), see \eqref{ci03}.
+3. For a population proportion [p](index.qmd#popprop-gloss), see \eqref{ci03}.
 
 \begin{align}
 CI = \hat{p} \pm Z \sqrt{\frac{\hat{p}(1-\hat{p})}{n}} \label{ci03}
@@ -228,9 +228,9 @@ drive_shaft %>%
 
 ::: {.content-visible when-profile="script"}
 
-The $95\%$ [CI](#ci) for the drive shaft data is shown in @fig-ci.
+The $95\%$ {{< acr CI >}} for the drive shaft data is shown in @fig-ci.
 For comparison the histogram with an overlayed density curve is plotted.
-The highlighted area shows the minimum and maximum [CI](#ci), the calculated mean is shown as a dashed line.
+The highlighted area shows the minimum and maximum {{< acr CI >}}, the calculated mean is shown as a dashed line.
 
 :::
 
@@ -239,7 +239,7 @@ The highlighted area shows the minimum and maximum [CI](#ci), the calculated mea
 
 ::: {.content-visible when-profile="script"}
    
-The [significance level $\alpha$](#sign-level) is a critical component of hypothesis testing in statistics. 
+The significance level $\alpha$ is a critical component of hypothesis testing in statistics. 
 It represents the maximum acceptable probability of making a Type I error, which is the error of rejecting a null hypothesis when it is actually true. 
 In other words, $\alpha$ is the probability of concluding that there is an effect or relationship when there isn't one.
 Commonly used significance levels include $0.05 (5\%)$, $0.01 (1\%)$, and $0.10 (10\%)$. 

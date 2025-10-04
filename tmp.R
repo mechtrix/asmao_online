@@ -1,59 +1,78 @@
+library(tidyverse)
 library(ggplot2)
 
-# Parameters
-min_val <- 1 # Minimum value
-max_val <- 10 # Maximum value
-n_discrete <- 10 # Number of discrete points
-n_continuous <- 1000 # Points for continuous curve
-
-# Create data frames
-discrete_data <- data.frame(
-  x = min_val:max_val,
-  y = rep(1 / n_discrete, n_discrete),
-  type = "Discrete Uniform"
+# Example data (replace with your dataset)
+student_data <- tibble(
+  Row = rep(1:4, each = 4),
+  Col = rep(1:4, 4),
+  Desk = paste0("R", Row, "C", Col),
+  Age = c(30, 22, 27, 35, 28, 25, 29, 32, 23, 31, 34, 26, 21, 33, 24, 36),
+  Gender = rep(c("Male", "Female"), 8),
+  AgeRange = cut(
+    Age,
+    breaks = c(0, 25, 30, 40),
+    labels = c("18-25", "26-30", "31-38")
+  )
 )
+set.seed(123) # For reproducibility
 
-continuous_data <- data.frame(
-  x = seq(min_val, max_val, length.out = n_continuous),
-  y = dunif(seq(min_val, max_val, length.out = n_continuous), min_val, max_val),
-  type = "Continuous Uniform"
-)
+set.seed(123)
 
-# Combine data for plotting
-plot_data <- rbind(
-  transform(discrete_data, distribution = "Discrete"),
-  transform(continuous_data, distribution = "Continuous")
-)
+set.seed(123)
 
-# Create plot
+stratified_sample <- student_data %>%
+  group_by(Gender) %>%
+  sample_n(2) %>% # Take 2 random students per gender
+  arrange(Row, Col) %>% # Sort by physical position (critical!)
+  ungroup() %>%
+  mutate(
+    # Assign TRUE/FALSE alternately, starting with TRUE for the first student
+    is_highlighted = rep(c(TRUE, FALSE), times = n() / 2)
+  )
+
 ggplot() +
-  # Continuous uniform distribution
-  geom_line(
-    data = subset(plot_data, distribution == "Continuous"),
-    aes(x = x, y = y, color = type),
-    size = 1
+  # All students (light gray background)
+  geom_tile(
+    data = student_data,
+    aes(x = Col, y = Row, fill = Age),
+    color = "gray50",
+    linewidth = 0.5,
+    alpha = 0.3
   ) +
-  # Discrete uniform distribution
-  geom_point(
-    data = subset(plot_data, distribution == "Discrete"),
-    aes(x = x, y = y, color = type),
-    size = 3
+  # Stratified sample (darker borders)
+  geom_tile(
+    data = stratified_sample,
+    aes(x = Col, y = Row, fill = Age),
+    color = "black",
+    linewidth = 1
   ) +
-  geom_segment(
-    data = subset(plot_data, distribution == "Discrete"),
-    aes(x = x, xend = x, y = 0, yend = y, color = type),
-    linetype = "dashed",
-    size = 0.5
+  # Highlight every second student (red border)
+  geom_tile(
+    data = filter(stratified_sample, is_highlighted),
+    aes(x = Col, y = Row),
+    fill = NA,
+    color = "red",
+    linewidth = 2
   ) +
-  # Aesthetics
-  scale_color_manual(
-    values = c("Continuous Uniform" = "blue", "Discrete Uniform" = "red")
+  # Add desk labels
+  geom_text(
+    data = student_data,
+    aes(x = Col, y = Row, label = str_sub(Desk, 3, 4)),
+    size = 4
+  ) +
+  # Customize colors and labels
+  scale_fill_gradient(
+    low = "lightblue",
+    high = "darkblue",
+    name = "Age"
   ) +
   labs(
-    title = "Discrete vs Continuous Uniform Distribution",
-    x = "Value",
-    y = "Probability/Density",
-    color = "Distribution Type"
+    title = "Classroom Seating: Stratified Sample (Every 2nd Student Highlighted)",
+    x = "Column",
+    y = "Row"
   ) +
   theme_minimal() +
-  theme(legend.position = "top")
+  theme(
+    panel.grid = element_blank(),
+    legend.position = "right"
+  )

@@ -1,0 +1,8 @@
+\usepackage{setspace}
+        \let\olddescription\description
+        \let\endolddescription\enddescription
+        \renewenvironment{description}{
+          \begin{spacing}{1.5}\olddescription
+        }{
+          \endolddescription\end{spacing}
+        }

@@ -13,6 +13,13 @@ library(tidyverse)
 library(gtExtras)
 library(here)
 library(ggthemes)
+library(gtsummary)
+library(gt)
+
+ggplot2::theme_set(
+  ggthemes::theme_few(base_size = 15)+
+  theme(legend.position = "bottom")
+  )
 
 ```
 
@@ -24,7 +31,6 @@ library(ggthemes)
 #| label: fig-se
 #| layout-ncol: 2
 #| out-width: 95%
-#| fig-height: 7 
 #| fig-cap: The SE for varying sample sizes $n$
 #| fig-subcap: 
 #|   - maximum sample size $n = 200$
@@ -49,9 +55,6 @@ plt1 <- se_dat %>%
   scale_y_continuous(
     expand = c(0,0,0,0),
     limits = c(0,NA)
-  )+
-  theme_few(
-    base_size = 20
   )+
   labs(
     title = "The SE vs. the sample size"
@@ -135,9 +138,6 @@ plt2 <- se_dat %>%
       label = paste0(diff_se %>% round(.,digits = 3)*100,"%")
     )
   )+
-  theme_few(
-    base_size = 15
-  )+
   labs(
     title = "The SE vs. the sample size (n = 5 ... 50 and sd = 1)"
   )
@@ -149,15 +149,15 @@ plt2
 
 ::: {.content-visible when-profile="script"}
 
-[Standard error](#se) is a statistical measure that quantifies the variation or uncertainty in sample statistics, particularly the mean (average). 
+{{< acr SE >}} is a statistical measure that quantifies the variation or uncertainty in sample statistics, particularly the mean (average). 
 It is a valuable tool in inferential statistics and provides an estimate of how much the sample mean is expected to vary from the true population mean.
 
 \begin{align}
 SE = \frac{sd}{\sqrt{n}}
 \end{align}
 
-A smaller [standard error](#se) indicates that the sample mean is likely very close to the population mean, while a larger standard error suggests greater variability and less precision in estimating the population mean. 
-[Standard error](#se) is crucial when constructing confidence intervals and performing hypothesis tests, as it helps in assessing the reliability of sample statistics as estimates of population parameters.
+A smaller {{< acr SE >}} indicates that the sample mean is likely very close to the population mean, while a larger standard error suggests greater variability and less precision in estimating the population mean. 
+{{< acr SE >}} is crucial when constructing confidence intervals and performing hypothesis tests, as it helps in assessing the reliability of sample statistics as estimates of population parameters.
 
 **Variance vs. Standard Deviation:** The standard error formula is based on the standard deviation of the sample, not the variance. 
 The standard deviation is the square root of the variance. 
@@ -296,66 +296,305 @@ knitr::include_graphics(here("SamplingMethods","Cluster_sampling.png"))
 
 :::
 
-## Example - The Star Wars dataset
+## Example - Classroom Sampling
 
 ```{r}
 #| include: false
 
-data(starwars) 
-starwars <- starwars |> select(-films, -vehicles, -starships)   
-head(starwars)                                            
- 
-set.seed(984362)                                         
+load(here("data","classroom_sampling.RData"))
+
+                                        
 ```
 
-### Get to know the data
+### Descriptive Statistics (Population)
 
 ```{r}
-#| label: tbl-starwarsdata
-#| tbl-cap: The starwars dataset
+#| label: tbl-ClassroomData
+#| tbl-cap: The Classroom data
 
-starwars |> summary()
+student_data |> mutate(Gender_Factor = forcats::as_factor(Gender))|> select(-Row,-Col,-Desk,-x,-y,-Gender_Factor) |> tbl_summary()
 ```
+
+#### Histogram
+
+```{r}
+#| label: fig-Students-pop-hist
+#| fig-cap: The histograms of students
+
+student_data |> 
+  ggplot(
+    aes(
+      x = Age,
+      fill = Gender,
+      group = Gender
+      )
+    )+
+  geom_histogram(
+    binwidth = 3,
+    color = "white"
+  )+
+  scale_y_continuous(
+    expand = c(0,0,0.05,0),
+    breaks = seq(0,10,1)
+  )+
+  scale_x_continuous(
+    breaks = seq(0,60,1)
+  )+
+  scale_fill_grey(start = 0.3, end = 0.7) +
+  facet_wrap(~Gender)+
+  labs(
+    title = "The histogram of the student data"
+  )
+
+```
+
+#### Classroom Age
+
+```{r}
+#| label: fig-Students-pop-class-age
+#| fig-cap: Where students are seated (Age)
+
+
+ggplot(student_data, aes(x = x, y = y, fill = Age)) +
+  geom_tile(color = "black") +
+  geom_text(aes(label = Age), size = 5,color = "white") +
+  scale_x_continuous(expand = c(0,0,0,0))+
+  scale_y_continuous(expand=c(0,0,0,0))+
+  labs(
+    title = "Classroom Age Distribution (x,y Coordinates)",
+    x = "Column (x)",
+    y = "Row (y)"
+  ) 
+
+```
+
+#### Classroom Gender
+
+```{r}
+#| label: fig-Students-pop-class-gender
+#| fig-cap: Where students are seated (Age)
+
+
+ggplot(student_data, aes(x = x, y = y, fill = Gender)) +
+  geom_tile(color = "white") +
+  geom_text(aes(label = Gender, size = 5)) +
+  scale_fill_manual(values = c("Male" = "skyblue", "Female" = "pink")) +
+  scale_x_continuous(expand = c(0,0,0,0))+
+  scale_y_continuous(expand=c(0,0,0,0))+
+  labs(
+    title = "Classroom Gender Distribution (x,y Coordinates)",
+    x = "Column (x)",
+    y = "Row (y)"
+  ) 
+
+```
+
+#### Population Values
+
+$$\mu_{Age} = `r paste0(mean(student_data$Age))`$$
+$$sd_{Age} = `r paste0(round(sd(student_data$Age),digits = 2))`$$
+
+These are the values we want to estimate using the introduced sampling strategies
 
 ### Simple Random Sampling
 
 ```{r}
-#| echo: true
-#| output: true
+#| label: tbl-srswor-overview
+#| tbl-cap: The means and standard deviations of the classroom data for n = 5,10,15,20
 
-
-starwars_srswor <- starwars %>%                         
+student_data_srswor_n5 <- student_data %>%                         
   sample_n(size = 5)
-starwars_srswor                                          
+
+student_data_srswor_n10 <- student_data %>%                         
+  sample_n(size = 10)
+
+student_data_srswor_n15 <- student_data %>%                         
+  sample_n(size = 15)
+
+student_data_srswor_n20 <- student_data %>%                         
+  sample_n(size = 20)
+
+srswor <- data.frame(
+  n = c(5,10,15,20),
+  smpl_type = "simple random sampling",
+  means = c(
+    mean(student_data_srswor_n5$Age),
+    mean(student_data_srswor_n10$Age),
+    mean(student_data_srswor_n15$Age),
+    mean(student_data_srswor_n20$Age)
+  ),
+  sds = c(
+    sd(student_data_srswor_n5$Age),
+    sd(student_data_srswor_n10$Age),
+    sd(student_data_srswor_n15$Age),
+    sd(student_data_srswor_n20$Age)
+  ),
+  diff_means = c(
+    mean(student_data$Age)-mean(student_data_srswor_n5$Age),
+    mean(student_data$Age)-mean(student_data_srswor_n10$Age),
+    mean(student_data$Age)-mean(student_data_srswor_n15$Age),
+    mean(student_data$Age)-mean(student_data_srswor_n20$Age)
+  ),
+  diff_sd = c(
+    sd(student_data$Age)-sd(student_data_srswor_n5$Age),
+    sd(student_data$Age)-sd(student_data_srswor_n10$Age),
+    sd(student_data$Age)-sd(student_data_srswor_n15$Age),
+    sd(student_data$Age)-sd(student_data_srswor_n20$Age)
+  )
+)
+
+srswor |> 
+  select(n,means,sds) |> 
+  mutate(n = as.character(n)) |> 
+  add_row(n = "population",means = mean(student_data$Age), sds = sd(student_data$Age)) |> 
+  gt()  |> 
+  fmt_number(columns = c("means","sds"),decimals = 2) |> 
+  cols_label(
+    means = "mean in years",
+    sds = "standard deviation in years"
+  ) |> 
+  cols_align(
+    align = "center",
+    columns = everything()
+  )
+
+
 ```
 
-### Simple Random Sampling with replacment
+#### $n = 5$
 
 ```{r}
-#| echo: true
-#| output: true
+#| label: fig-Students-pop-srswor-n5
+#| fig-cap: Where students are seated (Age) and the 5 samples
 
-
-starwars_srswr <- starwars %>%                            
-  sample_n(size = 5,
-           replace = TRUE)
-starwars_srswr                                           
+ggplot(student_data, aes(x = x, y = y, fill = Age)) +
+  geom_tile(color = "black") +
+  geom_tile(data = student_data_srswor_n5,aes(fill = Age,color = "red"),size = 1.5, show.legend = FALSE)+
+  geom_text(aes(label = Age), size = 5,color = "white") +
+  scale_x_continuous(expand = c(0,0,0,0),breaks = seq(1,10,1))+
+  scale_y_continuous(expand=c(0,0,0,0),breaks = seq(1,10,1))+
+  labs(
+    title = "Classroom Age Distribution (x,y Coordinates)",
+    x = "Column (x)",
+    y = "Row (y)"
+  ) 
 ```
 
-### Sampling with replacment, sample larger than original data
+#### $n = 10$
 
 ```{r}
-#| echo: true
-#| output: true
+#| label: fig-Students-pop-srswor-n10
+#| fig-cap: Where students are seated (Age) and the 10 samples
+
+ggplot(student_data, aes(x = x, y = y, fill = Age)) +
+  geom_tile(color = "black") +
+  geom_tile(data = student_data_srswor_n10,aes(fill = Age,color = "red"),size = 1.5, show.legend = FALSE)+
+  geom_text(aes(label = Age), size = 5,color = "white") +
+  scale_x_continuous(expand = c(0,0,0,0),breaks = seq(1,10,1))+
+  scale_y_continuous(expand=c(0,0,0,0),breaks = seq(1,10,1))+
+  labs(
+    title = "Classroom Age Distribution (x,y Coordinates)",
+    x = "Column (x)",
+    y = "Row (y)"
+  ) 
+```
+
+#### $n = 15$
+
+```{r}
+#| label: fig-Students-pop-srswor-n15
+#| fig-cap: Where students are seated (Age) and the 15 samples
+
+ggplot(student_data, aes(x = x, y = y, fill = Age)) +
+  geom_tile(color = "black") +
+  geom_tile(data = student_data_srswor_n15,aes(fill = Age,color = "red"),size = 1.5, show.legend = FALSE)+
+  geom_text(aes(label = Age), size = 5,color = "white") +
+  scale_x_continuous(expand = c(0,0,0,0),breaks = seq(1,10,1))+
+  scale_y_continuous(expand=c(0,0,0,0),breaks = seq(1,10,1))+
+  labs(
+    title = "Classroom Age Distribution (x,y Coordinates)",
+    x = "Column (x)",
+    y = "Row (y)"
+  ) 
+```
+
+#### $n = 20$
+
+```{r}
+#| label: fig-Students-pop-srswor-n20
+#| fig-cap: Where students are seated (Age) and the 20 samples
+
+ggplot(student_data, aes(x = x, y = y, fill = Age)) +
+  geom_tile(color = "black") +
+  geom_tile(data = student_data_srswor_n20,aes(fill = Age,color = "red"),size = 1.5, show.legend = FALSE)+
+  geom_text(aes(label = Age), size = 5,color = "white") +
+  scale_x_continuous(expand = c(0,0,0,0),breaks = seq(1,10,1))+
+  scale_y_continuous(expand=c(0,0,0,0),breaks = seq(1,10,1))+
+  labs(
+    title = "Classroom Age Distribution (x,y Coordinates)",
+    x = "Column (x)",
+    y = "Row (y)"
+  ) 
+```
+
+#### Simple random sampling - comparison to population (mean)
+
+```{r}
+#| label: fig-Students-srswor-diffmeans
+#| fig-cap: The difference in means at different sample sizes
 
 
-starwars_srswr2 <- starwars %>%                           
-  sample_n(size = 200,
-           replace = TRUE)
-starwars_srswr2                                          
- 
-mean(starwars$height, na.rm = TRUE)                      
-mean(starwars_srswr2$height, na.rm = TRUE)
+
+srswor |> 
+  ggplot(
+    aes(
+      x = n,
+      y = diff_means
+    )
+  )+
+  geom_col()+
+  geom_hline(
+    yintercept = 0
+  )+
+  labs(
+    title = "The difference in means with increasing sample size",
+    subtitle = "0 means no difference (perfect estimate)",
+    x = "sample size",
+    y = "difference in means (years)"
+  )
+  
+
+
+```
+
+#### Simple random sampling - comparison to population (sd)
+
+```{r}
+#| label: fig-Students-srswor-diffsd
+#| fig-cap: The difference in sd at different sample sizes
+
+
+
+
+srswor |> 
+  ggplot(
+    aes(
+      x = n,
+      y = diff_sd
+    )
+  )+
+  geom_col()+
+  geom_hline(
+    yintercept = 0
+  )+
+  labs(
+    title = "The difference in sd with increasing sample size",
+    subtitle = "0 means no difference (perfect estimate)",
+    x = "sample size",
+    y = "difference in sd (years)"
+  )
+
+
 ```
 
 ### Systematic Sampling
@@ -363,15 +602,220 @@ mean(starwars_srswr2$height, na.rm = TRUE)
 Sample always the $5th$.
 
 ```{r}
-#| echo: true
-#| output: true
+#| label: tbl-syssmpl-overview
+#| tbl-cap: The output of systematic sampling for every 8th, 5th, 4th, 2nd
 
 
-starwars_syst <- starwars %>%                            
-  slice(seq(sample(1:5, 1),                              
-            nrow(starwars),                              
-            by = 5))                                   
-starwars_syst                                           
+syst_8 <- student_data |> 
+  slice(seq(1, n(), by = 8))
+
+syst_5 <- student_data |> 
+  slice(seq(1, n(), by = 5))
+
+# syst_4 <- student_data |> 
+#   slice(seq(1, n(), by = 4))
+
+syst_2 <- student_data |> 
+  slice(seq(1, n(), by = 2))
+
+systsmpl <- data.frame(
+  k = c(8,5,2),
+  smpl_type = "systematic sampling",
+  n = c(nrow(syst_8),nrow(syst_5),nrow(syst_2)),
+  means = c(
+    mean(syst_8$Age),
+    mean(syst_5$Age),
+    mean(syst_2$Age)
+  ),
+  sds = c(
+    sd(syst_8$Age),
+    sd(syst_5$Age),
+    sd(syst_2$Age)
+  )
+) 
+
+systsmpl <- systsmpl|> 
+  mutate(
+    diff_means = mean(student_data$Age)-means,
+    diff_sds = sd(student_data$Age) - sds
+  )
+
+systsmpl |> 
+  select(k,means,sds) |> 
+  mutate(k = as.character(k)) |> 
+  add_row(k = "population",means = mean(student_data$Age), sds = sd(student_data$Age)) |> 
+  gt()  |> 
+  fmt_number(columns = c("means","sds"),decimals = 2) |> 
+  cols_label(
+    means = "mean in years",
+    sds = "standard deviation in years"
+  ) |> 
+  cols_align(
+    align = "center",
+    columns = everything()
+  )
+
+
+```
+
+#### $k = 8$
+
+```{r}
+#| label: fig-Students-systsmpl-k8
+#| fig-cap: Where students are seated (Age) and every 8th sample
+
+ggplot(student_data, aes(x = x, y = y, fill = Age)) +
+  geom_tile(color = "black") +
+  geom_tile(data = syst_8,aes(fill = Age,color = "red"),size = 1.5, show.legend = FALSE)+
+  geom_text(aes(label = Age), size = 5,color = "white") +
+  scale_x_continuous(expand = c(0,0,0,0),breaks = seq(1,10,1))+
+  scale_y_continuous(expand=c(0,0,0,0))+
+  labs(
+    title = "Classroom Age Distribution (x,y Coordinates)",
+    x = "Column (x)",
+    y = "Row (y)"
+  ) 
+```
+
+#### $k = 5$
+
+```{r}
+#| label: fig-Students-systsmpl-k5
+#| fig-cap: Where students are seated (Age) and every 5th sample
+
+ggplot(student_data, aes(x = x, y = y, fill = Age)) +
+  geom_tile(color = "black") +
+  geom_tile(data = syst_5,aes(fill = Age,color = "red"),size = 1.5, show.legend = FALSE)+
+  geom_text(aes(label = Age), size = 5,color = "white") +
+  scale_x_continuous(expand = c(0,0,0,0),breaks = seq(1,10,1))+
+  scale_y_continuous(expand=c(0,0,0,0))+
+  labs(
+    title = "Classroom Age Distribution (x,y Coordinates)",
+    x = "Column (x)",
+    y = "Row (y)"
+  ) 
+```
+
+#### $k = 2$
+
+```{r}
+#| label: fig-Students-systsmpl-k2
+#| fig-cap: Where students are seated (Age) and every 2nd sample
+
+ggplot(student_data, aes(x = x, y = y, fill = Age)) +
+  geom_tile(color = "black") +
+  geom_text(aes(label = Age), size = 5,color = "white") +
+  scale_x_continuous(expand = c(0,0,0,0),breaks = seq(1,10,1))+
+  scale_y_continuous(expand=c(0,0,0,0))+
+  annotate(
+    geom = "raster",
+    x = c(1,1,1,1,1),
+    y = c(1,2,3,4,5),
+    fill = "red4",
+    alpha = 0.4
+    # color = "red"
+  )+
+  annotate(
+    geom = "raster",
+    x = c(3,3,3,3,3),
+    y = c(1,2,3,4,5),
+    fill = "red4",
+    alpha = 0.4
+    # color = "red"
+  )+
+  annotate(
+    geom = "raster",
+    x = c(5,5,5,5,5),
+    y = c(1,2,3,4,5),
+    fill = "red4",
+    alpha = 0.4
+    # color = "red"
+  )+
+  annotate(
+    geom = "raster",
+    x = c(7,7,7,7,7),
+    y = c(1,2,3,4,5),
+    fill = "red4",
+    alpha = 0.4
+    # color = "red"
+  )+
+  labs(
+    title = "Classroom Age Distribution (x,y Coordinates)",
+    x = "Column (x)",
+    y = "Row (y)"
+  ) 
+
+```
+
+#### Systemtic sampling - comparison to population (mean)
+
+```{r}
+#| label: fig-Students-systsmlp-diffmeans
+#| fig-cap: The difference in means at different sampling intervals
+
+
+
+systsmpl |> 
+  ggplot(
+    aes(
+      x = k,
+      y = diff_means
+    )
+  )+
+  geom_col()+
+  geom_hline(
+    yintercept = 0
+  )+
+  geom_text(
+    aes(
+      y = 0.1,
+      label = paste0("n = ",n)
+    )
+  )+
+  labs(
+    title = "The difference in means with varying sampling interval",
+    subtitle = "0 means no difference (perfect estimate)",
+    x = "sampling interval",
+    y = "difference in means (years)"
+  )+
+  scale_x_continuous(breaks = systsmpl$k)
+
+
+```
+
+#### Systemtic sampling - comparison to population (sd)
+
+```{r}
+#| label: fig-Students-systsmlp-diffsd
+#| fig-cap: The difference in sd at different sampling intervals
+
+
+
+systsmpl |> 
+  ggplot(
+    aes(
+      x = k,
+      y = diff_sds
+    )
+  )+
+  geom_col()+
+  geom_hline(
+    yintercept = 0
+  )+
+  geom_text(
+    aes(
+      y = 0,
+      label = paste0("n = ",n)
+    ),
+    vjust = 0
+  )+
+  labs(
+    title = "The difference in sd with varying sampling interval",
+    subtitle = "0 means no difference (perfect estimate)",
+    x = "sampling interval",
+    y = "difference in sd (years)"
+  )+
+  scale_x_continuous(breaks = systsmpl$k)
 
 
 ```
@@ -382,14 +826,190 @@ starwars_syst
 #| echo: true
 #| output: true
 
-table(starwars$sex)                                      
- 
-starwars_strat <- starwars %>%                          
-  group_by(sex) %>%
-  sample_frac(size = 0.3)
-starwars_strat                                           
- 
-table(starwars_strat$sex)                               
+stratified_prop_n5 <- student_data %>%
+  group_by(Gender) %>%
+  sample_frac(0.12) %>%  # Sample 30% from each gender
+  ungroup()
+
+stratified_prop_n10 <- student_data %>%
+  group_by(Gender) %>%
+  sample_frac(0.25) %>%  # Sample 30% from each gender
+  ungroup()
+
+stratified_prop_n15 <- student_data %>%
+  group_by(Gender) %>%
+  sample_frac(0.38) %>%  # Sample 30% from each gender
+  ungroup()
+
+stratified_prop_n20 <- student_data %>%
+  group_by(Gender) %>%
+  sample_frac(0.50) %>%  # Sample 30% from each gender
+  ungroup()
+
+strtsmpl <- data.frame(
+  smpl_type = "stratified sampling",
+  n = c(5,10,15,20),
+  prop = c(0.12,0.25,0.38,0.5),
+  means = c(
+    mean(stratified_prop_n5$Age),
+    mean(stratified_prop_n10$Age),
+    mean(stratified_prop_n15$Age),
+    mean(stratified_prop_n20$Age)
+  ),
+  sds = c(
+    sd(stratified_prop_n5$Age),
+    sd(stratified_prop_n10$Age),
+    sd(stratified_prop_n15$Age),
+    sd(stratified_prop_n20$Age)
+  )
+) 
+
+strtsmpl <- strtsmpl|> 
+  mutate(
+    diff_means = mean(student_data$Age)-means,
+    diff_sds = sd(student_data$Age) - sds
+  )
+
+```
+
+#### $\text{proportion} = 12\% \rightarrow n = 5$
+
+```{r}
+#| label: fig-Students-strtsml-n5
+#| fig-cap: Where students are seated (Age), stratified according to gender ($12\%$)
+
+ggplot(student_data, aes(x = x, y = y, fill = Age)) +
+  geom_tile(aes(color = Gender),size = 2) +
+  geom_text(aes(label = Age), size = 5,color = "white") +
+  geom_label(data = stratified_prop_n5,aes(label = Age),color = "white",fill = "black",size = 7)+
+  scale_x_continuous(expand = c(0,0,0,0),breaks = seq(1,10,1))+
+  scale_y_continuous(expand=c(0,0,0,0))+
+  scale_color_manual(values = c("Male" = "skyblue", "Female" = "pink")) +
+  labs(
+    title = "Classroom Age Distribution (x,y Coordinates)",
+    x = "Column (x)",
+    y = "Row (y)"
+  ) 
+```
+
+#### $\text{proportion} = 25\% \rightarrow n = 10$
+
+```{r}
+#| label: fig-Students-strtsml-n10
+#| fig-cap: Where students are seated (Age), stratified according to gender ($25\%$)
+
+ggplot(student_data, aes(x = x, y = y, fill = Age)) +
+  geom_tile(aes(color = Gender),size = 2) +
+  geom_text(aes(label = Age), size = 5,color = "white") +
+  geom_label(data = stratified_prop_n10,aes(label = Age),color = "white",fill = "black",size = 7)+
+  scale_x_continuous(expand = c(0,0,0,0),breaks = seq(1,10,1))+
+  scale_y_continuous(expand=c(0,0,0,0))+
+  scale_color_manual(values = c("Male" = "skyblue", "Female" = "pink")) +
+  labs(
+    title = "Classroom Age Distribution (x,y Coordinates)",
+    x = "Column (x)",
+    y = "Row (y)"
+  ) 
+```
+
+#### $\text{proportion} = 38\% \rightarrow n = 15$
+
+```{r}
+#| label: fig-Students-strtsml-n15
+#| fig-cap: Where students are seated (Age), stratified according to gender ($38\%$)
+
+ggplot(student_data, aes(x = x, y = y, fill = Age)) +
+  geom_tile(aes(color = Gender),size = 2) +
+  geom_text(aes(label = Age), size = 5,color = "white") +
+  geom_label(data = stratified_prop_n15,aes(label = Age),color = "white",fill = "black",size = 7)+
+  scale_x_continuous(expand = c(0,0,0,0),breaks = seq(1,10,1))+
+  scale_y_continuous(expand=c(0,0,0,0))+
+  scale_color_manual(values = c("Male" = "skyblue", "Female" = "pink")) +
+  labs(
+    title = "Classroom Age Distribution (x,y Coordinates)",
+    x = "Column (x)",
+    y = "Row (y)"
+  ) 
+```
+
+#### $\text{proportion} = 50\% \rightarrow n = 20$
+
+```{r}
+#| label: fig-Students-strtsml-n20
+#| fig-cap: Where students are seated (Age), stratified according to gender ($50\%$)
+
+ggplot(student_data, aes(x = x, y = y, fill = Age)) +
+  geom_tile(aes(color = Gender),size = 2) +
+  geom_text(aes(label = Age), size = 5,color = "white") +
+  geom_label(data = stratified_prop_n20,aes(label = Age),color = "white",fill = "black",size = 7)+
+  scale_x_continuous(expand = c(0,0,0,0),breaks = seq(1,10,1))+
+  scale_y_continuous(expand=c(0,0,0,0))+
+  scale_color_manual(values = c("Male" = "skyblue", "Female" = "pink")) +
+  labs(
+    title = "Classroom Age Distribution (x,y Coordinates)",
+    x = "Column (x)",
+    y = "Row (y)"
+  ) 
+```
+#### Stratified sampling - comparison to population (mean)
+
+```{r}
+#| label: fig-Students-strtsmpl-diffmeans
+#| fig-cap: The difference in means at different sample sizes
+
+
+
+strtsmpl |> 
+  ggplot(
+    aes(
+      x = n,
+      y = diff_means
+    )
+  )+
+  geom_col()+
+  geom_text(aes(label = scales::label_percent()(prop)),y = 0.05, vjust = 0)+
+  geom_hline(
+    yintercept = 0
+  )+
+  labs(
+    title = "The difference in means with increasing sample size",
+    subtitle = "0 means no difference (perfect estimate)",
+    x = "sample size",
+    y = "difference in means (years)"
+  )
+  
+
+
+```
+
+#### Stratified sampling - comparison to population (sd)
+
+```{r}
+#| label: fig-Students-strtsmpl-diffsds
+#| fig-cap: The difference in sd at different sample sizes
+
+
+
+strtsmpl |> 
+  ggplot(
+    aes(
+      x = n,
+      y = diff_sds
+    )
+  )+
+  geom_col()+
+  geom_text(aes(label = scales::label_percent()(prop)),y = 0.05, vjust = 0)+
+  geom_hline(
+    yintercept = 0
+  )+
+  labs(
+    title = "The difference in sd with increasing sample size",
+    subtitle = "0 means no difference (perfect estimate)",
+    x = "sample size",
+    y = "difference in sd (years)"
+  )
+  
+
 
 ```
 
