@@ -15,11 +15,14 @@ library(here)
 library(ggthemes)
 library(gtsummary)
 library(gt)
-
+library(gghalves)
+library(tidytext)
 ggplot2::theme_set(
   ggthemes::theme_few(base_size = 15)+
   theme(legend.position = "bottom")
   )
+
+set.seed(31415)
 
 ```
 
@@ -303,6 +306,8 @@ knitr::include_graphics(here("SamplingMethods","Cluster_sampling.png"))
 
 load(here("data","classroom_sampling.RData"))
 
+student_data <- student_data |> add_column(n = "population")
+
                                         
 ```
 
@@ -312,7 +317,7 @@ load(here("data","classroom_sampling.RData"))
 #| label: tbl-ClassroomData
 #| tbl-cap: The Classroom data
 
-student_data |> mutate(Gender_Factor = forcats::as_factor(Gender))|> select(-Row,-Col,-Desk,-x,-y,-Gender_Factor) |> tbl_summary()
+student_data |> mutate(Gender_Factor = forcats::as_factor(Gender))|> select(-Row,-Col,-Desk,-x,-y,-Gender_Factor,-n) |> tbl_summary()
 ```
 
 #### Histogram
@@ -403,16 +408,31 @@ These are the values we want to estimate using the introduced sampling strategie
 #| tbl-cap: The means and standard deviations of the classroom data for n = 5,10,15,20
 
 student_data_srswor_n5 <- student_data %>%                         
-  sample_n(size = 5)
+  sample_n(size = 5) |> 
+  mutate(n = as.character(5))
 
 student_data_srswor_n10 <- student_data %>%                         
-  sample_n(size = 10)
+  sample_n(size = 10)|> 
+  mutate(n = as.character(10))
 
 student_data_srswor_n15 <- student_data %>%                         
-  sample_n(size = 15)
+  sample_n(size = 15)|> 
+  mutate(n = as.character(15))
 
 student_data_srswor_n20 <- student_data %>%                         
-  sample_n(size = 20)
+  sample_n(size = 20)|> 
+  mutate(n = as.character(20))
+
+srs_data <- bind_rows(
+  list(
+    student_data_srswor_n5,
+    student_data_srswor_n10,
+    student_data_srswor_n15,
+    student_data_srswor_n20,
+    student_data
+    )
+  )
+
 
 srswor <- data.frame(
   n = c(5,10,15,20),
@@ -435,7 +455,7 @@ srswor <- data.frame(
     mean(student_data$Age)-mean(student_data_srswor_n15$Age),
     mean(student_data$Age)-mean(student_data_srswor_n20$Age)
   ),
-  diff_sd = c(
+  diff_sds = c(
     sd(student_data$Age)-sd(student_data_srswor_n5$Age),
     sd(student_data$Age)-sd(student_data_srswor_n10$Age),
     sd(student_data$Age)-sd(student_data_srswor_n15$Age),
@@ -469,8 +489,8 @@ srswor |>
 
 ggplot(student_data, aes(x = x, y = y, fill = Age)) +
   geom_tile(color = "black") +
-  geom_tile(data = student_data_srswor_n5,aes(fill = Age,color = "red"),size = 1.5, show.legend = FALSE)+
   geom_text(aes(label = Age), size = 5,color = "white") +
+  geom_label(data = student_data_srswor_n5,aes(label = Age),color = "white",fill = "black",size = 7)+
   scale_x_continuous(expand = c(0,0,0,0),breaks = seq(1,10,1))+
   scale_y_continuous(expand=c(0,0,0,0),breaks = seq(1,10,1))+
   labs(
@@ -488,8 +508,8 @@ ggplot(student_data, aes(x = x, y = y, fill = Age)) +
 
 ggplot(student_data, aes(x = x, y = y, fill = Age)) +
   geom_tile(color = "black") +
-  geom_tile(data = student_data_srswor_n10,aes(fill = Age,color = "red"),size = 1.5, show.legend = FALSE)+
   geom_text(aes(label = Age), size = 5,color = "white") +
+  geom_label(data = student_data_srswor_n10,aes(label = Age),color = "white",fill = "black",size = 7)+
   scale_x_continuous(expand = c(0,0,0,0),breaks = seq(1,10,1))+
   scale_y_continuous(expand=c(0,0,0,0),breaks = seq(1,10,1))+
   labs(
@@ -507,8 +527,9 @@ ggplot(student_data, aes(x = x, y = y, fill = Age)) +
 
 ggplot(student_data, aes(x = x, y = y, fill = Age)) +
   geom_tile(color = "black") +
-  geom_tile(data = student_data_srswor_n15,aes(fill = Age,color = "red"),size = 1.5, show.legend = FALSE)+
+  # geom_tile(data = student_data_srswor_n15,aes(fill = Age,color = "red"),size = 1.5, show.legend = FALSE)+
   geom_text(aes(label = Age), size = 5,color = "white") +
+  geom_label(data = student_data_srswor_n15,aes(label = Age),color = "white",fill = "black",size = 7)+
   scale_x_continuous(expand = c(0,0,0,0),breaks = seq(1,10,1))+
   scale_y_continuous(expand=c(0,0,0,0),breaks = seq(1,10,1))+
   labs(
@@ -526,8 +547,8 @@ ggplot(student_data, aes(x = x, y = y, fill = Age)) +
 
 ggplot(student_data, aes(x = x, y = y, fill = Age)) +
   geom_tile(color = "black") +
-  geom_tile(data = student_data_srswor_n20,aes(fill = Age,color = "red"),size = 1.5, show.legend = FALSE)+
   geom_text(aes(label = Age), size = 5,color = "white") +
+  geom_label(data = student_data_srswor_n20,aes(label = Age),color = "white",fill = "black",size = 7)+
   scale_x_continuous(expand = c(0,0,0,0),breaks = seq(1,10,1))+
   scale_y_continuous(expand=c(0,0,0,0),breaks = seq(1,10,1))+
   labs(
@@ -537,7 +558,34 @@ ggplot(student_data, aes(x = x, y = y, fill = Age)) +
   ) 
 ```
 
-#### Simple random sampling - comparison to population (mean)
+#### Data
+
+```{r}
+#| label: fig-srs-hist-cmp
+#| fig-cap: Comparison of sample to the population
+
+srs_data |> 
+  ggplot(
+    aes(
+      x = as_factor(n),
+      y = Age
+    )
+  )+
+  geom_half_boxplot()+
+  geom_half_violin(side = "r")+
+  geom_jitter(width = 0.2)+
+  geom_hline(yintercept = mean(student_data$Age))+
+  labs(
+    title = "Different outcomes at different sample sizes",
+    subtitle = "solid line shows population mean",
+    x = "sample size n"
+  )
+
+
+```
+
+
+#### Mean Comparison
 
 ```{r}
 #| label: fig-Students-srswor-diffmeans
@@ -567,20 +615,18 @@ srswor |>
 
 ```
 
-#### Simple random sampling - comparison to population (sd)
+#### SD Comparison
 
 ```{r}
 #| label: fig-Students-srswor-diffsd
 #| fig-cap: The difference in sd at different sample sizes
 
 
-
-
 srswor |> 
   ggplot(
     aes(
       x = n,
-      y = diff_sd
+      y = diff_sds
     )
   )+
   geom_col()+
@@ -599,7 +645,7 @@ srswor |>
 
 ### Systematic Sampling
 
-Sample always the $5th$.
+Sample always the $k$th.
 
 ```{r}
 #| label: tbl-syssmpl-overview
@@ -607,32 +653,48 @@ Sample always the $5th$.
 
 
 syst_8 <- student_data |> 
-  slice(seq(1, n(), by = 8))
+  slice(seq(1, n(), by = 8)) |> 
+  add_column(k = 8)
 
 syst_5 <- student_data |> 
-  slice(seq(1, n(), by = 5))
+  slice(seq(1, n(), by = 5)) |> 
+  add_column(k = 5)
 
-# syst_4 <- student_data |> 
-#   slice(seq(1, n(), by = 4))
+syst_3 <- student_data |> 
+  slice(seq(1, n(), by = 3)) |> 
+  add_column(k = 3)
 
 syst_2 <- student_data |> 
-  slice(seq(1, n(), by = 2))
+  slice(seq(1, n(), by = 2)) |> 
+  add_column(k = 2)
 
 systsmpl <- data.frame(
-  k = c(8,5,2),
+  k = c(8,5,3,2),
   smpl_type = "systematic sampling",
-  n = c(nrow(syst_8),nrow(syst_5),nrow(syst_2)),
+  n = c(nrow(syst_8),nrow(syst_5),nrow(syst_3),nrow(syst_2)),
   means = c(
     mean(syst_8$Age),
     mean(syst_5$Age),
+    mean(syst_3$Age),
     mean(syst_2$Age)
   ),
   sds = c(
     sd(syst_8$Age),
     sd(syst_5$Age),
+    sd(syst_3$Age),
     sd(syst_2$Age)
   )
 ) 
+
+syst_data <- bind_rows(
+  list(
+    syst_8,
+    syst_5,
+    syst_3,
+    syst_2
+  )
+) |> group_by(k) |> 
+  mutate(n = as.character(n()))
 
 systsmpl <- systsmpl|> 
   mutate(
@@ -666,8 +728,8 @@ systsmpl |>
 
 ggplot(student_data, aes(x = x, y = y, fill = Age)) +
   geom_tile(color = "black") +
-  geom_tile(data = syst_8,aes(fill = Age,color = "red"),size = 1.5, show.legend = FALSE)+
   geom_text(aes(label = Age), size = 5,color = "white") +
+  geom_label(data = syst_8,aes(label = Age),color = "white",fill = "black",size = 7)+
   scale_x_continuous(expand = c(0,0,0,0),breaks = seq(1,10,1))+
   scale_y_continuous(expand=c(0,0,0,0))+
   labs(
@@ -685,8 +747,8 @@ ggplot(student_data, aes(x = x, y = y, fill = Age)) +
 
 ggplot(student_data, aes(x = x, y = y, fill = Age)) +
   geom_tile(color = "black") +
-  geom_tile(data = syst_5,aes(fill = Age,color = "red"),size = 1.5, show.legend = FALSE)+
   geom_text(aes(label = Age), size = 5,color = "white") +
+  geom_label(data = syst_5,aes(label = Age),color = "white",fill = "black",size = 7)+
   scale_x_continuous(expand = c(0,0,0,0),breaks = seq(1,10,1))+
   scale_y_continuous(expand=c(0,0,0,0))+
   labs(
@@ -705,40 +767,9 @@ ggplot(student_data, aes(x = x, y = y, fill = Age)) +
 ggplot(student_data, aes(x = x, y = y, fill = Age)) +
   geom_tile(color = "black") +
   geom_text(aes(label = Age), size = 5,color = "white") +
+  geom_label(data = syst_2,aes(label = Age),color = "white",fill = "black",size = 7)+
   scale_x_continuous(expand = c(0,0,0,0),breaks = seq(1,10,1))+
   scale_y_continuous(expand=c(0,0,0,0))+
-  annotate(
-    geom = "raster",
-    x = c(1,1,1,1,1),
-    y = c(1,2,3,4,5),
-    fill = "red4",
-    alpha = 0.4
-    # color = "red"
-  )+
-  annotate(
-    geom = "raster",
-    x = c(3,3,3,3,3),
-    y = c(1,2,3,4,5),
-    fill = "red4",
-    alpha = 0.4
-    # color = "red"
-  )+
-  annotate(
-    geom = "raster",
-    x = c(5,5,5,5,5),
-    y = c(1,2,3,4,5),
-    fill = "red4",
-    alpha = 0.4
-    # color = "red"
-  )+
-  annotate(
-    geom = "raster",
-    x = c(7,7,7,7,7),
-    y = c(1,2,3,4,5),
-    fill = "red4",
-    alpha = 0.4
-    # color = "red"
-  )+
   labs(
     title = "Classroom Age Distribution (x,y Coordinates)",
     x = "Column (x)",
@@ -747,7 +778,41 @@ ggplot(student_data, aes(x = x, y = y, fill = Age)) +
 
 ```
 
-#### Systemtic sampling - comparison to population (mean)
+#### Data 
+
+```{r}
+#| label: fig-Students-systsmlp-data
+#| fig-cap: The data per subgroup
+
+syst_data |> 
+  mutate(k = as.character(k)) |> 
+  bind_rows(student_data |> add_column(k = "population")) |> 
+  ggplot(
+    aes(
+      x = as_factor(k),
+      y = Age
+    )
+  )+
+  geom_boxplot()+
+  annotate(
+    geom = "text",
+    x = as_factor(c("8","5","3","2","population")),
+    y = 37,
+    label = c(
+      paste0("n = 5"),
+      paste0("n = 8"),
+      paste0("n = 14"),
+      paste0("n = 20"),
+      paste0("population")
+      )
+  )
+  
+
+
+```
+
+
+#### Mean Comparison
 
 ```{r}
 #| label: fig-Students-systsmlp-diffmeans
@@ -758,7 +823,7 @@ ggplot(student_data, aes(x = x, y = y, fill = Age)) +
 systsmpl |> 
   ggplot(
     aes(
-      x = k,
+      x = as_factor(k),
       y = diff_means
     )
   )+
@@ -778,12 +843,12 @@ systsmpl |>
     x = "sampling interval",
     y = "difference in means (years)"
   )+
-  scale_x_continuous(breaks = systsmpl$k)
+  scale_x_discrete(breaks = systsmpl$k)
 
 
 ```
 
-#### Systemtic sampling - comparison to population (sd)
+#### SD Comparison
 
 ```{r}
 #| label: fig-Students-systsmlp-diffsd
@@ -794,7 +859,7 @@ systsmpl |>
 systsmpl |> 
   ggplot(
     aes(
-      x = k,
+      x = as_factor(k),
       y = diff_sds
     )
   )+
@@ -815,36 +880,52 @@ systsmpl |>
     x = "sampling interval",
     y = "difference in sd (years)"
   )+
-  scale_x_continuous(breaks = systsmpl$k)
+  scale_x_discrete(breaks = systsmpl$k)
 
 
 ```
 
 ### Stratified Sampling
 
+Choose sample stratified to characteristic (Gender represented in population)
+
 ```{r}
-#| echo: true
-#| output: true
+#| echo: false
+#| output: false
 
 stratified_prop_n5 <- student_data %>%
   group_by(Gender) %>%
-  sample_frac(0.12) %>%  # Sample 30% from each gender
-  ungroup()
+  sample_frac(0.12) %>%
+  ungroup() |> 
+  mutate(n = as.character(n()))
+  
 
 stratified_prop_n10 <- student_data %>%
   group_by(Gender) %>%
   sample_frac(0.25) %>%  # Sample 30% from each gender
-  ungroup()
+  ungroup()|> 
+  mutate(n = as.character(n()))
 
 stratified_prop_n15 <- student_data %>%
   group_by(Gender) %>%
   sample_frac(0.38) %>%  # Sample 30% from each gender
-  ungroup()
+  ungroup()|> 
+  mutate(n = as.character(n()))
 
 stratified_prop_n20 <- student_data %>%
   group_by(Gender) %>%
   sample_frac(0.50) %>%  # Sample 30% from each gender
-  ungroup()
+  ungroup()|> 
+  mutate(n = as.character(n()))
+
+strtsmpl_data <- bind_rows(
+  list(
+    stratified_prop_n5,
+    stratified_prop_n10,
+    stratified_prop_n15,
+    stratified_prop_n20
+  )
+)
 
 strtsmpl <- data.frame(
   smpl_type = "stratified sampling",
@@ -951,7 +1032,44 @@ ggplot(student_data, aes(x = x, y = y, fill = Age)) +
     y = "Row (y)"
   ) 
 ```
-#### Stratified sampling - comparison to population (mean)
+
+#### Data
+
+```{r}
+#| label: fig-Students-strtsmpl-dat
+#| fig-cap: The data of the stratified sampling
+
+strtsmpl_data |> 
+  bind_rows(
+    student_data
+  ) |> 
+  ggplot(
+    aes(
+      x = as_factor(n),
+      y = Age
+    )
+  )+
+  geom_boxplot()+
+  geom_jitter(
+    width = 0.2
+  )+
+  annotate(
+    geom = "label",
+    x = as_factor(c("5","10","15","20")),
+    y = 33,
+    label = scales::label_percent()(strtsmpl$prop)
+  )+
+  labs(
+    title = "The data from stratified sampling",
+    x = "Sample Size n",
+    subtitle = "with sampling proportions of categories"
+  )
+
+
+```
+
+
+#### Mean Comparsion
 
 ```{r}
 #| label: fig-Students-strtsmpl-diffmeans
@@ -982,7 +1100,7 @@ strtsmpl |>
 
 ```
 
-#### Stratified sampling - comparison to population (sd)
+#### SD Comparison
 
 ```{r}
 #| label: fig-Students-strtsmpl-diffsds
@@ -1016,16 +1134,385 @@ strtsmpl |>
 ### Clustered Sampling
 
 ```{r}
-#| label: tbl-starwarsdata-clust
-#| tbl-cap: The starwars dataset with clustered sampling
 
-starwars_clust <- starwars %>%                          
-  filter(homeworld %in% sample(unique(homeworld),
-                               size = 10))
-starwars_clust |> summary()
+rndm_col_n5 <- sample(1:8,1,replace = FALSE)
+rndm_col_n10 <- sample(1:8,size = 2,replace = FALSE)
+rndm_col_n15 <- sample(1:8,size = 3,replace = FALSE)
+rndm_col_n20 <- sample(1:8,size = 4,replace = FALSE)
+
+clst_smpl_n5 <- student_data |> filter(x %in% rndm_col_n5) |> mutate(n = as.character(n()))
+clst_smpl_n10 <- student_data |> filter(x %in% rndm_col_n10)|> mutate(n = as.character(n()))
+clst_smpl_n15 <- student_data |> filter(x %in% rndm_col_n15)|> mutate(n = as.character(n()))
+clst_smpl_n20 <- student_data |> filter(x %in% rndm_col_n20)|> mutate(n = as.character(n()))
+
+clstsmpl_data <- bind_rows(
+  list(
+    clst_smpl_n5,
+    clst_smpl_n10,
+    clst_smpl_n15,
+    clst_smpl_n20
+  )
+)
+
+clstsmpl <- data.frame(
+  smpl_type = "clustered sampling",
+  n = c(5,10,15,20),
+  means = c(
+    mean(clst_smpl_n5$Age),
+    mean(clst_smpl_n10$Age),
+    mean(clst_smpl_n15$Age),
+    mean(clst_smpl_n20$Age)
+  ),
+  sds = c(
+    sd(clst_smpl_n5$Age),
+    sd(clst_smpl_n10$Age),
+    sd(clst_smpl_n15$Age),
+    sd(clst_smpl_n20$Age)
+  )
+) 
+
+clstsmpl <- clstsmpl|> 
+  mutate(
+    diff_means = mean(student_data$Age)-means,
+    diff_sds = sd(student_data$Age) - sds
+  )
 
 ```
 
+Clusters are logical units which are sampled in order to save sampling resources.
+
+In our case clusters are columns of students.
+
+#### One Cluster
+
+```{r}
+#| label: fig-Students-clstsmpl-n5
+#| fig-cap: Where students are seated (Age), cluster one
+
+ggplot(student_data, aes(x = x, y = y, fill = Age)) +
+  geom_tile(aes(color = Gender),size = 2) +
+  geom_text(aes(label = Age), size = 5,color = "white") +
+  geom_label(data = clst_smpl_n5,aes(label = Age),color = "white",fill = "black",size = 7)+
+  scale_x_continuous(expand = c(0,0,0,0),breaks = seq(1,10,1))+
+  scale_y_continuous(expand=c(0,0,0,0))+
+  scale_color_manual(values = c("Male" = "skyblue", "Female" = "pink")) +
+  labs(
+    title = "Classroom Age Distribution (x,y Coordinates)",
+    x = "Column (x)",
+    y = "Row (y)"
+  ) 
+
+```
+
+#### Two Clusters
+
+```{r}
+#| label: fig-Students-clstsmpl-n10
+#| fig-cap: Where students are seated (Age), two clusters
+
+ggplot(student_data, aes(x = x, y = y, fill = Age)) +
+  geom_tile(aes(color = Gender),size = 2) +
+  geom_text(aes(label = Age), size = 5,color = "white") +
+  geom_label(data = clst_smpl_n10,aes(label = Age),color = "white",fill = "black",size = 7)+
+  scale_x_continuous(expand = c(0,0,0,0),breaks = seq(1,10,1))+
+  scale_y_continuous(expand=c(0,0,0,0))+
+  scale_color_manual(values = c("Male" = "skyblue", "Female" = "pink")) +
+  labs(
+    title = "Classroom Age Distribution (x,y Coordinates)",
+    x = "Column (x)",
+    y = "Row (y)"
+  ) 
+
+```
+
+#### Three Clusters
+
+```{r}
+#| label: fig-Students-clstsmpl-n15
+#| fig-cap: Where students are seated (Age), three clusters
+
+ggplot(student_data, aes(x = x, y = y, fill = Age)) +
+  geom_tile(aes(color = Gender),size = 2) +
+  geom_text(aes(label = Age), size = 5,color = "white") +
+  geom_label(data = clst_smpl_n15,aes(label = Age),color = "white",fill = "black",size = 7)+
+  scale_x_continuous(expand = c(0,0,0,0),breaks = seq(1,10,1))+
+  scale_y_continuous(expand=c(0,0,0,0))+
+  scale_color_manual(values = c("Male" = "skyblue", "Female" = "pink")) +
+  labs(
+    title = "Classroom Age Distribution (x,y Coordinates)",
+    x = "Column (x)",
+    y = "Row (y)"
+  ) 
+
+```
+
+#### Four Clusters
+
+```{r}
+#| label: fig-Students-clstsmpl-n20
+#| fig-cap: Where students are seated (Age), four clusters
+
+ggplot(student_data, aes(x = x, y = y, fill = Age)) +
+  geom_tile(aes(color = Gender),size = 2) +
+  geom_text(aes(label = Age), size = 5,color = "white") +
+  geom_label(data = clst_smpl_n20,aes(label = Age),color = "white",fill = "black",size = 7)+
+  scale_x_continuous(expand = c(0,0,0,0),breaks = seq(1,10,1))+
+  scale_y_continuous(expand=c(0,0,0,0))+
+  scale_color_manual(values = c("Male" = "skyblue", "Female" = "pink")) +
+  labs(
+    title = "Classroom Age Distribution (x,y Coordinates)",
+    x = "Column (x)",
+    y = "Row (y)"
+  ) 
+
+```
+
+#### Data
+
+```{r}
+#| label: fig-Students-clstsmpl-data
+#| fig-cap: The data of the clustered sampling
+
+clstsmpl_data |> 
+  bind_rows(
+    student_data
+  ) |> 
+  ggplot(
+    aes(
+      x = as_factor(n),
+      y = Age
+    )
+  )+
+  geom_boxplot()+
+  annotate(
+    geom = "text",
+    x = as_factor(c("5","10","15","20")),
+    y = 33,
+    label = c("# Cluster:\n1", "# Cluster:\n2", "# Cluster:\n3", "# Cluster:\n4")
+  )+
+  labs(
+    title = "Data from the clustered sampling experiments",
+    x = "Sample Size n"
+  )
+
+
+```
+
+
+#### Mean Comparison
+
+```{r}
+#| label: fig-Students-clstsmpl-diffmeans
+#| fig-cap: The difference in means at different sample sizes
+
+
+
+clstsmpl |> 
+  ggplot(
+    aes(
+      x = n,
+      y = diff_means
+    )
+  )+
+  geom_col()+
+  geom_hline(
+    yintercept = 0
+  )+
+  labs(
+    title = "The difference in means with increasing sample size",
+    subtitle = "0 means no difference (perfect estimate)",
+    x = "sample size",
+    y = "difference in means (years)"
+  )
+  
+
+
+```
+
+#### SD Comparison
+
+```{r}
+#| label: fig-Students-clstsmpl-diffsds
+#| fig-cap: The difference in sd at different sample sizes
+
+
+
+clstsmpl |> 
+  ggplot(
+    aes(
+      x = n,
+      y = diff_sds
+    )
+  )+
+  geom_col()+
+  geom_hline(
+    yintercept = 0
+  )+
+  labs(
+    title = "The difference in sd with increasing sample size",
+    subtitle = "0 means no difference (perfect estimate)",
+    x = "sample size",
+    y = "difference in sd (years)"
+  )
+  
+
+
+```
+
+### Overall Comparison of Sampling Strategies (Mean)
+
+```{r}
+#| include: false
+
+overall_srswor <- srswor |> 
+  mutate(
+    n_fac = as_factor(n),
+    n_fac = fct_recode(
+      n_fac,
+      "small sample size" = "5",
+      "small to middle sample size" = "10",
+      "middle to high sample size" = "15",
+      "50% of population" = "20"
+      )
+  ) |> 
+  add_column("notes" = NA)
+
+overall_systsmpl <- systsmpl |> 
+  mutate(
+    notes = paste0("k = ",k),
+    n_fac = as_factor(n),
+    n_fac = fct_recode(
+      n_fac,
+      "small sample size" = "5",
+      "small to middle sample size" = "8",
+      "middle to high sample size" = "14",
+      "50% of population" = "20"
+      )
+  ) |> 
+  select(-k)
+
+overall_strtsmpl <- strtsmpl |> 
+  mutate(
+    notes = paste0("proportion = ",prop),
+    n_fac = as_factor(n),
+    n_fac = fct_recode(
+      n_fac,
+      "small sample size" = "5",
+      "small to middle sample size" = "10",
+      "middle to high sample size" = "15",
+      "50% of population" = "20"
+      )
+  ) |> 
+  select(-prop)
+
+overall_clstsmpl <- clstsmpl |> 
+  mutate(
+    notes = c("one cluster","two cluster","three cluster","four cluster"),
+    n_fac = as_factor(n),
+    n_fac = fct_recode(
+      n_fac,
+      "small sample size" = "5",
+      "small to middle sample size" = "10",
+      "middle to high sample size" = "15",
+      "50% of population" = "20"
+      )
+    )
+
+overall <- bind_rows(
+  list(
+    overall_srswor,
+    overall_systsmpl,
+    overall_strtsmpl,
+    overall_clstsmpl
+  )
+) |> 
+  mutate(
+    abs_diff_means = abs(diff_means),
+    abs_diff_sd = abs(diff_sds)
+  )
+
+```
+
+
+```{r}
+#| label: fig-comp-sampling-methods-means
+#| fig-cap: A graphical comparison of the absolute difference in means per sample strategy
+
+overall |> 
+  ggplot(
+    aes(
+      x = abs_diff_means,
+      y = n_fac,
+      fill = smpl_type
+      )
+    )+
+  geom_col(
+    position = position_dodge()
+  )+
+  geom_text(
+    aes(
+      label = paste0("n = ",n)
+    ),
+    position = position_dodge(width = 0.9),
+    hjust = 0
+  )+
+  geom_vline(xintercept = 0)+
+  scale_x_continuous(
+    expand = c(0,0,0.2,0.05)
+  )+
+  scale_fill_brewer(
+    palette = "Set1"
+  )+
+  labs(
+    title = "Difference in means",
+    subtitle = bquote(Delta == group("|", mu[0]-bar(x), "|")),
+    x = "years",
+    y = "",
+    fill = ""
+  )
+
+```
+
+### Overall Comparison of Sampling Strategies (SD)
+
+```{r}
+#| label: fig-comp-sampling-methods-sd
+#| fig-cap: A graphical comparison of the absolute difference in means per sample strategy
+
+overall |> 
+  ggplot(
+    aes(
+      x = abs_diff_sd,
+      y = n_fac,
+      fill = smpl_type
+      )
+    )+
+  geom_col(
+    position = position_dodge()
+  )+
+  geom_text(
+    aes(
+      label = paste0("n = ",n)
+    ),
+    position = position_dodge(width = 0.9),
+    hjust = 0
+  )+
+  geom_vline(xintercept = 0)+
+  scale_x_continuous(
+    expand = c(0,0,0.2,0.05)
+  )+
+  scale_fill_brewer(
+    palette = "Set1"
+  )+
+  labs(
+    title = "Difference in sd",
+    subtitle = bquote(delta == group("|", sigma[0]-sd, "|")),
+    x = "years",
+    y = "",
+    fill = ""
+  )
+
+```
 
 ## Bootstrapping {.smaller}
 
