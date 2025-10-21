@@ -584,7 +584,6 @@ srs_data |>
 
 ```
 
-
 #### Mean Comparison
 
 ```{r}
@@ -1358,6 +1357,15 @@ clstsmpl |>
 
 
 ```
+
+### Overall Comparison of Sampling Strategies (Gender)
+
+```{r}
+
+
+
+```
+
 
 ### Overall Comparison of Sampling Strategies (Mean)
 

@@ -970,6 +970,53 @@ The existence of the normal distribution in the real world is a result of the co
 #| fig-height: 8
 
 
+n_rows <- 12
+k_values <- seq(-n_rows, n_rows, by = 2) # Possible final positions
+probabilities <- dbinom((n_rows + k_values) / 2, n_rows, 0.5)
+data.frame(k = k_values, prob = probabilities) %>%
+  ggplot(aes(x = k, y = prob)) +
+  geom_col(fill = "skyblue") +
+  labs(title = "Discrete Distribution of Bean Positions (n=12 rows)")+
+  scale_y_continuous(expand = c(0.0,0,0.01,0))
+
+```
+
+:::
+
+::: {.fragment .fade-in}
+
+```{r}
+#| fig-width: 15
+#| fig-height: 8
+
+
+n_rows <- 24
+k_values <- seq(-n_rows, n_rows, by = 2) # Possible final positions
+probabilities <- dbinom((n_rows + k_values) / 2, n_rows, 0.5)
+data.frame(k = k_values, prob = probabilities) %>%
+  ggplot(aes(x = k, y = prob)) +
+  geom_col(fill = "skyblue") +
+  labs(title = "Discrete Distribution of Bean Positions (n=24 rows)")+
+  scale_y_continuous(expand = c(0.0,0,0.01,0))
+
+```
+
+:::
+
+:::
+
+
+#### The math behind
+
++ After $n$ rows a balls final position is the sum of $n$ independent steps: $S = x_1 + x_2 + \ldots + x_n$ where $x_i = +1 \text{( right) or}  -1 \text{(left)}$
++ $\text{Number of paths to } k = \binom{n}{(n + k)/2}$ 
+
+```{r}
+#| out-width: 75%
+#| label: fig-galtonboard-dist
+#| fig-cap: The number of ways a ball can take
+
+
 galton_dat <- data.frame(
   bin_nr = seq(0,6),
   n = 6
@@ -984,106 +1031,184 @@ galton_dat |>
   ggplot(
     aes(
       x = bin_nr,
-      y = Prob
+      y = binom_coef
       )
   )+
-  geom_col()+
+  geom_col(
+    fill = "steelblue"
+  )+
   scale_y_continuous(
     expand = c(0,0,0.05,0)
+  )+
+  labs(
+    title = "The binomial coefficient...",
+    subtitle = "...models the number of sequences a ball can take",
+    y = "number of sequences",
+    x = "... to land in bin number ..."
   )
 
 ```
 
-:::
+#### Approximation with a smooth curve
 
-::: {.fragment .fade-in}
+- For large $n$, the binomial distribution looks like a bell curve. It can be approximated using the [Stirling approximation](https://planetmath.org/StirlingsApproximation)
+
 
 ```{r}
-#| fig-width: 15
-#| fig-height: 8
+#| label: fig-normdist-spprox
+#| fig-cap: The normal distribution can be approximated using a continous curve
+
+ggplot(data.frame(k = k_values, prob = probabilities), aes(x = k, y = prob)) +
+  geom_col(fill = "skyblue") +
+  stat_function(
+    fun = dnorm,
+    args = list(mean = 0, sd = sqrt(n_rows)),
+    color = "red",
+    size = 2
+  ) +
+  labs(title = "Discrete (Beans) vs. Continuous (Normal) Approximation")+
+  scale_y_continuous(expand = c(0.0,0,0.01,0))
+
+```
+
+#### Binomial Probability
+
+- Probability of ending at position $k$: $P(S=k)\binom{n}{(n + k)/2}(\frac{1}{2})^n$
+
+- For large $n$ we can approximate the binomial coefficient: $\binom{n}{m} \approx \frac{n^n}{m^m(n-m)^{n-m}}\sqrt{\frac{n}{2\pi m (n-m)}}$ where $m = (n+k)/2$
+
+#### Large $n$
+
+- Let $k = x$ (treat as continuous) and $n$ be large
+- After simplification the {{< acr PMF >}} becomes:  $P(S=x) \approx \frac{1}{\sqrt{2\pi n}}e^{\frac{-x^2}{2n}}$
+- Replace $n$ with $\sigma^2$ and allow for mean $\mu$: $f(x) = \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$
+
+#### The Normal PDF Equation
+
+1. $\frac{1}{\sqrt{2\pi\sigma^2}}$: Scaling factor to ensure Total Probability = 1
+2. $e^{-\frac{(x-\mu)^2}{2\sigma^2}}$: The "bell" shape - exponential decay based on the distance to the mean
+
+- **Symmetry**: The term $(x-\mu)^2$ ensures the curve is symmetric around $\mu$
+- **Peak at mean**: The exponent is zero when $x = \mu$, giving the maximum value
+- **Thickness of Tails**: $\sigma$ controls how spread out the curve is
+
+#### Parameter influence
+
+```{r}
+#| label: fig-norm-params-inf
+#| fig-cap: The influence of distributional parameters
+
+# Interactive exploration of mu and sigma
+ggplot(data.frame(x = c(-5, 5)), aes(x = x)) +
+  geom_vline(xintercept = c(-1,1), color = "gray")+
+  geom_hline(yintercept = 0,color = "gray")+
+  stat_function(fun = dnorm, args = list(mean = 0, sd = 1), color = "blue",size = 1.5) +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = 2), color = "red",size = 1.5) +
+  stat_function(fun = dnorm, args = list(mean = -1, sd = 1), color = "green",size = 1.5) +
+  annotate(
+    geom = "text",
+    color = c("blue","red","green"),
+    label = c("μ = 0, σ = 1","μ = 0, σ = 2","μ = -1, σ = 1"),
+    x = c(3), 
+    y = c(0.3,0.25,0.2)
+  )+
+  scale_x_continuous(
+    expand = c(0,0,0,0),
+    breaks = seq(-7,7)
+  )+
+  labs(title = "Effect of μ (Mean) and σ (Standard Deviation)")
 
 
-galton_dat <- data.frame(
-  bin_nr = seq(0,1000),
-  n = 1000
-) |> 
+
+```
+
+### The Buffon needle problem
+
+<center>
+
+$P$ for crossing a line?
+
+</center>
+
+```{r}
+#| label: fig-buffon-needle-experiment
+#| out-width: 95%
+#| fig-cap: An Illustration of the Buffon Needle Problem.
+#| fig-align: center
+
+knitr::include_graphics(here::here("chapter001","buffon.png"))
+
+```
+
+#### Sample Size
+
+```{r}
+#| label: fig-buffon-needle
+#| fig-cap: Counting needles leads to an esimtate of $\pi$.
+
+set.seed(42)
+
+buffon_simulation <- function(n_needles, l = 1.5, L = 2) {
+  theta <- runif(n_needles, 0, pi) # Random angles
+  y <- runif(n_needles, 0, L / 2) # Random distances
+  crosses <- (y <= (l / 2) * sin(theta)) # Does needle cross?
+  pi_estimate <- (2 * l) / (L * mean(crosses)) # Solve P = 2l/(πL) for π
+  return(pi_estimate)
+}
+
+buffon_results <- data.frame(
+  n = c(1,10,100,1000,10000,100000,1000000,10000000)
+  ) |> 
   rowwise() |> 
   mutate(
-    binom_coef = pracma::nchoosek(n,bin_nr),
-    Prob = binom_coef*(0.5^n)
-  )
+    estimate = buffon_simulation(n)
+  ) 
 
-galton_dat |> 
+buffon_results |> 
   ggplot(
     aes(
-      x = bin_nr,
-      y = Prob
-      )
+      x = n,
+      y = estimate
+    )
   )+
-  geom_col()+
-  scale_y_continuous(
-    expand = c(0,0,0.05,0)
+  geom_line(size = 2)+
+  geom_hline(yintercept = pi)+
+  scale_x_continuous(
+    trans = "log10",
+    labels = function(x){ format(x, scientific = FALSE)}
+    )+
+  labs(
+    title = "Estimation of π",
+    y = "Estimation",
+    x = "Number of needles"
   )
 
 ```
 
+#### Connection to the Normal distribution {.incremental}
+
+<center>
+Why?
+</center>
+
+::: {.fragment}
+Gaussian integral
 :::
 
-:::
+#### $\pi$ in the Normal Distribution
 
+\begin{align}
+I = \int_{-\infty}^{\infty}e^{-kx^2}\,dx\\
+I^2 = \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}e^{-k(x^2+y^2)}\,dx\,dy =  \int_{0}^{2\pi}\int_{0}^{\infty}e^{-k^2}r\,dr\,d\theta = \frac{\pi}{k}
+\end{align}
 
-#### The math behind
+- $e^{-k(x^2+y^2)}=e^{-kr^2}$ is **radially symmetric**, which simplifies the integral
+- $\int_0^{2\pi}\,d\theta = 2\pi$ introduces $\pi$ in the normalization constant of the normal distribution
 
-$$P(k) = \binom{n}{k}\cdot{\frac{1}{2}}^n$$
+#### $\pi$ in the Buffon Needle Problem
 
-```{r}
-#| out-width: 75%
-
-knitr::include_graphics(here::here("chapter000","galton_tbl.png"))
-
-```
-
-#### Mean and Standard Deviation from the Galton board
-
-- What is the expected value?
-
-::: {.fragment .fade-in}
-
-$$\mu_0 = \mathrm{E}[X] = np$$
-$$p = 0.5 \rightarrow \mu = n \times 0.5 = \frac{1}{2}n$$
-
-On *average* a ball will land in $k=\frac{n}{2}$
-
-:::
-
-- What is the spread
-
-::: {.fragment .fade-in}
-
-$$\sigma_0 = \sqrt{Var} = \sqrt{np(1-p)}$$
-$Var(X) = \mathrm{E}[(X-\mu)^2]$ (Variance in general)
-
-$Var(X) = np(1-p)$ (number of right moves)
-
-:::
-
-#### Understanding spread
-
-$$\sigma^2=np(1-p)$$
-
-- Every step is independent, for a single step ($p=0.5$):
-
-$$Var(X) = p(1-p)$$
-
-- Therefore for $n$ steps:
-
-$$Var(X) = np(1-p) \rightarrow \sigma = \frac{\sqrt{n}}{2}$$
-
----
-
-- For $n = 100$
-
-$\sigma = \frac{\sqrt{100}}{2}$ so most balls will land between $45$ and $55$
+- A needle of length $L$ is dropped onto a plane with parallel lines spaced $D \geq L$ apart
+- Probability $P$ that the needle crosses a line is $P = \frac{2L}{}$
 
 ## Z - Standardization
 
