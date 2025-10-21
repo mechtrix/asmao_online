@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.24">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -55,14 +55,15 @@ div.csl-indent {
 <link href="./chapter002_InferentialStatistics.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-a37c72dd2dbac68997fcdc15a3622e78.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-364982630eef5352dd1537128a8ed5cb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-70a47bd5681a7291082a5b9f83d58762.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -134,7 +135,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -175,12 +176,11 @@ window.Quarto = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-    <div class="sidebar-title mb-0 py-0">
-      <a href="./">Advanced Statistical Methods and Optimization</a> 
-        <div class="sidebar-tools-main">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
+      <div class="sidebar-tools-main">
     <a href="./asmao_online.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
 </div>
-    </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
@@ -387,7 +387,7 @@ Figure&nbsp;5.3: An example for the gradient descent algorithm
 <div id="fig-lm" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-lm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter003_Regression_files/figure-revealjs/fig-lm-1.svg" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
+<img src="chapter003_Regression_files/figure-html/fig-lm-1.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.4: The linear regression between rounds per minute (rpm) of the lathing machine and the diameter of the drive shaft.
@@ -411,7 +411,7 @@ r^2 = 1- \frac{RSS}{SSE} \label{r2}
 <div id="fig-r2vsr2adj" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-r2vsr2adj-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter003_Regression_files/figure-revealjs/fig-r2vsr2adj-1.svg" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
+<img src="chapter003_Regression_files/figure-html/fig-r2vsr2adj-1.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-r2vsr2adj-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.5: The influence of k (number of predictors) on <span class="math inline">\(r^2\)</span> and <span class="math inline">\(r^2_{adjusted}\)</span>.
@@ -455,7 +455,7 @@ F-statistic:  4610 on 1 and 498 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div id="fig-lm-resid-pattern" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-lm-resid-pattern-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter003_Regression_files/figure-revealjs/fig-lm-resid-pattern-1.svg" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
+<img src="chapter003_Regression_files/figure-html/fig-lm-resid-pattern-1.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lm-resid-pattern-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.6: There should not be a visible pattern in the residuals.
@@ -471,7 +471,7 @@ Figure&nbsp;5.6: There should not be a visible pattern in the residuals.
 <div id="fig-lm-resid-qq" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-lm-resid-qq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter003_Regression_files/figure-revealjs/fig-lm-resid-qq-1.svg" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
+<img src="chapter003_Regression_files/figure-html/fig-lm-resid-qq-1.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lm-resid-qq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.7: The resiuals should be normally distributed.
@@ -497,23 +497,23 @@ Table&nbsp;5.1: The significance of model parameters.
 </figcaption>
 <div aria-describedby="tbl-lm-t-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="zfdhiigpnw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#zfdhiigpnw table {
+<div id="dzomnegahd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#dzomnegahd table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#zfdhiigpnw thead, #zfdhiigpnw tbody, #zfdhiigpnw tfoot, #zfdhiigpnw tr, #zfdhiigpnw td, #zfdhiigpnw th {
+#dzomnegahd thead, #dzomnegahd tbody, #dzomnegahd tfoot, #dzomnegahd tr, #dzomnegahd td, #dzomnegahd th {
   border-style: none;
 }
 
-#zfdhiigpnw p {
+#dzomnegahd p {
   margin: 0;
   padding: 0;
 }
 
-#zfdhiigpnw .gt_table {
+#dzomnegahd .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -539,12 +539,12 @@ Table&nbsp;5.1: The significance of model parameters.
   border-left-color: #D3D3D3;
 }
 
-#zfdhiigpnw .gt_caption {
+#dzomnegahd .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#zfdhiigpnw .gt_title {
+#dzomnegahd .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -556,7 +556,7 @@ Table&nbsp;5.1: The significance of model parameters.
   border-bottom-width: 0;
 }
 
-#zfdhiigpnw .gt_subtitle {
+#dzomnegahd .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -568,7 +568,7 @@ Table&nbsp;5.1: The significance of model parameters.
   border-top-width: 0;
 }
 
-#zfdhiigpnw .gt_heading {
+#dzomnegahd .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -580,13 +580,13 @@ Table&nbsp;5.1: The significance of model parameters.
   border-right-color: #D3D3D3;
 }
 
-#zfdhiigpnw .gt_bottom_border {
+#dzomnegahd .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#zfdhiigpnw .gt_col_headings {
+#dzomnegahd .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -601,7 +601,7 @@ Table&nbsp;5.1: The significance of model parameters.
   border-right-color: #D3D3D3;
 }
 
-#zfdhiigpnw .gt_col_heading {
+#dzomnegahd .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -621,7 +621,7 @@ Table&nbsp;5.1: The significance of model parameters.
   overflow-x: hidden;
 }
 
-#zfdhiigpnw .gt_column_spanner_outer {
+#dzomnegahd .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -633,15 +633,15 @@ Table&nbsp;5.1: The significance of model parameters.
   padding-right: 4px;
 }
 
-#zfdhiigpnw .gt_column_spanner_outer:first-child {
+#dzomnegahd .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#zfdhiigpnw .gt_column_spanner_outer:last-child {
+#dzomnegahd .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#zfdhiigpnw .gt_column_spanner {
+#dzomnegahd .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -653,11 +653,11 @@ Table&nbsp;5.1: The significance of model parameters.
   width: 100%;
 }
 
-#zfdhiigpnw .gt_spanner_row {
+#dzomnegahd .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#zfdhiigpnw .gt_group_heading {
+#dzomnegahd .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -683,7 +683,7 @@ Table&nbsp;5.1: The significance of model parameters.
   text-align: left;
 }
 
-#zfdhiigpnw .gt_empty_group_heading {
+#dzomnegahd .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -698,15 +698,15 @@ Table&nbsp;5.1: The significance of model parameters.
   vertical-align: middle;
 }
 
-#zfdhiigpnw .gt_from_md > :first-child {
+#dzomnegahd .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#zfdhiigpnw .gt_from_md > :last-child {
+#dzomnegahd .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#zfdhiigpnw .gt_row {
+#dzomnegahd .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -725,7 +725,7 @@ Table&nbsp;5.1: The significance of model parameters.
   overflow-x: hidden;
 }
 
-#zfdhiigpnw .gt_stub {
+#dzomnegahd .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -738,7 +738,7 @@ Table&nbsp;5.1: The significance of model parameters.
   padding-right: 5px;
 }
 
-#zfdhiigpnw .gt_stub_row_group {
+#dzomnegahd .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -752,15 +752,15 @@ Table&nbsp;5.1: The significance of model parameters.
   vertical-align: top;
 }
 
-#zfdhiigpnw .gt_row_group_first td {
+#dzomnegahd .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#zfdhiigpnw .gt_row_group_first th {
+#dzomnegahd .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#zfdhiigpnw .gt_summary_row {
+#dzomnegahd .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -770,16 +770,16 @@ Table&nbsp;5.1: The significance of model parameters.
   padding-right: 5px;
 }
 
-#zfdhiigpnw .gt_first_summary_row {
+#dzomnegahd .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#zfdhiigpnw .gt_first_summary_row.thick {
+#dzomnegahd .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#zfdhiigpnw .gt_last_summary_row {
+#dzomnegahd .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -789,7 +789,7 @@ Table&nbsp;5.1: The significance of model parameters.
   border-bottom-color: #D3D3D3;
 }
 
-#zfdhiigpnw .gt_grand_summary_row {
+#dzomnegahd .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -799,7 +799,7 @@ Table&nbsp;5.1: The significance of model parameters.
   padding-right: 5px;
 }
 
-#zfdhiigpnw .gt_first_grand_summary_row {
+#dzomnegahd .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -809,7 +809,7 @@ Table&nbsp;5.1: The significance of model parameters.
   border-top-color: #D3D3D3;
 }
 
-#zfdhiigpnw .gt_last_grand_summary_row_top {
+#dzomnegahd .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -819,11 +819,11 @@ Table&nbsp;5.1: The significance of model parameters.
   border-bottom-color: #D3D3D3;
 }
 
-#zfdhiigpnw .gt_striped {
+#dzomnegahd .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#zfdhiigpnw .gt_table_body {
+#dzomnegahd .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -832,7 +832,7 @@ Table&nbsp;5.1: The significance of model parameters.
   border-bottom-color: #D3D3D3;
 }
 
-#zfdhiigpnw .gt_footnotes {
+#dzomnegahd .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -846,7 +846,7 @@ Table&nbsp;5.1: The significance of model parameters.
   border-right-color: #D3D3D3;
 }
 
-#zfdhiigpnw .gt_footnote {
+#dzomnegahd .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -855,7 +855,7 @@ Table&nbsp;5.1: The significance of model parameters.
   padding-right: 5px;
 }
 
-#zfdhiigpnw .gt_sourcenotes {
+#dzomnegahd .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -869,7 +869,7 @@ Table&nbsp;5.1: The significance of model parameters.
   border-right-color: #D3D3D3;
 }
 
-#zfdhiigpnw .gt_sourcenote {
+#dzomnegahd .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -877,77 +877,77 @@ Table&nbsp;5.1: The significance of model parameters.
   padding-right: 5px;
 }
 
-#zfdhiigpnw .gt_left {
+#dzomnegahd .gt_left {
   text-align: left;
 }
 
-#zfdhiigpnw .gt_center {
+#dzomnegahd .gt_center {
   text-align: center;
 }
 
-#zfdhiigpnw .gt_right {
+#dzomnegahd .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#zfdhiigpnw .gt_font_normal {
+#dzomnegahd .gt_font_normal {
   font-weight: normal;
 }
 
-#zfdhiigpnw .gt_font_bold {
+#dzomnegahd .gt_font_bold {
   font-weight: bold;
 }
 
-#zfdhiigpnw .gt_font_italic {
+#dzomnegahd .gt_font_italic {
   font-style: italic;
 }
 
-#zfdhiigpnw .gt_super {
+#dzomnegahd .gt_super {
   font-size: 65%;
 }
 
-#zfdhiigpnw .gt_footnote_marks {
+#dzomnegahd .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#zfdhiigpnw .gt_asterisk {
+#dzomnegahd .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#zfdhiigpnw .gt_indent_1 {
+#dzomnegahd .gt_indent_1 {
   text-indent: 5px;
 }
 
-#zfdhiigpnw .gt_indent_2 {
+#dzomnegahd .gt_indent_2 {
   text-indent: 10px;
 }
 
-#zfdhiigpnw .gt_indent_3 {
+#dzomnegahd .gt_indent_3 {
   text-indent: 15px;
 }
 
-#zfdhiigpnw .gt_indent_4 {
+#dzomnegahd .gt_indent_4 {
   text-indent: 20px;
 }
 
-#zfdhiigpnw .gt_indent_5 {
+#dzomnegahd .gt_indent_5 {
   text-indent: 25px;
 }
 
-#zfdhiigpnw .katex-display {
+#dzomnegahd .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#zfdhiigpnw div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#dzomnegahd div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
 
-<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_col_headings header">
 <th id="term" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">term</th>
@@ -990,23 +990,23 @@ Table&nbsp;5.2: The significance of the model.
 </figcaption>
 <div aria-describedby="tbl-lm-f-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="ajbtcrutjq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ajbtcrutjq table {
+<div id="kaaylgbuks" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#kaaylgbuks table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ajbtcrutjq thead, #ajbtcrutjq tbody, #ajbtcrutjq tfoot, #ajbtcrutjq tr, #ajbtcrutjq td, #ajbtcrutjq th {
+#kaaylgbuks thead, #kaaylgbuks tbody, #kaaylgbuks tfoot, #kaaylgbuks tr, #kaaylgbuks td, #kaaylgbuks th {
   border-style: none;
 }
 
-#ajbtcrutjq p {
+#kaaylgbuks p {
   margin: 0;
   padding: 0;
 }
 
-#ajbtcrutjq .gt_table {
+#kaaylgbuks .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1032,12 +1032,12 @@ Table&nbsp;5.2: The significance of the model.
   border-left-color: #D3D3D3;
 }
 
-#ajbtcrutjq .gt_caption {
+#kaaylgbuks .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ajbtcrutjq .gt_title {
+#kaaylgbuks .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1049,7 +1049,7 @@ Table&nbsp;5.2: The significance of the model.
   border-bottom-width: 0;
 }
 
-#ajbtcrutjq .gt_subtitle {
+#kaaylgbuks .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1061,7 +1061,7 @@ Table&nbsp;5.2: The significance of the model.
   border-top-width: 0;
 }
 
-#ajbtcrutjq .gt_heading {
+#kaaylgbuks .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1073,13 +1073,13 @@ Table&nbsp;5.2: The significance of the model.
   border-right-color: #D3D3D3;
 }
 
-#ajbtcrutjq .gt_bottom_border {
+#kaaylgbuks .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ajbtcrutjq .gt_col_headings {
+#kaaylgbuks .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1094,7 +1094,7 @@ Table&nbsp;5.2: The significance of the model.
   border-right-color: #D3D3D3;
 }
 
-#ajbtcrutjq .gt_col_heading {
+#kaaylgbuks .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1114,7 +1114,7 @@ Table&nbsp;5.2: The significance of the model.
   overflow-x: hidden;
 }
 
-#ajbtcrutjq .gt_column_spanner_outer {
+#kaaylgbuks .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1126,15 +1126,15 @@ Table&nbsp;5.2: The significance of the model.
   padding-right: 4px;
 }
 
-#ajbtcrutjq .gt_column_spanner_outer:first-child {
+#kaaylgbuks .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ajbtcrutjq .gt_column_spanner_outer:last-child {
+#kaaylgbuks .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ajbtcrutjq .gt_column_spanner {
+#kaaylgbuks .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1146,11 +1146,11 @@ Table&nbsp;5.2: The significance of the model.
   width: 100%;
 }
 
-#ajbtcrutjq .gt_spanner_row {
+#kaaylgbuks .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ajbtcrutjq .gt_group_heading {
+#kaaylgbuks .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1176,7 +1176,7 @@ Table&nbsp;5.2: The significance of the model.
   text-align: left;
 }
 
-#ajbtcrutjq .gt_empty_group_heading {
+#kaaylgbuks .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1191,15 +1191,15 @@ Table&nbsp;5.2: The significance of the model.
   vertical-align: middle;
 }
 
-#ajbtcrutjq .gt_from_md > :first-child {
+#kaaylgbuks .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ajbtcrutjq .gt_from_md > :last-child {
+#kaaylgbuks .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ajbtcrutjq .gt_row {
+#kaaylgbuks .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1218,7 +1218,7 @@ Table&nbsp;5.2: The significance of the model.
   overflow-x: hidden;
 }
 
-#ajbtcrutjq .gt_stub {
+#kaaylgbuks .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1231,7 +1231,7 @@ Table&nbsp;5.2: The significance of the model.
   padding-right: 5px;
 }
 
-#ajbtcrutjq .gt_stub_row_group {
+#kaaylgbuks .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1245,15 +1245,15 @@ Table&nbsp;5.2: The significance of the model.
   vertical-align: top;
 }
 
-#ajbtcrutjq .gt_row_group_first td {
+#kaaylgbuks .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ajbtcrutjq .gt_row_group_first th {
+#kaaylgbuks .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ajbtcrutjq .gt_summary_row {
+#kaaylgbuks .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1263,16 +1263,16 @@ Table&nbsp;5.2: The significance of the model.
   padding-right: 5px;
 }
 
-#ajbtcrutjq .gt_first_summary_row {
+#kaaylgbuks .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ajbtcrutjq .gt_first_summary_row.thick {
+#kaaylgbuks .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ajbtcrutjq .gt_last_summary_row {
+#kaaylgbuks .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1282,7 +1282,7 @@ Table&nbsp;5.2: The significance of the model.
   border-bottom-color: #D3D3D3;
 }
 
-#ajbtcrutjq .gt_grand_summary_row {
+#kaaylgbuks .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1292,7 +1292,7 @@ Table&nbsp;5.2: The significance of the model.
   padding-right: 5px;
 }
 
-#ajbtcrutjq .gt_first_grand_summary_row {
+#kaaylgbuks .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1302,7 +1302,7 @@ Table&nbsp;5.2: The significance of the model.
   border-top-color: #D3D3D3;
 }
 
-#ajbtcrutjq .gt_last_grand_summary_row_top {
+#kaaylgbuks .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1312,11 +1312,11 @@ Table&nbsp;5.2: The significance of the model.
   border-bottom-color: #D3D3D3;
 }
 
-#ajbtcrutjq .gt_striped {
+#kaaylgbuks .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ajbtcrutjq .gt_table_body {
+#kaaylgbuks .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1325,7 +1325,7 @@ Table&nbsp;5.2: The significance of the model.
   border-bottom-color: #D3D3D3;
 }
 
-#ajbtcrutjq .gt_footnotes {
+#kaaylgbuks .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1339,7 +1339,7 @@ Table&nbsp;5.2: The significance of the model.
   border-right-color: #D3D3D3;
 }
 
-#ajbtcrutjq .gt_footnote {
+#kaaylgbuks .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1348,7 +1348,7 @@ Table&nbsp;5.2: The significance of the model.
   padding-right: 5px;
 }
 
-#ajbtcrutjq .gt_sourcenotes {
+#kaaylgbuks .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1362,7 +1362,7 @@ Table&nbsp;5.2: The significance of the model.
   border-right-color: #D3D3D3;
 }
 
-#ajbtcrutjq .gt_sourcenote {
+#kaaylgbuks .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1370,77 +1370,77 @@ Table&nbsp;5.2: The significance of the model.
   padding-right: 5px;
 }
 
-#ajbtcrutjq .gt_left {
+#kaaylgbuks .gt_left {
   text-align: left;
 }
 
-#ajbtcrutjq .gt_center {
+#kaaylgbuks .gt_center {
   text-align: center;
 }
 
-#ajbtcrutjq .gt_right {
+#kaaylgbuks .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ajbtcrutjq .gt_font_normal {
+#kaaylgbuks .gt_font_normal {
   font-weight: normal;
 }
 
-#ajbtcrutjq .gt_font_bold {
+#kaaylgbuks .gt_font_bold {
   font-weight: bold;
 }
 
-#ajbtcrutjq .gt_font_italic {
+#kaaylgbuks .gt_font_italic {
   font-style: italic;
 }
 
-#ajbtcrutjq .gt_super {
+#kaaylgbuks .gt_super {
   font-size: 65%;
 }
 
-#ajbtcrutjq .gt_footnote_marks {
+#kaaylgbuks .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ajbtcrutjq .gt_asterisk {
+#kaaylgbuks .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ajbtcrutjq .gt_indent_1 {
+#kaaylgbuks .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ajbtcrutjq .gt_indent_2 {
+#kaaylgbuks .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ajbtcrutjq .gt_indent_3 {
+#kaaylgbuks .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ajbtcrutjq .gt_indent_4 {
+#kaaylgbuks .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ajbtcrutjq .gt_indent_5 {
+#kaaylgbuks .gt_indent_5 {
   text-indent: 25px;
 }
 
-#ajbtcrutjq .katex-display {
+#kaaylgbuks .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#ajbtcrutjq div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#kaaylgbuks div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
 
-<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_col_headings header">
 <th id="r.squared" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">r.squared</th>
@@ -1487,23 +1487,23 @@ Table&nbsp;5.3: The data in a tabular overview including test for normal distrib
 </figcaption>
 <div aria-describedby="tbl-mlm-eda-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="rmvabfqqmg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#rmvabfqqmg table {
+<div id="ybjydnyfzl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ybjydnyfzl table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#rmvabfqqmg thead, #rmvabfqqmg tbody, #rmvabfqqmg tfoot, #rmvabfqqmg tr, #rmvabfqqmg td, #rmvabfqqmg th {
+#ybjydnyfzl thead, #ybjydnyfzl tbody, #ybjydnyfzl tfoot, #ybjydnyfzl tr, #ybjydnyfzl td, #ybjydnyfzl th {
   border-style: none;
 }
 
-#rmvabfqqmg p {
+#ybjydnyfzl p {
   margin: 0;
   padding: 0;
 }
 
-#rmvabfqqmg .gt_table {
+#ybjydnyfzl .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1529,12 +1529,12 @@ Table&nbsp;5.3: The data in a tabular overview including test for normal distrib
   border-left-color: #D3D3D3;
 }
 
-#rmvabfqqmg .gt_caption {
+#ybjydnyfzl .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#rmvabfqqmg .gt_title {
+#ybjydnyfzl .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1546,7 +1546,7 @@ Table&nbsp;5.3: The data in a tabular overview including test for normal distrib
   border-bottom-width: 0;
 }
 
-#rmvabfqqmg .gt_subtitle {
+#ybjydnyfzl .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1558,7 +1558,7 @@ Table&nbsp;5.3: The data in a tabular overview including test for normal distrib
   border-top-width: 0;
 }
 
-#rmvabfqqmg .gt_heading {
+#ybjydnyfzl .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1570,13 +1570,13 @@ Table&nbsp;5.3: The data in a tabular overview including test for normal distrib
   border-right-color: #D3D3D3;
 }
 
-#rmvabfqqmg .gt_bottom_border {
+#ybjydnyfzl .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#rmvabfqqmg .gt_col_headings {
+#ybjydnyfzl .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1591,7 +1591,7 @@ Table&nbsp;5.3: The data in a tabular overview including test for normal distrib
   border-right-color: #D3D3D3;
 }
 
-#rmvabfqqmg .gt_col_heading {
+#ybjydnyfzl .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1611,7 +1611,7 @@ Table&nbsp;5.3: The data in a tabular overview including test for normal distrib
   overflow-x: hidden;
 }
 
-#rmvabfqqmg .gt_column_spanner_outer {
+#ybjydnyfzl .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1623,15 +1623,15 @@ Table&nbsp;5.3: The data in a tabular overview including test for normal distrib
   padding-right: 4px;
 }
 
-#rmvabfqqmg .gt_column_spanner_outer:first-child {
+#ybjydnyfzl .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#rmvabfqqmg .gt_column_spanner_outer:last-child {
+#ybjydnyfzl .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#rmvabfqqmg .gt_column_spanner {
+#ybjydnyfzl .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1643,11 +1643,11 @@ Table&nbsp;5.3: The data in a tabular overview including test for normal distrib
   width: 100%;
 }
 
-#rmvabfqqmg .gt_spanner_row {
+#ybjydnyfzl .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#rmvabfqqmg .gt_group_heading {
+#ybjydnyfzl .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1673,7 +1673,7 @@ Table&nbsp;5.3: The data in a tabular overview including test for normal distrib
   text-align: left;
 }
 
-#rmvabfqqmg .gt_empty_group_heading {
+#ybjydnyfzl .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1688,15 +1688,15 @@ Table&nbsp;5.3: The data in a tabular overview including test for normal distrib
   vertical-align: middle;
 }
 
-#rmvabfqqmg .gt_from_md > :first-child {
+#ybjydnyfzl .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#rmvabfqqmg .gt_from_md > :last-child {
+#ybjydnyfzl .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#rmvabfqqmg .gt_row {
+#ybjydnyfzl .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1715,7 +1715,7 @@ Table&nbsp;5.3: The data in a tabular overview including test for normal distrib
   overflow-x: hidden;
 }
 
-#rmvabfqqmg .gt_stub {
+#ybjydnyfzl .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1728,7 +1728,7 @@ Table&nbsp;5.3: The data in a tabular overview including test for normal distrib
   padding-right: 5px;
 }
 
-#rmvabfqqmg .gt_stub_row_group {
+#ybjydnyfzl .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1742,15 +1742,15 @@ Table&nbsp;5.3: The data in a tabular overview including test for normal distrib
   vertical-align: top;
 }
 
-#rmvabfqqmg .gt_row_group_first td {
+#ybjydnyfzl .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#rmvabfqqmg .gt_row_group_first th {
+#ybjydnyfzl .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#rmvabfqqmg .gt_summary_row {
+#ybjydnyfzl .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1760,16 +1760,16 @@ Table&nbsp;5.3: The data in a tabular overview including test for normal distrib
   padding-right: 5px;
 }
 
-#rmvabfqqmg .gt_first_summary_row {
+#ybjydnyfzl .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#rmvabfqqmg .gt_first_summary_row.thick {
+#ybjydnyfzl .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#rmvabfqqmg .gt_last_summary_row {
+#ybjydnyfzl .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1779,7 +1779,7 @@ Table&nbsp;5.3: The data in a tabular overview including test for normal distrib
   border-bottom-color: #D3D3D3;
 }
 
-#rmvabfqqmg .gt_grand_summary_row {
+#ybjydnyfzl .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1789,7 +1789,7 @@ Table&nbsp;5.3: The data in a tabular overview including test for normal distrib
   padding-right: 5px;
 }
 
-#rmvabfqqmg .gt_first_grand_summary_row {
+#ybjydnyfzl .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1799,7 +1799,7 @@ Table&nbsp;5.3: The data in a tabular overview including test for normal distrib
   border-top-color: #D3D3D3;
 }
 
-#rmvabfqqmg .gt_last_grand_summary_row_top {
+#ybjydnyfzl .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1809,11 +1809,11 @@ Table&nbsp;5.3: The data in a tabular overview including test for normal distrib
   border-bottom-color: #D3D3D3;
 }
 
-#rmvabfqqmg .gt_striped {
+#ybjydnyfzl .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#rmvabfqqmg .gt_table_body {
+#ybjydnyfzl .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1822,7 +1822,7 @@ Table&nbsp;5.3: The data in a tabular overview including test for normal distrib
   border-bottom-color: #D3D3D3;
 }
 
-#rmvabfqqmg .gt_footnotes {
+#ybjydnyfzl .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1836,7 +1836,7 @@ Table&nbsp;5.3: The data in a tabular overview including test for normal distrib
   border-right-color: #D3D3D3;
 }
 
-#rmvabfqqmg .gt_footnote {
+#ybjydnyfzl .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1845,7 +1845,7 @@ Table&nbsp;5.3: The data in a tabular overview including test for normal distrib
   padding-right: 5px;
 }
 
-#rmvabfqqmg .gt_sourcenotes {
+#ybjydnyfzl .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1859,7 +1859,7 @@ Table&nbsp;5.3: The data in a tabular overview including test for normal distrib
   border-right-color: #D3D3D3;
 }
 
-#rmvabfqqmg .gt_sourcenote {
+#ybjydnyfzl .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1867,77 +1867,77 @@ Table&nbsp;5.3: The data in a tabular overview including test for normal distrib
   padding-right: 5px;
 }
 
-#rmvabfqqmg .gt_left {
+#ybjydnyfzl .gt_left {
   text-align: left;
 }
 
-#rmvabfqqmg .gt_center {
+#ybjydnyfzl .gt_center {
   text-align: center;
 }
 
-#rmvabfqqmg .gt_right {
+#ybjydnyfzl .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#rmvabfqqmg .gt_font_normal {
+#ybjydnyfzl .gt_font_normal {
   font-weight: normal;
 }
 
-#rmvabfqqmg .gt_font_bold {
+#ybjydnyfzl .gt_font_bold {
   font-weight: bold;
 }
 
-#rmvabfqqmg .gt_font_italic {
+#ybjydnyfzl .gt_font_italic {
   font-style: italic;
 }
 
-#rmvabfqqmg .gt_super {
+#ybjydnyfzl .gt_super {
   font-size: 65%;
 }
 
-#rmvabfqqmg .gt_footnote_marks {
+#ybjydnyfzl .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#rmvabfqqmg .gt_asterisk {
+#ybjydnyfzl .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#rmvabfqqmg .gt_indent_1 {
+#ybjydnyfzl .gt_indent_1 {
   text-indent: 5px;
 }
 
-#rmvabfqqmg .gt_indent_2 {
+#ybjydnyfzl .gt_indent_2 {
   text-indent: 10px;
 }
 
-#rmvabfqqmg .gt_indent_3 {
+#ybjydnyfzl .gt_indent_3 {
   text-indent: 15px;
 }
 
-#rmvabfqqmg .gt_indent_4 {
+#ybjydnyfzl .gt_indent_4 {
   text-indent: 20px;
 }
 
-#rmvabfqqmg .gt_indent_5 {
+#ybjydnyfzl .gt_indent_5 {
   text-indent: 25px;
 }
 
-#rmvabfqqmg .katex-display {
+#ybjydnyfzl .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#rmvabfqqmg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#ybjydnyfzl div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
 
-<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
 <colgroup>
 <col style="width: 16%">
 <col style="width: 16%">
@@ -1948,31 +1948,16 @@ Table&nbsp;5.3: The data in a tabular overview including test for normal distrib
 </colgroup>
 <thead>
 <tr class="gt_col_headings header">
-<th id="<div data-qmd-base64=&quot;KipDaGFyYWN0ZXJpc3RpYyoq&quot;><div class='gt_from_md'><p><strong>Characteristic</strong></p>
-</div></div>" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><p><strong>Characteristic</strong></p></th>
-<th id="<div data-qmd-base64=&quot;KipPdmVyYWxsKiogIApOID0gNTAw&quot;><div class='gt_from_md'><p><strong>Overall</strong><br />
-N = 500</p>
-</div></div><span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;&quot;><sup>1</sup></span>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><p><strong>Overall</strong><br>
-N = 500</p>
-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1</sup></span></th>
-<th id="<div data-qmd-base64=&quot;KipBKiogIApOID0gMTY1&quot;><div class='gt_from_md'><p><strong>A</strong><br />
-N = 165</p>
-</div></div><span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;&quot;><sup>1</sup></span>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><p><strong>A</strong><br>
-N = 165</p>
-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1</sup></span></th>
-<th id="<div data-qmd-base64=&quot;KipCKiogIApOID0gMTgx&quot;><div class='gt_from_md'><p><strong>B</strong><br />
-N = 181</p>
-</div></div><span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;&quot;><sup>1</sup></span>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><p><strong>B</strong><br>
-N = 181</p>
-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1</sup></span></th>
-<th id="<div data-qmd-base64=&quot;KipDKiogIApOID0gMTU0&quot;><div class='gt_from_md'><p><strong>C</strong><br />
-N = 154</p>
-</div></div><span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;&quot;><sup>1</sup></span>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><p><strong>C</strong><br>
-N = 154</p>
-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1</sup></span></th>
-<th id="<div data-qmd-base64=&quot;KipwLXZhbHVlKio=&quot;><div class='gt_from_md'><p><strong>p-value</strong></p>
-</div></div><span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;&quot;><sup>2</sup></span>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><p><strong>p-value</strong></p>
-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>2</sup></span></th>
+<th id="label" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><strong>Characteristic</strong></th>
+<th id="stat_0" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>Overall</strong><br>
+N = 500<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+<th id="stat_1" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>A</strong><br>
+N = 165<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+<th id="stat_2" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>B</strong><br>
+N = 181<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+<th id="stat_3" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>C</strong><br>
+N = 154<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+<th id="p.value" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>p-value</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>2</sup></span></th>
 </tr>
 </thead>
 <tbody class="gt_table_body">
@@ -2000,14 +1985,12 @@ N = 154</p>
 <td class="gt_row gt_center" headers="stat_3">40.05 (39.37, 40.78)</td>
 <td class="gt_row gt_center" headers="p.value">0.7</td>
 </tr>
-</tbody><tfoot class="gt_footnotes">
-<tr class="odd">
-<td colspan="6" class="gt_footnote"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1</sup></span>
-<p>Median (Q1, Q3)</p></td>
+</tbody><tfoot>
+<tr class="gt_footnotes odd">
+<td colspan="6" class="gt_footnote"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> Median (Q1, Q3)</td>
 </tr>
-<tr class="even">
-<td colspan="6" class="gt_footnote"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>2</sup></span>
-<p>Kruskal-Wallis rank sum test</p></td>
+<tr class="gt_footnotes even">
+<td colspan="6" class="gt_footnote"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>2</sup></span> Kruskal-Wallis rank sum test</td>
 </tr>
 </tfoot>
 
@@ -2027,7 +2010,7 @@ N = 154</p>
 <div id="fig-mlm-qq-eda" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-mlm-qq-eda-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter003_Regression_files/figure-revealjs/fig-mlm-qq-eda-1.svg" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
+<img src="chapter003_Regression_files/figure-html/fig-mlm-qq-eda-1.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mlm-qq-eda-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.8: The graphical test for normal distribution (QQ-plot)
@@ -2044,7 +2027,7 @@ Figure&nbsp;5.8: The graphical test for normal distribution (QQ-plot)
 <div id="fig-mlm-hist" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-mlm-hist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter003_Regression_files/figure-revealjs/fig-mlm-hist-1.svg" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
+<img src="chapter003_Regression_files/figure-html/fig-mlm-hist-1.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mlm-hist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.9: The distribution of the output and input parameters.
@@ -2067,23 +2050,23 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
 </figcaption>
 <div aria-describedby="tbl-mlm-mdl-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="wawvucbhrs" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#wawvucbhrs table {
+<div id="oethwaosrk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#oethwaosrk table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#wawvucbhrs thead, #wawvucbhrs tbody, #wawvucbhrs tfoot, #wawvucbhrs tr, #wawvucbhrs td, #wawvucbhrs th {
+#oethwaosrk thead, #oethwaosrk tbody, #oethwaosrk tfoot, #oethwaosrk tr, #oethwaosrk td, #oethwaosrk th {
   border-style: none;
 }
 
-#wawvucbhrs p {
+#oethwaosrk p {
   margin: 0;
   padding: 0;
 }
 
-#wawvucbhrs .gt_table {
+#oethwaosrk .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2109,12 +2092,12 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
   border-left-color: #D3D3D3;
 }
 
-#wawvucbhrs .gt_caption {
+#oethwaosrk .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#wawvucbhrs .gt_title {
+#oethwaosrk .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2126,7 +2109,7 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
   border-bottom-width: 0;
 }
 
-#wawvucbhrs .gt_subtitle {
+#oethwaosrk .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2138,7 +2121,7 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
   border-top-width: 0;
 }
 
-#wawvucbhrs .gt_heading {
+#oethwaosrk .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2150,13 +2133,13 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
   border-right-color: #D3D3D3;
 }
 
-#wawvucbhrs .gt_bottom_border {
+#oethwaosrk .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#wawvucbhrs .gt_col_headings {
+#oethwaosrk .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2171,7 +2154,7 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
   border-right-color: #D3D3D3;
 }
 
-#wawvucbhrs .gt_col_heading {
+#oethwaosrk .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2191,7 +2174,7 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
   overflow-x: hidden;
 }
 
-#wawvucbhrs .gt_column_spanner_outer {
+#oethwaosrk .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2203,15 +2186,15 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
   padding-right: 4px;
 }
 
-#wawvucbhrs .gt_column_spanner_outer:first-child {
+#oethwaosrk .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#wawvucbhrs .gt_column_spanner_outer:last-child {
+#oethwaosrk .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#wawvucbhrs .gt_column_spanner {
+#oethwaosrk .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2223,11 +2206,11 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
   width: 100%;
 }
 
-#wawvucbhrs .gt_spanner_row {
+#oethwaosrk .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#wawvucbhrs .gt_group_heading {
+#oethwaosrk .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2253,7 +2236,7 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
   text-align: left;
 }
 
-#wawvucbhrs .gt_empty_group_heading {
+#oethwaosrk .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2268,15 +2251,15 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
   vertical-align: middle;
 }
 
-#wawvucbhrs .gt_from_md > :first-child {
+#oethwaosrk .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#wawvucbhrs .gt_from_md > :last-child {
+#oethwaosrk .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#wawvucbhrs .gt_row {
+#oethwaosrk .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2295,7 +2278,7 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
   overflow-x: hidden;
 }
 
-#wawvucbhrs .gt_stub {
+#oethwaosrk .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2308,7 +2291,7 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
   padding-right: 5px;
 }
 
-#wawvucbhrs .gt_stub_row_group {
+#oethwaosrk .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2322,15 +2305,15 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
   vertical-align: top;
 }
 
-#wawvucbhrs .gt_row_group_first td {
+#oethwaosrk .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#wawvucbhrs .gt_row_group_first th {
+#oethwaosrk .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#wawvucbhrs .gt_summary_row {
+#oethwaosrk .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2340,16 +2323,16 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
   padding-right: 5px;
 }
 
-#wawvucbhrs .gt_first_summary_row {
+#oethwaosrk .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#wawvucbhrs .gt_first_summary_row.thick {
+#oethwaosrk .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#wawvucbhrs .gt_last_summary_row {
+#oethwaosrk .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2359,7 +2342,7 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
   border-bottom-color: #D3D3D3;
 }
 
-#wawvucbhrs .gt_grand_summary_row {
+#oethwaosrk .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2369,7 +2352,7 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
   padding-right: 5px;
 }
 
-#wawvucbhrs .gt_first_grand_summary_row {
+#oethwaosrk .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2379,7 +2362,7 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
   border-top-color: #D3D3D3;
 }
 
-#wawvucbhrs .gt_last_grand_summary_row_top {
+#oethwaosrk .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2389,11 +2372,11 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
   border-bottom-color: #D3D3D3;
 }
 
-#wawvucbhrs .gt_striped {
+#oethwaosrk .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#wawvucbhrs .gt_table_body {
+#oethwaosrk .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2402,7 +2385,7 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
   border-bottom-color: #D3D3D3;
 }
 
-#wawvucbhrs .gt_footnotes {
+#oethwaosrk .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2416,7 +2399,7 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
   border-right-color: #D3D3D3;
 }
 
-#wawvucbhrs .gt_footnote {
+#oethwaosrk .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2425,7 +2408,7 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
   padding-right: 5px;
 }
 
-#wawvucbhrs .gt_sourcenotes {
+#oethwaosrk .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2439,7 +2422,7 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
   border-right-color: #D3D3D3;
 }
 
-#wawvucbhrs .gt_sourcenote {
+#oethwaosrk .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2447,77 +2430,77 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
   padding-right: 5px;
 }
 
-#wawvucbhrs .gt_left {
+#oethwaosrk .gt_left {
   text-align: left;
 }
 
-#wawvucbhrs .gt_center {
+#oethwaosrk .gt_center {
   text-align: center;
 }
 
-#wawvucbhrs .gt_right {
+#oethwaosrk .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#wawvucbhrs .gt_font_normal {
+#oethwaosrk .gt_font_normal {
   font-weight: normal;
 }
 
-#wawvucbhrs .gt_font_bold {
+#oethwaosrk .gt_font_bold {
   font-weight: bold;
 }
 
-#wawvucbhrs .gt_font_italic {
+#oethwaosrk .gt_font_italic {
   font-style: italic;
 }
 
-#wawvucbhrs .gt_super {
+#oethwaosrk .gt_super {
   font-size: 65%;
 }
 
-#wawvucbhrs .gt_footnote_marks {
+#oethwaosrk .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#wawvucbhrs .gt_asterisk {
+#oethwaosrk .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#wawvucbhrs .gt_indent_1 {
+#oethwaosrk .gt_indent_1 {
   text-indent: 5px;
 }
 
-#wawvucbhrs .gt_indent_2 {
+#oethwaosrk .gt_indent_2 {
   text-indent: 10px;
 }
 
-#wawvucbhrs .gt_indent_3 {
+#oethwaosrk .gt_indent_3 {
   text-indent: 15px;
 }
 
-#wawvucbhrs .gt_indent_4 {
+#oethwaosrk .gt_indent_4 {
   text-indent: 20px;
 }
 
-#wawvucbhrs .gt_indent_5 {
+#oethwaosrk .gt_indent_5 {
   text-indent: 25px;
 }
 
-#wawvucbhrs .katex-display {
+#oethwaosrk .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#wawvucbhrs div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#oethwaosrk div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
 
-<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
 <colgroup>
 <col style="width: 25%">
 <col style="width: 25%">
@@ -2526,15 +2509,10 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
 </colgroup>
 <thead>
 <tr class="gt_col_headings header">
-<th id="<div data-qmd-base64=&quot;KipDaGFyYWN0ZXJpc3RpYyoq&quot;><div class='gt_from_md'><p><strong>Characteristic</strong></p>
-</div></div>" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><p><strong>Characteristic</strong></p></th>
-<th id="<div data-qmd-base64=&quot;KipCZXRhKio=&quot;><div class='gt_from_md'><p><strong>Beta</strong></p>
-</div></div>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><p><strong>Beta</strong></p></th>
-<th id="<div data-qmd-base64=&quot;Kio5NSUgQ0kqKg==&quot;><div class='gt_from_md'><p><strong>95% CI</strong></p>
-</div></div><span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;&quot;><sup>1</sup></span>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><p><strong>95% CI</strong></p>
-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1</sup></span></th>
-<th id="<div data-qmd-base64=&quot;KipwLXZhbHVlKio=&quot;><div class='gt_from_md'><p><strong>p-value</strong></p>
-</div></div>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><p><strong>p-value</strong></p></th>
+<th id="label" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><strong>Characteristic</strong></th>
+<th id="estimate" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>Beta</strong></th>
+<th id="conf.low" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>95% CI</strong></th>
+<th id="p.value" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>p-value</strong></th>
 </tr>
 </thead>
 <tbody class="gt_table_body">
@@ -2578,10 +2556,9 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
 <td class="gt_row gt_center" headers="conf.low">-0.03, 0.20</td>
 <td class="gt_row gt_center" headers="p.value">0.15</td>
 </tr>
-</tbody><tfoot class="gt_footnotes">
-<tr class="odd">
-<td colspan="4" class="gt_footnote"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1</sup></span>
-<p>CI = Confidence Interval</p></td>
+</tbody><tfoot>
+<tr class="gt_sourcenotes odd">
+<td colspan="4" class="gt_sourcenote">Abbreviation: CI = Confidence Interval</td>
 </tr>
 </tfoot>
 
@@ -2601,7 +2578,7 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
 <div id="fig-mlm-mdl" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-mlm-mdl-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter003_Regression_files/figure-revealjs/fig-mlm-mdl-1.svg" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
+<img src="chapter003_Regression_files/figure-html/fig-mlm-mdl-1.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mlm-mdl-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.10: The model of the mulitple linear regression
@@ -2618,7 +2595,7 @@ Figure&nbsp;5.10: The model of the mulitple linear regression
 <div id="fig-mlm-resid-pattern" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-mlm-resid-pattern-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter003_Regression_files/figure-revealjs/fig-mlm-resid-pattern-1.svg" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
+<img src="chapter003_Regression_files/figure-html/fig-mlm-resid-pattern-1.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mlm-resid-pattern-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.11: The check for pattern in the residuals
@@ -2634,7 +2611,7 @@ Figure&nbsp;5.11: The check for pattern in the residuals
 <div id="fig-mlm-resid-nd" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-mlm-resid-nd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter003_Regression_files/figure-revealjs/fig-mlm-resid-nd-1.svg" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
+<img src="chapter003_Regression_files/figure-html/fig-mlm-resid-nd-1.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mlm-resid-nd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.12: The check for normal distribution in the residuals.
@@ -2725,7 +2702,7 @@ p = \frac{1}{1+e^{-(\beta_0 + \beta_1x)}} \label{sigmoid}
 <div id="fig-sigmoid-params" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-sigmoid-params-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter003_Regression_files/figure-revealjs/fig-sigmoid-params-1.svg" class="img-fluid figure-img" style="width:95.0%" data-fig-pos="H">
+<img src="chapter003_Regression_files/figure-html/fig-sigmoid-params-1.png" class="img-fluid figure-img" style="width:95.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sigmoid-params-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.14: The influence of different paramters for the sigmoid function
@@ -2746,7 +2723,7 @@ Figure&nbsp;5.14: The influence of different paramters for the sigmoid function
 <div id="fig-sigmoid-params02" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-sigmoid-params02-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter003_Regression_files/figure-revealjs/fig-sigmoid-params02-1.svg" class="img-fluid figure-img" style="width:95.0%" data-fig-pos="H">
+<img src="chapter003_Regression_files/figure-html/fig-sigmoid-params02-1.png" class="img-fluid figure-img" style="width:95.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sigmoid-params02-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.15: The influence of different paramters for the sigmoid function
@@ -2765,7 +2742,7 @@ Figure&nbsp;5.15: The influence of different paramters for the sigmoid function
 <div id="fig-sigmoid-params03" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-sigmoid-params03-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter003_Regression_files/figure-revealjs/fig-sigmoid-params03-1.svg" class="img-fluid figure-img" style="width:95.0%" data-fig-pos="H">
+<img src="chapter003_Regression_files/figure-html/fig-sigmoid-params03-1.png" class="img-fluid figure-img" style="width:95.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sigmoid-params03-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.16: The influence of different paramters for the sigmoid function
@@ -2784,7 +2761,7 @@ Figure&nbsp;5.16: The influence of different paramters for the sigmoid function
 <div id="fig-sigmoid-params04" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-sigmoid-params04-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter003_Regression_files/figure-revealjs/fig-sigmoid-params04-1.svg" class="img-fluid figure-img" style="width:95.0%" data-fig-pos="H">
+<img src="chapter003_Regression_files/figure-html/fig-sigmoid-params04-1.png" class="img-fluid figure-img" style="width:95.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sigmoid-params04-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.17: The influence of different paramters for the sigmoid function
@@ -2803,7 +2780,7 @@ Figure&nbsp;5.17: The influence of different paramters for the sigmoid function
 <div id="fig-sigmoid-params05" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-sigmoid-params05-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter003_Regression_files/figure-revealjs/fig-sigmoid-params05-1.svg" class="img-fluid figure-img" style="width:95.0%" data-fig-pos="H">
+<img src="chapter003_Regression_files/figure-html/fig-sigmoid-params05-1.png" class="img-fluid figure-img" style="width:95.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sigmoid-params05-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.18: The influence of different paramters for the sigmoid function
@@ -2856,7 +2833,7 @@ Figure&nbsp;5.19: The principle of MLE.
 <div id="fig-logreg-data" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-logreg-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter003_Regression_files/figure-revealjs/fig-logreg-data-1.svg" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
+<img src="chapter003_Regression_files/figure-html/fig-logreg-data-1.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-logreg-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.20: The data for the logistic regression data.
@@ -2876,23 +2853,23 @@ Table&nbsp;5.5: The overview of the logistic regression data.
 </figcaption>
 <div aria-describedby="tbl-logreg-eda-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="yhjbmpznme" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#yhjbmpznme table {
+<div id="eituwolqeq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#eituwolqeq table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#yhjbmpznme thead, #yhjbmpznme tbody, #yhjbmpznme tfoot, #yhjbmpznme tr, #yhjbmpznme td, #yhjbmpznme th {
+#eituwolqeq thead, #eituwolqeq tbody, #eituwolqeq tfoot, #eituwolqeq tr, #eituwolqeq td, #eituwolqeq th {
   border-style: none;
 }
 
-#yhjbmpznme p {
+#eituwolqeq p {
   margin: 0;
   padding: 0;
 }
 
-#yhjbmpznme .gt_table {
+#eituwolqeq .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2918,12 +2895,12 @@ Table&nbsp;5.5: The overview of the logistic regression data.
   border-left-color: #D3D3D3;
 }
 
-#yhjbmpznme .gt_caption {
+#eituwolqeq .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#yhjbmpznme .gt_title {
+#eituwolqeq .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2935,7 +2912,7 @@ Table&nbsp;5.5: The overview of the logistic regression data.
   border-bottom-width: 0;
 }
 
-#yhjbmpznme .gt_subtitle {
+#eituwolqeq .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2947,7 +2924,7 @@ Table&nbsp;5.5: The overview of the logistic regression data.
   border-top-width: 0;
 }
 
-#yhjbmpznme .gt_heading {
+#eituwolqeq .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2959,13 +2936,13 @@ Table&nbsp;5.5: The overview of the logistic regression data.
   border-right-color: #D3D3D3;
 }
 
-#yhjbmpznme .gt_bottom_border {
+#eituwolqeq .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#yhjbmpznme .gt_col_headings {
+#eituwolqeq .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2980,7 +2957,7 @@ Table&nbsp;5.5: The overview of the logistic regression data.
   border-right-color: #D3D3D3;
 }
 
-#yhjbmpznme .gt_col_heading {
+#eituwolqeq .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3000,7 +2977,7 @@ Table&nbsp;5.5: The overview of the logistic regression data.
   overflow-x: hidden;
 }
 
-#yhjbmpznme .gt_column_spanner_outer {
+#eituwolqeq .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3012,15 +2989,15 @@ Table&nbsp;5.5: The overview of the logistic regression data.
   padding-right: 4px;
 }
 
-#yhjbmpznme .gt_column_spanner_outer:first-child {
+#eituwolqeq .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#yhjbmpznme .gt_column_spanner_outer:last-child {
+#eituwolqeq .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#yhjbmpznme .gt_column_spanner {
+#eituwolqeq .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -3032,11 +3009,11 @@ Table&nbsp;5.5: The overview of the logistic regression data.
   width: 100%;
 }
 
-#yhjbmpznme .gt_spanner_row {
+#eituwolqeq .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#yhjbmpznme .gt_group_heading {
+#eituwolqeq .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3062,7 +3039,7 @@ Table&nbsp;5.5: The overview of the logistic regression data.
   text-align: left;
 }
 
-#yhjbmpznme .gt_empty_group_heading {
+#eituwolqeq .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3077,15 +3054,15 @@ Table&nbsp;5.5: The overview of the logistic regression data.
   vertical-align: middle;
 }
 
-#yhjbmpznme .gt_from_md > :first-child {
+#eituwolqeq .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#yhjbmpznme .gt_from_md > :last-child {
+#eituwolqeq .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#yhjbmpznme .gt_row {
+#eituwolqeq .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3104,7 +3081,7 @@ Table&nbsp;5.5: The overview of the logistic regression data.
   overflow-x: hidden;
 }
 
-#yhjbmpznme .gt_stub {
+#eituwolqeq .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3117,7 +3094,7 @@ Table&nbsp;5.5: The overview of the logistic regression data.
   padding-right: 5px;
 }
 
-#yhjbmpznme .gt_stub_row_group {
+#eituwolqeq .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3131,15 +3108,15 @@ Table&nbsp;5.5: The overview of the logistic regression data.
   vertical-align: top;
 }
 
-#yhjbmpznme .gt_row_group_first td {
+#eituwolqeq .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#yhjbmpznme .gt_row_group_first th {
+#eituwolqeq .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#yhjbmpznme .gt_summary_row {
+#eituwolqeq .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3149,16 +3126,16 @@ Table&nbsp;5.5: The overview of the logistic regression data.
   padding-right: 5px;
 }
 
-#yhjbmpznme .gt_first_summary_row {
+#eituwolqeq .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#yhjbmpznme .gt_first_summary_row.thick {
+#eituwolqeq .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#yhjbmpznme .gt_last_summary_row {
+#eituwolqeq .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3168,7 +3145,7 @@ Table&nbsp;5.5: The overview of the logistic regression data.
   border-bottom-color: #D3D3D3;
 }
 
-#yhjbmpznme .gt_grand_summary_row {
+#eituwolqeq .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3178,7 +3155,7 @@ Table&nbsp;5.5: The overview of the logistic regression data.
   padding-right: 5px;
 }
 
-#yhjbmpznme .gt_first_grand_summary_row {
+#eituwolqeq .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3188,7 +3165,7 @@ Table&nbsp;5.5: The overview of the logistic regression data.
   border-top-color: #D3D3D3;
 }
 
-#yhjbmpznme .gt_last_grand_summary_row_top {
+#eituwolqeq .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3198,11 +3175,11 @@ Table&nbsp;5.5: The overview of the logistic regression data.
   border-bottom-color: #D3D3D3;
 }
 
-#yhjbmpznme .gt_striped {
+#eituwolqeq .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#yhjbmpznme .gt_table_body {
+#eituwolqeq .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3211,7 +3188,7 @@ Table&nbsp;5.5: The overview of the logistic regression data.
   border-bottom-color: #D3D3D3;
 }
 
-#yhjbmpznme .gt_footnotes {
+#eituwolqeq .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3225,7 +3202,7 @@ Table&nbsp;5.5: The overview of the logistic regression data.
   border-right-color: #D3D3D3;
 }
 
-#yhjbmpznme .gt_footnote {
+#eituwolqeq .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -3234,7 +3211,7 @@ Table&nbsp;5.5: The overview of the logistic regression data.
   padding-right: 5px;
 }
 
-#yhjbmpznme .gt_sourcenotes {
+#eituwolqeq .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3248,7 +3225,7 @@ Table&nbsp;5.5: The overview of the logistic regression data.
   border-right-color: #D3D3D3;
 }
 
-#yhjbmpznme .gt_sourcenote {
+#eituwolqeq .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -3256,88 +3233,85 @@ Table&nbsp;5.5: The overview of the logistic regression data.
   padding-right: 5px;
 }
 
-#yhjbmpznme .gt_left {
+#eituwolqeq .gt_left {
   text-align: left;
 }
 
-#yhjbmpznme .gt_center {
+#eituwolqeq .gt_center {
   text-align: center;
 }
 
-#yhjbmpznme .gt_right {
+#eituwolqeq .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#yhjbmpznme .gt_font_normal {
+#eituwolqeq .gt_font_normal {
   font-weight: normal;
 }
 
-#yhjbmpznme .gt_font_bold {
+#eituwolqeq .gt_font_bold {
   font-weight: bold;
 }
 
-#yhjbmpznme .gt_font_italic {
+#eituwolqeq .gt_font_italic {
   font-style: italic;
 }
 
-#yhjbmpznme .gt_super {
+#eituwolqeq .gt_super {
   font-size: 65%;
 }
 
-#yhjbmpznme .gt_footnote_marks {
+#eituwolqeq .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#yhjbmpznme .gt_asterisk {
+#eituwolqeq .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#yhjbmpznme .gt_indent_1 {
+#eituwolqeq .gt_indent_1 {
   text-indent: 5px;
 }
 
-#yhjbmpznme .gt_indent_2 {
+#eituwolqeq .gt_indent_2 {
   text-indent: 10px;
 }
 
-#yhjbmpznme .gt_indent_3 {
+#eituwolqeq .gt_indent_3 {
   text-indent: 15px;
 }
 
-#yhjbmpznme .gt_indent_4 {
+#eituwolqeq .gt_indent_4 {
   text-indent: 20px;
 }
 
-#yhjbmpznme .gt_indent_5 {
+#eituwolqeq .gt_indent_5 {
   text-indent: 25px;
 }
 
-#yhjbmpznme .katex-display {
+#eituwolqeq .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#yhjbmpznme div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#eituwolqeq div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
 
-<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
 </colgroup>
 <thead>
 <tr class="gt_col_headings header">
-<th id="<div data-qmd-base64=&quot;KipDaGFyYWN0ZXJpc3RpYyoq&quot;><div class='gt_from_md'><p><strong>Characteristic</strong></p>
-</div></div>" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><p><strong>Characteristic</strong></p></th>
-<th id="<div data-qmd-base64=&quot;KipOID0gNTAwKio=&quot;><div class='gt_from_md'><p><strong>N = 500</strong></p>
-</div></div><span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;&quot;><sup>1</sup></span>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><p><strong>N = 500</strong></p>
-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1</sup></span></th>
+<th id="label" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><strong>Characteristic</strong></th>
+<th id="stat_0" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>N = 500</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
 </tr>
 </thead>
 <tbody class="gt_table_body">
@@ -3358,10 +3332,9 @@ Table&nbsp;5.5: The overview of the logistic regression data.
 <td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;1</td>
 <td class="gt_row gt_center" headers="stat_0">244 (49%)</td>
 </tr>
-</tbody><tfoot class="gt_footnotes">
-<tr class="odd">
-<td colspan="2" class="gt_footnote"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1</sup></span>
-<p>Median (Q1, Q3); n (%)</p></td>
+</tbody><tfoot>
+<tr class="gt_footnotes odd">
+<td colspan="2" class="gt_footnote"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> Median (Q1, Q3); n (%)</td>
 </tr>
 </tfoot>
 
@@ -3384,23 +3357,23 @@ Table&nbsp;5.6: The modeling of the logisitic regression data.
 </figcaption>
 <div aria-describedby="tbl-logreg-mdl-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="ffzvlfhnqi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ffzvlfhnqi table {
+<div id="yxewomlbic" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#yxewomlbic table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ffzvlfhnqi thead, #ffzvlfhnqi tbody, #ffzvlfhnqi tfoot, #ffzvlfhnqi tr, #ffzvlfhnqi td, #ffzvlfhnqi th {
+#yxewomlbic thead, #yxewomlbic tbody, #yxewomlbic tfoot, #yxewomlbic tr, #yxewomlbic td, #yxewomlbic th {
   border-style: none;
 }
 
-#ffzvlfhnqi p {
+#yxewomlbic p {
   margin: 0;
   padding: 0;
 }
 
-#ffzvlfhnqi .gt_table {
+#yxewomlbic .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -3426,12 +3399,12 @@ Table&nbsp;5.6: The modeling of the logisitic regression data.
   border-left-color: #D3D3D3;
 }
 
-#ffzvlfhnqi .gt_caption {
+#yxewomlbic .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ffzvlfhnqi .gt_title {
+#yxewomlbic .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -3443,7 +3416,7 @@ Table&nbsp;5.6: The modeling of the logisitic regression data.
   border-bottom-width: 0;
 }
 
-#ffzvlfhnqi .gt_subtitle {
+#yxewomlbic .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -3455,7 +3428,7 @@ Table&nbsp;5.6: The modeling of the logisitic regression data.
   border-top-width: 0;
 }
 
-#ffzvlfhnqi .gt_heading {
+#yxewomlbic .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -3467,13 +3440,13 @@ Table&nbsp;5.6: The modeling of the logisitic regression data.
   border-right-color: #D3D3D3;
 }
 
-#ffzvlfhnqi .gt_bottom_border {
+#yxewomlbic .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ffzvlfhnqi .gt_col_headings {
+#yxewomlbic .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3488,7 +3461,7 @@ Table&nbsp;5.6: The modeling of the logisitic regression data.
   border-right-color: #D3D3D3;
 }
 
-#ffzvlfhnqi .gt_col_heading {
+#yxewomlbic .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3508,7 +3481,7 @@ Table&nbsp;5.6: The modeling of the logisitic regression data.
   overflow-x: hidden;
 }
 
-#ffzvlfhnqi .gt_column_spanner_outer {
+#yxewomlbic .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3520,15 +3493,15 @@ Table&nbsp;5.6: The modeling of the logisitic regression data.
   padding-right: 4px;
 }
 
-#ffzvlfhnqi .gt_column_spanner_outer:first-child {
+#yxewomlbic .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ffzvlfhnqi .gt_column_spanner_outer:last-child {
+#yxewomlbic .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ffzvlfhnqi .gt_column_spanner {
+#yxewomlbic .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -3540,11 +3513,11 @@ Table&nbsp;5.6: The modeling of the logisitic regression data.
   width: 100%;
 }
 
-#ffzvlfhnqi .gt_spanner_row {
+#yxewomlbic .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ffzvlfhnqi .gt_group_heading {
+#yxewomlbic .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3570,7 +3543,7 @@ Table&nbsp;5.6: The modeling of the logisitic regression data.
   text-align: left;
 }
 
-#ffzvlfhnqi .gt_empty_group_heading {
+#yxewomlbic .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3585,15 +3558,15 @@ Table&nbsp;5.6: The modeling of the logisitic regression data.
   vertical-align: middle;
 }
 
-#ffzvlfhnqi .gt_from_md > :first-child {
+#yxewomlbic .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ffzvlfhnqi .gt_from_md > :last-child {
+#yxewomlbic .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ffzvlfhnqi .gt_row {
+#yxewomlbic .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3612,7 +3585,7 @@ Table&nbsp;5.6: The modeling of the logisitic regression data.
   overflow-x: hidden;
 }
 
-#ffzvlfhnqi .gt_stub {
+#yxewomlbic .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3625,7 +3598,7 @@ Table&nbsp;5.6: The modeling of the logisitic regression data.
   padding-right: 5px;
 }
 
-#ffzvlfhnqi .gt_stub_row_group {
+#yxewomlbic .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3639,15 +3612,15 @@ Table&nbsp;5.6: The modeling of the logisitic regression data.
   vertical-align: top;
 }
 
-#ffzvlfhnqi .gt_row_group_first td {
+#yxewomlbic .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ffzvlfhnqi .gt_row_group_first th {
+#yxewomlbic .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ffzvlfhnqi .gt_summary_row {
+#yxewomlbic .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3657,16 +3630,16 @@ Table&nbsp;5.6: The modeling of the logisitic regression data.
   padding-right: 5px;
 }
 
-#ffzvlfhnqi .gt_first_summary_row {
+#yxewomlbic .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ffzvlfhnqi .gt_first_summary_row.thick {
+#yxewomlbic .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ffzvlfhnqi .gt_last_summary_row {
+#yxewomlbic .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3676,7 +3649,7 @@ Table&nbsp;5.6: The modeling of the logisitic regression data.
   border-bottom-color: #D3D3D3;
 }
 
-#ffzvlfhnqi .gt_grand_summary_row {
+#yxewomlbic .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3686,7 +3659,7 @@ Table&nbsp;5.6: The modeling of the logisitic regression data.
   padding-right: 5px;
 }
 
-#ffzvlfhnqi .gt_first_grand_summary_row {
+#yxewomlbic .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3696,7 +3669,7 @@ Table&nbsp;5.6: The modeling of the logisitic regression data.
   border-top-color: #D3D3D3;
 }
 
-#ffzvlfhnqi .gt_last_grand_summary_row_top {
+#yxewomlbic .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3706,11 +3679,11 @@ Table&nbsp;5.6: The modeling of the logisitic regression data.
   border-bottom-color: #D3D3D3;
 }
 
-#ffzvlfhnqi .gt_striped {
+#yxewomlbic .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ffzvlfhnqi .gt_table_body {
+#yxewomlbic .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3719,7 +3692,7 @@ Table&nbsp;5.6: The modeling of the logisitic regression data.
   border-bottom-color: #D3D3D3;
 }
 
-#ffzvlfhnqi .gt_footnotes {
+#yxewomlbic .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3733,7 +3706,7 @@ Table&nbsp;5.6: The modeling of the logisitic regression data.
   border-right-color: #D3D3D3;
 }
 
-#ffzvlfhnqi .gt_footnote {
+#yxewomlbic .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -3742,7 +3715,7 @@ Table&nbsp;5.6: The modeling of the logisitic regression data.
   padding-right: 5px;
 }
 
-#ffzvlfhnqi .gt_sourcenotes {
+#yxewomlbic .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3756,7 +3729,7 @@ Table&nbsp;5.6: The modeling of the logisitic regression data.
   border-right-color: #D3D3D3;
 }
 
-#ffzvlfhnqi .gt_sourcenote {
+#yxewomlbic .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -3764,95 +3737,83 @@ Table&nbsp;5.6: The modeling of the logisitic regression data.
   padding-right: 5px;
 }
 
-#ffzvlfhnqi .gt_left {
+#yxewomlbic .gt_left {
   text-align: left;
 }
 
-#ffzvlfhnqi .gt_center {
+#yxewomlbic .gt_center {
   text-align: center;
 }
 
-#ffzvlfhnqi .gt_right {
+#yxewomlbic .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ffzvlfhnqi .gt_font_normal {
+#yxewomlbic .gt_font_normal {
   font-weight: normal;
 }
 
-#ffzvlfhnqi .gt_font_bold {
+#yxewomlbic .gt_font_bold {
   font-weight: bold;
 }
 
-#ffzvlfhnqi .gt_font_italic {
+#yxewomlbic .gt_font_italic {
   font-style: italic;
 }
 
-#ffzvlfhnqi .gt_super {
+#yxewomlbic .gt_super {
   font-size: 65%;
 }
 
-#ffzvlfhnqi .gt_footnote_marks {
+#yxewomlbic .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ffzvlfhnqi .gt_asterisk {
+#yxewomlbic .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ffzvlfhnqi .gt_indent_1 {
+#yxewomlbic .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ffzvlfhnqi .gt_indent_2 {
+#yxewomlbic .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ffzvlfhnqi .gt_indent_3 {
+#yxewomlbic .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ffzvlfhnqi .gt_indent_4 {
+#yxewomlbic .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ffzvlfhnqi .gt_indent_5 {
+#yxewomlbic .gt_indent_5 {
   text-indent: 25px;
 }
 
-#ffzvlfhnqi .katex-display {
+#yxewomlbic .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#ffzvlfhnqi div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#yxewomlbic div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
 
-<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<colgroup>
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-</colgroup>
+<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_col_headings header">
-<th id="<div data-qmd-base64=&quot;KipDaGFyYWN0ZXJpc3RpYyoq&quot;><div class='gt_from_md'><p><strong>Characteristic</strong></p>
-</div></div>" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><p><strong>Characteristic</strong></p></th>
-<th id="<div data-qmd-base64=&quot;Kipsb2coT1IpKio=&quot;><div class='gt_from_md'><p><strong>log(OR)</strong></p>
-</div></div><span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;&quot;><sup>1</sup></span>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><p><strong>log(OR)</strong></p>
-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1</sup></span></th>
-<th id="<div data-qmd-base64=&quot;Kio5NSUgQ0kqKg==&quot;><div class='gt_from_md'><p><strong>95% CI</strong></p>
-</div></div><span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;&quot;><sup>1</sup></span>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><p><strong>95% CI</strong></p>
-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1</sup></span></th>
-<th id="<div data-qmd-base64=&quot;KipwLXZhbHVlKio=&quot;><div class='gt_from_md'><p><strong>p-value</strong></p>
-</div></div>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><p><strong>p-value</strong></p></th>
+<th id="label" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><strong>Characteristic</strong></th>
+<th id="estimate" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>log(OR)</strong></th>
+<th id="conf.low" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>95% CI</strong></th>
+<th id="p.value" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>p-value</strong></th>
 </tr>
 </thead>
 <tbody class="gt_table_body">
@@ -3862,10 +3823,9 @@ Table&nbsp;5.6: The modeling of the logisitic regression data.
 <td class="gt_row gt_center" headers="conf.low">0.35, 0.57</td>
 <td class="gt_row gt_center" headers="p.value">&lt;0.001</td>
 </tr>
-</tbody><tfoot class="gt_footnotes">
-<tr class="odd">
-<td colspan="4" class="gt_footnote"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1</sup></span>
-<p>OR = Odds Ratio, CI = Confidence Interval</p></td>
+</tbody><tfoot>
+<tr class="gt_sourcenotes odd">
+<td colspan="4" class="gt_sourcenote">Abbreviations: CI = Confidence Interval, OR = Odds Ratio</td>
 </tr>
 </tfoot>
 
@@ -3890,7 +3850,7 @@ Table&nbsp;5.6: The modeling of the logisitic regression data.
 <div id="fig-logreg-mdl" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-logreg-mdl-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter003_Regression_files/figure-revealjs/fig-logreg-mdl-1.svg" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
+<img src="chapter003_Regression_files/figure-html/fig-logreg-mdl-1.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-logreg-mdl-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.21: The probability (odds) for a drive shaft being PASS or FAIL for a given feed
@@ -3909,7 +3869,7 @@ Figure&nbsp;5.21: The probability (odds) for a drive shaft being PASS or FAIL fo
 <div id="fig-logreg-qq" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-logreg-qq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter003_Regression_files/figure-revealjs/fig-logreg-qq-1.svg" class="img-fluid figure-img" style="width:85.0%" data-fig-pos="H">
+<img src="chapter003_Regression_files/figure-html/fig-logreg-qq-1.png" class="img-fluid figure-img" style="width:85.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-logreg-qq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.22: Are the residuals of the model normally distributed?
@@ -4075,7 +4035,7 @@ The ratio of true positive instances to the total actual positive instances.
 <div id="fig-glm-conmat05" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-glm-conmat05-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter003_Regression_files/figure-revealjs/fig-glm-conmat05-1.svg" class="img-fluid figure-img" style="width:95.0%" data-fig-pos="H">
+<img src="chapter003_Regression_files/figure-html/fig-glm-conmat05-1.png" class="img-fluid figure-img" style="width:95.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-glm-conmat05-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.24: Confusion matrices at different probability thresholds
@@ -4092,7 +4052,7 @@ Figure&nbsp;5.24: Confusion matrices at different probability thresholds
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="chapter003_Regression_files/figure-revealjs/unnamed-chunk-36-1.svg" class="img-fluid figure-img"></p>
+<p><img src="chapter003_Regression_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="768"></p>
 </figure>
 </div>
 </div>
@@ -4104,7 +4064,7 @@ Figure&nbsp;5.24: Confusion matrices at different probability thresholds
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="chapter003_Regression_files/figure-revealjs/unnamed-chunk-37-1.svg" class="img-fluid figure-img"></p>
+<p><img src="chapter003_Regression_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="768"></p>
 </figure>
 </div>
 </div>
@@ -4116,7 +4076,7 @@ Figure&nbsp;5.24: Confusion matrices at different probability thresholds
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="chapter003_Regression_files/figure-revealjs/unnamed-chunk-38-1.svg" class="img-fluid figure-img"></p>
+<p><img src="chapter003_Regression_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="768"></p>
 </figure>
 </div>
 </div>
@@ -4128,7 +4088,7 @@ Figure&nbsp;5.24: Confusion matrices at different probability thresholds
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="chapter003_Regression_files/figure-revealjs/unnamed-chunk-39-1.svg" class="img-fluid figure-img"></p>
+<p><img src="chapter003_Regression_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="768"></p>
 </figure>
 </div>
 </div>
@@ -4140,7 +4100,7 @@ Figure&nbsp;5.24: Confusion matrices at different probability thresholds
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="chapter003_Regression_files/figure-revealjs/unnamed-chunk-40-1.svg" class="img-fluid figure-img"></p>
+<p><img src="chapter003_Regression_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="768"></p>
 </figure>
 </div>
 </div>
@@ -4152,7 +4112,7 @@ Figure&nbsp;5.24: Confusion matrices at different probability thresholds
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="chapter003_Regression_files/figure-revealjs/unnamed-chunk-41-1.svg" class="img-fluid figure-img"></p>
+<p><img src="chapter003_Regression_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="768"></p>
 </figure>
 </div>
 </div>
@@ -4164,7 +4124,7 @@ Figure&nbsp;5.24: Confusion matrices at different probability thresholds
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="chapter003_Regression_files/figure-revealjs/unnamed-chunk-42-1.svg" class="img-fluid figure-img"></p>
+<p><img src="chapter003_Regression_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="768"></p>
 </figure>
 </div>
 </div>
@@ -4219,82 +4179,6 @@ Starmer, J. 2022. <em>The StatQuest Illustrated Guide to Machine Learning!!!: Ma
 </section>
 
 </main> <!-- /main -->
-
-
-<script>
-
-  // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-
-  // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-
-  // slide changes (different for each slide format).
-
-  (function () {
-
-    // dispatch for htmlwidgets
-
-    function fireSlideEnter() {
-
-      const event = window.document.createEvent("Event");
-
-      event.initEvent("slideenter", true, true);
-
-      window.document.dispatchEvent(event);
-
-    }
-
-
-
-    function fireSlideChanged(previousSlide, currentSlide) {
-
-      fireSlideEnter();
-
-
-
-      // dispatch for shiny
-
-      if (window.jQuery) {
-
-        if (previousSlide) {
-
-          window.jQuery(previousSlide).trigger("hidden");
-
-        }
-
-        if (currentSlide) {
-
-          window.jQuery(currentSlide).trigger("shown");
-
-        }
-
-      }
-
-    }
-
-
-
-    // hookup for slidy
-
-    if (window.w3c_slidy) {
-
-      window.w3c_slidy.add_observer(function (slide_num) {
-
-        // slide_num starts at position 1
-
-        fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-
-      });
-
-    }
-
-
-
-  })();
-
-</script>
-
-
-
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -4346,13 +4230,14 @@ Starmer, J. 2022. <em>The StatQuest Illustrated Guide to Machine Learning!!!: Ma
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

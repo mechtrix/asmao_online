@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.24">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -90,14 +90,15 @@ div.csl-indent {
 <link href="./chapter004_ProductionStatistics.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-a37c72dd2dbac68997fcdc15a3622e78.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-364982630eef5352dd1537128a8ed5cb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-70a47bd5681a7291082a5b9f83d58762.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -169,7 +170,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -210,12 +211,11 @@ window.Quarto = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-    <div class="sidebar-title mb-0 py-0">
-      <a href="./">Advanced Statistical Methods and Optimization</a> 
-        <div class="sidebar-tools-main">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
+      <div class="sidebar-tools-main">
     <a href="./asmao_online.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
 </div>
-    </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
@@ -370,7 +370,7 @@ window.Quarto = {
 <div id="fig-ofat" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-ofat-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter005_DoE_files/figure-revealjs/fig-ofat-1.svg" class="img-fluid figure-img" style="width:85.0%">
+<img src="chapter005_DoE_files/figure-html/fig-ofat-1.png" class="img-fluid figure-img" style="width:85.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ofat-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;7.1: OFAT quickly becomes cumbersome
@@ -468,23 +468,23 @@ Table&nbsp;7.1: The design matrix for the pizza dough experimentation
 </figcaption>
 <div aria-describedby="tbl-dm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="ikrguhjszs" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ikrguhjszs table {
+<div id="gjqnqvgihp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#gjqnqvgihp table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ikrguhjszs thead, #ikrguhjszs tbody, #ikrguhjszs tfoot, #ikrguhjszs tr, #ikrguhjszs td, #ikrguhjszs th {
+#gjqnqvgihp thead, #gjqnqvgihp tbody, #gjqnqvgihp tfoot, #gjqnqvgihp tr, #gjqnqvgihp td, #gjqnqvgihp th {
   border-style: none;
 }
 
-#ikrguhjszs p {
+#gjqnqvgihp p {
   margin: 0;
   padding: 0;
 }
 
-#ikrguhjszs .gt_table {
+#gjqnqvgihp .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -510,12 +510,12 @@ Table&nbsp;7.1: The design matrix for the pizza dough experimentation
   border-left-color: #D3D3D3;
 }
 
-#ikrguhjszs .gt_caption {
+#gjqnqvgihp .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ikrguhjszs .gt_title {
+#gjqnqvgihp .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -527,7 +527,7 @@ Table&nbsp;7.1: The design matrix for the pizza dough experimentation
   border-bottom-width: 0;
 }
 
-#ikrguhjszs .gt_subtitle {
+#gjqnqvgihp .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -539,7 +539,7 @@ Table&nbsp;7.1: The design matrix for the pizza dough experimentation
   border-top-width: 0;
 }
 
-#ikrguhjszs .gt_heading {
+#gjqnqvgihp .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -551,13 +551,13 @@ Table&nbsp;7.1: The design matrix for the pizza dough experimentation
   border-right-color: #D3D3D3;
 }
 
-#ikrguhjszs .gt_bottom_border {
+#gjqnqvgihp .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ikrguhjszs .gt_col_headings {
+#gjqnqvgihp .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -572,7 +572,7 @@ Table&nbsp;7.1: The design matrix for the pizza dough experimentation
   border-right-color: #D3D3D3;
 }
 
-#ikrguhjszs .gt_col_heading {
+#gjqnqvgihp .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -592,7 +592,7 @@ Table&nbsp;7.1: The design matrix for the pizza dough experimentation
   overflow-x: hidden;
 }
 
-#ikrguhjszs .gt_column_spanner_outer {
+#gjqnqvgihp .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -604,15 +604,15 @@ Table&nbsp;7.1: The design matrix for the pizza dough experimentation
   padding-right: 4px;
 }
 
-#ikrguhjszs .gt_column_spanner_outer:first-child {
+#gjqnqvgihp .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ikrguhjszs .gt_column_spanner_outer:last-child {
+#gjqnqvgihp .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ikrguhjszs .gt_column_spanner {
+#gjqnqvgihp .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -624,11 +624,11 @@ Table&nbsp;7.1: The design matrix for the pizza dough experimentation
   width: 100%;
 }
 
-#ikrguhjszs .gt_spanner_row {
+#gjqnqvgihp .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ikrguhjszs .gt_group_heading {
+#gjqnqvgihp .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -654,7 +654,7 @@ Table&nbsp;7.1: The design matrix for the pizza dough experimentation
   text-align: left;
 }
 
-#ikrguhjszs .gt_empty_group_heading {
+#gjqnqvgihp .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -669,15 +669,15 @@ Table&nbsp;7.1: The design matrix for the pizza dough experimentation
   vertical-align: middle;
 }
 
-#ikrguhjszs .gt_from_md > :first-child {
+#gjqnqvgihp .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ikrguhjszs .gt_from_md > :last-child {
+#gjqnqvgihp .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ikrguhjszs .gt_row {
+#gjqnqvgihp .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -696,7 +696,7 @@ Table&nbsp;7.1: The design matrix for the pizza dough experimentation
   overflow-x: hidden;
 }
 
-#ikrguhjszs .gt_stub {
+#gjqnqvgihp .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -709,7 +709,7 @@ Table&nbsp;7.1: The design matrix for the pizza dough experimentation
   padding-right: 5px;
 }
 
-#ikrguhjszs .gt_stub_row_group {
+#gjqnqvgihp .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -723,15 +723,15 @@ Table&nbsp;7.1: The design matrix for the pizza dough experimentation
   vertical-align: top;
 }
 
-#ikrguhjszs .gt_row_group_first td {
+#gjqnqvgihp .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ikrguhjszs .gt_row_group_first th {
+#gjqnqvgihp .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ikrguhjszs .gt_summary_row {
+#gjqnqvgihp .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -741,16 +741,16 @@ Table&nbsp;7.1: The design matrix for the pizza dough experimentation
   padding-right: 5px;
 }
 
-#ikrguhjszs .gt_first_summary_row {
+#gjqnqvgihp .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ikrguhjszs .gt_first_summary_row.thick {
+#gjqnqvgihp .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ikrguhjszs .gt_last_summary_row {
+#gjqnqvgihp .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -760,7 +760,7 @@ Table&nbsp;7.1: The design matrix for the pizza dough experimentation
   border-bottom-color: #D3D3D3;
 }
 
-#ikrguhjszs .gt_grand_summary_row {
+#gjqnqvgihp .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -770,7 +770,7 @@ Table&nbsp;7.1: The design matrix for the pizza dough experimentation
   padding-right: 5px;
 }
 
-#ikrguhjszs .gt_first_grand_summary_row {
+#gjqnqvgihp .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -780,7 +780,7 @@ Table&nbsp;7.1: The design matrix for the pizza dough experimentation
   border-top-color: #D3D3D3;
 }
 
-#ikrguhjszs .gt_last_grand_summary_row_top {
+#gjqnqvgihp .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -790,11 +790,11 @@ Table&nbsp;7.1: The design matrix for the pizza dough experimentation
   border-bottom-color: #D3D3D3;
 }
 
-#ikrguhjszs .gt_striped {
+#gjqnqvgihp .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ikrguhjszs .gt_table_body {
+#gjqnqvgihp .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -803,7 +803,7 @@ Table&nbsp;7.1: The design matrix for the pizza dough experimentation
   border-bottom-color: #D3D3D3;
 }
 
-#ikrguhjszs .gt_footnotes {
+#gjqnqvgihp .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -817,7 +817,7 @@ Table&nbsp;7.1: The design matrix for the pizza dough experimentation
   border-right-color: #D3D3D3;
 }
 
-#ikrguhjszs .gt_footnote {
+#gjqnqvgihp .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -826,7 +826,7 @@ Table&nbsp;7.1: The design matrix for the pizza dough experimentation
   padding-right: 5px;
 }
 
-#ikrguhjszs .gt_sourcenotes {
+#gjqnqvgihp .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -840,7 +840,7 @@ Table&nbsp;7.1: The design matrix for the pizza dough experimentation
   border-right-color: #D3D3D3;
 }
 
-#ikrguhjszs .gt_sourcenote {
+#gjqnqvgihp .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -848,77 +848,77 @@ Table&nbsp;7.1: The design matrix for the pizza dough experimentation
   padding-right: 5px;
 }
 
-#ikrguhjszs .gt_left {
+#gjqnqvgihp .gt_left {
   text-align: left;
 }
 
-#ikrguhjszs .gt_center {
+#gjqnqvgihp .gt_center {
   text-align: center;
 }
 
-#ikrguhjszs .gt_right {
+#gjqnqvgihp .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ikrguhjszs .gt_font_normal {
+#gjqnqvgihp .gt_font_normal {
   font-weight: normal;
 }
 
-#ikrguhjszs .gt_font_bold {
+#gjqnqvgihp .gt_font_bold {
   font-weight: bold;
 }
 
-#ikrguhjszs .gt_font_italic {
+#gjqnqvgihp .gt_font_italic {
   font-style: italic;
 }
 
-#ikrguhjszs .gt_super {
+#gjqnqvgihp .gt_super {
   font-size: 65%;
 }
 
-#ikrguhjszs .gt_footnote_marks {
+#gjqnqvgihp .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ikrguhjszs .gt_asterisk {
+#gjqnqvgihp .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ikrguhjszs .gt_indent_1 {
+#gjqnqvgihp .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ikrguhjszs .gt_indent_2 {
+#gjqnqvgihp .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ikrguhjszs .gt_indent_3 {
+#gjqnqvgihp .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ikrguhjszs .gt_indent_4 {
+#gjqnqvgihp .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ikrguhjszs .gt_indent_5 {
+#gjqnqvgihp .gt_indent_5 {
   text-indent: 25px;
 }
 
-#ikrguhjszs .katex-display {
+#gjqnqvgihp .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#ikrguhjszs div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#gjqnqvgihp div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
 
-<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_col_headings header">
 <th id="flour" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">flour</th>
@@ -1021,23 +1021,23 @@ Table&nbsp;7.2: The randomized design matrix for experimental runs
 </figcaption>
 <div aria-describedby="tbl-dm-rnd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="gcrlqoraec" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#gcrlqoraec table {
+<div id="djlycdtiww" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#djlycdtiww table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#gcrlqoraec thead, #gcrlqoraec tbody, #gcrlqoraec tfoot, #gcrlqoraec tr, #gcrlqoraec td, #gcrlqoraec th {
+#djlycdtiww thead, #djlycdtiww tbody, #djlycdtiww tfoot, #djlycdtiww tr, #djlycdtiww td, #djlycdtiww th {
   border-style: none;
 }
 
-#gcrlqoraec p {
+#djlycdtiww p {
   margin: 0;
   padding: 0;
 }
 
-#gcrlqoraec .gt_table {
+#djlycdtiww .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1063,12 +1063,12 @@ Table&nbsp;7.2: The randomized design matrix for experimental runs
   border-left-color: #D3D3D3;
 }
 
-#gcrlqoraec .gt_caption {
+#djlycdtiww .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#gcrlqoraec .gt_title {
+#djlycdtiww .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1080,7 +1080,7 @@ Table&nbsp;7.2: The randomized design matrix for experimental runs
   border-bottom-width: 0;
 }
 
-#gcrlqoraec .gt_subtitle {
+#djlycdtiww .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1092,7 +1092,7 @@ Table&nbsp;7.2: The randomized design matrix for experimental runs
   border-top-width: 0;
 }
 
-#gcrlqoraec .gt_heading {
+#djlycdtiww .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1104,13 +1104,13 @@ Table&nbsp;7.2: The randomized design matrix for experimental runs
   border-right-color: #D3D3D3;
 }
 
-#gcrlqoraec .gt_bottom_border {
+#djlycdtiww .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#gcrlqoraec .gt_col_headings {
+#djlycdtiww .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1125,7 +1125,7 @@ Table&nbsp;7.2: The randomized design matrix for experimental runs
   border-right-color: #D3D3D3;
 }
 
-#gcrlqoraec .gt_col_heading {
+#djlycdtiww .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1145,7 +1145,7 @@ Table&nbsp;7.2: The randomized design matrix for experimental runs
   overflow-x: hidden;
 }
 
-#gcrlqoraec .gt_column_spanner_outer {
+#djlycdtiww .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1157,15 +1157,15 @@ Table&nbsp;7.2: The randomized design matrix for experimental runs
   padding-right: 4px;
 }
 
-#gcrlqoraec .gt_column_spanner_outer:first-child {
+#djlycdtiww .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#gcrlqoraec .gt_column_spanner_outer:last-child {
+#djlycdtiww .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#gcrlqoraec .gt_column_spanner {
+#djlycdtiww .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1177,11 +1177,11 @@ Table&nbsp;7.2: The randomized design matrix for experimental runs
   width: 100%;
 }
 
-#gcrlqoraec .gt_spanner_row {
+#djlycdtiww .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#gcrlqoraec .gt_group_heading {
+#djlycdtiww .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1207,7 +1207,7 @@ Table&nbsp;7.2: The randomized design matrix for experimental runs
   text-align: left;
 }
 
-#gcrlqoraec .gt_empty_group_heading {
+#djlycdtiww .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1222,15 +1222,15 @@ Table&nbsp;7.2: The randomized design matrix for experimental runs
   vertical-align: middle;
 }
 
-#gcrlqoraec .gt_from_md > :first-child {
+#djlycdtiww .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#gcrlqoraec .gt_from_md > :last-child {
+#djlycdtiww .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#gcrlqoraec .gt_row {
+#djlycdtiww .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1249,7 +1249,7 @@ Table&nbsp;7.2: The randomized design matrix for experimental runs
   overflow-x: hidden;
 }
 
-#gcrlqoraec .gt_stub {
+#djlycdtiww .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1262,7 +1262,7 @@ Table&nbsp;7.2: The randomized design matrix for experimental runs
   padding-right: 5px;
 }
 
-#gcrlqoraec .gt_stub_row_group {
+#djlycdtiww .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1276,15 +1276,15 @@ Table&nbsp;7.2: The randomized design matrix for experimental runs
   vertical-align: top;
 }
 
-#gcrlqoraec .gt_row_group_first td {
+#djlycdtiww .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#gcrlqoraec .gt_row_group_first th {
+#djlycdtiww .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#gcrlqoraec .gt_summary_row {
+#djlycdtiww .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1294,16 +1294,16 @@ Table&nbsp;7.2: The randomized design matrix for experimental runs
   padding-right: 5px;
 }
 
-#gcrlqoraec .gt_first_summary_row {
+#djlycdtiww .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#gcrlqoraec .gt_first_summary_row.thick {
+#djlycdtiww .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#gcrlqoraec .gt_last_summary_row {
+#djlycdtiww .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1313,7 +1313,7 @@ Table&nbsp;7.2: The randomized design matrix for experimental runs
   border-bottom-color: #D3D3D3;
 }
 
-#gcrlqoraec .gt_grand_summary_row {
+#djlycdtiww .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1323,7 +1323,7 @@ Table&nbsp;7.2: The randomized design matrix for experimental runs
   padding-right: 5px;
 }
 
-#gcrlqoraec .gt_first_grand_summary_row {
+#djlycdtiww .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1333,7 +1333,7 @@ Table&nbsp;7.2: The randomized design matrix for experimental runs
   border-top-color: #D3D3D3;
 }
 
-#gcrlqoraec .gt_last_grand_summary_row_top {
+#djlycdtiww .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1343,11 +1343,11 @@ Table&nbsp;7.2: The randomized design matrix for experimental runs
   border-bottom-color: #D3D3D3;
 }
 
-#gcrlqoraec .gt_striped {
+#djlycdtiww .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#gcrlqoraec .gt_table_body {
+#djlycdtiww .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1356,7 +1356,7 @@ Table&nbsp;7.2: The randomized design matrix for experimental runs
   border-bottom-color: #D3D3D3;
 }
 
-#gcrlqoraec .gt_footnotes {
+#djlycdtiww .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1370,7 +1370,7 @@ Table&nbsp;7.2: The randomized design matrix for experimental runs
   border-right-color: #D3D3D3;
 }
 
-#gcrlqoraec .gt_footnote {
+#djlycdtiww .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1379,7 +1379,7 @@ Table&nbsp;7.2: The randomized design matrix for experimental runs
   padding-right: 5px;
 }
 
-#gcrlqoraec .gt_sourcenotes {
+#djlycdtiww .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1393,7 +1393,7 @@ Table&nbsp;7.2: The randomized design matrix for experimental runs
   border-right-color: #D3D3D3;
 }
 
-#gcrlqoraec .gt_sourcenote {
+#djlycdtiww .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1401,77 +1401,77 @@ Table&nbsp;7.2: The randomized design matrix for experimental runs
   padding-right: 5px;
 }
 
-#gcrlqoraec .gt_left {
+#djlycdtiww .gt_left {
   text-align: left;
 }
 
-#gcrlqoraec .gt_center {
+#djlycdtiww .gt_center {
   text-align: center;
 }
 
-#gcrlqoraec .gt_right {
+#djlycdtiww .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#gcrlqoraec .gt_font_normal {
+#djlycdtiww .gt_font_normal {
   font-weight: normal;
 }
 
-#gcrlqoraec .gt_font_bold {
+#djlycdtiww .gt_font_bold {
   font-weight: bold;
 }
 
-#gcrlqoraec .gt_font_italic {
+#djlycdtiww .gt_font_italic {
   font-style: italic;
 }
 
-#gcrlqoraec .gt_super {
+#djlycdtiww .gt_super {
   font-size: 65%;
 }
 
-#gcrlqoraec .gt_footnote_marks {
+#djlycdtiww .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#gcrlqoraec .gt_asterisk {
+#djlycdtiww .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#gcrlqoraec .gt_indent_1 {
+#djlycdtiww .gt_indent_1 {
   text-indent: 5px;
 }
 
-#gcrlqoraec .gt_indent_2 {
+#djlycdtiww .gt_indent_2 {
   text-indent: 10px;
 }
 
-#gcrlqoraec .gt_indent_3 {
+#djlycdtiww .gt_indent_3 {
   text-indent: 15px;
 }
 
-#gcrlqoraec .gt_indent_4 {
+#djlycdtiww .gt_indent_4 {
   text-indent: 20px;
 }
 
-#gcrlqoraec .gt_indent_5 {
+#djlycdtiww .gt_indent_5 {
   text-indent: 25px;
 }
 
-#gcrlqoraec .katex-display {
+#djlycdtiww .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#gcrlqoraec div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#djlycdtiww div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
 
-<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_col_headings header">
 <th id="flour" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">flour</th>
@@ -1491,50 +1491,50 @@ Table&nbsp;7.2: The randomized design matrix for experimental runs
 </tr>
 <tr class="even">
 <td class="gt_row gt_center" headers="flour">-</td>
-<td class="gt_row gt_center" headers="salt">-</td>
+<td class="gt_row gt_center" headers="salt">+</td>
 <td class="gt_row gt_center" headers="bakPow">-</td>
 <td class="gt_row gt_center" headers="score">NA</td>
 <td class="gt_row gt_right" headers="ord">2</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_center" headers="flour">+</td>
+<td class="gt_row gt_center" headers="flour">-</td>
 <td class="gt_row gt_center" headers="salt">-</td>
-<td class="gt_row gt_center" headers="bakPow">-</td>
+<td class="gt_row gt_center" headers="bakPow">+</td>
 <td class="gt_row gt_center" headers="score">NA</td>
 <td class="gt_row gt_right" headers="ord">3</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_center" headers="flour">+</td>
-<td class="gt_row gt_center" headers="salt">+</td>
-<td class="gt_row gt_center" headers="bakPow">+</td>
+<td class="gt_row gt_center" headers="salt">-</td>
+<td class="gt_row gt_center" headers="bakPow">-</td>
 <td class="gt_row gt_center" headers="score">NA</td>
 <td class="gt_row gt_right" headers="ord">4</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_center" headers="flour">+</td>
-<td class="gt_row gt_center" headers="salt">-</td>
+<td class="gt_row gt_center" headers="flour">-</td>
+<td class="gt_row gt_center" headers="salt">+</td>
 <td class="gt_row gt_center" headers="bakPow">+</td>
 <td class="gt_row gt_center" headers="score">NA</td>
 <td class="gt_row gt_right" headers="ord">5</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_center" headers="flour">-</td>
-<td class="gt_row gt_center" headers="salt">-</td>
+<td class="gt_row gt_center" headers="flour">+</td>
+<td class="gt_row gt_center" headers="salt">+</td>
 <td class="gt_row gt_center" headers="bakPow">+</td>
 <td class="gt_row gt_center" headers="score">NA</td>
 <td class="gt_row gt_right" headers="ord">6</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_center" headers="flour">-</td>
-<td class="gt_row gt_center" headers="salt">+</td>
-<td class="gt_row gt_center" headers="bakPow">+</td>
+<td class="gt_row gt_center" headers="salt">-</td>
+<td class="gt_row gt_center" headers="bakPow">-</td>
 <td class="gt_row gt_center" headers="score">NA</td>
 <td class="gt_row gt_right" headers="ord">7</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_center" headers="flour">-</td>
-<td class="gt_row gt_center" headers="salt">+</td>
-<td class="gt_row gt_center" headers="bakPow">-</td>
+<td class="gt_row gt_center" headers="flour">+</td>
+<td class="gt_row gt_center" headers="salt">-</td>
+<td class="gt_row gt_center" headers="bakPow">+</td>
 <td class="gt_row gt_center" headers="score">NA</td>
 <td class="gt_row gt_right" headers="ord">8</td>
 </tr>
@@ -1572,7 +1572,7 @@ Figure&nbsp;7.4: The experimental model for a DoE
 <div id="fig-ana-mdl" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-ana-mdl-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter005/mm_doe_02.png" class="img-fluid figure-img" width="558">
+<img src="chapter005/mm_doe_02.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ana-mdl-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;7.5: The experimental model with the fitted linear model.
@@ -1677,23 +1677,23 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
 <p>“… bake the pizza for 9min at 180°C …”</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="twwxadmzbt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#twwxadmzbt table {
+<div id="pmqvshobzq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#pmqvshobzq table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#twwxadmzbt thead, #twwxadmzbt tbody, #twwxadmzbt tfoot, #twwxadmzbt tr, #twwxadmzbt td, #twwxadmzbt th {
+#pmqvshobzq thead, #pmqvshobzq tbody, #pmqvshobzq tfoot, #pmqvshobzq tr, #pmqvshobzq td, #pmqvshobzq th {
   border-style: none;
 }
 
-#twwxadmzbt p {
+#pmqvshobzq p {
   margin: 0;
   padding: 0;
 }
 
-#twwxadmzbt .gt_table {
+#pmqvshobzq .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1719,12 +1719,12 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   border-left-color: #D3D3D3;
 }
 
-#twwxadmzbt .gt_caption {
+#pmqvshobzq .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#twwxadmzbt .gt_title {
+#pmqvshobzq .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1736,7 +1736,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   border-bottom-width: 0;
 }
 
-#twwxadmzbt .gt_subtitle {
+#pmqvshobzq .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1748,7 +1748,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   border-top-width: 0;
 }
 
-#twwxadmzbt .gt_heading {
+#pmqvshobzq .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1760,13 +1760,13 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   border-right-color: #D3D3D3;
 }
 
-#twwxadmzbt .gt_bottom_border {
+#pmqvshobzq .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#twwxadmzbt .gt_col_headings {
+#pmqvshobzq .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1781,7 +1781,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   border-right-color: #D3D3D3;
 }
 
-#twwxadmzbt .gt_col_heading {
+#pmqvshobzq .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1801,7 +1801,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   overflow-x: hidden;
 }
 
-#twwxadmzbt .gt_column_spanner_outer {
+#pmqvshobzq .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1813,15 +1813,15 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   padding-right: 4px;
 }
 
-#twwxadmzbt .gt_column_spanner_outer:first-child {
+#pmqvshobzq .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#twwxadmzbt .gt_column_spanner_outer:last-child {
+#pmqvshobzq .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#twwxadmzbt .gt_column_spanner {
+#pmqvshobzq .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1833,11 +1833,11 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   width: 100%;
 }
 
-#twwxadmzbt .gt_spanner_row {
+#pmqvshobzq .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#twwxadmzbt .gt_group_heading {
+#pmqvshobzq .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1863,7 +1863,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   text-align: left;
 }
 
-#twwxadmzbt .gt_empty_group_heading {
+#pmqvshobzq .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1878,15 +1878,15 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   vertical-align: middle;
 }
 
-#twwxadmzbt .gt_from_md > :first-child {
+#pmqvshobzq .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#twwxadmzbt .gt_from_md > :last-child {
+#pmqvshobzq .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#twwxadmzbt .gt_row {
+#pmqvshobzq .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1905,7 +1905,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   overflow-x: hidden;
 }
 
-#twwxadmzbt .gt_stub {
+#pmqvshobzq .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1918,7 +1918,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   padding-right: 5px;
 }
 
-#twwxadmzbt .gt_stub_row_group {
+#pmqvshobzq .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1932,15 +1932,15 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   vertical-align: top;
 }
 
-#twwxadmzbt .gt_row_group_first td {
+#pmqvshobzq .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#twwxadmzbt .gt_row_group_first th {
+#pmqvshobzq .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#twwxadmzbt .gt_summary_row {
+#pmqvshobzq .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1950,16 +1950,16 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   padding-right: 5px;
 }
 
-#twwxadmzbt .gt_first_summary_row {
+#pmqvshobzq .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#twwxadmzbt .gt_first_summary_row.thick {
+#pmqvshobzq .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#twwxadmzbt .gt_last_summary_row {
+#pmqvshobzq .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1969,7 +1969,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   border-bottom-color: #D3D3D3;
 }
 
-#twwxadmzbt .gt_grand_summary_row {
+#pmqvshobzq .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1979,7 +1979,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   padding-right: 5px;
 }
 
-#twwxadmzbt .gt_first_grand_summary_row {
+#pmqvshobzq .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1989,7 +1989,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   border-top-color: #D3D3D3;
 }
 
-#twwxadmzbt .gt_last_grand_summary_row_top {
+#pmqvshobzq .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1999,11 +1999,11 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   border-bottom-color: #D3D3D3;
 }
 
-#twwxadmzbt .gt_striped {
+#pmqvshobzq .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#twwxadmzbt .gt_table_body {
+#pmqvshobzq .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2012,7 +2012,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   border-bottom-color: #D3D3D3;
 }
 
-#twwxadmzbt .gt_footnotes {
+#pmqvshobzq .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2026,7 +2026,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   border-right-color: #D3D3D3;
 }
 
-#twwxadmzbt .gt_footnote {
+#pmqvshobzq .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2035,7 +2035,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   padding-right: 5px;
 }
 
-#twwxadmzbt .gt_sourcenotes {
+#pmqvshobzq .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2049,7 +2049,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   border-right-color: #D3D3D3;
 }
 
-#twwxadmzbt .gt_sourcenote {
+#pmqvshobzq .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2057,77 +2057,77 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   padding-right: 5px;
 }
 
-#twwxadmzbt .gt_left {
+#pmqvshobzq .gt_left {
   text-align: left;
 }
 
-#twwxadmzbt .gt_center {
+#pmqvshobzq .gt_center {
   text-align: center;
 }
 
-#twwxadmzbt .gt_right {
+#pmqvshobzq .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#twwxadmzbt .gt_font_normal {
+#pmqvshobzq .gt_font_normal {
   font-weight: normal;
 }
 
-#twwxadmzbt .gt_font_bold {
+#pmqvshobzq .gt_font_bold {
   font-weight: bold;
 }
 
-#twwxadmzbt .gt_font_italic {
+#pmqvshobzq .gt_font_italic {
   font-style: italic;
 }
 
-#twwxadmzbt .gt_super {
+#pmqvshobzq .gt_super {
   font-size: 65%;
 }
 
-#twwxadmzbt .gt_footnote_marks {
+#pmqvshobzq .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#twwxadmzbt .gt_asterisk {
+#pmqvshobzq .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#twwxadmzbt .gt_indent_1 {
+#pmqvshobzq .gt_indent_1 {
   text-indent: 5px;
 }
 
-#twwxadmzbt .gt_indent_2 {
+#pmqvshobzq .gt_indent_2 {
   text-indent: 10px;
 }
 
-#twwxadmzbt .gt_indent_3 {
+#pmqvshobzq .gt_indent_3 {
   text-indent: 15px;
 }
 
-#twwxadmzbt .gt_indent_4 {
+#pmqvshobzq .gt_indent_4 {
   text-indent: 20px;
 }
 
-#twwxadmzbt .gt_indent_5 {
+#pmqvshobzq .gt_indent_5 {
   text-indent: 25px;
 }
 
-#twwxadmzbt .katex-display {
+#pmqvshobzq .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#twwxadmzbt div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#pmqvshobzq div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
 
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_col_headings header">
 <th id="repl" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">repl</th>
@@ -2279,23 +2279,23 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
 <h3 data-number="7.12.2" class="anchored" data-anchor-id="pizza-dough-example-summarised-data"><span class="header-section-number">7.12.2</span> pizza dough example summarised data</h3>
 <div class="cell">
 <div class="cell-output-display">
-<div id="rvllmkfdjv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#rvllmkfdjv table {
+<div id="ucoxtcvfxu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ucoxtcvfxu table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#rvllmkfdjv thead, #rvllmkfdjv tbody, #rvllmkfdjv tfoot, #rvllmkfdjv tr, #rvllmkfdjv td, #rvllmkfdjv th {
+#ucoxtcvfxu thead, #ucoxtcvfxu tbody, #ucoxtcvfxu tfoot, #ucoxtcvfxu tr, #ucoxtcvfxu td, #ucoxtcvfxu th {
   border-style: none;
 }
 
-#rvllmkfdjv p {
+#ucoxtcvfxu p {
   margin: 0;
   padding: 0;
 }
 
-#rvllmkfdjv .gt_table {
+#ucoxtcvfxu .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2321,12 +2321,12 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   border-left-color: #D3D3D3;
 }
 
-#rvllmkfdjv .gt_caption {
+#ucoxtcvfxu .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#rvllmkfdjv .gt_title {
+#ucoxtcvfxu .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2338,7 +2338,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   border-bottom-width: 0;
 }
 
-#rvllmkfdjv .gt_subtitle {
+#ucoxtcvfxu .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2350,7 +2350,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   border-top-width: 0;
 }
 
-#rvllmkfdjv .gt_heading {
+#ucoxtcvfxu .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2362,13 +2362,13 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   border-right-color: #D3D3D3;
 }
 
-#rvllmkfdjv .gt_bottom_border {
+#ucoxtcvfxu .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#rvllmkfdjv .gt_col_headings {
+#ucoxtcvfxu .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2383,7 +2383,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   border-right-color: #D3D3D3;
 }
 
-#rvllmkfdjv .gt_col_heading {
+#ucoxtcvfxu .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2403,7 +2403,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   overflow-x: hidden;
 }
 
-#rvllmkfdjv .gt_column_spanner_outer {
+#ucoxtcvfxu .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2415,15 +2415,15 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   padding-right: 4px;
 }
 
-#rvllmkfdjv .gt_column_spanner_outer:first-child {
+#ucoxtcvfxu .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#rvllmkfdjv .gt_column_spanner_outer:last-child {
+#ucoxtcvfxu .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#rvllmkfdjv .gt_column_spanner {
+#ucoxtcvfxu .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2435,11 +2435,11 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   width: 100%;
 }
 
-#rvllmkfdjv .gt_spanner_row {
+#ucoxtcvfxu .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#rvllmkfdjv .gt_group_heading {
+#ucoxtcvfxu .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2465,7 +2465,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   text-align: left;
 }
 
-#rvllmkfdjv .gt_empty_group_heading {
+#ucoxtcvfxu .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2480,15 +2480,15 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   vertical-align: middle;
 }
 
-#rvllmkfdjv .gt_from_md > :first-child {
+#ucoxtcvfxu .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#rvllmkfdjv .gt_from_md > :last-child {
+#ucoxtcvfxu .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#rvllmkfdjv .gt_row {
+#ucoxtcvfxu .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2507,7 +2507,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   overflow-x: hidden;
 }
 
-#rvllmkfdjv .gt_stub {
+#ucoxtcvfxu .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2520,7 +2520,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   padding-right: 5px;
 }
 
-#rvllmkfdjv .gt_stub_row_group {
+#ucoxtcvfxu .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2534,15 +2534,15 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   vertical-align: top;
 }
 
-#rvllmkfdjv .gt_row_group_first td {
+#ucoxtcvfxu .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#rvllmkfdjv .gt_row_group_first th {
+#ucoxtcvfxu .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#rvllmkfdjv .gt_summary_row {
+#ucoxtcvfxu .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2552,16 +2552,16 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   padding-right: 5px;
 }
 
-#rvllmkfdjv .gt_first_summary_row {
+#ucoxtcvfxu .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#rvllmkfdjv .gt_first_summary_row.thick {
+#ucoxtcvfxu .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#rvllmkfdjv .gt_last_summary_row {
+#ucoxtcvfxu .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2571,7 +2571,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   border-bottom-color: #D3D3D3;
 }
 
-#rvllmkfdjv .gt_grand_summary_row {
+#ucoxtcvfxu .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2581,7 +2581,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   padding-right: 5px;
 }
 
-#rvllmkfdjv .gt_first_grand_summary_row {
+#ucoxtcvfxu .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2591,7 +2591,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   border-top-color: #D3D3D3;
 }
 
-#rvllmkfdjv .gt_last_grand_summary_row_top {
+#ucoxtcvfxu .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2601,11 +2601,11 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   border-bottom-color: #D3D3D3;
 }
 
-#rvllmkfdjv .gt_striped {
+#ucoxtcvfxu .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#rvllmkfdjv .gt_table_body {
+#ucoxtcvfxu .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2614,7 +2614,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   border-bottom-color: #D3D3D3;
 }
 
-#rvllmkfdjv .gt_footnotes {
+#ucoxtcvfxu .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2628,7 +2628,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   border-right-color: #D3D3D3;
 }
 
-#rvllmkfdjv .gt_footnote {
+#ucoxtcvfxu .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2637,7 +2637,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   padding-right: 5px;
 }
 
-#rvllmkfdjv .gt_sourcenotes {
+#ucoxtcvfxu .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2651,7 +2651,7 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   border-right-color: #D3D3D3;
 }
 
-#rvllmkfdjv .gt_sourcenote {
+#ucoxtcvfxu .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2659,77 +2659,77 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
   padding-right: 5px;
 }
 
-#rvllmkfdjv .gt_left {
+#ucoxtcvfxu .gt_left {
   text-align: left;
 }
 
-#rvllmkfdjv .gt_center {
+#ucoxtcvfxu .gt_center {
   text-align: center;
 }
 
-#rvllmkfdjv .gt_right {
+#ucoxtcvfxu .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#rvllmkfdjv .gt_font_normal {
+#ucoxtcvfxu .gt_font_normal {
   font-weight: normal;
 }
 
-#rvllmkfdjv .gt_font_bold {
+#ucoxtcvfxu .gt_font_bold {
   font-weight: bold;
 }
 
-#rvllmkfdjv .gt_font_italic {
+#ucoxtcvfxu .gt_font_italic {
   font-style: italic;
 }
 
-#rvllmkfdjv .gt_super {
+#ucoxtcvfxu .gt_super {
   font-size: 65%;
 }
 
-#rvllmkfdjv .gt_footnote_marks {
+#ucoxtcvfxu .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#rvllmkfdjv .gt_asterisk {
+#ucoxtcvfxu .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#rvllmkfdjv .gt_indent_1 {
+#ucoxtcvfxu .gt_indent_1 {
   text-indent: 5px;
 }
 
-#rvllmkfdjv .gt_indent_2 {
+#ucoxtcvfxu .gt_indent_2 {
   text-indent: 10px;
 }
 
-#rvllmkfdjv .gt_indent_3 {
+#ucoxtcvfxu .gt_indent_3 {
   text-indent: 15px;
 }
 
-#rvllmkfdjv .gt_indent_4 {
+#ucoxtcvfxu .gt_indent_4 {
   text-indent: 20px;
 }
 
-#rvllmkfdjv .gt_indent_5 {
+#ucoxtcvfxu .gt_indent_5 {
   text-indent: 25px;
 }
 
-#rvllmkfdjv .katex-display {
+#ucoxtcvfxu .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#rvllmkfdjv div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#ucoxtcvfxu div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
 
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_col_headings header">
 <th id="flour" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">flour</th>
@@ -2797,12 +2797,12 @@ i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
 <section id="pizza-dough-recipe-full-model" class="level3" data-number="7.12.3">
 <h3 data-number="7.12.3" class="anchored" data-anchor-id="pizza-dough-recipe-full-model"><span class="header-section-number">7.12.3</span> pizza dough recipe full model</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>doe.model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(score <span class="sc">~</span> flour <span class="sc">+</span> salt <span class="sc">+</span> bakPow <span class="sc">+</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>doe.model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(score <span class="sc">~</span> flour <span class="sc">+</span> salt <span class="sc">+</span> bakPow <span class="sc">+</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>flour <span class="sc">*</span> salt <span class="sc">+</span> flour <span class="sc">*</span> bakPow <span class="sc">+</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>salt <span class="sc">*</span> bakPow <span class="sc">+</span> flour <span class="sc">*</span> salt <span class="sc">*</span> bakPow,</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="at">data =</span> ss.data.doe1)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(doe.model1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(doe.model1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -2835,9 +2835,9 @@ F-statistic: 25.15 on 7 and 8 DF,  p-value: 7.666e-05</code></pre>
 <section id="pizza-dough-recipe-elimination-model" class="level3" data-number="7.12.4">
 <h3 data-number="7.12.4" class="anchored" data-anchor-id="pizza-dough-recipe-elimination-model"><span class="header-section-number">7.12.4</span> pizza dough recipe elimination model</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>doe.model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(score <span class="sc">~</span> flour <span class="sc">+</span> bakPow,<span class="at">data =</span> ss.data.doe1)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>doe.model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(score <span class="sc">~</span> flour <span class="sc">+</span> bakPow,<span class="at">data =</span> ss.data.doe1)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(doe.model2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(doe.model2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -2875,7 +2875,7 @@ F-statistic: 45.87 on 2 and 13 DF,  p-value: 1.288e-06</code></pre>
 <div id="fig-pd-me" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-pd-me-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter005_DoE_files/figure-revealjs/fig-pd-me-1.svg" class="img-fluid figure-img" style="width:95.0%">
+<img src="chapter005_DoE_files/figure-html/fig-pd-me-1.png" class="img-fluid figure-img" style="width:95.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pd-me-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;7.6: The main effect plot for the pizza dough model
@@ -2892,7 +2892,7 @@ Figure&nbsp;7.6: The main effect plot for the pizza dough model
 <div id="fig-pd-ie" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-pd-ie-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter005_DoE_files/figure-revealjs/fig-pd-ie-1.svg" class="img-fluid figure-img" style="width:95.0%">
+<img src="chapter005_DoE_files/figure-html/fig-pd-ie-1.png" class="img-fluid figure-img" style="width:95.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pd-ie-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;7.7: The interaction plot for the pizza dough model
@@ -2911,7 +2911,7 @@ Figure&nbsp;7.7: The interaction plot for the pizza dough model
 <div id="fig-pd-resid-seq" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-pd-resid-seq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter005_DoE_files/figure-revealjs/fig-pd-resid-seq-1.svg" class="img-fluid figure-img" style="width:95.0%">
+<img src="chapter005_DoE_files/figure-html/fig-pd-resid-seq-1.png" class="img-fluid figure-img" style="width:95.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pd-resid-seq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;7.8: Check for any pattern in the model residuals
@@ -2928,7 +2928,7 @@ Figure&nbsp;7.8: Check for any pattern in the model residuals
 <div id="fig-pd-resid-qq" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-pd-resid-qq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter005_DoE_files/figure-revealjs/fig-pd-resid-qq-1.svg" class="img-fluid figure-img" style="width:95.0%">
+<img src="chapter005_DoE_files/figure-html/fig-pd-resid-qq-1.png" class="img-fluid figure-img" style="width:95.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pd-resid-qq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;7.9: Check for the residuals normality (QQ plot)
@@ -2938,7 +2938,7 @@ Figure&nbsp;7.9: Check for the residuals normality (QQ plot)
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(doe.model2_aug<span class="sc">$</span>.resid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(doe.model2_aug<span class="sc">$</span>.resid)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Shapiro-Wilk normality test
@@ -3034,7 +3034,7 @@ F-statistic: 14.27 on 25 and 38 DF,  p-value: 1.428e-12</code></pre>
 <section id="get-rid-of-non-significant" class="level3" data-number="7.15.1">
 <h3 data-number="7.15.1" class="anchored" data-anchor-id="get-rid-of-non-significant"><span class="header-section-number">7.15.1</span> get rid of non-significant</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>selectionvar <span class="ot">&lt;-</span> <span class="fu">step</span>(model.prob1, <span class="at">method=</span><span class="st">"backwards"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>selectionvar <span class="ot">&lt;-</span> <span class="fu">step</span>(model.prob1, <span class="at">method=</span><span class="st">"backwards"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Start:  AIC=-34.13
 score ~ ((repl + flour + salt + bakPow + temp + time) - repl)^3
@@ -3162,7 +3162,7 @@ score ~ flour + salt + bakPow + temp + time + flour:salt + flour:bakPow +
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="chapter005_DoE_files/figure-revealjs/unnamed-chunk-20-1.svg" class="img-fluid figure-img"></p>
+<p><img src="chapter005_DoE_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="768"></p>
 </figure>
 </div>
 </div>
@@ -3174,7 +3174,7 @@ score ~ flour + salt + bakPow + temp + time + flour:salt + flour:bakPow +
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="chapter005_DoE_files/figure-revealjs/unnamed-chunk-21-1.svg" class="img-fluid figure-img"></p>
+<p><img src="chapter005_DoE_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="768"></p>
 </figure>
 </div>
 </div>
@@ -3640,7 +3640,7 @@ Table&nbsp;7.3: The pragmatic results for the DoE
 }
 </style>
 
-<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_col_headings header">
 <th id="flour" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">flour</th>
@@ -3772,82 +3772,6 @@ Cano, Emilio L., Javier M. Moguerza, and Andrés Redchuk. 2012. <span>“Six Sig
 </section>
 
 </main> <!-- /main -->
-
-
-<script>
-
-  // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-
-  // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-
-  // slide changes (different for each slide format).
-
-  (function () {
-
-    // dispatch for htmlwidgets
-
-    function fireSlideEnter() {
-
-      const event = window.document.createEvent("Event");
-
-      event.initEvent("slideenter", true, true);
-
-      window.document.dispatchEvent(event);
-
-    }
-
-
-
-    function fireSlideChanged(previousSlide, currentSlide) {
-
-      fireSlideEnter();
-
-
-
-      // dispatch for shiny
-
-      if (window.jQuery) {
-
-        if (previousSlide) {
-
-          window.jQuery(previousSlide).trigger("hidden");
-
-        }
-
-        if (currentSlide) {
-
-          window.jQuery(currentSlide).trigger("shown");
-
-        }
-
-      }
-
-    }
-
-
-
-    // hookup for slidy
-
-    if (window.w3c_slidy) {
-
-      window.w3c_slidy.add_observer(function (slide_num) {
-
-        // slide_num starts at position 1
-
-        fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-
-      });
-
-    }
-
-
-
-  })();
-
-</script>
-
-
-
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -3899,13 +3823,14 @@ Cano, Emilio L., Javier M. Moguerza, and Andrés Redchuk. 2012. <span>“Six Sig
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

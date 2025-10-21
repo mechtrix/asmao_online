@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.24">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -55,14 +55,15 @@ div.csl-indent {
 <link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-a37c72dd2dbac68997fcdc15a3622e78.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-364982630eef5352dd1537128a8ed5cb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-70a47bd5681a7291082a5b9f83d58762.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -134,7 +135,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -175,12 +176,11 @@ window.Quarto = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-    <div class="sidebar-title mb-0 py-0">
-      <a href="./">Advanced Statistical Methods and Optimization</a> 
-        <div class="sidebar-tools-main">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
+      <div class="sidebar-tools-main">
     <a href="./asmao_online.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
 </div>
-    </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
@@ -332,7 +332,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="chapter000/000_basics_root.png" class="img-fluid figure-img" width="525"></p>
+<p><img src="chapter000/000_basics_root.png" class="img-fluid figure-img"></p>
 <figcaption>The necessary statistical ingredients.</figcaption>
 </figure>
 </div>
@@ -1602,18 +1602,11 @@ Table&nbsp;1.1: The summary table of the drive shaft data
 }
 </style>
 
-<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
-</colgroup>
+<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_col_headings header">
-<th id="<div data-qmd-base64=&quot;KipWYXJpYWJsZSoq&quot;><div class='gt_from_md'><p><strong>Variable</strong></p>
-</div></div>" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><p><strong>Variable</strong></p></th>
-<th id="<div data-qmd-base64=&quot;KipOID0gNTAwKio=&quot;><div class='gt_from_md'><p><strong>N = 500</strong></p>
-</div></div><span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;&quot;><sup>1</sup></span>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><p><strong>N = 500</strong></p>
-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1</sup></span></th>
+<th id="label" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><strong>Variable</strong></th>
+<th id="stat_0" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>N = 500</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
 </tr>
 </thead>
 <tbody class="gt_table_body">
@@ -1621,10 +1614,9 @@ Table&nbsp;1.1: The summary table of the drive shaft data
 <td class="gt_row gt_left" headers="label">diameter</td>
 <td class="gt_row gt_center" headers="stat_0">12.17 (0.51), 12.03 (0.58)</td>
 </tr>
-</tbody><tfoot class="gt_footnotes">
-<tr class="odd">
-<td colspan="2" class="gt_footnote"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1</sup></span>
-<p>Mean (SD), Median (IQR)</p></td>
+</tbody><tfoot>
+<tr class="gt_footnotes odd">
+<td colspan="2" class="gt_footnote"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> Mean (SD), Median (IQR)</td>
 </tr>
 </tfoot>
 
@@ -1684,23 +1676,23 @@ Table&nbsp;1.2: The group summary table of the drive shaft data
 </figcaption>
 <div aria-describedby="tbl-ds-sum-grps-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="vvgqohgova" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#vvgqohgova table {
+<div id="zitfovovtj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#zitfovovtj table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#vvgqohgova thead, #vvgqohgova tbody, #vvgqohgova tfoot, #vvgqohgova tr, #vvgqohgova td, #vvgqohgova th {
+#zitfovovtj thead, #zitfovovtj tbody, #zitfovovtj tfoot, #zitfovovtj tr, #zitfovovtj td, #zitfovovtj th {
   border-style: none;
 }
 
-#vvgqohgova p {
+#zitfovovtj p {
   margin: 0;
   padding: 0;
 }
 
-#vvgqohgova .gt_table {
+#zitfovovtj .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1726,12 +1718,12 @@ Table&nbsp;1.2: The group summary table of the drive shaft data
   border-left-color: #D3D3D3;
 }
 
-#vvgqohgova .gt_caption {
+#zitfovovtj .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#vvgqohgova .gt_title {
+#zitfovovtj .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1743,7 +1735,7 @@ Table&nbsp;1.2: The group summary table of the drive shaft data
   border-bottom-width: 0;
 }
 
-#vvgqohgova .gt_subtitle {
+#zitfovovtj .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1755,7 +1747,7 @@ Table&nbsp;1.2: The group summary table of the drive shaft data
   border-top-width: 0;
 }
 
-#vvgqohgova .gt_heading {
+#zitfovovtj .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1767,13 +1759,13 @@ Table&nbsp;1.2: The group summary table of the drive shaft data
   border-right-color: #D3D3D3;
 }
 
-#vvgqohgova .gt_bottom_border {
+#zitfovovtj .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#vvgqohgova .gt_col_headings {
+#zitfovovtj .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1788,7 +1780,7 @@ Table&nbsp;1.2: The group summary table of the drive shaft data
   border-right-color: #D3D3D3;
 }
 
-#vvgqohgova .gt_col_heading {
+#zitfovovtj .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1808,7 +1800,7 @@ Table&nbsp;1.2: The group summary table of the drive shaft data
   overflow-x: hidden;
 }
 
-#vvgqohgova .gt_column_spanner_outer {
+#zitfovovtj .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1820,15 +1812,15 @@ Table&nbsp;1.2: The group summary table of the drive shaft data
   padding-right: 4px;
 }
 
-#vvgqohgova .gt_column_spanner_outer:first-child {
+#zitfovovtj .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#vvgqohgova .gt_column_spanner_outer:last-child {
+#zitfovovtj .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#vvgqohgova .gt_column_spanner {
+#zitfovovtj .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1840,11 +1832,11 @@ Table&nbsp;1.2: The group summary table of the drive shaft data
   width: 100%;
 }
 
-#vvgqohgova .gt_spanner_row {
+#zitfovovtj .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#vvgqohgova .gt_group_heading {
+#zitfovovtj .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1870,7 +1862,7 @@ Table&nbsp;1.2: The group summary table of the drive shaft data
   text-align: left;
 }
 
-#vvgqohgova .gt_empty_group_heading {
+#zitfovovtj .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1885,15 +1877,15 @@ Table&nbsp;1.2: The group summary table of the drive shaft data
   vertical-align: middle;
 }
 
-#vvgqohgova .gt_from_md > :first-child {
+#zitfovovtj .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#vvgqohgova .gt_from_md > :last-child {
+#zitfovovtj .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#vvgqohgova .gt_row {
+#zitfovovtj .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1912,7 +1904,7 @@ Table&nbsp;1.2: The group summary table of the drive shaft data
   overflow-x: hidden;
 }
 
-#vvgqohgova .gt_stub {
+#zitfovovtj .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1925,7 +1917,7 @@ Table&nbsp;1.2: The group summary table of the drive shaft data
   padding-right: 5px;
 }
 
-#vvgqohgova .gt_stub_row_group {
+#zitfovovtj .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1939,15 +1931,15 @@ Table&nbsp;1.2: The group summary table of the drive shaft data
   vertical-align: top;
 }
 
-#vvgqohgova .gt_row_group_first td {
+#zitfovovtj .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#vvgqohgova .gt_row_group_first th {
+#zitfovovtj .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#vvgqohgova .gt_summary_row {
+#zitfovovtj .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1957,16 +1949,16 @@ Table&nbsp;1.2: The group summary table of the drive shaft data
   padding-right: 5px;
 }
 
-#vvgqohgova .gt_first_summary_row {
+#zitfovovtj .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#vvgqohgova .gt_first_summary_row.thick {
+#zitfovovtj .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#vvgqohgova .gt_last_summary_row {
+#zitfovovtj .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1976,7 +1968,7 @@ Table&nbsp;1.2: The group summary table of the drive shaft data
   border-bottom-color: #D3D3D3;
 }
 
-#vvgqohgova .gt_grand_summary_row {
+#zitfovovtj .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1986,7 +1978,7 @@ Table&nbsp;1.2: The group summary table of the drive shaft data
   padding-right: 5px;
 }
 
-#vvgqohgova .gt_first_grand_summary_row {
+#zitfovovtj .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1996,7 +1988,7 @@ Table&nbsp;1.2: The group summary table of the drive shaft data
   border-top-color: #D3D3D3;
 }
 
-#vvgqohgova .gt_last_grand_summary_row_top {
+#zitfovovtj .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2006,11 +1998,11 @@ Table&nbsp;1.2: The group summary table of the drive shaft data
   border-bottom-color: #D3D3D3;
 }
 
-#vvgqohgova .gt_striped {
+#zitfovovtj .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#vvgqohgova .gt_table_body {
+#zitfovovtj .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2019,7 +2011,7 @@ Table&nbsp;1.2: The group summary table of the drive shaft data
   border-bottom-color: #D3D3D3;
 }
 
-#vvgqohgova .gt_footnotes {
+#zitfovovtj .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2033,7 +2025,7 @@ Table&nbsp;1.2: The group summary table of the drive shaft data
   border-right-color: #D3D3D3;
 }
 
-#vvgqohgova .gt_footnote {
+#zitfovovtj .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2042,7 +2034,7 @@ Table&nbsp;1.2: The group summary table of the drive shaft data
   padding-right: 5px;
 }
 
-#vvgqohgova .gt_sourcenotes {
+#zitfovovtj .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2056,7 +2048,7 @@ Table&nbsp;1.2: The group summary table of the drive shaft data
   border-right-color: #D3D3D3;
 }
 
-#vvgqohgova .gt_sourcenote {
+#zitfovovtj .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2064,88 +2056,81 @@ Table&nbsp;1.2: The group summary table of the drive shaft data
   padding-right: 5px;
 }
 
-#vvgqohgova .gt_left {
+#zitfovovtj .gt_left {
   text-align: left;
 }
 
-#vvgqohgova .gt_center {
+#zitfovovtj .gt_center {
   text-align: center;
 }
 
-#vvgqohgova .gt_right {
+#zitfovovtj .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#vvgqohgova .gt_font_normal {
+#zitfovovtj .gt_font_normal {
   font-weight: normal;
 }
 
-#vvgqohgova .gt_font_bold {
+#zitfovovtj .gt_font_bold {
   font-weight: bold;
 }
 
-#vvgqohgova .gt_font_italic {
+#zitfovovtj .gt_font_italic {
   font-style: italic;
 }
 
-#vvgqohgova .gt_super {
+#zitfovovtj .gt_super {
   font-size: 65%;
 }
 
-#vvgqohgova .gt_footnote_marks {
+#zitfovovtj .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#vvgqohgova .gt_asterisk {
+#zitfovovtj .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#vvgqohgova .gt_indent_1 {
+#zitfovovtj .gt_indent_1 {
   text-indent: 5px;
 }
 
-#vvgqohgova .gt_indent_2 {
+#zitfovovtj .gt_indent_2 {
   text-indent: 10px;
 }
 
-#vvgqohgova .gt_indent_3 {
+#zitfovovtj .gt_indent_3 {
   text-indent: 15px;
 }
 
-#vvgqohgova .gt_indent_4 {
+#zitfovovtj .gt_indent_4 {
   text-indent: 20px;
 }
 
-#vvgqohgova .gt_indent_5 {
+#zitfovovtj .gt_indent_5 {
   text-indent: 25px;
 }
 
-#vvgqohgova .katex-display {
+#zitfovovtj .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#vvgqohgova div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#zitfovovtj div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
 
-<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
-</colgroup>
+<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_col_headings header">
-<th id="<div data-qmd-base64=&quot;KipWYXJpYWJsZSoq&quot;><div class='gt_from_md'><p><strong>Variable</strong></p>
-</div></div>" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><p><strong>Variable</strong></p></th>
-<th id="<div data-qmd-base64=&quot;KipOID0gMTAwKio=&quot;><div class='gt_from_md'><p><strong>N = 100</strong></p>
-</div></div><span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;&quot;><sup>1</sup></span>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><p><strong>N = 100</strong></p>
-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1</sup></span></th>
+<th id="label" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><strong>Variable</strong></th>
+<th id="stat_0" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>N = 100</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
 </tr>
 </thead>
 <tbody class="gt_table_body">
@@ -2169,10 +2154,9 @@ Table&nbsp;1.2: The group summary table of the drive shaft data
 <td class="gt_row gt_left" headers="label">group05</td>
 <td class="gt_row gt_center" headers="stat_0">12.001 (0.026), 12.000 (0.030)</td>
 </tr>
-</tbody><tfoot class="gt_footnotes">
-<tr class="odd">
-<td colspan="2" class="gt_footnote"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1</sup></span>
-<p>Mean (SD), Median (IQR)</p></td>
+</tbody><tfoot>
+<tr class="gt_footnotes odd">
+<td colspan="2" class="gt_footnote"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> Mean (SD), Median (IQR)</td>
 </tr>
 </tfoot>
 
@@ -2273,13 +2257,14 @@ Wilke, Claus O. 2022. <em>Ggridges: Ridgeline Plots in ’Ggplot2’</em>. <a hr
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

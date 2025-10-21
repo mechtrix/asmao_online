@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.24">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -55,14 +55,15 @@ div.csl-indent {
 <link href="./chapter000_BasicConcepts.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-a37c72dd2dbac68997fcdc15a3622e78.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-364982630eef5352dd1537128a8ed5cb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-70a47bd5681a7291082a5b9f83d58762.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -134,7 +135,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -175,12 +176,11 @@ window.Quarto = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-    <div class="sidebar-title mb-0 py-0">
-      <a href="./">Advanced Statistical Methods and Optimization</a> 
-        <div class="sidebar-tools-main">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
+      <div class="sidebar-tools-main">
     <a href="./asmao_online.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
 </div>
-    </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
@@ -1000,52 +1000,44 @@ Table&nbsp;2.1: The core properties between the discrete and continuous disitrbu
 }
 </style>
 
-<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
+<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_heading header">
-<th colspan="3" class="gt_heading gt_title gt_font_normal" style="text-align: center;"><p><strong>Core Properties: Discrete vs.&nbsp;Continuous Uniform Distributions</strong></p></th>
+<td colspan="3" class="gt_heading gt_title gt_font_normal" style="text-align: center;"><strong>Core Properties: Discrete vs.&nbsp;Continuous Uniform Distributions</strong></td>
 </tr>
 <tr class="gt_heading even">
-<th colspan="3" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="text-align: center;"><p><em>Equal probability everywhere, but for different types of data</em></p></th>
+<td colspan="3" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="text-align: center;"><em>Equal probability everywhere, but for different types of data</em></td>
 </tr>
 <tr class="gt_col_headings header">
-<th id="<div data-qmd-base64=&quot;KipQcm9wZXJ0eSoq&quot;><div class='gt_from_md'><p><strong>Property</strong></p>
-</div></div>" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="text-align: center; color: #FFFFFF; font-weight: bold;" scope="col"><p><strong>Property</strong></p></th>
-<th id="<div data-qmd-base64=&quot;KipEaXNjcmV0ZSBVbmlmb3JtKio=&quot;><div class='gt_from_md'><p><strong>Discrete Uniform</strong></p>
-</div></div>" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="text-align: center; color: #FFFFFF; font-weight: bold;" scope="col"><p><strong>Discrete Uniform</strong></p></th>
-<th id="<div data-qmd-base64=&quot;KipDb250aW51b3VzIFVuaWZvcm0qKg==&quot;><div class='gt_from_md'><p><strong>Continuous Uniform</strong></p>
-</div></div>" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="text-align: center; color: #FFFFFF; font-weight: bold;" scope="col"><p><strong>Continuous Uniform</strong></p></th>
+<th id="Property" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="text-align: center; color: #FFFFFF; font-weight: bold;" scope="col"><strong>Property</strong></th>
+<th id="Discrete" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="text-align: center; color: #FFFFFF; font-weight: bold;" scope="col"><strong>Discrete Uniform</strong></th>
+<th id="Continuous" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="text-align: center; color: #FFFFFF; font-weight: bold;" scope="col"><strong>Continuous Uniform</strong></th>
 </tr>
 </thead>
 <tbody class="gt_table_body">
 <tr class="odd">
-<td class="gt_row gt_left" style="text-align: center;" headers="Property"><p>Probability</p></td>
-<td class="gt_row gt_left" headers="Discrete" style="text-align: center; background-color: #F0F0F0;"><p>Equal for each outcome.</p></td>
-<td class="gt_row gt_left" headers="Continuous" style="text-align: center; background-color: #E6F3FF;"><p>Equal density over the interval.</p></td>
+<td class="gt_row gt_left" style="text-align: center;" headers="Property">Probability</td>
+<td class="gt_row gt_left" headers="Discrete" style="text-align: center; background-color: #F0F0F0;">Equal for each outcome.</td>
+<td class="gt_row gt_left" headers="Continuous" style="text-align: center; background-color: #E6F3FF;">Equal density over the interval.</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" style="text-align: center;" headers="Property"><p>Symmetry</p></td>
-<td class="gt_row gt_left" headers="Discrete" style="text-align: center; background-color: #F0F0F0;"><p>Mean = midpoint of the range.</p></td>
-<td class="gt_row gt_left" headers="Continuous" style="text-align: center; background-color: #E6F3FF;"><p>Mean = midpoint of the interval.</p></td>
+<td class="gt_row gt_left" style="text-align: center;" headers="Property">Symmetry</td>
+<td class="gt_row gt_left" headers="Discrete" style="text-align: center; background-color: #F0F0F0;">Mean = midpoint of the range.</td>
+<td class="gt_row gt_left" headers="Continuous" style="text-align: center; background-color: #E6F3FF;">Mean = midpoint of the interval.</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" style="text-align: center;" headers="Property"><p>Intuition</p></td>
-<td class="gt_row gt_left" headers="Discrete" style="text-align: center; background-color: #F0F0F0;"><p>‘Fair die’ with <i>n</i> sides.</p></td>
-<td class="gt_row gt_left" headers="Continuous" style="text-align: center; background-color: #E6F3FF;"><p>‘Fair spinner’ on a line segment.</p></td>
+<td class="gt_row gt_left" style="text-align: center;" headers="Property">Intuition</td>
+<td class="gt_row gt_left" headers="Discrete" style="text-align: center; background-color: #F0F0F0;">‘Fair die’ with <i>n</i> sides.</td>
+<td class="gt_row gt_left" headers="Continuous" style="text-align: center; background-color: #E6F3FF;">‘Fair spinner’ on a line segment.</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" style="text-align: center;" headers="Property"><p>Use Cases</p></td>
-<td class="gt_row gt_left" headers="Discrete" style="text-align: center; background-color: #F0F0F0;"><p>Counting problems (e.g., dice, cards).</p></td>
-<td class="gt_row gt_left" headers="Continuous" style="text-align: center; background-color: #E6F3FF;"><p>Measuring problems (e.g., time, space).</p></td>
+<td class="gt_row gt_left" style="text-align: center;" headers="Property">Use Cases</td>
+<td class="gt_row gt_left" headers="Discrete" style="text-align: center; background-color: #F0F0F0;">Counting problems (e.g., dice, cards).</td>
+<td class="gt_row gt_left" headers="Continuous" style="text-align: center; background-color: #E6F3FF;">Measuring problems (e.g., time, space).</td>
 </tr>
-</tbody><tfoot class="gt_sourcenotes">
-<tr class="odd">
-<td colspan="3" class="gt_sourcenote" style="text-align: center;"><p><em>Note: Both distributions share the ‘fairness’ property but apply to different data types.</em></p></td>
+</tbody><tfoot>
+<tr class="gt_sourcenotes odd">
+<td colspan="3" class="gt_sourcenote" style="text-align: center;"><em>Note: Both distributions share the ‘fairness’ property but apply to different data types.</em></td>
 </tr>
 </tfoot>
 
@@ -1325,7 +1317,7 @@ Figure&nbsp;2.13: The standarized normal distribution
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="chapter001_Distributions_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="1440"></p>
+<p><img src="chapter001_Distributions_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="1440"></p>
 </figure>
 </div>
 </div>
@@ -1336,7 +1328,7 @@ Figure&nbsp;2.13: The standarized normal distribution
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="chapter001_Distributions_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="1440"></p>
+<p><img src="chapter001_Distributions_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="1440"></p>
 </figure>
 </div>
 </div>
@@ -1457,7 +1449,7 @@ Figure&nbsp;2.16: The standardized data of the drive shaft data.
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="chapter001_Distributions_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="1440"></p>
+<p><img src="chapter001_Distributions_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="1440"></p>
 </figure>
 </div>
 </div>
@@ -2021,13 +2013,14 @@ Weibull, Waloddi. 1951. <span>“A Statistical Distribution Function of Wide App
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

@@ -133,16 +133,7 @@ drive_shaft_rpm_dia %>%
   geom_smooth(
     method = "lm"
     )+
-  stat_regline_equation(
-    aes(
-      label =  
-        paste(
-          after_stat(eq.label),
-          after_stat(rr.label), 
-          after_stat(adj.rr.label),
-          sep = "~~~~")
-      ),
-  )+
+  stat_regline_equation()+
   labs(
     title = "linear regression line",
     x = "rpm in 1/min",

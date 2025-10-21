@@ -1208,7 +1208,16 @@ I^2 = \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}e^{-k(x^2+y^2)}\,dx\,dy =  \
 #### $\pi$ in the Buffon Needle Problem
 
 - A needle of length $L$ is dropped onto a plane with parallel lines spaced $D \geq L$ apart
-- Probability $P$ that the needle crosses a line is $P = \frac{2L}{}$
+- Probability $P$ that the needle crosses a line is $\pi\approx \frac{2l}{D}\frac{\text{Hits}}{N\text{ total number}}$
+
+- The needles orientation $\theta$ is uniformly distributed in $[0,\pi/2]$
+- The crossing condition depends on $\sin{\theta}$, and integrating over $\theta$ introduces $\pi$ through the *average value of $\theta$* over its domain
+
+#### What they share
+
+<center>
+Both problems translate a probabilistic question into a geometric one, where $\pi$ emerges naturally from integrating over angles or symmetric regions.
+</center>
 
 ## Z - Standardization
 
@@ -1219,25 +1228,26 @@ I^2 = \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}e^{-k(x^2+y^2)}\,dx\,dy =  \
 ```{r}
 #| label: fig-z-scores-raw
 #| out-width: 95%
-#| fig-cap: The original data of group X and group Y
+#| fig-cap: How can we compare this data?
 
-data <- data.frame(
-  X = c(10, 15, 20, 25, 30),
-  Y = c(100, 150, 200, 250, 300)
-) %>% 
-  mutate(
-   Z_X = (X - mean(X)) / sd(X),
-    Z_Y = (Y - mean(Y)) / sd(Y)) %>% 
-  pivot_longer(cols = c("X","Y"))
+set.seed(123)
 
-data %>% ggplot(aes(x = name, y = value)) +
-  geom_half_boxplot()+
-  geom_point(
-    position = position_nudge (x = 0.15)
+# Simulate production data from two machines
+machine_A <- rnorm(1000, mean = 50, sd = 2)  # Machine A: mean=50g, sd=2g
+machine_B <- rnorm(1000, mean = 75, sd = 5)  # Machine B: mean=75g, sd=5g
+
+# Plot
+tibble(
+  value = c(machine_A, machine_B),
+  machine = rep(c("A", "B"), each = 1000)
+) %>%
+  ggplot(aes(x = value, fill = machine)) +
+  geom_density(alpha = 0.5) +
+  labs(title = "Fill Weights from Two Machines (Different Means/SDs)")+
+  scale_y_continuous(
+    expand = c(0,0,0,0.05)
   )+
-  labs(
-    title = "Two datasets that are measured in\ndifferent (arbritary) units."
-  )
+  scale_fill_grey()
 
 ```
 
@@ -1248,30 +1258,23 @@ data %>% ggplot(aes(x = name, y = value)) +
 ::: {.fragment .fade-in-then-out}
 
 \begin{align}
-Z = \frac{x_i - \bar{x}}{sd} \nonumber
+z = \frac{x_i - \mu}{\sigma} \nonumber \\
+z = \frac{x_i - \bar{x}}{sd} \nonumber
 \end{align}
 
 :::
 
+::: {.fragment .fade-in-then-out}
+
+Machine (A) value: $53$
+
+\begin{align}
+\bar{x} &= `r round(mean(machine_A),digits = 2)` \nonumber \\
+sd_{x} &= `r round(sd(machine_A),digits = 2)` \nonumber \\
+z\text{-score} &= \frac{x-\bar{x}}{sd_x} = \frac{53-`r round(mean(machine_A),digits = 2)`}{`r round(sd(machine_A),digits = 2)`} = `r round((53-mean(machine_A))/sd(machine_A),digits = 2)` \nonumber
+\end{align}
+
 :::
-
-::: {.fragment .fade-in}
-
-```{r}
-#| label: fig-z-scores-scaled
-#| out-width: 75%
-#| fig-cap: The correlation of the z-score shows, that every point $x_i$ is equally probable
-
-data %>% ggplot(aes(x = Z_X, y = Z_Y)) +
-  geom_point() +
-  labs(
-    x = "Z-Score for X",
-    y = "Z-Score for Y",
-    title = "Scatterplot of Standardized Data"
-  )+
-  theme_few()
-
-```
 
 :::
 
@@ -1294,6 +1297,60 @@ The perfect correlation of the datapoints shows, that for every $x_i$ the same p
 Thus, the datapoints are comparable.
 
 :::
+
+### Properties of of Z-scores
+
+1. Shape: The distribution's shape remains normal
+2. Relative Positions: Values maintain their percentiles
+3. Outliers: Extreme values $|z|>3$ are easily flagged
+
+### Comparison of standardized data
+
+```{r}
+#| label: fig-z-scores-scaled
+#| out-width: 75%
+#| fig-cap: Normalized data is easier to compare
+
+
+machine_data <- data.frame(
+  machine_A,machine_B
+) %>% 
+  mutate(
+    machine_A_scaled = (machine_A-mean(machine_A))/sd(machine_A),
+    machine_B_scaled = (machine_B-mean(machine_B))/sd(machine_B)) %>% 
+  pivot_longer(cols = starts_with("machine"), names_to = "machine",values_to = "value") %>% 
+  filter(str_detect(machine, "scaled"))
+
+machine_data %>% 
+  ggplot(
+    aes(
+      x = value,
+      # fill = machine
+      )
+    ) +
+  geom_density_ridges(
+    aes(
+      y = machine
+    )
+  )+
+  scale_y_discrete(
+    expand = c(0.0,0.0,0.05,0.05)
+  )+
+  labs(
+    title = "Comparison of normalized data",
+    y = ""
+  )
+
+```
+### The Universal Yardstick
+
+The standard normal distribution ($N(0,1)$) is the reference distribution (the perfect model).
+
+- $\bar{x} = 0,\; sd = 1$
+- Empirical Rule (68-65-99.7)
+  - $68\%$ of data within $\pm1sd$
+  - $95\%$ of data within $\pm2sd$
+  - $99.7\%$ of data within $\pm3sd$
 
 ### The drive shaft exercise - Z-Standardization
 
@@ -1392,6 +1449,19 @@ We will dwelve more into such investigation in another chapter, but this is a fi
 
 :::
 
+### When Z-Scores Go Wrong
+
+1. Non-Normal Data:
+  
+  - Z-Scores assume normality
+  
+2. Population vs. Sample
+  
+  - Use population parameters ($\mu,\sigma$) if known, otherwise use sample estimates ($\bar{x},sd$)
+  
+3. Outliers:
+  
+  - Z-scores are sensitive to outliers
 
 ### The Z-transform and the Galton Board
 

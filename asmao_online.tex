@@ -595,7 +595,7 @@ Variance\end{minipage}%
 
 \begin{figure}[ht]
 
-{\centering \includegraphics[width=3.5in,height=\textheight,keepaspectratio]{chapter000/000_basics_root.png}
+{\centering \pandocbounded{\includegraphics[keepaspectratio]{chapter000/000_basics_root.png}}
 
 }
 
@@ -1761,28 +1761,27 @@ are shown in Table~\ref{tbl-ds-sum} (\(\bar{x}(sd), median(IQR)\)). This
 first table does not tell us an awful lot about the sample, apart from
 the classic statistical measures of central tendency and spread.
 
-\begingroup
-\fontsize{12.0pt}{14.4pt}\selectfont
-\setlength{\LTpost}{0mm}
-
-\begin{longtable}{lc}
+\begin{table}
 
 \caption{\label{tbl-ds-sum}The summary table of the drive shaft data}
 
-\tabularnewline
+\centering{
 
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lc}
 \toprule
 \textbf{Variable} & \textbf{N = 500}\textsuperscript{\textit{1}} \\ 
 \midrule\addlinespace[2.5pt]
 diameter & 12.17 (0.51), 12.03 (0.58) \\ 
 \bottomrule
-
-\end{longtable}
-
+\end{tabular*}
 \begin{minipage}{\linewidth}
 \textsuperscript{\textit{1}}Mean (SD), Median (IQR)\\
 \end{minipage}
-\endgroup
+
+}
+
+\end{table}%
 
 In Figure~\ref{fig-ds-dist} the data and the distribution thereof is
 visualized using different modalities. The complete
@@ -1843,17 +1842,15 @@ statistics, see Table~\ref{tbl-ds-sum-grps}. Surprisingly, there are
 five groups hidden within the data, something we would no be able to
 spot from the raw data alone.
 
-\begingroup
-\fontsize{12.0pt}{14.4pt}\selectfont
-\setlength{\LTpost}{0mm}
-
-\begin{longtable}{lc}
+\begin{table}
 
 \caption{\label{tbl-ds-sum-grps}The group summary table of the drive
 shaft data}
 
-\tabularnewline
+\centering{
 
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lc}
 \toprule
 \textbf{Variable} & \textbf{N = 100}\textsuperscript{\textit{1}} \\ 
 \midrule\addlinespace[2.5pt]
@@ -1863,13 +1860,14 @@ group03 & 13.00 (0.10), 13.01 (0.13) \\
 group04 & 11.49 (0.09), 11.49 (0.12) \\ 
 group05 & 12.001 (0.026), 12.000 (0.030) \\ 
 \bottomrule
-
-\end{longtable}
-
+\end{tabular*}
 \begin{minipage}{\linewidth}
 \textsuperscript{\textit{1}}Mean (SD), Median (IQR)\\
 \end{minipage}
-\endgroup
+
+}
+
+\end{table}%
 
 Again, the table is good to have, but not as engagingi for ourself and
 our co-workers to look at. In order to make the data more approachable,
@@ -2146,21 +2144,19 @@ X \sim \mathrm{Uniform}\{a,a+1,\ldots,b\} \text{ discrete}
 
 \subsection{Core properties}\label{core-properties}
 
-\begingroup
-\fontsize{12.0pt}{14.4pt}\selectfont
-\setlength{\LTpost}{0mm}
-
-\begin{longtable}{lll}
+\begin{table}
 
 \caption{\label{tbl-unif-prop}The core properties between the discrete
 and continuous disitrbution are very similar.}
 
-\tabularnewline
+\centering{
 
 \caption*{
-{\large \textbf{Core Properties: Discrete vs. Continuous Uniform Distributions}} \\ 
-{\small \emph{Equal probability everywhere, but for different types of data}}
-} \\ 
+{\fontsize{14}{17}\selectfont  \textbf{Core Properties: Discrete vs. Continuous Uniform Distributions}\fontsize{12}{15}\selectfont } \\ 
+{\fontsize{12}{15}\selectfont  \emph{Equal probability everywhere, but for different types of data}\fontsize{12}{15}\selectfont }
+} 
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lll}
 \toprule
 \textbf{Property} & \textbf{Discrete Uniform} & \textbf{Continuous Uniform} \\ 
 \midrule\addlinespace[2.5pt]
@@ -2169,13 +2165,14 @@ and continuous disitrbution are very similar.}
 {Intuition} & {\cellcolor[HTML]{F0F0F0}{`Fair die' with n sides.}} & {\cellcolor[HTML]{E6F3FF}{`Fair spinner' on a line segment.}} \\ 
 {Use Cases} & {\cellcolor[HTML]{F0F0F0}{Counting problems (e.g., dice, cards).}} & {\cellcolor[HTML]{E6F3FF}{Measuring problems (e.g., time, space).}} \\ 
 \bottomrule
-
-\end{longtable}
-
+\end{tabular*}
 \begin{minipage}{\linewidth}
 \emph{Note: Both distributions share the `fairness' property but apply to different data types.}\\
 \end{minipage}
-\endgroup
+
+}
+
+\end{table}%
 
 \section{\texorpdfstring{\hyperref[acronyms_PMF]{Probability Mass
 Function (PMF)}}{Probability Mass Function (PMF)}}\label{section-2}
@@ -2558,9 +2555,9 @@ nature and society.
 
 \subsection{Emergence}\label{emergence}
 
-\pandocbounded{\includegraphics[keepaspectratio]{chapter001_Distributions_files/figure-pdf/unnamed-chunk-18-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{chapter001_Distributions_files/figure-pdf/unnamed-chunk-1-1.pdf}}
 
-\pandocbounded{\includegraphics[keepaspectratio]{chapter001_Distributions_files/figure-pdf/unnamed-chunk-19-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{chapter001_Distributions_files/figure-pdf/unnamed-chunk-2-1.pdf}}
 
 \subsubsection{The math behind}\label{the-math-behind}
 
@@ -2709,7 +2706,7 @@ is a first step in the direction of inferential statistics.
 \subsection{The Z-transform and the Galton
 Board}\label{the-z-transform-and-the-galton-board}
 
-\pandocbounded{\includegraphics[keepaspectratio]{chapter001_Distributions_files/figure-pdf/unnamed-chunk-25-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{chapter001_Distributions_files/figure-pdf/unnamed-chunk-5-1.pdf}}
 
 \subsubsection{Applying the Z-transform}\label{applying-the-z-transform}
 
@@ -3766,16 +3763,14 @@ Sampling}\label{example---classroom-sampling}
 \subsection{Descriptive Statistics
 (Population)}\label{descriptive-statistics-population}
 
-\begingroup
-\fontsize{12.0pt}{14.4pt}\selectfont
-\setlength{\LTpost}{0mm}
-
-\begin{longtable}{lc}
+\begin{table}
 
 \caption{\label{tbl-ClassroomData}The Classroom data}
 
-\tabularnewline
+\centering{
 
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lc}
 \toprule
 \textbf{Characteristic} & \textbf{N = 40}\textsuperscript{\textit{1}} \\ 
 \midrule\addlinespace[2.5pt]
@@ -3784,13 +3779,14 @@ Gender &  \\
     Female & 23 (58\%) \\ 
     Male & 17 (43\%) \\ 
 \bottomrule
-
-\end{longtable}
-
+\end{tabular*}
 \begin{minipage}{\linewidth}
 \textsuperscript{\textit{1}}Median (Q1, Q3); n (\%)\\
 \end{minipage}
-\endgroup
+
+}
+
+\end{table}%
 
 \subsubsection{Histogram}\label{histogram-1}
 
@@ -3845,29 +3841,29 @@ strategies
 
 \subsection{Simple Random Sampling}\label{simple-random-sampling}
 
-\begingroup
-\fontsize{12.0pt}{14.4pt}\selectfont
-
-\begin{longtable}{ccc}
+\begin{table}
 
 \caption{\label{tbl-srswor-overview}The means and standard deviations of
 the classroom data for n = 5,10,15,20}
 
-\tabularnewline
+\centering{
 
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}ccc}
 \toprule
 n & mean in years & standard deviation in years \\ 
 \midrule\addlinespace[2.5pt]
-5 & 32.80 & 4.09 \\ 
-10 & 31.30 & 3.95 \\ 
-15 & 30.33 & 4.98 \\ 
-20 & 29.80 & 3.91 \\ 
+5 & 28.80 & 3.42 \\ 
+10 & 30.70 & 4.95 \\ 
+15 & 31.07 & 4.32 \\ 
+20 & 30.50 & 4.63 \\ 
 population & 30.40 & 4.18 \\ 
 \bottomrule
+\end{tabular*}
 
-\end{longtable}
+}
 
-\endgroup
+\end{table}%
 
 \subsubsection{\texorpdfstring{\(n = 5\)}{n = 5}}\label{n-5}
 
@@ -3929,8 +3925,21 @@ population & 30.40 & 4.18 \\
 
 \end{figure}%
 
-\subsubsection{Simple random sampling - comparison to population
-(mean)}\label{simple-random-sampling---comparison-to-population-mean}
+\subsubsection{Data}\label{data}
+
+\begin{figure}[ht]
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{SamplingMethods_files/figure-pdf/fig-srs-hist-cmp-1.pdf}}
+
+}
+
+\caption{\label{fig-srs-hist-cmp}Comparison of sample to the population}
+
+\end{figure}%
+
+\subsubsection{Mean Comparison}\label{mean-comparison}
 
 \begin{figure}[ht]
 
@@ -3945,8 +3954,7 @@ different sample sizes}
 
 \end{figure}%
 
-\subsubsection{Simple random sampling - comparison to population
-(sd)}\label{simple-random-sampling---comparison-to-population-sd}
+\subsubsection{SD Comparison}\label{sd-comparison}
 
 \begin{figure}[ht]
 
@@ -3963,30 +3971,31 @@ different sample sizes}
 
 \subsection{Systematic Sampling}\label{systematic-sampling-1}
 
-Sample always the \(5th\).
+Sample always the \(k\)th.
 
-\begingroup
-\fontsize{12.0pt}{14.4pt}\selectfont
-
-\begin{longtable}{ccc}
+\begin{table}
 
 \caption{\label{tbl-syssmpl-overview}The output of systematic sampling
 for every 8th, 5th, 4th, 2nd}
 
-\tabularnewline
+\centering{
 
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}ccc}
 \toprule
 k & mean in years & standard deviation in years \\ 
 \midrule\addlinespace[2.5pt]
 8 & 33.40 & 3.58 \\ 
 5 & 30.62 & 4.41 \\ 
+3 & 31.57 & 4.07 \\ 
 2 & 30.95 & 4.59 \\ 
 population & 30.40 & 4.18 \\ 
 \bottomrule
+\end{tabular*}
 
-\end{longtable}
+}
 
-\endgroup
+\end{table}%
 
 \subsubsection{\texorpdfstring{\(k = 8\)}{k = 8}}\label{k-8}
 
@@ -4033,8 +4042,21 @@ and every 2nd sample}
 
 \end{figure}%
 
-\subsubsection{Systemtic sampling - comparison to population
-(mean)}\label{systemtic-sampling---comparison-to-population-mean}
+\subsubsection{Data}\label{data-1}
+
+\begin{figure}[ht]
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{SamplingMethods_files/figure-pdf/fig-Students-systsmlp-data-1.pdf}}
+
+}
+
+\caption{\label{fig-Students-systsmlp-data}The data per subgroup}
+
+\end{figure}%
+
+\subsubsection{Mean Comparison}\label{mean-comparison-1}
 
 \begin{figure}[ht]
 
@@ -4049,8 +4071,7 @@ at different sampling intervals}
 
 \end{figure}%
 
-\subsubsection{Systemtic sampling - comparison to population
-(sd)}\label{systemtic-sampling---comparison-to-population-sd}
+\subsubsection{SD Comparison}\label{sd-comparison-1}
 
 \begin{figure}[ht]
 
@@ -4067,53 +4088,8 @@ different sampling intervals}
 
 \subsection{Stratified Sampling}\label{stratified-sampling-1}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{stratified\_prop\_n5 }\OtherTok{\textless{}{-}}\NormalTok{ student\_data }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{group\_by}\NormalTok{(Gender) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{sample\_frac}\NormalTok{(}\FloatTok{0.12}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}  \CommentTok{\# Sample 30\% from each gender}
-  \FunctionTok{ungroup}\NormalTok{()}
-
-\NormalTok{stratified\_prop\_n10 }\OtherTok{\textless{}{-}}\NormalTok{ student\_data }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{group\_by}\NormalTok{(Gender) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{sample\_frac}\NormalTok{(}\FloatTok{0.25}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}  \CommentTok{\# Sample 30\% from each gender}
-  \FunctionTok{ungroup}\NormalTok{()}
-
-\NormalTok{stratified\_prop\_n15 }\OtherTok{\textless{}{-}}\NormalTok{ student\_data }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{group\_by}\NormalTok{(Gender) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{sample\_frac}\NormalTok{(}\FloatTok{0.38}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}  \CommentTok{\# Sample 30\% from each gender}
-  \FunctionTok{ungroup}\NormalTok{()}
-
-\NormalTok{stratified\_prop\_n20 }\OtherTok{\textless{}{-}}\NormalTok{ student\_data }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{group\_by}\NormalTok{(Gender) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{sample\_frac}\NormalTok{(}\FloatTok{0.50}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}  \CommentTok{\# Sample 30\% from each gender}
-  \FunctionTok{ungroup}\NormalTok{()}
-
-\NormalTok{strtsmpl }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
-  \AttributeTok{smpl\_type =} \StringTok{"stratified sampling"}\NormalTok{,}
-  \AttributeTok{n =} \FunctionTok{c}\NormalTok{(}\DecValTok{5}\NormalTok{,}\DecValTok{10}\NormalTok{,}\DecValTok{15}\NormalTok{,}\DecValTok{20}\NormalTok{),}
-  \AttributeTok{prop =} \FunctionTok{c}\NormalTok{(}\FloatTok{0.12}\NormalTok{,}\FloatTok{0.25}\NormalTok{,}\FloatTok{0.38}\NormalTok{,}\FloatTok{0.5}\NormalTok{),}
-  \AttributeTok{means =} \FunctionTok{c}\NormalTok{(}
-    \FunctionTok{mean}\NormalTok{(stratified\_prop\_n5}\SpecialCharTok{$}\NormalTok{Age),}
-    \FunctionTok{mean}\NormalTok{(stratified\_prop\_n10}\SpecialCharTok{$}\NormalTok{Age),}
-    \FunctionTok{mean}\NormalTok{(stratified\_prop\_n15}\SpecialCharTok{$}\NormalTok{Age),}
-    \FunctionTok{mean}\NormalTok{(stratified\_prop\_n20}\SpecialCharTok{$}\NormalTok{Age)}
-\NormalTok{  ),}
-  \AttributeTok{sds =} \FunctionTok{c}\NormalTok{(}
-    \FunctionTok{sd}\NormalTok{(stratified\_prop\_n5}\SpecialCharTok{$}\NormalTok{Age),}
-    \FunctionTok{sd}\NormalTok{(stratified\_prop\_n10}\SpecialCharTok{$}\NormalTok{Age),}
-    \FunctionTok{sd}\NormalTok{(stratified\_prop\_n15}\SpecialCharTok{$}\NormalTok{Age),}
-    \FunctionTok{sd}\NormalTok{(stratified\_prop\_n20}\SpecialCharTok{$}\NormalTok{Age)}
-\NormalTok{  )}
-\NormalTok{) }
-
-\NormalTok{strtsmpl }\OtherTok{\textless{}{-}}\NormalTok{ strtsmpl}\SpecialCharTok{|\textgreater{}} 
-  \FunctionTok{mutate}\NormalTok{(}
-    \AttributeTok{diff\_means =} \FunctionTok{mean}\NormalTok{(student\_data}\SpecialCharTok{$}\NormalTok{Age)}\SpecialCharTok{{-}}\NormalTok{means,}
-    \AttributeTok{diff\_sds =} \FunctionTok{sd}\NormalTok{(student\_data}\SpecialCharTok{$}\NormalTok{Age) }\SpecialCharTok{{-}}\NormalTok{ sds}
-\NormalTok{  )}
-\end{Highlighting}
-\end{Shaded}
+Choose sample stratified to characteristic (Gender represented in
+population)
 
 \subsubsection{\texorpdfstring{\(\text{proportion} = 12\% \rightarrow n = 5\)}{\textbackslash text\{proportion\} = 12\textbackslash\% \textbackslash rightarrow n = 5}}\label{textproportion-12-rightarrow-n-5}
 
@@ -4175,8 +4151,22 @@ stratified according to gender (\(12\%\))}
 
 \end{figure}%
 
-\subsubsection{Stratified sampling - comparison to population
-(mean)}\label{stratified-sampling---comparison-to-population-mean}
+\subsubsection{Data}\label{data-2}
+
+\begin{figure}[ht]
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{SamplingMethods_files/figure-pdf/fig-Students-strtsmpl-dat-1.pdf}}
+
+}
+
+\caption{\label{fig-Students-strtsmpl-dat}The data of the stratified
+sampling}
+
+\end{figure}%
+
+\subsubsection{Mean Comparsion}\label{mean-comparsion}
 
 \begin{figure}[ht]
 
@@ -4191,8 +4181,7 @@ at different sample sizes}
 
 \end{figure}%
 
-\subsubsection{Stratified sampling - comparison to population
-(sd)}\label{stratified-sampling---comparison-to-population-sd}
+\subsubsection{SD Comparison}\label{sd-comparison-2}
 
 \begin{figure}[ht]
 
@@ -4209,97 +4198,147 @@ different sample sizes}
 
 \subsection{Clustered Sampling}\label{clustered-sampling}
 
-\begin{table}
+Clusters are logical units which are sampled in order to save sampling
+resources.
 
-\caption{\label{tbl-starwarsdata-clust}The starwars dataset with
-clustered sampling}
+In our case clusters are columns of students.
+
+\subsubsection{One Cluster}\label{one-cluster}
+
+\begin{figure}[ht]
 
 \centering{
 
-\begin{verbatim}
-     name               height           mass      hair_color       
- Length:12          Min.   : 94.0   Min.   : 40   Length:12         
- Class :character   1st Qu.:150.5   1st Qu.: 48   Class :character  
- Mode  :character   Median :169.0   Median : 55   Mode  :character  
-                    Mean   :159.2   Mean   : 63                     
-                    3rd Qu.:179.2   3rd Qu.: 79                     
-                    Max.   :198.0   Max.   :102                     
-                                    NA's   :3                       
-                                                                    
-                                                                    
-                                                                    
-                                                                    
-                                                                    
-  skin_color         eye_color           birth_year        sex           
- Length:12          Length:12          Min.   :54.00   Length:12         
- Class :character   Class :character   1st Qu.:60.00   Class :character  
- Mode  :character   Mode  :character   Median :66.00   Mode  :character  
-                                       Mean   :70.33                     
-                                       3rd Qu.:78.50                     
-                                       Max.   :91.00                     
-                                       NA's   :9                         
-                                                                         
-                                                                         
-                                                                         
-                                                                         
-                                                                         
-    gender           homeworld           species         
- Length:12          Length:12          Length:12         
- Class :character   Class :character   Class :character  
- Mode  :character   Mode  :character   Mode  :character  
-                                                         
-                                                         
-                                                         
-                                                         
-                                                         
-                                                         
-                                                         
-                                                         
-                                                         
- films.Length  films.Class  films.Mode
- 1          -none-     character      
- 1          -none-     character      
- 1          -none-     character      
- 1          -none-     character      
- 1          -none-     character      
- 1          -none-     character      
- 2          -none-     character      
- 1          -none-     character      
- 1          -none-     character      
- 1          -none-     character      
- 1          -none-     character      
- 2          -none-     character      
- vehicles.Length  vehicles.Class  vehicles.Mode
- 0          -none-     character               
- 0          -none-     character               
- 0          -none-     character               
- 1          -none-     character               
- 0          -none-     character               
- 0          -none-     character               
- 0          -none-     character               
- 0          -none-     character               
- 1          -none-     character               
- 0          -none-     character               
- 0          -none-     character               
- 0          -none-     character               
- starships.Length  starships.Class  starships.Mode
- 1          -none-     character                  
- 0          -none-     character                  
- 0          -none-     character                  
- 1          -none-     character                  
- 0          -none-     character                  
- 0          -none-     character                  
- 0          -none-     character                  
- 0          -none-     character                  
- 0          -none-     character                  
- 0          -none-     character                  
- 0          -none-     character                  
- 0          -none-     character                  
-\end{verbatim}
+\pandocbounded{\includegraphics[keepaspectratio]{SamplingMethods_files/figure-pdf/fig-Students-clstsmpl-n5-1.pdf}}
 
 }
 
-\end{table}%
+\caption{\label{fig-Students-clstsmpl-n5}Where students are seated
+(Age), cluster one}
+
+\end{figure}%
+
+\subsubsection{Two Clusters}\label{two-clusters}
+
+\begin{figure}[ht]
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{SamplingMethods_files/figure-pdf/fig-Students-clstsmpl-n10-1.pdf}}
+
+}
+
+\caption{\label{fig-Students-clstsmpl-n10}Where students are seated
+(Age), two clusters}
+
+\end{figure}%
+
+\subsubsection{Three Clusters}\label{three-clusters}
+
+\begin{figure}[ht]
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{SamplingMethods_files/figure-pdf/fig-Students-clstsmpl-n15-1.pdf}}
+
+}
+
+\caption{\label{fig-Students-clstsmpl-n15}Where students are seated
+(Age), three clusters}
+
+\end{figure}%
+
+\subsubsection{Four Clusters}\label{four-clusters}
+
+\begin{figure}[ht]
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{SamplingMethods_files/figure-pdf/fig-Students-clstsmpl-n20-1.pdf}}
+
+}
+
+\caption{\label{fig-Students-clstsmpl-n20}Where students are seated
+(Age), four clusters}
+
+\end{figure}%
+
+\subsubsection{Data}\label{data-3}
+
+\begin{figure}[ht]
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{SamplingMethods_files/figure-pdf/fig-Students-clstsmpl-data-1.pdf}}
+
+}
+
+\caption{\label{fig-Students-clstsmpl-data}The data of the clustered
+sampling}
+
+\end{figure}%
+
+\subsubsection{Mean Comparison}\label{mean-comparison-2}
+
+\begin{figure}[ht]
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{SamplingMethods_files/figure-pdf/fig-Students-clstsmpl-diffmeans-1.pdf}}
+
+}
+
+\caption{\label{fig-Students-clstsmpl-diffmeans}The difference in means
+at different sample sizes}
+
+\end{figure}%
+
+\subsubsection{SD Comparison}\label{sd-comparison-3}
+
+\begin{figure}[ht]
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{SamplingMethods_files/figure-pdf/fig-Students-clstsmpl-diffsds-1.pdf}}
+
+}
+
+\caption{\label{fig-Students-clstsmpl-diffsds}The difference in sd at
+different sample sizes}
+
+\end{figure}%
+
+\subsection{Overall Comparison of Sampling Strategies
+(Mean)}\label{overall-comparison-of-sampling-strategies-mean}
+
+\begin{figure}[ht]
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{SamplingMethods_files/figure-pdf/fig-comp-sampling-methods-means-1.pdf}}
+
+}
+
+\caption{\label{fig-comp-sampling-methods-means}A graphical comparison
+of the absolute difference in means per sample strategy}
+
+\end{figure}%
+
+\subsection{Overall Comparison of Sampling Strategies
+(SD)}\label{overall-comparison-of-sampling-strategies-sd}
+
+\begin{figure}[ht]
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{SamplingMethods_files/figure-pdf/fig-comp-sampling-methods-sd-1.pdf}}
+
+}
+
+\caption{\label{fig-comp-sampling-methods-sd}A graphical comparison of
+the absolute difference in means per sample strategy}
+
+\end{figure}%
 
 \section{Bootstrapping}\label{bootstrapping}
 
@@ -4848,17 +4887,15 @@ are suitable when dealing with non-normally distributed data or ordinal
 data. Some examples for parametric and non-parametric tests are given in
 Table~\ref{tbl-ParamTestsvsNonParamTests}.
 
-\begingroup
-\setlength\LTleft{0\linewidth}
-\setlength\LTright{0\linewidth}\fontsize{15.0pt}{18.0pt}\selectfont
-
-\begin{longtable}{@{\extracolsep{\fill}}ll}
+\begin{table}
 
 \caption{\label{tbl-ParamTestsvsNonParamTests}Some parametric and
 non-parametric statistical tests.}
 
-\tabularnewline
+\centering{
 
+\fontsize{15.0pt}{18.0pt}\selectfont
+\begin{tabular*}{1\linewidth}{@{\extracolsep{\fill}}ll}
 \toprule
 \textbf{Parametric Tests} & \textbf{Non-Parametric Tests} \\ 
 \midrule\addlinespace[2.5pt]
@@ -4867,10 +4904,11 @@ Paired t-test & Mann-Whitney U test \\
 Two-sample t-test & Kruskal Wallis test \\ 
 One-Way ANOVA & Welch Test \\ 
 \bottomrule
+\end{tabular*}
 
-\end{longtable}
+}
 
-\endgroup
+\end{table}%
 
 \section{Paired and Independent
 Tests}\label{paired-and-independent-tests}
@@ -4981,16 +5019,15 @@ A neutral explanation of how \hyperref[qq]{QQ} plots work:
 In Table~\ref{tbl-qq-smpl-dat} \(n=10\) datapoints are shown as a sample
 dataset.
 
-\begingroup
-\fontsize{12.0pt}{14.4pt}\selectfont
-
-\begin{longtable}{rr}
+\begin{table}
 
 \caption{\label{tbl-qq-smpl-dat}10 randomly sampled datapoints for the
 creation of the QQ-plot}
 
-\tabularnewline
+\centering{
 
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}rr}
 \toprule
 x & smpl\_no \\ 
 \midrule\addlinespace[2.5pt]
@@ -5005,25 +5042,25 @@ x & smpl\_no \\
 -0.68685285 & 9 \\ 
 -0.44566197 & 10 \\ 
 \bottomrule
+\end{tabular*}
 
-\end{longtable}
+}
 
-\endgroup
+\end{table}%
 
 \subsubsection{Data Sorting}\label{data-sorting}
 
 To create a \hyperref[qq]{QQ} plot, the data must be sorted in ascending
 order.
 
-\begingroup
-\fontsize{12.0pt}{14.4pt}\selectfont
-
-\begin{longtable}{rr}
+\begin{table}
 
 \caption{\label{tbl-qq-smpl-sort}The sorted data points.}
 
-\tabularnewline
+\centering{
 
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}rr}
 \toprule
 x & smpl\_no \\ 
 \midrule\addlinespace[2.5pt]
@@ -5038,10 +5075,11 @@ x & smpl\_no \\
 1.55870831 & 3 \\ 
 1.71506499 & 6 \\ 
 \bottomrule
+\end{tabular*}
 
-\end{longtable}
+}
 
-\endgroup
+\end{table}%
 
 \subsubsection{Theoretical Quantiles}\label{theoretical-quantiles}
 
@@ -5049,15 +5087,14 @@ Theoretical quantiles are calculated based on the chosen distribution
 (e.g., the normal distribution). These quantiles represent the expected
 values if the data perfectly follows that distribution.
 
-\begingroup
-\fontsize{12.0pt}{14.4pt}\selectfont
-
-\begin{longtable}{rrcc}
+\begin{table}
 
 \caption{\label{tbl-qq-smpl-thrtcl}The calculated theoretical quantiles}
 
-\tabularnewline
+\centering{
 
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}rrcc}
 \toprule
 x & smpl\_no & x\_norm & x\_thrtcl \\ 
 \midrule\addlinespace[2.5pt]
@@ -5072,10 +5109,11 @@ x & smpl\_no & x\_norm & x\_thrtcl \\
 1.55870831 & 3 & 1.555994430 & 0.94014529 \\ 
 1.71506499 & 6 & 1.719927421 & 0.95727718 \\ 
 \bottomrule
+\end{tabular*}
 
-\end{longtable}
+}
 
-\endgroup
+\end{table}%
 
 \subsubsection{Plotting Points}\label{plotting-points}
 
@@ -5314,16 +5352,15 @@ Dutang 2015).
 
 \subsection{One Proportion Test}\label{one-proportion-test}
 
-\begingroup
-\fontsize{12.0pt}{14.4pt}\selectfont
-
-\begin{longtable}{lrrl}
+\begin{table}
 
 \caption{\label{tbl-prop-test-data}The raw data for the proportion
 test.}
 
-\tabularnewline
+\centering{
 
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrl}
 \toprule
 Category & Count & Total & plt\_lbl \\ 
 \midrule\addlinespace[2.5pt]
@@ -5332,10 +5369,11 @@ A & 35 & 100 & 35  counts
 B & 20 & 100 & 20  counts
  100  trials \\ 
 \bottomrule
+\end{tabular*}
 
-\end{longtable}
+}
 
-\endgroup
+\end{table}%
 
 The one proportion test is used on categorical data with a binary
 outcome, such as success or failure. Its prerequisite is having a known
@@ -5344,39 +5382,38 @@ be compared to. This test helps determine if the sample proportion
 significantly differs from the population proportion, making it valuable
 for studies involving proportions and percentages.
 
-\begingroup
-\fontsize{12.0pt}{14.4pt}\selectfont
-
-\begin{longtable}{rrrrrrrl}
+\begin{table}
 
 \caption{\label{tbl-prop-test-res}The test results for the proportion
 test.}
 
-\tabularnewline
+\centering{
 
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}rrrrrrrl}
 \toprule
 estimate1 & estimate2 & statistic & p.value & parameter & conf.low & conf.high & alternative \\ 
 \midrule\addlinespace[2.5pt]
 0.350 & 0.200 & 4.915 & 0.027 & 1.000 & 0.018 & 0.282 & two.sided \\ 
 \bottomrule
+\end{tabular*}
 
-\end{longtable}
+}
 
-\endgroup
+\end{table}%
 
 \subsection{\texorpdfstring{Chi\textsuperscript{2} goodness of fit
 test}{Chi2 goodness of fit test}}\label{chi2-goodness-of-fit-test}
 
-\begingroup
-\fontsize{12.0pt}{14.4pt}\selectfont
-
-\begin{longtable}{lr}
+\begin{table}
 
 \caption{\label{tbl-chi-gof-data}The raw data for the gof \(\chi^2\)
 test.}
 
-\tabularnewline
+\centering{
 
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lr}
 \toprule
 group & count\_n\_observed \\ 
 \midrule\addlinespace[2.5pt]
@@ -5386,30 +5423,31 @@ group03 & 100.000 \\
 group04 & 100.000 \\ 
 group05 & 100.000 \\ 
 \bottomrule
+\end{tabular*}
 
-\end{longtable}
+}
 
-\endgroup
+\end{table}%
 
-\begingroup
-\fontsize{18.8pt}{22.5pt}\selectfont
-
-\begin{longtable}{rrr}
+\begin{table}
 
 \caption{\label{tbl-chi-gof-res}The test results for the gof \(\chi^2\)
 test.}
 
-\tabularnewline
+\centering{
 
+\fontsize{19.0pt}{22.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}rrr}
 \toprule
 statistic & p.value & parameter \\ 
 \midrule\addlinespace[2.5pt]
 0.000 & 1.000 & 4.000 \\ 
 \bottomrule
+\end{tabular*}
 
-\end{longtable}
+}
 
-\endgroup
+\end{table}%
 
 The \(\chi^2\) goodness of Fit Test (\hyperref[gof]{gof}) is applied on
 categorical data with expected frequencies. It is suitable for analyzing
@@ -5432,15 +5470,14 @@ against a specification). To show the application, the \emph{drive shaft
 data} is employed. In Table~\ref{tbl-t-one-data} the \emph{per group}
 summarised data of the dirve shaft data is shown.
 
-\begingroup
-\fontsize{11.2pt}{13.5pt}\selectfont
-
-\begin{longtable}{lrr}
+\begin{table}
 
 \caption{\label{tbl-t-one-data}The raw data for the one sample t-test.}
 
-\tabularnewline
+\centering{
 
+\fontsize{11.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrr}
 \toprule
 group & mean\_diameter & sd\_diameter \\ 
 \midrule\addlinespace[2.5pt]
@@ -5450,10 +5487,11 @@ group03 & 13.002 & 0.102 \\
 group04 & 11.486 & 0.094 \\ 
 group05 & 12.001 & 0.026 \\ 
 \bottomrule
+\end{tabular*}
 
-\end{longtable}
+}
 
-\endgroup
+\end{table}%
 
 One important prerequisite for the One sample t-test normally
 distributed data. For this, graphical and numerical methods have been
@@ -5507,46 +5545,16 @@ alternative
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-\begin{minipage}[t]{\linewidth}\raggedright
-group01
-\end{minipage} & 0.048 & 0.975 &
-\begin{minipage}[t]{\linewidth}\raggedright
-Asymptoticone-sampleKolmogorov-Smirnovtest
-\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-two-sided
-\end{minipage} \\
-\begin{minipage}[t]{\linewidth}\raggedright
-group02
-\end{minipage} & 0.067 & 0.754 &
-\begin{minipage}[t]{\linewidth}\raggedright
-Asymptoticone-sampleKolmogorov-Smirnovtest
-\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-two-sided
-\end{minipage} \\
-\begin{minipage}[t]{\linewidth}\raggedright
-group03
-\end{minipage} & 0.075 & 0.633 &
-\begin{minipage}[t]{\linewidth}\raggedright
-Asymptoticone-sampleKolmogorov-Smirnovtest
-\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-two-sided
-\end{minipage} \\
-\begin{minipage}[t]{\linewidth}\raggedright
-group04
-\end{minipage} & 0.060 & 0.862 &
-\begin{minipage}[t]{\linewidth}\raggedright
-Asymptoticone-sampleKolmogorov-Smirnovtest
-\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-two-sided
-\end{minipage} \\
-\begin{minipage}[t]{\linewidth}\raggedright
-group05
-\end{minipage} & 0.127 & 0.081 &
-\begin{minipage}[t]{\linewidth}\raggedright
-Asymptoticone-sampleKolmogorov-Smirnovtest
-\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-two-sided
-\end{minipage} \\
+{group01} & 0.048 & 0.975 & {Asymptoticone-sampleKolmogorov-Smirnovtest}
+& {two-sided} \\
+{group02} & 0.067 & 0.754 & {Asymptoticone-sampleKolmogorov-Smirnovtest}
+& {two-sided} \\
+{group03} & 0.075 & 0.633 & {Asymptoticone-sampleKolmogorov-Smirnovtest}
+& {two-sided} \\
+{group04} & 0.060 & 0.862 & {Asymptoticone-sampleKolmogorov-Smirnovtest}
+& {two-sided} \\
+{group05} & 0.127 & 0.081 & {Asymptoticone-sampleKolmogorov-Smirnovtest}
+& {two-sided} \\
 
 \end{longtable}
 
@@ -5596,46 +5604,16 @@ alternative
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-\begin{minipage}[t]{\linewidth}\raggedright
-group01
-\end{minipage} & 12.015 & 1.391 & 0.167 & 99.000 & 11.993 & 12.038 &
-\begin{minipage}[t]{\linewidth}\raggedright
-OneSamplet-test
-\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-two.sided
-\end{minipage} \\
-\begin{minipage}[t]{\linewidth}\raggedright
-group02
-\end{minipage} & 12.364 & 19.274 & 0.000 & 99.000 & 12.326 & 12.401 &
-\begin{minipage}[t]{\linewidth}\raggedright
-OneSamplet-test
-\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-two.sided
-\end{minipage} \\
-\begin{minipage}[t]{\linewidth}\raggedright
-group03
-\end{minipage} & 13.002 & 97.769 & 0.000 & 99.000 & 12.982 & 13.022 &
-\begin{minipage}[t]{\linewidth}\raggedright
-OneSamplet-test
-\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-two.sided
-\end{minipage} \\
-\begin{minipage}[t]{\linewidth}\raggedright
-group04
-\end{minipage} & 11.486 & −54.441 & 0.000 & 99.000 & 11.468 & 11.505 &
-\begin{minipage}[t]{\linewidth}\raggedright
-OneSamplet-test
-\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-two.sided
-\end{minipage} \\
-\begin{minipage}[t]{\linewidth}\raggedright
-group05
-\end{minipage} & 12.001 & 0.418 & 0.677 & 99.000 & 11.996 & 12.006 &
-\begin{minipage}[t]{\linewidth}\raggedright
-OneSamplet-test
-\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-two.sided
-\end{minipage} \\
+{group01} & 12.015 & 1.391 & 0.167 & 99.000 & 11.993 & 12.038 &
+{OneSamplet-test} & {two.sided} \\
+{group02} & 12.364 & 19.274 & 0.000 & 99.000 & 12.326 & 12.401 &
+{OneSamplet-test} & {two.sided} \\
+{group03} & 13.002 & 97.769 & 0.000 & 99.000 & 12.982 & 13.022 &
+{OneSamplet-test} & {two.sided} \\
+{group04} & 11.486 & −54.441 & 0.000 & 99.000 & 11.468 & 11.505 &
+{OneSamplet-test} & {two.sided} \\
+{group05} & 12.001 & 0.418 & 0.677 & 99.000 & 11.996 & 12.006 &
+{OneSamplet-test} & {two.sided} \\
 
 \end{longtable}
 
@@ -5704,11 +5682,7 @@ histograms.}
 
 \end{figure}%
 
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\begin{longtable}[]{@{}lrrl@{}}
 
 \caption{\label{tbl-wilcox-one-res}The results for the one sample
 Wilcoxon test for every group against the reference value.}
@@ -5716,56 +5690,20 @@ Wilcoxon test for every group against the reference value.}
 \tabularnewline
 
 \toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-group
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-statistic
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-p.value
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-alternative
-\end{minipage} \\
+group & statistic & p.value & alternative \\
 \midrule\noalign{}
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-\begin{minipage}[t]{\linewidth}\raggedright
-group01
-\end{minipage} & 3,208.500 & 0.000 &
-\begin{minipage}[t]{\linewidth}\raggedright
-greater
-\end{minipage} \\
-\begin{minipage}[t]{\linewidth}\raggedright
-group02
-\end{minipage} & 5,050.000 & 0.000 &
-\begin{minipage}[t]{\linewidth}\raggedright
-greater
-\end{minipage} \\
-\begin{minipage}[t]{\linewidth}\raggedright
-group03
-\end{minipage} & 0.000 & 1.000 &
-\begin{minipage}[t]{\linewidth}\raggedright
-greater
-\end{minipage} \\
-\begin{minipage}[t]{\linewidth}\raggedright
-group04
-\end{minipage} & 3,203.500 & 0.000 &
-\begin{minipage}[t]{\linewidth}\raggedright
-greater
-\end{minipage} \\
-\begin{minipage}[t]{\linewidth}\raggedright
-group05
-\end{minipage} & 3,003.000 & 0.000 &
-\begin{minipage}[t]{\linewidth}\raggedright
-greater
-\end{minipage} \\
+{group01} & 3,208.500 & 0.000 & {greater} \\
+{group02} & 5,050.000 & 0.000 & {greater} \\
+{group03} & 0.000 & 1.000 & {greater} \\
+{group04} & 3,203.500 & 0.000 & {greater} \\
+{group05} & 3,003.000 & 0.000 & {greater} \\
 
 \end{longtable}
 
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\begin{longtable}[]{@{}lrr@{}}
 
 \caption{\label{tbl-wilcox-one-compare}The results for the one sample
 t-test compared to the results of a one sample Wilcoxon test.}
@@ -5773,32 +5711,16 @@ t-test compared to the results of a one sample Wilcoxon test.}
 \tabularnewline
 
 \toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-group
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-t\_tidy\_p.value
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-wilcox\_tidy\_p.value
-\end{minipage} \\
+group & t\_tidy\_p.value & wilcox\_tidy\_p.value \\
 \midrule\noalign{}
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-\begin{minipage}[t]{\linewidth}\raggedright
-group01
-\end{minipage} & 0.167 & 0.182 \\
-\begin{minipage}[t]{\linewidth}\raggedright
-group02
-\end{minipage} & 0.000 & 0.000 \\
-\begin{minipage}[t]{\linewidth}\raggedright
-group03
-\end{minipage} & 0.000 & 0.000 \\
-\begin{minipage}[t]{\linewidth}\raggedright
-group04
-\end{minipage} & 0.000 & 0.000 \\
-\begin{minipage}[t]{\linewidth}\raggedright
-group05
-\end{minipage} & 0.677 & 0.803 \\
+{group01} & 0.167 & 0.182 \\
+{group02} & 0.000 & 0.000 \\
+{group03} & 0.000 & 0.000 \\
+{group04} & 0.000 & 0.000 \\
+{group05} & 0.677 & 0.803 \\
 
 \end{longtable}
 
@@ -5848,10 +5770,7 @@ specific combination of categories for the variables being analyzed. It
 is commonly used in statistics to examine the association between
 categorical variables and to understand patterns within data sets.
 
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\begin{longtable}[]{@{}lrr@{}}
 
 \caption{\label{tbl-chi-sq-indep-tbl}The contingency table for this
 example.}
@@ -5859,23 +5778,13 @@ example.}
 \tabularnewline
 
 \toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-Defects
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-Operator A
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-Operator B
-\end{minipage} \\
+Defects & Operator A & Operator B \\
 \midrule\noalign{}
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-\begin{minipage}[t]{\linewidth}\raggedright
-No
-\end{minipage} & 2 & 3 \\
-\begin{minipage}[t]{\linewidth}\raggedright
-Yes
-\end{minipage} & 3 & 2 \\
+{No} & 2 & 3 \\
+{Yes} & 3 & 2 \\
 
 \end{longtable}
 
@@ -6605,7 +6514,7 @@ With \(p>\alpha = 0.05\) \(H_0\) is accepted, the variances are equal.
 
 Using a QQ-plot the data is checked for normality.
 
-\pandocbounded{\includegraphics[keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/unnamed-chunk-68-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/unnamed-chunk-13-1.pdf}}
 
 Without a formal test, the data is assumed to be normally distributed.
 
@@ -6657,9 +6566,9 @@ significant difference in medians between the related groups.
   \end{itemize}
 \end{itemize}
 
-\pandocbounded{\includegraphics[keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/unnamed-chunk-71-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/unnamed-chunk-15-1.pdf}}
 
-\pandocbounded{\includegraphics[keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/unnamed-chunk-72-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/unnamed-chunk-16-1.pdf}}
 
 \begin{verbatim}
 # A tibble: 1 x 7
@@ -7122,10 +7031,8 @@ method
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-4.000 & 215.085 & 3,158.109 & 0.000 &
-\begin{minipage}[t]{\linewidth}\raggedright
-One-way analysis ofmeans (not assuming equalvariances)
-\end{minipage} \\
+4.000 & 215.085 & 3,158.109 & 0.000 & {One-way analysis ofmeans (not
+assuming equalvariances)} \\
 
 \end{longtable}
 
@@ -7605,49 +7512,49 @@ regression}\label{hypostesis-testing-in-linear-regression}
 
 \hyperref[Ha]{Alternative Hypothesis (Ha)}: \(\beta_1 \neq 0\)
 
-\begingroup
-\fontsize{12.0pt}{14.4pt}\selectfont
-
-\begin{longtable}{lrrrr}
+\begin{table}
 
 \caption{\label{tbl-lm-t-test}The significance of model parameters.}
 
-\tabularnewline
+\centering{
 
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrr}
 \toprule
 term & estimate & std.error & statistic & p.value \\ 
 \midrule\addlinespace[2.5pt]
 (Intercept) & 2.500 & 0.141 & 17.779 & 0.000 \\ 
 rpm & 0.010 & 0.000 & 67.895 & 0.000 \\ 
 \bottomrule
+\end{tabular*}
 
-\end{longtable}
+}
 
-\endgroup
+\end{table}%
 
 In linear regression, t testing of coefficients assesses whether
 individual regression coefficients significantly differ from zero,
 providing insights into the significance of each predictor's
 contribution to the model.
 
-\begingroup
-\fontsize{12.0pt}{14.4pt}\selectfont
-
-\begin{longtable}{rrrrrrr}
+\begin{table}
 
 \caption{\label{tbl-lm-f-test}The significance of the model.}
 
-\tabularnewline
+\centering{
 
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}rrrrrrr}
 \toprule
 r.squared & adj.r.squared & statistic & p.value & df & df.residual & nobs \\ 
 \midrule\addlinespace[2.5pt]
 0.902 & 0.902 & 4,609.692 & 0.000 & 1.000 & 498.000 & 500.000 \\ 
 \bottomrule
+\end{tabular*}
 
-\end{longtable}
+}
 
-\endgroup
+\end{table}%
 
 In linear regression, the F-test assesses the overall significance of
 the regression model by comparing the fit of the model with predictors
@@ -7657,36 +7564,31 @@ dependent variable.
 
 \section{Multiple linear regression}\label{multiple-linear-regression}
 
-\begingroup
-\fontsize{12.0pt}{14.4pt}\selectfont
-\setlength{\LTpost}{0mm}
-
-\begin{longtable}{lccccc}
+\begin{table}
 
 \caption{\label{tbl-mlm-eda}The data in a tabular overview including
 test for normal distribution.}
 
-\tabularnewline
+\centering{
 
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lccccc}
 \toprule
-\textbf{Characteristic} & \textbf{Overall}\\
-N = 500\textsuperscript{\textit{1}} & \textbf{A}\\
-N = 165\textsuperscript{\textit{1}} & \textbf{B}\\
-N = 181\textsuperscript{\textit{1}} & \textbf{C}\\
-N = 154\textsuperscript{\textit{1}} & \textbf{p-value}\textsuperscript{\textit{2}} \\ 
+\textbf{Characteristic} & \textbf{Overall}  N = 500\textsuperscript{\textit{1}} & \textbf{A}  N = 165\textsuperscript{\textit{1}} & \textbf{B}  N = 181\textsuperscript{\textit{1}} & \textbf{C}  N = 154\textsuperscript{\textit{1}} & \textbf{p-value}\textsuperscript{\textit{2}} \\ 
 \midrule\addlinespace[2.5pt]
 rpm & 999 (932, 1,068) & 993 (923, 1,061) & 995 (927, 1,074) & 1,012 (946, 1,068) & 0.5 \\ 
 diameter & 11.95 (11.30, 12.66) & 11.90 (11.24, 12.51) & 11.98 (11.30, 12.67) & 12.01 (11.41, 12.77) & 0.4 \\ 
 feed & 40.01 (39.34, 40.67) & 39.98 (39.34, 40.63) & 39.91 (39.34, 40.65) & 40.05 (39.37, 40.78) & 0.7 \\ 
 \bottomrule
-
-\end{longtable}
-
+\end{tabular*}
 \begin{minipage}{\linewidth}
 \textsuperscript{\textit{1}}Median (Q1, Q3)\\
 \textsuperscript{\textit{2}}Kruskal-Wallis rank sum test\\
 \end{minipage}
-\endgroup
+
+}
+
+\end{table}%
 
 A short \hyperref[eda]{exploratory data analysis} of the data for the
 multiple linear regression is given in Table~\ref{tbl-mlm-eda}.
@@ -7727,34 +7629,33 @@ in a histogram.
 Y \sim rpm + feed+ site \label{mlmmodel}
 \end{align}
 
-\begingroup
-\fontsize{12.0pt}{14.4pt}\selectfont
-\setlength{\LTpost}{0mm}
-
-\begin{longtable}{lccc}
+\begin{table}
 
 \caption{\label{tbl-mlm-mdl}The output of the multiple linear regression
 modelling}
 
-\tabularnewline
+\centering{
 
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lccc}
 \toprule
-\textbf{Characteristic} & \textbf{Beta} & \textbf{95\% CI}\textsuperscript{\textit{1}} & \textbf{p-value} \\ 
+\textbf{Characteristic} & \textbf{Beta} & \textbf{95\% CI} & \textbf{p-value} \\ 
 \midrule\addlinespace[2.5pt]
 rpm & 0.00 & 0.00, 0.01 & <0.001 \\ 
 feed & 0.44 & 0.29, 0.58 & <0.001 \\ 
 site &  &  &  \\ 
-    A & 0.00 & — &  \\ 
+    A & 0.00 & \textemdash &  \\ 
     B & 0.09 & -0.02, 0.20 & 0.11 \\ 
     C & 0.08 & -0.03, 0.20 & 0.15 \\ 
 \bottomrule
-
-\end{longtable}
-
+\end{tabular*}
 \begin{minipage}{\linewidth}
-\textsuperscript{\textit{1}}CI = Confidence Interval\\
+Abbreviation: CI = Confidence Interval\\
 \end{minipage}
-\endgroup
+
+}
+
+\end{table}%
 
 \eqref{mlmmodel} shows the general model for the multiple linear
 regression model. In this example, also the production site
@@ -8122,17 +8023,15 @@ drive shafts have been rated between \texttt{PASS}and \texttt{FAIL} and
 the lathing machine feed has been recorded. The question is now, at
 which feed the drive shafts start to FAIL.
 
-\begingroup
-\fontsize{12.0pt}{14.4pt}\selectfont
-\setlength{\LTpost}{0mm}
-
-\begin{longtable}{lc}
+\begin{table}
 
 \caption{\label{tbl-logreg-eda}The overview of the logistic regression
 data.}
 
-\tabularnewline
+\centering{
 
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lc}
 \toprule
 \textbf{Characteristic} & \textbf{N = 500}\textsuperscript{\textit{1}} \\ 
 \midrule\addlinespace[2.5pt]
@@ -8141,40 +8040,40 @@ pass\_1\_fail\_0 &  \\
     0 & 256 (51\%) \\ 
     1 & 244 (49\%) \\ 
 \bottomrule
-
-\end{longtable}
-
+\end{tabular*}
 \begin{minipage}{\linewidth}
 \textsuperscript{\textit{1}}Median (Q1, Q3); n (\%)\\
 \end{minipage}
-\endgroup
+
+}
+
+\end{table}%
 
 Table~\ref{tbl-logreg-eda} shows an overview of the logistic regression
 data. \texttt{PASS} and \texttt{FAIL} are fairly similar distributed.
 
-\begingroup
-\fontsize{12.0pt}{14.4pt}\selectfont
-\setlength{\LTpost}{0mm}
-
-\begin{longtable}{lccc}
+\begin{table}
 
 \caption{\label{tbl-logreg-mdl}The modeling of the logisitic regression
 data.}
 
-\tabularnewline
+\centering{
 
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lccc}
 \toprule
-\textbf{Characteristic} & \textbf{log(OR)}\textsuperscript{\textit{1}} & \textbf{95\% CI}\textsuperscript{\textit{1}} & \textbf{p-value} \\ 
+\textbf{Characteristic} & \textbf{log(OR)} & \textbf{95\% CI} & \textbf{p-value} \\ 
 \midrule\addlinespace[2.5pt]
 feed & 0.46 & 0.35, 0.57 & <0.001 \\ 
 \bottomrule
-
-\end{longtable}
-
+\end{tabular*}
 \begin{minipage}{\linewidth}
-\textsuperscript{\textit{1}}OR = Odds Ratio, CI = Confidence Interval\\
+Abbreviations: CI = Confidence Interval, OR = Odds Ratio\\
 \end{minipage}
-\endgroup
+
+}
+
+\end{table}%
 
 The model coefficients are shown in Table~\ref{tbl-logreg-mdl}.
 Translated in equation \eqref{logregor} and \eqref{logrege} we can see,
@@ -8423,37 +8322,37 @@ classifies the product as \texttt{pass} or \texttt{fail}
 correct
 predictions}\label{accuracy-correct-classification-rate-proportion-of-correct-predictions}
 
-\pandocbounded{\includegraphics[keepaspectratio]{chapter003_Regression_files/figure-pdf/unnamed-chunk-36-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{chapter003_Regression_files/figure-pdf/unnamed-chunk-5-1.pdf}}
 
 \subsubsection{Precision}\label{precision-1}
 
-\pandocbounded{\includegraphics[keepaspectratio]{chapter003_Regression_files/figure-pdf/unnamed-chunk-37-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{chapter003_Regression_files/figure-pdf/unnamed-chunk-6-1.pdf}}
 
 \subsubsection{Recall, True positive rate, sensitivity, hit rate,
 detection
 rate}\label{recall-true-positive-rate-sensitivity-hit-rate-detection-rate}
 
-\pandocbounded{\includegraphics[keepaspectratio]{chapter003_Regression_files/figure-pdf/unnamed-chunk-38-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{chapter003_Regression_files/figure-pdf/unnamed-chunk-7-1.pdf}}
 
 \subsubsection{Specificity, true negative rate, selectivity, true
 negative fraction, 1 - false positive
 rate}\label{specificity-true-negative-rate-selectivity-true-negative-fraction-1---false-positive-rate}
 
-\pandocbounded{\includegraphics[keepaspectratio]{chapter003_Regression_files/figure-pdf/unnamed-chunk-39-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{chapter003_Regression_files/figure-pdf/unnamed-chunk-8-1.pdf}}
 
 \subsubsection{F1 Score, harmonic mean of precision and
 recall}\label{f1-score-harmonic-mean-of-precision-and-recall}
 
-\pandocbounded{\includegraphics[keepaspectratio]{chapter003_Regression_files/figure-pdf/unnamed-chunk-40-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{chapter003_Regression_files/figure-pdf/unnamed-chunk-9-1.pdf}}
 
 \subsubsection{Receiver Operator Curve
 (ROC)}\label{receiver-operator-curve-roc}
 
-\pandocbounded{\includegraphics[keepaspectratio]{chapter003_Regression_files/figure-pdf/unnamed-chunk-41-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{chapter003_Regression_files/figure-pdf/unnamed-chunk-10-1.pdf}}
 
 \subsubsection{METRICSSS!!!!!}\label{metricsss}
 
-\pandocbounded{\includegraphics[keepaspectratio]{chapter003_Regression_files/figure-pdf/unnamed-chunk-42-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{chapter003_Regression_files/figure-pdf/unnamed-chunk-11-1.pdf}}
 
 \bookmarksetup{startatroot}
 
@@ -9404,29 +9303,28 @@ standard deviation of the measurements
 
 \subsubsection{MSA1 example}\label{msa1-example}
 
-\begingroup
-\fontsize{12.0pt}{14.4pt}\selectfont
-\setlength{\LTpost}{0mm}
-
-\begin{longtable}{lc}
+\begin{table}
 
 \caption{\label{tbl-msa1-summary}The summary of the raw data for the
 MSA1.}
 
-\tabularnewline
+\centering{
 
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lc}
 \toprule
 \textbf{Characteristic} & \textbf{N = 50}\textsuperscript{\textit{1}} \\ 
 \midrule\addlinespace[2.5pt]
 measured\_data & 20.303 (0.005) \\ 
 \bottomrule
-
-\end{longtable}
-
+\end{tabular*}
 \begin{minipage}{\linewidth}
 \textsuperscript{\textit{1}}Mean (SD)\\
 \end{minipage}
-\endgroup
+
+}
+
+\end{table}%
 
 In Table~\ref{tbl-msa1-summary} the raw data that was collected during
 the experiments is depicted, whereas in Figure~\ref{fig-msa1-plt} the
@@ -9493,24 +9391,24 @@ errors is reasonable and effective.
 
 \paragraph{computed values}\label{computed-values}
 
-\begingroup
-\fontsize{22.5pt}{27.0pt}\selectfont
-
-\begin{longtable}{rr}
+\begin{table}
 
 \caption{\label{tbl-CgCgk}\(C_g, C_{gk}\) for the measured values}
 
-\tabularnewline
+\centering{
 
+\fontsize{22.0pt}{27.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}rr}
 \toprule
 Cg & Cgk \\ 
 \midrule\addlinespace[2.5pt]
 2.13 & 2.02 \\ 
 \bottomrule
+\end{tabular*}
 
-\end{longtable}
+}
 
-\endgroup
+\end{table}%
 
 In Table~\ref{tbl-CgCgk} the numeric values for \(C_g\) and \(C_{gk}\)
 are shown. Both values are well above \(1.33\) which indicates that the
@@ -9862,15 +9760,14 @@ informs decision-making processes.
 
 \paragraph{Results}\label{results}
 
-\begingroup
-\fontsize{12.0pt}{14.4pt}\selectfont
-
-\begin{longtable}{rrrll}
+\begin{table}
 
 \caption{\label{tbl-aaa}}
 
-\tabularnewline
+\centering{
 
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}rrrll}
 \toprule
 appraiser & runs & units & reference & results \\ 
 \midrule\addlinespace[2.5pt]
@@ -9887,10 +9784,11 @@ appraiser & runs & units & reference & results \\
 2 & 2 & 1 & bad & bad \\ 
 2 & 2 & 2 & bad & good \\ 
 \bottomrule
+\end{tabular*}
 
-\end{longtable}
+}
 
-\endgroup
+\end{table}%
 
 \paragraph{Overall agreement}\label{overall-agreement}
 
@@ -9983,15 +9881,14 @@ number of agreements for the \(i\)-th appraiser and the \(i\)-th
 standard
 \end{description}
 
-\begingroup
-\fontsize{12.0pt}{14.4pt}\selectfont
-
-\begin{longtable}{rlr}
+\begin{table}
 
 \caption{\label{tbl-app-ref-agree}}
 
-\tabularnewline
+\centering{
 
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}rlr}
 \toprule
 appraiser & reference & overall\_agreement \\ 
 \midrule\addlinespace[2.5pt]
@@ -10000,10 +9897,11 @@ appraiser & reference & overall\_agreement \\
 2 & bad & 25.00\% \\ 
 2 & good & 50.00\% \\ 
 \bottomrule
+\end{tabular*}
 
-\end{longtable}
+}
 
-\endgroup
+\end{table}%
 
 \paragraph{graphical representation}\label{graphical-representation-1}
 
@@ -10060,16 +9958,16 @@ reference?}
 \begin{figure}
 
 \begin{minipage}{0.50\linewidth}
-\pandocbounded{\includegraphics[keepaspectratio]{chapter004_ProductionStatistics_files/figure-pdf/unnamed-chunk-48-1.pdf}}\end{minipage}%
+\pandocbounded{\includegraphics[keepaspectratio]{chapter004_ProductionStatistics_files/figure-pdf/unnamed-chunk-10-1.pdf}}\end{minipage}%
 %
 \begin{minipage}{0.50\linewidth}
-\pandocbounded{\includegraphics[keepaspectratio]{chapter004_ProductionStatistics_files/figure-pdf/unnamed-chunk-48-2.pdf}}\end{minipage}%
+\pandocbounded{\includegraphics[keepaspectratio]{chapter004_ProductionStatistics_files/figure-pdf/unnamed-chunk-10-2.pdf}}\end{minipage}%
 \newline
 \begin{minipage}{0.50\linewidth}
-\pandocbounded{\includegraphics[keepaspectratio]{chapter004_ProductionStatistics_files/figure-pdf/unnamed-chunk-48-3.pdf}}\end{minipage}%
+\pandocbounded{\includegraphics[keepaspectratio]{chapter004_ProductionStatistics_files/figure-pdf/unnamed-chunk-10-3.pdf}}\end{minipage}%
 %
 \begin{minipage}{0.50\linewidth}
-\pandocbounded{\includegraphics[keepaspectratio]{chapter004_ProductionStatistics_files/figure-pdf/unnamed-chunk-48-4.pdf}}\end{minipage}%
+\pandocbounded{\includegraphics[keepaspectratio]{chapter004_ProductionStatistics_files/figure-pdf/unnamed-chunk-10-4.pdf}}\end{minipage}%
 
 \end{figure}%
 
@@ -10196,16 +10094,15 @@ strategies}\label{experimental-planning-strategies}
 
 \section{design matrix}\label{design-matrix}
 
-\begingroup
-\fontsize{12.0pt}{14.4pt}\selectfont
-
-\begin{longtable}{cccc}
+\begin{table}
 
 \caption{\label{tbl-dm}The design matrix for the pizza dough
 experimentation}
 
-\tabularnewline
+\centering{
 
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}cccc}
 \toprule
 flour & salt & bakPow & score \\ 
 \midrule\addlinespace[2.5pt]
@@ -10218,10 +10115,11 @@ flour & salt & bakPow & score \\
 - & + & + & NA \\ 
 + & + & + & NA \\ 
 \bottomrule
+\end{tabular*}
 
-\end{longtable}
+}
 
-\endgroup
+\end{table}%
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -10267,32 +10165,32 @@ experimentation}\label{progressive-experimentation}
   randomization!
 \end{itemize}
 
-\begingroup
-\fontsize{12.0pt}{14.4pt}\selectfont
-
-\begin{longtable}{ccccr}
+\begin{table}
 
 \caption{\label{tbl-dm-rnd}The randomized design matrix for experimental
 runs}
 
-\tabularnewline
+\centering{
 
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}ccccr}
 \toprule
 flour & salt & bakPow & score & ord \\ 
 \midrule\addlinespace[2.5pt]
-+ & - & + & NA & 1 \\ 
-+ & + & - & NA & 2 \\ 
-- & + & + & NA & 3 \\ 
-+ & - & - & NA & 4 \\ 
-- & - & + & NA & 5 \\ 
-- & - & - & NA & 6 \\ 
+- & + & + & NA & 1 \\ 
+- & - & + & NA & 2 \\ 
++ & + & - & NA & 3 \\ 
++ & + & + & NA & 4 \\ 
++ & - & + & NA & 5 \\ 
++ & - & - & NA & 6 \\ 
 - & + & - & NA & 7 \\ 
-+ & + & + & NA & 8 \\ 
+- & - & - & NA & 8 \\ 
 \bottomrule
+\end{tabular*}
 
-\end{longtable}
+}
 
-\endgroup
+\end{table}%
 
 \section{experimental model}\label{experimental-model}
 
@@ -10314,7 +10212,7 @@ flour & salt & bakPow & score & ord \\
 
 \centering{
 
-\includegraphics[width=1.86in,height=\textheight,keepaspectratio]{chapter005/mm_doe_02.png}
+\pandocbounded{\includegraphics[keepaspectratio]{chapter005/mm_doe_02.png}}
 
 }
 
@@ -10391,9 +10289,9 @@ data}\label{pizza-dough-example-raw-data}
 
 ``\ldots{} bake the pizza for 9min at 180°C \ldots{}''
 
-\begingroup
-\fontsize{12.0pt}{14.4pt}\selectfont
-\begin{longtable*}{rcccrr}
+\begin{table}
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}rcccrr}
 \toprule
 repl & flour & salt & bakPow & score & ord \\ 
 \midrule\addlinespace[2.5pt]
@@ -10414,17 +10312,17 @@ repl & flour & salt & bakPow & score & ord \\
 2 & - & + & + & 2.48 & 3 \\ 
 2 & + & + & + & 6.18 & 7 \\ 
 \bottomrule
-\end{longtable*}
-\endgroup
+\end{tabular*}
+\end{table}
 
 (Cano, Moguerza, and Redchuk 2012)
 
 \subsection{pizza dough example summarised
 data}\label{pizza-dough-example-summarised-data}
 
-\begingroup
-\fontsize{12.0pt}{14.4pt}\selectfont
-\begin{longtable*}{cccr}
+\begin{table}
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}cccr}
 \toprule
 flour & salt & bakPow & mean\_score \\ 
 \midrule\addlinespace[2.5pt]
@@ -10437,8 +10335,8 @@ flour & salt & bakPow & mean\_score \\
 + & + & - & 6.685 \\ 
 + & + & + & 6.210 \\ 
 \bottomrule
-\end{longtable*}
-\endgroup
+\end{tabular*}
+\end{table}
 
 \subsection{pizza dough recipe full
 model}\label{pizza-dough-recipe-full-model}
@@ -10822,23 +10720,22 @@ score ~ flour + salt + bakPow + temp + time + flour:salt + flour:bakPow +
 \subsection{main effect and
 interaction}\label{main-effect-and-interaction}
 
-\pandocbounded{\includegraphics[keepaspectratio]{chapter005_DoE_files/figure-pdf/unnamed-chunk-20-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{chapter005_DoE_files/figure-pdf/unnamed-chunk-8-1.pdf}}
 
 \subsection{check residuals}\label{check-residuals}
 
-\pandocbounded{\includegraphics[keepaspectratio]{chapter005_DoE_files/figure-pdf/unnamed-chunk-21-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{chapter005_DoE_files/figure-pdf/unnamed-chunk-9-1.pdf}}
 
 \subsection{pragmatic result}\label{pragmatic-result}
 
-\begingroup
-\fontsize{12.0pt}{14.4pt}\selectfont
-
-\begin{longtable}{cccrrrrrrr}
+\begin{table}
 
 \caption{\label{tbl-pragm-res}The pragmatic results for the DoE}
 
-\tabularnewline
+\centering{
 
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}cccrrrrrrr}
 \toprule
 flour & salt & bakPow & score & T1t1 & T2t1 & T1t2 & T2t2 & Mean & SD \\ 
 \midrule\addlinespace[2.5pt]
@@ -10851,10 +10748,11 @@ flour & salt & bakPow & score & T1t1 & T2t1 & T1t2 & T2t2 & Mean & SD \\
 - & + & + & 2.870 & 1.215 & 1.860 & 3.040 & 1.310 & 2.059 & 0.8388223 \\ 
 + & + & + & 6.210 & 5.805 & 6.110 & 5.980 & 5.965 & 6.014 & 0.1249667 \\ 
 \bottomrule
+\end{tabular*}
 
-\end{longtable}
+}
 
-\endgroup
+\end{table}%
 
 \bookmarksetup{startatroot}
 
