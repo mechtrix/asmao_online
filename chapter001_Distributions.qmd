@@ -217,8 +217,6 @@ It is important to note that continuous data can be measured with decimals or fr
 
 ## Uniform Distribution
 
-::: {.content-visible when-profile="slides"}
-
 ### Fairness
 
 <center>
@@ -241,8 +239,6 @@ Every outcome is **equally** likely
 
 :::
 
-
-:::
 
 ### Dice
 
@@ -624,12 +620,6 @@ If we roll a fair six-sided die 10 times, how many times do you expect to get a 
 
 :::
 
-::: {.notes}
-
-* $P = 1/6 \approx 16\% \rightarrow P_{10\;times} = 10 * 1/6 = 1.6 times \approx 2$
-
-:::
-
 ::: {.fragment .fade-in-then-out}
 
 ```{r}
@@ -745,8 +735,6 @@ The Bernoulli trial is the fundamental building block for many other probability
 
 :::
 
-::: {.content-visible when-profile="slides"}
-
 ::: {.r-stack}
 
 ::: {.fragment .fade-out}
@@ -794,10 +782,6 @@ P(X = k) = \binom{n}{k} p^k (1 - p)^{n - k} \nonumber
 
 :::
 
-:::
-
-:::
-
 ::: {.content-visible when-profile="script"}
 
 The {{< acr PMF >}}, also known as the discrete probability density function, is a fundamental concept in probability and statistics. 
@@ -834,6 +818,7 @@ P(X = k) = \binom{n}{k} p^k (1 - p)^{n - k} \label{PMFbinom}
 
 :::
 
+:::
 
 ### The drive shaft exercise - Binomial Distribution
 
@@ -1252,8 +1237,6 @@ tibble(
 
 :::
 
-::: {.content-visible when-profile="slides"}
-
 ::: {.fragment .fade-in-then-out}
 
 \begin{align}
@@ -1272,8 +1255,6 @@ Machine (A) value: $53$
 sd_{x} &= `r round(sd(machine_A),digits = 2)` \nonumber \\
 z\text{-score} &= \frac{x-\bar{x}}{sd_x} = \frac{53-`r round(mean(machine_A),digits = 2)`}{`r round(sd(machine_A),digits = 2)`} = `r round((53-mean(machine_A))/sd(machine_A),digits = 2)` \nonumber
 \end{align}
-
-:::
 
 :::
 
@@ -1598,8 +1579,6 @@ The probability of a continuous random variable falling within a specific interv
 :::
 
 
-::: {.content-visible when-profile="slides"}
-
 ::: {.r-stack}
 
 ::: {.fragment .fade-out}
@@ -1624,8 +1603,6 @@ The probability of a continuous random variable falling within a specific interv
 knitr::include_graphics(here::here("chapter001","PDF_000.png"))
 
 ```
-
-:::
 
 :::
 
@@ -1658,8 +1635,6 @@ z &= \frac{x-\mu}{\sigma} \nonumber \\
 \end{align}
 
 :::
-
-::: {.content-visible when-profile="slides"}
 
 ::: {.r-stack}
 
@@ -1694,8 +1669,6 @@ z &= \frac{x-\mu}{\sigma} \nonumber \\
 knitr::include_graphics(here::here("chapter001","CDF_000.png"))
 
 ```
-
-:::
 
 :::
 
@@ -1745,6 +1718,8 @@ Probability:
 ![](chapter001/likelihood_prob_003.svg){.fragment .fade-in-then-out width=85% fig-align="center" auto-animate=true}
 
 ![](chapter001/likelihood_prob_004.svg){.fragment .fade-in-then-out width=85% fig-align="center" auto-animate=true}
+
+:::
 
 :::
 
@@ -1935,8 +1910,6 @@ In summary, the link between the chi-squared distribution and sample variance is
 
 :::
 
-::: {.content-visible when-profile="slides"}
-
 ::: {.r-stack}
 
 ::: {.fragment .fade-out}
@@ -2027,16 +2000,6 @@ plt3
 - [$\chi^2$-table](https://datatab.net/tutorial/chi-square-distribution) or `qchisq(1 - alpha, dof)` in `R`
 - The Hypothesis as "translated" to quantitative measures?
 
-
-::: {.notes}
-- $E_k = 10$ expected frequencies (for 60 rolls with a six sided die)
-- $O_k$ are the actual frequencies
-- $\alpha = 0.05$
-- $dof = 5$
-- $\chi^2_{calculated}>\chi^2_{table}$ (translated research question)
-:::
-
-:::
 
 :::
 
@@ -2197,8 +2160,6 @@ All these values can be computed from sampled data, the population can remain *e
 
 :::
 
-::: {.content-visible when-profile="slides"}
-
 ::: {.r-stack}
 
 ::: {.fragment .fade-out}
@@ -2304,20 +2265,6 @@ data.frame(
 - [$t$-table](https://datatab.de/tutorial/tabelle-t-verteilung) or `qt(alpha / 2, dof)` in `R`
 - The Hypothesis as "translated" to quantitative measures?
 
-
-::: {.notes}
-- $\mu = \bar{x} \pm t(\frac{\alpha}{2},df) * (\frac{sd}{\sqrt{n}})$ (transform)
-- $dof = n_{samples} - 1 = 5-1$
-- $\alpha = 0.05$ (for test make $\alpha/2$)
-- $dof = 5$
-- calc mean and sd
-- calc critical_t <- qt((1 - confidence_level) / 2, df)
-- calc margin of error: critical_t * (sample_sd / sqrt(length(data))) --> $t(\frac{\alpha}{2},df) * (\frac{sd}{\sqrt{n}})$
-- calc CI with $\bar{x}\pm margin\;of\;error$
-
-:::
-
-:::
 
 :::
 
@@ -2752,8 +2699,6 @@ They help quantify the variability between and within groups or models, allowing
 
 :::
 
-::: {.content-visible when-profile="slides"}
-
 ::: {.r-stack}
 
 ::: {.fragment .fade-out}
@@ -2780,48 +2725,6 @@ plt_max_line
 #| out-width: 100%
 plt_max
 ```
-
-:::
-
-:::
-
-::: {.notes}
-
-<!-- https://stattrek.com/probability-distributions/f-distribution -->
-
-Certainly. In a classroom setting, you can use the F-distribution and a six-sided die to illustrate the concept of the F-distribution in the context of statistical analysis.
-
-Imagine you are teaching a statistics class. You can demonstrate the F-distribution by conducting an experiment using a six-sided die. Here's how you can do it:
-
-1. **Hypotheses**: Start by explaining the null and alternative hypotheses. For example, the null hypothesis (H0) could be that the average score on the die is the same for two different groups. The alternative hypothesis (Ha) could be that the average scores are significantly different between the groups.
-
-2. **Experimental Setup**: Divide your class into two groups. Group A and Group B. Each group represents a different treatment or condition. 
-
-3. **Data Collection**: Roll the die several times for each group, recording the scores. This simulates collecting data under the two different conditions.
-
-4. **Analysis**: Calculate the sample means and variances for both groups. Next, compute the F-statistic using the formula for the F-distribution, which involves the ratio of the variances of the two groups. 
-
-5. **Critical Values**: Discuss how the F-distribution has critical values, which depend on the degrees of freedom associated with the numerator and denominator variances. Explain that these critical values are used to determine statistical significance.
-
-6. **Conclusion**: Based on the calculated F-statistic and critical values, discuss whether you can reject the null hypothesis and conclude if there is a significant difference in the average scores between the two groups.
-
-This classroom example with a die demonstrates how the F-distribution is used to analyze variance between groups, making it a useful tool for comparing the means of multiple groups in statistical experiments.
-
-```{r, include=FALSE}
-
-# Sample data for two groups
-groupA <- c(1,4,5,2,2,5,2,6,5,3)
-groupB <- c(6,6,1,2,4,6,1,1,2,5)
-
-# Perform ANOVA
-result <- aov(c(groupA, groupB) ~ rep(c("Group A", "Group B"), each = 10))
-
-# Print the ANOVA table
-summary(result)
-
-
-```
-
 
 :::
 
@@ -2944,8 +2847,6 @@ It can provide insights into risk assessment and portfolio management.
 :::
 
 
-::: {.content-visible when-profile="slides"}
-
 ::: {.r-stack}
 
 ::: {.fragment .fade-out}
@@ -3008,8 +2909,6 @@ plt_wbll
 * 1 student records the number of rolls it takes until a $6$ is rolled ("the event")
 * calculate the mean of the "times" as well as the standard distribution
 * draw a histogram of the data
-
-:::
 
 ### The drive shaft exercise - Weibull distribution
 
@@ -3140,122 +3039,5 @@ ggplot(data, aes(x = x, y = probability, linetype = as.factor(lambda))) +
 
 ```
 
-::: {.content-visible when-profile="slides"}
-
-::: {.notes}
-
-Imagine a class where students typically ask questions during lectures, and on average, there are 4 questions asked per hour.
-
-In this case, you can use the Poisson distribution to model the number of questions asked in a given hour. 
-The probability of a specific number of questions (k) being asked can be calculated using the Poisson probability mass function:
-
-P(X = k) = (e^(-λ) * λ^k) / k!
-
-Where:
-
-λ (lambda) is the average rate of questions per hour, which is 4 in this example.
-k represents the number of questions you're interested in.
-You can calculate the probabilities for different values of k to show how likely it is for a certain number of questions to be asked during a specific hour. This can help demonstrate the Poisson distribution in the context of classroom interactions.
-
-```{r, include=FALSE}
-
-# Define the average rate of questions per hour
-lambda <- 4
-
-# Calculate the probability of exactly k questions
-k <- 4  # Change this value to the specific number of questions you're interested in
-poisson_prob <- dpois(k, lambda)
-
-cat("The probability of exactly", k, "questions in an hour is:", poisson_prob, "\n")
-
-
-```
-
-
-:::
-
-:::
-
-
-<!-- ## Gamma - Distribution -->
-
-<!-- ::: {.content-visible when-profile="script"} -->
-
-<!-- The gamma distribution is a probability distribution that is often used in statistics to model the waiting time until a Poisson process reaches a certain number of events.  -->
-<!-- It is a continuous probability distribution with two parameters, typically denoted as $\alpha$ (shape parameter) and $\beta$ (rate parameter).  -->
-
-<!-- Key points about the gamma distribution: -->
-
-<!-- 1. It is often used to model the waiting times for events that occur at a constant rate, such as the time between arrivals in a Poisson process. -->
-<!-- 2. The exponential distribution is a special case of the gamma distribution when $\alpha = 1$ (@fig-gam). -->
-<!-- 3. The gamma distribution is right-skewed for $\alpha > 1$ and left-skewed for $0<\alpha<1$ (@fig-gam). -->
-<!-- 4. The mean of the gamma distribution is $\frac{\alpha}{\beta}$, and its variance is $\frac{\alpha}{\beta^2}$ (@fig-gam). -->
-
-<!-- It is widely used in various fields, including reliability analysis, queuing theory, and finance. -->
-
-<!-- The connection to other distributions: -->
-
-<!-- Exponential Distribution: The exponential distribution is a special case of the gamma distribution with $\alpha = 1$. -->
-
-<!-- $\chi^2$: When $\alpha$ is an integer, the gamma distribution with shape parameter $\alpha$ is equivalent to the chi-squared distribution with $2\alpha$ degrees of freedom. -->
-
-<!-- Erlang Distribution: The Erlang distribution is a specific case of the gamma distribution where $\alpha$ is an integer, representing the sum of $\alpha$ exponentially distributed random variables. -->
-
-<!-- ::: -->
-
-<!-- ```{r} -->
-<!-- #| label: fig-gam -->
-<!-- #| out-width: 75% -->
-<!-- #| fig-cap: The Gamma distribution with varying $\alpha$ (shape) and $\beta$ (scale) -->
-
-<!-- alpha_values <- c(0.1,1,3)   # Different shape parameters -->
-<!-- beta_values <- c(0.5, 1, 2)  # Different scale parameters -->
-
-<!-- # Generate data for each combination of parameters -->
-<!-- data <- expand.grid(alpha = alpha_values, beta = beta_values, x = seq(0, 10, by = 0.1)) -->
-
-<!-- # Calculate PDF for each combination -->
-<!-- data <- data %>% -->
-<!--   mutate(pdf = (beta^alpha * x^(alpha-1) * exp(-beta*x)) / gamma(alpha)) %>%  -->
-<!--   mutate(plt_alpha = paste0("alpha==",alpha), -->
-<!--          plt_beta = paste0("beta==",beta)) -->
-
-<!-- # Create a facetted plot -->
-<!-- ggplot(data, aes(x)) + -->
-<!--   geom_line(aes(y = pdf), color = "black") + -->
-<!--   labs(title = "Gamma Distribution", x = "x", y = "p") + -->
-<!--   facet_grid(plt_alpha ~ plt_beta, scales = "free", labeller = label_parsed) + -->
-<!--   scale_x_continuous(expand = c(0,0,0,0))+ -->
-<!--   scale_y_continuous(expand = c(0,0,00.05,0))+ -->
-<!--   theme_few() -->
-
-<!-- ``` -->
-
-<!-- ::: {.content-visible when-profile="slides"} -->
-
-<!-- ::: {.notes} -->
-
-<!-- Certainly, let's consider a classroom example involving the gamma distribution: -->
-
-<!-- Suppose you are teaching a statistics class, and you want to demonstrate the concept of the gamma distribution to your students. The gamma distribution is often used to model the waiting time until a Poisson process reaches a certain number of events.  -->
-
-<!-- You could set up an experiment in which students take turns rolling a fair six-sided die. The goal is to roll the die until it lands on a specific number, say 4. The number of rolls required to achieve this can be modeled using a gamma distribution. -->
-
-<!-- Here's how you can proceed: -->
-
-<!-- 1. Have a student start rolling the die and record the number of rolls it takes for them to get a 4. -->
-
-<!-- 2. Continue this process with different students until you have a reasonable amount of data. -->
-
-<!-- 3. Plot the data as a histogram, showing the number of rolls on the x-axis and the frequency on the y-axis. -->
-
-<!-- 4. Discuss how the distribution of the number of rolls to get a 4 resembles a gamma distribution. You can explain the shape of the gamma distribution, its parameters, and how it relates to the Poisson process. -->
-
-<!-- This classroom example demonstrates the practical application of the gamma distribution in modeling random processes like the time until a specific event occurs. It helps students understand the concept using a hands-on approach and real-world data. -->
-
-
-<!-- ::: -->
-
-<!-- ::: -->
 
 

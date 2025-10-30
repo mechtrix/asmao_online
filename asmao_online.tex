@@ -2090,6 +2090,15 @@ is not limited to whole numbers.
 
 \section{Uniform Distribution}\label{uniform-distribution}
 
+\subsection{Fairness}\label{fairness}
+
+If you had to guess a number between 1 and 10 with no other information,
+what is the \textbf{fairest} way to assign probabilities to each number?
+
+What if the range were 0 to 1 instead?
+
+Every outcome is \textbf{equally} likely
+
 \subsection{Dice}\label{dice}
 
 \begin{figure}[ht]
@@ -2370,12 +2379,6 @@ to get a specific outcome?
   repeat for 2-4 students
 \end{itemize}
 
-\begin{itemize}
-\tightlist
-\item
-  \(P = 1/6 \approx 16\% \rightarrow P_{10\;times} = 10 * 1/6 = 1.6 times \approx 2\)
-\end{itemize}
-
 \begin{figure}[ht]
 
 \centering{
@@ -2461,6 +2464,55 @@ Examples of Bernoulli trials include:
 The Bernoulli trial is the fundamental building block for many other
 probability distributions, including the binomial distribution, which
 models the number of successes in a fixed number of Bernoulli trials.
+
+\begin{itemize}
+\item
+  probability distribution for discrete outcomes
+\item
+  n repeated trials.
+\item
+  two possible outcomes (e.g., success or failure).
+\item
+  probability of success remains the same
+\item
+  each trial is independent
+\end{itemize}
+
+\begin{figure}[ht]
+
+\centering{
+
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter001_Distributions_files/figure-pdf/fig-bn-dist-slides-1.pdf}
+
+}
+
+\caption{\label{fig-bn-dist-slides}The binomial distribution}
+
+\end{figure}%
+
+The \hyperref[acronyms_PMF]{PMF} for the binomial distribution is
+
+\begin{align}
+P(X = k) = \binom{n}{k} p^k (1 - p)^{n - k} \nonumber
+\end{align}
+
+\begin{itemize}
+\tightlist
+\item
+  \(X\) random variable
+\item
+  \(k\) specific value of the random variable (\(X\)), represents the
+  number of successes
+\item
+  \(n\) total number of independent trials or experiments
+\item
+  \(p\) probability of success in a single trial \(0<p<1\)
+\item
+  \((1 - p)\) probability of failure in a single trial
+\item
+  \(\binom{n}{k}\) binomial coefficient (``n choose
+  k'')\(\rightarrow \binom{n}{k} = \frac{n!}{k! \cdot (n - k)!}\)
+\end{itemize}
 
 The \hyperref[acronyms_PMF]{PMF}, also known as the discrete probability
 density function, is a fundamental concept in probability and
@@ -2787,6 +2839,19 @@ symmetric regions.
 
 \end{figure}%
 
+\begin{align}
+z = \frac{x_i - \mu}{\sigma} \nonumber \\
+z = \frac{x_i - \bar{x}}{sd} \nonumber
+\end{align}
+
+Machine (A) value: \(53\)
+
+\begin{align}
+\bar{x} &= 50.03 \nonumber \\
+sd_{x} &= 1.98 \nonumber \\
+z\text{-score} &= \frac{x-\bar{x}}{sd_x} = \frac{53-50.03}{1.98} = 1.5 \nonumber
+\end{align}
+
 The \hyperref[acronyms_Z]{Standard Score / Z-Score (Z)}-standardization,
 also known as \hyperref[acronyms_Z]{Z} or \hyperref[acronyms_Z]{Z}, is a
 common statistical technique used to transform data into a standard
@@ -3021,6 +3086,34 @@ probability of a continuous random variable falling within a specific
 interval is given by the integral of the \hyperref[acronyms_PDF]{PDF}
 over that interval.
 
+\begin{itemize}
+\tightlist
+\item
+  there is no \hyperref[acronyms_PDF]{PDF} for discrete variables
+\item
+  can be interpreted as the relative likelihood
+\item
+  is used to specify the probability of a random variable within a
+  certain range
+\end{itemize}
+
+\begin{align}
+\varphi(x) = \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{1}{2}(\frac{x-\mu}{\sigma})^2}
+\end{align}
+
+\begin{figure}[ht]
+
+\centering{
+
+\includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{chapter001/PDF_000.png}
+
+}
+
+\caption{\label{fig-pdf-000}A visual represenstation of the PDF for the
+normal distribution}
+
+\end{figure}%
+
 \section{\texorpdfstring{\hyperref[acronyms_CDF]{Cumulative Density
 Function (CDF)}}{Cumulative Density Function (CDF)}}\label{section-4}
 
@@ -3056,6 +3149,37 @@ z &= \frac{x-\mu}{\sigma} \nonumber \\
 \lim_{x\to\infty} \phi(x) &= 1 \nonumber \\
 \lim_{x\to - \infty} \phi(x) &= 0 \nonumber
 \end{align}
+
+\begin{itemize}
+\tightlist
+\item
+  shows the actual probability for a certain value
+\item
+  is the integral of the \hyperref[acronyms_PDF]{PDF}
+\item
+  area always sums up to \(1\)
+\end{itemize}
+
+\begin{align}
+z &= \frac{x-\mu}{\sigma} \nonumber \\
+\varphi(x) &= \frac{1}{2\pi}e^{\frac{-z^2}{2}} \nonumber \\
+\phi(x)& = \int \frac{1}{2\pi}e^{\frac{-x^2}{2}} \, dx \nonumber \\
+\lim_{x\to + \infty} \phi(x) &= 1 \nonumber \\
+\lim_{x\to - \infty} \phi(x) &= 0 \nonumber
+\end{align}
+
+\begin{figure}[ht]
+
+\centering{
+
+\includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{chapter001/CDF_000.png}
+
+}
+
+\caption{\label{fig-cdf-000-sli}A visual represenstation of the CDF for
+the normal distribution.}
+
+\end{figure}%
 
 \section{Likelihood and Probability}\label{likelihood-and-probability}
 
@@ -3093,6 +3217,8 @@ of events occurring, likelihood is often used in the context of
 comparing different \emph{hypotheses or models} based on \emph{observed
 data}, while probability is more broadly used to quantify the chances of
 \emph{events happening} in \emph{general}.
+
+:::
 
 \subsection{Exercise}\label{exercise-1}
 
@@ -3325,6 +3451,95 @@ parameters based on sample data and evaluate the validity of statistical
 models. Understanding this relationship is essential for those working
 with data and conducting statistical investigations.
 
+\begin{itemize}
+\tightlist
+\item
+  is a ``new'' distribution function
+\item
+  arises from squaring a random variable
+\item
+  is calculated with:
+\end{itemize}
+
+\begin{align}
+\chi^2 = \sum_{k = 1}^n \frac{(O_k - E_k)^2}{E_k}
+\end{align}
+
+\includegraphics[width=1\linewidth,height=\textheight,keepaspectratio]{chapter001_Distributions_files/figure-pdf/unnamed-chunk-5-1.pdf}
+
+\includegraphics[width=1\linewidth,height=\textheight,keepaspectratio]{chapter001_Distributions_files/figure-pdf/unnamed-chunk-6-1.pdf}
+
+\begin{itemize}
+\tightlist
+\item
+  handles categorical (nominal) data and is used in statistical
+  inference in many ways
+\item
+  the goal is to ``convert'' discrete (nominal) values to continous
+  variables (counts in frequencies, making things measureable)
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Independence Test: Are two categorical variables independent of each
+  other?
+\item
+  Distribution Test: Are the observed values of two categorical
+  variables equal to the expected values?
+\item
+  Homogeneity Test:Are two or more samples from the same population
+  (comparing frequencies)?
+\end{enumerate}
+
+\includegraphics[width=1\linewidth,height=\textheight,keepaspectratio]{chapter001_Distributions_files/figure-pdf/unnamed-chunk-7-1.pdf}
+
+\subsection{Classroom example: Fairness of a
+die}\label{classroom-example-fairness-of-a-die}
+
+\begin{itemize}
+\tightlist
+\item
+  each face should come up the same number of times
+\item
+  each face represents a category, the order of \(1 ... 6\) does not
+  matter
+\item
+  look at it as a way to collect live data on different categories
+\item
+  Let's do it using 60 roles of the same die
+\item
+  First, formulate the Null and alternative Hypothesis
+\end{itemize}
+
+\begin{itemize}
+\tightlist
+\item
+  \(H_0\) The faces turn up with the same frequencies
+\item
+  \(H_a\) The faces do not turn up with the same frequencies
+\end{itemize}
+
+\begin{itemize}
+\tightlist
+\item
+  \(\chi^2 = \sum_{k = 1}^n \frac{(O_k - E_k)^2}{E_k}\)
+\item
+  \(E_k = ?\)
+\item
+  \(O_k = ?\)
+\item
+  \(\alpha = ?\)
+\item
+  \(dof = n_{categories}-1 = ?\)
+\item
+  \href{https://datatab.net/tutorial/chi-square-distribution}{\(\chi^2\)-table}
+  or \texttt{qchisq(1\ -\ alpha,\ dof)} in \texttt{R}
+\item
+  The Hypothesis as ``translated'' to quantitative measures?
+\end{itemize}
+
 \subsection{\texorpdfstring{The drive shaft exercise -
 Chi\textsuperscript{2}
 Distribution}{The drive shaft exercise - Chi2 Distribution}}\label{the-drive-shaft-exercise---chi2-distribution}
@@ -3426,6 +3641,106 @@ have t-scores less than \(2.262\). The advantage of the \emph{t-score}
 and \emph{t-distribution} is clearly visible. All these values can be
 computed from sampled data, the population can remain \emph{estimated}
 \eqref{tscore}.
+
+\begin{itemize}
+\tightlist
+\item
+  accounts especially for small sample sizes (\(n<30\))
+\item
+  Shape: looks like normal, but with heavier tails
+\item
+  Degrees of Freedom: related to sample size (\(n-1\))
+\item
+  Convergence to Normal: as the \hyperref[acronyms_dof]{dof} increases,
+  the t distribution approaches the standard normal distribution. When
+  we have more data, the estimate of the population standard deviation
+  becomes more accurate.
+\end{itemize}
+
+We need the t-Distribution for \textbf{small sample sizes} with an
+\textbf{unknown population standard deviation}
+
+\begin{itemize}
+\tightlist
+\item
+  is another ``new'' distribution function
+\item
+  is a generalization of the standard normal distribution
+\item
+  ``connects'' the sample with the population via the \emph{t-score}
+\item
+  does not need the population standard deviation for computation
+\end{itemize}
+
+\begin{align}
+t_i = \frac{\bar{x} - \mu_0}{sd/\sqrt{n}} \label{tscore}
+\end{align}
+
+\begin{figure}[ht]
+
+\centering{
+
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter001_Distributions_files/figure-pdf/fig-t-dist-sl-1.pdf}
+
+}
+
+\caption{\label{fig-t-dist-sl}PDF of t-distribution with varying
+\(dof\)}
+
+\end{figure}%
+
+\begin{itemize}
+\item
+  Applications of the \emph{t-disitribution} include:
+\item
+  Hypothesis testing (one sample t-test, two sample t-test, two sample
+  t-test for paired samples)
+\item
+  Computing confidence intervals
+\item
+  Test significance of model parameters (against \emph{null} model)
+\end{itemize}
+
+\subsection{Classroom example: Comparing
+means}\label{classroom-example-comparing-means}
+
+\begin{itemize}
+\tightlist
+\item
+  we want to know if student A and student B are rolling dice
+  differently
+\item
+  everyone rolls the die 15 times each
+\item
+  look at it as a way to collect live data on different groups
+\item
+  First, formulate the Null and alternative Hypothesis
+\end{itemize}
+
+\begin{itemize}
+\tightlist
+\item
+  \(H_0\) student A and student B roll the die in the same fashion
+\item
+  \(H_a\) student A and student B roll the die in a different fashion
+\end{itemize}
+
+\begin{itemize}
+\tightlist
+\item
+  \(t_i = \frac{\bar{x} - \mu_0}{sd/\sqrt{n}}\)
+\item
+  \(dof = ?\)
+\item
+  \(\alpha = ?\)
+\item
+  \(dof = ?\)
+\item
+  \href{https://datatab.de/tutorial/tabelle-t-verteilung}{\(t\)-table}
+  or \texttt{qt(alpha\ /\ 2,\ dof)} in \texttt{R}
+\item
+  The Hypothesis as ``translated'' to quantitative measures?
+\end{itemize}
 
 \subsection{The drive shaft exercise -
 t-Distribution}\label{the-drive-shaft-exercise---t-distribution}
@@ -3641,6 +3956,14 @@ the variability between and within groups or models, allowing
 statisticians to assess the significance of observed differences and
 make informed statistical decisions.
 
+\begin{align}
+F_{m,n} = \frac{\chi^2_m/m}{\chi^2_n/n} \nonumber
+\end{align}
+
+\includegraphics[width=1\linewidth,height=\textheight,keepaspectratio]{chapter001_Distributions_files/figure-pdf/unnamed-chunk-9-1.pdf}
+
+\includegraphics[width=1\linewidth,height=\textheight,keepaspectratio]{chapter001_Distributions_files/figure-pdf/unnamed-chunk-10-1.pdf}
+
 \section{Interconnections}\label{interconnections}
 
 \begin{enumerate}
@@ -3751,6 +4074,86 @@ schedules.
   model the time between financial events, like market crashes or loan
   defaults. It can provide insights into risk assessment and portfolio
   management.
+\end{itemize}
+
+\begin{itemize}
+\tightlist
+\item
+  Time-to-event (\hyperref[TTF]{time to failure (TTF)}) continuous
+  distribution function
+\item
+  Examples: time users spend on web pages, time until a product fails
+\end{itemize}
+
+\begin{figure}[ht]
+
+\centering{
+
+\includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{chapter001/bathtub.png}
+
+}
+
+\caption{\label{fig-bathtub}The classical bathtub curve (Lienig and
+Bruemmer 2017)}
+
+\end{figure}%
+
+\begin{align}
+f_X(x; \lambda, \beta) = \left\{ \begin{array}{cl}
+    \frac{\beta}{\lambda}(\frac{x}{\beta})^{\beta-1} e^{-(x/\lambda)^\beta} & \ ; \ x \geq 0 \\
+    0 & \ ; \ x < 0 \end{array} \right. 
+\end{align}
+
+\begin{itemize}
+\tightlist
+\item
+  \(\lambda\) scale parameter
+\item
+  \(\beta\) shape parameter
+\item
+  Interpretation of Shape Parameter (\(\beta\)):
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(\beta < 1\) Failure rate decreases over time (e.g., due to
+    ``infant mortality'').
+  \item
+    \(\beta = 1\) Constant failure rate (random external events causing
+    mortality).
+  \item
+    \(\beta > 1\) Failure rate increases with time (aging process).
+  \end{itemize}
+\end{itemize}
+
+\begin{figure}[ht]
+
+\centering{
+
+\includegraphics[width=0.85\linewidth,height=\textheight,keepaspectratio]{chapter001_Distributions_files/figure-pdf/fig-wbll-dist-slides-1.pdf}
+
+}
+
+\caption{\label{fig-wbll-dist-slides}The influence of scale
+(\(\lambda\)) and shape (\(\beta\)) parameter on the disitribution.}
+
+\end{figure}%
+
+\subsubsection{Classroom example: Weibull
+Distribution}\label{classroom-example-weibull-distribution}
+
+\begin{itemize}
+\tightlist
+\item
+  6 students roll a die
+\item
+  1 student records the number of rolls it takes until a \(6\) is rolled
+  (``the event'')
+\item
+  calculate the mean of the ``times'' as well as the standard
+  distribution
+\item
+  draw a histogram of the data
 \end{itemize}
 
 \subsection{The drive shaft exercise - Weibull
@@ -11183,6 +11586,11 @@ Inference.''} \emph{The Mathematical Gazette} 64 (428): 138--38.
 \bibitem[\citeproctext]{ref-johnson1994continuous}
 Johnson, Norman Lloyd. 1994. \emph{Continuous Univariate Distributions}.
 Wiley.
+
+\bibitem[\citeproctext]{ref-LienigUnknownTitle2017}
+Lienig, Jens, and Hans Bruemmer. 2017. {``Fundamentals of Electronic
+Systems Design''} Not available: Not available.
+\url{https://doi.org/10.1007/978-3-319-55840-0}.
 
 \bibitem[\citeproctext]{ref-MannWhitney1947}
 Mann, H. B., and D. R. Whitney. 1947. {``On a Test of Whether One of Two
