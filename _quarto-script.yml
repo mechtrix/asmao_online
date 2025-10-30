@@ -21,6 +21,7 @@ format:
     theme: cosmo
     fig-width: 8
     fig-height: 5
+    fig-format: png
   titlepage-pdf:
     include-in-header: tex/preamble.tex
     documentclass: scrbook
