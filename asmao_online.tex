@@ -2561,65 +2561,201 @@ nature and society.
 
 \subsubsection{The math behind}\label{the-math-behind}
 
-\[P(k) = \binom{n}{k}\cdot{\frac{1}{2}}^n\]
+\begin{itemize}
+\tightlist
+\item
+  After \(n\) rows a balls final position is the sum of \(n\)
+  independent steps: \(S = x_1 + x_2 + \ldots + x_n\) where
+  \(x_i = +1 \text{( right) or}  -1 \text{(left)}\)
+\item
+  \(\text{Number of paths to } k = \binom{n}{(n + k)/2}\)
+\end{itemize}
 
-\includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{chapter000/galton_tbl.png}
+\begin{figure}[ht]
 
-\subsubsection{Mean and Standard Deviation from the Galton
-board}\label{mean-and-standard-deviation-from-the-galton-board}
+\centering{
+
+\includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{chapter001_Distributions_files/figure-pdf/fig-galtonboard-dist-1.pdf}
+
+}
+
+\caption{\label{fig-galtonboard-dist}The number of ways a ball can take}
+
+\end{figure}%
+
+\subsubsection{Approximation with a smooth
+curve}\label{approximation-with-a-smooth-curve}
 
 \begin{itemize}
 \tightlist
 \item
-  What is the expected value?
+  For large \(n\), the binomial distribution looks like a bell curve. It
+  can be approximated using the
+  \href{https://planetmath.org/StirlingsApproximation}{Stirling
+  approximation}
 \end{itemize}
 
-\[\mu_0 = \mathrm{E}[X] = np\]
-\[p = 0.5 \rightarrow \mu = n \times 0.5 = \frac{1}{2}n\]
+\begin{figure}[ht]
 
-On \emph{average} a ball will land in \(k=\frac{n}{2}\)
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{chapter001_Distributions_files/figure-pdf/fig-normdist-spprox-1.pdf}}
+
+}
+
+\caption{\label{fig-normdist-spprox}The normal distribution can be
+approximated using a continous curve}
+
+\end{figure}%
+
+\subsubsection{Binomial Probability}\label{binomial-probability}
+
+\begin{itemize}
+\item
+  Probability of ending at position \(k\):
+  \(P(S=k)\binom{n}{(n + k)/2}(\frac{1}{2})^n\)
+\item
+  For large \(n\) we can approximate the binomial coefficient:
+  \(\binom{n}{m} \approx \frac{n^n}{m^m(n-m)^{n-m}}\sqrt{\frac{n}{2\pi m (n-m)}}\)
+  where \(m = (n+k)/2\)
+\end{itemize}
+
+\subsubsection{\texorpdfstring{Large \(n\)}{Large n}}\label{large-n}
 
 \begin{itemize}
 \tightlist
 \item
-  What is the spread
+  Let \(k = x\) (treat as continuous) and \(n\) be large
+\item
+  After simplification the \hyperref[acronyms_PMF]{PMF} becomes:
+  \(P(S=x) \approx \frac{1}{\sqrt{2\pi n}}e^{\frac{-x^2}{2n}}\)
+\item
+  Replace \(n\) with \(\sigma^2\) and allow for mean \(\mu\):
+  \(f(x) = \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}\)
 \end{itemize}
 
-\[\sigma_0 = \sqrt{Var} = \sqrt{np(1-p)}\]
-\(Var(X) = \mathrm{E}[(X-\mu)^2]\) (Variance in general)
+\subsubsection{The Normal PDF Equation}\label{the-normal-pdf-equation}
 
-\(Var(X) = np(1-p)\) (number of right moves)
-
-\subsubsection{Understanding spread}\label{understanding-spread}
-
-\[\sigma^2=np(1-p)\]
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(\frac{1}{\sqrt{2\pi\sigma^2}}\): Scaling factor to ensure Total
+  Probability = 1
+\item
+  \(e^{-\frac{(x-\mu)^2}{2\sigma^2}}\): The ``bell'' shape - exponential
+  decay based on the distance to the mean
+\end{enumerate}
 
 \begin{itemize}
 \tightlist
 \item
-  Every step is independent, for a single step (\(p=0.5\)):
+  \textbf{Symmetry}: The term \((x-\mu)^2\) ensures the curve is
+  symmetric around \(\mu\)
+\item
+  \textbf{Peak at mean}: The exponent is zero when \(x = \mu\), giving
+  the maximum value
+\item
+  \textbf{Thickness of Tails}: \(\sigma\) controls how spread out the
+  curve is
 \end{itemize}
 
-\[Var(X) = p(1-p)\]
+\subsubsection{Parameter influence}\label{parameter-influence}
+
+\begin{figure}[ht]
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{chapter001_Distributions_files/figure-pdf/fig-norm-params-inf-1.pdf}}
+
+}
+
+\caption{\label{fig-norm-params-inf}The influence of distributional
+parameters}
+
+\end{figure}%
+
+\subsection{The Buffon needle problem}\label{the-buffon-needle-problem}
+
+\(P\) for crossing a line?
+
+\begin{figure}[ht]
+
+\centering{
+
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter001/buffon.png}
+
+}
+
+\caption{\label{fig-buffon-needle-experiment}An Illustration of the
+Buffon Needle Problem.}
+
+\end{figure}%
+
+\subsubsection{Sample Size}\label{sample-size}
+
+\begin{figure}[ht]
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{chapter001_Distributions_files/figure-pdf/fig-buffon-needle-1.pdf}}
+
+}
+
+\caption{\label{fig-buffon-needle}Counting needles leads to an esimtate
+of \(\pi\).}
+
+\end{figure}%
+
+\subsubsection{Connection to the Normal
+distribution}\label{connection-to-the-normal-distribution}
+
+Why?
+
+Gaussian integral
+
+\subsubsection{\texorpdfstring{\(\pi\) in the Normal
+Distribution}{\textbackslash pi in the Normal Distribution}}\label{pi-in-the-normal-distribution}
+
+\begin{align}
+I = \int_{-\infty}^{\infty}e^{-kx^2}\,dx\\
+I^2 = \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}e^{-k(x^2+y^2)}\,dx\,dy =  \int_{0}^{2\pi}\int_{0}^{\infty}e^{-k^2}r\,dr\,d\theta = \frac{\pi}{k}
+\end{align}
 
 \begin{itemize}
 \tightlist
 \item
-  Therefore for \(n\) steps:
+  \(e^{-k(x^2+y^2)}=e^{-kr^2}\) is \textbf{radially symmetric}, which
+  simplifies the integral
+\item
+  \(\int_0^{2\pi}\,d\theta = 2\pi\) introduces \(\pi\) in the
+  normalization constant of the normal distribution
 \end{itemize}
 
-\[Var(X) = np(1-p) \rightarrow \sigma = \frac{\sqrt{n}}{2}\]
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+\subsubsection{\texorpdfstring{\(\pi\) in the Buffon Needle
+Problem}{\textbackslash pi in the Buffon Needle Problem}}\label{pi-in-the-buffon-needle-problem}
 
 \begin{itemize}
-\tightlist
 \item
-  For \(n = 100\)
+  A needle of length \(L\) is dropped onto a plane with parallel lines
+  spaced \(D \geq L\) apart
+\item
+  Probability \(P\) that the needle crosses a line is
+  \(\pi\approx \frac{2l}{D}\frac{\text{Hits}}{N\text{ total number}}\)
+\item
+  The needles orientation \(\theta\) is uniformly distributed in
+  \([0,\pi/2]\)
+\item
+  The crossing condition depends on \(\sin{\theta}\), and integrating
+  over \(\theta\) introduces \(\pi\) through the \emph{average value of
+  \(\theta\)} over its domain
 \end{itemize}
 
-\(\sigma = \frac{\sqrt{100}}{2}\) so most balls will land between \(45\)
-and \(55\)
+\subsubsection{What they share}\label{what-they-share}
+
+Both problems translate a probabilistic question into a geometric one,
+where \(\pi\) emerges naturally from integrating over angles or
+symmetric regions.
 
 \section{Z - Standardization}\label{z---standardization}
 
@@ -2631,21 +2767,7 @@ and \(55\)
 
 }
 
-\caption{\label{fig-z-scores-raw}The original data of group X and group
-Y}
-
-\end{figure}%
-
-\begin{figure}[ht]
-
-\centering{
-
-\includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{chapter001_Distributions_files/figure-pdf/fig-z-scores-scaled-1.pdf}
-
-}
-
-\caption{\label{fig-z-scores-scaled}The correlation of the z-score
-shows, that every point \(x_i\) is equally probable}
+\caption{\label{fig-z-scores-raw}How can we compare this data?}
 
 \end{figure}%
 
@@ -2670,6 +2792,58 @@ single data points are transformed to the respective z-score using
 \hyperref[acronyms_Z]{Z} for both groups are plotted against each other.
 The perfect correlation of the datapoints shows, that for every \(x_i\)
 the same probability applies. Thus, the datapoints are comparable.
+
+\subsection{Properties of of Z-scores}\label{properties-of-of-z-scores}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Shape: The distribution's shape remains normal
+\item
+  Relative Positions: Values maintain their percentiles
+\item
+  Outliers: Extreme values \(|z|>3\) are easily flagged
+\end{enumerate}
+
+\subsection{Comparison of standardized
+data}\label{comparison-of-standardized-data}
+
+\begin{figure}[ht]
+
+\centering{
+
+\includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{chapter001_Distributions_files/figure-pdf/fig-z-scores-scaled-1.pdf}
+
+}
+
+\caption{\label{fig-z-scores-scaled}Normalized data is easier to
+compare}
+
+\end{figure}%
+
+\subsection{The Universal Yardstick}\label{the-universal-yardstick}
+
+The standard normal distribution (\(N(0,1)\)) is the reference
+distribution (the perfect model).
+
+\begin{itemize}
+\tightlist
+\item
+  \(\bar{x} = 0,\; sd = 1\)
+\item
+  Empirical Rule (68-65-99.7)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(68\%\) of data within \(\pm1sd\)
+  \item
+    \(95\%\) of data within \(\pm2sd\)
+  \item
+    \(99.7\%\) of data within \(\pm3sd\)
+  \end{itemize}
+\end{itemize}
 
 \subsection{The drive shaft exercise -
 Z-Standardization}\label{the-drive-shaft-exercise---z-standardization}
@@ -2703,10 +2877,54 @@ probability of a data point being located there is
 We will dwelve more into such investigation in another chapter, but this
 is a first step in the direction of inferential statistics.
 
+\subsection{When Z-Scores Go Wrong}\label{when-z-scores-go-wrong}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Non-Normal Data:
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  Z-Scores assume normality
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Population vs.~Sample
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  Use population parameters (\(\mu,\sigma\)) if known, otherwise use
+  sample estimates (\(\bar{x},sd\))
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Outliers:
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  Z-scores are sensitive to outliers
+\end{itemize}
+
 \subsection{The Z-transform and the Galton
 Board}\label{the-z-transform-and-the-galton-board}
 
-\pandocbounded{\includegraphics[keepaspectratio]{chapter001_Distributions_files/figure-pdf/unnamed-chunk-5-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{chapter001_Distributions_files/figure-pdf/unnamed-chunk-4-1.pdf}}
 
 \subsubsection{Applying the Z-transform}\label{applying-the-z-transform}
 
@@ -2859,6 +3077,127 @@ of events occurring, likelihood is often used in the context of
 comparing different \emph{hypotheses or models} based on \emph{observed
 data}, while probability is more broadly used to quantify the chances of
 \emph{events happening} in \emph{general}.
+
+\subsection{Exercise}\label{exercise-1}
+
+\begin{longtable}[]{@{}llllll@{}}
+\caption{Exercise Data}\tabularnewline
+\toprule\noalign{}
+Machine & Sample 1 & Sample 2 & Sample 3 & Sample 4 & Sample 5 \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+Machine & Sample 1 & Sample 2 & Sample 3 & Sample 4 & Sample 5 \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Machine X} & 44 & 46 & 45 & 47 & 43 \\
+\textbf{Machine Y} & 52 & 50 & 53 & 49 & 51 \\
+\textbf{Machine Z} & 40 & 42 & 39 & 41 & 43 \\
+\end{longtable}
+
+\begin{table}
+
+\caption{\label{tbl-exercise-z}Exercise Data}
+
+\centering{
+
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}rrr}
+\toprule
+machine\_x & machine\_y & machine\_z \\ 
+\midrule\addlinespace[2.5pt]
+44 & 52 & 40 \\ 
+46 & 50 & 42 \\ 
+45 & 53 & 39 \\ 
+47 & 49 & 41 \\ 
+43 & 51 & 43 \\ 
+\bottomrule
+\end{tabular*}
+
+}
+
+\end{table}%
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  calculate \(\bar{x}\) and \(sd\)
+\item
+  Compute z-scores
+\item
+  Flag anomalies
+\item
+  Recommend actions
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{table}
+
+\caption{\label{tbl-exercise-z-res}Results}
+
+\centering{
+
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrr}
+\toprule
+machine & mean\_cycle\_time & sd\_cycle\_time & var\_cycle\_time \\ 
+\midrule\addlinespace[2.5pt]
+machine\_x & 45 & 1.581139 & 2.5 \\ 
+machine\_y & 51 & 1.581139 & 2.5 \\ 
+machine\_z & 41 & 1.581139 & 2.5 \\ 
+\bottomrule
+\end{tabular*}
+
+}
+
+\end{table}%
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{table}
+
+\caption{\label{tbl-exercise-z-scores}Results for z score}
+
+\centering{
+
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}rc}
+\toprule
+cycle\_time\_s & scaled\_data \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{2}{l}{machine\_x} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+44 & -0.6324555 \\ 
+46 & 0.6324555 \\ 
+45 & 0.0000000 \\ 
+47 & 1.2649111 \\ 
+43 & -1.2649111 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{2}{l}{machine\_y} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+52 & 0.6324555 \\ 
+50 & -0.6324555 \\ 
+53 & 1.2649111 \\ 
+49 & -1.2649111 \\ 
+51 & 0.0000000 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{2}{l}{machine\_z} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+40 & -0.6324555 \\ 
+42 & 0.6324555 \\ 
+39 & -1.2649111 \\ 
+41 & 0.0000000 \\ 
+43 & 1.2649111 \\ 
+\bottomrule
+\end{tabular*}
+
+}
+
+\end{table}%
 
 \section{\texorpdfstring{Chi\textsuperscript{2} -
 Distribution}{Chi2 - Distribution}}\label{chi2---distribution}
@@ -3516,7 +3855,7 @@ distribution(Figure~\ref{fig-pois}).
 
 \chapter{Sampling Methods}\label{sampling-methods}
 
-\section{Sample Size}\label{sample-size}
+\section{Sample Size}\label{sample-size-1}
 
 \subsection{Standard Error}\label{standard-error}
 
@@ -4307,6 +4646,9 @@ at different sample sizes}
 different sample sizes}
 
 \end{figure}%
+
+\subsection{Overall Comparison of Sampling Strategies
+(Gender)}\label{overall-comparison-of-sampling-strategies-gender}
 
 \subsection{Overall Comparison of Sampling Strategies
 (Mean)}\label{overall-comparison-of-sampling-strategies-mean}

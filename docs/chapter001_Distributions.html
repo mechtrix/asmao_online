@@ -285,16 +285,24 @@ window.Quarto = {
   <li><a href="#the-normal-distribution" id="toc-the-normal-distribution" class="nav-link" data-scroll-target="#the-normal-distribution"><span class="header-section-number">2.6</span> The Normal Distribution</a>
   <ul class="collapse">
   <li><a href="#emergence" id="toc-emergence" class="nav-link" data-scroll-target="#emergence"><span class="header-section-number">2.6.1</span> Emergence</a></li>
+  <li><a href="#the-buffon-needle-problem" id="toc-the-buffon-needle-problem" class="nav-link" data-scroll-target="#the-buffon-needle-problem"><span class="header-section-number">2.6.2</span> The Buffon needle problem</a></li>
   </ul></li>
   <li><a href="#z---standardization" id="toc-z---standardization" class="nav-link" data-scroll-target="#z---standardization"><span class="header-section-number">2.7</span> Z - Standardization</a>
   <ul class="collapse">
-  <li><a href="#the-drive-shaft-exercise---z-standardization" id="toc-the-drive-shaft-exercise---z-standardization" class="nav-link" data-scroll-target="#the-drive-shaft-exercise---z-standardization"><span class="header-section-number">2.7.1</span> The drive shaft exercise - Z-Standardization</a></li>
-  <li><a href="#the-z-transform-and-the-galton-board" id="toc-the-z-transform-and-the-galton-board" class="nav-link" data-scroll-target="#the-z-transform-and-the-galton-board"><span class="header-section-number">2.7.2</span> The Z-transform and the Galton Board</a></li>
-  <li><a href="#the-drive-shaft-exercise---normal-distribution" id="toc-the-drive-shaft-exercise---normal-distribution" class="nav-link" data-scroll-target="#the-drive-shaft-exercise---normal-distribution"><span class="header-section-number">2.7.3</span> The drive shaft exercise - Normal Distribution</a></li>
+  <li><a href="#properties-of-of-z-scores" id="toc-properties-of-of-z-scores" class="nav-link" data-scroll-target="#properties-of-of-z-scores"><span class="header-section-number">2.7.1</span> Properties of of Z-scores</a></li>
+  <li><a href="#comparison-of-standardized-data" id="toc-comparison-of-standardized-data" class="nav-link" data-scroll-target="#comparison-of-standardized-data"><span class="header-section-number">2.7.2</span> Comparison of standardized data</a></li>
+  <li><a href="#the-universal-yardstick" id="toc-the-universal-yardstick" class="nav-link" data-scroll-target="#the-universal-yardstick"><span class="header-section-number">2.7.3</span> The Universal Yardstick</a></li>
+  <li><a href="#the-drive-shaft-exercise---z-standardization" id="toc-the-drive-shaft-exercise---z-standardization" class="nav-link" data-scroll-target="#the-drive-shaft-exercise---z-standardization"><span class="header-section-number">2.7.4</span> The drive shaft exercise - Z-Standardization</a></li>
+  <li><a href="#when-z-scores-go-wrong" id="toc-when-z-scores-go-wrong" class="nav-link" data-scroll-target="#when-z-scores-go-wrong"><span class="header-section-number">2.7.5</span> When Z-Scores Go Wrong</a></li>
+  <li><a href="#the-z-transform-and-the-galton-board" id="toc-the-z-transform-and-the-galton-board" class="nav-link" data-scroll-target="#the-z-transform-and-the-galton-board"><span class="header-section-number">2.7.6</span> The Z-transform and the Galton Board</a></li>
+  <li><a href="#the-drive-shaft-exercise---normal-distribution" id="toc-the-drive-shaft-exercise---normal-distribution" class="nav-link" data-scroll-target="#the-drive-shaft-exercise---normal-distribution"><span class="header-section-number">2.7.7</span> The drive shaft exercise - Normal Distribution</a></li>
   </ul></li>
   <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"><span class="header-section-number">2.8</span> PDF</a></li>
   <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2"><span class="header-section-number">2.9</span> Cumulative Density Function (CDF)</a></li>
-  <li><a href="#likelihood-and-probability" id="toc-likelihood-and-probability" class="nav-link" data-scroll-target="#likelihood-and-probability"><span class="header-section-number">2.10</span> Likelihood and Probability</a></li>
+  <li><a href="#likelihood-and-probability" id="toc-likelihood-and-probability" class="nav-link" data-scroll-target="#likelihood-and-probability"><span class="header-section-number">2.10</span> Likelihood and Probability</a>
+  <ul class="collapse">
+  <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1"><span class="header-section-number">2.10.1</span> Exercise</a></li>
+  </ul></li>
   <li><a href="#chi2---distribution" id="toc-chi2---distribution" class="nav-link" data-scroll-target="#chi2---distribution"><span class="header-section-number">2.11</span> Chi<sup>2</sup> - Distribution</a>
   <ul class="collapse">
   <li><a href="#the-drive-shaft-exercise---chi2-distribution" id="toc-the-drive-shaft-exercise---chi2-distribution" class="nav-link" data-scroll-target="#the-drive-shaft-exercise---chi2-distribution"><span class="header-section-number">2.11.1</span> The drive shaft exercise - Chi<sup>2</sup> Distribution</a></li>
@@ -358,7 +366,7 @@ Distributions are <em>models</em> of the <em>reality</em>.
 <div id="fig-intro" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-intro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter001_Distributions_files/figure-html/fig-intro-1.png" class="img-fluid figure-img" style="width:95.0%">
+<img src="chapter001_Distributions_files/figure-revealjs/fig-intro-1.svg" class="img-fluid figure-img" style="width:95.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-intro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.1: The model is perfect, but the real world is not.
@@ -513,7 +521,7 @@ Figure&nbsp;2.7: The probability for every face to turn up during a roll is unif
 <div id="fig-unif-pmf" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-unif-pmf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter001_Distributions_files/figure-html/fig-unif-pmf-1.png" class="img-fluid figure-img" style="width:95.0%">
+<img src="chapter001_Distributions_files/figure-revealjs/fig-unif-pmf-1.svg" class="img-fluid figure-img" style="width:95.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unif-pmf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.8: A plot of the probabilities that every face of a die turns up. They are all the same.
@@ -1201,7 +1209,7 @@ f(k) = \begin{cases}
 <div id="fig-sim-dice" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-sim-dice-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter001_Distributions_files/figure-html/fig-sim-dice-1.png" class="img-fluid figure-img" style="width:75.0%">
+<img src="chapter001_Distributions_files/figure-revealjs/fig-sim-dice-1.svg" class="img-fluid figure-img" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sim-dice-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.9: Simulated die rolls (The die is rolle <span class="math inline">\(10\)</span> times, the experiment is repeated <span class="math inline">\(5\)</span> times)
@@ -1217,7 +1225,7 @@ Figure&nbsp;2.9: Simulated die rolls (The die is rolle <span class="math inline"
 <div id="fig-sim-likely" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-sim-likely-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter001_Distributions_files/figure-html/fig-sim-likely-1.png" class="img-fluid figure-img" width="1440">
+<img src="chapter001_Distributions_files/figure-revealjs/fig-sim-likely-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sim-likely-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.10: Is the outcome likely?
@@ -1236,7 +1244,7 @@ Figure&nbsp;2.10: Is the outcome likely?
 <div id="fig-bn-dist" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-bn-dist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter001_Distributions_files/figure-html/fig-bn-dist-1.png" class="img-fluid figure-img" style="width:95.0%">
+<img src="chapter001_Distributions_files/figure-revealjs/fig-bn-dist-1.svg" class="img-fluid figure-img" style="width:95.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bn-dist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.11: The binomial distribution
@@ -1281,7 +1289,7 @@ P(X = k) = \binom{n}{k} p^k (1 - p)^{n - k} \label{PMFbinom}
 <div id="fig-bn-ds" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-bn-ds-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter001_Distributions_files/figure-html/fig-bn-ds-1.png" class="img-fluid figure-img" style="width:95.0%">
+<img src="chapter001_Distributions_files/figure-revealjs/fig-bn-ds-1.svg" class="img-fluid figure-img" style="width:95.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bn-ds-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.12: The binomial disitribution and the drive shaft exercise.
@@ -1299,7 +1307,7 @@ Figure&nbsp;2.12: The binomial disitribution and the drive shaft exercise.
 <div id="fig-normal-dist" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-normal-dist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter001_Distributions_files/figure-html/fig-normal-dist-1.png" class="img-fluid figure-img" style="width:75.0%">
+<img src="chapter001_Distributions_files/figure-revealjs/fig-normal-dist-1.svg" class="img-fluid figure-img" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-normal-dist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.13: The standarized normal distribution
@@ -1317,7 +1325,7 @@ Figure&nbsp;2.13: The standarized normal distribution
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="chapter001_Distributions_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="1440"></p>
+<p><img src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-1-1.svg" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1328,7 +1336,7 @@ Figure&nbsp;2.13: The standarized normal distribution
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="chapter001_Distributions_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="1440"></p>
+<p><img src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-2-1.svg" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1337,50 +1345,160 @@ Figure&nbsp;2.13: The standarized normal distribution
 </div>
 <section id="the-math-behind" class="level4" data-number="2.6.1.1">
 <h4 data-number="2.6.1.1" class="anchored" data-anchor-id="the-math-behind"><span class="header-section-number">2.6.1.1</span> The math behind</h4>
-<p><span class="math display">\[P(k) = \binom{n}{k}\cdot{\frac{1}{2}}^n\]</span></p>
+<ul>
+<li>After <span class="math inline">\(n\)</span> rows a balls final position is the sum of <span class="math inline">\(n\)</span> independent steps: <span class="math inline">\(S = x_1 + x_2 + \ldots + x_n\)</span> where <span class="math inline">\(x_i = +1 \text{( right) or}  -1 \text{(left)}\)</span></li>
+<li><span class="math inline">\(\text{Number of paths to } k = \binom{n}{(n + k)/2}\)</span></li>
+</ul>
 <div class="cell">
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="chapter000/galton_tbl.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<div id="fig-galtonboard-dist" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-galtonboard-dist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chapter001_Distributions_files/figure-revealjs/fig-galtonboard-dist-1.svg" class="img-fluid figure-img" style="width:75.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-galtonboard-dist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.14: The number of ways a ball can take
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="mean-and-standard-deviation-from-the-galton-board" class="level4" data-number="2.6.1.2">
-<h4 data-number="2.6.1.2" class="anchored" data-anchor-id="mean-and-standard-deviation-from-the-galton-board"><span class="header-section-number">2.6.1.2</span> Mean and Standard Deviation from the Galton board</h4>
+<section id="approximation-with-a-smooth-curve" class="level4" data-number="2.6.1.2">
+<h4 data-number="2.6.1.2" class="anchored" data-anchor-id="approximation-with-a-smooth-curve"><span class="header-section-number">2.6.1.2</span> Approximation with a smooth curve</h4>
 <ul>
-<li>What is the expected value?</li>
+<li>For large <span class="math inline">\(n\)</span>, the binomial distribution looks like a bell curve. It can be approximated using the <a href="https://planetmath.org/StirlingsApproximation">Stirling approximation</a></li>
 </ul>
-<div class="fragment fade-in">
-<p><span class="math display">\[\mu_0 = \mathrm{E}[X] = np\]</span> <span class="math display">\[p = 0.5 \rightarrow \mu = n \times 0.5 = \frac{1}{2}n\]</span></p>
-<p>On <em>average</em> a ball will land in <span class="math inline">\(k=\frac{n}{2}\)</span></p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-normdist-spprox" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-normdist-spprox-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chapter001_Distributions_files/figure-revealjs/fig-normdist-spprox-1.svg" class="img-fluid figure-img">
 </div>
-<ul>
-<li>What is the spread</li>
-</ul>
-<div class="fragment fade-in">
-<p><span class="math display">\[\sigma_0 = \sqrt{Var} = \sqrt{np(1-p)}\]</span> <span class="math inline">\(Var(X) = \mathrm{E}[(X-\mu)^2]\)</span> (Variance in general)</p>
-<p><span class="math inline">\(Var(X) = np(1-p)\)</span> (number of right moves)</p>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-normdist-spprox-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.15: The normal distribution can be approximated using a continous curve
+</figcaption>
+</figure>
+</div>
+</div>
 </div>
 </section>
-<section id="understanding-spread" class="level4" data-number="2.6.1.3">
-<h4 data-number="2.6.1.3" class="anchored" data-anchor-id="understanding-spread"><span class="header-section-number">2.6.1.3</span> Understanding spread</h4>
-<p><span class="math display">\[\sigma^2=np(1-p)\]</span></p>
+<section id="binomial-probability" class="level4" data-number="2.6.1.3">
+<h4 data-number="2.6.1.3" class="anchored" data-anchor-id="binomial-probability"><span class="header-section-number">2.6.1.3</span> Binomial Probability</h4>
 <ul>
-<li>Every step is independent, for a single step (<span class="math inline">\(p=0.5\)</span>):</li>
+<li><p>Probability of ending at position <span class="math inline">\(k\)</span>: <span class="math inline">\(P(S=k)\binom{n}{(n + k)/2}(\frac{1}{2})^n\)</span></p></li>
+<li><p>For large <span class="math inline">\(n\)</span> we can approximate the binomial coefficient: <span class="math inline">\(\binom{n}{m} \approx \frac{n^n}{m^m(n-m)^{n-m}}\sqrt{\frac{n}{2\pi m (n-m)}}\)</span> where <span class="math inline">\(m = (n+k)/2\)</span></p></li>
 </ul>
-<p><span class="math display">\[Var(X) = p(1-p)\]</span></p>
+</section>
+<section id="large-n" class="level4" data-number="2.6.1.4">
+<h4 data-number="2.6.1.4" class="anchored" data-anchor-id="large-n"><span class="header-section-number">2.6.1.4</span> Large <span class="math inline">\(n\)</span></h4>
 <ul>
-<li>Therefore for <span class="math inline">\(n\)</span> steps:</li>
+<li>Let <span class="math inline">\(k = x\)</span> (treat as continuous) and <span class="math inline">\(n\)</span> be large</li>
+<li>After simplification the <a href="#acronyms_PMF">PMF</a> becomes: <span class="math inline">\(P(S=x) \approx \frac{1}{\sqrt{2\pi n}}e^{\frac{-x^2}{2n}}\)</span></li>
+<li>Replace <span class="math inline">\(n\)</span> with <span class="math inline">\(\sigma^2\)</span> and allow for mean <span class="math inline">\(\mu\)</span>: <span class="math inline">\(f(x) = \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}\)</span></li>
 </ul>
-<p><span class="math display">\[Var(X) = np(1-p) \rightarrow \sigma = \frac{\sqrt{n}}{2}\]</span></p>
-<hr>
+</section>
+<section id="the-normal-pdf-equation" class="level4" data-number="2.6.1.5">
+<h4 data-number="2.6.1.5" class="anchored" data-anchor-id="the-normal-pdf-equation"><span class="header-section-number">2.6.1.5</span> The Normal PDF Equation</h4>
+<ol type="1">
+<li><span class="math inline">\(\frac{1}{\sqrt{2\pi\sigma^2}}\)</span>: Scaling factor to ensure Total Probability = 1</li>
+<li><span class="math inline">\(e^{-\frac{(x-\mu)^2}{2\sigma^2}}\)</span>: The “bell” shape - exponential decay based on the distance to the mean</li>
+</ol>
 <ul>
-<li>For <span class="math inline">\(n = 100\)</span></li>
+<li><strong>Symmetry</strong>: The term <span class="math inline">\((x-\mu)^2\)</span> ensures the curve is symmetric around <span class="math inline">\(\mu\)</span></li>
+<li><strong>Peak at mean</strong>: The exponent is zero when <span class="math inline">\(x = \mu\)</span>, giving the maximum value</li>
+<li><strong>Thickness of Tails</strong>: <span class="math inline">\(\sigma\)</span> controls how spread out the curve is</li>
 </ul>
-<p><span class="math inline">\(\sigma = \frac{\sqrt{100}}{2}\)</span> so most balls will land between <span class="math inline">\(45\)</span> and <span class="math inline">\(55\)</span></p>
+</section>
+<section id="parameter-influence" class="level4" data-number="2.6.1.6">
+<h4 data-number="2.6.1.6" class="anchored" data-anchor-id="parameter-influence"><span class="header-section-number">2.6.1.6</span> Parameter influence</h4>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-norm-params-inf" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-norm-params-inf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chapter001_Distributions_files/figure-revealjs/fig-norm-params-inf-1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-norm-params-inf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.16: The influence of distributional parameters
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="the-buffon-needle-problem" class="level3" data-number="2.6.2">
+<h3 data-number="2.6.2" class="anchored" data-anchor-id="the-buffon-needle-problem"><span class="header-section-number">2.6.2</span> The Buffon needle problem</h3>
+<center>
+<p><span class="math inline">\(P\)</span> for crossing a line?</p>
+</center>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-buffon-needle-experiment" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-buffon-needle-experiment-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chapter001/buffon.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:95.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-buffon-needle-experiment-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.17: An Illustration of the Buffon Needle Problem.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<section id="sample-size" class="level4" data-number="2.6.2.1">
+<h4 data-number="2.6.2.1" class="anchored" data-anchor-id="sample-size"><span class="header-section-number">2.6.2.1</span> Sample Size</h4>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-buffon-needle" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-buffon-needle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chapter001_Distributions_files/figure-revealjs/fig-buffon-needle-1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-buffon-needle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.18: Counting needles leads to an esimtate of <span class="math inline">\(\pi\)</span>.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="connection-to-the-normal-distribution" class="level4 incremental" data-number="2.6.2.2">
+<h4 class="incremental anchored" data-number="2.6.2.2" data-anchor-id="connection-to-the-normal-distribution"><span class="header-section-number">2.6.2.2</span> Connection to the Normal distribution</h4>
+<center>
+Why?
+</center>
+<div class="fragment">
+<p>Gaussian integral</p>
+</div>
+</section>
+<section id="pi-in-the-normal-distribution" class="level4" data-number="2.6.2.3">
+<h4 data-number="2.6.2.3" class="anchored" data-anchor-id="pi-in-the-normal-distribution"><span class="header-section-number">2.6.2.3</span> <span class="math inline">\(\pi\)</span> in the Normal Distribution</h4>
+<p><span class="math display">\[\begin{align}
+I = \int_{-\infty}^{\infty}e^{-kx^2}\,dx\\
+I^2 = \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}e^{-k(x^2+y^2)}\,dx\,dy =  \int_{0}^{2\pi}\int_{0}^{\infty}e^{-k^2}r\,dr\,d\theta = \frac{\pi}{k}
+\end{align}\]</span></p>
+<ul>
+<li><span class="math inline">\(e^{-k(x^2+y^2)}=e^{-kr^2}\)</span> is <strong>radially symmetric</strong>, which simplifies the integral</li>
+<li><span class="math inline">\(\int_0^{2\pi}\,d\theta = 2\pi\)</span> introduces <span class="math inline">\(\pi\)</span> in the normalization constant of the normal distribution</li>
+</ul>
+</section>
+<section id="pi-in-the-buffon-needle-problem" class="level4" data-number="2.6.2.4">
+<h4 data-number="2.6.2.4" class="anchored" data-anchor-id="pi-in-the-buffon-needle-problem"><span class="header-section-number">2.6.2.4</span> <span class="math inline">\(\pi\)</span> in the Buffon Needle Problem</h4>
+<ul>
+<li><p>A needle of length <span class="math inline">\(L\)</span> is dropped onto a plane with parallel lines spaced <span class="math inline">\(D \geq L\)</span> apart</p></li>
+<li><p>Probability <span class="math inline">\(P\)</span> that the needle crosses a line is <span class="math inline">\(\pi\approx \frac{2l}{D}\frac{\text{Hits}}{N\text{ total number}}\)</span></p></li>
+<li><p>The needles orientation <span class="math inline">\(\theta\)</span> is uniformly distributed in <span class="math inline">\([0,\pi/2]\)</span></p></li>
+<li><p>The crossing condition depends on <span class="math inline">\(\sin{\theta}\)</span>, and integrating over <span class="math inline">\(\theta\)</span> introduces <span class="math inline">\(\pi\)</span> through the <em>average value of <span class="math inline">\(\theta\)</span></em> over its domain</p></li>
+</ul>
+</section>
+<section id="what-they-share" class="level4" data-number="2.6.2.5">
+<h4 data-number="2.6.2.5" class="anchored" data-anchor-id="what-they-share"><span class="header-section-number">2.6.2.5</span> What they share</h4>
+<center>
+Both problems translate a probabilistic question into a geometric one, where <span class="math inline">\(\pi\)</span> emerges naturally from integrating over angles or symmetric regions.
+</center>
 </section>
 </section>
 </section>
@@ -1393,26 +1511,10 @@ Figure&nbsp;2.13: The standarized normal distribution
 <div id="fig-z-scores-raw" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-z-scores-raw-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter001_Distributions_files/figure-html/fig-z-scores-raw-1.png" class="img-fluid figure-img" style="width:95.0%">
+<img src="chapter001_Distributions_files/figure-revealjs/fig-z-scores-raw-1.svg" class="img-fluid figure-img" style="width:95.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-z-scores-raw-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.14: The original data of group X and group Y
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div class="fragment fade-in">
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-z-scores-scaled" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-z-scores-scaled-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter001_Distributions_files/figure-html/fig-z-scores-scaled-1.png" class="img-fluid figure-img" style="width:75.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-z-scores-scaled-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.15: The correlation of the z-score shows, that every point <span class="math inline">\(x_i\)</span> is equally probable
+Figure&nbsp;2.19: How can we compare this data?
 </figcaption>
 </figure>
 </div>
@@ -1424,38 +1526,97 @@ Figure&nbsp;2.15: The correlation of the z-score shows, that every point <span c
 <p><span class="math display">\[\begin{align}
 Z = \frac{x_i - \bar{x}}{sd} \label{zscore}
 \end{align}\]</span></p>
-<p>How the <a href="#acronyms_Z">Z</a> can be applied is shown in <a href="#fig-z-scores-raw" class="quarto-xref">Figure&nbsp;<span>2.14</span></a> and <a href="#fig-z-scores-scaled" class="quarto-xref">Figure&nbsp;<span>2.15</span></a>. The data for group <code>X</code> and group <code>Y</code> may be measured in different units ( <a href="#fig-z-scores-raw" class="quarto-xref">Figure&nbsp;<span>2.14</span></a>). To answer the question, which of the values <span class="math inline">\(x_i (i=1\ldots5)\)</span> is more probable, the single data points are transformed to the respective z-score using <span class="math inline">\(\eqref{zscore}\)</span>. In <a href="#fig-z-scores-scaled" class="quarto-xref">Figure&nbsp;<span>2.15</span></a>, the <a href="#acronyms_Z">Z</a> for both groups are plotted against each other. The perfect correlation of the datapoints shows, that for every <span class="math inline">\(x_i\)</span> the same probability applies. Thus, the datapoints are comparable.</p>
-<section id="the-drive-shaft-exercise---z-standardization" class="level3" data-number="2.7.1">
-<h3 data-number="2.7.1" class="anchored" data-anchor-id="the-drive-shaft-exercise---z-standardization"><span class="header-section-number">2.7.1</span> The drive shaft exercise - Z-Standardization</h3>
+<p>How the <a href="#acronyms_Z">Z</a> can be applied is shown in <a href="#fig-z-scores-raw" class="quarto-xref">Figure&nbsp;<span>2.19</span></a> and <a href="#fig-z-scores-scaled" class="quarto-xref">Figure&nbsp;<span>2.20</span></a>. The data for group <code>X</code> and group <code>Y</code> may be measured in different units ( <a href="#fig-z-scores-raw" class="quarto-xref">Figure&nbsp;<span>2.19</span></a>). To answer the question, which of the values <span class="math inline">\(x_i (i=1\ldots5)\)</span> is more probable, the single data points are transformed to the respective z-score using <span class="math inline">\(\eqref{zscore}\)</span>. In <a href="#fig-z-scores-scaled" class="quarto-xref">Figure&nbsp;<span>2.20</span></a>, the <a href="#acronyms_Z">Z</a> for both groups are plotted against each other. The perfect correlation of the datapoints shows, that for every <span class="math inline">\(x_i\)</span> the same probability applies. Thus, the datapoints are comparable.</p>
+<section id="properties-of-of-z-scores" class="level3" data-number="2.7.1">
+<h3 data-number="2.7.1" class="anchored" data-anchor-id="properties-of-of-z-scores"><span class="header-section-number">2.7.1</span> Properties of of Z-scores</h3>
+<ol type="1">
+<li>Shape: The distribution’s shape remains normal</li>
+<li>Relative Positions: Values maintain their percentiles</li>
+<li>Outliers: Extreme values <span class="math inline">\(|z|&gt;3\)</span> are easily flagged</li>
+</ol>
+</section>
+<section id="comparison-of-standardized-data" class="level3" data-number="2.7.2">
+<h3 data-number="2.7.2" class="anchored" data-anchor-id="comparison-of-standardized-data"><span class="header-section-number">2.7.2</span> Comparison of standardized data</h3>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-ds-z" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
+<div id="fig-z-scores-scaled" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-ds-z-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter001_Distributions_files/figure-html/fig-ds-z-1.png" class="img-fluid figure-img" style="width:95.0%" data-fig-pos="H">
+<div aria-describedby="fig-z-scores-scaled-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chapter001_Distributions_files/figure-revealjs/fig-z-scores-scaled-1.svg" class="img-fluid figure-img" style="width:75.0%">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ds-z-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.16: The standardized data of the drive shaft data.
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-z-scores-scaled-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.20: Normalized data is easier to compare
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>In <a href="#fig-ds-z" class="quarto-xref">Figure&nbsp;<span>2.16</span></a> the standardized drive shaft data is shown. The mean of the data (<span class="math inline">\(\bar{x}\)</span>) is now centered at <span class="math inline">\(0\)</span> and the standard deviation is <span class="math inline">\(1\)</span>. For this case, the specification limits have also been transferred to the respective <a href="#acronyms_Z">Z</a>-score (even though they can not be interpreted as such anymore). For every <span class="math inline">\(x_i\)</span> the probability to be within a normal distribution is now known. When comparing this to the transferred specification limits, it is clear to see that for <code>group01</code> “most” of the data points are within the limits in contrast to <code>group03</code> where none of the data points lies within the specification limits. When looking at <code>group03</code> we see, that the <em>nominal</em> specification limit is -9.78 standard deviations away from the centered mean of the datapoints. The probability of a data point being located there is 6.8605273^{-23} which does not sound an awful lot. We will dwelve more into such investigation in another chapter, but this is a first step in the direction of inferential statistics.</p>
 </section>
-<section id="the-z-transform-and-the-galton-board" class="level3" data-number="2.7.2">
-<h3 data-number="2.7.2" class="anchored" data-anchor-id="the-z-transform-and-the-galton-board"><span class="header-section-number">2.7.2</span> The Z-transform and the Galton Board</h3>
+<section id="the-universal-yardstick" class="level3" data-number="2.7.3">
+<h3 data-number="2.7.3" class="anchored" data-anchor-id="the-universal-yardstick"><span class="header-section-number">2.7.3</span> The Universal Yardstick</h3>
+<p>The standard normal distribution (<span class="math inline">\(N(0,1)\)</span>) is the reference distribution (the perfect model).</p>
+<ul>
+<li><span class="math inline">\(\bar{x} = 0,\; sd = 1\)</span></li>
+<li>Empirical Rule (68-65-99.7)
+<ul>
+<li><span class="math inline">\(68\%\)</span> of data within <span class="math inline">\(\pm1sd\)</span></li>
+<li><span class="math inline">\(95\%\)</span> of data within <span class="math inline">\(\pm2sd\)</span></li>
+<li><span class="math inline">\(99.7\%\)</span> of data within <span class="math inline">\(\pm3sd\)</span></li>
+</ul></li>
+</ul>
+</section>
+<section id="the-drive-shaft-exercise---z-standardization" class="level3" data-number="2.7.4">
+<h3 data-number="2.7.4" class="anchored" data-anchor-id="the-drive-shaft-exercise---z-standardization"><span class="header-section-number">2.7.4</span> The drive shaft exercise - Z-Standardization</h3>
 <div class="cell">
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="chapter001_Distributions_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="1440"></p>
+<div id="fig-ds-z" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ds-z-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chapter001_Distributions_files/figure-revealjs/fig-ds-z-1.svg" class="img-fluid figure-img" style="width:95.0%" data-fig-pos="H">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ds-z-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.21: The standardized data of the drive shaft data.
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<section id="applying-the-z-transform" class="level4" data-number="2.7.2.1">
-<h4 data-number="2.7.2.1" class="anchored" data-anchor-id="applying-the-z-transform"><span class="header-section-number">2.7.2.1</span> Applying the Z-transform</h4>
+<p>In <a href="#fig-ds-z" class="quarto-xref">Figure&nbsp;<span>2.21</span></a> the standardized drive shaft data is shown. The mean of the data (<span class="math inline">\(\bar{x}\)</span>) is now centered at <span class="math inline">\(0\)</span> and the standard deviation is <span class="math inline">\(1\)</span>. For this case, the specification limits have also been transferred to the respective <a href="#acronyms_Z">Z</a>-score (even though they can not be interpreted as such anymore). For every <span class="math inline">\(x_i\)</span> the probability to be within a normal distribution is now known. When comparing this to the transferred specification limits, it is clear to see that for <code>group01</code> “most” of the data points are within the limits in contrast to <code>group03</code> where none of the data points lies within the specification limits. When looking at <code>group03</code> we see, that the <em>nominal</em> specification limit is -9.78 standard deviations away from the centered mean of the datapoints. The probability of a data point being located there is 6.8605273^{-23} which does not sound an awful lot. We will dwelve more into such investigation in another chapter, but this is a first step in the direction of inferential statistics.</p>
+</section>
+<section id="when-z-scores-go-wrong" class="level3" data-number="2.7.5">
+<h3 data-number="2.7.5" class="anchored" data-anchor-id="when-z-scores-go-wrong"><span class="header-section-number">2.7.5</span> When Z-Scores Go Wrong</h3>
+<ol type="1">
+<li>Non-Normal Data:</li>
+</ol>
+<ul>
+<li>Z-Scores assume normality</li>
+</ul>
+<ol start="2" type="1">
+<li>Population vs.&nbsp;Sample</li>
+</ol>
+<ul>
+<li>Use population parameters (<span class="math inline">\(\mu,\sigma\)</span>) if known, otherwise use sample estimates (<span class="math inline">\(\bar{x},sd\)</span>)</li>
+</ul>
+<ol start="3" type="1">
+<li>Outliers:</li>
+</ol>
+<ul>
+<li>Z-scores are sensitive to outliers</li>
+</ul>
+</section>
+<section id="the-z-transform-and-the-galton-board" class="level3" data-number="2.7.6">
+<h3 data-number="2.7.6" class="anchored" data-anchor-id="the-z-transform-and-the-galton-board"><span class="header-section-number">2.7.6</span> The Z-transform and the Galton Board</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="chapter001_Distributions_files/figure-revealjs/unnamed-chunk-4-1.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="applying-the-z-transform" class="level4" data-number="2.7.6.1">
+<h4 data-number="2.7.6.1" class="anchored" data-anchor-id="applying-the-z-transform"><span class="header-section-number">2.7.6.1</span> Applying the Z-transform</h4>
 <p><span class="math display">\[Z = \frac{X-\mu}{\sigma}\]</span></p>
 <div class="fragment fade-in">
 <p><span class="math display">\[Z = \frac{X-\frac{n}{2}}{\frac{\sqrt{n}}{2}}\]</span></p>
@@ -1464,8 +1625,8 @@ Figure&nbsp;2.16: The standardized data of the drive shaft data.
 <p><span class="math display">\[\lim_{n\to\infty} P(a\leq Z \leq b)= \int_a^b \frac{1}{\sqrt{2\pi}}e^\frac{-z^2}{2} \,dz \]</span></p>
 </div>
 </section>
-<section id="converting-the-bionmial-formula-to-a-normal-form" class="level4" data-number="2.7.2.2">
-<h4 data-number="2.7.2.2" class="anchored" data-anchor-id="converting-the-bionmial-formula-to-a-normal-form"><span class="header-section-number">2.7.2.2</span> Converting the bionmial Formula to a Normal Form</h4>
+<section id="converting-the-bionmial-formula-to-a-normal-form" class="level4" data-number="2.7.6.2">
+<h4 data-number="2.7.6.2" class="anchored" data-anchor-id="converting-the-bionmial-formula-to-a-normal-form"><span class="header-section-number">2.7.6.2</span> Converting the bionmial Formula to a Normal Form</h4>
 <p>Stirling appoximation: <span class="math inline">\(n!\approx\sqrt{2\pi n} \left( \frac{n}{e} \right)^n\)</span></p>
 <p>Appprox: <span class="math inline">\(\binom{n}{k} \approx \frac{\sqrt{2\pi n} \left( \frac{n}{e} \right)^n}{\sqrt{2\pi n} \left( \frac{k}{e} \right)^k \cdot \sqrt{2\pi(n-k)} \left( \frac{n-k}{e} \right)^{n-k}}\)</span></p>
 <p>simplifies to: <span class="math inline">\(\binom{n}{k} = \frac{1}{\sqrt{2\pi n p (1-p)}}e^{-\frac{(k-np)^2}{2np(1-p)}}\)</span></p>
@@ -1475,23 +1636,23 @@ Figure&nbsp;2.16: The standardized data of the drive shaft data.
 </center>
 </section>
 </section>
-<section id="the-drive-shaft-exercise---normal-distribution" class="level3" data-number="2.7.3">
-<h3 data-number="2.7.3" class="anchored" data-anchor-id="the-drive-shaft-exercise---normal-distribution"><span class="header-section-number">2.7.3</span> The drive shaft exercise - Normal Distribution</h3>
+<section id="the-drive-shaft-exercise---normal-distribution" class="level3" data-number="2.7.7">
+<h3 data-number="2.7.7" class="anchored" data-anchor-id="the-drive-shaft-exercise---normal-distribution"><span class="header-section-number">2.7.7</span> The drive shaft exercise - Normal Distribution</h3>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-ds-nd" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-ds-nd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter001_Distributions_files/figure-html/fig-ds-nd-1.png" class="img-fluid figure-img" style="width:75.0%">
+<img src="chapter001_Distributions_files/figure-revealjs/fig-ds-nd-1.svg" class="img-fluid figure-img" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ds-nd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.17: The drive shaft data with the respective normal distributions.
+Figure&nbsp;2.22: The drive shaft data with the respective normal distributions.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>In <a href="#fig-ds-nd" class="quarto-xref">Figure&nbsp;<span>2.17</span></a> the <code>drive shaft data</code> is shown for each group in a histogram. As an overlay, the respective <em>normal distribution</em> (with the groups <span class="math inline">\(\bar{x},sd\)</span>) is overlayed. If the data is normally distributed, is a different question.</p>
+<p>In <a href="#fig-ds-nd" class="quarto-xref">Figure&nbsp;<span>2.22</span></a> the <code>drive shaft data</code> is shown for each group in a histogram. As an overlay, the respective <em>normal distribution</em> (with the groups <span class="math inline">\(\bar{x},sd\)</span>) is overlayed. If the data is normally distributed, is a different question.</p>
 </section>
 </section>
 <section id="section-1" class="level2" data-number="2.8">
@@ -1504,7 +1665,7 @@ Figure&nbsp;2.17: The drive shaft data with the respective normal distributions.
 <img src="chapter001/PDF_000.png" class="img-fluid figure-img" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pdf-000-scr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.18: A visual represenstation of the PDF for the normal distribution.
+Figure&nbsp;2.23: A visual represenstation of the PDF for the normal distribution.
 </figcaption>
 </figure>
 </div>
@@ -1525,7 +1686,7 @@ f(x) = \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{1}{2}(\frac{x-\mu}{\sigma})^2}
 <img src="chapter001/CDF_000.png" class="img-fluid figure-img" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cdf-000-scr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.19: A visual represenstation of the CDF for the normal distribution.
+Figure&nbsp;2.24: A visual represenstation of the CDF for the normal distribution.
 </figcaption>
 </figure>
 </div>
@@ -1550,7 +1711,7 @@ z &amp;= \frac{x-\mu}{\sigma} \nonumber \\
 <img src="chapter001/likelihood_prob.png" class="img-fluid figure-img" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.20: The subtle difference between likelihood and probability.
+Figure&nbsp;2.25: The subtle difference between likelihood and probability.
 </figcaption>
 </figure>
 </div>
@@ -1567,6 +1728,1598 @@ represents the measure of the likelihood that an event will occur. It is a quant
 </dd>
 </dl>
 <p>In summary, while both likelihood and probability deal with the chance of events occurring, likelihood is often used in the context of comparing different <em>hypotheses or models</em> based on <em>observed data</em>, while probability is more broadly used to quantify the chances of <em>events happening</em> in <em>general</em>.</p>
+<section id="exercise-1" class="level3" data-number="2.10.1">
+<h3 data-number="2.10.1" class="anchored" data-anchor-id="exercise-1"><span class="header-section-number">2.10.1</span> Exercise</h3>
+<div class="fragment fade-in-then-out" style="font-size: 75%;">
+<table class="caption-top table">
+<caption>Exercise Data</caption>
+<thead>
+<tr class="header">
+<th>Machine</th>
+<th>Sample 1</th>
+<th>Sample 2</th>
+<th>Sample 3</th>
+<th>Sample 4</th>
+<th>Sample 5</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Machine X</strong></td>
+<td>44</td>
+<td>46</td>
+<td>45</td>
+<td>47</td>
+<td>43</td>
+</tr>
+<tr class="even">
+<td><strong>Machine Y</strong></td>
+<td>52</td>
+<td>50</td>
+<td>53</td>
+<td>49</td>
+<td>51</td>
+</tr>
+<tr class="odd">
+<td><strong>Machine Z</strong></td>
+<td>40</td>
+<td>42</td>
+<td>39</td>
+<td>41</td>
+<td>43</td>
+</tr>
+</tbody>
+</table>
+<div class="cell">
+<div id="tbl-exercise-z" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-exercise-z-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2.2: Exercise Data
+</figcaption>
+<div aria-describedby="tbl-exercise-z-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div id="rtzegrrjep" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#rtzegrrjep table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#rtzegrrjep thead, #rtzegrrjep tbody, #rtzegrrjep tfoot, #rtzegrrjep tr, #rtzegrrjep td, #rtzegrrjep th {
+  border-style: none;
+}
+
+#rtzegrrjep p {
+  margin: 0;
+  padding: 0;
+}
+
+#rtzegrrjep .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#rtzegrrjep .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#rtzegrrjep .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#rtzegrrjep .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#rtzegrrjep .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#rtzegrrjep .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#rtzegrrjep .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#rtzegrrjep .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#rtzegrrjep .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#rtzegrrjep .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#rtzegrrjep .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#rtzegrrjep .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#rtzegrrjep .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#rtzegrrjep .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#rtzegrrjep .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#rtzegrrjep .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#rtzegrrjep .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#rtzegrrjep .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#rtzegrrjep .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rtzegrrjep .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#rtzegrrjep .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#rtzegrrjep .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#rtzegrrjep .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rtzegrrjep .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#rtzegrrjep .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#rtzegrrjep .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#rtzegrrjep .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rtzegrrjep .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#rtzegrrjep .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#rtzegrrjep .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#rtzegrrjep .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#rtzegrrjep .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#rtzegrrjep .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rtzegrrjep .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#rtzegrrjep .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rtzegrrjep .gt_left {
+  text-align: left;
+}
+
+#rtzegrrjep .gt_center {
+  text-align: center;
+}
+
+#rtzegrrjep .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#rtzegrrjep .gt_font_normal {
+  font-weight: normal;
+}
+
+#rtzegrrjep .gt_font_bold {
+  font-weight: bold;
+}
+
+#rtzegrrjep .gt_font_italic {
+  font-style: italic;
+}
+
+#rtzegrrjep .gt_super {
+  font-size: 65%;
+}
+
+#rtzegrrjep .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#rtzegrrjep .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#rtzegrrjep .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#rtzegrrjep .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#rtzegrrjep .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#rtzegrrjep .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#rtzegrrjep .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#rtzegrrjep .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#rtzegrrjep div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="machine_x" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">machine_x</th>
+<th id="machine_y" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">machine_y</th>
+<th id="machine_z" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">machine_z</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_right" headers="machine_x">44</td>
+<td class="gt_row gt_right" headers="machine_y">52</td>
+<td class="gt_row gt_right" headers="machine_z">40</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="machine_x">46</td>
+<td class="gt_row gt_right" headers="machine_y">50</td>
+<td class="gt_row gt_right" headers="machine_z">42</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="machine_x">45</td>
+<td class="gt_row gt_right" headers="machine_y">53</td>
+<td class="gt_row gt_right" headers="machine_z">39</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="machine_x">47</td>
+<td class="gt_row gt_right" headers="machine_y">49</td>
+<td class="gt_row gt_right" headers="machine_z">41</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="machine_x">43</td>
+<td class="gt_row gt_right" headers="machine_y">51</td>
+<td class="gt_row gt_right" headers="machine_z">43</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<ol type="1">
+<li>calculate <span class="math inline">\(\bar{x}\)</span> and <span class="math inline">\(sd\)</span></li>
+<li>Compute z-scores</li>
+<li>Flag anomalies</li>
+<li>Recommend actions</li>
+</ol>
+</div>
+<hr>
+<div class="cell">
+<div id="tbl-exercise-z-res" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-exercise-z-res-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2.3: Results
+</figcaption>
+<div aria-describedby="tbl-exercise-z-res-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div id="kiiayrfbmy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#kiiayrfbmy table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#kiiayrfbmy thead, #kiiayrfbmy tbody, #kiiayrfbmy tfoot, #kiiayrfbmy tr, #kiiayrfbmy td, #kiiayrfbmy th {
+  border-style: none;
+}
+
+#kiiayrfbmy p {
+  margin: 0;
+  padding: 0;
+}
+
+#kiiayrfbmy .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#kiiayrfbmy .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#kiiayrfbmy .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#kiiayrfbmy .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#kiiayrfbmy .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#kiiayrfbmy .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#kiiayrfbmy .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#kiiayrfbmy .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#kiiayrfbmy .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#kiiayrfbmy .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#kiiayrfbmy .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#kiiayrfbmy .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#kiiayrfbmy .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#kiiayrfbmy .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#kiiayrfbmy .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#kiiayrfbmy .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#kiiayrfbmy .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#kiiayrfbmy .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#kiiayrfbmy .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kiiayrfbmy .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#kiiayrfbmy .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#kiiayrfbmy .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#kiiayrfbmy .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kiiayrfbmy .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#kiiayrfbmy .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#kiiayrfbmy .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#kiiayrfbmy .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kiiayrfbmy .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#kiiayrfbmy .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#kiiayrfbmy .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#kiiayrfbmy .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#kiiayrfbmy .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#kiiayrfbmy .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kiiayrfbmy .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#kiiayrfbmy .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kiiayrfbmy .gt_left {
+  text-align: left;
+}
+
+#kiiayrfbmy .gt_center {
+  text-align: center;
+}
+
+#kiiayrfbmy .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#kiiayrfbmy .gt_font_normal {
+  font-weight: normal;
+}
+
+#kiiayrfbmy .gt_font_bold {
+  font-weight: bold;
+}
+
+#kiiayrfbmy .gt_font_italic {
+  font-style: italic;
+}
+
+#kiiayrfbmy .gt_super {
+  font-size: 65%;
+}
+
+#kiiayrfbmy .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#kiiayrfbmy .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#kiiayrfbmy .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#kiiayrfbmy .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#kiiayrfbmy .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#kiiayrfbmy .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#kiiayrfbmy .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#kiiayrfbmy .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#kiiayrfbmy div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="machine" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">machine</th>
+<th id="mean_cycle_time" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">mean_cycle_time</th>
+<th id="sd_cycle_time" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">sd_cycle_time</th>
+<th id="var_cycle_time" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">var_cycle_time</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="machine">machine_x</td>
+<td class="gt_row gt_right" headers="mean_cycle_time">45</td>
+<td class="gt_row gt_right" headers="sd_cycle_time">1.581139</td>
+<td class="gt_row gt_right" headers="var_cycle_time">2.5</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="machine">machine_y</td>
+<td class="gt_row gt_right" headers="mean_cycle_time">51</td>
+<td class="gt_row gt_right" headers="sd_cycle_time">1.581139</td>
+<td class="gt_row gt_right" headers="var_cycle_time">2.5</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="machine">machine_z</td>
+<td class="gt_row gt_right" headers="mean_cycle_time">41</td>
+<td class="gt_row gt_right" headers="sd_cycle_time">1.581139</td>
+<td class="gt_row gt_right" headers="var_cycle_time">2.5</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<hr>
+<div class="cell">
+<div id="tbl-exercise-z-scores" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-exercise-z-scores-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2.4: Results for z score
+</figcaption>
+<div aria-describedby="tbl-exercise-z-scores-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div id="keyxtcehcn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#keyxtcehcn table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#keyxtcehcn thead, #keyxtcehcn tbody, #keyxtcehcn tfoot, #keyxtcehcn tr, #keyxtcehcn td, #keyxtcehcn th {
+  border-style: none;
+}
+
+#keyxtcehcn p {
+  margin: 0;
+  padding: 0;
+}
+
+#keyxtcehcn .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#keyxtcehcn .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#keyxtcehcn .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#keyxtcehcn .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#keyxtcehcn .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#keyxtcehcn .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#keyxtcehcn .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#keyxtcehcn .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#keyxtcehcn .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#keyxtcehcn .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#keyxtcehcn .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#keyxtcehcn .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#keyxtcehcn .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#keyxtcehcn .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#keyxtcehcn .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#keyxtcehcn .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#keyxtcehcn .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#keyxtcehcn .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#keyxtcehcn .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#keyxtcehcn .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#keyxtcehcn .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#keyxtcehcn .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#keyxtcehcn .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#keyxtcehcn .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#keyxtcehcn .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#keyxtcehcn .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#keyxtcehcn .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#keyxtcehcn .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#keyxtcehcn .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#keyxtcehcn .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#keyxtcehcn .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#keyxtcehcn .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#keyxtcehcn .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#keyxtcehcn .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#keyxtcehcn .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#keyxtcehcn .gt_left {
+  text-align: left;
+}
+
+#keyxtcehcn .gt_center {
+  text-align: center;
+}
+
+#keyxtcehcn .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#keyxtcehcn .gt_font_normal {
+  font-weight: normal;
+}
+
+#keyxtcehcn .gt_font_bold {
+  font-weight: bold;
+}
+
+#keyxtcehcn .gt_font_italic {
+  font-style: italic;
+}
+
+#keyxtcehcn .gt_super {
+  font-size: 65%;
+}
+
+#keyxtcehcn .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#keyxtcehcn .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#keyxtcehcn .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#keyxtcehcn .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#keyxtcehcn .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#keyxtcehcn .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#keyxtcehcn .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#keyxtcehcn .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#keyxtcehcn div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="cycle_time_s" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">cycle_time_s</th>
+<th id="scaled_data" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">scaled_data</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="gt_group_heading_row odd">
+<th colspan="2" id="machine_x" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">machine_x</th>
+</tr>
+<tr class="gt_row_group_first even">
+<td class="gt_row gt_right" headers="machine_x  cycle_time_s">44</td>
+<td class="gt_row gt_center" headers="machine_x  scaled_data">-0.6324555</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="machine_x  cycle_time_s">46</td>
+<td class="gt_row gt_center" headers="machine_x  scaled_data">0.6324555</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="machine_x  cycle_time_s">45</td>
+<td class="gt_row gt_center" headers="machine_x  scaled_data">0.0000000</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="machine_x  cycle_time_s">47</td>
+<td class="gt_row gt_center" headers="machine_x  scaled_data">1.2649111</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="machine_x  cycle_time_s">43</td>
+<td class="gt_row gt_center" headers="machine_x  scaled_data">-1.2649111</td>
+</tr>
+<tr class="gt_group_heading_row odd">
+<th colspan="2" id="machine_y" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">machine_y</th>
+</tr>
+<tr class="gt_row_group_first even">
+<td class="gt_row gt_right" headers="machine_y  cycle_time_s">52</td>
+<td class="gt_row gt_center" headers="machine_y  scaled_data">0.6324555</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="machine_y  cycle_time_s">50</td>
+<td class="gt_row gt_center" headers="machine_y  scaled_data">-0.6324555</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="machine_y  cycle_time_s">53</td>
+<td class="gt_row gt_center" headers="machine_y  scaled_data">1.2649111</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="machine_y  cycle_time_s">49</td>
+<td class="gt_row gt_center" headers="machine_y  scaled_data">-1.2649111</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="machine_y  cycle_time_s">51</td>
+<td class="gt_row gt_center" headers="machine_y  scaled_data">0.0000000</td>
+</tr>
+<tr class="gt_group_heading_row odd">
+<th colspan="2" id="machine_z" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">machine_z</th>
+</tr>
+<tr class="gt_row_group_first even">
+<td class="gt_row gt_right" headers="machine_z  cycle_time_s">40</td>
+<td class="gt_row gt_center" headers="machine_z  scaled_data">-0.6324555</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="machine_z  cycle_time_s">42</td>
+<td class="gt_row gt_center" headers="machine_z  scaled_data">0.6324555</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="machine_z  cycle_time_s">39</td>
+<td class="gt_row gt_center" headers="machine_z  scaled_data">-1.2649111</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="machine_z  cycle_time_s">41</td>
+<td class="gt_row gt_center" headers="machine_z  scaled_data">0.0000000</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="machine_z  cycle_time_s">43</td>
+<td class="gt_row gt_center" headers="machine_z  scaled_data">1.2649111</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+</section>
 </section>
 <section id="chi2---distribution" class="level2" data-number="2.11">
 <h2 data-number="2.11" class="anchored" data-anchor-id="chi2---distribution"><span class="header-section-number">2.11</span> Chi<sup>2</sup> - Distribution</h2>
@@ -1579,7 +3332,7 @@ represents the measure of the likelihood that an event will occur. It is a quant
 <div id="fig-chi-2-1" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-chi-2-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter001_Distributions_files/figure-html/fig-chi-2-1.png" class="img-fluid figure-img" data-fig-pos="H" data-ref-parent="fig-chi-2" width="768">
+<img src="chapter001_Distributions_files/figure-revealjs/fig-chi-2-1.svg" class="img-fluid figure-img" data-fig-pos="H" data-ref-parent="fig-chi-2">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-chi-2-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) a normal distribution
@@ -1594,7 +3347,7 @@ represents the measure of the likelihood that an event will occur. It is a quant
 <div id="fig-chi-2-2" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-chi-2-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter001_Distributions_files/figure-html/fig-chi-2-2.png" class="img-fluid figure-img" data-fig-pos="H" data-ref-parent="fig-chi-2" width="768">
+<img src="chapter001_Distributions_files/figure-revealjs/fig-chi-2-2.svg" class="img-fluid figure-img" data-fig-pos="H" data-ref-parent="fig-chi-2">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-chi-2-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) the standard normal variable square (<span class="math inline">\(dof = 1\)</span>)
@@ -1608,7 +3361,7 @@ represents the measure of the likelihood that an event will occur. It is a quant
 <div id="fig-chi-2-3" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-chi-2-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter001_Distributions_files/figure-html/fig-chi-2-3.png" class="img-fluid figure-img" data-fig-pos="H" data-ref-parent="fig-chi-2" width="768">
+<img src="chapter001_Distributions_files/figure-revealjs/fig-chi-2-3.svg" class="img-fluid figure-img" data-fig-pos="H" data-ref-parent="fig-chi-2">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-chi-2-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (c) the <span class="math inline">\(\chi^2\)</span> distributions with varying degrees of freedom
@@ -1619,7 +3372,7 @@ represents the measure of the likelihood that an event will occur. It is a quant
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chi-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.21: What a <span class="math inline">\(\chi^2\)</span> distribution reprepresents and how it relates to a the normal distribution.
+Figure&nbsp;2.26: What a <span class="math inline">\(\chi^2\)</span> distribution reprepresents and how it relates to a the normal distribution.
 </figcaption>
 </figure>
 </div>
@@ -1646,16 +3399,16 @@ Figure&nbsp;2.21: What a <span class="math inline">\(\chi^2\)</span> distributio
 <div id="fig-ds-chi" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-ds-chi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter001_Distributions_files/figure-html/fig-ds-chi-1.png" class="img-fluid figure-img" style="width:95.0%">
+<img src="chapter001_Distributions_files/figure-revealjs/fig-ds-chi-1.svg" class="img-fluid figure-img" style="width:95.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ds-chi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.22: The <span class="math inline">\(\chi^2\)</span> disitribution of the drive shaft data.
+Figure&nbsp;2.27: The <span class="math inline">\(\chi^2\)</span> disitribution of the drive shaft data.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>In <a href="#fig-ds-chi" class="quarto-xref">Figure&nbsp;<span>2.22</span></a> the squared standad deviation for every datapoint (from the stanardized data) is shown as a histogram for every group with an overlayed (and scaled) density plot. In the background of every group the theoretical <span class="math inline">\(\chi^2\)</span>-distribution with <span class="math inline">\(dof = 1\)</span> is plotted to visually compare the empirical distribution of the datapoints to the theorectial.</p>
+<p>In <a href="#fig-ds-chi" class="quarto-xref">Figure&nbsp;<span>2.27</span></a> the squared standad deviation for every datapoint (from the stanardized data) is shown as a histogram for every group with an overlayed (and scaled) density plot. In the background of every group the theoretical <span class="math inline">\(\chi^2\)</span>-distribution with <span class="math inline">\(dof = 1\)</span> is plotted to visually compare the empirical distribution of the datapoints to the theorectial.</p>
 </section>
 </section>
 <section id="t---distribution" class="level2" data-number="2.12">
@@ -1665,10 +3418,10 @@ Figure&nbsp;2.22: The <span class="math inline">\(\chi^2\)</span> disitribution 
 <div id="fig-t-dist" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-t-dist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter001_Distributions_files/figure-html/fig-t-dist-1.png" class="img-fluid figure-img" style="width:95.0%">
+<img src="chapter001_Distributions_files/figure-revealjs/fig-t-dist-1.svg" class="img-fluid figure-img" style="width:95.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-t-dist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.23: PDF of t-distribution with varying <span class="math inline">\(dof\)</span>
+Figure&nbsp;2.28: PDF of t-distribution with varying <span class="math inline">\(dof\)</span>
 </figcaption>
 </figure>
 </div>
@@ -1684,7 +3437,7 @@ Figure&nbsp;2.23: PDF of t-distribution with varying <span class="math inline">\
 <p><span class="math display">\[\begin{align}
 t_i = \frac{x_i - \mu_o}{sd/\sqrt{n}} \label{tscore}
 \end{align}\]</span></p>
-<p>In <a href="#fig-t-dist" class="quarto-xref">Figure&nbsp;<span>2.23</span></a> it is shown, that with increasing <a href="#acronyms_dof">dof</a> (in this case <em>sample size</em>), the <em>t-distribution</em> approximates a normal distribution (gray area). <a href="#fig-t-dist" class="quarto-xref">Figure&nbsp;<span>2.23</span></a> also shows an example of the <em>t-distribution</em> in action. Of all possible samples with 9 <a href="#dof"><span class="math inline">\(dof\)</span></a> <span class="math inline">\(0.025\;(2\frac{1}{2}\%)\)</span> of those samples would have t-scores greater than <span class="math inline">\(2.262\)</span>, and <span class="math inline">\(.975\;(97.5\%)\)</span> would have t-scores less than <span class="math inline">\(2.262\)</span>. The advantage of the <em>t-score</em> and <em>t-distribution</em> is clearly visible. All these values can be computed from sampled data, the population can remain <em>estimated</em> <span class="math inline">\(\eqref{tscore}\)</span>.</p>
+<p>In <a href="#fig-t-dist" class="quarto-xref">Figure&nbsp;<span>2.28</span></a> it is shown, that with increasing <a href="#acronyms_dof">dof</a> (in this case <em>sample size</em>), the <em>t-distribution</em> approximates a normal distribution (gray area). <a href="#fig-t-dist" class="quarto-xref">Figure&nbsp;<span>2.28</span></a> also shows an example of the <em>t-distribution</em> in action. Of all possible samples with 9 <a href="#dof"><span class="math inline">\(dof\)</span></a> <span class="math inline">\(0.025\;(2\frac{1}{2}\%)\)</span> of those samples would have t-scores greater than <span class="math inline">\(2.262\)</span>, and <span class="math inline">\(.975\;(97.5\%)\)</span> would have t-scores less than <span class="math inline">\(2.262\)</span>. The advantage of the <em>t-score</em> and <em>t-distribution</em> is clearly visible. All these values can be computed from sampled data, the population can remain <em>estimated</em> <span class="math inline">\(\eqref{tscore}\)</span>.</p>
 <section id="the-drive-shaft-exercise---t-distribution" class="level3" data-number="2.12.1">
 <h3 data-number="2.12.1" class="anchored" data-anchor-id="the-drive-shaft-exercise---t-distribution"><span class="header-section-number">2.12.1</span> The drive shaft exercise - t-Distribution</h3>
 <p>The t-score computation and the z-standardization look very familiar. While the z-score calculation needs some population parameters, the t-score calculation does not need such. It therefore allows us, to estimate population parameters based on a sample - a very frequent use case in statistics.</p>
@@ -1712,16 +3465,16 @@ margin\;of\;error &amp;= t_{score} \times SE \label{errormargin}
 lo &amp;= \bar{x} - margin\;of\;error \label{cilobound} \\
 hi &amp;= \bar{x} + margin\;of\;error \label{cihibound}
 \end{align}\]</span></p>
-<p>It all looks and feels very similar to using the normal disitrbution. Why this is the case, is shown in <a href="#fig-ds-t" class="quarto-xref">Figure&nbsp;<span>2.24</span></a>. In <span class="quarto-unresolved-ref">?fig-ds-t-1</span> the raw dataset is shown with the underlayed specification limits for the manufacturing of the drive shaft. For some groups the judgement if the drive shaft is wihtin specification is quite clear (<code>group 1</code>, <code>group 2</code> and <code>group 5</code>). For the other groups, this can not be done so easily. For the drive shaft data, we of course now some population data, therefore the <em>normal distribution</em> can be compared to the <em>t-distribution</em>. This is done in <span class="quarto-unresolved-ref">?fig-ds-t-2</span>. On the <code>x-axis</code> the diameter is shown, the <code>y-axis</code> depicts the groups (as before). The distribution on top of the estimated parameters is the population (normal distribution), the distribution on the bottom follow a <em>t-distribution</em>. With <span class="math inline">\(n&gt;30\)</span> (as for this dataset), the difference between distribution is very small, further showcasing the use of the <em>t-distribution</em> (also see <a href="#fig-t-dist" class="quarto-xref">Figure&nbsp;<span>2.23</span></a> for comparison).</p>
+<p>It all looks and feels very similar to using the normal disitrbution. Why this is the case, is shown in <a href="#fig-ds-t" class="quarto-xref">Figure&nbsp;<span>2.29</span></a>. In <span class="quarto-unresolved-ref">?fig-ds-t-1</span> the raw dataset is shown with the underlayed specification limits for the manufacturing of the drive shaft. For some groups the judgement if the drive shaft is wihtin specification is quite clear (<code>group 1</code>, <code>group 2</code> and <code>group 5</code>). For the other groups, this can not be done so easily. For the drive shaft data, we of course now some population data, therefore the <em>normal distribution</em> can be compared to the <em>t-distribution</em>. This is done in <span class="quarto-unresolved-ref">?fig-ds-t-2</span>. On the <code>x-axis</code> the diameter is shown, the <code>y-axis</code> depicts the groups (as before). The distribution on top of the estimated parameters is the population (normal distribution), the distribution on the bottom follow a <em>t-distribution</em>. With <span class="math inline">\(n&gt;30\)</span> (as for this dataset), the difference between distribution is very small, further showcasing the use of the <em>t-distribution</em> (also see <a href="#fig-t-dist" class="quarto-xref">Figure&nbsp;<span>2.28</span></a> for comparison).</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-ds-t" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-ds-t-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter001_Distributions_files/figure-html/fig-ds-t-1.png" class="img-fluid figure-img" style="width:95.0%">
+<img src="chapter001_Distributions_files/figure-revealjs/fig-ds-t-1.svg" class="img-fluid figure-img" style="width:95.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ds-t-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.24: The drive shaft data with normal disitribution, t-distribution and confidence intervalls using the t-distribution
+Figure&nbsp;2.29: The drive shaft data with normal disitribution, t-distribution and confidence intervalls using the t-distribution
 </figcaption>
 </figure>
 </div>
@@ -1742,18 +3495,18 @@ Figure&nbsp;2.24: The drive shaft data with normal disitribution, t-distribution
 <div id="fig-f-dist-01" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-f-dist-01-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter001_Distributions_files/figure-html/fig-f-dist-01-1.png" class="img-fluid figure-img" style="width:95.0%">
+<img src="chapter001_Distributions_files/figure-revealjs/fig-f-dist-01-1.svg" class="img-fluid figure-img" style="width:95.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-f-dist-01-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.25: F-distribution for <span class="math inline">\(dof_1\)</span> on the horizontal and <span class="math inline">\(dof_2\)</span> on the vertical axis
+Figure&nbsp;2.30: F-distribution for <span class="math inline">\(dof_1\)</span> on the horizontal and <span class="math inline">\(dof_2\)</span> on the vertical axis
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>The <a href="#acronyms_dof">dof</a> in an <em>F-distribution</em> refer to the two sets of numbers that determine the shape and properties of the distribution (<a href="#fig-f-dist-01" class="quarto-xref">Figure&nbsp;<span>2.25</span></a>).</p>
-<p>Numerator Degrees of Freedom (<span class="math inline">\(dof_1\)</span>): The numerator degrees of freedom, often denoted as <span class="math inline">\(dof_1\)</span>, is associated with the variability between groups or models in statistical analyses (<a href="#fig-f-dist-01" class="quarto-xref">Figure&nbsp;<span>2.25</span></a> - horizontal axis). In the context of <a href="#acronyms_ANOVA">ANOVA</a>, it represents the <a href="#acronyms_dof">dof</a> associated with the differences among group means. In regression analysis, it is related to the number of predictors or coefficients being tested simultaneously.</p>
-<p>Denominator Degrees of Freedom (<span class="math inline">\(dof_2\)</span>): The denominator degrees of freedom, often denoted as <span class="math inline">\(dof_2\)</span>, is associated with the variability within groups or models (<a href="#fig-f-dist-02" class="quarto-xref">Figure&nbsp;<span>2.26</span></a> - vertical axis). In <a href="#acronyms_ANOVA">ANOVA</a>, it represents the degrees of freedom associated with the variability within each group. In regression analysis, it is related to the error or residual degrees of freedom, indicating the remaining variability not explained by the model.</p>
+<p>The <a href="#acronyms_dof">dof</a> in an <em>F-distribution</em> refer to the two sets of numbers that determine the shape and properties of the distribution (<a href="#fig-f-dist-01" class="quarto-xref">Figure&nbsp;<span>2.30</span></a>).</p>
+<p>Numerator Degrees of Freedom (<span class="math inline">\(dof_1\)</span>): The numerator degrees of freedom, often denoted as <span class="math inline">\(dof_1\)</span>, is associated with the variability between groups or models in statistical analyses (<a href="#fig-f-dist-01" class="quarto-xref">Figure&nbsp;<span>2.30</span></a> - horizontal axis). In the context of <a href="#acronyms_ANOVA">ANOVA</a>, it represents the <a href="#acronyms_dof">dof</a> associated with the differences among group means. In regression analysis, it is related to the number of predictors or coefficients being tested simultaneously.</p>
+<p>Denominator Degrees of Freedom (<span class="math inline">\(dof_2\)</span>): The denominator degrees of freedom, often denoted as <span class="math inline">\(dof_2\)</span>, is associated with the variability within groups or models (<a href="#fig-f-dist-02" class="quarto-xref">Figure&nbsp;<span>2.31</span></a> - vertical axis). In <a href="#acronyms_ANOVA">ANOVA</a>, it represents the degrees of freedom associated with the variability within each group. In regression analysis, it is related to the error or residual degrees of freedom, indicating the remaining variability not explained by the model.</p>
 <p>The F-distribution is used to compare two variances: one from the numerator and the other from the denominator. The F-statistic, calculated as the ratio of these variances, follows an F-distribution <span class="math inline">\(\eqref{fdist}\)</span>.</p>
 <p><span class="math display">\[\begin{align}
 f(x; dof_1, dof_2) = \frac{{\Gamma\left(\frac{{dof_1 + dof_2}}{2}\right)}}{{\Gamma\left(\frac{{dof_1}}{2}\right)\Gamma\left(\frac{{dof_2}}{2}\right)}} \left(\frac{{dof_1}}{{dof_2}}\right)^{\frac{{dof_1}}{2}} \frac{{x^{\frac{{dof_1}}{2} - 1}}}{{\left(1 + \frac{{dof_1}}{{dof_2}}x\right)^{\frac{{dof_1 + dof_2}}{2}}}} \label{fdist} \\
@@ -1765,25 +3518,25 @@ F_{m,n} = \frac{\chi^2_m/m}{\chi^2_n/n}
 <div id="fig-f-dist-02" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-f-dist-02-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter001_Distributions_files/figure-html/fig-f-dist-02-1.png" class="img-fluid figure-img" style="width:95.0%">
+<img src="chapter001_Distributions_files/figure-revealjs/fig-f-dist-02-1.svg" class="img-fluid figure-img" style="width:95.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-f-dist-02-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.26: the maximum density as a function of <span class="math inline">\(dof_1\)</span> and <span class="math inline">\(dof_2\)</span> in a continous parameter space
+Figure&nbsp;2.31: the maximum density as a function of <span class="math inline">\(dof_1\)</span> and <span class="math inline">\(dof_2\)</span> in a continous parameter space
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<p>In practical terms: A higher numerator degrees of freedom (<span class="math inline">\(dof_1\)</span>) suggests that there are more groups or predictors being compared, which may result in larger F-statistic values. A higher denominator degrees of freedom (<span class="math inline">\(dof_2\)</span>) implies that there is more data within each group or model, which may lead to smaller F-statistic values. The F-distribution is right-skewed and always positive. It has different shapes depending on the values of <span class="math inline">\(dof_1\)</span> and <span class="math inline">\(dof_2\)</span> (<a href="#fig-f-dist-02" class="quarto-xref">Figure&nbsp;<span>2.26</span></a>). The exact shape is determined by these degrees of freedom and cannot be altered by changing sample sizes or data values (<a href="#fig-f-dist-02" class="quarto-xref">Figure&nbsp;<span>2.26</span></a>). Researchers use F-distributions to conduct hypothesis tests, such as F-tests in ANOVA and F-tests in regression, to determine if there are significant differences between groups or if a regression model is statistically significant.</p>
+<p>In practical terms: A higher numerator degrees of freedom (<span class="math inline">\(dof_1\)</span>) suggests that there are more groups or predictors being compared, which may result in larger F-statistic values. A higher denominator degrees of freedom (<span class="math inline">\(dof_2\)</span>) implies that there is more data within each group or model, which may lead to smaller F-statistic values. The F-distribution is right-skewed and always positive. It has different shapes depending on the values of <span class="math inline">\(dof_1\)</span> and <span class="math inline">\(dof_2\)</span> (<a href="#fig-f-dist-02" class="quarto-xref">Figure&nbsp;<span>2.31</span></a>). The exact shape is determined by these degrees of freedom and cannot be altered by changing sample sizes or data values (<a href="#fig-f-dist-02" class="quarto-xref">Figure&nbsp;<span>2.31</span></a>). Researchers use F-distributions to conduct hypothesis tests, such as F-tests in ANOVA and F-tests in regression, to determine if there are significant differences between groups or if a regression model is statistically significant.</p>
 <p>In summary, <a href="#acronyms_dof">dof</a> in the F-distribution are critical in hypothesis testing and model comparisons. They help quantify the variability between and within groups or models, allowing statisticians to assess the significance of observed differences and make informed statistical decisions.</p>
 </section>
 <section id="interconnections" class="level2" data-number="2.14">
 <h2 data-number="2.14" class="anchored" data-anchor-id="interconnections"><span class="header-section-number">2.14</span> Interconnections</h2>
 <ol type="1">
-<li><p>Normal Distribution The <strong>Normal Distribution</strong> is characterized by its mean (<span class="math inline">\(\mu\)</span>) and standard deviation (<span class="math inline">\(\sigma\)</span>), see <a href="#fig-interconnections" class="quarto-xref">Figure&nbsp;<span>2.27</span></a>. It serves as the foundation for many statistical analyses.</p></li>
-<li><p>Standardized Normal Distribution The <strong>Standardized Normal Distribution</strong>, denoted as <span class="math inline">\(Z \sim N(0, 1)\)</span>, is a special case of the normal distribution. It has a mean (<span class="math inline">\(\mu\)</span>) of <span class="math inline">\(0\)</span> and a standard deviation (<span class="math inline">\(\sigma\)</span>) of <span class="math inline">\(1\)</span>. It is obtained by standardizing a normal distribution variable <span class="math inline">\(X\)</span>: <span class="math inline">\(Z = \frac{X - \mu}{\sigma}\)</span> (<a href="#fig-interconnections" class="quarto-xref">Figure&nbsp;<span>2.27</span></a>).</p></li>
-<li><p>t Distribution The <strong>t Distribution</strong> is related to the normal distribution and depends on <a href="#acronyms_dof">dof</a>. As <a href="#acronyms_dof">dof</a> increases, the t-distribution approaches the standard normal distribution (<a href="#fig-interconnections" class="quarto-xref">Figure&nbsp;<span>2.27</span></a>).</p></li>
+<li><p>Normal Distribution The <strong>Normal Distribution</strong> is characterized by its mean (<span class="math inline">\(\mu\)</span>) and standard deviation (<span class="math inline">\(\sigma\)</span>), see <a href="#fig-interconnections" class="quarto-xref">Figure&nbsp;<span>2.32</span></a>. It serves as the foundation for many statistical analyses.</p></li>
+<li><p>Standardized Normal Distribution The <strong>Standardized Normal Distribution</strong>, denoted as <span class="math inline">\(Z \sim N(0, 1)\)</span>, is a special case of the normal distribution. It has a mean (<span class="math inline">\(\mu\)</span>) of <span class="math inline">\(0\)</span> and a standard deviation (<span class="math inline">\(\sigma\)</span>) of <span class="math inline">\(1\)</span>. It is obtained by standardizing a normal distribution variable <span class="math inline">\(X\)</span>: <span class="math inline">\(Z = \frac{X - \mu}{\sigma}\)</span> (<a href="#fig-interconnections" class="quarto-xref">Figure&nbsp;<span>2.32</span></a>).</p></li>
+<li><p>t Distribution The <strong>t Distribution</strong> is related to the normal distribution and depends on <a href="#acronyms_dof">dof</a>. As <a href="#acronyms_dof">dof</a> increases, the t-distribution approaches the standard normal distribution (<a href="#fig-interconnections" class="quarto-xref">Figure&nbsp;<span>2.32</span></a>).</p></li>
 <li><p>Chi-Square Distribution The <strong>Chi-Square Distribution</strong> is indirectly connected to the normal distribution through the concept of “sum of squared standard normals.” When standard normal random variables (<span class="math inline">\(Z\)</span>) are squared and summed, the resulting distribution follows a chi-square distribution.</p></li>
 <li><p>F Distribution The <strong>F Distribution</strong> arises from the ratio of two independent chi-square distributed random variables. It is used for comparing variances between groups in statistical tests like <a href="#acronyms_ANOVA">ANOVA</a>.</p></li>
 </ol>
@@ -1795,7 +3548,7 @@ Figure&nbsp;2.26: the maximum density as a function of <span class="math inline"
 <img src="chapter000/009_DistributionConnection.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-interconnections-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.27: The distributions are interconnected in several different ways.
+Figure&nbsp;2.32: The distributions are interconnected in several different ways.
 </figcaption>
 </figure>
 </div>
@@ -1809,10 +3562,10 @@ Figure&nbsp;2.27: The distributions are interconnected in several different ways
 <div id="fig-wbll-dist" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-wbll-dist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter001_Distributions_files/figure-html/fig-wbll-dist-1.png" class="img-fluid figure-img" style="width:95.0%">
+<img src="chapter001_Distributions_files/figure-revealjs/fig-wbll-dist-1.svg" class="img-fluid figure-img" style="width:95.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wbll-dist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.28: The weibull distribution and the influence of <span class="math inline">\(\beta\)</span> and <span class="math inline">\(\lambda\)</span>
+Figure&nbsp;2.33: The weibull distribution and the influence of <span class="math inline">\(\beta\)</span> and <span class="math inline">\(\lambda\)</span>
 </figcaption>
 </figure>
 </div>
@@ -1830,16 +3583,16 @@ Figure&nbsp;2.28: The weibull distribution and the influence of <span class="mat
 </ul>
 <section id="the-drive-shaft-exercise---weibull-distribution" class="level3" data-number="2.15.1">
 <h3 data-number="2.15.1" class="anchored" data-anchor-id="the-drive-shaft-exercise---weibull-distribution"><span class="header-section-number">2.15.1</span> The drive shaft exercise - Weibull distribution</h3>
-<p>The Weibull distribution can be applied to estimate the probability of a part to fail after a given time. Suppose there have been <span class="math inline">\(n=100\)</span> drive shafts produced. In order to assure that the assembled drive shaft would last during their service time, they have been tested in a test-stand that mimics the mission profile<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> of the product. This process is called <em>qualification</em> and a big part of any product development <span class="citation" data-cites="Meyna2023">(<a href="references.html#ref-Meyna2023" role="doc-biblioref">Meyna 2023</a>)</span>. The measured hours are shown in <a href="#fig-ds-wbll" class="quarto-xref">Figure&nbsp;<span>2.29</span></a> in a histogram of the data. On the <code>x-axis</code> the <code>Time to failure</code>is shown, while the <code>y-axis</code> shows the number of parts that failed within the time. They histogram plot is overlayed with an empirical density plot as a solid line, as well as the theoretical distribution as a dotted line (Luckily, we know the distribution parameters).</p>
+<p>The Weibull distribution can be applied to estimate the probability of a part to fail after a given time. Suppose there have been <span class="math inline">\(n=100\)</span> drive shafts produced. In order to assure that the assembled drive shaft would last during their service time, they have been tested in a test-stand that mimics the mission profile<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> of the product. This process is called <em>qualification</em> and a big part of any product development <span class="citation" data-cites="Meyna2023">(<a href="references.html#ref-Meyna2023" role="doc-biblioref">Meyna 2023</a>)</span>. The measured hours are shown in <a href="#fig-ds-wbll" class="quarto-xref">Figure&nbsp;<span>2.34</span></a> in a histogram of the data. On the <code>x-axis</code> the <code>Time to failure</code>is shown, while the <code>y-axis</code> shows the number of parts that failed within the time. They histogram plot is overlayed with an empirical density plot as a solid line, as well as the theoretical distribution as a dotted line (Luckily, we know the distribution parameters).</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-ds-wbll" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-ds-wbll-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter001_Distributions_files/figure-html/fig-ds-wbll-1.png" class="img-fluid figure-img" style="width:95.0%">
+<img src="chapter001_Distributions_files/figure-revealjs/fig-ds-wbll-1.svg" class="img-fluid figure-img" style="width:95.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ds-wbll-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.29: The measured hours how long the drive shafts lasted in the test stand.
+Figure&nbsp;2.34: The measured hours how long the drive shafts lasted in the test stand.
 </figcaption>
 </figure>
 </div>
@@ -1862,16 +3615,16 @@ Figure&nbsp;2.29: The measured hours how long the drive shafts lasted in the tes
 <p><strong>Average Rate:</strong> <span class="math inline">\(\lambda\)</span> is a positive real number that represents the average or expected number of events that occur in the specified interval. It tells you, on average, how many events you would expect to observe in that interval.</p>
 <p><strong>Rate of Occurrence:</strong> <span class="math inline">\(\lambda\)</span> quantifies the rate at which events happen. A higher value of <span class="math inline">\(\lambda\)</span> indicates a higher rate of occurrence, while a lower value of <span class="math inline">\(\lambda\)</span> indicates a lower rate.</p>
 <p><strong>Shape of the Distribution:</strong> The value of <span class="math inline">\(\lambda\)</span> determines the shape of the Poisson distribution. Specifically:</p>
-<p>When <span class="math inline">\(\lambda\)</span> is small, the distribution is skewed to the right and is more concentrated toward zero (<a href="#fig-pois" class="quarto-xref">Figure&nbsp;<span>2.30</span></a>). When <span class="math inline">\(\lambda\)</span> is moderate, the distribution approaches a symmetric bell shape (<a href="#fig-pois" class="quarto-xref">Figure&nbsp;<span>2.30</span></a>). When <span class="math inline">\(\lambda\)</span> is large, the distribution becomes increasingly similar to a normal distribution(<a href="#fig-pois" class="quarto-xref">Figure&nbsp;<span>2.30</span></a>).</p>
+<p>When <span class="math inline">\(\lambda\)</span> is small, the distribution is skewed to the right and is more concentrated toward zero (<a href="#fig-pois" class="quarto-xref">Figure&nbsp;<span>2.35</span></a>). When <span class="math inline">\(\lambda\)</span> is moderate, the distribution approaches a symmetric bell shape (<a href="#fig-pois" class="quarto-xref">Figure&nbsp;<span>2.35</span></a>). When <span class="math inline">\(\lambda\)</span> is large, the distribution becomes increasingly similar to a normal distribution(<a href="#fig-pois" class="quarto-xref">Figure&nbsp;<span>2.35</span></a>).</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-pois" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-pois-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter001_Distributions_files/figure-html/fig-pois-1.png" class="img-fluid figure-img" style="width:75.0%">
+<img src="chapter001_Distributions_files/figure-revealjs/fig-pois-1.svg" class="img-fluid figure-img" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pois-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.30: The poisson distribution with different <span class="math inline">\(\lambda\)</span> values.
+Figure&nbsp;2.35: The poisson distribution with different <span class="math inline">\(\lambda\)</span> values.
 </figcaption>
 </figure>
 </div>
@@ -1962,6 +3715,82 @@ Weibull, Waloddi. 1951. <span>“A Statistical Distribution Function of Wide App
 </section>
 
 </main> <!-- /main -->
+
+
+<script>
+
+  // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+
+  // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+
+  // slide changes (different for each slide format).
+
+  (function () {
+
+    // dispatch for htmlwidgets
+
+    function fireSlideEnter() {
+
+      const event = window.document.createEvent("Event");
+
+      event.initEvent("slideenter", true, true);
+
+      window.document.dispatchEvent(event);
+
+    }
+
+
+
+    function fireSlideChanged(previousSlide, currentSlide) {
+
+      fireSlideEnter();
+
+
+
+      // dispatch for shiny
+
+      if (window.jQuery) {
+
+        if (previousSlide) {
+
+          window.jQuery(previousSlide).trigger("hidden");
+
+        }
+
+        if (currentSlide) {
+
+          window.jQuery(currentSlide).trigger("shown");
+
+        }
+
+      }
+
+    }
+
+
+
+    // hookup for slidy
+
+    if (window.w3c_slidy) {
+
+      window.w3c_slidy.add_observer(function (slide_num) {
+
+        // slide_num starts at position 1
+
+        fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+
+      });
+
+    }
+
+
+
+  })();
+
+</script>
+
+
+
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

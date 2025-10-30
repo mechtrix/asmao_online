@@ -1453,15 +1453,15 @@ We will dwelve more into such investigation in another chapter, but this is a fi
 
 1. Non-Normal Data:
   
-  - Z-Scores assume normality
+- Z-Scores assume normality
   
 2. Population vs. Sample
   
-  - Use population parameters ($\mu,\sigma$) if known, otherwise use sample estimates ($\bar{x},sd$)
+- Use population parameters ($\mu,\sigma$) if known, otherwise use sample estimates ($\bar{x},sd$)
   
 3. Outliers:
   
-  - Z-scores are sensitive to outliers
+- Z-scores are sensitive to outliers
 
 ### The Z-transform and the Galton Board
 
@@ -1750,6 +1750,77 @@ Probability:
 :::
 
 :::
+
+### Exercise
+
+::: {.fragment .fade-in-then-out style="font-size: 75%;"}
+
+| Machine      | Sample 1 | Sample 2 | Sample 3 | Sample 4 | Sample 5 |
+|--------------|----------|----------|----------|----------|----------|
+| **Machine X**| 44       | 46       | 45       | 47       | 43       |
+| **Machine Y**| 52       | 50       | 53       | 49       | 51       |
+| **Machine Z**| 40       | 42       | 39       | 41       | 43       |
+
+: Exercise Data
+
+```{r}
+#| label: tbl-exercise-z
+#| tbl-cap: Exercise Data
+
+dat <- data.frame(
+  machine_x = c(44,46,45,47,43),
+  machine_y = c(52,50,53,49,51),
+  machine_z = c(40,42,39,41,43)
+)
+
+dat %>% 
+  gt()
+
+```
+
+
+1. calculate $\bar{x}$ and $sd$
+2. Compute z-scores
+3. Flag anomalies
+4. Recommend actions
+
+:::
+
+---
+
+```{r}
+#| label: tbl-exercise-z-res
+#| tbl-cap: Results
+
+dat_long <- dat |> 
+  pivot_longer(cols = starts_with("machine"),names_to = "machine",values_to = "cycle_time_s") 
+
+  dat_sum <- dat_long |> 
+  group_by(machine) |>  
+  summarise(
+    mean_cycle_time = mean(cycle_time_s),
+    sd_cycle_time = sd(cycle_time_s),
+    var_cycle_time = sd_cycle_time^2
+  ) 
+  
+  
+  dat_sum |> gt()
+```
+
+---
+
+```{r}
+#| label: tbl-exercise-z-scores
+#| tbl-cap: Results for z score
+dat_z <- dat_long |> 
+  group_by(machine) |>  
+  mutate(
+    scaled_data = scale(cycle_time_s))
+
+dat_z |> gt()
+
+```
+
 
 ## Chi^2^ - Distribution
 
@@ -2132,6 +2203,21 @@ All these values can be computed from sampled data, the population can remain *e
 ::: {.r-stack}
 
 ::: {.fragment .fade-out}
+
+- accounts especially for small sample sizes ($n<30$)
+- Shape: looks like normal, but with heavier tails
+- Degrees of Freedom: related to sample size ($n-1$)
+- Convergence to Normal: as the {{< acr dof >}} increases, the t distribution approaches the standard normal distribution. When we have more data, the estimate of the population standard deviation becomes more accurate.
+
+<center>
+We need the t-Distribution for **small sample sizes** with an **unknown population standard deviation**
+</center>
+
+:::
+
+
+
+::: {.fragment .fade-in-then-out}
 
 * is another "new" distribution function
 * is a generalization of the standard normal distribution
