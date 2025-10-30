@@ -302,7 +302,6 @@ X \sim \mathrm{Uniform}(a,b) \text{ continuous}\\
 X \sim \mathrm{Uniform}\{a,a+1,\ldots,b\} \text{ discrete}
 \end{align}
 
-::: {.content-visible when-profile="slides"}
 
 ### Visual comparison of discrete and continuous
 
@@ -373,7 +372,7 @@ breaks = c(1,2,3,4,5,6,7,8,9,10)
 
 ```
 
-:::
+
 
 ### Core properties
 
