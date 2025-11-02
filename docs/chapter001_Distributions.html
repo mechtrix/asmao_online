@@ -312,10 +312,15 @@ window.Quarto = {
   </ul></li>
   <li><a href="#t---distribution" id="toc-t---distribution" class="nav-link" data-scroll-target="#t---distribution"><span class="header-section-number">2.12</span> t - Distribution</a>
   <ul class="collapse">
-  <li><a href="#classroom-example-comparing-means" id="toc-classroom-example-comparing-means" class="nav-link" data-scroll-target="#classroom-example-comparing-means"><span class="header-section-number">2.12.1</span> Classroom example: Comparing means</a></li>
-  <li><a href="#the-drive-shaft-exercise---t-distribution" id="toc-the-drive-shaft-exercise---t-distribution" class="nav-link" data-scroll-target="#the-drive-shaft-exercise---t-distribution"><span class="header-section-number">2.12.2</span> The drive shaft exercise - t-Distribution</a></li>
+  <li><a href="#emergence-1" id="toc-emergence-1" class="nav-link" data-scroll-target="#emergence-1"><span class="header-section-number">2.12.1</span> Emergence</a></li>
+  <li><a href="#applications" id="toc-applications" class="nav-link" data-scroll-target="#applications"><span class="header-section-number">2.12.2</span> Applications</a></li>
+  <li><a href="#classroom-example-confidence-interval" id="toc-classroom-example-confidence-interval" class="nav-link" data-scroll-target="#classroom-example-confidence-interval"><span class="header-section-number">2.12.3</span> Classroom example: Confidence interval</a></li>
+  <li><a href="#the-drive-shaft-exercise---t-distribution" id="toc-the-drive-shaft-exercise---t-distribution" class="nav-link" data-scroll-target="#the-drive-shaft-exercise---t-distribution"><span class="header-section-number">2.12.4</span> The drive shaft exercise - t-Distribution</a></li>
   </ul></li>
-  <li><a href="#f---statistics" id="toc-f---statistics" class="nav-link" data-scroll-target="#f---statistics"><span class="header-section-number">2.13</span> F - Statistics</a></li>
+  <li><a href="#f---statistics" id="toc-f---statistics" class="nav-link" data-scroll-target="#f---statistics"><span class="header-section-number">2.13</span> F - Statistics</a>
+  <ul class="collapse">
+  <li><a href="#classroom-example-two-students-shoot-a-catapult" id="toc-classroom-example-two-students-shoot-a-catapult" class="nav-link" data-scroll-target="#classroom-example-two-students-shoot-a-catapult"><span class="header-section-number">2.13.1</span> Classroom example: two students shoot a catapult</a></li>
+  </ul></li>
   <li><a href="#interconnections" id="toc-interconnections" class="nav-link" data-scroll-target="#interconnections"><span class="header-section-number">2.14</span> Interconnections</a></li>
   <li><a href="#weibull---distribution" id="toc-weibull---distribution" class="nav-link" data-scroll-target="#weibull---distribution"><span class="header-section-number">2.15</span> Weibull - Distribution</a>
   <ul class="collapse">
@@ -1873,7 +1878,6 @@ represents the measure of the likelihood that an event will occur. It is a quant
 </dd>
 </dl>
 <p>In summary, while both likelihood and probability deal with the chance of events occurring, likelihood is often used in the context of comparing different <em>hypotheses or models</em> based on <em>observed data</em>, while probability is more broadly used to quantify the chances of <em>events happening</em> in <em>general</em>.</p>
-<p>:::</p>
 <section id="exercise-1" class="level3" data-number="2.10.1">
 <h3 data-number="2.10.1" class="anchored" data-anchor-id="exercise-1"><span class="header-section-number">2.10.1</span> Exercise</h3>
 <div class="fragment fade-in-then-out" style="font-size: 75%;">
@@ -3696,6 +3700,34 @@ We need the t-Distribution for <strong>small sample sizes</strong> with an <stro
 t_i = \frac{\bar{x} - \mu_0}{sd/\sqrt{n}} \label{tscore}
 \end{align}\]</span></p>
 </div>
+</div>
+<section id="emergence-1" class="level3" data-number="2.12.1">
+<h3 data-number="2.12.1" class="anchored" data-anchor-id="emergence-1"><span class="header-section-number">2.12.1</span> Emergence</h3>
+<ul>
+<li>We have a population: <span class="math inline">\(X_1, X_2, \ldots, X_n \sim \mathrm{N}(\mu,\sigma^2)\)</span></li>
+<li><span class="math inline">\(\mu, \sigma\)</span> are unknown, but can be estimated from a sample with <span class="math inline">\(\bar{x},sd^2\)</span></li>
+<li>if <span class="math inline">\(\sigma\)</span> would be known, we could use the z-score: <span class="math inline">\(Z=\frac{\bar{x}-\mu}{\sigma/\sqrt{n}}\sim\mathrm{N}(0,1)\)</span></li>
+<li>but it is not known, so we replace it by <span class="math inline">\(sd\)</span>: <span class="math inline">\(T = \frac{\bar{x}-\mu}{sd/\sqrt{n}}\)</span></li>
+<li>This is <strong>not</strong> normally distributed, because <span class="math inline">\(sd\)</span> depends on the sample</li>
+</ul>
+<section id="the-trick" class="level4" data-number="2.12.1.1">
+<h4 data-number="2.12.1.1" class="anchored" data-anchor-id="the-trick"><span class="header-section-number">2.12.1.1</span> The Trick</h4>
+<ul>
+<li>Rewrite <span class="math inline">\(T\)</span> as <span class="math inline">\(T=\frac{\bar{X}-\mu}{\sigma/\sqrt{n}}\frac{\sigma}{sd} = Z \cdot \frac{\sigma}{sd}\)</span></li>
+</ul>
+<ol type="1">
+<li>where <span class="math inline">\(Z\sim\mathrm{N}(0,1)\)</span> (CLT, <span class="math inline">\(\bar{x}\)</span> is normal)</li>
+<li><span class="math inline">\(\frac{\sigma}{sd}\)</span> is a scaled <span class="math inline">\(\chi^2\)</span> Distribution</li>
+</ol>
+<p><span class="math display">\[\begin{align}
+T = \frac{Z}{\sqrt{\chi^2_{n-1}/(n-1)}}
+\end{align}\]</span></p>
+<center>
+The t-distribution is the result of combining a normal random variable with an independent <span class="math inline">\(\chi^2\)</span> random variable
+</center>
+</section>
+<section id="the-distribution" class="level4" data-number="2.12.1.2">
+<h4 data-number="2.12.1.2" class="anchored" data-anchor-id="the-distribution"><span class="header-section-number">2.12.1.2</span> The Distribution</h4>
 <div class="fragment fade-in-then-out">
 <div class="cell">
 <div class="cell-output-display">
@@ -3712,30 +3744,41 @@ Figure&nbsp;2.33: PDF of t-distribution with varying <span class="math inline">\
 </div>
 </div>
 </div>
-<div class="fragment incremental">
-<ul class="incremental">
+</section>
+</section>
+<section id="applications" class="level3" data-number="2.12.2">
+<h3 data-number="2.12.2" class="anchored" data-anchor-id="applications"><span class="header-section-number">2.12.2</span> Applications</h3>
+<ul>
 <li><p>Applications of the <em>t-disitribution</em> include:</p></li>
 <li><p>Hypothesis testing (one sample t-test, two sample t-test, two sample t-test for paired samples)</p></li>
 <li><p>Computing confidence intervals</p></li>
 <li><p>Test significance of model parameters (against <em>null</em> model)</p></li>
 </ul>
-</div>
-</div>
-<section id="classroom-example-comparing-means" class="level3" data-number="2.12.1">
-<h3 data-number="2.12.1" class="anchored" data-anchor-id="classroom-example-comparing-means"><span class="header-section-number">2.12.1</span> Classroom example: Comparing means</h3>
+</section>
+<section id="classroom-example-confidence-interval" class="level3" data-number="2.12.3">
+<h3 data-number="2.12.3" class="anchored" data-anchor-id="classroom-example-confidence-interval"><span class="header-section-number">2.12.3</span> Classroom example: Confidence interval</h3>
 <div class="r-stack">
-<div class="fragment fade-out">
-<ul>
-<li>we want to know if student A and student B are rolling dice differently</li>
-<li>everyone rolls the die 15 times each</li>
-<li>look at it as a way to collect live data on different groups</li>
-<li>First, formulate the Null and alternative Hypothesis</li>
-</ul>
+<div class="fragment fade-in-then-out">
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-catapult" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-catapult-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/catapult.jpg" class="img-fluid figure-img" style="width:65.0%" data-fig-pos="H">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-catapult-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.34: Out catapult we use for shooting
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 </div>
 <div class="fragment fade-in-then-out">
 <ul>
-<li><span class="math inline">\(H_0\)</span> student A and student B roll the die in the same fashion</li>
-<li><span class="math inline">\(H_a\)</span> student A and student B roll the die in a different fashion</li>
+<li>we want to estimate how far a catapult can shoot</li>
+<li>one student shoots, one measures, one writes</li>
+<li>carfully check the experimental setup.</li>
 </ul>
 </div>
 <div class="fragment incremental smaller">
@@ -3743,15 +3786,13 @@ Figure&nbsp;2.33: PDF of t-distribution with varying <span class="math inline">\
 <li><span class="math inline">\(t_i = \frac{\bar{x} - \mu_0}{sd/\sqrt{n}}\)</span></li>
 <li><span class="math inline">\(dof = ?\)</span></li>
 <li><span class="math inline">\(\alpha = ?\)</span></li>
-<li><span class="math inline">\(dof = ?\)</span></li>
 <li><a href="https://datatab.de/tutorial/tabelle-t-verteilung"><span class="math inline">\(t\)</span>-table</a> or <code>qt(alpha / 2, dof)</code> in <code>R</code></li>
-<li>The Hypothesis as “translated” to quantitative measures?</li>
 </ul>
 </div>
 </div>
 </section>
-<section id="the-drive-shaft-exercise---t-distribution" class="level3" data-number="2.12.2">
-<h3 data-number="2.12.2" class="anchored" data-anchor-id="the-drive-shaft-exercise---t-distribution"><span class="header-section-number">2.12.2</span> The drive shaft exercise - t-Distribution</h3>
+<section id="the-drive-shaft-exercise---t-distribution" class="level3" data-number="2.12.4">
+<h3 data-number="2.12.4" class="anchored" data-anchor-id="the-drive-shaft-exercise---t-distribution"><span class="header-section-number">2.12.4</span> The drive shaft exercise - t-Distribution</h3>
 <p>The t-score computation and the z-standardization look very familiar. While the z-score calculation needs some population parameters, the t-score calculation does not need such. It therefore allows us, to estimate population parameters based on a sample - a very frequent use case in statistics.</p>
 <p>Suppose we have some data (maybe the drive shaft exercise?) with which calculations can be done. First, the mean <span class="math inline">\(\bar{x}\)</span> and <span class="math inline">\(sd\)</span> is calculated according to <span class="math inline">\(\eqref{mean}\)</span> and <span class="math inline">\(\eqref{sd}\)</span>. After this, the <a href="#acronyms_cl">confidence level (cl)</a> (we will get to this later in more detail) is specified. A value of <span class="math inline">\(95\%\)</span> is a common choice of <a href="#acronyms_cl">cl</a>.</p>
 <p><span class="math display">\[\begin{align}
@@ -3777,7 +3818,7 @@ margin\;of\;error &amp;= t_{score} \times SE \label{errormargin}
 lo &amp;= \bar{x} - margin\;of\;error \label{cilobound} \\
 hi &amp;= \bar{x} + margin\;of\;error \label{cihibound}
 \end{align}\]</span></p>
-<p>It all looks and feels very similar to using the normal disitrbution. Why this is the case, is shown in <a href="#fig-ds-t" class="quarto-xref">Figure&nbsp;<span>2.34</span></a>. In <span class="quarto-unresolved-ref">?fig-ds-t-1</span> the raw dataset is shown with the underlayed specification limits for the manufacturing of the drive shaft. For some groups the judgement if the drive shaft is wihtin specification is quite clear (<code>group 1</code>, <code>group 2</code> and <code>group 5</code>). For the other groups, this can not be done so easily. For the drive shaft data, we of course now some population data, therefore the <em>normal distribution</em> can be compared to the <em>t-distribution</em>. This is done in <span class="quarto-unresolved-ref">?fig-ds-t-2</span>. On the <code>x-axis</code> the diameter is shown, the <code>y-axis</code> depicts the groups (as before). The distribution on top of the estimated parameters is the population (normal distribution), the distribution on the bottom follow a <em>t-distribution</em>. With <span class="math inline">\(n&gt;30\)</span> (as for this dataset), the difference between distribution is very small, further showcasing the use of the <em>t-distribution</em> (also see <a href="#fig-t-dist" class="quarto-xref">Figure&nbsp;<span>2.32</span></a> for comparison).</p>
+<p>It all looks and feels very similar to using the normal disitrbution. Why this is the case, is shown in <a href="#fig-ds-t" class="quarto-xref">Figure&nbsp;<span>2.35</span></a>. In <span class="quarto-unresolved-ref">?fig-ds-t-1</span> the raw dataset is shown with the underlayed specification limits for the manufacturing of the drive shaft. For some groups the judgement if the drive shaft is wihtin specification is quite clear (<code>group 1</code>, <code>group 2</code> and <code>group 5</code>). For the other groups, this can not be done so easily. For the drive shaft data, we of course now some population data, therefore the <em>normal distribution</em> can be compared to the <em>t-distribution</em>. This is done in <span class="quarto-unresolved-ref">?fig-ds-t-2</span>. On the <code>x-axis</code> the diameter is shown, the <code>y-axis</code> depicts the groups (as before). The distribution on top of the estimated parameters is the population (normal distribution), the distribution on the bottom follow a <em>t-distribution</em>. With <span class="math inline">\(n&gt;30\)</span> (as for this dataset), the difference between distribution is very small, further showcasing the use of the <em>t-distribution</em> (also see <a href="#fig-t-dist" class="quarto-xref">Figure&nbsp;<span>2.32</span></a> for comparison).</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-ds-t" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -3786,7 +3827,7 @@ hi &amp;= \bar{x} + margin\;of\;error \label{cihibound}
 <img src="chapter001_Distributions_files/figure-html/fig-ds-t-1.png" class="img-fluid figure-img" style="width:95.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ds-t-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.34: The drive shaft data with normal disitribution, t-distribution and confidence intervalls using the t-distribution
+Figure&nbsp;2.35: The drive shaft data with normal disitribution, t-distribution and confidence intervalls using the t-distribution
 </figcaption>
 </figure>
 </div>
@@ -3810,15 +3851,15 @@ Figure&nbsp;2.34: The drive shaft data with normal disitribution, t-distribution
 <img src="chapter001_Distributions_files/figure-html/fig-f-dist-01-1.png" class="img-fluid figure-img" style="width:95.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-f-dist-01-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.35: F-distribution for <span class="math inline">\(dof_1\)</span> on the horizontal and <span class="math inline">\(dof_2\)</span> on the vertical axis
+Figure&nbsp;2.36: F-distribution for <span class="math inline">\(dof_1\)</span> on the horizontal and <span class="math inline">\(dof_2\)</span> on the vertical axis
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>The <a href="#acronyms_dof">dof</a> in an <em>F-distribution</em> refer to the two sets of numbers that determine the shape and properties of the distribution (<a href="#fig-f-dist-01" class="quarto-xref">Figure&nbsp;<span>2.35</span></a>).</p>
-<p>Numerator Degrees of Freedom (<span class="math inline">\(dof_1\)</span>): The numerator degrees of freedom, often denoted as <span class="math inline">\(dof_1\)</span>, is associated with the variability between groups or models in statistical analyses (<a href="#fig-f-dist-01" class="quarto-xref">Figure&nbsp;<span>2.35</span></a> - horizontal axis). In the context of <a href="#acronyms_ANOVA">ANOVA</a>, it represents the <a href="#acronyms_dof">dof</a> associated with the differences among group means. In regression analysis, it is related to the number of predictors or coefficients being tested simultaneously.</p>
-<p>Denominator Degrees of Freedom (<span class="math inline">\(dof_2\)</span>): The denominator degrees of freedom, often denoted as <span class="math inline">\(dof_2\)</span>, is associated with the variability within groups or models (<a href="#fig-f-dist-02" class="quarto-xref">Figure&nbsp;<span>2.36</span></a> - vertical axis). In <a href="#acronyms_ANOVA">ANOVA</a>, it represents the degrees of freedom associated with the variability within each group. In regression analysis, it is related to the error or residual degrees of freedom, indicating the remaining variability not explained by the model.</p>
+<p>The <a href="#acronyms_dof">dof</a> in an <em>F-distribution</em> refer to the two sets of numbers that determine the shape and properties of the distribution (<a href="#fig-f-dist-01" class="quarto-xref">Figure&nbsp;<span>2.36</span></a>).</p>
+<p>Numerator Degrees of Freedom (<span class="math inline">\(dof_1\)</span>): The numerator degrees of freedom, often denoted as <span class="math inline">\(dof_1\)</span>, is associated with the variability between groups or models in statistical analyses (<a href="#fig-f-dist-01" class="quarto-xref">Figure&nbsp;<span>2.36</span></a> - horizontal axis). In the context of <a href="#acronyms_ANOVA">ANOVA</a>, it represents the <a href="#acronyms_dof">dof</a> associated with the differences among group means. In regression analysis, it is related to the number of predictors or coefficients being tested simultaneously.</p>
+<p>Denominator Degrees of Freedom (<span class="math inline">\(dof_2\)</span>): The denominator degrees of freedom, often denoted as <span class="math inline">\(dof_2\)</span>, is associated with the variability within groups or models (<a href="#fig-f-dist-02" class="quarto-xref">Figure&nbsp;<span>2.37</span></a> - vertical axis). In <a href="#acronyms_ANOVA">ANOVA</a>, it represents the degrees of freedom associated with the variability within each group. In regression analysis, it is related to the error or residual degrees of freedom, indicating the remaining variability not explained by the model.</p>
 <p>The F-distribution is used to compare two variances: one from the numerator and the other from the denominator. The F-statistic, calculated as the ratio of these variances, follows an F-distribution <span class="math inline">\(\eqref{fdist}\)</span>.</p>
 <p><span class="math display">\[\begin{align}
 f(x; dof_1, dof_2) = \frac{{\Gamma\left(\frac{{dof_1 + dof_2}}{2}\right)}}{{\Gamma\left(\frac{{dof_1}}{2}\right)\Gamma\left(\frac{{dof_2}}{2}\right)}} \left(\frac{{dof_1}}{{dof_2}}\right)^{\frac{{dof_1}}{2}} \frac{{x^{\frac{{dof_1}}{2} - 1}}}{{\left(1 + \frac{{dof_1}}{{dof_2}}x\right)^{\frac{{dof_1 + dof_2}}{2}}}} \label{fdist} \\
@@ -3833,51 +3874,64 @@ F_{m,n} = \frac{\chi^2_m/m}{\chi^2_n/n}
 <img src="chapter001_Distributions_files/figure-html/fig-f-dist-02-1.png" class="img-fluid figure-img" style="width:95.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-f-dist-02-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.36: the maximum density as a function of <span class="math inline">\(dof_1\)</span> and <span class="math inline">\(dof_2\)</span> in a continous parameter space
+Figure&nbsp;2.37: The maximum density as a function of <span class="math inline">\(dof_1\)</span> and <span class="math inline">\(dof_2\)</span> in a continous parameter space.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<p>In practical terms: A higher numerator degrees of freedom (<span class="math inline">\(dof_1\)</span>) suggests that there are more groups or predictors being compared, which may result in larger F-statistic values. A higher denominator degrees of freedom (<span class="math inline">\(dof_2\)</span>) implies that there is more data within each group or model, which may lead to smaller F-statistic values. The F-distribution is right-skewed and always positive. It has different shapes depending on the values of <span class="math inline">\(dof_1\)</span> and <span class="math inline">\(dof_2\)</span> (<a href="#fig-f-dist-02" class="quarto-xref">Figure&nbsp;<span>2.36</span></a>). The exact shape is determined by these degrees of freedom and cannot be altered by changing sample sizes or data values (<a href="#fig-f-dist-02" class="quarto-xref">Figure&nbsp;<span>2.36</span></a>). Researchers use F-distributions to conduct hypothesis tests, such as F-tests in ANOVA and F-tests in regression, to determine if there are significant differences between groups or if a regression model is statistically significant.</p>
+<p>In practical terms: A higher numerator degrees of freedom (<span class="math inline">\(dof_1\)</span>) suggests that there are more groups or predictors being compared, which may result in larger F-statistic values. A higher denominator degrees of freedom (<span class="math inline">\(dof_2\)</span>) implies that there is more data within each group or model, which may lead to smaller F-statistic values. The F-distribution is right-skewed and always positive. It has different shapes depending on the values of <span class="math inline">\(dof_1\)</span> and <span class="math inline">\(dof_2\)</span> (<a href="#fig-f-dist-02" class="quarto-xref">Figure&nbsp;<span>2.37</span></a>). The exact shape is determined by these degrees of freedom and cannot be altered by changing sample sizes or data values (<a href="#fig-f-dist-02" class="quarto-xref">Figure&nbsp;<span>2.37</span></a>). Researchers use F-distributions to conduct hypothesis tests, such as F-tests in ANOVA and F-tests in regression, to determine if there are significant differences between groups or if a regression model is statistically significant.</p>
 <p>In summary, <a href="#acronyms_dof">dof</a> in the F-distribution are critical in hypothesis testing and model comparisons. They help quantify the variability between and within groups or models, allowing statisticians to assess the significance of observed differences and make informed statistical decisions.</p>
+<section id="classroom-example-two-students-shoot-a-catapult" class="level3" data-number="2.13.1">
+<h3 data-number="2.13.1" class="anchored" data-anchor-id="classroom-example-two-students-shoot-a-catapult"><span class="header-section-number">2.13.1</span> Classroom example: two students shoot a catapult</h3>
 <div class="r-stack">
 <div class="fragment fade-out">
-<p><span class="math display">\[\begin{align}
-F_{m,n} = \frac{\chi^2_m/m}{\chi^2_n/n} \nonumber
-\end{align}\]</span></p>
-</div>
-<div class="fragment fade-in-then-out">
 <div class="cell">
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="chapter001_Distributions_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<div id="fig-catapult-fstat" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-catapult-fstat-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/catapult.jpg" class="img-fluid figure-img" style="width:65.0%" data-fig-pos="H">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-catapult-fstat-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.38: Out catapult we use for shooting
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
 <div class="fragment fade-in-then-out">
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="chapter001_Distributions_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
-</figure>
+<ul>
+<li>we want to know, if one student shoots more accurate than the other</li>
+<li><span class="math inline">\(10\)</span> shots each</li>
+<li>record values</li>
+<li>How do we do it?</li>
+</ul>
 </div>
-</div>
+<div class="fragment fade-in-then-out">
+<div class="incremental">
+<ul class="incremental">
+<li><span class="math inline">\(H_0:\)</span> Variances are equal (<span class="math inline">\(\sigma^2_a = \sigma^2_B\)</span>), <span class="math inline">\(H_a:\)</span> Variances are unequal (<span class="math inline">\(\sigma^2_a \neq \sigma^2_B\)</span>)</li>
+<li>So we need to find the variance? Can we not just use <span class="math inline">\(sd\)</span>?
+<ul class="incremental">
+<li>No, because: <span class="math inline">\(F = \frac{sd_1^2}{sd_2^2} = \frac{4}{1} = 4\)</span> against <span class="math inline">\(F = \frac{sd_1}{sd_2} = \frac{2}{1} = 2\)</span></li>
+</ul></li>
+<li>Calculate F Statistic: <span class="math inline">\(F=\frac{sd^2_A}{sd^2_B}\)</span></li>
+<li>find p-value for F-Statistic: <code>pf(F_stat, dof_A, dof_B), 1-pf(F_stat, dof_A, dof_B)</code></li>
+</ul>
 </div>
 </div>
 </div>
 </section>
+</section>
 <section id="interconnections" class="level2" data-number="2.14">
 <h2 data-number="2.14" class="anchored" data-anchor-id="interconnections"><span class="header-section-number">2.14</span> Interconnections</h2>
 <ol type="1">
-<li><p>Normal Distribution The <strong>Normal Distribution</strong> is characterized by its mean (<span class="math inline">\(\mu\)</span>) and standard deviation (<span class="math inline">\(\sigma\)</span>), see <a href="#fig-interconnections" class="quarto-xref">Figure&nbsp;<span>2.37</span></a>. It serves as the foundation for many statistical analyses.</p></li>
-<li><p>Standardized Normal Distribution The <strong>Standardized Normal Distribution</strong>, denoted as <span class="math inline">\(Z \sim N(0, 1)\)</span>, is a special case of the normal distribution. It has a mean (<span class="math inline">\(\mu\)</span>) of <span class="math inline">\(0\)</span> and a standard deviation (<span class="math inline">\(\sigma\)</span>) of <span class="math inline">\(1\)</span>. It is obtained by standardizing a normal distribution variable <span class="math inline">\(X\)</span>: <span class="math inline">\(Z = \frac{X - \mu}{\sigma}\)</span> (<a href="#fig-interconnections" class="quarto-xref">Figure&nbsp;<span>2.37</span></a>).</p></li>
-<li><p>t Distribution The <strong>t Distribution</strong> is related to the normal distribution and depends on <a href="#acronyms_dof">dof</a>. As <a href="#acronyms_dof">dof</a> increases, the t-distribution approaches the standard normal distribution (<a href="#fig-interconnections" class="quarto-xref">Figure&nbsp;<span>2.37</span></a>).</p></li>
+<li><p>Normal Distribution The <strong>Normal Distribution</strong> is characterized by its mean (<span class="math inline">\(\mu\)</span>) and standard deviation (<span class="math inline">\(\sigma\)</span>), see <a href="#fig-interconnections" class="quarto-xref">Figure&nbsp;<span>2.39</span></a>. It serves as the foundation for many statistical analyses.</p></li>
+<li><p>Standardized Normal Distribution The <strong>Standardized Normal Distribution</strong>, denoted as <span class="math inline">\(Z \sim N(0, 1)\)</span>, is a special case of the normal distribution. It has a mean (<span class="math inline">\(\mu\)</span>) of <span class="math inline">\(0\)</span> and a standard deviation (<span class="math inline">\(\sigma\)</span>) of <span class="math inline">\(1\)</span>. It is obtained by standardizing a normal distribution variable <span class="math inline">\(X\)</span>: <span class="math inline">\(Z = \frac{X - \mu}{\sigma}\)</span> (<a href="#fig-interconnections" class="quarto-xref">Figure&nbsp;<span>2.39</span></a>).</p></li>
+<li><p>t Distribution The <strong>t Distribution</strong> is related to the normal distribution and depends on <a href="#acronyms_dof">dof</a>. As <a href="#acronyms_dof">dof</a> increases, the t-distribution approaches the standard normal distribution (<a href="#fig-interconnections" class="quarto-xref">Figure&nbsp;<span>2.39</span></a>).</p></li>
 <li><p>Chi-Square Distribution The <strong>Chi-Square Distribution</strong> is indirectly connected to the normal distribution through the concept of “sum of squared standard normals.” When standard normal random variables (<span class="math inline">\(Z\)</span>) are squared and summed, the resulting distribution follows a chi-square distribution.</p></li>
 <li><p>F Distribution The <strong>F Distribution</strong> arises from the ratio of two independent chi-square distributed random variables. It is used for comparing variances between groups in statistical tests like <a href="#acronyms_ANOVA">ANOVA</a>.</p></li>
 </ol>
@@ -3889,7 +3943,7 @@ F_{m,n} = \frac{\chi^2_m/m}{\chi^2_n/n} \nonumber
 <img src="chapter000/009_DistributionConnection.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-interconnections-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.37: The distributions are interconnected in several different ways.
+Figure&nbsp;2.39: The distributions are interconnected in several different ways.
 </figcaption>
 </figure>
 </div>
@@ -3906,7 +3960,7 @@ Figure&nbsp;2.37: The distributions are interconnected in several different ways
 <img src="chapter001_Distributions_files/figure-html/fig-wbll-dist-1.png" class="img-fluid figure-img" style="width:95.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wbll-dist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.38: The weibull distribution and the influence of <span class="math inline">\(\beta\)</span> and <span class="math inline">\(\lambda\)</span>
+Figure&nbsp;2.40: The weibull distribution and the influence of <span class="math inline">\(\beta\)</span> and <span class="math inline">\(\lambda\)</span>
 </figcaption>
 </figure>
 </div>
@@ -3938,7 +3992,7 @@ Figure&nbsp;2.38: The weibull distribution and the influence of <span class="mat
 <img src="chapter001/bathtub.png" class="img-fluid figure-img" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bathtub-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.39: The classical bathtub curve <span class="citation" data-cites="LienigUnknownTitle2017">(<a href="references.html#ref-LienigUnknownTitle2017" role="doc-biblioref">Lienig and Bruemmer 2017</a>)</span>
+Figure&nbsp;2.41: The classical bathtub curve <span class="citation" data-cites="LienigUnknownTitle2017">(<a href="references.html#ref-LienigUnknownTitle2017" role="doc-biblioref">Lienig and Bruemmer 2017</a>)</span>
 </figcaption>
 </figure>
 </div>
@@ -3971,7 +4025,7 @@ f_X(x; \lambda, \beta) = \left\{ \begin{array}{cl}
 <img src="chapter001_Distributions_files/figure-html/fig-wbll-dist-slides-1.png" class="img-fluid figure-img" style="width:85.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wbll-dist-slides-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.40: The influence of scale (<span class="math inline">\(\lambda\)</span>) and shape (<span class="math inline">\(\beta\)</span>) parameter on the disitribution.
+Figure&nbsp;2.42: The influence of scale (<span class="math inline">\(\lambda\)</span>) and shape (<span class="math inline">\(\beta\)</span>) parameter on the disitribution.
 </figcaption>
 </figure>
 </div>
@@ -3990,7 +4044,7 @@ Figure&nbsp;2.40: The influence of scale (<span class="math inline">\(\lambda\)<
 </section>
 <section id="the-drive-shaft-exercise---weibull-distribution" class="level3" data-number="2.15.1">
 <h3 data-number="2.15.1" class="anchored" data-anchor-id="the-drive-shaft-exercise---weibull-distribution"><span class="header-section-number">2.15.1</span> The drive shaft exercise - Weibull distribution</h3>
-<p>The Weibull distribution can be applied to estimate the probability of a part to fail after a given time. Suppose there have been <span class="math inline">\(n=100\)</span> drive shafts produced. In order to assure that the assembled drive shaft would last during their service time, they have been tested in a test-stand that mimics the mission profile<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> of the product. This process is called <em>qualification</em> and a big part of any product development <span class="citation" data-cites="Meyna2023">(<a href="references.html#ref-Meyna2023" role="doc-biblioref">Meyna 2023</a>)</span>. The measured hours are shown in <a href="#fig-ds-wbll" class="quarto-xref">Figure&nbsp;<span>2.41</span></a> in a histogram of the data. On the <code>x-axis</code> the <code>Time to failure</code>is shown, while the <code>y-axis</code> shows the number of parts that failed within the time. They histogram plot is overlayed with an empirical density plot as a solid line, as well as the theoretical distribution as a dotted line (Luckily, we know the distribution parameters).</p>
+<p>The Weibull distribution can be applied to estimate the probability of a part to fail after a given time. Suppose there have been <span class="math inline">\(n=100\)</span> drive shafts produced. In order to assure that the assembled drive shaft would last during their service time, they have been tested in a test-stand that mimics the mission profile<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> of the product. This process is called <em>qualification</em> and a big part of any product development <span class="citation" data-cites="Meyna2023">(<a href="references.html#ref-Meyna2023" role="doc-biblioref">Meyna 2023</a>)</span>. The measured hours are shown in <a href="#fig-ds-wbll" class="quarto-xref">Figure&nbsp;<span>2.43</span></a> in a histogram of the data. On the <code>x-axis</code> the <code>Time to failure</code>is shown, while the <code>y-axis</code> shows the number of parts that failed within the time. They histogram plot is overlayed with an empirical density plot as a solid line, as well as the theoretical distribution as a dotted line (Luckily, we know the distribution parameters).</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-ds-wbll" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -3999,7 +4053,7 @@ Figure&nbsp;2.40: The influence of scale (<span class="math inline">\(\lambda\)<
 <img src="chapter001_Distributions_files/figure-html/fig-ds-wbll-1.png" class="img-fluid figure-img" style="width:95.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ds-wbll-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.41: The measured hours how long the drive shafts lasted in the test stand.
+Figure&nbsp;2.43: The measured hours how long the drive shafts lasted in the test stand.
 </figcaption>
 </figure>
 </div>
@@ -4022,7 +4076,7 @@ Figure&nbsp;2.41: The measured hours how long the drive shafts lasted in the tes
 <p><strong>Average Rate:</strong> <span class="math inline">\(\lambda\)</span> is a positive real number that represents the average or expected number of events that occur in the specified interval. It tells you, on average, how many events you would expect to observe in that interval.</p>
 <p><strong>Rate of Occurrence:</strong> <span class="math inline">\(\lambda\)</span> quantifies the rate at which events happen. A higher value of <span class="math inline">\(\lambda\)</span> indicates a higher rate of occurrence, while a lower value of <span class="math inline">\(\lambda\)</span> indicates a lower rate.</p>
 <p><strong>Shape of the Distribution:</strong> The value of <span class="math inline">\(\lambda\)</span> determines the shape of the Poisson distribution. Specifically:</p>
-<p>When <span class="math inline">\(\lambda\)</span> is small, the distribution is skewed to the right and is more concentrated toward zero (<a href="#fig-pois" class="quarto-xref">Figure&nbsp;<span>2.42</span></a>). When <span class="math inline">\(\lambda\)</span> is moderate, the distribution approaches a symmetric bell shape (<a href="#fig-pois" class="quarto-xref">Figure&nbsp;<span>2.42</span></a>). When <span class="math inline">\(\lambda\)</span> is large, the distribution becomes increasingly similar to a normal distribution(<a href="#fig-pois" class="quarto-xref">Figure&nbsp;<span>2.42</span></a>).</p>
+<p>When <span class="math inline">\(\lambda\)</span> is small, the distribution is skewed to the right and is more concentrated toward zero (<a href="#fig-pois" class="quarto-xref">Figure&nbsp;<span>2.44</span></a>). When <span class="math inline">\(\lambda\)</span> is moderate, the distribution approaches a symmetric bell shape (<a href="#fig-pois" class="quarto-xref">Figure&nbsp;<span>2.44</span></a>). When <span class="math inline">\(\lambda\)</span> is large, the distribution becomes increasingly similar to a normal distribution(<a href="#fig-pois" class="quarto-xref">Figure&nbsp;<span>2.44</span></a>).</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-pois" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -4031,7 +4085,7 @@ Figure&nbsp;2.41: The measured hours how long the drive shafts lasted in the tes
 <img src="chapter001_Distributions_files/figure-html/fig-pois-1.png" class="img-fluid figure-img" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pois-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.42: The poisson distribution with different <span class="math inline">\(\lambda\)</span> values.
+Figure&nbsp;2.44: The poisson distribution with different <span class="math inline">\(\lambda\)</span> values.
 </figcaption>
 </figure>
 </div>

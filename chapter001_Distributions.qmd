@@ -141,9 +141,9 @@ knitr::include_graphics(here::here("chapter001","014_NominalData.png"))
 
 ::: {.content-visible when-profile="script"}
 
-Nominal data is a type of data that represents categories or labels without any specific order or ranking. 
-These categories are distinct and non-numeric. 
-For example, colors, types of fruits, or gender (male, female, other) are nominal data. 
+Nominal data is a type of data that represents categories or labels without any specific order or ranking.
+These categories are distinct and non-numeric.
+For example, colors, types of fruits, or gender (male, female, other) are nominal data.
 Nominal data can be used for classification and grouping, but mathematical operations like addition or subtraction do not make sense in this context.
 
 :::
@@ -161,9 +161,9 @@ knitr::include_graphics(here("chapter001","015_OrdinalData.png"))
 
 ::: {.content-visible when-profile="script"}
 
-Ordinal data represents categories that have a specific order or ranking. 
+Ordinal data represents categories that have a specific order or ranking.
 While the categories themselves may not have a consistent numeric difference between them, they can be arranged in a meaningful sequence.
-A common example of ordinal data is survey responses with options like "strongly agree," "agree," "neutral," "disagree," and "strongly disagree." 
+A common example of ordinal data is survey responses with options like "strongly agree," "agree," "neutral," "disagree," and "strongly disagree."
 These categories indicate a level of agreement, but the differences between them may not be uniform or measurable.
 
 :::
@@ -181,13 +181,13 @@ knitr::include_graphics(here("chapter001","016_DiscreteData.png"))
 
 ::: {.content-visible when-profile="script"}
 
-Discrete data consists of distinct, separate values that can be counted and usually come in whole numbers. 
-These values can be finite or infinite, but they are not continuous. 
-Examples include the number of students in a class, the count of cars in a parking lot, or the quantity of books in a library. 
+Discrete data consists of distinct, separate values that can be counted and usually come in whole numbers.
+These values can be finite or infinite, but they are not continuous.
+Examples include the number of students in a class, the count of cars in a parking lot, or the quantity of books in a library.
 Discrete data is often used in counting and can be represented as integers.
 
 One quote in the literature about discrete data, shows how difficult the classification of data types can become (@Bibby_1980):
-“... All actual sample spaces are discrete, and all observable random variables have discrete distributions. 
+“... All actual sample spaces are discrete, and all observable random variables have discrete distributions.
 The continuous distribution is a mathematical construction, suitable for mathematical treatment, but not practically observable. ...”
 
 :::
@@ -208,9 +208,9 @@ knitr::include_graphics(here("chapter001","017_ContinousData.png"))
 
 ::: {.content-visible when-profile="script"}
 
-Continuous data encompasses a wide range of values within a given interval and can take on any real number. 
+Continuous data encompasses a wide range of values within a given interval and can take on any real number.
 There are infinite possibilities between any two points in a continuous dataset, making it suitable for measurements with high precision.
-Examples of continuous data include temperature, height, weight, and time. 
+Examples of continuous data include temperature, height, weight, and time.
 It is important to note that continuous data can be measured with decimals or fractions and is not limited to whole numbers.
 
 :::
@@ -221,7 +221,7 @@ It is important to note that continuous data can be measured with decimals or fr
 
 <center>
 
-If you had to guess a number between 1 and 10 with no other information, what is the **fairest** way to assign probabilities to each number? 
+If you had to guess a number between 1 and 10 with no other information, what is the **fairest** way to assign probabilities to each number?
 
 What if the range were 0 to 1 instead?
 
@@ -264,7 +264,7 @@ knitr::include_graphics(here("chapter001","die.png"))
 #| label: fig-unif-pmf
 #| out-width: 95%
 #| fig-cap: A plot of the probabilities that every face of a die turns up. They are all the same.
-#| 
+#|
 df <- data.frame(
   face = factor(1:6),
   p    = rep(1/6, 6)
@@ -278,7 +278,7 @@ ggplot(df, aes(x = face, y = p)) +
     title = "PMF of a Fair Six-Sided Die",
     x = "Die face",
     y = "Probability"
-  ) 
+  )
 
 ```
 
@@ -292,7 +292,7 @@ ggplot(df, aes(x = face, y = p)) +
 * The "range" can be:
   * a finite set of values (discrete)
   * a continuous interval (continuous)
-  
+
 \begin{align}
 X \sim \mathrm{Uniform}(a,b) \text{ continuous}\\
 X \sim \mathrm{Uniform}\{a,a+1,\ldots,b\} \text{ discrete}
@@ -304,7 +304,7 @@ X \sim \mathrm{Uniform}\{a,a+1,\ldots,b\} \text{ discrete}
 ```{r}
 #| label: fig-unif-pmf-pdf
 #| out-width: 95%
-#| fig-cap: A comparison of continnuous and discrete uniformly distributed data. 
+#| fig-cap: A comparison of continnuous and discrete uniformly distributed data.
 
 # Parameters
 min_val <- 1 # Minimum value
@@ -375,7 +375,7 @@ breaks = c(1,2,3,4,5,6,7,8,9,10)
 ```{r}
 #| label: tbl-unif-prop
 #| tbl-cap: The core properties between the discrete and continuous disitrbution are very similar.
-#| 
+#|
 # Load required packages
 library(gt)
 library(dplyr)
@@ -473,7 +473,7 @@ f(k) = P (X = k)
 
 :::
 
-### Key Properties 
+### Key Properties
 
 1. $0 \leq f(k) \leq 1$ for all $k$
 2. The of probabilities over all possible $k$ must equal $1$
@@ -593,7 +593,7 @@ $P(X = 2) = f(2) = \frac{1}{4} = 0.25$
 
 ### Summary {{< acr PMF >}}
 
-* The {{< acr PMF >}} describes the probability distribution of a discrete random variable. 
+* The {{< acr PMF >}} describes the probability distribution of a discrete random variable.
 
 * The probabilities associated with all hypothetical values must be non-negative and sum up to 1.
 
@@ -644,7 +644,7 @@ roll_dice(times = 10, rounds = 5) %>% plot_dice()
 num_success <- 5
 sum_num_rolls <- 50
 
-binom_dice(times = 50) |> 
+binom_dice(times = 50) |>
   plot_binom(highlight = c(7:9))+
   scale_x_continuous(
     breaks = seq(0,30)
@@ -667,16 +667,16 @@ binom_dice(times = 50) |>
 
 df <- expand.grid(x = seq(0,100), size = c(20,40,100),prob = c(0.5,0.7,0.95))
 
-plt_df <- df %>% 
-  mutate(probability = dbinom(x, size = size, prob = prob)) %>% 
+plt_df <- df %>%
+  mutate(probability = dbinom(x, size = size, prob = prob)) %>%
   filter(probability>0.0001)
 
 plt_theo <- expand.grid(
   size = c(20,40,100),
-  prob = c(0.5,0.7,0.95)) %>% 
+  prob = c(0.5,0.7,0.95)) %>%
   mutate(xintercept = prob*size)
 
-plt_binom <- plt_df %>% 
+plt_binom <- plt_df %>%
   ggplot(aes(x = x, y = probability, shape = as.factor(prob))) +
   geom_point()+
   geom_path(
@@ -711,18 +711,18 @@ plt_binom
 
 ```
 
-The binomial distribution is a **discrete** probability distribution that describes the number of successes in a fixed number of independent Bernoulli trials, each with the same probability of success. 
-A Bernoulli trial, named after Swiss mathematician Jacob Bernoulli[^2], is a random experiment or trial with two possible outcomes: success and failure. 
-These outcomes are typically labeled as $1$ for success and $0$ for failure. 
+The binomial distribution is a **discrete** probability distribution that describes the number of successes in a fixed number of independent Bernoulli trials, each with the same probability of success.
+A Bernoulli trial, named after Swiss mathematician Jacob Bernoulli[^2], is a random experiment or trial with two possible outcomes: success and failure.
+These outcomes are typically labeled as $1$ for success and $0$ for failure.
 The key characteristics of a Bernoulli trial are:
 
-1. **Two Outcomes:** There are only two possible outcomes in each trial, and they are mutually exclusive. 
+1. **Two Outcomes:** There are only two possible outcomes in each trial, and they are mutually exclusive.
 For example, in a coin toss, the outcomes could be heads (success, represented as $1$) or tails (failure, represented as $0$).
 
-2. **Constant Probability:** The probability of success  remains the same for each trial. 
+2. **Constant Probability:** The probability of success  remains the same for each trial.
 This means that the likelihood of success and failure is consistent from one trial to the next.
 
-3. **Independence:** Each trial is independent of others, meaning that the outcome of one trial does not influence the outcome of subsequent trials. 
+3. **Independence:** Each trial is independent of others, meaning that the outcome of one trial does not influence the outcome of subsequent trials.
 For instance, the result of one coin toss doesn't affect the result of the next coin toss.
 
 Examples of Bernoulli trials include:
@@ -745,9 +745,9 @@ The Bernoulli trial is the fundamental building block for many other probability
 
 * two possible outcomes (e.g., success or failure).
 
-* probability of success remains the same 
+* probability of success remains the same
 
-* each trial is independent 
+* each trial is independent
 
 
 :::
@@ -774,20 +774,20 @@ P(X = k) = \binom{n}{k} p^k (1 - p)^{n - k} \nonumber
 \end{align}
 
 * $X$ random variable
-* $k$ specific value of the random variable ($X$), represents the number of successes 
+* $k$ specific value of the random variable ($X$), represents the number of successes
 * $n$ total number of independent trials or experiments
 * $p$ probability of success in a single trial $0<p<1$
 * $(1 - p)$ probability of failure in a single trial
-* $\binom{n}{k}$ binomial coefficient (“n choose k”)$\rightarrow \binom{n}{k} = \frac{n!}{k! \cdot (n - k)!}$ 
+* $\binom{n}{k}$ binomial coefficient (“n choose k”)$\rightarrow \binom{n}{k} = \frac{n!}{k! \cdot (n - k)!}$
 
 :::
 
 ::: {.content-visible when-profile="script"}
 
-The {{< acr PMF >}}, also known as the discrete probability density function, is a fundamental concept in probability and statistics. 
+The {{< acr PMF >}}, also known as the discrete probability density function, is a fundamental concept in probability and statistics.
 
 * Definition:
-The {{< acr PMF >}} describes the probability distribution of a discrete random variable. 
+The {{< acr PMF >}} describes the probability distribution of a discrete random variable.
 It gives the probability that the random variable takes on a specific value.
 In other words, the PMF assigns probabilities to each possible outcome of the random variable.
 
@@ -827,8 +827,8 @@ P(X = k) = \binom{n}{k} p^k (1 - p)^{n - k} \label{PMFbinom}
 
 In the context of a drive shaft, you can think of it as a model for the number of defective drive shafts in a production batch. Each drive shaft is either good (success) or defective (failure).
 
-Let's say you have a batch of 100 drive shafts, and the probability of any single drive shaft being defective is $0.05 (5\%)$. 
-You want to find the probability of having a certain number of defective drive shafts in this batch. 
+Let's say you have a batch of 100 drive shafts, and the probability of any single drive shaft being defective is $0.05 (5\%)$.
+You want to find the probability of having a certain number of defective drive shafts in this batch.
 
 
 [^2]: Jacob Bernoulli (1654-1705): Notable Swiss mathematician, known for Bernoulli's principle and significant contributions to calculus and probability theory.
@@ -839,7 +839,7 @@ You want to find the probability of having a certain number of defective drive s
 #| label: fig-bn-ds
 #| out-width: 95%
 #| fig-cap: The binomial disitribution and the drive shaft exercise.
-#| 
+#|
 # Parameters
 n <- 100  # Total number of drive shafts
 p <- 0.05  # Probability of a defective drive shaft
@@ -875,7 +875,7 @@ ggplot(data, aes(x = x, y = pmf)) +
 #| fig-cap: The standarized normal distribution
 
 # Generate data for a standard normal distribution
-data <- data.frame(x = seq(-3, 3, by = 0.01), 
+data <- data.frame(x = seq(-3, 3, by = 0.01),
                    y = dnorm(seq(-3, 3, by = 0.01)))
 
 # Create the ggplot2 plot
@@ -921,13 +921,13 @@ ggplot(data, aes(x, y)) +
 
 ::: {.content-visible when-profile="script"}
 
-The normal distribution is a fundamental statistical concept that holds immense significance in the realms of engineering and production. 
-It is often referred to as the Gaussian distribution or the bell curve, is a mathematical model that describes the distribution of data in various natural and human-made phenomena, see @johnson1994continuous. 
+The normal distribution is a fundamental statistical concept that holds immense significance in the realms of engineering and production.
+It is often referred to as the Gaussian distribution or the bell curve, is a mathematical model that describes the distribution of data in various natural and human-made phenomena, see @johnson1994continuous.
 It forms a symmetrical curve when plotted, is centered around a mean ([$\mu_0$](index.qmd#truemean-gloss)) and balanced on both sides (@fig-normal-dist).
 The spread or dispersion of the data points is characterized by [$\sigma_0^2$](index.qmd#truevariance-gloss).
 Those two parameters completely define the normal distribution.
 A remarkable property of the normal distribution is the empirical rule, which states that approximately $68\%$ of the data falls within one standard deviation from the mean, $95\%$ falls within two standard deviations, and $99.7\%$ falls within three standard deviations (@fig-normal-dist).
-The existence of the normal distribution in the real world is a result of the combination of several factors, including the principles of statistics and probability, the {{< acr CLT >}}, and the behavior of random processes in nature and society. 
+The existence of the normal distribution in the real world is a result of the combination of several factors, including the principles of statistics and probability, the {{< acr CLT >}}, and the behavior of random processes in nature and society.
 
 :::
 
@@ -993,7 +993,7 @@ data.frame(k = k_values, prob = probabilities) %>%
 #### The math behind
 
 + After $n$ rows a balls final position is the sum of $n$ independent steps: $S = x_1 + x_2 + \ldots + x_n$ where $x_i = +1 \text{( right) or}  -1 \text{(left)}$
-+ $\text{Number of paths to } k = \binom{n}{(n + k)/2}$ 
++ $\text{Number of paths to } k = \binom{n}{(n + k)/2}$
 
 ```{r}
 #| out-width: 75%
@@ -1004,14 +1004,14 @@ data.frame(k = k_values, prob = probabilities) %>%
 galton_dat <- data.frame(
   bin_nr = seq(0,6),
   n = 6
-) |> 
-  rowwise() |> 
+) |>
+  rowwise() |>
   mutate(
     binom_coef = pracma::nchoosek(n,bin_nr),
     Prob = binom_coef*(0.5^n)
   )
 
-galton_dat |> 
+galton_dat |>
   ggplot(
     aes(
       x = bin_nr,
@@ -1093,7 +1093,7 @@ ggplot(data.frame(x = c(-5, 5)), aes(x = x)) +
     geom = "text",
     color = c("blue","red","green"),
     label = c("μ = 0, σ = 1","μ = 0, σ = 2","μ = -1, σ = 1"),
-    x = c(3), 
+    x = c(3),
     y = c(0.3,0.25,0.2)
   )+
   scale_x_continuous(
@@ -1142,13 +1142,13 @@ buffon_simulation <- function(n_needles, l = 1.5, L = 2) {
 
 buffon_results <- data.frame(
   n = c(1,10,100,1000,10000,100000,1000000,10000000)
-  ) |> 
-  rowwise() |> 
+  ) |>
+  rowwise() |>
   mutate(
     estimate = buffon_simulation(n)
-  ) 
+  )
 
-buffon_results |> 
+buffon_results |>
   ggplot(
     aes(
       x = n,
@@ -1262,7 +1262,7 @@ z\text{-score} &= \frac{x-\bar{x}}{sd_x} = \frac{53-`r round(mean(machine_A),dig
 
 ::: {.content-visible when-profile="script"}
 
-The {{< acr Z >}}-standardization, also known as {{< acr Z >}} or {{< acr Z >}}, is a common statistical technique used to transform data into a standard normal distribution with a mean of $0$ and a standard deviation of $1$ [@1981369198]. 
+The {{< acr Z >}}-standardization, also known as {{< acr Z >}} or {{< acr Z >}}, is a common statistical technique used to transform data into a standard normal distribution with a mean of $0$ and a standard deviation of $1$ [@1981369198].
 This transformation is useful for comparing and analyzing data that have different scales and units \eqref{zscore}.
 
 \begin{align}
@@ -1294,14 +1294,14 @@ Thus, the datapoints are comparable.
 
 machine_data <- data.frame(
   machine_A,machine_B
-) %>% 
+) %>%
   mutate(
     machine_A_scaled = (machine_A-mean(machine_A))/sd(machine_A),
-    machine_B_scaled = (machine_B-mean(machine_B))/sd(machine_B)) %>% 
-  pivot_longer(cols = starts_with("machine"), names_to = "machine",values_to = "value") %>% 
+    machine_B_scaled = (machine_B-mean(machine_B))/sd(machine_B)) %>%
+  pivot_longer(cols = starts_with("machine"), names_to = "machine",values_to = "value") %>%
   filter(str_detect(machine, "scaled"))
 
-machine_data %>% 
+machine_data %>%
   ggplot(
     aes(
       x = value,
@@ -1343,25 +1343,25 @@ spec_nom <- 12
 spec_lo <- 11.9
 spec_hi <- 12.1
 
-ds_sum <- drive_shaft %>% 
-  group_by(group) %>% 
+ds_sum <- drive_shaft %>%
+  group_by(group) %>%
   summarise(
     mean_d = mean(diameter),
     sd_d = sd(diameter)
   )
 
-spec_scaled <- ds_sum %>% 
+spec_scaled <- ds_sum %>%
   mutate(
     spec_nom_scl = (spec_nom-mean_d)/sd_d,
     spec_lo_scl = (spec_lo-mean_d)/sd_d,
     spec_hi_scl = (spec_hi-mean_d)/sd_d,
   )
 
-drive_shaft <- drive_shaft %>% 
-  pivot_wider(names_from = group, values_from = diameter) 
+drive_shaft <- drive_shaft %>%
+  pivot_wider(names_from = group, values_from = diameter)
 
-drive_shaft_scaled <- drive_shaft %>% 
-  mutate(across(starts_with("group"),scale)) %>% 
+drive_shaft_scaled <- drive_shaft %>%
+  mutate(across(starts_with("group"),scale)) %>%
   pivot_longer(starts_with("group"),names_to = "group",values_to = "diameter")
 ```
 
@@ -1371,13 +1371,13 @@ drive_shaft_scaled <- drive_shaft %>%
 #| fig-cap: The standardized data of the drive shaft data.
 #| fig-pos: "H"
 
-drive_shaft_scaled %>% 
+drive_shaft_scaled %>%
  ggplot(aes(x = diameter))+
   stat_theodensity(
-    aes(y = stat(density), 
+    aes(y = stat(density),
         fill = "Normal Distribution",
         linetype = "theoretical"),
-    distri = "norm", 
+    distri = "norm",
     geom = "area",
     color = "black",
     alpha = 0.5)+
@@ -1392,8 +1392,8 @@ drive_shaft_scaled %>%
   # scale_x_continuous(expand = c(0,0,0,0))+
   scale_linetype_manual(
     values = c(
-      "nominal" = "dotdash", 
-      "lower limit" = "dotted", 
+      "nominal" = "dotdash",
+      "lower limit" = "dotted",
       "upper limit" = "dotted",
       "theoretical" = "dashed",
       "data" = "solid")
@@ -1432,15 +1432,15 @@ We will dwelve more into such investigation in another chapter, but this is a fi
 ### When Z-Scores Go Wrong
 
 1. Non-Normal Data:
-  
+
 - Z-Scores assume normality
-  
+
 2. Population vs. Sample
-  
+
 - Use population parameters ($\mu,\sigma$) if known, otherwise use sample estimates ($\bar{x},sd$)
-  
+
 3. Outliers:
-  
+
 - Z-scores are sensitive to outliers
 
 ### The Z-transform and the Galton Board
@@ -1453,14 +1453,14 @@ We will dwelve more into such investigation in another chapter, but this is a fi
 galton_dat <- data.frame(
   bin_nr = seq(0,1000),
   n = 1000
-) |> 
-  rowwise() |> 
+) |>
+  rowwise() |>
   mutate(
     binom_coef = pracma::nchoosek(n,bin_nr),
     Prob = binom_coef*(0.5^n)
   )
 
-galton_dat |> 
+galton_dat |>
   ggplot(
     aes(
       x = bin_nr,
@@ -1514,13 +1514,13 @@ Which is the {{< acr PDF >}}
 
 load(here("data","drive_shaft_data.Rdata"))
 
-drive_shaft %>% 
+drive_shaft %>%
   ggplot(aes(x = diameter))+
   geom_histogram()+
   stat_theodensity(
-    aes(y = stat(density)*4, 
+    aes(y = stat(density)*4,
         fill = "Normal Distribution"),
-    distri = "norm", 
+    distri = "norm",
     geom = "area",
     color = "black",
     alpha = 0.5)+
@@ -1570,10 +1570,10 @@ knitr::include_graphics(here::here("chapter001","PDF_000.png"))
 f(x) = \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{1}{2}(\frac{x-\mu}{\sigma})^2}
 \end{align}
 
-A {{< acr PDF >}} is a mathematical function that describes the *likelihood* of a continuous random variable taking on a particular value. 
-Unlike discrete probability distributions, which assign probabilities to specific values of a discrete random variable, a {{< acr PDF >}} describes the relative likelihood of the variable falling within a particular range of values. 
-The total area under the curve of a {{< acr PDF >}} over its entire range is equal to 1, indicating that the variable must take on some value within that range. 
-In other words, the integral of the {{< acr PDF >}} over its entire domain equals 1. 
+A {{< acr PDF >}} is a mathematical function that describes the *likelihood* of a continuous random variable taking on a particular value.
+Unlike discrete probability distributions, which assign probabilities to specific values of a discrete random variable, a {{< acr PDF >}} describes the relative likelihood of the variable falling within a particular range of values.
+The total area under the curve of a {{< acr PDF >}} over its entire range is equal to 1, indicating that the variable must take on some value within that range.
+In other words, the integral of the {{< acr PDF >}} over its entire domain equals 1.
 The probability of a continuous random variable falling within a specific interval is given by the integral of the {{< acr PDF >}} over that interval.
 
 :::
@@ -1621,9 +1621,9 @@ knitr::include_graphics(here::here("chapter001","CDF_000.png"))
 
 ```
 
-A [cumulative density function (CDF)](#CDF), also known as a cumulative distribution function, describes the probability that a random variable will take on a value less than or equal to a given point. 
+A [cumulative density function (CDF)](#CDF), also known as a cumulative distribution function, describes the probability that a random variable will take on a value less than or equal to a given point.
 It is the integral of the {{< acr PDF >}} from negative infinity to a certain value.
-The {{< acr CDF >}} provides a comprehensive view of the probability distribution of a random variable by showing how the probability accumulates as the value of the random variable increases. 
+The {{< acr CDF >}} provides a comprehensive view of the probability distribution of a random variable by showing how the probability accumulates as the value of the random variable increases.
 Unlike the {{< acr PDF >}}, which gives the probability density at a particular point, the CDF gives the cumulative probability up to that point.
 
 \begin{align}
@@ -1641,7 +1641,7 @@ z &= \frac{x-\mu}{\sigma} \nonumber \\
 ::: {.fragment .fade-out}
 
 * shows the actual probability for a certain value
-* is the integral of the {{< acr PDF >}} 
+* is the integral of the {{< acr PDF >}}
 * area always sums up to $1$
 
 :::
@@ -1690,7 +1690,7 @@ knitr::include_graphics(here::here("chapter001","likelihood_prob.png"))
 Likelihood
 :   refers to the chance or plausibility of a particular event occurring given certain evidence or assumptions. It is often used in statistical inference, where it indicates how well a particular set of parameters (or hypotheses) explain the observed data. Likelihood is a measure of how compatible the observed data are with a specific hypothesis or model.
 
-Probability 
+Probability
 :   represents the measure of the likelihood that an event will occur. It is a quantification of uncertainty and ranges from $0$ (indicating impossibility) to $1$ (indicating certainty). Probability is commonly used to assess the chances of different outcomes in various scenarios.
 
 In summary, while both likelihood and probability deal with the chance of events occurring, likelihood is often used in the context of comparing different *hypotheses or models* based on *observed data*, while probability is more broadly used to quantify the chances of *events happening* in *general*.
@@ -1706,7 +1706,7 @@ In summary, while both likelihood and probability deal with the chance of events
 Likelihood
 :   refers to the chance based on given evidence or assumptions, often used in statistical inference
 
-Probability: 
+Probability:
 :   is a measure of the chance an event will occur, ranging from $0$ to $1$.
 
 :::
@@ -1718,8 +1718,6 @@ Probability:
 ![](chapter001/likelihood_prob_003.svg){.fragment .fade-in-then-out width=85% fig-align="center" auto-animate=true}
 
 ![](chapter001/likelihood_prob_004.svg){.fragment .fade-in-then-out width=85% fig-align="center" auto-animate=true}
-
-:::
 
 :::
 
@@ -1747,7 +1745,7 @@ dat <- data.frame(
   machine_z = c(40,42,39,41,43)
 )
 
-dat %>% 
+dat %>%
   gt()
 
 ```
@@ -1766,18 +1764,18 @@ dat %>%
 #| label: tbl-exercise-z-res
 #| tbl-cap: Results
 
-dat_long <- dat |> 
-  pivot_longer(cols = starts_with("machine"),names_to = "machine",values_to = "cycle_time_s") 
+dat_long <- dat |>
+  pivot_longer(cols = starts_with("machine"),names_to = "machine",values_to = "cycle_time_s")
 
-  dat_sum <- dat_long |> 
-  group_by(machine) |>  
+  dat_sum <- dat_long |>
+  group_by(machine) |>
   summarise(
     mean_cycle_time = mean(cycle_time_s),
     sd_cycle_time = sd(cycle_time_s),
     var_cycle_time = sd_cycle_time^2
-  ) 
-  
-  
+  )
+
+
   dat_sum |> gt()
 ```
 
@@ -1786,8 +1784,8 @@ dat_long <- dat |>
 ```{r}
 #| label: tbl-exercise-z-scores
 #| tbl-cap: Results for z score
-dat_z <- dat_long |> 
-  group_by(machine) |>  
+dat_z <- dat_long |>
+  group_by(machine) |>
   mutate(
     scaled_data = scale(cycle_time_s))
 
@@ -1804,7 +1802,7 @@ dat_z |> gt()
 #| layout: [[45,-10, 45], [100]]
 #| label: fig-chi-2
 #| fig-cap: What a $\chi^2$ distribution reprepresents and how it relates to a the normal distribution.
-#| fig-subcap: 
+#| fig-subcap:
 #| - a normal distribution
 #| - the standard normal variable square ($dof = 1$)
 #| - the $\chi^2$ distributions with varying degrees of freedom
@@ -1819,8 +1817,8 @@ set.seed(123)
 norms <- rnorm(2^16)
 norms_sq <- norms^2
 
-data_nomal <- data.frame(x = seq(-3, 3, by = 0.01), 
-                   y = dnorm(seq(-3, 3, by = 0.01))) %>% 
+data_nomal <- data.frame(x = seq(-3, 3, by = 0.01),
+                   y = dnorm(seq(-3, 3, by = 0.01))) %>%
   mutate(
     x2 = x^2,
     y2 = y^2
@@ -1840,7 +1838,7 @@ plt1 <- ggplot(data.frame(norms),aes(x = norms))+
   labs(title = "normally distributed, random data points (n=65536)",
        x = "standard deviations",
        y = "counts")
-  
+
 plt2 <- ggplot(data.frame(norms_sq),aes(x = norms_sq))  +
   geom_histogram(aes(y = ..density..))+
   geom_density() +
@@ -1859,14 +1857,14 @@ plt2 <- ggplot(data.frame(norms_sq),aes(x = norms_sq))  +
 
 plt3 <- data.frame(
   dof = seq(2,20,2)
-  ) %>% 
-  
+  ) %>%
+
   mutate(
   x = list(seq(0,50,0.1)),
   d = map2(x,dof,dchisq)
-) %>% 
-  mutate(dof = as.factor(dof)) %>% 
-  unnest(cols = c(x,d)) %>% 
+) %>%
+  mutate(dof = as.factor(dof)) %>%
+  unnest(cols = c(x,d)) %>%
   ggplot(aes(x = x, y = d, linetype = dof))+
   geom_path()+
   scale_x_continuous(
@@ -1885,16 +1883,16 @@ plt3
 
 ```
 
-The $\chi^2$ distribution is a continuous probability distribution that is widely used in statistics [@1981369198]. 
+The $\chi^2$ distribution is a continuous probability distribution that is widely used in statistics [@1981369198].
 It is often used to test hypotheses about the independence of categorical variables.
 
 \begin{align}
 \chi^2 = \sum_{k = 1}^n \frac{(O_k - E_k)^2}{E_k}
 \end{align}
 
-The connection between the chi-squared distribution and sample variance holds significant importance in statistics. 
+The connection between the chi-squared distribution and sample variance holds significant importance in statistics.
 
-1. **Distribution of Sample Variance:** When calculating the sample variance from a dataset, it follows a chi-squared distribution. 
+1. **Distribution of Sample Variance:** When calculating the sample variance from a dataset, it follows a chi-squared distribution.
 Specifically, for a random sample from a normally distributed population with mean [$\mu_0$](index.qmd#truemean-gloss) and variance [$\sigma_0^2$](index.qmd#truevariance-gloss), the sample variance (adjusted for bias) divided by [$\sigma_0^2$](index.qmd#truevariance-gloss) follows a $\chi^2$ distribution with $n-1$ {{< acr dof >}}, where $n$ is the sample size.
 
 2. **Hypothesis Testing:** In statistical analysis, hypothesis testing is a common technique for making inferences about populations using sample data. The $\chi^2$ distribution plays a crucial role in hypothesis testing, especially when comparing variances between samples.
@@ -1928,7 +1926,7 @@ In summary, the link between the chi-squared distribution and sample variance is
 
 ```{r}
 #| out-width: 100%
-#| 
+#|
 plt1
 ```
 
@@ -1994,7 +1992,7 @@ plt3
 
 - $\chi^2 = \sum_{k = 1}^n \frac{(O_k - E_k)^2}{E_k}$
 - $E_k = ?$
-- $O_k = ?$ 
+- $O_k = ?$
 - $\alpha = ?$
 - $dof = n_{categories}-1 = ?$
 - [$\chi^2$-table](https://datatab.net/tutorial/chi-square-distribution) or `qchisq(1 - alpha, dof)` in `R`
@@ -2012,75 +2010,75 @@ plt3
 #| out-width: 95%
 #| fig-cap: The $\chi^2$ disitribution of the drive shaft data.
 
-sample_no <- seq(1,100) 
+sample_no <- seq(1,100)
 
-# dataset <- data.frame(sample_no = sample_no, 
-#                       group01 = rnorm(n = length(sample_no),mean = 12, sd = 0.1), 
+# dataset <- data.frame(sample_no = sample_no,
+#                       group01 = rnorm(n = length(sample_no),mean = 12, sd = 0.1),
 #                       group02 = rnorm(n = length(sample_no),mean = 12.3, sd = 0.1)) %>%
-  
+
 
 load (here("data","drive_shaft_data.Rdata"))
 
-dataset <- drive_shaft %>%   
-  pivot_wider(names_from = "group",values_from = "diameter") %>% 
-  mutate(across(starts_with("group"),scale), 
-         across(starts_with("group"),as.vector)) %>% 
-    pivot_longer(cols = starts_with("group"),names_to = "group",values_to = "scld") 
-  
+dataset <- drive_shaft %>%
+  pivot_wider(names_from = "group",values_from = "diameter") %>%
+  mutate(across(starts_with("group"),scale),
+         across(starts_with("group"),as.vector)) %>%
+    pivot_longer(cols = starts_with("group"),names_to = "group",values_to = "scld")
 
 
 
-dat_chisq <- dataset %>% 
-  mutate(scld_sq= scld^2) 
+
+dat_chisq <- dataset %>%
+  mutate(scld_sq= scld^2)
 
 
-dat_chisq %>% 
-  ggplot(aes(x = scld_sq))+ 
-  stat_theodensity( 
-    aes( 
-      y = after_stat(count), 
-      fill = "theoretical" 
-    ), 
-    # color = NA, 
-    alpha = 0.7, 
-    geom = "area", 
-    distri = "chisq", 
-    show.legend = FALSE 
-  )+ 
-  geom_histogram( 
-    aes( 
-      # linetype = group, 
-      fill = group), 
-    position = "dodge", 
-    color = "white" 
-    )+ 
-  geom_density( 
-    aes(y = after_stat(count), 
-        linetype = group), 
-    key_glyph = draw_key_path, 
-  )+ 
-  scale_x_continuous( 
-    limits = c(0.1,6), 
-    expand = c(0,0,0,0) 
-    )+ 
-  scale_y_continuous( 
-    expand = c(0,0,0,0), 
-  )+ 
-  scale_fill_grey()+ 
-  coord_cartesian( 
-    ylim = c(0,30) 
-  )+ 
+dat_chisq %>%
+  ggplot(aes(x = scld_sq))+
+  stat_theodensity(
+    aes(
+      y = after_stat(count),
+      fill = "theoretical"
+    ),
+    # color = NA,
+    alpha = 0.7,
+    geom = "area",
+    distri = "chisq",
+    show.legend = FALSE
+  )+
+  geom_histogram(
+    aes(
+      # linetype = group,
+      fill = group),
+    position = "dodge",
+    color = "white"
+    )+
+  geom_density(
+    aes(y = after_stat(count),
+        linetype = group),
+    key_glyph = draw_key_path,
+  )+
+  scale_x_continuous(
+    limits = c(0.1,6),
+    expand = c(0,0,0,0)
+    )+
+  scale_y_continuous(
+    expand = c(0,0,0,0),
+  )+
+  scale_fill_grey()+
+  coord_cartesian(
+    ylim = c(0,30)
+  )+
   facet_wrap(~group)+
-  theme_few(base_size = 8)+ 
-  labs( 
-    title = latex2exp::TeX("Computed $sd^2$ for dataset"), 
-    x = latex2exp::TeX("$sd^2$"), 
-    y = "count", 
-    linetype = "computed\ndensity", 
-    fill = "empirical and theoretical\ndistributions" 
-      )+ 
-  theme( 
-    legend.position = "bottom" 
+  theme_few(base_size = 8)+
+  labs(
+    title = latex2exp::TeX("Computed $sd^2$ for dataset"),
+    x = latex2exp::TeX("$sd^2$"),
+    y = "count",
+    linetype = "computed\ndensity",
+    fill = "empirical and theoretical\ndistributions"
+      )+
+  theme(
+    legend.position = "bottom"
   ) +
   guides(color = guide_legend(nrow = 3, byrow = TRUE),
          linetype = guide_legend(nrow = 3, byrow = TRUE),)
@@ -2089,7 +2087,7 @@ dat_chisq %>%
 
 ::: {.content-visible when-profile="script"}
 
-In @fig-ds-chi the squared standad deviation for every datapoint (from the stanardized data) is shown as a histogram for every group with an overlayed (and scaled) density plot. 
+In @fig-ds-chi the squared standad deviation for every datapoint (from the stanardized data) is shown as a histogram for every group with an overlayed (and scaled) density plot.
 In the background of every group the theoretical $\chi^2$-distribution with $dof = 1$ is plotted to visually compare the empirical distribution of the datapoints to the theorectial.
 
 :::
@@ -2106,15 +2104,15 @@ In the background of every group the theoretical $\chi^2$-distribution with $dof
 
 data.frame(
   dof = c(1,4,5,seq(10,100,10))
-  ) %>% 
-  
+  ) %>%
+
   mutate(
   x = list(seq(-4,4,0.01)),
   d = map2(dof,x,function(x,y)dt(y,x)),
   d_norm = map(x,dnorm,mean = 0, sd = 1)
-) %>% 
-  mutate(dof = as.factor(dof)) %>% 
-  unnest(cols = c(x,d,d_norm)) %>% 
+) %>%
+  mutate(dof = as.factor(dof)) %>%
+  unnest(cols = c(x,d,d_norm)) %>%
   ggplot(aes(x = x, y = d, linetype = dof))+
   geom_ribbon(aes(ymax = d_norm,ymin = 0),alpha = 0.4,fill = "azure3",show.legend = F)+
   geom_line()+
@@ -2130,8 +2128,8 @@ data.frame(
 
 ```
 
-The t-distribution, also known as the Student's t-distribution [@Student_1908], is a probability distribution that plays a significant role in statistics[^1]. 
-It is a symmetric distribution with a bell-shaped curve, similar to the normal distribution, but with heavier tails. 
+The t-distribution, also known as the Student's t-distribution [@Student_1908], is a probability distribution that plays a significant role in statistics[^1].
+It is a symmetric distribution with a bell-shaped curve, similar to the normal distribution, but with heavier tails.
 The key significance of the t-distribution lies in its application to inferential statistics, particularly in hypothesis testing and confidence interval estimation.
 
 1. **Small Sample Sizes:** When dealing with small sample sizes (typically less than 30), the t-distribution is used to make inferences about population parameters, such as the mean. This is crucial because the normal distribution assumptions are often violated with small samples.
@@ -2140,9 +2138,9 @@ The key significance of the t-distribution lies in its application to inferentia
 
 3. **Degrees of Freedom:** The shape of the t-distribution is determined by a parameter called {{< acr dof >}}. As the {{< acr dof >}} increases, the t-distribution approaches the normal distribution. When df is small, the tails of the t-distribution are fatter, allowing for greater uncertainty in estimates.
 
-Statisticians found that if they took samples of a constant size from a normal population, computed a statistic called a *t-score* for each sample, and put those into a relative frequency distribution, the distribution would be the same for samples of the same size drawn from any normal population. 
+Statisticians found that if they took samples of a constant size from a normal population, computed a statistic called a *t-score* for each sample, and put those into a relative frequency distribution, the distribution would be the same for samples of the same size drawn from any normal population.
 The shape of this sampling distribution of t’s varies somewhat as sample size varies, but for any $n$, it is always the same.
-For example, for samples of $5$, $90\%$ of the samples have t-scores between $-1.943$ and $+1.943$, while for samples of $15$, $90\%$ have t-scores between $\pm 1.761$. 
+For example, for samples of $5$, $90\%$ of the samples have t-scores between $-1.943$ and $+1.943$, while for samples of $15$, $90\%$ have t-scores between $\pm 1.761$.
 The bigger the samples, the narrower the range of scores that covers any particular proportion of the samples \eqref{tscore} (Note the similarity to \eqref{zscore}).
 Since the *t-score* is computed for every $x_i$ the resulting sampling distribution is called the *t-disitribution*.
 
@@ -2190,6 +2188,33 @@ t_i = \frac{\bar{x} - \mu_0}{sd/\sqrt{n}} \label{tscore}
 
 :::
 
+:::
+
+### Emergence
+
+- We have a population: $X_1, X_2, \ldots, X_n \sim \mathrm{N}(\mu,\sigma^2)$
+- $\mu, \sigma$ are unknown, but can be estimated from a sample with $\bar{x},sd^2$
+- if $\sigma$ would be known, we could use the z-score: $Z=\frac{\bar{x}-\mu}{\sigma/\sqrt{n}}\sim\mathrm{N}(0,1)$
+- but it is not known, so we replace it by $sd$: $T = \frac{\bar{x}-\mu}{sd/\sqrt{n}}$
+- This is **not** normally distributed, because $sd$ depends on the sample
+
+#### The Trick
+
+- Rewrite $T$ as $T=\frac{\bar{X}-\mu}{\sigma/\sqrt{n}}\frac{\sigma}{sd} = Z \cdot \frac{\sigma}{sd}$
+
+1. where $Z\sim\mathrm{N}(0,1)$ (CLT, $\bar{x}$ is normal)
+2. $\frac{\sigma}{sd}$ is a scaled $\chi^2$ Distribution
+
+\begin{align}
+T = \frac{Z}{\sqrt{\chi^2_{n-1}/(n-1)}}
+\end{align}
+
+<center>
+The t-distribution is the result of combining a normal random variable with an independent $\chi^2$ random variable
+</center>
+
+#### The Distribution
+
 ::: {.fragment .fade-in-then-out}
 
 ```{r}
@@ -2199,15 +2224,15 @@ t_i = \frac{\bar{x} - \mu_0}{sd/\sqrt{n}} \label{tscore}
 
 data.frame(
   dof = c(1,4,5,seq(10,100,10))
-  ) %>% 
-  
+  ) %>%
+
   mutate(
   x = list(seq(-4,4,0.01)),
   d = map2(dof,x,function(x,y)dt(y,x)),
   d_norm = map(x,dnorm,mean = 0, sd = 1)
-) %>% 
-  mutate(dof = as.factor(dof)) %>% 
-  unnest(cols = c(x,d,d_norm)) %>% 
+) %>%
+  mutate(dof = as.factor(dof)) %>%
+  unnest(cols = c(x,d,d_norm)) %>%
   ggplot(aes(x = x, y = d, linetype = dof))+
   geom_ribbon(aes(ymax = d_norm,ymin = 0),alpha = 0.4,fill = "azure3",show.legend = F)+
   geom_line()+
@@ -2224,7 +2249,7 @@ data.frame(
 
 :::
 
-::: {.fragment .incremental}
+### Applications
 
 * Applications of the *t-disitribution* include:
 
@@ -2232,27 +2257,30 @@ data.frame(
 * Computing confidence intervals
 * Test significance of model parameters (against *null* model)
 
-:::
 
-:::
-
-### Classroom example: Comparing means
+### Classroom example: Confidence interval
 
 ::: {.r-stack}
 
-::: {.fragment .fade-out}
+::: {.fragment .fade-in-then-out}
 
-* we want to know if student A and student B are rolling dice differently
-* everyone rolls the die 15 times each
-* look at it as a way to collect live data on different groups
-* First, formulate the Null and alternative Hypothesis
+```{r}
+#| label: fig-catapult
+#| out-width: 65%
+#| fig-cap: Out catapult we use for shooting
+#| fig-width: 5
+#| fig-pos: "H"
+
+knitr::include_graphics(here::here("img","catapult.jpg"))
+```
 
 :::
 
 ::: {.fragment .fade-in-then-out}
 
-- $H_0$ student A and student B roll the die in the same fashion
-- $H_a$ student A and student B roll the die in a different fashion
+* we want to estimate how far a catapult can shoot
+* one student shoots, one measures,  one writes
+* carfully check the experimental setup.
 
 :::
 
@@ -2261,10 +2289,7 @@ data.frame(
 - $t_i = \frac{\bar{x} - \mu_0}{sd/\sqrt{n}}$
 - $dof = ?$
 - $\alpha = ?$
-- $dof = ?$
 - [$t$-table](https://datatab.de/tutorial/tabelle-t-verteilung) or `qt(alpha / 2, dof)` in `R`
-- The Hypothesis as "translated" to quantitative measures?
-
 
 :::
 
@@ -2339,19 +2364,19 @@ With $n>30$ (as for this dataset), the difference between distribution is very s
 load (here("data","drive_shaft_data.Rdata"))
 
 
-drive_shaft <- drive_shaft %>% 
-  group_nest(group) %>% 
+drive_shaft <- drive_shaft %>%
+  group_nest(group) %>%
   mutate(scaled = map(data, function(x) scale(x["diameter"]) %>% as.vector(.)),
          mean_d = map(data, function(x) mean(x %>% pull(diameter))),
          sd_d = map(data, function(x) sd(x %>% pull(diameter))),
          count_n = map(data, function(x) nrow(x))
-  ) 
-  
-drive_shaft_scaled <- drive_shaft %>% 
-  unnest(cols = c("data"))
-         
+  )
 
-drive_shaft_t_score <- drive_shaft %>% 
+drive_shaft_scaled <- drive_shaft %>%
+  unnest(cols = c("data"))
+
+
+drive_shaft_t_score <- drive_shaft %>%
   unnest(cols = c("mean_d","sd_d","count_n"))
 
 conf_level <- 0.95
@@ -2360,14 +2385,14 @@ spec_nom <- 12
 spec_lo <- 11.9
 spec_hi <- 12.1
 
-drive_shaft_t_score <- drive_shaft_t_score %>% 
+drive_shaft_t_score <- drive_shaft_t_score %>%
   mutate(se = mean_d/sqrt(count_n),
          t_score = qt(1-conf_level/2,df = count_n-1),
          margin_of_error = t_score*se,
          conf_int_lo = mean_d-margin_of_error,
          conf_int_hi = mean_d + margin_of_error)
 
-drive_shaft_t_score %>% 
+drive_shaft_t_score %>%
   ggplot()+
   geom_rect(aes(ymin = -Inf, ymax = Inf, xmin = spec_lo, xmax = spec_hi,fill = "spec"),
             alpha = 0.3)+
@@ -2392,8 +2417,8 @@ drive_shaft_t_score %>%
     fill = ""
   )+
   ggrepel::geom_text_repel(
-    aes(x = mean_d, 
-        y = group, 
+    aes(x = mean_d,
+        y = group,
         label = paste0("SE: ",round(se,digits = 2))),
     force_pull = -1)+
   scale_fill_grey()+
@@ -2413,44 +2438,44 @@ drive_shaft_t_score %>%
 x_vec <-  seq(0.1,2,0.01)
 
 comp_f <- function(dof1,dof2,x = seq(0.1,8,0.1)){
-  
+
   d <- df(x = x, df1 = dof1, df2 = dof2)
-  
+
 }
 
 tmp <- expand_grid(
   # dof1 = seq(2,30,3),
-  dof1 = c(1,5,10,15,20,25,30,50,100), 
+  dof1 = c(1,5,10,15,20,25,30,50,100),
   dof2 = c(1,5,10,15,20,25,30,50,100),
   # dof2 = seq(2,30,3)
-  ) %>% 
+  ) %>%
   mutate(
     x = list(x_vec),
     d = map2(.x = dof1, .y = dof2, function(x,y) comp_f(dof1 = x,dof2 = y, x = x_vec))
-  ) %>% 
+  ) %>%
   mutate(
     dof1 = as.factor(dof1),
-    dof2 = as.factor(dof2)) %>% 
+    dof2 = as.factor(dof2)) %>%
   unnest(cols = c(d,x))
 
 
 
-plt_dof1_min <- tmp %>% 
+plt_dof1_min <- tmp %>%
   filter(dof1==1) %>%
   ggplot(aes(x = x, y = d))+#, linetype = dof1,color=dof2))+
   geom_line()+
   geom_vline(
-    data = tmp %>% 
+    data = tmp %>%
       filter(dof1==1) %>%
-      group_by(dof2) %>% 
+      group_by(dof2) %>%
       summarise(
         x = x[which.max(d)]),
     aes(xintercept = x)
     )+
   geom_text(
-    data = tmp %>% 
+    data = tmp %>%
       filter(dof1==1) %>%
-      group_by(dof2) %>% 
+      group_by(dof2) %>%
       summarise(
         y = max(d),
         x = x[which.max(d)]),
@@ -2467,14 +2492,14 @@ plt_dof1_min <- tmp %>%
   facet_wrap(~dof2,labeller = label_both)
 
 
-plt_dof1_max <- tmp %>% 
+plt_dof1_max <- tmp %>%
   filter(dof1==100) %>%
   ggplot(aes(x = x, y = d))+#, linetype = dof1,color=dof2))+
   geom_line()+
   geom_vline(
-    data = tmp %>% 
+    data = tmp %>%
       filter(dof1==100) %>%
-      group_by(dof1) %>% 
+      group_by(dof1) %>%
       summarise(
         x = x[which.max(d)]),
     aes(xintercept = x)
@@ -2483,9 +2508,9 @@ plt_dof1_max <- tmp %>%
     title = "varying dof1, dof2 = 100",
   )+
   geom_text(
-    data = tmp %>% 
+    data = tmp %>%
       filter(dof1==100) %>%
-      group_by(dof2) %>% 
+      group_by(dof2) %>%
       summarise(
         y = max(d),
         x = x[which.max(d)]),
@@ -2502,14 +2527,14 @@ plt_dof1_max <- tmp %>%
   facet_wrap(~dof2,labeller = label_both)
 
 
-plt_dof2_min <- tmp %>% 
+plt_dof2_min <- tmp %>%
   filter(dof2==1) %>%
   ggplot(aes(x = x, y = d))+#, linetype = dof1,color=dof2))+
   geom_line()+
   geom_vline(
-    data = tmp %>% 
+    data = tmp %>%
       filter(dof2==1) %>%
-      group_by(dof1) %>% 
+      group_by(dof1) %>%
       summarise(
         x = x[which.max(d)]),
     aes(xintercept = x)
@@ -2518,9 +2543,9 @@ plt_dof2_min <- tmp %>%
     title = "varying dof1, dof2 = 1",
   )+
   geom_text(
-    data = tmp %>% 
+    data = tmp %>%
       filter(dof2==1) %>%
-      group_by(dof1) %>% 
+      group_by(dof1) %>%
       summarise(
         y = max(d),
         x = x[which.max(d)]),
@@ -2537,14 +2562,14 @@ plt_dof2_min <- tmp %>%
   facet_wrap(~dof1,labeller = label_both)
 
 
-plt_dof2_max <- tmp %>% 
+plt_dof2_max <- tmp %>%
   filter(dof2==100) %>%
   ggplot(aes(x = x, y = d))+#, linetype = dof1,color=dof2))+
   geom_line()+
   geom_vline(
-    data = tmp %>% 
+    data = tmp %>%
       filter(dof2==100) %>%
-      group_by(dof1) %>% 
+      group_by(dof1) %>%
       summarise(
         x = x[which.max(d)]),
     aes(xintercept = x)
@@ -2553,9 +2578,9 @@ plt_dof2_max <- tmp %>%
     title = "varying dof1, dof2 = 100",
   )+
   geom_text(
-    data = tmp %>% 
+    data = tmp %>%
       filter(dof2==100) %>%
-      group_by(dof1) %>% 
+      group_by(dof1) %>%
       summarise(
         y = max(d),
         x = x[which.max(d)]),
@@ -2574,30 +2599,30 @@ plt_dof2_max <- tmp %>%
 
 max_dat <- expand_grid(
   # dof1 = seq(2,30,3),
-  dof1 = seq(1,100), 
+  dof1 = seq(1,100),
   dof2 = seq(1,100),
   # dof2 = seq(2,30,3)
-  ) %>% 
+  ) %>%
   mutate(
     x = list(x_vec),
     d = map2(.x = dof1, .y = dof2, function(x,y) comp_f(dof1 = x,dof2 = y, x = x_vec))
-  ) %>% 
+  ) %>%
   mutate(
     dof1 = as.factor(dof1),
-    dof2 = as.factor(dof2)) %>% 
-  unnest(cols = c(d,x)) %>% 
-  group_by(dof1,dof2) %>% 
+    dof2 = as.factor(dof2)) %>%
+  unnest(cols = c(d,x)) %>%
+  group_by(dof1,dof2) %>%
   summarise(
     max_d = max(d),
     max_x = x[which.max(d)],
     mean_d = mean(d)
-  ) %>% 
+  ) %>%
   mutate(
     dof1 = as.numeric(as.character(dof1)),
     dof2 = as.numeric(as.character(dof2)),
-  ) 
+  )
 
-plt_max <- max_dat %>% 
+plt_max <- max_dat %>%
   ggplot(aes(x = dof1, y = dof2))+
   geom_tile(aes(fill = max_d))+
   geom_contour(aes(z = max_d,color = max_d),color = "white",bins = 20)+
@@ -2608,13 +2633,13 @@ plt_max <- max_dat %>%
   scale_x_continuous(expand = c(0,0,0,0))+
   scale_y_continuous(expand = c(0,0,0,0))
 
-plt_max_line <- tmp %>% 
+plt_max_line <- tmp %>%
   ggplot(aes(x = x, y = d))+
   geom_path()+
   geom_vline(
-    data = tmp %>% 
+    data = tmp %>%
       # filter(dof2==1) %>%
-      group_by(dof1,dof2) %>% 
+      group_by(dof1,dof2) %>%
       summarise(
         x = x[which.max(d)]),
     aes(xintercept = x)
@@ -2623,26 +2648,26 @@ plt_max_line <- tmp %>%
     title = "F - density plots of dof1 vs. dof2"
   )+
   facet_grid(dof1~dof2)
-  
+
 ```
 
 ::: {.content-visible when-profile="script"}
 
-*F-statistics*, also known as the *F-test* or *F-ratio*, is a statistical measure used in {{< acr ANOVA >}} and regression analysis [@1981369198]. 
-It assesses the ratio of two variances, indicating the extent to which the variability between groups or models is greater than the variability within those groups or models. 
+*F-statistics*, also known as the *F-test* or *F-ratio*, is a statistical measure used in {{< acr ANOVA >}} and regression analysis [@1981369198].
+It assesses the ratio of two variances, indicating the extent to which the variability between groups or models is greater than the variability within those groups or models.
 The *F-statistic* plays a crucial role in hypothesis testing and model comparison.
 
 Significance of F-statistics:
-The significance of the F-statistic lies in its ability to help researchers determine whether the differences between group means or the goodness-of-fit of a regression model are statistically significant. 
+The significance of the F-statistic lies in its ability to help researchers determine whether the differences between group means or the goodness-of-fit of a regression model are statistically significant.
 In {{< acr ANOVA >}}, a high F-statistic suggests that at least one group mean differs significantly from the others, while in regression analysis, it indicates whether the regression model as a whole is a good fit for the data.
 
 Applications of F-statistics:
-1. **Analysis of Variance {{< acr ANOVA >}}:** F-statistics are extensively used in {{< acr ANOVA >}} to compare means across two or more groups. 
-It helps determine whether there are significant differences among the means of these groups. 
+1. **Analysis of Variance {{< acr ANOVA >}}:** F-statistics are extensively used in {{< acr ANOVA >}} to compare means across two or more groups.
+It helps determine whether there are significant differences among the means of these groups.
 For example, an {{< acr ANOVA >}} might be used to compare the mean test scores of students taught using different teaching methods.
 
-2. **Regression Analysis:** F-statistics are used in regression analysis to assess the overall significance of a regression model. 
-Specifically, in multiple linear regression, it helps determine whether the model, which includes multiple predictor variables, is better at explaining the variance in the response variable compared to a model with no predictors. 
+2. **Regression Analysis:** F-statistics are used in regression analysis to assess the overall significance of a regression model.
+Specifically, in multiple linear regression, it helps determine whether the model, which includes multiple predictor variables, is better at explaining the variance in the response variable compared to a model with no predictors.
 It tests the null hypothesis that all coefficients of the model are equal to zero.
 
 ```{r}
@@ -2654,7 +2679,7 @@ plt_max_line
 
 ```
 
-The {{< acr dof >}} in an *F-distribution* refer to the two sets of numbers that determine the shape and properties of the distribution (@fig-f-dist-01). 
+The {{< acr dof >}} in an *F-distribution* refer to the two sets of numbers that determine the shape and properties of the distribution (@fig-f-dist-01).
 
 Numerator Degrees of Freedom ($dof_1$):
 The numerator degrees of freedom, often denoted as $dof_1$, is associated with the variability between groups or models in statistical analyses (@fig-f-dist-01 - horizontal axis).
@@ -2662,23 +2687,23 @@ In the context of {{< acr ANOVA >}}, it represents the {{< acr dof >}} associate
 In regression analysis, it is related to the number of predictors or coefficients being tested simultaneously.
 
 Denominator Degrees of Freedom ($dof_2$):
-The denominator degrees of freedom, often denoted as $dof_2$, is associated with the variability within groups or models (@fig-f-dist-02 - vertical axis). 
+The denominator degrees of freedom, often denoted as $dof_2$, is associated with the variability within groups or models (@fig-f-dist-02 - vertical axis).
 In {{< acr ANOVA >}}, it represents the degrees of freedom associated with the variability within each group.
 In regression analysis, it is related to the error or residual degrees of freedom, indicating the remaining variability not explained by the model.
 
-The F-distribution is used to compare two variances: one from the numerator and the other from the denominator. 
+The F-distribution is used to compare two variances: one from the numerator and the other from the denominator.
 The F-statistic, calculated as the ratio of these variances, follows an F-distribution \eqref{fdist}.
 
 \begin{align}
 f(x; dof_1, dof_2) = \frac{{\Gamma\left(\frac{{dof_1 + dof_2}}{2}\right)}}{{\Gamma\left(\frac{{dof_1}}{2}\right)\Gamma\left(\frac{{dof_2}}{2}\right)}} \left(\frac{{dof_1}}{{dof_2}}\right)^{\frac{{dof_1}}{2}} \frac{{x^{\frac{{dof_1}}{2} - 1}}}{{\left(1 + \frac{{dof_1}}{{dof_2}}x\right)^{\frac{{dof_1 + dof_2}}{2}}}} \label{fdist} \\
-F_{m,n} = \frac{\chi^2_m/m}{\chi^2_n/n} 
+F_{m,n} = \frac{\chi^2_m/m}{\chi^2_n/n}
 \end{align}
 
 ```{r}
 #| label: fig-f-dist-02
 #| layout-nrow: 2
 #| out-width: 95%
-#| fig-cap: the maximum density as a function of $dof_1$ and $dof_2$ in a continous parameter space
+#| fig-cap: The maximum density as a function of $dof_1$ and $dof_2$ in a continous parameter space.
 
 
 plt_max
@@ -2688,16 +2713,18 @@ plt_max
 In practical terms:
 A higher numerator degrees of freedom ($dof_1$) suggests that there are more groups or predictors being compared, which may result in larger F-statistic values.
 A higher denominator degrees of freedom ($dof_2$) implies that there is more data within each group or model, which may lead to smaller F-statistic values.
-The F-distribution is right-skewed and always positive. 
-It has different shapes depending on the values of $dof_1$ and $dof_2$ (@fig-f-dist-02). 
-The exact shape is determined by these degrees of freedom and cannot be altered by changing sample sizes or data values (@fig-f-dist-02). 
+The F-distribution is right-skewed and always positive.
+It has different shapes depending on the values of $dof_1$ and $dof_2$ (@fig-f-dist-02).
+The exact shape is determined by these degrees of freedom and cannot be altered by changing sample sizes or data values (@fig-f-dist-02).
 Researchers use F-distributions to conduct hypothesis tests, such as F-tests in ANOVA and F-tests in regression, to determine if there are significant differences between groups or if a regression model is statistically significant.
 
-In summary, {{< acr dof >}} in the F-distribution are critical in hypothesis testing and model comparisons. 
+In summary, {{< acr dof >}} in the F-distribution are critical in hypothesis testing and model comparisons.
 They help quantify the variability between and within groups or models, allowing statisticians to assess the significance of observed differences and make informed statistical decisions.
 
 
 :::
+
+::: {.content-visible when-profile="slides"}
 
 ::: {.r-stack}
 
@@ -2712,8 +2739,10 @@ F_{m,n} = \frac{\chi^2_m/m}{\chi^2_n/n} \nonumber
 ::: {.fragment .fade-in-then-out}
 
 ```{r}
-#| out-width: 100%
-#| 
+#| label: fig-f-dist-02-slides
+#| out-width: 95%
+#| fig-cap: F-distribution for $dof_1$ on the horizontal and $dof_2$ on the vertical axis
+
 plt_max_line
 ```
 
@@ -2722,7 +2751,10 @@ plt_max_line
 ::: {.fragment .fade-in-then-out}
 
 ```{r}
-#| out-width: 100%
+#| label: fig-f-dist-03-slides
+#| out-width: 95%
+#| fig-cap: The maximum density as a function of $dof_1$ and $dof_2$ in a continous parameter space.
+
 plt_max
 ```
 
@@ -2730,30 +2762,182 @@ plt_max
 
 :::
 
+:::
+
+### Classroom example: two students shoot a catapult
+
+::: {.r-stack}
+
+::: {.fragment .fade-out}
+
+```{r}
+#| label: fig-catapult-fstat
+#| out-width: 60%
+#| fig-cap: Our catapult we use for shooting
+#| fig-width: 5
+#| fig-pos: "H"
+
+knitr::include_graphics(here::here("img","catapult.jpg"))
+```
+
+:::
+
+::: {.fragment .fade-in-then-out}
+
+- we want to know, if one student shoots more accurate than the other
+- $10$ shots each
+- record values
+- How do we do it?
+
+:::
+
+::: {.fragment .fade-in}
+
+::: {.incremental}
+
+- $H_0:$ Variances are equal ($\sigma^2_a = \sigma^2_B$), $H_a:$ Variances are unequal ($\sigma^2_a \neq \sigma^2_B$)
+- So we need to find the variance? Can we not just use $sd$?
+  - No, because: $F = \frac{sd_1^2}{sd_2^2} = \frac{4}{1} = 4$ against $F = \frac{sd_1}{sd_2} = \frac{2}{1} = 2$
+- Calculate F Statistic: $F=\frac{sd^2_A}{sd^2_B}$
+- find p-value for F-Statistic: `pf(F_stat, dof_A, dof_B), 1-pf(F_stat, dof_A, dof_B)` 
+
+
+:::
+
+:::
+
+:::
+
+::: {.content-visible when-profile="slides"}
+
+
+### The PDF we have
+
+```{r}
+#| label: fig-catapult-f-pdf-dof1dof2
+#| out-width: 95%
+#| fig-cap: The PDF with the respective dof's
+#| fig-pos: "H"
+
+pdf_f <- expand_grid(
+  x = seq(0.01,5,0.01),
+  dof1 = c(9),
+  dof2 = c(9),
+  # dof2 = seq(2,30,3)
+  ) %>%
+  mutate(
+    d = df(x, dof1,dof2)
+    )
+    
+
+  pdf_f |> 
+  ggplot(
+    aes(
+      x = x,
+      y = d
+    )
+  )+
+  # geom_line()+
+  geom_area(
+    fill = "gray70"
+  )+
+  scale_x_continuous(
+    expand = c(0,0,0,0)
+  )+
+  scale_y_continuous(
+    expand = c(0,0,0.05,0)
+  )+
+  labs(
+    title = "PDF of F-Statistic",
+    subtitle = "dof1 = 9, dof2 = 9",
+    y = "density",
+    x = "F-Statistic"
+  ) 
+
+
+```
+
+### The CDF we need
+
+```{r}
+#| label: fig-catapult-f-cdf-dof1dof2
+#| out-width: 80%
+#| fig-cap: The CDF we need for the calculations
+#| fig-pos: "H"
+
+cdf_f <- expand_grid(
+  x = seq(0.01,5,0.01),
+  dof1 = c(9),
+  dof2 = c(9),
+  # dof2 = seq(2,30,3)
+  ) %>%
+  mutate(
+    p = pf(x, dof1,dof2)
+    )
+    
+plotly::ggplotly(
+  cdf_f |> 
+  ggplot(
+    aes(
+      x = x,
+      y = p
+    )
+  )+
+  # geom_line()+
+  geom_area(
+    fill = "gray70"
+  )+
+  scale_x_continuous(
+    expand = c(0,0,0,0)
+  )+
+  scale_y_continuous(
+    expand = c(0,0,0.05,0)
+  )+
+  geom_vline(
+    xintercept =  qf(1-0.05,9,9)
+  )+
+  geom_text(
+    x = qf(1-0.05,9,9)+0.2,
+    y = 0.5,
+    label = "\u03B1=0.05",
+    
+    # angle = 90
+  )+
+  labs(
+    title = "PDF of F-Statistic",
+    subtitle = "dof1 = 9, dof2 = 9",
+    y = "density",
+    x = "F-Statistic"
+  ) 
+)
+
+```
+
+:::
 
 ## Interconnections
 
 ::: {.content-visible when-profile="script"}
 
 1. Normal Distribution
-The **Normal Distribution** is characterized by its mean ($\mu$) and standard deviation ($\sigma$), see @fig-interconnections. 
+The **Normal Distribution** is characterized by its mean ($\mu$) and standard deviation ($\sigma$), see @fig-interconnections.
 It serves as the foundation for many statistical analyses.
 
 2. Standardized Normal Distribution
-The **Standardized Normal Distribution**, denoted as $Z \sim N(0, 1)$, is a special case of the normal distribution. 
-It has a mean ($\mu$) of $0$ and a standard deviation ($\sigma$) of $1$. 
+The **Standardized Normal Distribution**, denoted as $Z \sim N(0, 1)$, is a special case of the normal distribution.
+It has a mean ($\mu$) of $0$ and a standard deviation ($\sigma$) of $1$.
 It is obtained by standardizing a normal distribution variable $X$: $Z = \frac{X - \mu}{\sigma}$ (@fig-interconnections).
 
 3. t Distribution
-The **t Distribution** is related to the normal distribution and depends on {{< acr dof >}}. 
+The **t Distribution** is related to the normal distribution and depends on {{< acr dof >}}.
 As {{< acr dof >}} increases, the t-distribution approaches the standard normal distribution (@fig-interconnections).
 
 4. Chi-Square Distribution
-The **Chi-Square Distribution** is indirectly connected to the normal distribution through the concept of "sum of squared standard normals." 
+The **Chi-Square Distribution** is indirectly connected to the normal distribution through the concept of "sum of squared standard normals."
 When standard normal random variables ($Z$) are squared and summed, the resulting distribution follows a chi-square distribution.
 
 5. F Distribution
-The **F Distribution** arises from the ratio of two independent chi-square distributed random variables. 
+The **F Distribution** arises from the ratio of two independent chi-square distributed random variables.
 It is used for comparing variances between groups in statistical tests like {{< acr ANOVA >}}.
 
 :::
@@ -2784,13 +2968,13 @@ wbll_scl <- seq(1,4,1)
 wbll_shp <- c(seq(0.1,1,length.out = 4),seq(1,4,1))
 
 
-wbll <- expand_grid(wbll_scl,wbll_shp) %>% 
+wbll <- expand_grid(wbll_scl,wbll_shp) %>%
   mutate(
     x = list(x_vec),
     d = map2(.x = wbll_scl,.y = wbll_shp, .f = function(x,y) dweibull(x_vec,y,x))
-  ) %>% 
-  unnest(cols = c(d,x)) %>% 
-  mutate(shp_lbl = 
+  ) %>%
+  unnest(cols = c(d,x)) %>%
+  mutate(shp_lbl =
            case_when(
              wbll_shp<1~"beta < 1",
              wbll_shp==1~"beta == 1",
@@ -2798,8 +2982,8 @@ wbll <- expand_grid(wbll_scl,wbll_shp) %>%
            ),
          scl_lbl = paste0("lambda == ",wbll_scl)
            )
-  
-plt_wbll <- wbll %>% 
+
+plt_wbll <- wbll %>%
   ggplot(aes(x = x, y = d, linetype = as.factor(wbll_shp)))+
   stat_function(fun = dnorm, args = list(mean = 0, sd = 1),geom = "area",alpha = 0.1,show.legend = FALSE)+
   geom_line()+
@@ -2815,31 +2999,31 @@ plt_wbll
 
 ```
 
-The Weibull distribution is a probability distribution frequently used in statistics and reliability engineering to model the time until an event, particularly failures or lifetimes. 
+The Weibull distribution is a probability distribution frequently used in statistics and reliability engineering to model the time until an event, particularly failures or lifetimes.
 It is named after Wallodi Weibull[^3], who developed it in the mid-20th century [@Weibull_1951].
 
 The Weibull distribution is characterized by two parameters:
 
-**Shape Parameter ($\beta$):** This parameter determines the shape of the distribution curve and can take on values greater than 0. 
+**Shape Parameter ($\beta$):** This parameter determines the shape of the distribution curve and can take on values greater than 0.
 Depending on the value of $\beta$, the Weibull distribution can exhibit different behaviors:
 
 If $\beta < 1$, the distribution has a decreasing failure rate, indicating that the probability of an event occurring decreases over time. This is often associated with "infant mortality" or early-life failures.
 If $\beta = 1$, the distribution follows an exponential distribution with a constant failure rate over time.
-If $\beta > 1$, the distribution has an increasing failure rate, suggesting that the event becomes more likely as time progresses. 
+If $\beta > 1$, the distribution has an increasing failure rate, suggesting that the event becomes more likely as time progresses.
 This is often associated with "wear-out" failures.
 
-**Scale Parameter ($\lambda$):** This parameter represents a characteristic scale or location on the time axis. 
-It influences the position of the distribution on the time axis. 
+**Scale Parameter ($\lambda$):** This parameter represents a characteristic scale or location on the time axis.
+It influences the position of the distribution on the time axis.
 A larger $\lambda$ indicates that events are more likely to occur at later times.
 
 **Applications:**
-- Reliability Engineering: The Weibull distribution is extensively used in reliability engineering to assess the lifetime and failure characteristics of components and systems. 
+- Reliability Engineering: The Weibull distribution is extensively used in reliability engineering to assess the lifetime and failure characteristics of components and systems.
 Engineers can estimate the distribution parameters from data to predict product reliability, set warranty periods, and plan maintenance schedules.
 
-- Survival Analysis: In medical research and epidemiology, the Weibull distribution is employed to analyze survival data, such as time until the occurrence of a disease or death. 
+- Survival Analysis: In medical research and epidemiology, the Weibull distribution is employed to analyze survival data, such as time until the occurrence of a disease or death.
 It helps in modeling and understanding the progression of diseases and the effectiveness of treatments.
 
-- Economics and Finance: The Weibull distribution is used in finance to model the time between financial events, like market crashes or loan defaults. 
+- Economics and Finance: The Weibull distribution is used in finance to model the time between financial events, like market crashes or loan defaults.
 It can provide insights into risk assessment and portfolio management.
 
 [^3]: Waloddi Weibull (1887–1979) was a Swedish engineer and statistician known for his work on the Weibull distribution, which is widely used in reliability engineering and other fields.
@@ -2874,7 +3058,7 @@ knitr::include_graphics(here::here("chapter001","bathtub.png"))
 \begin{align}
 f_X(x; \lambda, \beta) = \left\{ \begin{array}{cl}
     \frac{\beta}{\lambda}(\frac{x}{\beta})^{\beta-1} e^{-(x/\lambda)^\beta} & \ ; \ x \geq 0 \\
-    0 & \ ; \ x < 0 \end{array} \right. 
+    0 & \ ; \ x < 0 \end{array} \right.
 \end{align}
 
 * $\lambda$ scale parameter
@@ -2926,6 +3110,7 @@ They histogram plot is overlayed with an empirical density plot as a solid line,
 
 :::
 
+
 ```{r}
 #| label: fig-ds-wbll
 #| out-width: 95%
@@ -2933,7 +3118,7 @@ They histogram plot is overlayed with an empirical density plot as a solid line,
 
 load(here("data","drive_shaft_failures.Rdata"))
 
-drive_shaft_failure %>% 
+drive_shaft_failure %>%
   ggplot(aes(x = Time_to_Failure))+
   geom_histogram(color = "white", alpha = 0.7) +
   geom_density(aes(y = after_stat(count)*70,linetype = "empirical"))+
@@ -2951,9 +3136,10 @@ drive_shaft_failure %>%
     )+
   labs(title = "Drive Shaft Failure Times",
        x = "Time to Failure (Hours)",
-       y = "Frequency") 
+       y = "Frequency")
 
 ```
+
 
 ```{r, include=FALSE}
 
@@ -2972,38 +3158,38 @@ probability_failure_after_500h
 
 ::: {.content-visible when-profile="script"}
 
-The Poisson distribution is a probability distribution commonly used in statistics to model the number of events that occur within a fixed interval of time or space, given a known average rate of occurrence. 
+The Poisson distribution is a probability distribution commonly used in statistics to model the number of events that occur within a fixed interval of time or space, given a known average rate of occurrence.
 It is named after the French mathematician Siméon Denis Poisson[^5].
 
 The Poisson distribution is an applicable probability model in such situations under specific conditions:
 
-**1. Independence:** Events should occur independently of each other within the specified interval of time or space. 
+**1. Independence:** Events should occur independently of each other within the specified interval of time or space.
 This means that the occurrence of one event should not affect the likelihood of another event happening.
 
 **2. Constant Rate:** The average rate (*lambda*, denoted as $\lambda$) at which events occur should be constant over the entire interval.
 In other words, the probability of an event occurring should be the same at any point in the interval.
 
-**3. Discreteness:** The events being counted must be discrete in nature. 
+**3. Discreteness:** The events being counted must be discrete in nature.
 This means that they should be countable and should not take on continuous values.
 
-**4. Rare Events:** The Poisson distribution is most appropriate when the events are rare, meaning that the probability of more than one event occurring in an infinitesimally small interval is negligible. 
+**4. Rare Events:** The Poisson distribution is most appropriate when the events are rare, meaning that the probability of more than one event occurring in an infinitesimally small interval is negligible.
 This assumption helps ensure that the distribution models infrequent events.
 
-**5. Fixed Interval:** The interval of time or space in which events are counted should be fixed and well-defined. 
+**5. Fixed Interval:** The interval of time or space in which events are counted should be fixed and well-defined.
 It should not vary or be open-ended.
 
-**6. Memorylessness:** The Poisson distribution assumes that the probability of an event occurring in the future is independent of past events. 
+**6. Memorylessness:** The Poisson distribution assumes that the probability of an event occurring in the future is independent of past events.
 In other words, it does not take into account the history of events beyond the current interval.
 
 **7. Count Data:** The Poisson distribution is most suitable for count data, where you are interested in the number of events that occur in a given interval.
 
-In the context of a Poisson distribution, the parameter lambda ($\lambda$) represents the average rate of events occurring in a fixed interval of time or space. 
-It is a crucial parameter that helps define the shape and characteristics of the Poisson distribution. 
+In the context of a Poisson distribution, the parameter lambda ($\lambda$) represents the average rate of events occurring in a fixed interval of time or space.
+It is a crucial parameter that helps define the shape and characteristics of the Poisson distribution.
 
-**Average Rate:** $\lambda$ is a positive real number that represents the average or expected number of events that occur in the specified interval. 
+**Average Rate:** $\lambda$ is a positive real number that represents the average or expected number of events that occur in the specified interval.
 It tells you, on average, how many events you would expect to observe in that interval.
 
-**Rate of Occurrence:** $\lambda$ quantifies the rate at which events happen. 
+**Rate of Occurrence:** $\lambda$ quantifies the rate at which events happen.
 A higher value of $\lambda$ indicates a higher rate of occurrence, while a lower value of $\lambda$ indicates a lower rate.
 
 **Shape of the Distribution:** The value of $\lambda$ determines the shape of the Poisson distribution. Specifically:
