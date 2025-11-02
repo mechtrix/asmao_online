@@ -1522,25 +1522,20 @@ overall |>
 
 ```
 
-## Bootstrapping {.smaller}
+## Bootstrapping
 
-:::{.r-stack}
-
-:::{.fragment .fade-in-then-out}
 
 ```{r}
 #| label: fig-smpl-btstrp
-#| out-width: 75%
+#| out-width: 95%
 #| fig-cap: The idea of bootstrapping (Biggerj1, Marsupilami)
-#| fig-pos: "H"
 
 knitr::include_graphics(here("SamplingMethods","Illustration_bootstrap.png"))
 
 ```
 
-:::
 
-:::{.fragment .fade-in-then-out}
+### Bootstrapping in general
 
 - **Definition:** Estimating sample statistic distribution by drawing new samples with replacement from observed data, providing insights into variability without strict population distribution assumptions.
 
@@ -1555,19 +1550,10 @@ knitr::include_graphics(here("SamplingMethods","Illustration_bootstrap.png"))
   - Cannot compensate for inadequate information in the original sample.
   - Not Always Optimal: Traditional methods may be better in cases meeting distribution assumptions.
 
-:::
-
-:::
 
 ::: {.content-visible when-profile="slides"}
 
 ### Bootstrapping in the classroom
-
-:::{.r-stack}
-
-:::{.fragment .fade-in-then-out}
-
-:::{style="font-size: 80%;"}
 
 ![](chapter003/50_cent.jpg){fig-align="center" width=50%}
 
@@ -1576,11 +1562,7 @@ knitr::include_graphics(here("SamplingMethods","Illustration_bootstrap.png"))
 * we can not just look at all the coins, we have to estimate the average minting year
 * we assume the 50 coins to be a representative sample (is it though?)
 
-:::
-
-:::
-
-:::{.fragment .fade-in-then-out}
+#### Coin Minting Year Distribution
 
 ```{r}
 #| include: false
@@ -1595,6 +1577,9 @@ coins_sample <- data.frame(
 
 
 ```{r}
+#| label: fig-btstrp-cns1
+#| fig-cap: Coin Distribution
+
 
 plt_dist_coins <- coins_sample %>% 
   ggplot(
@@ -1607,27 +1592,26 @@ plt_dist_coins <- coins_sample %>%
     color = "white"
   )+
   scale_y_continuous(
-    expand = c(0,0,0.05,0)
+    expand = c(0,0,0.05,0),
+    breaks = seq(0,20,1)
   )+
   scale_x_continuous(
     breaks = seq(1900,2500,2)
   )+
   labs(
     title = "Distribution of the minting year in the 50 coins"
-  )+
-  theme_bw(
-    base_size = 20
   )
 
 plt_dist_coins
 
 ```
 
-:::
-
-:::{.fragment .fade-in-then-out}
+#### Coin Minting Year Distribution with mean
 
 ```{r}
+#| label: fig-btstrp-cns2
+#| fig-cap: Coin Distribution with mean minting year
+
 
 plt_dist_coins+
   geom_vline(
@@ -1638,11 +1622,7 @@ plt_dist_coins+
 
 ```
 
-:::
-
-:::{.fragment .fade-in-then-out}
-
-<!-- ![](chapter003/CoinResamplingPrint.svg){fig-align="center" width=30%} -->
+#### What do we want to know?
 
 :::{style="font-size: 80%;"}
 
@@ -1656,15 +1636,11 @@ plt_dist_coins+
 
 :::
 
-:::
-
-:::{.fragment .fade-in-then-out}
+#### How does it get better?
 
 ![](chapter003/batman.jpg){.r-stretch}
 
-:::
-
-:::{.fragment .fade-in-then-out}
+#### Open Questions
 
 * What is a good sample size to resample (how often)?
 * Draw a number from the hat.
@@ -1672,9 +1648,284 @@ plt_dist_coins+
 * Why do we put the number back into the hat?
 * Now do it.
 
+
+
+##### Bootstrapping - the computer age
+
+```{r}
+#| echo: true
+
+virtual_resample <- coins_sample %>% 
+  infer::rep_sample_n(size = 10, replace = TRUE,reps = 100)
+
+
+
+```
+
+
+```{r}
+#| label: fig-btstrp-computerage
+#| out-width: 95%
+#| fig-cap: Bootstrapping is a computational method
+#| fig-pos: "H"
+
+
+cmp <- virtual_resample %>% 
+  group_by(replicate) %>% 
+  summarise(
+    mean_year = mean(year)
+  )
+
+
+
+plt_btstrp <- cmp %>% 
+  ggplot(
+    aes(
+      x = mean_year
+    )
+  )+
+  geom_histogram(
+    color = "white"
+  )+
+  scale_y_continuous(
+    expand = c(0,0,0.05,0)
+  )+
+  scale_x_continuous(
+    breaks = seq(2000,2500,1),
+    limits = c(2009,2018)
+  )+
+  labs(
+    title = "mean year from 1000 replications",
+    subtitle = paste0("mean year = ",round(mean(cmp$mean_year),digits = 2))
+  )+
+  geom_vline(
+    xintercept = mean(cmp$mean_year),
+    color = "red",
+    linewidth = 2
+  )
+
+plt_btstrp
+
+```
+
+---
+
+::: {.r-fit-text .v-c}
+
+WOW!
+
 :::
+
+##### non parametric confidence intervals [@statistical_ismaykim_2019]
+
+![](SamplingMethods/point_estimate_vs_conf_int.png)
+
+##### percentile method
+
+<!-- :::{.r-stack} -->
+
+<!-- :::{.fragment .fade-out} -->
+
+<!-- * take the middle $95\%$ of all bootstrapped values  -->
+<!-- * compute the $2.5th$ and the $97.5th$ percentile ($`r round(quantile(cmp$mean_year,0.025),digits = 2)`$ and $`r round(quantile(cmp$mean_year,0.975),digits = 2)`$) -->
+
+<!-- ::: -->
+
+<!-- :::{.fragment .fade-in-then-out} -->
+
+```{r}
+#| label: fig-btstrp-ci-percentile
+#| out-width: 95%
+#| fig-cap: The percentile method to estimate a confidence interval
+
+plt_btstrp+
+  geom_vline(
+    xintercept = round(quantile(cmp$mean_year,0.025),digits = 2),
+    linewidth = 2
+  )+
+  geom_vline(
+    xintercept = round(quantile(cmp$mean_year,0.975),digits = 2),
+    linewidth = 2
+  )
+
+```
+
+<!-- ::: -->
+
+<!-- ::: -->
+
+##### standard error method
+
+* if a numerical variable follows a standard distribution, roughly $95\%$ of all values are within $\pm1.96sd$ of the mean (rule of thumb)
+
+```{r}
+#| echo: true
+#| output: true
+
+SE <- cmp  %>% summarise(SE = sd(mean_year)) %>% pull(SE) %>% round(.,digits = 2)
+SE
+
+```
+
+\begin{align}
+\bar{x} \pm 1.96 &= (\bar{x}+1.96 * SE, \bar{x}-1.96*SE) \nonumber \\
+&= (`r mean(cmp$mean_year) %>% round(.,digits = 2)` + 1.96 * `r SE`, `r mean(cmp$mean_year) %>% round(.,digits = 2)` - 1.96 * `r SE`) \nonumber \\
+&= (`r round(mean(cmp$mean_year) %>% round(.,digits = 2) + 1.96 * SE,digits = 2)`, `r round(mean(cmp$mean_year) %>% round(.,digits = 2) - 1.96 *  SE,digits = 2)`) \nonumber 
+\end{align}
+
+##### comparison of both methods
+
+```{r}
+#| label: fig-btstrp-comp-ci
+#| out-width: 95%
+#| fig-cap: Comparison of both methods
+#| fig-pos: "H"
+
+ci_methods <- 
+  data.frame(
+    cmp_method = c("percentile","percentile","standard error","standard error"),
+    xintercept = c(
+      round(quantile(cmp$mean_year,0.025),digits = 2),
+      round(quantile(cmp$mean_year,0.975),digits = 2),
+      round(mean(cmp$mean_year) %>% round(.,digits = 2) + 1.96 * SE,digits = 2),
+      round(mean(cmp$mean_year) %>% round(.,digits = 2) - 1.96 *  SE,digits = 2)
+    )
+  )
+
+plt_btstrp+
+  geom_vline(
+    data = ci_methods,
+    aes(
+      xintercept = xintercept,
+      linetype = cmp_method
+    ),
+    linewidth = 1,
+    key_glyph = "path"
+  )+
+  labs(
+    title = "CI method comparison",
+    subtitle = "",
+    linetype = "method"
+  )+
+  theme(
+    legend.position = "bottom"
+  )
+
+```
+
+##### so... how many resamples?
+
+```{r}
+#| label: fig-btstrp-howmanyresamples
+#| out-width: 95%
+#| fig-cap: How often should we resample?
+#| fig-pos: "H"
+
+param_study <- expand_grid(
+  # n_size = 10^seq(1,3,1) |> as.integer(),
+  n_size = 50,
+  n_reps = 10^(seq(1,6,1)) |> as.integer()
+)
+
+param_study <- expand_grid(
+  # n_size = 10^seq(1,3,1) |> as.integer(),
+  n_size = 50,
+  n_reps = c(
+    seq(10,90,10),
+    seq(100,900,100),
+    seq(1000,9000,1000),
+    seq(10000,90000,10000)
+    ) |> 
+    as.integer()
+)
+
+
+param_study <- param_study |> 
+  rowwise() |> 
+  mutate(
+    bootstrap = list(
+      infer::rep_sample_n(
+        tbl = data.frame(sample_year = coins_sample$year), 
+        size = n_size, 
+        reps = n_reps, 
+        replace = TRUE)
+      )
+  ) |> 
+  ungroup()
+
+res_param_study <- param_study |> 
+  unnest(cols = bootstrap) |> 
+  group_by(
+    n_size,
+    n_reps,
+    replicate
+  ) |> 
+  summarise(
+    avg_year = mean(sample_year)
+  )
+
+res_param_study <- res_param_study |> 
+  ungroup() |> 
+  group_by(
+    n_size,
+    n_reps
+  ) |> 
+  summarise(
+    lo_quant = quantile(avg_year,0.025),
+    hi_quant = quantile(avg_year,0.975)
+  ) |> 
+  mutate(
+    ci = hi_quant-lo_quant
+  )
+
+
+res_param_study |> 
+  ggplot(
+    aes(
+      x = n_reps,
+      # color = as.factor(n_size),
+      y = ci
+    )
+  )+
+  geom_smooth(
+    se = F,
+    color = "gray80"
+  )+
+  geom_point()+
+  geom_line()+
+  scale_x_continuous(
+    # breaks = function(x) pretty(x,n=5),
+    trans = "log10",
+    labels = scales::comma
+  )+
+  scale_y_continuous(
+    trans = "log10"
+  )+
+  # geom_vline(
+  #   xintercept = c(10,100,1000,10000,100000),
+  #   color = "gray70"
+  # )+
+  labs(
+    title = "How often should you resample?",
+    x = "number of repetions",
+    y = "95% confidence interval (percentile method) in years"
+  )+
+  theme(
+    # panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank()
+  )
+
+
+```
+
+:::
+
+::: {.content-visible when-profile="slides"}
+
+## References
+
+::: {#refs}
 
 :::
 
 :::
-

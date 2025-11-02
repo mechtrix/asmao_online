@@ -2049,3 +2049,13 @@ plt_appr_ref_agr
 
 :::
 
+
+::: {.content-visible when-profile="slides"}
+
+## References
+
+::: {#refs}
+
+:::
+
+:::

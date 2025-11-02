@@ -1,5 +1,6 @@
 ---
 dof: degree of freedom
+CI: Confidence Interval
 PDF: Probability Density Function
 IQR: Interquartile Range
 PoI: Parameter of Interest
@@ -10,11 +11,10 @@ Z: Standard Score / Z-Score
 LLN: Law of Large Numbers
 CDF: Cumulative Density Function
 cl: confidence level
-CI: Confidence Interval
 SE: Standard Error
 ANOVA: Analysis of Variance
 H0: Null-Hypothesis
 Ha: alternative Hypothesis
 QC: Quality Control
-
+ME: Margin of Error
 ---

@@ -1841,3 +1841,12 @@ Again, because we are interested how the  manufactured drive shafts behave .w.r.
 :::
 
 
+::: {.content-visible when-profile="slides"}
+
+## References
+
+::: {#refs}
+
+:::
+
+:::

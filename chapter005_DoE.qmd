@@ -677,3 +677,13 @@ doe2Means <- data.frame(doe2Means,
 doe2Means |> gt()
 
 ```
+
+::: {.content-visible when-profile="slides"}
+
+## References
+
+::: {#refs}
+
+:::
+
+:::

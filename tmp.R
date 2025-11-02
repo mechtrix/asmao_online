@@ -1,22 +1,28 @@
+library(tidyverse)
+library(broom)
 
-data.frame(
-  dof = c(1,4,5,seq(10,100,10))
-) %>%
-  mutate(
-    x = list(seq(-4,4,0.01)),
-    d = map2(dof,x,function(x,y)dt(y,x)),
-    d_norm = map(x,dnorm,mean = 0, sd = 1)
-  ) %>%
-  mutate(dof = as.factor(dof)) %>%
-  unnest(cols = c(x,d,d_norm)) %>%
-  ggplot(aes(x = x, y = d, linetype = dof))+
-  geom_ribbon(aes(ymax = d_norm,ymin = 0),alpha = 0.4,fill = "azure3",show.legend = F)+
-  geom_line()+
-  scale_x_continuous(
-    expand = c(0,0,0,0)
-  )+
-  scale_y_continuous(
-    expand = c(0,0,0.05,0)
-  )+
-  labs(title = "t-distribution with varying degrees of freedom",
-       subtitle = "As degrees of freedom increase, the t-distribution approaches the normal distribution")
+# Function to calculate power for a given n
+calculate_power <- function(n, p_h1 = 0.6, alpha = 0.05) {
+  # Critical value under H0 (exact binomial)
+  c <- qbinom(1 - alpha, n, 0.5)
+  
+  # Power = P(X >= c | H1)
+  power <- 1 - pbinom(c - 1, n, p_h1)
+  
+  tibble(n = n, critical_value = c, power = power)
+}
+
+# Calculate for multiple n
+n_values <- c(10, 20, 30, 50)
+power_results <- map_dfr(n_values, ~calculate_power(.x))
+
+# Visualize
+ggplot(power_results, aes(n, power)) +
+  geom_point(size = 3) +
+  geom_line() +
+  labs(
+    title = "Power Analysis for a Biased Coin (p = 0.6)",
+    x = "Number of Flips (n)",
+    y = "Power (1 - β)"
+  ) +
+  theme_minimal()

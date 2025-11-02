@@ -3225,5 +3225,12 @@ ggplot(data, aes(x = x, y = probability, linetype = as.factor(lambda))) +
 
 ```
 
+::: {.content-visible when-profile="slides"}
 
+## References
 
+::: {#refs}
+
+:::
+
+:::

@@ -60,6 +60,78 @@ It represents the opposite of the null hypothesis, suggesting that there is a si
 
 :::
 
+## Statistical errors
+
+```{r}
+#| label: fig-stat-errors
+#| fig-cap: The statistical Errors (Type I and Type II).
+#| out-width: 75%
+
+knitr::include_graphics(here::here("chapter002","007_StatisticalErrors.png"))
+```
+
+::: {.content-visible when-profile="script"}
+
+* Type I Error (False Positive, see @fig-stat-errors):
+
+A Type I error occurs when a null hypothesis that is actually true is rejected.
+In other words, it's a false alarm.
+It is concluded that there is a significant effect or difference when there is none.
+The probability of committing a Type I error is denoted by the [significance level $\alpha$](#sign-level). 
+*Example:* Imagine a drug trial where the null hypothesis is that the drug has no effect (it's ineffective), but due to random chance, the data appears to show a significant effect, and you incorrectly conclude that the drug is effective (Type I error).
+
+* Type II Error (False Negative, see @fig-stat-errors):
+
+A Type II error occurs when a null hypothesis that is actually false is not rejected.
+It means failing to detect a significant effect or difference when one actually exists.
+The probability of committing a Type II error is denoted by the symbol $\beta$.
+*Example:* In a criminal trial, the null hypothesis might be that the defendant is innocent, but they are actually guilty. 
+If the jury fails to find enough evidence to convict the guilty person, it is a Type II error.
+
+Type I Error is falsely concluding, that there is an effect or difference when there is none (false positive).
+Type II Error failing to conclude that there is an effect or difference when there actually is one (false negative).
+
+The relationship between *Type I* and *Type II* errors is often described as a trade-off. 
+As the risk of Type I errors is reduced by lowering the significance level ($\alpha$), the risk of Type II errors ($\beta$) is typically increased (@fig-stat-rates). 
+This trade-off is inherent in hypothesis testing, and the choice of significance level depends on the specific goals and context of the study. 
+Researchers often aim to strike a balance between these two types of errors based on the consequences and costs associated with each. 
+This balance is a critical aspect of the design and interpretation of statistical tests.
+
+:::
+
+## Significance
+
+```{r}
+#| label: fig-stat-rates
+#| fig-cap: Type I and Type II error in the context of inferential statistics.
+#| out-width: 75%
+
+knitr::include_graphics(here::here("chapter002","008_Rates.png"))
+```
+
+::: {.content-visible when-profile="script"}
+
+The p-value is a statistical measure that quantifies the evidence against a null hypothesis. 
+It represents the probability of obtaining test results as extreme or more extreme than the ones observed, assuming the null hypothesis is true. 
+In hypothesis testing, a smaller p-value indicates stronger evidence against the null hypothesis.
+If the p-value is less than or equal to $\alpha$ ($p \leq \alpha$), you reject the null hypothesis.
+If the p-value is greater than $\alpha$ ( $p > \alpha$ ), you fail to reject the null hypothesis.
+A common threshold for determining statistical significance is to reject the null hypothesis when $p\leq\alpha$.
+
+The p-value however does not give an assumption about the effect size, which can be quite insignificant [@Nuzzo_2014].
+While the p-value therefore is the probability of accepting $H_a$ as true, it is not a measure of magnitude or relative importance of an effect.
+Therefore the [CI](#ci) and the effect size should always be reported with a p-value.
+Some Researchers even claim that most of the research today is false [@Ioannidis_2005].
+In practice, especially in the manufacturing industry, the p-value and its use is still popular.
+Before implementing any measures in a series production, those questions will be asked.
+The confident and reliable engineer asks them beforehand and is always his own greatest critique.
+
+:::
+
+
+
+
+
 ::: {.content-visible when-profile="slides"}
 
 ### The drive shaft exercise - Hypotheses
@@ -96,7 +168,7 @@ In the following we will explore, how to test for these hypotheses.
 :::
 
 
-## Confidence Intervals
+## {{< acr CI >}}
 
 ::: {.content-visible when-profile="script"}
 
@@ -124,7 +196,7 @@ CI = \bar{X} \pm t \frac{\sigma_0}{\sqrt{n}} \label{ci01}
 
 * $n$ is the sample size
 
-2.For the population mean [$\mu_0$](index.qmd#truemean-gloss) when the population standard deviation [$\sigma_0^2$](index.qmd#truevariance-gloss) is Unknown (t-confidence interval), see \eqref{ci02}.
+2.For the population mean [$\mu_0$](index.qmd#truemean-gloss) when the population standard deviation [$\sigma_0^2$](index.qmd#truevariance-gloss) is unknown (t-confidence interval), see \eqref{ci02}.
 
 \begin{align}
 CI = \bar{X} \pm t \frac{sd}{\sqrt{n}} \label{ci02}
@@ -154,6 +226,40 @@ CI = \hat{p} \pm Z \sqrt{\frac{\hat{p}(1-\hat{p})}{n}} \label{ci03}
 Estimating a population median or the differences between two population means, other statistical techniques may be used.
 
 :::
+
+```{r}
+#| label: fig-ci-lit
+#| fig-cap: Point estimates vs. confidence intervals [@statistical_ismaykim_2019].
+#| out-width: 95%
+#| fig-pos: "H"
+
+knitr::include_graphics(here::here("SamplingMethods","point_estimate_vs_conf_int.png"))
+```
+
+### Some basics
+
+\begin{align}
+P(L \leq \theta \leq U) = 1- \alpha
+\end{align}
+
+... with $L$ and $U$ being computed from sample data.
+
+::: {.fragment .fade-in}
+
+A $95\%$ {{< acr CI >}} for the population mean $\mu_0$ implies that if we repeated the sampling process infinitely, $95\%$ of the computed intervals would contain $\mu$.
+
+:::
+
+### Components of a {{< acr CI >}}
+
+1. **Point Estimate**: The sample statistic ($\bar{x},\hat{p}$)
+2. **{{< acr SE >}}**: Measures the variability of the point estimate
+3. **Critical Value**: Derived from the sampling distribution
+4. **{{< acr ME >}}**: $ME = \text{Critical Value} \times SE$
+
+\begin{align}
+\text{CI} = \text{Point Estimate} \pm \text{ME}
+\end{align}
 
 ### The drive shaft exercise - Confidence Intervals
 
@@ -234,16 +340,17 @@ The highlighted area shows the minimum and maximum {{< acr CI >}}, the calculate
 
 :::
 
+::: {.content-visible when-profile="script"}
 
 ## Significance Level 
 
-::: {.content-visible when-profile="script"}
-   
 The significance level $\alpha$ is a critical component of hypothesis testing in statistics. 
 It represents the maximum acceptable probability of making a Type I error, which is the error of rejecting a null hypothesis when it is actually true. 
 In other words, $\alpha$ is the probability of concluding that there is an effect or relationship when there isn't one.
 Commonly used significance levels include $0.05 (5\%)$, $0.01 (1\%)$, and $0.10 (10\%)$. 
 The choice of $\alpha$ depends on the context of the study and the desired balance between making correct decisions and minimizing the risk of Type I errors.
+
+:::
 
 ## False negative - risk
 
@@ -255,7 +362,6 @@ Statistical power is the probability of correctly rejecting a null hypothesis wh
 \beta = 1 - \text{Power}
 \end{align}
 
-:::
 
 ## Power Analysis
 
@@ -292,50 +398,29 @@ The probability of failing to reject the null hypothesis when it is false. Power
 
 :::
 
-::: {.r-stack}
+### Why Power analysis
 
-::: {.fragment .fade-out}
+- How large should a sample be?
+- What's the probability my experiment will succeed (as in reject $H_0$ when $H_0$ is false)
+- Is my study even worth running given the effect size I expect
 
-```{r}
-#| label: fig-ct-prob
-#| fig-cap: The coin toss with the respective probabilites [@pwr].
-#| out-width: 75%
-#| fig-pos: "H"
+### Power defined
 
-knitr::include_graphics(here::here("chapter002","023_CoinToss.png"))
-```
+**Power** = Probability of rejecting $H_0$ when $H_a$ is true.
 
-:::
+Mathematically:
 
-:::{ .incremental .v-center-container .fade-in-then-out}
+\begin{align}
+\text{Power} = P(\text{Reject }H_0|H_1 \text{ is true}) = 1 -\beta
+\end{align}
 
-H0:
-: The coin is fair and lands heads $50\%$ of the time.
-
-Ha:
-: The coin is loaded and lands heads more than $50\%$ of the time.
-
-:::
-
-
-::: {.fragment .fade-in-then-out}
-
-```{r}
-#| label: pwr-calc
-#| echo: true
-
-pwr.p.test(h = ES.h(p1 = 0.75, p2 = 0.50),
-           sig.level = 0.05,
-           power = 0.80,
-           alternative = "greater")
-
-```
-
-:::
-
-::: {.fragment .fade-in-then-out}
+- Significance level ($\alpha$): Threshold for rejecting $H_0$ (e.g. $0.05$)
+- Effect Size: For the Coin Toss example $p = 0.6$ vs. $p = 0.5$
+- Sample Size ($n$)
 
 ::: {.content-visible when-profile="script"}
+
+### Power and $\beta$ error
 
 The sample size $n = 23$, meaning $23$ coin flips means that the statistical power is $80\%$  at a $\alpha = 0.05$ significance level ($\beta = 1-power = 0.2 \approx 20\%$).
 But what if the sample size varies?
@@ -347,8 +432,112 @@ This highlights the non-linear nature of power calculations and why they are imp
 
 :::
 
+### Example: The Coin Toss
+
+::: {.r-stack}
+
+::: {.fragment .fade-out}
+
+```{r}
+#| label: fig-ct-prob
+#| fig-cap: The coin toss with the respective probabilites [@pwr].
+#| out-width: 60%
+#| fig-pos: "H"
+
+knitr::include_graphics(here::here("chapter002","023_CoinToss.png"))
+```
+
+:::
+
+::: {.fragment .fade-in-then-out}
+
+Define $H_0$ and $H_a$
+
+:::
+
+::: {.fragment .fade-in-then-out}
+
+H0: The coin is fair and lands heads $50\%$ of the time.
+
+Ha: The coin is loaded and lands heads more than $50\%$ of the time.
+
+:::
+
+::: {.fragment .fade-in-then-out}
+
+Power computation for $n = 10,20,30,50$ with $\alpha = 0.05$
+
+:::
+
+::: {.fragment .fade-in-then-out}
+
+Define the test statistic
+
+:::
+
+::: {.fragment .fade-in-then-out}
+
+For a binomial test, the test statistic is the number of head $X$ under $H_0$, $X \sim \text{Binomial}(n,0.5)$
+
+:::
+
+::: {.fragment .fade-in-then-out}
+
+Critical Value
+
+:::
+
+::: {.fragment .fade-in-then-out}
+
+Reject $H_0$ if $x\geq c$, where $c$ is the smallest integer such that
+
+$$P(X\geq c) | H_0) \leq \alpha$$
+
+:::
+
+::: {.fragment .fade-in-then-out}
+
+Power calculation
+
+:::
+
+::: {.fragment .fade-in-then-out}
+
+$$\text{Power} = P(X\geq c|H_1)$$
+
+:::
+
+:::
+
+#### Power calculations in this example
+
+- The *critical value* is the smallest integer where $P(X\geq c)\leq \alpha$
+  - For $n = 10$ and $\alpha = 0.05$ `qbinom(0.95,10,0.5)` returns $8$, meaning we would reject $H_0$ if there are **8 or more heads** in 10 flips
+
+##### Power is the *probability of observing $X\geq c$ under $H_1$
+
+  - `pbinom(c-1,n,p_h1)` computes $P(X\leq c-1 |H_1)$
+  - `1-pbinom(...)` gives $P(X\geq c | H_1)$
+  - $n=10$, $c = 8$ and $p_{H1} = 0.6$: `1-pbinom(7,10,0.6) = ` `r 1-pbinom(7,10,0.6)`  
+
+### Using packages
+
+```{r}
+#| label: pwr-calc
+#| echo: true
+
+pwr::pwr.p.test(h = pwr::ES.h(p1 = 0.6, p2 = 0.50),
+           sig.level = 0.05,
+           power = 0.80,
+           alternative = "greater")
+
+```
+
+### Power vs. sample size
+
 ```{r}
 #| label: fig-pwr-calc
+#| out-width: 95%
 #| fig-cap: The power vs. the sample size
 
 pwr_df <- data.frame(
@@ -399,16 +588,12 @@ pwr_df %>%
 
 ```
 
-:::
+### Power and the different parameters
 
-::: {.fragment .fade-in-then-out}
-
-::: {.content-visible when-profile="script"}
-
-:::
 
 ```{r}
 #| label: fig-pwr-calc-params
+#| out-width: 95%
 #| fig-cap: The power vs. the sample size for different effect sizes
 
 p1 <- c(seq(0.6,0.8, 0.1),0.65)
@@ -464,9 +649,7 @@ pwr_df_params %>%
 
 ```
 
-:::
 
-:::
 
 ::: {.content-visible when-profile="script"}
 
@@ -483,77 +666,7 @@ These are pre-determined effect sizes for “small”, “medium”, and “larg
 
 :::
 
-## p-value
 
-```{r}
-#| label: fig-stat-rates
-#| fig-cap: Type I and Type II error in the context of inferential statistics.
-#| out-width: 75%
-
-knitr::include_graphics(here::here("chapter002","008_Rates.png"))
-```
-
-::: {.content-visible when-profile="script"}
-
-The p-value is a statistical measure that quantifies the evidence against a null hypothesis. 
-It represents the probability of obtaining test results as extreme or more extreme than the ones observed, assuming the null hypothesis is true. 
-In hypothesis testing, a smaller p-value indicates stronger evidence against the null hypothesis.
-If the p-value is less than or equal to $\alpha$ ($p \leq \alpha$), you reject the null hypothesis.
-If the p-value is greater than $\alpha$ ( $p > \alpha$ ), you fail to reject the null hypothesis.
-A common threshold for determining statistical significance is to reject the null hypothesis when $p\leq\alpha$.
-
-The p-value however does not give an assumption about the effect size, which can be quite insignificant [@Nuzzo_2014].
-While the p-value therefore is the probability of accepting $H_a$ as true, it is not a measure of magnitude or relative importance of an effect.
-Therefore the [CI](#ci) and the effect size should always be reported with a p-value.
-Some Researchers even claim that most of the research today is false [@Ioannidis_2005].
-In practice, especially in the manufacturing industry, the p-value and its use is still popular.
-Before implementing any measures in a series production, those questions will be asked.
-The confident and reliable engineer asks them beforehand and is always his own greatest critique.
-
-:::
-
-
-
-## Statistical errors
-
-```{r}
-#| label: fig-stat-errors
-#| fig-cap: The statistical Errors (Type I and Type II).
-#| out-width: 75%
-
-knitr::include_graphics(here::here("chapter002","007_StatisticalErrors.png"))
-```
-
-::: {.content-visible when-profile="script"}
-
-* Type I Error (False Positive, see @fig-stat-errors):
-
-A Type I error occurs when a null hypothesis that is actually true is rejected.
-In other words, it's a false alarm.
-It is concluded that there is a significant effect or difference when there is none.
-The probability of committing a Type I error is denoted by the [significance level $\alpha$](#sign-level). 
-*Example:* Imagine a drug trial where the null hypothesis is that the drug has no effect (it's ineffective), but due to random chance, the data appears to show a significant effect, and you incorrectly conclude that the drug is effective (Type I error).
-
-* Type II Error (False Negative, see @fig-stat-errors):
-
-A Type II error occurs when a null hypothesis that is actually false is not rejected.
-It means failing to detect a significant effect or difference when one actually exists.
-The probability of committing a Type II error is denoted by the symbol $\beta$.
-*Example:* In a criminal trial, the null hypothesis might be that the defendant is innocent, but they are actually guilty. 
-If the jury fails to find enough evidence to convict the guilty person, it is a Type II error.
-
-Type I Error is falsely concluding, that there is an effect or difference when there is none (false positive).
-Type II Error failing to conclude that there is an effect or difference when there actually is one (false negative).
-
-The relationship between *Type I* and *Type II* errors is often described as a trade-off. 
-As the risk of Type I errors is reduced by lowering the significance level ($\alpha$), the risk of Type II errors ($\beta$) is typically increased (@fig-stat-rates). 
-This trade-off is inherent in hypothesis testing, and the choice of significance level depends on the specific goals and context of the study. 
-Researchers often aim to strike a balance between these two types of errors based on the consequences and costs associated with each. 
-This balance is a critical aspect of the design and interpretation of statistical tests.
-
-:::
-
-{{< pagebreak >}}
 
 ## Parametric and Non-parametric Tests {.r-stretch}
 
@@ -4092,5 +4205,13 @@ With $p<\alpha = 0.05$ $H_0$ is rejected, the timepoints play a vital role for t
 
 :::
    
-   
+::: {.content-visible when-profile="slides"}
+
+## References
+
+::: {#refs}
+
+:::
+
+:::
 
