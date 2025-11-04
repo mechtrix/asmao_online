@@ -27,6 +27,10 @@ library(ggh4x)
 library(gghighlight)
 library(rstatix)
 
+ggplot2::theme_set(
+  ggthemes::theme_few(base_size = 15)
+  )
+
 ```
 
 ::: {.content-visible when-profile="script"}
@@ -693,7 +697,6 @@ Some examples for parametric and non-parametric tests are given in @tbl-ParamTes
 
 :::
 
-<!-- ::: {.v-center-container} -->
 
 ```{r}
 #| label: tbl-ParamTestsvsNonParamTests
@@ -719,7 +722,106 @@ ParamTests_NonParamTests %>%
 
 ```
 
-<!-- ::: -->
+### Ranks
+
+A *rank* is a position of a data point when sorted in ascending/descending order.
+
+Ties are handled using the *average* rank (two 3rd places, both get ranked $3.5$)
+
+- Data: `[5,2,8,2,10]`
+- Sorted: `[2,2,5,8,10]`
+- Ranks: `[2,2,3,4,5]`
+- Ranks with ties: `[1.5,1.5,3,4,5]` 
+
+### Why ranks for non-parametric tests {.incremental}
+
+1. **Invariance to Monotonic Transformations**: Ranks preserve order, so log/root transformations do not change them
+
+2. **Focus on relative Differences**: Tests like Wilcoxon (rank-sum) or Kruskal-Wallis compare *ranks distributions* across groups
+
+3. **Exact p-values per Permutation**: Ranks allow exact tests by enumerating all possible rank orderings (for small samples)
+
+### Common Pitfalls and Misconceptions
+
+1. **Loss of Information**: Ranks discard magnitude, a trade-off for robustness
+
+2. **Ties Reduce Power**: Many ties weaken tests
+
+3. **Not "Assumption-Free"**: Nonpaeametric $\neq$ no assumptions (independence, distribution shapes)
+
+#### Exercise on ranks
+
+```{r}
+#| label: tbl-ranks-exercise
+#| tbl-cap: Reaction times for two groups of participants
+
+reaction_data <- tibble(
+  group = c("A", "A", "B", "B", "A", "B", "A", "B"),
+  time  = c(12.3, 10.1, 14.0, 13.2, 10.1, 15.5, 11.8, 13.2)
+)
+
+reaction_data |> gt()
+
+```
+
+#### Sort the data
+
+::: {.fragment .fade-in}
+
+```{r}
+#| label: tbl-ranks-exercise02
+#| tbl-cap: sorted reaction times for two groups of participants
+
+sorted_data <- reaction_data %>%
+  arrange(time) %>%
+  mutate(sorted_position = row_number())
+
+sorted_data |> gt()
+         
+```
+
+:::
+
+#### Assign Ranks
+
+::: {.fragment .fade-in}
+
+```{r}
+#| label: tbl-ranks-exercise03
+#| tbl-cap: sorted reaction times for two groups of participants
+
+ranked_data <- reaction_data %>%
+  mutate(rank = rank(time, ties.method = "average")) |> 
+  arrange(group,time)
+
+ranked_data |> gt()
+
+
+```
+
+:::
+
+#### Sum of ranks
+
+::: {.fragment .fade-in}
+
+```{r}
+#| label: tbl-ranks-exercise04
+#| tbl-cap: sorted reaction times for two groups of participants
+
+sum_ranks <- ranked_data %>%
+  group_by(group) %>%
+  summarise(
+    sum_rank = sum(rank),
+    count = n(),
+    mean_rank = mean(rank)
+  )
+
+sum_ranks |> gt()
+
+```
+
+:::
 
 ## Paired and Independent Tests
 
@@ -795,15 +897,13 @@ In @tbl-qq-smpl-dat $n=10$ datapoints are shown as a sample dataset.
 
 ```{r}
 #| label: tbl-qq-smpl-dat
-#| tbl-cap: 10 randomly sampled datapoints for the creation of the QQ-plot
+#| tbl-cap: 10 datapoints for the creation of the QQ-plot
 
-set.seed(123)
 
-qq_smpl <- data.frame(x = rnorm(10)) %>% 
-  mutate(smpl_no = seq_along(x)) 
+qq_smpl <- data.frame(sample_data = c(3,1,5,2,4)) 
 
 qq_smpl %>% 
-  gt()
+  gt() 
 
 
 ```
@@ -821,17 +921,15 @@ To create a [QQ](#qq) plot, the data must be sorted in ascending order.
 #| label: tbl-qq-smpl-sort
 #| tbl-cap: The sorted data points.
 
-set.seed(123)
-
 qq_smpl_srt <- qq_smpl %>% 
-  arrange(x)  
+  arrange(sample_data)  
   
 qq_smpl_srt %>% gt()
 
 
 ```
 
-#### Theoretical Quantiles
+#### Empirical Quantiles
 
 ::: {.content-visible when-profile="script"}
 
@@ -841,36 +939,60 @@ These quantiles represent the expected values if the data perfectly follows that
 :::
 
 ```{r}
+#| label: tbl-qq-smpl-emprcl
+#| tbl-cap: The empirical quantiles
+
+
+qq_smple_srt_emp <-  qq_smpl_srt %>% 
+  mutate(
+    sample_data_emp_prob = (1:n()-0.5)/n()
+    # x_thrtcl = pnorm(x_norm)
+  )
+
+qq_smple_srt_emp %>% 
+  gt()
+
+```
+
+#### Theoretical Quantiles
+
+```{r}
 #| label: tbl-qq-smpl-thrtcl
 #| tbl-cap: The calculated theoretical quantiles
 
 
-qq_smple_srt_thrtcl <-  qq_smpl_srt %>% 
+qq_smple_srt_theo <-  qq_smple_srt_emp |> 
   mutate(
-    x_norm = as_vector(scale(x)),
-    x_thrtcl = pnorm(x_norm)
+   quant_theo = qnorm(sample_data_emp_prob,  mean  = mean(sample_data),sd = sd(sample_data))
   )
 
-qq_smple_srt_thrtcl %>% 
+qq_smple_srt_theo %>% 
   gt()
 
 ```
 
 #### Plotting Points 
 
+
 ```{r}
 #| label: fig-qq-pts
-#| out-width: 75%
+#| out-width: 95%
 #| fig-cap: The QQ points as calculated before.
 #| fig-pos: "H"
 
-qq_smpl %>% 
-  ggplot(aes(sample = x))+
-  stat_qq_point()+
-  labs(
-    title = "The drawn QQ points"
+qq_smple_srt_theo %>% 
+  ggplot()+
+  geom_point(
+    aes(
+      x = quant_theo,
+      y = sample_data
+      )
   )+
-  theme_minimal()
+  labs(
+    title = "The drawn QQ points",
+    x = "theoretical quantiles",
+    y = "sample data"
+  )
 
 ```
 
@@ -881,22 +1003,45 @@ The x-coordinate of the point corresponds to the theoretical quantile, and the y
 
 :::
 
+
 #### Perfect Normal Distribution
 
 ```{r}
 #| label: fig-qq-abline
-#| out-width: 75%
+#| out-width: 95%
 #| fig-cap: A perfect normal distribution would be indicated if all points would fall on this straight line.
 #| fig-pos: "H"
 
-qq_smpl %>% 
-  ggplot(aes(sample = x))+
-  stat_qq_point()+
-  geom_abline()+
-  labs(
-    title = "A perfect normal distribution line."
+qq_smple_srt_theo %>% 
+  ggplot(
+    aes(
+      x = quant_theo,
+      y = sample_data))+
+  geom_point()+
+  geom_abline(
+    aes(
+    intercept = mean(quant_theo) - sd(quant_theo)*mean(quant_theo),
+    slope = sd(quant_theo),
+    linetype = "fitted qq line")
   )+
-  theme_minimal()
+  geom_abline(
+    aes(
+      intercept = 0,
+      slope = 1,
+      linetype = "perfect normal"
+    )
+  )+
+  labs(
+    title = "A perfect normal distribution line.",
+    linetype = "",
+    x = "theoretical quantiles",
+    y = "sample data"
+  )+
+  theme(
+    legend.position = "bottom"
+  )
+
+  
 
 ```
 
@@ -904,40 +1049,6 @@ qq_smpl %>%
 
 In the case of a perfect normal distribution, all the points would fall along a straight line at a 45-degree angle. 
 If the data deviates from normality, the points may deviate from this line in specific ways, see @fig-qq-abline.
-
-:::
-
-#### Interpretation
-
-```{r}
-#| label: fig-qq-line
-#| out-width: 75%
-#| fig-cap: The QQ line as plotted using the theoretical and sample quantiles.
-#| fig-pos: "H"
-
-qq_smpl %>% 
-  ggplot(aes(sample = x))+
-  stat_qq_point()+
-  stat_qq_line(
-    aes(linetype = "QQ-line"),
-    key_glyph = draw_key_path
-    )+
-  geom_abline(
-    aes(linetype = "perfect normal distribution",slope = 1,intercept = 0),
-    key_glyph = draw_key_path
-    )+
-  labs(
-    title = "A perfect QQ line in comparison to the data QQ line.",
-    x = "theoretical",
-    y = "sample",
-    linetype = ""
-  )+
-  theme_minimal()+
-  theme(legend.position = "bottom")
-
-```
-
-::: {.content-visible when-profile="script"}
 
 Deviations from the straight line suggest departures from the assumed distribution. 
 For example, if points curve upward, it indicates that the data has heavier tails than a normal distribution. 
@@ -947,6 +1058,49 @@ In @fig-qq-line the QQ-points are shown together with the respective QQ-line and
 Some deviations can be seen, but it is hard to judge, if the data is normally distributed or not.
 
 :::
+
+#### QQ plot with probabilities
+
+```{r}
+#| label: fig-qq-abline-probgrid
+#| out-width: 95%
+#| fig-cap: A QQ Plot with the assigned probabilities on the axis
+#| fig-pos: "H"
+
+probs <- c( 0.05, seq(0.1, 0.9, by = 0.1), 0.95)
+qprobs<-qnorm(probs)
+
+qq_smple_srt_theo_scaled <- qq_smple_srt_theo |> 
+  mutate(
+    sample_data_scaled = scale(sample_data),
+    quant_theo_scaled = qnorm(sample_data_emp_prob,  mean  = mean(sample_data_scaled),sd = sd(sample_data_scaled))
+  )
+
+qq_smple_srt_theo_scaled |> 
+  ggplot(
+    aes(
+      x = quant_theo_scaled,
+      y = sample_data_scaled))+
+  geom_point()+
+  geom_abline(
+    aes(
+    intercept = mean(quant_theo_scaled) - sd(quant_theo_scaled)*mean(quant_theo_scaled),
+    slope = sd(quant_theo_scaled),
+    # linetype = "fitted qq line"
+    )
+  )+
+  labs(
+    title = "A QQ plot with probabilities",
+    x = "theoretical probabilities",
+    y = "sample probabilities"
+  )+
+  theme(
+    panel.grid.major = element_line(color = "gray")
+  )+
+  scale_y_continuous(limits=range(qprobs), breaks=qprobs, labels = 100*probs)+
+  scale_x_continuous(limits=range(qprobs), breaks=qprobs, labels = 100*probs)
+
+```
 
 
 
@@ -959,30 +1113,31 @@ Some deviations can be seen, but it is hard to judge, if the data is normally di
 #| fig-pos: "H"
 
 qq_smpl %>% 
-  ggplot(aes(sample = x))+
+  ggplot(aes(sample = sample_data))+
   stat_qq_band()+
   stat_qq_point()+
   stat_qq_line()+
   scale_x_continuous(
-    breaks = seq(-3,3,0.5),
+    # breaks = seq(-3,3,0.5),
     # limits = c(-1.5,1.5)
+    expand = c(0,0.05,0,0.05)
   )+
   scale_y_continuous(
-    breaks = seq(-3,3,0.5),
+    # breaks = seq(-3,3,0.5),
     # limits = c(-1.5,1.5)
+    expand = c(0,0,0,0)
   )+
   labs(
     title = "The confidence bands for the QQ plot.",
     x = "theoretical",
     y = "sample"
-  )+
-  theme_few()
+  )
 
 ```
 
 ::: {.content-visible when-profile="script"}
 
-Because it is hard to judge from @fig-qq-line if the points are normally distributed, it makes sense to get limits for normally disitrbuted points.
+Because it is hard to judge from @fig-qq-line if the points are normally distributed, it makes sense to get limits for normally distributed points.
 This is shown in @fig-qq-bands.
 The gray area depicts the ($95\%$) confidence bands for a normal distribution.
 All the points fall into the area, as well as the line.
@@ -1051,7 +1206,7 @@ The points from visible categories, which is a strong indicator, that the measur
 #| fig-cap: A visualisation of the KS test using the 10 datapoints from before
 #| fig-pos: "H"
 
-my_data <- qq_smpl$x
+my_data <- qq_smpl$sample_data
 
 # Perform the KS test
 ks_result <- ks.test(my_data, "pnorm")
@@ -1204,22 +1359,10 @@ knitr::include_graphics(here::here("chapter002","019_StatisticalTests_OneVar.png
 
 ### One Proportion Test 
 
-```{r}
-#| label: tbl-prop-test-data
-#| tbl-cap: The raw data for the proportion test.
-
-data <- data.frame(Category = c("A", "B"),
-                   Count = c(35, 20),
-                   Total = c(100, 100)) %>% 
-  
-  mutate(
-    plt_lbl = paste(Count," counts\n",Total," trials")
-  )
-
-data %>% 
-  gt() 
-
-```
+Scenario:
+A semiconductor manufacturer claims that their production line yields no more than $2\%$ defective chips (i.e., the defect rate $p_0=0.02$ ). 
+To verify this, a quality engineer randomly samples 500 chips and finds 14 defectives. 
+Is there sufficient evidence at $\alpha=0.05$  to conclude that the defect rate exceeds the claimed $2\%$?
 
 ::: {.content-visible when-profile="script"}
 
@@ -1229,80 +1372,260 @@ This test helps determine if the sample proportion significantly differs from th
 
 :::
 
+#### Define the Hypothesis {.incremental}
 
+{{< acr H0 >}}:
+: Defect rate is $\leq 2\%$ $(p\leq0.02)$
 
-::: {.content-visible when-profile="slides"}
+{{< acr Ha >}}:
+: Defect rate is $\gt 2\%$ $p \gt 0.02$
+
+This is a **right-tailed** test
+
+#### The z-test for proportions
+
+The underlying distribution for the z-test is the *binomial* distribution.
+
+The test itself relies on the *normal* approximation to the *binomial*
+
+$$X\sim\text{Binomial}(n,p)$$
+
+- $n$: sample size
+
+- $p$: true population proportion
+
+- Sample proportion: The sample proportion $\hat{p} = \frac{X}{n}$ is the estimator for $p$
+
+#### The Bridge to Normality
+
+Acc. to the {{< acr CLT >}} for large $n$
+
+\begin{align}
+\hat{p} \sim N(p,\sqrt{\frac{p(1-p)}{n}})
+\end{align}
+
+1. Mean: $\hat{p}$ is the unbiased estimator of $p$
+2. {{< acr SE >}}: The $sd$ of $\hat{p}$ is $\sqrt{\frac{p(1-p)}{n}}$
+3. Normality Condition: $np\geq10$ and $n(1-p)\geq 10$
+
+#### The Z-Statistic
+
+Under $H_0$ assume $p = p_0$. The Z-Statistic standardizes $\hat{p}$ to
+
+\begin{align}
+Z = \frac{\hat{p}-p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}}
+\end{align}
+
+#### Check Assumptions
 
 . . .
 
-:::
+- Independence: Chips are randomly sampled
+
+. . .
+
+- Sample Size: $n \cdot p_0\geq 10$ and $n(1-p_0)\geq10$
+
+. . .
+  
+  - $500 \times 0.02 = 10 \geq 10$
+  
+. . .  
+
+  - $500 \times 0.98 = 490 \geq 10$
+  
+#### Calculate Test Statistic
+
+- $\hat{p} = \frac{\text{defective}}{n} = \frac{14}{500} = 0.028$
+- $p_0 = 0.02, n = 500$
+
+. . .
+
+$$z = \frac{\hat{p}-p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}} = \frac{0.028-0.02}{\sqrt{\frac{0.02\times 0.98}{500}}}\approx 1.28$$
+
+#### Compute the p-value
+
+$$P(Z>1.28) = 1-P(Z\leq 1.28)\approx 1-0.8997 = 0.1003$$
 
 ```{r}
-#| label: tbl-prop-test-res
-#| tbl-cap: The test results for the proportion test.
+#| label: fig-z-test
+#| out-width: 95%
+#| fig-cap: The z-test statistic
+#| fig-pos: "H"
 
-# Calculate proportions
-data$Proportion <- data$Count / data$Total
 
-# Perform one-proportion test
-test_result <- prop.test(data$Count, data$Total)
+prob_z <- expand_grid(
+  x = seq(0,5,0.01)
+  ) %>%
+  mutate(
+    p = pnorm(x, lower.tail = FALSE)
+    )
+    
 
-test_result %>% 
-  tidy() %>% 
-  select(-method) %>% 
-  gt() %>% 
-  fmt_number(decimals = 3) 
+  prob_z |> 
+  ggplot(
+    aes(
+      x = x,
+      y = p
+    )
+  )+
+  # geom_line()+
+  geom_area(
+    fill = "gray70"
+  )+
+  scale_x_continuous(
+    expand = c(0,0,0,0)
+  )+
+  scale_y_continuous(
+    expand = c(0,0,0.05,0)
+  )+
+  geom_vline(
+    xintercept =  qnorm(1-0.05,lower.tail = TRUE),
+    linetype = "dashed"
+  )+
+  geom_vline(xintercept = 0.1003)+
+    geom_text(
+      x = 0.1003,
+      y = 0.3,
+      label = "Actual Z statistic",
+      angle = 90,
+      vjust = 1,
+      hjust = 0.5
+      )+
+  geom_text(
+    x = qnorm(1-0.05,lower.tail = TRUE),
+    y = 0.3,
+    label = "Critical z value",
+    angle = 90,
+    vjust = 1,
+    hjust = 0.5
+  )+
+  labs(
+    title = "CDF of z-test",
+    y = "probability",
+    x = "Z-Statistic"
+  ) 
+
 
 ```
 
+
 ### Chi^2^ goodness of fit test {.incremental}
 
-::: {.r-stack}
-
-::: {.fragment .fade-out}
+Scenario: A semiconductor manufacturer produces wafers using three machines (A, B, C). 
+The QA team suspects that defect rates differ across machines. They collect data over a week:
 
 ```{r}
 #| label: tbl-chi-gof-data
 #| tbl-cap: The raw data for the gof $\chi^2$ test.
 
-load(here("data","drive_shaft_data.Rdata"))
 
-ds_sum <- drive_shaft %>% 
-  group_by(group) %>% 
-  summarise(
-    count_n_observed = n()
-  )  
+defect_data <- tibble(
+  Machine = rep(c("A", "B", "C"), each = 2),
+  Status   = rep(c("Defective", "Non-Defective"), 3),
+  Count    = c(45, 505, 30, 520, 60, 490)
+)
 
-ds_sum %>% gt() %>% 
-  fmt_number(decimals = 3)
+defect_data |> gt()
 
 ```
 
-:::
+#### Define the Hypotheses
 
 ::: {.fragment}
 
+{{< acr H0 >}}:
+: Defect rates are independent of machine (no difference).
+
+{{< acr Ha >}}:
+: Defect rates depend on the machine.
+
+:::
+
+#### Calculate Test Statistic
+
+$$\chi^2 = \sum \frac{(O_{ij}-E_{ij})^2}{E_{ij}}$$
+
+- $O_{ij}$ observed frquency in cell $i,j$ (Row $i$, column $j$)
+- $E_{ij}$ expected frquency in cell $i,j$ under the $H_0$
+
+#### Contingency tables
+
+A contingency table (also called a cross-tabulation or two-way table) is a tabular representation of the relationship between two or more categorical variables. 
+It displays the frequency distribution of observations across different categories, allowing us to examine associations, independence, or dependencies between variables.
+
+#### Observed Contingency table
+
+```{r}
+#| label: tbl-chi-cont-ob
+#| tbl-cap: The tabulated results for the observed frequencies
+
+obs_conttable <- xtabs(Count~Machine+Status,data = defect_data) |> as.data.frame.matrix() 
+
+obs_conttable |> 
+  rownames_to_column("Machine") |> 
+  rowwise() |> 
+  mutate(
+    `Row Total` = sum(Defective+`Non-Defective`)
+  ) |> 
+  ungroup() |> 
+  gt() |> 
+  grand_summary_rows(
+    columns = c(Defective,`Non-Defective`, `Row Total`),
+    fns = "sum"
+  )
+  
+
+```
+
+#### Calculate Expected Frequencies
+
+For each cell, calculate $E_{ij}$:
+
+1. Machine A, Defective:
+
+$$E_{A,Defective} = \frac{\text{Row Total}_A \times \text{Column Total}_{Defective}}{\text{Grand Total}} = \frac{550\times135}{1650} = 45$$
+
+2. Machine A, Non-Defective:
+
+$$E_{A,Non-Defective} = \frac{\text{Row Total}_A \times \text{Column Total}_{Non Defective}}{\text{Grand Total}} = \frac{550\times1515}{1650} = 505$$
+
+#### Expected table
+
+```{r}
+#| label: tbl-chi-cont-ex
+#| tbl-cap: The tabulated results for the expected frequencies
+
+exp_conttable <- data.frame(
+  Machine  = c("A","B","C"),
+  Defective = c(45,45,45),
+  Non_Defective = c(505,505,505)
+)
+
+exp_conttable |> gt()
+
+```
+
+
+#### The test result
 
 ```{r}
 #| label: tbl-chi-gof-res
 #| tbl-cap: The test results for the gof $\chi^2$ test.
 
 
-out_chi_square_gof <- chisq.test(ds_sum$count_n_observed) %>% broom::tidy()
+chi_test <- chisq.test(
+  xtabs(Count~Machine+Status, data = defect_data)
+)
 
-out_chi_square_gof %>% 
-  select(-method) %>%
-  gt() %>% 
-  fmt_number(decimals = 3)%>% 
-  tab_options(
-    table.font.size = 25
-  )
+chi_test |> 
+  broom::tidy() |> 
+  select(statistic, p.value, method) |> 
+  gt() |> 
+  fmt_number(decimals = 3)
 
 ```
 
-:::
-
-:::
 
 ::: {.content-visible when-profile="script"}
 
@@ -1328,10 +1651,6 @@ In @tbl-t-one-data the *per group* summarised data of the dirve shaft data is sh
 
 :::
 
-::: {.r-stack}
-
-::: {.fragment .fade-out}
-
 ```{r}
 #| label: tbl-t-one-data
 #| tbl-cap: The raw data for the one sample t-test.
@@ -1353,8 +1672,6 @@ drive_shaft %>%
 
 ```
 
-:::
-
 ::: {.content-visible when-profile="script"}
 
 One important prerequisite for the One sample t-test normally distributed data.
@@ -1364,7 +1681,7 @@ From a first glance, the data appears to be normally distributed.
 
 :::
 
-::: {.fragment .fade-in-then-out}
+#### Normality Check
 
 ```{r}
 #| label: fig-t-one-qq
@@ -1388,8 +1705,6 @@ drive_shaft %>%
 
 ```
 
-:::
-
 ::: {.content-visible when-profile="script"}
 
 A more quantitative approach to tests for normality is shown in @tbl-t-one-ks-test.
@@ -1398,7 +1713,7 @@ Here, each group is tested with the [KS](#KS)-test for normality.
 
 :::
 
-::: {.fragment .fade-in-then-out}
+#### Quantitative Normality Check
 
 ```{r}
 #| label: tbl-t-one-ks-test
@@ -1432,8 +1747,6 @@ drive_shaft %>%
 
 ```
 
-:::
-
 ::: {.content-visible when-profile="script"}
 
 There is sufficient evidence to assume normal distributed data within each group.
@@ -1442,7 +1755,7 @@ In this case, the population mean is the specification of the drive shaft at a d
 
 :::
 
-::: {.fragment .fade-in}
+#### Test result
 
 ```{r}
 #| label: tbl-t-one-res
@@ -1473,9 +1786,6 @@ drive_shaft %>%
 
 ```
 
-:::
-
-:::
 
 ### One sample Wilcoxon test {.incremental}
 
@@ -1652,11 +1962,6 @@ drive_shaft %>%
 knitr::include_graphics(here::here("chapter002","020_StatisticalTests_TwoVar_same.png"))
 
 ```
-
-### Cochrane’s Q-test
-
-Cochran’s Q test is employed when you have categorical data with three or more related groups, often collected over time or with repeated measurements. 
-It assesses if there is a significant difference in proportions between the related groups.
 
 ### Chi^2^ test of independence
 
