@@ -1727,14 +1727,6 @@ Probability:
 
 ::: {.fragment .fade-in-then-out style="font-size: 75%;"}
 
-| Machine      | Sample 1 | Sample 2 | Sample 3 | Sample 4 | Sample 5 |
-|--------------|----------|----------|----------|----------|----------|
-| **Machine X**| 44       | 46       | 45       | 47       | 43       |
-| **Machine Y**| 52       | 50       | 53       | 49       | 51       |
-| **Machine Z**| 40       | 42       | 39       | 41       | 43       |
-
-: Exercise Data
-
 ```{r}
 #| label: tbl-exercise-z
 #| tbl-cap: Exercise Data
@@ -1753,8 +1745,6 @@ dat %>%
 
 1. calculate $\bar{x}$ and $sd$
 2. Compute z-scores
-3. Flag anomalies
-4. Recommend actions
 
 :::
 
@@ -1908,9 +1898,7 @@ In summary, the link between the chi-squared distribution and sample variance is
 
 :::
 
-::: {.r-stack}
 
-::: {.fragment .fade-out}
 
 * is a "new" distribution function
 * arises from squaring a random variable
@@ -1920,58 +1908,55 @@ In summary, the link between the chi-squared distribution and sample variance is
 \chi^2 = \sum_{k = 1}^n \frac{(O_k - E_k)^2}{E_k}
 \end{align}
 
-:::
-
-::: {.fragment .fade-in-then-out}
+### A random variable
 
 ```{r}
-#| out-width: 100%
-#|
+#| label: fig-chi-rnd-x
+#| out-width: 95%
+#| fig-cap: A random variable
+#| fig-align: center
+
 plt1
+
 ```
 
-:::
-
-::: {.fragment .fade-in-then-out}
+### That is squared
 
 ```{r}
-#| out-width: 100%
+#| label: fig-chi-rnd-x-square
+#| out-width: 95%
+#| fig-cap: A random variable
+#| fig-align: center
+
 plt2
 ```
 
-:::
-
-::: {.fragment .fade-in-then-out}
+### Chi^2^ properties
 
 * handles categorical (nominal) data and is used in statistical inference in many ways
 * the goal is to "convert" discrete (nominal) values to continous variables (counts in frequencies, making things measureable)
 
-:::
-
-::: {.fragment .fade-in-then-out}
+### Chi^2^ Applications
 
 1. Independence Test: Are two categorical variables independent of each other?
 2. Distribution Test: Are the observed values of two categorical variables equal to the expected values?
 3. Homogeneity Test:Are two or more samples from the same population (comparing frequencies)?
 
-:::
-
-::: {.fragment .fade-in-then-out}
+### Chi^2^ The pdf and dof
 
 ```{r}
-#| out-width: 100%
+#| label: fig-chi-pdf
+#| out-width: 95%
+#| fig-cap: The Chi^2
+#| fig-align: center
+
 plt3
 ```
 
-:::
 
-:::
 
 ### Classroom example: Fairness of a die
 
-::: {.r-stack}
-
-::: {.fragment .fade-out}
 
 * each face should come up the same number of times
 * each face represents a category, the order of $1 ... 6$ does not matter
@@ -1979,16 +1964,12 @@ plt3
 * Let's do it using 60 roles of the same die
 * First, formulate the Null and alternative Hypothesis
 
-:::
-
-::: {.fragment .fade-in-then-out}
+#### Hypotheses
 
 - $H_0$ The faces turn up with the same frequencies
 - $H_a$ The faces do not turn up with the same frequencies
 
-:::
-
-::: {.fragment .incremental .smaller}
+#### Prerequisites and solution
 
 - $\chi^2 = \sum_{k = 1}^n \frac{(O_k - E_k)^2}{E_k}$
 - $E_k = ?$
@@ -1998,10 +1979,6 @@ plt3
 - [$\chi^2$-table](https://datatab.net/tutorial/chi-square-distribution) or `qchisq(1 - alpha, dof)` in `R`
 - The Hypothesis as "translated" to quantitative measures?
 
-
-:::
-
-:::
 
 ### The drive shaft exercise - Chi^2^ Distribution
 
@@ -2859,9 +2836,70 @@ pdf_f <- expand_grid(
 
 ### The CDF we need
 
+
+::: {.content-visible when-format="pdf"}
+
+
+```{r}
+#| label: fig-catapult-f-cdf-dof1dof2-scr
+#| fig-cap: The CDF we need for the calculations
+#| fig-pos: "H"
+
+cdf_f <- expand_grid(
+  x = seq(0.01,5,0.01),
+  dof1 = c(9),
+  dof2 = c(9),
+  # dof2 = seq(2,30,3)
+  ) %>%
+  mutate(
+    p = pf(x, dof1,dof2)
+    )
+    
+cdf_f |> 
+  ggplot(
+    aes(
+      x = x,
+      y = p
+    )
+  )+
+  # geom_line()+
+  geom_area(
+    fill = "gray70"
+  )+
+  scale_x_continuous(
+    expand = c(0,0,0,0)
+  )+
+  scale_y_continuous(
+    expand = c(0,0,0.05,0)
+  )+
+  geom_vline(
+    xintercept =  qf(1-0.05,9,9)
+  )+
+  geom_text(
+    x = qf(1-0.05,9,9)+0.2,
+    y = 0.5,
+    label = "\u03B1=0.05",
+    
+    # angle = 90
+  )+
+  labs(
+    title = "PDF of F-Statistic",
+    subtitle = "dof1 = 9, dof2 = 9",
+    y = "density",
+    x = "F-Statistic"
+  ) 
+
+
+```
+
+:::
+
+
+
+::: {.content-visible when-format="html"}
+
 ```{r}
 #| label: fig-catapult-f-cdf-dof1dof2
-#| out-width: 80%
 #| fig-cap: The CDF we need for the calculations
 #| fig-pos: "H"
 
@@ -2912,6 +2950,8 @@ plotly::ggplotly(
 )
 
 ```
+
+:::
 
 :::
 

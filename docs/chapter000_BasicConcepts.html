@@ -332,7 +332,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="chapter000/000_basics_root.png" class="img-fluid figure-img"></p>
+<p><img src="chapter000/000_basics_root.png" class="img-fluid figure-img" width="1050"></p>
 <figcaption>The necessary statistical ingredients.</figcaption>
 </figure>
 </div>
@@ -511,7 +511,7 @@ Figure&nbsp;1.3: The central limit theorem in action.
 </div>
 </div>
 </div>
-<p>The primary reason for the existence of the normal distribution in many real-world datasets is the <a href="#acronyms_CLT">CLT</a> <span class="citation" data-cites="1981369198">(<a href="references.html#ref-1981369198" role="doc-biblioref">Taboga 2017</a>)</span>. The <a href="#acronyms_CLT">CLT</a> states that when you take a large enough number of random samples from any population, the distribution of the sample means will tend to follow a normal distribution, even if the original population distribution is not normal. This means that the normal distribution emerges as a statistical consequence of aggregating random data points. This is shown in <a href="#fig-clt" class="quarto-xref">Figure&nbsp;<span>1.3</span></a>.</p>
+<p>The primary reason for the existence of the normal distribution in many real-world datasets is the <a href="#acronyms_CLT">CLT</a> <span class="citation" data-cites="1981369198">(<a href="chapter000_BasicConcepts.html#ref-1981369198" role="doc-biblioref">Taboga 2017</a>)</span>. The <a href="#acronyms_CLT">CLT</a> states that when you take a large enough number of random samples from any population, the distribution of the sample means will tend to follow a normal distribution, even if the original population distribution is not normal. This means that the normal distribution emerges as a statistical consequence of aggregating random data points. This is shown in <a href="#fig-clt" class="quarto-xref">Figure&nbsp;<span>1.3</span></a>.</p>
 <p>From <span class="math inline">\(n=10000\)</span> uniformly distributed data points (the <em>population</em>) (<span class="math inline">\(min=1, max = 100\)</span>) either <span class="math inline">\(2,10,50\)</span> or <span class="math inline">\(200\)</span> samples are taken randomly (the <em>samples</em>). For each of the samples the mean is calculated, resulting in <span class="math inline">\(1000\)</span> mean values for each (<span class="math inline">\(2,10,50\)</span> or <span class="math inline">\(200\)</span>) sample size. In <a href="#fig-clt" class="quarto-xref">Figure&nbsp;<span>1.3</span></a> the results from this numerical study are shown. The larger the sample size, the closer the mean calculated <a href="./index.html#mean-gloss"><span class="math inline">\(\bar{x}\)</span></a>is to the population mean (<a href="./index.html#truemean-gloss"><span class="math inline">\(\mu_0\)</span></a>). The effect is especially large on the standard deviation, resulting in a smaller standard deviation the larger the sample size is.</p>
 </section>
 <section id="section-1" class="level2" data-number="1.3">
@@ -530,7 +530,7 @@ Figure&nbsp;1.4: The Law of Large Numbers in Action with die rolls as an example
 </div>
 </div>
 </div>
-<p>The <a href="#acronyms_CLT">CLT</a> states that as the size of a random sample increases, the sample average converges to the population mean. This law, along with the <a href="#acronyms_CLT">CLT</a>, explains why the normal distribution frequently arises. When you take many small, independent, and identically distributed measurements and compute their averages, these averages tend to cluster around the true population mean, forming a normal distribution <span class="citation" data-cites="1981369198">Johnson (<a href="references.html#ref-johnson1994continuous" role="doc-biblioref">1994</a>)</span>.</p>
+<p>The <a href="#acronyms_CLT">CLT</a> states that as the size of a random sample increases, the sample average converges to the population mean. This law, along with the <a href="#acronyms_CLT">CLT</a>, explains why the normal distribution frequently arises. When you take many small, independent, and identically distributed measurements and compute their averages, these averages tend to cluster around the true population mean, forming a normal distribution <span class="citation" data-cites="1981369198">Johnson (<a href="chapter000_BasicConcepts.html#ref-johnson1994continuous" role="doc-biblioref">1994</a>)</span>.</p>
 <p>The <a href="#lln">LLN</a> ar work is shown in <a href="#fig-lln" class="quarto-xref">Figure&nbsp;<span>1.4</span></a>. A fair six-sided die is rolled 1000 times and the running average of the roll results after each roll is calculated. The resulting line plot shows how the running average approaches the expected value of <span class="math inline">\(3.5\)</span>, which is the average of all possible outcomes of the die. The line in the plot represents the running average It fluctuates at the beginning but gradually converges toward the expected value of <span class="math inline">\(3.5\)</span>. To emphasize this convergence, a dashed line indicating the theoretical expected value which is essentially the expected value applied to each roll. This visualization demonstrates the Law of Large Numbers, which states that as the number of trials or rolls increases, the <em>sample mean</em> (running average in this case) approaches the <em>population mean</em> (expected value) with greater accuracy, showing the predictability and stability of random processes over a large number of observations.</p>
 </section>
 <section id="population" class="level2" data-number="1.4">
@@ -917,7 +917,7 @@ Figure&nbsp;1.17: An example for descriptive statistics (histogramm)
 </div>
 </div>
 </div>
-<p>An example for descriptive statistics is shown in <a href="#fig-plot-sample-001" class="quarto-xref">Figure&nbsp;<span>1.17</span></a> as a histogram. It shows data from a company that produces pharmaceutical syringes, taken from <span class="citation" data-cites="Ram2021">Ramalho (<a href="references.html#ref-Ram2021" role="doc-biblioref">2021</a>)</span>. During the production of those syringes, the so called <em>barrel diameter</em> is a critical parameter to the function of the syringe and therefore of special interest for the <a href="./index.html#QC">Quality Control</a>.</p>
+<p>An example for descriptive statistics is shown in <a href="#fig-plot-sample-001" class="quarto-xref">Figure&nbsp;<span>1.17</span></a> as a histogram. It shows data from a company that produces pharmaceutical syringes, taken from <span class="citation" data-cites="Ram2021">Ramalho (<a href="chapter000_BasicConcepts.html#ref-Ram2021" role="doc-biblioref">2021</a>)</span>. During the production of those syringes, the so called <em>barrel diameter</em> is a critical parameter to the function of the syringe and therefore of special interest for the <a href="./index.html#QC">Quality Control</a>.</p>
 <p>A histogram as shown in <a href="#fig-plot-sample-001" class="quarto-xref">Figure&nbsp;<span>1.17</span></a> shows the data of 150 measurements during the <a href="./index.html#QC">QC</a>. On the <code>x-axis</code> the <em>barrel diameter</em> is shown, while the count of each <em>binned</em> diameter is shown on the <code>y-axis</code>. The binning and of data is a crucial parameter for such a plot, because it already changes the appearance and width of the bars. Binning is a trade-off between visibility and readability.</p>
 </section>
 <section id="density-plot" class="level3" data-number="1.6.5">
@@ -1018,7 +1018,7 @@ Figure&nbsp;1.21: Boxplots of the syringe data with the samples as groups.
 </div>
 </div>
 <p>The methods described above are especially useful when it comes to visualizing groups in data. The data is discretized and the information density is increased. As with every discretization comes also a loss of information. It is therefore strongly advised to choose the right tool for the job.</p>
-<p>If the underlying distribution of the data is unknown, a good start to visualize groups within data is usually a boxplot as shown in <a href="#fig-groups-boxplot" class="quarto-xref">Figure&nbsp;<span>1.21</span></a>. The syringe data from <span class="citation" data-cites="Ram2021">Ramalho (<a href="references.html#ref-Ram2021" role="doc-biblioref">2021</a>)</span> contains six different groups, one for every sample drawn. Each sample consists of 25 observations in total. On the <code>x-axis</code> the <em>diameter</em> in mm is shown, the <code>y-axis</code> depicts the sample number. The <code>boxplots</code> are then drawn as described above (median, <span class="math inline">\(25^{th}\)</span> and <span class="math inline">\(75^{th}\)</span> percentile box, <span class="math inline">\(5^{th}\)</span> and <span class="math inline">\(95^{th}\)</span> whisker). The <span class="math inline">\(25^{th}\)</span> and <span class="math inline">\(75^{th}\)</span> percentile box is also known as the <a href="#acronyms_IQR">Interquartile Range (IQR)</a>.</p>
+<p>If the underlying distribution of the data is unknown, a good start to visualize groups within data is usually a boxplot as shown in <a href="#fig-groups-boxplot" class="quarto-xref">Figure&nbsp;<span>1.21</span></a>. The syringe data from <span class="citation" data-cites="Ram2021">Ramalho (<a href="chapter000_BasicConcepts.html#ref-Ram2021" role="doc-biblioref">2021</a>)</span> contains six different groups, one for every sample drawn. Each sample consists of 25 observations in total. On the <code>x-axis</code> the <em>diameter</em> in mm is shown, the <code>y-axis</code> depicts the sample number. The <code>boxplots</code> are then drawn as described above (median, <span class="math inline">\(25^{th}\)</span> and <span class="math inline">\(75^{th}\)</span> percentile box, <span class="math inline">\(5^{th}\)</span> and <span class="math inline">\(95^{th}\)</span> whisker). The <span class="math inline">\(25^{th}\)</span> and <span class="math inline">\(75^{th}\)</span> percentile box is also known as the <a href="#acronyms_IQR">Interquartile Range (IQR)</a>.</p>
 </section>
 <section id="mean-and-standard-deviation-plots" class="level3" data-number="1.7.2">
 <h3 data-number="1.7.2" class="anchored" data-anchor-id="mean-and-standard-deviation-plots"><span class="header-section-number">1.7.2</span> Mean and standard deviation plots</h3>
@@ -1054,7 +1054,7 @@ Figure&nbsp;1.23: Half-half plots that incooperate different types of plots
 </div>
 </div>
 </div>
-<p>Boxplots and mean-and-standard-deviation plots sometimes hide some details within the data, that may be of interest or simply important. Half-half plots, as shown in shown in <a href="#fig-groups-halves" class="quarto-xref">Figure&nbsp;<span>1.23</span></a>, incorporate different plot mechanisms. The left half shows a violin plot, which outlines the underlying distribution of the data using the <a href="#acronyms_PDF">PDF</a>. This is very similar to a density plot. The right half shows the original data points and give the user a visible clue about the sample size in the data size. Note that the <code>y</code>-position of the points is jittered to counter <em>overplotting</em>. Details can be found in <span class="citation" data-cites="Tiedemann2022">Tiedemann (<a href="references.html#ref-Tiedemann2022" role="doc-biblioref">2022</a>)</span>.</p>
+<p>Boxplots and mean-and-standard-deviation plots sometimes hide some details within the data, that may be of interest or simply important. Half-half plots, as shown in shown in <a href="#fig-groups-halves" class="quarto-xref">Figure&nbsp;<span>1.23</span></a>, incorporate different plot mechanisms. The left half shows a violin plot, which outlines the underlying distribution of the data using the <a href="#acronyms_PDF">PDF</a>. This is very similar to a density plot. The right half shows the original data points and give the user a visible clue about the sample size in the data size. Note that the <code>y</code>-position of the points is jittered to counter <em>overplotting</em>. Details can be found in <span class="citation" data-cites="Tiedemann2022">Tiedemann (<a href="chapter000_BasicConcepts.html#ref-Tiedemann2022" role="doc-biblioref">2022</a>)</span>.</p>
 </section>
 <section id="ridgeline-plots" class="level3" data-number="1.7.4">
 <h3 data-number="1.7.4" class="anchored" data-anchor-id="ridgeline-plots"><span class="header-section-number">1.7.4</span> Ridgeline plots</h3>
@@ -1072,7 +1072,7 @@ Figure&nbsp;1.24: Ridgeline plots for distributions within groups.
 </div>
 </div>
 </div>
-<p><a href="#fig-groups-ridge" class="quarto-xref">Figure&nbsp;<span>1.24</span></a> shows so called <em>ridgeline</em> plots as explained in <span class="citation" data-cites="Wilke2022">Wilke (<a href="references.html#ref-Wilke2022" role="doc-biblioref">2022</a>)</span>. They are in essence density plots that use the <code>y-axis</code> to differentiate between the groups. On the <code>x-axis</code> the density of the underlying dataset is shown. More info on the creation of these plots and graphics is available in <span class="citation" data-cites="Wickham2016">Wickham (<a href="references.html#ref-Wickham2016" role="doc-biblioref">2016</a>)</span> as well as <span class="citation" data-cites="RGraphGallery"><span>“The <span>R</span> Graph Gallery – Help and Inspiration for r Charts”</span> (<a href="references.html#ref-RGraphGallery" role="doc-biblioref">2022</a>)</span>.</p>
+<p><a href="#fig-groups-ridge" class="quarto-xref">Figure&nbsp;<span>1.24</span></a> shows so called <em>ridgeline</em> plots as explained in <span class="citation" data-cites="Wilke2022">Wilke (<a href="chapter000_BasicConcepts.html#ref-Wilke2022" role="doc-biblioref">2022</a>)</span>. They are in essence density plots that use the <code>y-axis</code> to differentiate between the groups. On the <code>x-axis</code> the density of the underlying dataset is shown. More info on the creation of these plots and graphics is available in <span class="citation" data-cites="Wickham2016">Wickham (<a href="chapter000_BasicConcepts.html#ref-Wickham2016" role="doc-biblioref">2016</a>)</span> as well as <span class="citation" data-cites="RGraphGallery"><span>“The <span>R</span> Graph Gallery – Help and Inspiration for r Charts”</span> (<a href="chapter000_BasicConcepts.html#ref-RGraphGallery" role="doc-biblioref">2022</a>)</span>.</p>
 </section>
 </section>
 <section id="the-drive-shaft-exercise" class="level2" data-number="1.8">
@@ -2173,27 +2173,180 @@ Table&nbsp;1.2: The group summary table of the drive shaft data
 <p>In <a href="#fig-ds-grps-2" class="quarto-xref">Figure&nbsp;<span>1.27 (b)</span></a> the data is shown as ridgeline density plots. On the <code>x-axis</code> the diameter is depiected, while the <code>y-axis</code> shows two types of data. First, the groups <span class="math inline">\(1\ldots5\)</span> are shown. For the individual groups, the probability is depicted as a line, therefore indicating which values are most probable in the given group. Again, because we are interested how the manufactured drive shafts behave .w.r.t the specification limit, the <code>nominal</code> value as well as the <code>uppper</code> and the <code>lower</code> specification limit is also shown in the plot as vertical lines.</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-Bartlett1937" class="csl-entry" role="listitem">
+Bartlett, Maurice Stevenson. 1937. <span>“Properties of Sufficiency and
+Statistical Tests.”</span> <em>Proceedings of the Royal Society of
+London. Series A - Mathematical and Physical Sciences</em> 160 (901):
+268–82. <a href="https://doi.org/10.1098/rspa.1937.0109">https://doi.org/10.1098/rspa.1937.0109</a>.
+</div>
+<div id="ref-bonferroni1936" class="csl-entry" role="listitem">
+Bonferroni, C. E. 1936. <em>Teoria Statistica Delle Classi e Calcolo
+Delle Probabilit<span>à</span></em>. Pubblicazioni Del r. Istituto
+Superiore Di Scienze Economiche e Commerciali Di Firenze. Seeber. <a href="https://books.google.de/books?id=3CY-HQAACAAJ">https://books.google.de/books?id=3CY-HQAACAAJ</a>.
+</div>
+<div id="ref-CanoUnknownTitle2012" class="csl-entry" role="listitem">
+Cano, Emilio L., Javier M. Moguerza, and Andrés Redchuk. 2012.
+<span>“Six Sigma with r”</span> Not available: Not available. <a href="https://doi.org/10.1007/978-1-4614-3652-2">https://doi.org/10.1007/978-1-4614-3652-2</a>.
+</div>
+<div id="ref-pwr" class="csl-entry" role="listitem">
+Champely, Stephane. 2020. <em>Pwr: Basic Functions for Power
+Analysis</em>. <a href="https://CRAN.R-project.org/package=pwr">https://CRAN.R-project.org/package=pwr</a>.
+</div>
+<div id="ref-Cohen_2013" class="csl-entry" role="listitem">
+Cohen, Jacob. 2013. <em>Statistical Power Analysis for the Behavioral
+Sciences</em>. Routledge. <a href="https://doi.org/10.4324/9780203771587">https://doi.org/10.4324/9780203771587</a>.
+</div>
+<div id="ref-datasauRus" class="csl-entry" role="listitem">
+Davies, Rhian, Steph Locke, and Lucy D’Agostino McGowan. 2022.
+<em>datasauRus: Datasets from the Datasaurus Dozen</em>. <a href="https://CRAN.R-project.org/package=datasauRus">https://CRAN.R-project.org/package=datasauRus</a>.
+</div>
+<div id="ref-fitdistrplus" class="csl-entry" role="listitem">
+Delignette-Muller, Marie Laure, and Christophe Dutang. 2015.
+<span>“<span class="nocase">fitdistrplus</span>: An <span>R</span>
+Package for Fitting Distributions.”</span> <em>Journal of Statistical
+Software</em> 64 (4): 1–34. <a href="https://doi.org/10.18637/jss.v064.i04">https://doi.org/10.18637/jss.v064.i04</a>.
+</div>
+<div id="ref-Friedman1937" class="csl-entry" role="listitem">
+Friedman, Milton. 1937. <span>“The Use of Ranks to Avoid the Assumption
+of Normality Implicit in the Analysis of Variance.”</span> <em>Journal
+of the American Statistical Association</em> 32 (December): 675–701. <a href="https://doi.org/10.1080/01621459.1937.10503522">https://doi.org/10.1080/01621459.1937.10503522</a>.
+</div>
+<div id="ref-Greenhouse1959" class="csl-entry" role="listitem">
+Greenhouse, Samuel W., and Seymour Geisser. 1959. <span>“On Methods in
+the Analysis of Profile Data.”</span> <em>Psychometrika</em> 24 (June):
+95–112. <a href="https://doi.org/10.1007/bf02289823">https://doi.org/10.1007/bf02289823</a>.
+</div>
+<div id="ref-Hahs_Vaughn_2013" class="csl-entry" role="listitem">
+Hahs-Vaughn, Debbie L., and Richard G. Lomax. 2013. <em>An Introduction
+to Statistical Concepts</em>. Routledge. <a href="https://doi.org/10.4324/9780203137819">https://doi.org/10.4324/9780203137819</a>.
+</div>
+<div id="ref-Ioannidis_2005" class="csl-entry" role="listitem">
+Ioannidis, John P. A. 2005. <span>“Why Most Published Research Findings
+Are False.”</span> <em><span>PLoS</span> Medicine</em> 2 (8): e124. <a href="https://doi.org/10.1371/journal.pmed.0020124">https://doi.org/10.1371/journal.pmed.0020124</a>.
+</div>
+<div id="ref-statistical_ismaykim_2019" class="csl-entry" role="listitem">
+Ismay, Chester, and Albert Y. Kim. 2019. <em>Statistical Inference via
+Data Science</em>. Chapman &amp; Hall/CRC: The R Series.
+</div>
+<div id="ref-Bibby_1980" class="csl-entry" role="listitem">
+J. Bibby, E. J. G. Pitman. 1980. <span>“Some Basic Theory for
+Statistical Inference.”</span> <em>The Mathematical Gazette</em> 64
+(428): 138–38. <a href="https://doi.org/10.2307/3615104">https://doi.org/10.2307/3615104</a>.
+</div>
 <div id="ref-johnson1994continuous" class="csl-entry" role="listitem">
-Johnson, Norman Lloyd. 1994. <em>Continuous Univariate Distributions</em>. Wiley.
+Johnson, Norman Lloyd. 1994. <em>Continuous Univariate
+Distributions</em>. Wiley.
+</div>
+<div id="ref-LienigUnknownTitle2017" class="csl-entry" role="listitem">
+Lienig, Jens, and Hans Bruemmer. 2017. <span>“Fundamentals of Electronic
+Systems Design”</span> Not available: Not available. <a href="https://doi.org/10.1007/978-3-319-55840-0">https://doi.org/10.1007/978-3-319-55840-0</a>.
+</div>
+<div id="ref-MannWhitney1947" class="csl-entry" role="listitem">
+Mann, H. B., and D. R. Whitney. 1947. <span>“On a Test of Whether One of
+Two Random Variables Is Stochastically Larger Than the Other.”</span>
+<em>The Annals of Mathematical Statistics</em>. <a href="https://doi.org/10.1214/aoms/1177730491">https://doi.org/10.1214/aoms/1177730491</a>.
+</div>
+<div id="ref-Mauchly1940" class="csl-entry" role="listitem">
+Mauchly, John W. 1940. <span>“Significance Test for Sphericity of a
+Normal n-Variate Distribution.”</span> <em>The Annals of Mathematical
+Statistics</em> 11 (2): 204–9. <a href="http://www.jstor.org/stable/2235878">http://www.jstor.org/stable/2235878</a>.
+</div>
+<div id="ref-Meyna2023" class="csl-entry" role="listitem">
+Meyna, Arno. 2023. <em>Sicherheit Und Zuverlässigkeit Technischer
+Systeme</em>. Carl Hanser Verlag <span>GmbH</span> <span>&amp;</span>
+Co. <span>KG</span>. <a href="https://doi.org/10.3139/9783446468085.fm">https://doi.org/10.3139/9783446468085.fm</a>.
+</div>
+<div id="ref-Nuzzo_2014" class="csl-entry" role="listitem">
+Nuzzo, Regina. 2014. <span>“Scientific Method: Statistical
+Errors.”</span> <em>Nature</em> 506 (7487): 150–52. <a href="https://doi.org/10.1038/506150a">https://doi.org/10.1038/506150a</a>.
+</div>
+<div id="ref-0-8047-0596-8" class="csl-entry" role="listitem">
+Olkin, Ingram. June. <em>Contributions to Probability and
+Statistics</em>. Stanford Univ Pr.
+</div>
+<div id="ref-PCC" class="csl-entry" role="listitem">
+Pearson, Karl. 1895. <span>“Note on Regression and Inheritance in the
+Case of Two Parents.”</span> <em>Proceedings of the Royal Society of
+London Series I</em> 58: 240–42.
 </div>
 <div id="ref-Ram2021" class="csl-entry" role="listitem">
-Ramalho, Joao. 2021. <em>industRial: Data, Functions and Support Materials from the Book "industRial Data Science"</em>. <a href="https://CRAN.R-project.org/package=industRial">https://CRAN.R-project.org/package=industRial</a>.
+Ramalho, Joao. 2021. <em>industRial: Data, Functions and Support
+Materials from the Book "industRial Data Science"</em>. <a href="https://CRAN.R-project.org/package=industRial">https://CRAN.R-project.org/package=industRial</a>.
+</div>
+<div id="ref-Ruder2016" class="csl-entry" role="listitem">
+Ruder, Sebastian. 2016. <span>“An Overview of Gradient Descent
+Optimization Algorithms.”</span> <a href="http://arxiv.org/pdf/1609.04747.pdf">http://arxiv.org/pdf/1609.04747.pdf</a>.
+</div>
+<div id="ref-shapiro1965analysis" class="csl-entry" role="listitem">
+Shapiro, S. S., and M. B. Wilk. 1965. <span>“An Analysis of Variance
+Test for Normality (Complete Samples).”</span> <em>Biometrika</em> 52
+(December): 591–611. <a href="https://doi.org/10.1093/biomet/52.3-4.591">https://doi.org/10.1093/biomet/52.3-4.591</a>.
+</div>
+<div id="ref-0486652327" class="csl-entry" role="listitem">
+Shewhart, Walter Andrew, and William Edwards Deming. 1986.
+<em>Statistical Method from the Viewpoint of Quality Control</em>.
+Courier Corporation.
+</div>
+<div id="ref-Spearman1904" class="csl-entry" role="listitem">
+Spearman, C. 1904. <span>“The Proof and Measurement of Association
+Between Two Things.”</span> <em>The American Journal of Psychology</em>.
+<a href="https://doi.org/10.2307/1412159">https://doi.org/10.2307/1412159</a>.
+</div>
+<div id="ref-NISTHandbook" class="csl-entry" role="listitem">
+Standards, National Institute of, Technology (U.S.), and International
+SEMATECH. 2002. <span>“NIST/SEMATECH Engineering Statistics
+Handbook,”</span> January. <a href="https://doi.org/10.18434/M32189">https://doi.org/10.18434/M32189</a>.
+</div>
+<div id="ref-StatQuest" class="csl-entry" role="listitem">
+Starmer, J. 2022. <em>The StatQuest Illustrated Guide to Machine
+Learning!!!: Master the Concepts, One Full-Color Picture at a Time, from
+the Basics All the Way to Neural Networks. BAM!</em> Packt Publishing,
+Limited. <a href="https://books.google.de/books?id=gWRGzwEACAAJ">https://books.google.de/books?id=gWRGzwEACAAJ</a>.
+</div>
+<div id="ref-Student_1908" class="csl-entry" role="listitem">
+Student. 1908. <span>“The Probable Error of a Mean.”</span>
+<em>Biometrika</em> 6 (1): 1. <a href="https://doi.org/10.2307/2331554">https://doi.org/10.2307/2331554</a>.
 </div>
 <div id="ref-1981369198" class="csl-entry" role="listitem">
-Taboga, Marco. 2017. <em>Lectures on Probability Theory and Mathematical Statistics - 3rd Edition</em>. Createspace Independent Publishing Platform.
+Taboga, Marco. 2017. <em>Lectures on Probability Theory and Mathematical
+Statistics - 3rd Edition</em>. Createspace Independent Publishing
+Platform.
+</div>
+<div id="ref-Tamhane1977" class="csl-entry" role="listitem">
+Tamhane, Ajit C. 1977. <span>“Multiple Comparisons in Model i One-Way
+Anova with Unequal Variances.”</span> <em>Communications in Statistics -
+Theory and Methods</em> 6 (January): 15–32. <a href="https://doi.org/10.1080/03610927708827466">https://doi.org/10.1080/03610927708827466</a>.
 </div>
 <div id="ref-RGraphGallery" class="csl-entry" role="listitem">
-<span>“The <span>R</span> Graph Gallery – Help and Inspiration for r Charts.”</span> 2022. <a href="https://r-graph-gallery.com/" class="uri">https://r-graph-gallery.com/</a>.
+<span>“The <span>R</span> Graph Gallery – Help and Inspiration for r
+Charts.”</span> 2022. <a href="https://r-graph-gallery.com/" class="uri">https://r-graph-gallery.com/</a>.
 </div>
 <div id="ref-Tiedemann2022" class="csl-entry" role="listitem">
-Tiedemann, Frederik. 2022. <em>Gghalves: Compose Half-Half Plots Using Your Favourite Geoms</em>. <a href="https://CRAN.R-project.org/package=gghalves">https://CRAN.R-project.org/package=gghalves</a>.
+Tiedemann, Frederik. 2022. <em>Gghalves: Compose Half-Half Plots Using
+Your Favourite Geoms</em>. <a href="https://CRAN.R-project.org/package=gghalves">https://CRAN.R-project.org/package=gghalves</a>.
+</div>
+<div id="ref-Weibull_1951" class="csl-entry" role="listitem">
+Weibull, Waloddi. 1951. <span>“A Statistical Distribution Function of
+Wide Applicability.”</span> <em>Journal of Applied Mechanics</em> 18
+(3): 293–97. <a href="https://doi.org/10.1115/1.4010337">https://doi.org/10.1115/1.4010337</a>.
+</div>
+<div id="ref-Welch1947" class="csl-entry" role="listitem">
+WELCH, B. L. 1947. <span>“The Generalization of "STUDENT’s" Problem When
+Several Different Population Variances Are Involved.”</span>
+<em>Biometrika</em>. <a href="https://doi.org/10.1093/biomet/34.1-2.28">https://doi.org/10.1093/biomet/34.1-2.28</a>.
 </div>
 <div id="ref-Wickham2016" class="csl-entry" role="listitem">
-Wickham, Hadley. 2016. <em>Ggplot2: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York. <a href="https://ggplot2.tidyverse.org">https://ggplot2.tidyverse.org</a>.
+Wickham, Hadley. 2016. <em>Ggplot2: Elegant Graphics for Data
+Analysis</em>. Springer-Verlag New York. <a href="https://ggplot2.tidyverse.org">https://ggplot2.tidyverse.org</a>.
+</div>
+<div id="ref-r_wickhamgrolemund_2016" class="csl-entry" role="listitem">
+Wickham, Hadley, and Garrett Grolemund. 2016. <em>R for Data
+Science</em>. "O’Reilly Media, Inc.".
 </div>
 <div id="ref-Wilke2022" class="csl-entry" role="listitem">
-Wilke, Claus O. 2022. <em>Ggridges: Ridgeline Plots in ’Ggplot2’</em>. <a href="https://CRAN.R-project.org/package=ggridges">https://CRAN.R-project.org/package=ggridges</a>.
+Wilke, Claus O. 2022. <em>Ggridges: Ridgeline Plots in ’Ggplot2’</em>.
+<a href="https://CRAN.R-project.org/package=ggridges">https://CRAN.R-project.org/package=ggridges</a>.
 </div>
 </div>
 </section>

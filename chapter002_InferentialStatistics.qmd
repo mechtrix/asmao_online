@@ -1375,10 +1375,10 @@ This test helps determine if the sample proportion significantly differs from th
 #### Define the Hypothesis {.incremental}
 
 {{< acr H0 >}}:
-: Defect rate is $\leq 2\%$ $(p\leq0.02)$
+: Defect rate is < 2 percent
 
 {{< acr Ha >}}:
-: Defect rate is $\gt 2\%$ $p \gt 0.02$
+: Defect rate is >2 percent
 
 This is a **right-tailed** test
 

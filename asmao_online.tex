@@ -428,6 +428,8 @@ alternative Hypothesis
 Interquartile Range
 \item[\phantomsection\label{acronyms_LLN}{LLN}]
 Law of Large Numbers
+\item[\phantomsection\label{acronyms_ME}{ME}]
+Margin of Error
 \item[\phantomsection\label{acronyms_PDF}{PDF}]
 Probability Density Function
 \item[\phantomsection\label{acronyms_PMF}{PMF}]
@@ -595,7 +597,7 @@ Variance\end{minipage}%
 
 \begin{figure}[ht]
 
-{\centering \pandocbounded{\includegraphics[keepaspectratio]{chapter000/000_basics_root.png}}
+{\centering \includegraphics[width=3.5in,height=\textheight,keepaspectratio]{chapter000/000_basics_root.png}
 
 }
 
@@ -3220,23 +3222,6 @@ data}, while probability is more broadly used to quantify the chances of
 
 \subsection{Exercise}\label{exercise-1}
 
-\begin{longtable}[]{@{}llllll@{}}
-\caption{Exercise Data}\tabularnewline
-\toprule\noalign{}
-Machine & Sample 1 & Sample 2 & Sample 3 & Sample 4 & Sample 5 \\
-\midrule\noalign{}
-\endfirsthead
-\toprule\noalign{}
-Machine & Sample 1 & Sample 2 & Sample 3 & Sample 4 & Sample 5 \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-\textbf{Machine X} & 44 & 46 & 45 & 47 & 43 \\
-\textbf{Machine Y} & 52 & 50 & 53 & 49 & 51 \\
-\textbf{Machine Z} & 40 & 42 & 39 & 41 & 43 \\
-\end{longtable}
-
 \begin{table}
 
 \caption{\label{tbl-exercise-z}Exercise Data}
@@ -3267,10 +3252,6 @@ machine\_x & machine\_y & machine\_z \\
   calculate \(\bar{x}\) and \(sd\)
 \item
   Compute z-scores
-\item
-  Flag anomalies
-\item
-  Recommend actions
 \end{enumerate}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
@@ -3463,9 +3444,36 @@ with data and conducting statistical investigations.
 \chi^2 = \sum_{k = 1}^n \frac{(O_k - E_k)^2}{E_k}
 \end{align}
 
-\includegraphics[width=1\linewidth,height=\textheight,keepaspectratio]{chapter001_Distributions_files/figure-pdf/unnamed-chunk-5-1.pdf}
+\subsection{A random variable}\label{a-random-variable}
 
-\includegraphics[width=1\linewidth,height=\textheight,keepaspectratio]{chapter001_Distributions_files/figure-pdf/unnamed-chunk-6-1.pdf}
+\begin{figure}[ht]
+
+\centering{
+
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter001_Distributions_files/figure-pdf/fig-chi-rnd-x-1.pdf}
+
+}
+
+\caption{\label{fig-chi-rnd-x}A random variable}
+
+\end{figure}%
+
+\subsection{That is squared}\label{that-is-squared}
+
+\begin{figure}[ht]
+
+\centering{
+
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter001_Distributions_files/figure-pdf/fig-chi-rnd-x-square-1.pdf}
+
+}
+
+\caption{\label{fig-chi-rnd-x-square}A random variable}
+
+\end{figure}%
+
+\subsection{\texorpdfstring{Chi\textsuperscript{2}
+properties}{Chi2 properties}}\label{chi2-properties}
 
 \begin{itemize}
 \tightlist
@@ -3476,6 +3484,9 @@ with data and conducting statistical investigations.
   the goal is to ``convert'' discrete (nominal) values to continous
   variables (counts in frequencies, making things measureable)
 \end{itemize}
+
+\subsection{\texorpdfstring{Chi\textsuperscript{2}
+Applications}{Chi2 Applications}}\label{chi2-applications}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -3491,7 +3502,20 @@ with data and conducting statistical investigations.
   (comparing frequencies)?
 \end{enumerate}
 
-\includegraphics[width=1\linewidth,height=\textheight,keepaspectratio]{chapter001_Distributions_files/figure-pdf/unnamed-chunk-7-1.pdf}
+\subsection{\texorpdfstring{Chi\textsuperscript{2} The pdf and
+dof}{Chi2 The pdf and dof}}\label{chi2-the-pdf-and-dof}
+
+\begin{figure}[ht]
+
+\centering{
+
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter001_Distributions_files/figure-pdf/fig-chi-pdf-1.pdf}
+
+}
+
+\caption{\label{fig-chi-pdf}The Chi\^{}2}
+
+\end{figure}%
 
 \subsection{Classroom example: Fairness of a
 die}\label{classroom-example-fairness-of-a-die}
@@ -3511,6 +3535,8 @@ die}\label{classroom-example-fairness-of-a-die}
   First, formulate the Null and alternative Hypothesis
 \end{itemize}
 
+\subsubsection{Hypotheses}\label{hypotheses}
+
 \begin{itemize}
 \tightlist
 \item
@@ -3518,6 +3544,9 @@ die}\label{classroom-example-fairness-of-a-die}
 \item
   \(H_a\) The faces do not turn up with the same frequencies
 \end{itemize}
+
+\subsubsection{Prerequisites and
+solution}\label{prerequisites-and-solution}
 
 \begin{itemize}
 \tightlist
@@ -4008,11 +4037,11 @@ catapult}\label{classroom-example-two-students-shoot-a-catapult}
 
 \centering{
 
-\includegraphics[width=0.65\linewidth,height=\textheight,keepaspectratio]{img/catapult.jpg}
+\includegraphics[width=0.6\linewidth,height=\textheight,keepaspectratio]{img/catapult.jpg}
 
 }
 
-\caption{\label{fig-catapult-fstat}Out catapult we use for shooting}
+\caption{\label{fig-catapult-fstat}Our catapult we use for shooting}
 
 \end{figure}%
 
@@ -5188,11 +5217,11 @@ the absolute difference in means per sample strategy}
 
 \section{Bootstrapping}\label{bootstrapping}
 
-\begin{figure}[H]
+\begin{figure}[ht]
 
 \centering{
 
-\includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{SamplingMethods/Illustration_bootstrap.png}
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{SamplingMethods/Illustration_bootstrap.png}
 
 }
 
@@ -5200,6 +5229,8 @@ the absolute difference in means per sample strategy}
 Marsupilami)}
 
 \end{figure}%
+
+\subsection{Bootstrapping in general}\label{bootstrapping-in-general}
 
 \begin{itemize}
 \item
@@ -5276,6 +5307,105 @@ the null hypothesis, suggesting that there is a significant change,
 effect, or difference in the production process (e.g., the mean
 production rate is not equal to a certain value).
 
+\section{Statistical errors}\label{statistical-errors}
+
+\begin{figure}[ht]
+
+\centering{
+
+\includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{chapter002/007_StatisticalErrors.png}
+
+}
+
+\caption{\label{fig-stat-errors}The statistical Errors (Type I and Type
+II).}
+
+\end{figure}%
+
+\begin{itemize}
+\tightlist
+\item
+  Type I Error (False Positive, see Figure~\ref{fig-stat-errors}):
+\end{itemize}
+
+A Type I error occurs when a null hypothesis that is actually true is
+rejected. In other words, it's a false alarm. It is concluded that there
+is a significant effect or difference when there is none. The
+probability of committing a Type I error is denoted by the
+\hyperref[sign-level]{significance level \(\alpha\)}. \emph{Example:}
+Imagine a drug trial where the null hypothesis is that the drug has no
+effect (it's ineffective), but due to random chance, the data appears to
+show a significant effect, and you incorrectly conclude that the drug is
+effective (Type I error).
+
+\begin{itemize}
+\tightlist
+\item
+  Type II Error (False Negative, see Figure~\ref{fig-stat-errors}):
+\end{itemize}
+
+A Type II error occurs when a null hypothesis that is actually false is
+not rejected. It means failing to detect a significant effect or
+difference when one actually exists. The probability of committing a
+Type II error is denoted by the symbol \(\beta\). \emph{Example:} In a
+criminal trial, the null hypothesis might be that the defendant is
+innocent, but they are actually guilty. If the jury fails to find enough
+evidence to convict the guilty person, it is a Type II error.
+
+Type I Error is falsely concluding, that there is an effect or
+difference when there is none (false positive). Type II Error failing to
+conclude that there is an effect or difference when there actually is
+one (false negative).
+
+The relationship between \emph{Type I} and \emph{Type II} errors is
+often described as a trade-off. As the risk of Type I errors is reduced
+by lowering the significance level (\(\alpha\)), the risk of Type II
+errors (\(\beta\)) is typically increased (Figure~\ref{fig-stat-rates}).
+This trade-off is inherent in hypothesis testing, and the choice of
+significance level depends on the specific goals and context of the
+study. Researchers often aim to strike a balance between these two types
+of errors based on the consequences and costs associated with each. This
+balance is a critical aspect of the design and interpretation of
+statistical tests.
+
+\section{Significance}\label{significance}
+
+\begin{figure}[ht]
+
+\centering{
+
+\includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{chapter002/008_Rates.png}
+
+}
+
+\caption{\label{fig-stat-rates}Type I and Type II error in the context
+of inferential statistics.}
+
+\end{figure}%
+
+The p-value is a statistical measure that quantifies the evidence
+against a null hypothesis. It represents the probability of obtaining
+test results as extreme or more extreme than the ones observed, assuming
+the null hypothesis is true. In hypothesis testing, a smaller p-value
+indicates stronger evidence against the null hypothesis. If the p-value
+is less than or equal to \(\alpha\) (\(p \leq \alpha\)), you reject the
+null hypothesis. If the p-value is greater than \(\alpha\) (
+\(p > \alpha\) ), you fail to reject the null hypothesis. A common
+threshold for determining statistical significance is to reject the null
+hypothesis when \(p\leq\alpha\).
+
+The p-value however does not give an assumption about the effect size,
+which can be quite insignificant (Nuzzo 2014). While the p-value
+therefore is the probability of accepting \(H_a\) as true, it is not a
+measure of magnitude or relative importance of an effect. Therefore the
+\hyperref[ci]{CI} and the effect size should always be reported with a
+p-value. Some Researchers even claim that most of the research today is
+false (Ioannidis 2005). In practice, especially in the manufacturing
+industry, the p-value and its use is still popular. Before implementing
+any measures in a series production, those questions will be asked. The
+confident and reliable engineer asks them beforehand and is always his
+own greatest critique.
+
 \subsection{The drive shaft exercise -
 Hypotheses}\label{the-drive-shaft-exercise---hypotheses-1}
 
@@ -5296,15 +5426,15 @@ The drive shaft diameter is not within the specification.
 
 In the following we will explore, how to test for these hypotheses.
 
-\section{Confidence Intervals}\label{confidence-intervals}
+\section{\texorpdfstring{\hyperref[acronyms_CI]{Confidence Interval
+(CI)}}{Confidence Interval (CI)}}\label{section-5}
 
-A \hyperref[acronyms_CI]{Confidence Interval (CI)} is a statistical
-concept used to estimate a range of values within which a population
-parameter, such as a population mean or proportion, is likely to fall.
-It provides a way to express the uncertainty or variability in our
-sample data when making inferences about the population. In other words,
-it quantifies the level of confidence we have in our estimate of a
-population parameter.
+A \hyperref[acronyms_CI]{CI} is a statistical concept used to estimate a
+range of values within which a population parameter, such as a
+population mean or proportion, is likely to fall. It provides a way to
+express the uncertainty or variability in our sample data when making
+inferences about the population. In other words, it quantifies the level
+of confidence we have in our estimate of a population parameter.
 
 Confidence intervals are typically expressed as a range with an
 associated confidence level. The confidence level, often denoted as
@@ -5342,7 +5472,7 @@ CI = \bar{X} \pm t \frac{\sigma_0}{\sqrt{n}} \label{ci01}
 
 2.For the population mean \hyperref[truemean-gloss]{\(\mu_0\)} when the
 population standard deviation
-\hyperref[truevariance-gloss]{\(\sigma_0^2\)} is Unknown (t-confidence
+\hyperref[truevariance-gloss]{\(\sigma_0^2\)} is unknown (t-confidence
 interval), see \eqref{ci02}.
 
 \begin{align}
@@ -5394,6 +5524,53 @@ CI = \hat{p} \pm Z \sqrt{\frac{\hat{p}(1-\hat{p})}{n}} \label{ci03}
   differences between two population means, other statistical techniques
   may be used.
 \end{enumerate}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{SamplingMethods/point_estimate_vs_conf_int.png}
+
+}
+
+\caption{\label{fig-ci-lit}Point estimates vs.~confidence intervals
+(Ismay and Kim 2019).}
+
+\end{figure}%
+
+\subsection{Some basics}\label{some-basics}
+
+\begin{align}
+P(L \leq \theta \leq U) = 1- \alpha
+\end{align}
+
+\ldots{} with \(L\) and \(U\) being computed from sample data.
+
+A \(95\%\) \hyperref[acronyms_CI]{CI} for the population mean \(\mu_0\)
+implies that if we repeated the sampling process infinitely, \(95\%\) of
+the computed intervals would contain \(\mu\).
+
+\subsection{\texorpdfstring{Components of a
+\hyperref[acronyms_CI]{CI}}{Components of a CI}}\label{components-of-a}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Point Estimate}: The sample statistic (\(\bar{x},\hat{p}\))
+\item
+  \textbf{\hyperref[acronyms_SE]{SE}}: Measures the variability of the
+  point estimate
+\item
+  \textbf{Critical Value}: Derived from the sampling distribution
+\item
+  \textbf{\hyperref[acronyms_ME]{Margin of Error (ME)}}:
+  \(ME = \text{Critical Value} \times SE\)
+\end{enumerate}
+
+\begin{align}
+\text{CI} = \text{Point Estimate} \pm \text{ME}
+\end{align}
 
 \subsection{The drive shaft exercise - Confidence
 Intervals}\label{the-drive-shaft-exercise---confidence-intervals}
@@ -5483,46 +5660,42 @@ t-test.
   (\(Power = 1 - \beta\)).
 \end{enumerate}
 
-\begin{figure}[H]
+\subsection{Why Power analysis}\label{why-power-analysis}
 
-\centering{
-
-\includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{chapter002/023_CoinToss.png}
-
-}
-
-\caption{\label{fig-ct-prob}The coin toss with the respective
-probabilites (Champely 2020).}
-
-\end{figure}%
-
-\begin{description}
+\begin{itemize}
 \tightlist
-\item[H0:]
-The coin is fair and lands heads \(50\%\) of the time.
-\item[Ha:]
-The coin is loaded and lands heads more than \(50\%\) of the time.
-\end{description}
+\item
+  How large should a sample be?
+\item
+  What's the probability my experiment will succeed (as in reject
+  \(H_0\) when \(H_0\) is false)
+\item
+  Is my study even worth running given the effect size I expect
+\end{itemize}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{pwr.p.test}\NormalTok{(}\AttributeTok{h =} \FunctionTok{ES.h}\NormalTok{(}\AttributeTok{p1 =} \FloatTok{0.75}\NormalTok{, }\AttributeTok{p2 =} \FloatTok{0.50}\NormalTok{),}
-           \AttributeTok{sig.level =} \FloatTok{0.05}\NormalTok{,}
-           \AttributeTok{power =} \FloatTok{0.80}\NormalTok{,}
-           \AttributeTok{alternative =} \StringTok{"greater"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\subsection{Power defined}\label{power-defined}
 
-\begin{verbatim}
+\textbf{Power} = Probability of rejecting \(H_0\) when \(H_a\) is true.
 
-     proportion power calculation for binomial distribution (arcsine transformation) 
+Mathematically:
 
-              h = 0.5235988
-              n = 22.55126
-      sig.level = 0.05
-          power = 0.8
-    alternative = greater
-\end{verbatim}
+\begin{align}
+\text{Power} = P(\text{Reject }H_0|H_1 \text{ is true}) = 1 -\beta
+\end{align}
+
+\begin{itemize}
+\tightlist
+\item
+  Significance level (\(\alpha\)): Threshold for rejecting \(H_0\)
+  (e.g.~\(0.05\))
+\item
+  Effect Size: For the Coin Toss example \(p = 0.6\) vs.~\(p = 0.5\)
+\item
+  Sample Size (\(n\))
+\end{itemize}
+
+\subsection{\texorpdfstring{Power and \(\beta\)
+error}{Power and \textbackslash beta error}}\label{power-and-beta-error}
 
 The sample size \(n = 23\), meaning \(23\) coin flips means that the
 statistical power is \(80\%\) at a \(\alpha = 0.05\) significance level
@@ -5536,11 +5709,107 @@ sample sized must be increased by \(11\). A further power increase of
 This highlights the non-linear nature of power calculations and why they
 are important for experimental planning.
 
+\subsection{Example: The Coin Toss}\label{example-the-coin-toss}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.6\linewidth,height=\textheight,keepaspectratio]{chapter002/023_CoinToss.png}
+
+}
+
+\caption{\label{fig-ct-prob}The coin toss with the respective
+probabilites (Champely 2020).}
+
+\end{figure}%
+
+Define \(H_0\) and \(H_a\)
+
+H0: The coin is fair and lands heads \(50\%\) of the time.
+
+Ha: The coin is loaded and lands heads more than \(50\%\) of the time.
+
+Power computation for \(n = 10,20,30,50\) with \(\alpha = 0.05\)
+
+Define the test statistic
+
+For a binomial test, the test statistic is the number of head \(X\)
+under \(H_0\), \(X \sim \text{Binomial}(n,0.5)\)
+
+Critical Value
+
+Reject \(H_0\) if \(x\geq c\), where \(c\) is the smallest integer such
+that
+
+\[P(X\geq c) | H_0) \leq \alpha\]
+
+Power calculation
+
+\[\text{Power} = P(X\geq c|H_1)\]
+
+\subsubsection{Power calculations in this
+example}\label{power-calculations-in-this-example}
+
+\begin{itemize}
+\tightlist
+\item
+  The \emph{critical value} is the smallest integer where
+  \(P(X\geq c)\leq \alpha\)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    For \(n = 10\) and \(\alpha = 0.05\) \texttt{qbinom(0.95,10,0.5)}
+    returns \(8\), meaning we would reject \(H_0\) if there are
+    \textbf{8 or more heads} in 10 flips
+  \end{itemize}
+\end{itemize}
+
+\paragraph{\texorpdfstring{Power is the *probability of observing
+\(X\geq c\) under
+\(H_1\)}{Power is the *probability of observing X\textbackslash geq c under H\_1}}\label{power-is-the-probability-of-observing-xgeq-c-under-h_1}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{pbinom(c-1,n,p\_h1)} computes \(P(X\leq c-1 |H_1)\)
+\item
+  \texttt{1-pbinom(...)} gives \(P(X\geq c | H_1)\)
+\item
+  \(n=10\), \(c = 8\) and \(p_{H1} = 0.6\):
+  \texttt{1-pbinom(7,10,0.6)\ =} 0.1672898
+\end{itemize}
+
+\subsection{Using packages}\label{using-packages}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pwr}\SpecialCharTok{::}\FunctionTok{pwr.p.test}\NormalTok{(}\AttributeTok{h =}\NormalTok{ pwr}\SpecialCharTok{::}\FunctionTok{ES.h}\NormalTok{(}\AttributeTok{p1 =} \FloatTok{0.6}\NormalTok{, }\AttributeTok{p2 =} \FloatTok{0.50}\NormalTok{),}
+           \AttributeTok{sig.level =} \FloatTok{0.05}\NormalTok{,}
+           \AttributeTok{power =} \FloatTok{0.80}\NormalTok{,}
+           \AttributeTok{alternative =} \StringTok{"greater"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+     proportion power calculation for binomial distribution (arcsine transformation) 
+
+              h = 0.2013579
+              n = 152.4863
+      sig.level = 0.05
+          power = 0.8
+    alternative = greater
+\end{verbatim}
+
+\subsection{Power vs.~sample size}\label{power-vs.-sample-size}
+
 \begin{figure}[ht]
 
 \centering{
 
-\pandocbounded{\includegraphics[keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/fig-pwr-calc-1.pdf}}
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/fig-pwr-calc-1.pdf}
 
 }
 
@@ -5548,11 +5817,14 @@ are important for experimental planning.
 
 \end{figure}%
 
+\subsection{Power and the different
+parameters}\label{power-and-the-different-parameters}
+
 \begin{figure}[ht]
 
 \centering{
 
-\pandocbounded{\includegraphics[keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/fig-pwr-calc-params-1.pdf}}
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/fig-pwr-calc-params-1.pdf}
 
 }
 
@@ -5575,107 +5847,6 @@ sample size and power calculations.
 When in doubt, Conventional Effect Sizes can be used. These are
 pre-determined effect sizes for ``small'', ``medium'', and ``large''
 effects, see Cohen (2013).
-
-\section{p-value}\label{p-value}
-
-\begin{figure}[ht]
-
-\centering{
-
-\includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{chapter002/008_Rates.png}
-
-}
-
-\caption{\label{fig-stat-rates}Type I and Type II error in the context
-of inferential statistics.}
-
-\end{figure}%
-
-The p-value is a statistical measure that quantifies the evidence
-against a null hypothesis. It represents the probability of obtaining
-test results as extreme or more extreme than the ones observed, assuming
-the null hypothesis is true. In hypothesis testing, a smaller p-value
-indicates stronger evidence against the null hypothesis. If the p-value
-is less than or equal to \(\alpha\) (\(p \leq \alpha\)), you reject the
-null hypothesis. If the p-value is greater than \(\alpha\) (
-\(p > \alpha\) ), you fail to reject the null hypothesis. A common
-threshold for determining statistical significance is to reject the null
-hypothesis when \(p\leq\alpha\).
-
-The p-value however does not give an assumption about the effect size,
-which can be quite insignificant (Nuzzo 2014). While the p-value
-therefore is the probability of accepting \(H_a\) as true, it is not a
-measure of magnitude or relative importance of an effect. Therefore the
-\hyperref[ci]{CI} and the effect size should always be reported with a
-p-value. Some Researchers even claim that most of the research today is
-false (Ioannidis 2005). In practice, especially in the manufacturing
-industry, the p-value and its use is still popular. Before implementing
-any measures in a series production, those questions will be asked. The
-confident and reliable engineer asks them beforehand and is always his
-own greatest critique.
-
-\section{Statistical errors}\label{statistical-errors}
-
-\begin{figure}[ht]
-
-\centering{
-
-\includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{chapter002/007_StatisticalErrors.png}
-
-}
-
-\caption{\label{fig-stat-errors}The statistical Errors (Type I and Type
-II).}
-
-\end{figure}%
-
-\begin{itemize}
-\tightlist
-\item
-  Type I Error (False Positive, see Figure~\ref{fig-stat-errors}):
-\end{itemize}
-
-A Type I error occurs when a null hypothesis that is actually true is
-rejected. In other words, it's a false alarm. It is concluded that there
-is a significant effect or difference when there is none. The
-probability of committing a Type I error is denoted by the
-\hyperref[sign-level]{significance level \(\alpha\)}. \emph{Example:}
-Imagine a drug trial where the null hypothesis is that the drug has no
-effect (it's ineffective), but due to random chance, the data appears to
-show a significant effect, and you incorrectly conclude that the drug is
-effective (Type I error).
-
-\begin{itemize}
-\tightlist
-\item
-  Type II Error (False Negative, see Figure~\ref{fig-stat-errors}):
-\end{itemize}
-
-A Type II error occurs when a null hypothesis that is actually false is
-not rejected. It means failing to detect a significant effect or
-difference when one actually exists. The probability of committing a
-Type II error is denoted by the symbol \(\beta\). \emph{Example:} In a
-criminal trial, the null hypothesis might be that the defendant is
-innocent, but they are actually guilty. If the jury fails to find enough
-evidence to convict the guilty person, it is a Type II error.
-
-Type I Error is falsely concluding, that there is an effect or
-difference when there is none (false positive). Type II Error failing to
-conclude that there is an effect or difference when there actually is
-one (false negative).
-
-The relationship between \emph{Type I} and \emph{Type II} errors is
-often described as a trade-off. As the risk of Type I errors is reduced
-by lowering the significance level (\(\alpha\)), the risk of Type II
-errors (\(\beta\)) is typically increased (Figure~\ref{fig-stat-rates}).
-This trade-off is inherent in hypothesis testing, and the choice of
-significance level depends on the specific goals and context of the
-study. Researchers often aim to strike a balance between these two types
-of errors based on the consequences and costs associated with each. This
-balance is a critical aspect of the design and interpretation of
-statistical tests.
-
-\newpage{}
 
 \section{Parametric and Non-parametric
 Tests}\label{parametric-and-non-parametric-tests}
@@ -5749,6 +5920,167 @@ One-sample t-test & Wilcoxon signed rank test \\
 Paired t-test & Mann-Whitney U test \\ 
 Two-sample t-test & Kruskal Wallis test \\ 
 One-Way ANOVA & Welch Test \\ 
+\bottomrule
+\end{tabular*}
+
+}
+
+\end{table}%
+
+\subsection{Ranks}\label{ranks}
+
+A \emph{rank} is a position of a data point when sorted in
+ascending/descending order.
+
+Ties are handled using the \emph{average} rank (two 3rd places, both get
+ranked \(3.5\))
+
+\begin{itemize}
+\tightlist
+\item
+  Data: \texttt{{[}5,2,8,2,10{]}}
+\item
+  Sorted: \texttt{{[}2,2,5,8,10{]}}
+\item
+  Ranks: \texttt{{[}2,2,3,4,5{]}}
+\item
+  Ranks with ties: \texttt{{[}1.5,1.5,3,4,5{]}}
+\end{itemize}
+
+\subsection{Why ranks for non-parametric
+tests}\label{why-ranks-for-non-parametric-tests}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Invariance to Monotonic Transformations}: Ranks preserve
+  order, so log/root transformations do not change them
+\item
+  \textbf{Focus on relative Differences}: Tests like Wilcoxon (rank-sum)
+  or Kruskal-Wallis compare \emph{ranks distributions} across groups
+\item
+  \textbf{Exact p-values per Permutation}: Ranks allow exact tests by
+  enumerating all possible rank orderings (for small samples)
+\end{enumerate}
+
+\subsection{Common Pitfalls and
+Misconceptions}\label{common-pitfalls-and-misconceptions}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Loss of Information}: Ranks discard magnitude, a trade-off for
+  robustness
+\item
+  \textbf{Ties Reduce Power}: Many ties weaken tests
+\item
+  \textbf{Not ``Assumption-Free''}: Nonpaeametric \(\neq\) no
+  assumptions (independence, distribution shapes)
+\end{enumerate}
+
+\subsubsection{Exercise on ranks}\label{exercise-on-ranks}
+
+\begin{table}
+
+\caption{\label{tbl-ranks-exercise}Reaction times for two groups of
+participants}
+
+\centering{
+
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lr}
+\toprule
+group & time \\ 
+\midrule\addlinespace[2.5pt]
+A & 12.3 \\ 
+A & 10.1 \\ 
+B & 14.0 \\ 
+B & 13.2 \\ 
+A & 10.1 \\ 
+B & 15.5 \\ 
+A & 11.8 \\ 
+B & 13.2 \\ 
+\bottomrule
+\end{tabular*}
+
+}
+
+\end{table}%
+
+\subsubsection{Sort the data}\label{sort-the-data}
+
+\begin{table}
+
+\caption{\label{tbl-ranks-exercise02}sorted reaction times for two
+groups of participants}
+
+\centering{
+
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrr}
+\toprule
+group & time & sorted\_position \\ 
+\midrule\addlinespace[2.5pt]
+A & 10.1 & 1 \\ 
+A & 10.1 & 2 \\ 
+A & 11.8 & 3 \\ 
+A & 12.3 & 4 \\ 
+B & 13.2 & 5 \\ 
+B & 13.2 & 6 \\ 
+B & 14.0 & 7 \\ 
+B & 15.5 & 8 \\ 
+\bottomrule
+\end{tabular*}
+
+}
+
+\end{table}%
+
+\subsubsection{Assign Ranks}\label{assign-ranks}
+
+\begin{table}
+
+\caption{\label{tbl-ranks-exercise03}sorted reaction times for two
+groups of participants}
+
+\centering{
+
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrr}
+\toprule
+group & time & rank \\ 
+\midrule\addlinespace[2.5pt]
+A & 10.1 & 1.5 \\ 
+A & 10.1 & 1.5 \\ 
+A & 11.8 & 3.0 \\ 
+A & 12.3 & 4.0 \\ 
+B & 13.2 & 5.5 \\ 
+B & 13.2 & 5.5 \\ 
+B & 14.0 & 7.0 \\ 
+B & 15.5 & 8.0 \\ 
+\bottomrule
+\end{tabular*}
+
+}
+
+\end{table}%
+
+\subsubsection{Sum of ranks}\label{sum-of-ranks}
+
+\begin{table}
+
+\caption{\label{tbl-ranks-exercise04}sorted reaction times for two
+groups of participants}
+
+\centering{
+
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrr}
+\toprule
+group & sum\_rank & count & mean\_rank \\ 
+\midrule\addlinespace[2.5pt]
+A & 10 & 4 & 2.5 \\ 
+B & 26 & 4 & 6.5 \\ 
 \bottomrule
 \end{tabular*}
 
@@ -5867,26 +6199,21 @@ dataset.
 
 \begin{table}
 
-\caption{\label{tbl-qq-smpl-dat}10 randomly sampled datapoints for the
-creation of the QQ-plot}
+\caption{\label{tbl-qq-smpl-dat}10 datapoints for the creation of the
+QQ-plot}
 
 \centering{
 
 \fontsize{12.0pt}{14.0pt}\selectfont
-\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}rr}
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}r}
 \toprule
-x & smpl\_no \\ 
+sample\_data \\ 
 \midrule\addlinespace[2.5pt]
--0.56047565 & 1 \\ 
--0.23017749 & 2 \\ 
-1.55870831 & 3 \\ 
-0.07050839 & 4 \\ 
-0.12928774 & 5 \\ 
-1.71506499 & 6 \\ 
-0.46091621 & 7 \\ 
--1.26506123 & 8 \\ 
--0.68685285 & 9 \\ 
--0.44566197 & 10 \\ 
+3 \\ 
+1 \\ 
+5 \\ 
+2 \\ 
+4 \\ 
 \bottomrule
 \end{tabular*}
 
@@ -5906,20 +6233,44 @@ order.
 \centering{
 
 \fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}r}
+\toprule
+sample\_data \\ 
+\midrule\addlinespace[2.5pt]
+1 \\ 
+2 \\ 
+3 \\ 
+4 \\ 
+5 \\ 
+\bottomrule
+\end{tabular*}
+
+}
+
+\end{table}%
+
+\subsubsection{Empirical Quantiles}\label{empirical-quantiles}
+
+Theoretical quantiles are calculated based on the chosen distribution
+(e.g., the normal distribution). These quantiles represent the expected
+values if the data perfectly follows that distribution.
+
+\begin{table}
+
+\caption{\label{tbl-qq-smpl-emprcl}The empirical quantiles}
+
+\centering{
+
+\fontsize{12.0pt}{14.0pt}\selectfont
 \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}rr}
 \toprule
-x & smpl\_no \\ 
+sample\_data & sample\_data\_emp\_prob \\ 
 \midrule\addlinespace[2.5pt]
--1.26506123 & 8 \\ 
--0.68685285 & 9 \\ 
--0.56047565 & 1 \\ 
--0.44566197 & 10 \\ 
--0.23017749 & 2 \\ 
-0.07050839 & 4 \\ 
-0.12928774 & 5 \\ 
-0.46091621 & 7 \\ 
-1.55870831 & 3 \\ 
-1.71506499 & 6 \\ 
+1 & 0.1 \\ 
+2 & 0.3 \\ 
+3 & 0.5 \\ 
+4 & 0.7 \\ 
+5 & 0.9 \\ 
 \bottomrule
 \end{tabular*}
 
@@ -5929,10 +6280,6 @@ x & smpl\_no \\
 
 \subsubsection{Theoretical Quantiles}\label{theoretical-quantiles}
 
-Theoretical quantiles are calculated based on the chosen distribution
-(e.g., the normal distribution). These quantiles represent the expected
-values if the data perfectly follows that distribution.
-
 \begin{table}
 
 \caption{\label{tbl-qq-smpl-thrtcl}The calculated theoretical quantiles}
@@ -5940,20 +6287,15 @@ values if the data perfectly follows that distribution.
 \centering{
 
 \fontsize{12.0pt}{14.0pt}\selectfont
-\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}rrcc}
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}rrr}
 \toprule
-x & smpl\_no & x\_norm & x\_thrtcl \\ 
+sample\_data & sample\_data\_emp\_prob & quant\_theo \\ 
 \midrule\addlinespace[2.5pt]
--1.26506123 & 8 & -1.404601888 & 0.08006985 \\ 
--0.68685285 & 9 & -0.798376211 & 0.21232610 \\ 
--0.56047565 & 1 & -0.665875352 & 0.25274539 \\ 
--0.44566197 & 10 & -0.545498338 & 0.29270541 \\ 
--0.23017749 & 2 & -0.319572479 & 0.37464622 \\ 
-0.07050839 & 4 & -0.004316756 & 0.49827787 \\ 
-0.12928774 & 5 & 0.057310762 & 0.52285118 \\ 
-0.46091621 & 7 & 0.405008410 & 0.65726434 \\ 
-1.55870831 & 3 & 1.555994430 & 0.94014529 \\ 
-1.71506499 & 6 & 1.719927421 & 0.95727718 \\ 
+1 & 0.1 & 0.9736891 \\ 
+2 & 0.3 & 2.1708500 \\ 
+3 & 0.5 & 3.0000000 \\ 
+4 & 0.7 & 3.8291500 \\ 
+5 & 0.9 & 5.0263109 \\ 
 \bottomrule
 \end{tabular*}
 
@@ -5967,7 +6309,7 @@ x & smpl\_no & x\_norm & x\_thrtcl \\
 
 \centering{
 
-\includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/fig-qq-pts-1.pdf}
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/fig-qq-pts-1.pdf}
 
 }
 
@@ -5987,7 +6329,7 @@ Distribution}\label{perfect-normal-distribution}
 
 \centering{
 
-\includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/fig-qq-abline-1.pdf}
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/fig-qq-abline-1.pdf}
 
 }
 
@@ -6001,30 +6343,31 @@ along a straight line at a 45-degree angle. If the data deviates from
 normality, the points may deviate from this line in specific ways, see
 Figure~\ref{fig-qq-abline}.
 
-\subsubsection{Interpretation}\label{interpretation}
-
-\begin{figure}[H]
-
-\centering{
-
-\includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/fig-qq-line-1.pdf}
-
-}
-
-\caption{\label{fig-qq-line}The QQ line as plotted using the theoretical
-and sample quantiles.}
-
-\end{figure}%
-
 Deviations from the straight line suggest departures from the assumed
 distribution. For example, if points curve upward, it indicates that the
 data has heavier tails than a normal distribution. If points curve
 downward, it suggests lighter tails. S-shaped curves or other patterns
 can reveal additional information about the data's distribution. In
-Figure~\ref{fig-qq-line} the QQ-points are shown together with the
+\textbf{?@fig-qq-line} the QQ-points are shown together with the
 respective QQ-line and a line of perfectly normal distributed points.
 Some deviations can be seen, but it is hard to judge, if the data is
 normally distributed or not.
+
+\subsubsection{QQ plot with
+probabilities}\label{qq-plot-with-probabilities}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/fig-qq-abline-probgrid-1.pdf}
+
+}
+
+\caption{\label{fig-qq-abline-probgrid}A QQ Plot with the assigned
+probabilities on the axis}
+
+\end{figure}%
 
 \subsubsection{Confidence Interval}\label{confidence-interval}
 
@@ -6040,9 +6383,9 @@ normally distributed or not.
 
 \end{figure}%
 
-Because it is hard to judge from Figure~\ref{fig-qq-line} if the points
+Because it is hard to judge from \textbf{?@fig-qq-line} if the points
 are normally distributed, it makes sense to get limits for normally
-disitrbuted points. This is shown in Figure~\ref{fig-qq-bands}. The gray
+distributed points. This is shown in Figure~\ref{fig-qq-bands}. The gray
 area depicts the (\(95\%\)) confidence bands for a normal distribution.
 All the points fall into the area, as well as the line. This shows, that
 the points are likely to be normally distributed.
@@ -6198,28 +6541,12 @@ Dutang 2015).
 
 \subsection{One Proportion Test}\label{one-proportion-test}
 
-\begin{table}
-
-\caption{\label{tbl-prop-test-data}The raw data for the proportion
-test.}
-
-\centering{
-
-\fontsize{12.0pt}{14.0pt}\selectfont
-\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrl}
-\toprule
-Category & Count & Total & plt\_lbl \\ 
-\midrule\addlinespace[2.5pt]
-A & 35 & 100 & 35  counts
- 100  trials \\ 
-B & 20 & 100 & 20  counts
- 100  trials \\ 
-\bottomrule
-\end{tabular*}
-
-}
-
-\end{table}%
+Scenario: A semiconductor manufacturer claims that their production line
+yields no more than \(2\%\) defective chips (i.e., the defect rate
+\(p_0=0.02\) ). To verify this, a quality engineer randomly samples 500
+chips and finds 14 defectives. Is there sufficient evidence at
+\(\alpha=0.05\) to conclude that the defect rate exceeds the claimed
+\(2\%\)?
 
 The one proportion test is used on categorical data with a binary
 outcome, such as success or failure. Its prerequisite is having a known
@@ -6228,28 +6555,138 @@ be compared to. This test helps determine if the sample proportion
 significantly differs from the population proportion, making it valuable
 for studies involving proportions and percentages.
 
-\begin{table}
+\subsubsection{Define the Hypothesis}\label{define-the-hypothesis}
 
-\caption{\label{tbl-prop-test-res}The test results for the proportion
-test.}
+\begin{description}
+\tightlist
+\item[{\hyperref[acronyms_H0]{H0}:}]
+Defect rate is \textless{} 2 percent
+\item[{\hyperref[acronyms_Ha]{Ha}:}]
+Defect rate is \textgreater2 percent
+\end{description}
+
+This is a \textbf{right-tailed} test
+
+\subsubsection{The z-test for
+proportions}\label{the-z-test-for-proportions}
+
+The underlying distribution for the z-test is the \emph{binomial}
+distribution.
+
+The test itself relies on the \emph{normal} approximation to the
+\emph{binomial}
+
+\[X\sim\text{Binomial}(n,p)\]
+
+\begin{itemize}
+\item
+  \(n\): sample size
+\item
+  \(p\): true population proportion
+\item
+  Sample proportion: The sample proportion \(\hat{p} = \frac{X}{n}\) is
+  the estimator for \(p\)
+\end{itemize}
+
+\subsubsection{The Bridge to Normality}\label{the-bridge-to-normality}
+
+Acc. to the \hyperref[acronyms_CLT]{CLT} for large \(n\)
+
+\begin{align}
+\hat{p} \sim N(p,\sqrt{\frac{p(1-p)}{n}})
+\end{align}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Mean: \(\hat{p}\) is the unbiased estimator of \(p\)
+\item
+  \hyperref[acronyms_SE]{SE}: The \(sd\) of \(\hat{p}\) is
+  \(\sqrt{\frac{p(1-p)}{n}}\)
+\item
+  Normality Condition: \(np\geq10\) and \(n(1-p)\geq 10\)
+\end{enumerate}
+
+\subsubsection{The Z-Statistic}\label{the-z-statistic}
+
+Under \(H_0\) assume \(p = p_0\). The Z-Statistic standardizes
+\(\hat{p}\) to
+
+\begin{align}
+Z = \frac{\hat{p}-p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}}
+\end{align}
+
+\subsubsection{Check Assumptions}\label{check-assumptions}
+
+. . .
+
+\begin{itemize}
+\tightlist
+\item
+  Independence: Chips are randomly sampled
+\end{itemize}
+
+. . .
+
+\begin{itemize}
+\tightlist
+\item
+  Sample Size: \(n \cdot p_0\geq 10\) and \(n(1-p_0)\geq10\)
+\end{itemize}
+
+. . .
+
+\begin{itemize}
+\tightlist
+\item
+  \(500 \times 0.02 = 10 \geq 10\)
+\end{itemize}
+
+. . .
+
+\begin{itemize}
+\tightlist
+\item
+  \(500 \times 0.98 = 490 \geq 10\)
+\end{itemize}
+
+\subsubsection{Calculate Test Statistic}\label{calculate-test-statistic}
+
+\begin{itemize}
+\tightlist
+\item
+  \(\hat{p} = \frac{\text{defective}}{n} = \frac{14}{500} = 0.028\)
+\item
+  \(p_0 = 0.02, n = 500\)
+\end{itemize}
+
+. . .
+
+\[z = \frac{\hat{p}-p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}} = \frac{0.028-0.02}{\sqrt{\frac{0.02\times 0.98}{500}}}\approx 1.28\]
+
+\subsubsection{Compute the p-value}\label{compute-the-p-value}
+
+\[P(Z>1.28) = 1-P(Z\leq 1.28)\approx 1-0.8997 = 0.1003\]
+
+\begin{figure}[H]
 
 \centering{
 
-\fontsize{12.0pt}{14.0pt}\selectfont
-\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}rrrrrrrl}
-\toprule
-estimate1 & estimate2 & statistic & p.value & parameter & conf.low & conf.high & alternative \\ 
-\midrule\addlinespace[2.5pt]
-0.350 & 0.200 & 4.915 & 0.027 & 1.000 & 0.018 & 0.282 & two.sided \\ 
-\bottomrule
-\end{tabular*}
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/fig-z-test-1.pdf}
 
 }
 
-\end{table}%
+\caption{\label{fig-z-test}The z-test statistic}
+
+\end{figure}%
 
 \subsection{\texorpdfstring{Chi\textsuperscript{2} goodness of fit
 test}{Chi2 goodness of fit test}}\label{chi2-goodness-of-fit-test}
+
+Scenario: A semiconductor manufacturer produces wafers using three
+machines (A, B, C). The QA team suspects that defect rates differ across
+machines. They collect data over a week:
 
 \begin{table}
 
@@ -6259,21 +6696,131 @@ test.}
 \centering{
 
 \fontsize{12.0pt}{14.0pt}\selectfont
-\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lr}
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}llr}
 \toprule
-group & count\_n\_observed \\ 
+Machine & Status & Count \\ 
 \midrule\addlinespace[2.5pt]
-group01 & 100.000 \\ 
-group02 & 100.000 \\ 
-group03 & 100.000 \\ 
-group04 & 100.000 \\ 
-group05 & 100.000 \\ 
+A & Defective & 45 \\ 
+A & Non-Defective & 505 \\ 
+B & Defective & 30 \\ 
+B & Non-Defective & 520 \\ 
+C & Defective & 60 \\ 
+C & Non-Defective & 490 \\ 
 \bottomrule
 \end{tabular*}
 
 }
 
 \end{table}%
+
+\subsubsection{Define the Hypotheses}\label{define-the-hypotheses}
+
+\begin{description}
+\tightlist
+\item[{\hyperref[acronyms_H0]{H0}:}]
+Defect rates are independent of machine (no difference).
+\item[{\hyperref[acronyms_Ha]{Ha}:}]
+Defect rates depend on the machine.
+\end{description}
+
+\subsubsection{Calculate Test
+Statistic}\label{calculate-test-statistic-1}
+
+\[\chi^2 = \sum \frac{(O_{ij}-E_{ij})^2}{E_{ij}}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \(O_{ij}\) observed frquency in cell \(i,j\) (Row \(i\), column \(j\))
+\item
+  \(E_{ij}\) expected frquency in cell \(i,j\) under the \(H_0\)
+\end{itemize}
+
+\subsubsection{Contingency tables}\label{contingency-tables}
+
+A contingency table (also called a cross-tabulation or two-way table) is
+a tabular representation of the relationship between two or more
+categorical variables. It displays the frequency distribution of
+observations across different categories, allowing us to examine
+associations, independence, or dependencies between variables.
+
+\subsubsection{Observed Contingency
+table}\label{observed-contingency-table}
+
+\begin{table}
+
+\caption{\label{tbl-chi-cont-ob}The tabulated results for the observed
+frequencies}
+
+\centering{
+
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}l|lrrr}
+\toprule
+ & Machine & Defective & Non-Defective & Row Total \\ 
+\midrule\addlinespace[2.5pt]
+ & A & 45 & 505 & 550 \\ 
+ & B & 30 & 520 & 550 \\ 
+ & C & 60 & 490 & 550 \\ 
+\midrule 
+\midrule 
+sum & — & 135 & 1515 & 1650 \\ 
+\bottomrule
+\end{tabular*}
+
+}
+
+\end{table}%
+
+\subsubsection{Calculate Expected
+Frequencies}\label{calculate-expected-frequencies}
+
+For each cell, calculate \(E_{ij}\):
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Machine A, Defective:
+\end{enumerate}
+
+\[E_{A,Defective} = \frac{\text{Row Total}_A \times \text{Column Total}_{Defective}}{\text{Grand Total}} = \frac{550\times135}{1650} = 45\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Machine A, Non-Defective:
+\end{enumerate}
+
+\[E_{A,Non-Defective} = \frac{\text{Row Total}_A \times \text{Column Total}_{Non Defective}}{\text{Grand Total}} = \frac{550\times1515}{1650} = 505\]
+
+\subsubsection{Expected table}\label{expected-table}
+
+\begin{table}
+
+\caption{\label{tbl-chi-cont-ex}The tabulated results for the expected
+frequencies}
+
+\centering{
+
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrr}
+\toprule
+Machine & Defective & Non\_Defective \\ 
+\midrule\addlinespace[2.5pt]
+A & 45 & 505 \\ 
+B & 45 & 505 \\ 
+C & 45 & 505 \\ 
+\bottomrule
+\end{tabular*}
+
+}
+
+\end{table}%
+
+\subsubsection{The test result}\label{the-test-result}
 
 \begin{table}
 
@@ -6282,12 +6829,12 @@ test.}
 
 \centering{
 
-\fontsize{19.0pt}{22.0pt}\selectfont
-\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}rrr}
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}rrl}
 \toprule
-statistic & p.value & parameter \\ 
+statistic & p.value & method \\ 
 \midrule\addlinespace[2.5pt]
-0.000 & 1.000 & 4.000 \\ 
+10.891 & 0.004 & Pearson's Chi-squared test \\ 
 \bottomrule
 \end{tabular*}
 
@@ -6345,6 +6892,8 @@ introduced in previous chapters. First, a classic \hyperref[qq]{QQ}-plot
 is created for every group (see Figure~\ref{fig-t-one-qq}). From a first
 glance, the data appears to be normally distributed.
 
+\subsubsection{Normality Check}\label{normality-check}
+
 \begin{figure}[ht]
 
 \centering{
@@ -6362,6 +6911,9 @@ Table~\ref{tbl-t-one-ks-test}. Here, each group is tested with the
 \hyperref[KS]{KS}-test for normality. \hyperref[H0]{H0} is accepted (the
 data is normal distributed) because the computed p-value is larger than
 the significance level (\(\alpha  = 0.05\)).
+
+\subsubsection{Quantitative Normality
+Check}\label{quantitative-normality-check}
 
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
@@ -6409,6 +6961,8 @@ each group. The next step is, to test if the data comes from a certain
 population mean (\hyperref[truemean-gloss]{\(\mu_0\)}). In this case,
 the population mean is the specification of the drive shaft at a
 diameter \(=12mm\).
+
+\subsubsection{Test result}\label{test-result}
 
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 16\tabcolsep) * \real{0.1111}}
@@ -6586,13 +7140,6 @@ variables.}
 
 \end{figure}%
 
-\subsection{Cochrane's Q-test}\label{cochranes-q-test}
-
-Cochran's Q test is employed when you have categorical data with three
-or more related groups, often collected over time or with repeated
-measurements. It assesses if there is a significant difference in
-proportions between the related groups.
-
 \subsection{\texorpdfstring{Chi\textsuperscript{2} test of
 independence}{Chi2 test of independence}}\label{chi2-test-of-independence}
 
@@ -6605,7 +7152,7 @@ In the context of the drive shaft production the example assumes a
 dataset with categorical variables like ``Defects'' (Yes/No) and
 ``Operator'' (Operator A/B).
 
-\subsubsection{Contingency tables}\label{contingency-tables}
+\subsubsection{Contingency tables}\label{contingency-tables-1}
 
 A contingency table, also known as a cross-tabulation or crosstab, is a
 statistical table that displays the frequency distribution of variables.
@@ -11023,14 +11570,14 @@ runs}
 \toprule
 flour & salt & bakPow & score & ord \\ 
 \midrule\addlinespace[2.5pt]
-- & + & + & NA & 1 \\ 
-- & - & + & NA & 2 \\ 
-+ & + & - & NA & 3 \\ 
-+ & + & + & NA & 4 \\ 
-+ & - & + & NA & 5 \\ 
-+ & - & - & NA & 6 \\ 
-- & + & - & NA & 7 \\ 
-- & - & - & NA & 8 \\ 
++ & - & - & NA & 1 \\ 
+- & + & - & NA & 2 \\ 
++ & + & + & NA & 3 \\ 
+- & + & + & NA & 4 \\ 
++ & + & - & NA & 5 \\ 
+- & - & - & NA & 6 \\ 
++ & - & + & NA & 7 \\ 
+- & - & + & NA & 8 \\ 
 \bottomrule
 \end{tabular*}
 
@@ -11058,7 +11605,7 @@ flour & salt & bakPow & score & ord \\
 
 \centering{
 
-\pandocbounded{\includegraphics[keepaspectratio]{chapter005/mm_doe_02.png}}
+\includegraphics[width=1.86in,height=\textheight,keepaspectratio]{chapter005/mm_doe_02.png}
 
 }
 
@@ -11602,7 +12149,7 @@ flour & salt & bakPow & score & T1t1 & T2t1 & T1t2 & T2t2 & Mean & SD \\
 
 \bookmarksetup{startatroot}
 
-\chapter{References}\label{references}
+\chapter{References}\label{references-7}
 
 \phantomsection\label{refs}
 \begin{CSLReferences}{1}{0}
@@ -11662,6 +12209,10 @@ Introduction to Statistical Concepts}. Routledge.
 Ioannidis, John P. A. 2005. {``Why Most Published Research Findings Are
 False.''} \emph{{PLoS} Medicine} 2 (8): e124.
 \url{https://doi.org/10.1371/journal.pmed.0020124}.
+
+\bibitem[\citeproctext]{ref-statistical_ismaykim_2019}
+Ismay, Chester, and Albert Y. Kim. 2019. \emph{Statistical Inference via
+Data Science}. Chapman \& Hall/CRC: The R Series.
 
 \bibitem[\citeproctext]{ref-Bibby_1980}
 J. Bibby, E. J. G. Pitman. 1980. {``Some Basic Theory for Statistical
