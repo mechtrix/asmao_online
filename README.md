@@ -8,6 +8,10 @@ Content is subject to change.
 
 Tim Weber, Oct. 2024
 
+## Cite this work
+
+[![DOI](https://zenodo.org/badge/874700522.svg)](https://doi.org/10.5281/zenodo.17555273)
+
 ## License
 This work is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
 © 2024 Tim Weber, DIT/Campus Cham.
