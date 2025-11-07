@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: >
+  To cite this work, use the following reference.
+For the R code, cite as software (MIT license).
+For the educational content, cite as a book (CC-BY-SA 4.0).
+title: "Advanced Statistical Methods and Optimization"
+authors:
+  - given-names: "Tim"
+family-names: "Weber"
+affiliation: "DIT/Campus Cham"
+year: 2024
+url: "https://mechtrix.github.io/asmao_online/"
+license: "CC-BY-SA 4.0"
+repository-code: "https://github.com/mechtrix/asmao_online"
+keywords: ["statistics", "optimization", "R", "tidyverse", "quarto", "education"]
+preferred-citation:
+  type: "book"
+authors:
+  - given-names: "Tim"
+family-names: "Weber"
+title: "Advanced Statistical Methods and Optimization"
+year: 2024
+url: "https://mechtrix.github.io/asmao_online/"
+license: "CC-BY-SA 4.0"
