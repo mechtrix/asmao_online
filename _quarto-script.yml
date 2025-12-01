@@ -91,10 +91,10 @@ format:
     lof: true
     lot: true
     fig-align: center
-    fig-pos: 'ht'
     fig-format: pdf
     fig-width: 8
     fig-height: 5
+    fig-pos: "H"
     keep-tex: true
     prefer-html: true
 

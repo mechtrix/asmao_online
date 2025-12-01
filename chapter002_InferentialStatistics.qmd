@@ -26,6 +26,10 @@ library(car)
 library(ggh4x)
 library(gghighlight)
 library(rstatix)
+library(SensorLab)
+library(gtExtras)
+library(effectsize)
+library(nortest)
 
 ggplot2::theme_set(
   ggthemes::theme_few(base_size = 15)
@@ -518,7 +522,7 @@ $$\text{Power} = P(X\geq c|H_1)$$
 - The *critical value* is the smallest integer where $P(X\geq c)\leq \alpha$
   - For $n = 10$ and $\alpha = 0.05$ `qbinom(0.95,10,0.5)` returns $8$, meaning we would reject $H_0$ if there are **8 or more heads** in 10 flips
 
-##### Power is the *probability of observing $X\geq c$ under $H_1$
+##### Power is the probability of observing $X\geq c$ under $H_1$
 
   - `pbinom(c-1,n,p_h1)` computes $P(X\leq c-1 |H_1)$
   - `1-pbinom(...)` gives $P(X\geq c | H_1)$
@@ -655,22 +659,158 @@ pwr_df_params %>%
 
 
 
-::: {.content-visible when-profile="script"}
+## Effect Sizes
 
-### A word on Effect Size
+After computing statistical power, we must ask: *"How meaningful is the effect we’re powered to detect?"*
+Effect sizes quantify the **magnitude** of a phenomenon—separate from sample size or significance.
 
-Cohen [@Cohen_2013] describes effect size as “the degree to which the null hypothesis is false.” 
-In the coin flipping example, this is the difference between $75\%$ and $50\%$. 
-We could say the effect was 25% but recall we had to transform the absolute difference in proportions to another quantity using the ES.h function. 
-This is a crucial part of doing power analysis correctly: An effect size must be provided on the expected scale.
-Doing otherwise will produce wrong sample size and power calculations.
+### What is an effect size?
 
-When in doubt, Conventional Effect Sizes can be used. 
-These are pre-determined effect sizes for “small”, “medium”, and “large” effects, see @Cohen_2013. 
+- A **standardized** measure of the strength of a relationship or difference.
+- Answers: *"How large is the effect in the population?"* (not just *"Is it nonzero?"*).
+- **Key Property**: Independent of sample size (unlike *p*-values).
 
-:::
+**Analogy**:
+Power tells you if your telescope is strong enough to see a star (*significance*).
+Effect size tells you how bright the star is (*meaningfulness*).
+
+### Types of effect sizes
+
+```{r}
+#| label: tbl-effectsize-calc
+#| tbl-cap: Some parametric and non-parametric statistical tests.
+
+# Create the effect size table data
+effect_size_table <- tribble(
+  ~"Analysis Type",       ~"Common Effect Size Metric", ~"Interpretation",                     ~"R Function (tidyverse)",
+  "Mean Difference",      "Cohen’s *d*",                "Small: 0.2, Medium: 0.5, Large: 0.8", "`effectsize::cohen_d()`",
+  "Correlation",          "Pearson’s *r*",              "Small: 0.1, Medium: 0.3, Large: 0.5", "`correlation::correlation()`",
+  "Binary Outcome",       "Odds Ratio (OR) / Risk Ratio (RR)", "OR = 2: 2x higher odds in group A", "`effectsize::odds_ratio()`",
+  "ANOVA (Group Diffs)", "Eta-squared (η²) / Omega-squared (ω²)", "Proportion of variance explained", "`effectsize::eta_squared()`",
+  "Regression",           "Standardized β (beta)",     "Change in SD units per 1-SD predictor change", "`parameters::standardize_parameters()`"
+)
+
+# Format the table with gt
+effect_size_gt <-
+  effect_size_table %>%
+  gt() %>%
+  # Add a title and subtitle
+  tab_header(
+    title = md("**Common Effect Size Metrics in Statistical Analysis**"),
+    subtitle = md("*Interpretation guidelines and tidyverse functions*")
+  ) %>%
+  # Format columns for clarity
+  fmt_markdown(columns = everything()) %>%
+  # Center-align text for readability
+  tab_style(
+    style = cell_text(align = "center"),
+    locations = cells_body()
+  ) 
+
+effect_size_gt
+
+```
+
+### Computing effect sizes in R
+
+```{r}
+#| echo: true
 
 
+# Simulate data: Treatment vs. Control
+set.seed(123)
+data_effect <- tibble(
+  group = rep(c("Treatment", "Control"), each = 50),
+  score = c(rnorm(50, mean = 85, sd = 10), rnorm(50, mean = 80, sd = 10))
+)
+
+# Compute Cohen's d (correct formula syntax)
+effectsize::cohens_d(score ~ group, data = data_effect) 
+
+```
+
+### Visualization
+
+```{r}
+#| label: fig-effectsize-data
+#| out-width: 95%
+#| fig-cap: The visualization of the data
+
+data_effect |> 
+  ggplot(
+    aes(
+      x = group,
+      y = score
+    )
+  )+
+  geom_boxplot()+
+  geom_jitter()+
+  stat_summary(
+    fun = "median",
+    geom = "line",
+    aes(
+      group = 1
+    )
+  )
+  
+
+```
+
+### Simple example
+
+- Old process: $\text{Mean diameter:}\;10.02mm,\; sd = 0.1mm\;(n = 50)$
+- New process: $\text{Mean diameter:}\;10.00mm,\; sd = 0.05mm\;(n = 50)$
+
+What is the effect size ($d$) of changing to the new process
+
+### Visualizations
+
+```{r}
+#| label: fig-effectsize-simple-example
+#| out-width: 95%
+#| fig-cap: Distribution of the process data
+
+d_data <- data.frame(
+  old = rnorm(50,mean = 10.02, sd = 0.1),
+  new = rnorm(50,mean = 10,sd = 0.05)
+) |> 
+  pivot_longer(
+    cols = c("old","new"),
+    values_to = "rod_diameter",
+    names_to = "process"
+  )
+
+
+d_data |> 
+  ggplot(
+    aes(
+      x = rod_diameter,
+      y = process
+    )
+  )+
+  geom_density_ridges()+
+  labs(
+    title = "Is the new process really better?"
+  )
+
+
+```
+
+### Calculate Cohens $d$ (Mean Difference)
+
+\begin{align}
+d = \frac{\bar{x}_{new}-\bar{x}_{old}}{sd_{pooled}}
+\end{align}
+
+Pooled sd:
+
+\begin{align}
+sd_{pooled} = \sqrt{\frac{(n_1-1)sd_{1}^2+(n_2-1)sd_{2}^2}{n_1+n_2-1}}\approx 0.076
+\end{align}
+
+Effect Size ($d$):
+
+$$d = \frac{10.00-10.02}{0.076} = \frac{-0.02}{0.076}\approx -0.26$$
 
 ## Parametric and Non-parametric Tests {.r-stretch}
 
@@ -1145,119 +1285,7 @@ This shows, that the points are likely to be normally distributed.
 
 :::
 
-#### The drive shaft exercise
-
-```{r}
-#| label: fig-qq-ds
-#| out-width: 75%
-#| fig-cap: The QQ plots for each drive shaft group shown in subplots.
-#| fig-pos: "H"
-
-load(here("data","drive_shaft_data.Rdata"))
-
-drive_shaft %>% 
-  ggplot(aes(sample = diameter))+
-  stat_qq_band()+
-  stat_qq_line(
-    aes(linetype = "qq-line from data")
-  )+
-  stat_qq_point()+
-  geom_abline(
-    aes(
-      linetype = "perfect normal distribution",
-      slope = 1,
-      intercept = 0),
-    key_glyph = draw_key_path,
-    lwd = 1
-    )+
-  labs(
-    title = "QQ-Plots of the drive shaft data with confidence bands.",
-    linetype = ""
-  )+
-  
-  facet_wrap(~group,scale = "free")+
-  theme_few(base_size = 10)+
-  theme(
-    panel.grid.major = element_line(color = "gray"),
-    panel.grid.minor = element_line(color = "gray"),
-    legend.position = "bottom"
-  )
-  
-
-```
-::: {.content-visible when-profile="script"}
-
-The [QQ](#qq) plot method is extended to the drive shaft exercise in @fig-qq-ds.
-In each subplot the plot for the respective group is shown together with the QQ-points, the QQ-line and the respective confidence bands.
-The scaling for each plot is different to enhance visibility of every subplot.
-A line for the perfect normal distribution is also shown in solid linestyle.
-From group $1 \ldots 4$ all points fall into the QQ confidence bands.
-Group05 differs however.
-The points from visible categories, which is a strong indicator, that the measurement system may be to inaccurate.
-
-:::
-
-
-### Quantitative Methods {#sec-ks-test}
-
-```{r}
-#| label: fig-ks-smpl
-#| out-width: 75%
-#| fig-cap: A visualisation of the KS test using the 10 datapoints from before
-#| fig-pos: "H"
-
-my_data <- qq_smpl$sample_data
-
-# Perform the KS test
-ks_result <- ks.test(my_data, "pnorm")
-
-# Create a data frame for the ECDF
-ecdf_data <- data.frame(x = my_data, ecdf = ecdf(my_data)(my_data))
-
-# Create a data frame for the theoretical normal CDF
-normal_data <- data.frame(x = seq(min(my_data), max(my_data), length = 1000),
-                          cdf = pnorm(seq(min(my_data), max(my_data), length = 1000),
-                                      mean = mean(my_data), sd = sd(my_data)))
-
-# Create a ggplot object to visualize the ECDF
-ggplot(ecdf_data, aes(x = x, y = ecdf)) +
-  geom_step() +
-  geom_line(data = normal_data, aes(x = x, y = cdf), color = "red") +
-  labs(title = "Kolmogorov-Smirnov Test for Normality",
-       subtitle = paste("D =", round(ks_result$statistic, 2), "p =", signif(ks_result$p.value, digits = 3))) +
-  theme_few()
-
-```
-
-::: {.content-visible when-profile="script"}
-
-The [Kolmogorov-Smirnov](#KS) test for normality, often referred to as the [KS](#KS) test, is a statistical test used to assess whether a dataset follows a normal distribution. 
-It evaluates how closely the [cumulative distribution function](#cdf) of the dataset matches the expected [CDF](#cdf) of a normal distribution. 
-
-1. **Null Hypothesis (H0):** The null hypothesis in the KS test states that the sample data follows a normal distribution.
-
-2. **Alternative Hypothesis (Ha):** The alternative hypothesis suggests that the sample data significantly deviates from a normal distribution.
-
-3. **Test Statistic (D):** The KS test calculates a test statistic, denoted as *D* which measures the maximum vertical difference between the empirical [CDF](#cdf) of the data and the theoretical [CDF](#cdf) of a normal distribution. 
-It quantifies how far the observed data diverges from the expected normal distribution.
-A visualization of the [KS](#KS)-test is shown in @fig-ks-smpl.
-The red line denotes a perfect normal distribution, whereas the step function shows the empirical [CDF](#cdf) of the data itself.
-
-4. **Critical Value:** To assess the significance of D, a critical value is determined based on the sample size and the chosen significance level ($\alpha$). 
-If D exceeds the critical value, it indicates that the dataset deviates significantly from a normal distribution.
-
-5. **Decision:** If D is greater than the critical value, the null hypothesis is rejected, and it is concluded that the data is not normally distributed. 
-If D is less than or equal to the critical value, there is not enough evidence to reject the null hypothesis, suggesting that the data may follow a normal distribution.
-
-It is important to note that the KS test is sensitive to departures from normality in both tails of the distribution. 
-There are other normality tests, like the *Shapiro-Wilk test* and *Anderson-Darling test*, which may be more suitable in certain situations. 
-Researchers typically choose the most appropriate test based on the characteristics of their data and the assumptions they want to test.
-
-:::
-
-
-
-### Expanding to non-normal disitributions
+#### Expanding to non-normal disitributions
 
 ```{r}
 #| label: fig-qq-wbll
@@ -1343,6 +1371,294 @@ It is of course known, that the data follows a *weibull* disitribution with a sh
 :::
 
 
+#### The drive shaft exercise
+
+```{r}
+#| label: fig-qq-ds
+#| out-width: 75%
+#| fig-cap: The QQ plots for each drive shaft group shown in subplots.
+#| fig-pos: "H"
+
+load(here("data","drive_shaft_data.Rdata"))
+
+drive_shaft %>% 
+  ggplot(aes(sample = diameter))+
+  stat_qq_band()+
+  stat_qq_line(
+    aes(linetype = "qq-line from data")
+  )+
+  stat_qq_point()+
+  geom_abline(
+    aes(
+      linetype = "perfect normal distribution",
+      slope = 1,
+      intercept = 0),
+    key_glyph = draw_key_path,
+    lwd = 1
+    )+
+  labs(
+    title = "QQ-Plots of the drive shaft data with confidence bands.",
+    linetype = ""
+  )+
+  
+  facet_wrap(~group,scale = "free")+
+  theme_few(base_size = 10)+
+  theme(
+    panel.grid.major = element_line(color = "gray"),
+    panel.grid.minor = element_line(color = "gray"),
+    legend.position = "bottom"
+  )
+  
+
+```
+::: {.content-visible when-profile="script"}
+
+The [QQ](#qq) plot method is extended to the drive shaft exercise in @fig-qq-ds.
+In each subplot the plot for the respective group is shown together with the QQ-points, the QQ-line and the respective confidence bands.
+The scaling for each plot is different to enhance visibility of every subplot.
+A line for the perfect normal distribution is also shown in solid linestyle.
+From group $1 \ldots 4$ all points fall into the QQ confidence bands.
+Group05 differs however.
+The points from visible categories, which is a strong indicator, that the measurement system may be to inaccurate.
+
+:::
+
+
+### Quantitative Methods {#sec-ks-test}
+
+#### The data
+
+```{r}
+#| label: fig-dist-test-data
+#| out-width: 95%
+#| fig-cap: The example data to show all quantitative distribution tests.
+
+
+# Beispiel-Daten (leicht rechtsschief)
+set.seed(123)
+daten <- tibble(
+  werte = c(rnorm(15, mean = 10, sd = 2), rnorm(5, mean = 15, sd = 3))
+)
+
+# Visualisierung
+daten |> 
+  ggplot(
+    aes(
+      x = werte
+      )
+    ) +
+  geom_histogram(
+    aes(y = after_stat(density)), 
+    bins = 7, 
+    fill = "steelblue",
+    color = "white"
+    ) +
+  geom_rug()+
+  stat_function(
+    fun = dnorm, 
+    args = list(
+      mean = mean(daten$werte), 
+      sd = sd(daten$werte)),
+    # color = "red", 
+    linewidth = 1) +
+  scale_y_continuous(
+    expand = c(0,0,0.05,0)
+  )+
+  labs(
+    title = "Verteilung der Beispiel-Daten vs. Normalverteilung"
+    )
+
+```
+
+
+#### Kolmogorov Smirnov 
+
+Measures the distance from the {{< acr ECDF >}} to the {{< acr CDF >}}.
+
+{{< acr H0 >}}: The data comes from the assumed distribution.
+
+```{r}
+#| label: fig-ks-smpl
+#| out-width: 75%
+#| fig-cap: A visualisation of the KS test using the 10 datapoints from before
+#| fig-pos: "H"
+
+# Perform the KS test
+ks_result <- ks.test(daten$werte, "pnorm")
+
+# Create a data frame for the ECDF
+ecdf_data <- data.frame(x = daten$werte, ecdf = ecdf(daten$werte)(daten$werte))
+
+# Create a data frame for the theoretical normal CDF
+normal_data <- data.frame(x = seq(min(daten$werte), max(daten$werte), length = 1000),
+                          cdf = pnorm(seq(min(daten$werte), max(daten$werte), length = 1000),
+                                      mean = mean(daten$werte), sd = sd(daten$werte)))
+
+# Create a ggplot object to visualize the ECDF
+ggplot(ecdf_data, aes(x = x, y = ecdf)) +
+  geom_step() +
+  geom_line(data = normal_data, aes(x = x, y = cdf), color = "red") +
+  labs(title = "Kolmogorov-Smirnov Test for Normality",
+       subtitle = paste("D =", round(ks_result$statistic, 2), "p =", signif(ks_result$p.value, digits = 3))) 
+
+```
+
+```{r}
+#| label: tbl-kstest-result
+#| tbl-cap: The ks test result
+
+
+ks_result |> broom::tidy() |> gt()
+
+```
+#### Summary ks test
+
+Pro
+
+- Generally applicable (not only normal distribution).
+- Easy to interpret (maximum deviation between empirical and theoretical distribution).
+
+Con
+
+- Conservative (low power with small samples).
+- Sensitive to outliers.
+
+::: {.content-visible when-profile="script"}
+
+The [Kolmogorov-Smirnov](#KS) test for normality, often referred to as the [KS](#KS) test, is a statistical test used to assess whether a dataset follows a normal distribution. 
+It evaluates how closely the [cumulative distribution function](#cdf) of the dataset matches the expected [CDF](#cdf) of a normal distribution. 
+
+1. **Null Hypothesis (H0):** The null hypothesis in the KS test states that the sample data follows a normal distribution.
+
+2. **Alternative Hypothesis (Ha):** The alternative hypothesis suggests that the sample data significantly deviates from a normal distribution.
+
+3. **Test Statistic (D):** The KS test calculates a test statistic, denoted as *D* which measures the maximum vertical difference between the empirical [CDF](#cdf) of the data and the theoretical [CDF](#cdf) of a normal distribution. 
+It quantifies how far the observed data diverges from the expected normal distribution.
+A visualization of the [KS](#KS)-test is shown in @fig-ks-smpl.
+The red line denotes a perfect normal distribution, whereas the step function shows the empirical [CDF](#cdf) of the data itself.
+
+4. **Critical Value:** To assess the significance of D, a critical value is determined based on the sample size and the chosen significance level ($\alpha$). 
+If D exceeds the critical value, it indicates that the dataset deviates significantly from a normal distribution.
+
+5. **Decision:** If D is greater than the critical value, the null hypothesis is rejected, and it is concluded that the data is not normally distributed. 
+If D is less than or equal to the critical value, there is not enough evidence to reject the null hypothesis, suggesting that the data may follow a normal distribution.
+
+It is important to note that the KS test is sensitive to departures from normality in both tails of the distribution. 
+There are other normality tests, like the *Shapiro-Wilk test* and *Anderson-Darling test*, which may be more suitable in certain situations. 
+Researchers typically choose the most appropriate test based on the characteristics of their data and the assumptions they want to test.
+
+:::
+
+#### Anderson Darling Test
+
+Similar to ks test, but weighs the tails heavier.
+
+{{< acr H0 >}}: The data comes from the assumed distribution.
+
+```{r}
+#| label: tbl-adtest-result
+#| tbl-cap: The AD test result
+
+ad.test(daten$werte) |> broom::tidy() |> gt()
+
+```
+
+#### summary AD test
+
+Pro:
+
+- Generally applicable (not only normal distribution).
+- asy to interpret (maximum deviation between empirical and theoretical distribution).
+
+Cons:
+
+- Conservative (low power with small samples).
+- Sensitive to outliers.
+
+#### Shapiro Wilk
+
+- Special Case for the normal Distribution.
+- used for $n<5000$
+- Test Statistik ranges between $0,\ldots,1$ with $1$ being normally distributed.
+
+{{< acr H0 >}}: The data comes from the assumed distribution.
+
+
+#### Mathemtatical Intuition
+
+- evaluates whether a sample $X_1,X_2,\ldots,X_n$ comes from a normal distribution by comparing the ordered sample values to the expected order.
+
+1. Order Statistics: $X_{(1)} \leq X_{(2)} \leq \ldots \leq X_{(n)}$
+
+2. Expected Normal Order: taken from $\mathrm{N}(0,1)$ via $m_i=\Phi^{-1}\frac{i}{n+1}$ with $\Phi$ being the {{< acr CDF>}}
+
+3. Weights ($a_i$): assign weights to $a_i$ derived from the covariance matrix to account for the variability in different parts of the distribution (tails vs. center)
+
+#### Connection to linear Regression
+
+The Shapiro Wilk test can be framed as a regression problem:
+
+- Dependent variable: The ordered sample $X_{(1)} \leq X_{(2)} \leq \ldots \leq X_{(n)}$
+- Independent variable: The expected normal order statistics $m_1,m_2,\ldots,m_n$
+- Weights: The inverse covariance $\mathrm{V}^{-1}$ accounts for the non-independence of order statistics
+
+The test statistic $W$ is then the coefficient of determination $r^2$ of this weighted regression.
+
+$$W = r^2 = \frac{\text{Explained Variance}}{\text{Total Variance}}$$
+
+#### The test
+
+```{r}
+#| label: tbl-sw-result
+#| tbl-cap: The shapiro Wilk test result
+
+
+shapiro.test(daten$werte) |> broom::tidy() |> gt()
+```
+
+### Comparison of test results
+
+```{r}
+#| label: tbl-quant-norm-test
+#| tbl-cap: Comparison of all quantitative test results on the same data
+
+
+
+sw_out <- shapiro.test(daten$werte) |> broom::tidy() |> add_column(alternative=NA)
+ad_out <- ad.test(daten$werte) |> broom::tidy() |> add_column(alternative=NA)
+ks_out <- ks_result |> broom::tidy() 
+
+
+q_norm_test <- bind_rows(
+  sw_out,ad_out,ks_out
+)
+  q_norm_test |> gt()
+
+```
+
+### sample size influence
+
+```{r}
+
+set.seed(123)
+daten <- tibble(
+  werte = c(rnorm(150, mean = 0, sd = 1),
+            rnorm(150, mean = 15, sd = 3)
+            )
+)
+
+sw_out <- shapiro.test(daten$werte) |> broom::tidy() |> add_column(alternative=NA)
+ad_out <- ad.test(daten$werte) |> broom::tidy() |> add_column(alternative=NA)
+ks_out <- ks.test(daten$werte, "pnorm") |> broom::tidy() 
+
+
+q_norm_test <- bind_rows(
+  sw_out,ad_out,ks_out
+)
+  q_norm_test |> gt()
+
+```
+
 
 ## Test 1 Variable
 
@@ -1375,10 +1691,10 @@ This test helps determine if the sample proportion significantly differs from th
 #### Define the Hypothesis {.incremental}
 
 {{< acr H0 >}}:
-: Defect rate is < 2 percent
+: Defect rate is < 2 \%
 
 {{< acr Ha >}}:
-: Defect rate is >2 percent
+: Defect rate is >2 \%
 
 This is a **right-tailed** test
 
@@ -1506,9 +1822,7 @@ prob_z <- expand_grid(
     x = "Z-Statistic"
   ) 
 
-
 ```
-
 
 ### Chi^2^ goodness of fit test {.incremental}
 
@@ -1787,169 +2101,498 @@ drive_shaft %>%
 ```
 
 
-### One sample Wilcoxon test {.incremental}
+### One sample Wilcoxon test {#sec-wilcox-rank-sum}
 
-::: {.content-visible when-profile="script"}
+Scenario:
 
-For situations where your data may not follow a normal distribution or when dealing with ordinal data, the one-sample Wilcoxon test is a non-parametric alternative to the t-test. 
-It is used to evaluate whether a sample's median significantly differs from a specified population median.
+A manufacturing plant produces bolts with a target diameter of 10.0 mm. The quality control team measures 7 randomly selected bolts and obtains the following diameters (in mm): 10.2, 9.8, 10.1, 9.9, 10.3, 9.7, 10.0
 
-The wear and tear of drive shafts can occur due to various factors related to the vehicle's operation and maintenance. 
-Some common causes include:
+The team wants to determine if the median diameter differs from the target at a significance level of $\alpha=0.05$ .
 
-1. **Normal Usage:** Over time, the drive shaft undergoes stress and strain during regular driving. This can lead to gradual wear on components, especially if the vehicle is frequently used.
 
-2. **Misalignment:** Improper alignment of the drive shaft can result in uneven distribution of forces, causing accelerated wear. This misalignment may stem from issues with the suspension system or other related components.
-
-3. **Lack of Lubrication:** Inadequate lubrication of the drive shaft joints and bearings can lead to increased friction, accelerating wear. Regular maintenance, including proper lubrication, is essential to mitigate this factor.
-
-4. **Contamination:** Exposure to dirt, debris, and water can contribute to the degradation of drive shaft components. Contaminants can infiltrate joints and bearings, causing abrasive damage over time.
-
-5. **Vibration and Imbalance:** Excessive vibration or imbalance in the drive shaft can lead to increased stress on its components. This may result from issues with the balance of the rotating parts or damage to the shaft itself.
-
-6. **Extreme Operating Conditions:** Harsh driving conditions, such as off-road terrain or constant heavy loads, can accelerate wear on the drive shaft. The components may be subjected to higher levels of stress than they were designed for, leading to premature wear and tear.
-
-The wear and tear because o the reasons above can be rated on a scale with discrete values from $1 \ldots 5$ with $2$ being the reference value.
-It is therefore interesting, if the wear and tear rating of $n=100$ drive shafts per group differs *significantly* from the reference value $2$.
-Because we are dealing with discrete data, the one sample t-test can not be used.
-
-:::
-
-::: {.r-stack}
-
-::: {.content-visible when-profile="slides"}
-
-::: {.fragment .fade-in-then-out}
-
-1. *Normal Usage*
-2. *Misalignment* 
-3. *Lack of Lubrication*
-4. *Contamination*
-5. *Extreme Operating Conditions*
-
-:::
-
-:::
-
-::: {.fragment .fade-in-then-out}
+#### The data
 
 ```{r}
 #| label: fig-wilcox-one-hist
 #| fig-cap: The wear and tear rating data histograms.
-#| out-width: 75%
-#| 
-load(here("data","drive_shaft_wear_and_tear.Rdata"))
+#| out-width: 95%
+ 
 
-drive_shaft_wear_and_tear <- drive_shaft_wear_and_tear %>% 
-  pivot_longer(
-    cols = starts_with("group"),
-    names_to = "group",
-    values_to = "rating")
+bolt_data <- data.frame(
+  bolt_id = seq(1,7),
+  bolt_diameter =  c(8, 9.8, 9.9, 10.0, 10.1, 10.2, 15.0)
+)
 
-drive_shaft_wear_and_tear %>% 
-  ggplot(aes(x = rating))+
-  geom_histogram(
-    bins = 5,
-    color = "white"
+bolt_data |> 
+  ggplot(
+    aes(
+     sample = bolt_diameter)
   )+
-  geom_vline(xintercept = 2)+
+  stat_qq_band()+
+  stat_qq_line()+
+  stat_qq_point()
+
+```
+
+#### The hypotheses
+
+::: {.fragment .fade-in}
+
+$$H_0: \text{Median diameter} = 10.00mm$$
+
+$$H_a: \text{Median diameter} \neq 10.00mm$$
+
+:::
+
+#### Signed Ranks
+
+$D_i = X_1 - 10.00$ and Rank $|D_i|$
+
+::: {.fragment .fade-in}
+
+```{r}
+#| label: tbl-signed-rank
+#| tbl-cap: Signed rank calculation
+
+
+bolt_ranks <- bolt_data |> 
+  mutate(
+    Di = bolt_diameter-10,
+    abs_Di = abs(Di),
+    Di_rank = dense_rank(abs_Di),
+    signed_rank = sign(Di)*Di_rank
+  )
+
+sum_signed_ranks <- bolt_ranks |> 
+  mutate(
+    pos_sign = case_when(
+      signed_rank>0~"positive",
+      signed_rank<0~"negative")
+  )
+
+sum_rank_pos <- sum_signed_ranks |> 
+  filter(pos_sign == "positive")  |> 
+  pull(Di_rank) |> 
+  sum()
+    
+sum_rank_neg <- sum_signed_ranks |> 
+  filter(pos_sign == "negative")  |> 
+  pull(Di_rank) |> 
+  sum()    
+
+bolt_ranks |> 
+  gt() |> 
+  cols_label(
+    bolt_id = "Bolt ID",
+    bolt_diameter= ("Bolt\ndiameter"),
+    Di = md("$D_i$"),
+    abs_Di = md("$|D_i|$"),
+    Di_rank = md("ranked $D_i$"),
+    signed_rank = md("signed rank of $D_i$")
+  )
+
+
+```
+
+:::
+
+#### Sum of signed ranks
+
+- Sum of *positive ranks*: `r sum_rank_pos`
+- Sum of *negative ranks*: `r sum_rank_neg`
+
+#### Decision at α Level
+
+- Reject $H_0$ if $W \leq 2$
+- Here $W = 9$ (use the smaller sum), so we fail to reject $H_0$
+
+#### W?
+
+The Wilcoxon signed-rank test statistic $W$ is the smaller of the two rank sums. 
+Under $H_0$, the distribution of $W$ is symmetric, and we can enumerate all possible outcomes.
+
+1. Total number of outcomes: Each bolt can have a positive or negative outcome (ignoring $0$) $2^7=128$.
+
+2. Constructing the Distribution: For each combination, compute rank sum for $\pm$ differences. The critical value is the largest $W$ such that the cumulative probability $P(W\leq w)\leq\alpha/2$ (two tailed test)
+
+3. For $n = 7$ the cumulative probabilities for $W$ are precomputed in tables. 
+
+#### W value at significance level 5\% and n = 7
+
+{{< acr H0 >}}: The median of differences is $0$ (or a certain value like $10.00mm$)
+
+Possible ranks of differences: 
+
+For $n = 7$ the ranks of the absolute differences are *always* $1,2,\ldots,7$ (independent of data, because for $H_0$ all sign combinations are of interest)
+
+$$W_{max} = \sum_{k=1}^7 k = 28$$
+
+All possible sign combinations: $2^7 = 128$. Every combination is one **possible realization of $W$**
+
+#### Calculation of PMF
+
+- $W = 0$: all differences are negative
+- $W = 1$: exactly the difference with rank 1 is positive ($7$ combinations, because every difference of the $7$ could be the one with rank 1)
+- $W = 2$: 
+  - the difference with rank $2$ is positive (and all others are negative) **or**
+  - the differences with rank $1$ and rank $2$ are positive ($7$ combinations)
+  
+#### table for $n = 7$
+
+```{r}
+#| include: false
+
+wilcox_n7 <- dwilcox_signed_rank(7)
+
+pmf_n7 <- wilcox_n7$pmf
+
+pmf_n7 <- pmf_n7 |> 
+  mutate(
+    cum_prob = cumsum(density)
+  )
+
+pmf_n7_gt_fn <- function(x){ 
+  gt(x) |> 
+  cols_label(
+    density = "frequency",
+    cum_prob = "cumulative probability"
+  )
+}
+
+gt_pmf_n7_01 <- pmf_n7 |> 
+  slice(1:15) |> 
+  pmf_n7_gt_fn()
+
+gt_pmf_n7_02 <- pmf_n7 |> 
+  slice(16:29) |> 
+  pmf_n7_gt_fn()
+
+```
+
+:::: {.columns}
+
+::: {.column width='40%'}
+
+```{r}
+#| label: tbl-wilcox-cdf-n7-01
+#| tbl-cap: The exact cumulative probabilities... 
+
+gt_pmf_n7_01
+
+```
+
+
+:::
+
+::: {.column width='60%'}
+
+```{r}
+#| label: tbl-wilcox-cdf-n7-02
+#| tbl-cap: ... for the wilcoxon sigend rank test
+
+gt_pmf_n7_02
+
+```
+
+
+:::
+
+::::
+
+#### CDF for $n = 7$
+
+```{r}
+#| label: fig-wilcox-cdf-n7
+#| fig-cap: The exact cumulative probabilities for the wilcoxon sigend rank test
+#| out-width: 95%
+
+
+pmf_n7 |> 
+  ggplot(
+    aes(
+      x = W,
+      y = cum_prob
+    )
+  )+
+  geom_col()+
   scale_y_continuous(
-    expand = c(0,0,0.05,0)
+    expand = c(0,0,0,0.05)
+  )+
+  scale_x_continuous(
+    expand = c(0,0,0,0)
   )+
   labs(
-    title = "Histograms of the rating data"
+    title = "Cumulative probabilities",
+    subtitle = "for the wilcoxon signed rank test at n=7",
+    y = "cumulative probabilites"
+  )
+
+```
+
+#### Estimation of W for small n
+
+```{r}
+#| include: false
+
+# Dataframe erstellen
+wilcoxon_critical <- tibble(
+  `sample size (n)` = 5:20,
+  `critical value (W, two-sided, α=0.05)` = c(0, 0, 2, 3, 5, 8, 10, 13, 17, 21, 25, 30, 35, 41, 47, 53),
+  `Interpretation (reject H₀ if...` = c(
+    "W ≤ 0",
+    "W ≤ 0",
+    "W ≤ 2",
+    "W ≤ 3",
+    "W ≤ 5",
+    "W ≤ 8",
+    "W ≤ 10",
+    "W ≤ 13",
+    "W ≤ 17",
+    "W ≤ 21",
+    "W ≤ 25",
+    "W ≤ 30",
+    "W ≤ 35",
+    "W ≤ 41",
+    "W ≤ 47",
+    "W ≤ 53"
+  )
+)
+
+wilcox_critical_gt_fn <- function(x) {
+  gt(x) %>%
+    tab_header(
+    title = "critical value for the Wilcoxon-signed-rank-test (two-sided, α=0.05)",
+    subtitle = "for small sample sizes (n ≤ 20)"
+  ) %>%
+  fmt_number(columns = 2, decimals = 0) %>%
+  tab_style(
+    style = cell_text(weight = "bold"),
+    locations = cells_column_labels()
+  ) %>%
+  tab_options(
+    heading.title.font.size = 18,
+    heading.subtitle.font.size = 12
+  )
+}
+
+wilcox_tbl_01 <- wilcoxon_critical |> 
+  slice(1:8) |> 
+  wilcox_critical_gt_fn()
+
+wilcox_tbl_02 <- wilcoxon_critical |> 
+  slice(9:16) |> 
+  wilcox_critical_gt_fn()
+
+
+# wilcox_dbl_tbl <- gt_double_table(wilcoxon_critical, wilcox_critical_gt_fn, nrows = nrow(wilcoxon_critical) / 2)
+
+```
+
+
+:::: {.columns}
+
+::: {.column width='50%'}
+
+```{r}
+#| label: tbl-wilcox-small-n-1
+#| tbl-cap: The critical W values for small n
+
+wilcox_tbl_01
+
+```
+
+
+:::
+
+::: {.column width='50%'}
+
+```{r}
+#| label: tbl-wilcox-small-n-2
+#| tbl-cap: The critical W values for small n
+
+wilcox_tbl_02
+
+```
+
+:::
+
+::::
+
+
+
+#### The Wilcox PMF
+
+```{r}
+#| label: fig-wilcox-exact-pmf
+#| fig-cap: The exact PMF for the wilcoxon sigend rank test
+#| out-width: 95%
+
+
+exact_wilcox_data <- data.frame(
+  n = seq(5,13)
+) |> 
+  rowwise() |> 
+  mutate(
+    pmf = list(dwilcox_signed_rank(n)$pmf),
+    lower_crit = dwilcox_signed_rank(n)$lower,
+    upper_crit = dwilcox_signed_rank(n)$upper
+  ) |> 
+  unnest("pmf")
+  
+sum_exact_wilcox_data <-  exact_wilcox_data |> 
+  group_by(n) |> 
+  summarise(
+    lower_crit = mean(lower_crit),
+    upper_crit = mean(upper_crit),
+  )
+
+# Plot mit kritischen Werten
+
+exact_wilcox_data |> 
+  ggplot(
+    aes(
+      x = W,
+      y = density,
+      group = 1
+    )
   )+
-  facet_wrap(~group)+
-  theme_few()
-
-
+  geom_area(
+    fill = "gray60"
+  )+
+  scale_y_continuous(
+    expand = c(0,0,0,0.01)
+  )+
+  scale_x_continuous(
+    expand = c(0,0,0,0.0)
+  )+
+  geom_vline(
+    aes(
+      xintercept = lower_crit,
+      linetype = "lower crit val"
+    ),
+    key_glyph = "path"
+  )+
+  geom_vline(
+    aes(
+      xintercept = upper_crit,
+      linetype = "upper crit val"
+    ),
+    key_glyph = "path"
+  )+
+  geom_label(
+    data = sum_exact_wilcox_data,
+    aes(
+      x = lower_crit,
+      y = 0.1,
+      label = lower_crit
+    )
+  )+
+  geom_label(
+    data = sum_exact_wilcox_data,
+    aes(
+      x = upper_crit,
+      y = 0.1,
+      label = upper_crit
+    )
+  )+
+  labs(
+    title = "exact PMF fot the wilcox sigend rank",
+    linetype = "critical values"
+  )+
+  facet_wrap(
+    ~n,
+    scales = "free_x"
+    )+
+  theme(
+    legend.position = "bottom"
+  )
 
 ```
 
-:::
 
-::: {.r-fit-text}
-
-::: {.fragment .fade-in-then-out}
+#### The Wilcox cumulative probabilities
 
 ```{r}
-#| label: tbl-wilcox-one-res
-#| tbl-cap: The results for the one sample Wilcoxon test for every group against the reference value.
+#| label: fig-wilcox-cum-prob
+#| fig-cap: The exact PMF for the wilcoxon sigend rank test
+#| out-width: 95%
 
-load(here("data","drive_shaft_wear_and_tear.Rdata"))
 
-drive_shaft_wear_and_tear <- drive_shaft_wear_and_tear %>% 
-  pivot_longer(
-    cols = starts_with("group"),
-    names_to = "group",
-    values_to = "rating")
-
-# # Define the reference level (null hypothesis)
-reference_level <- 2
-
-drive_shaft_wear_and_tear %>% 
-  group_nest(group) %>% 
+wilcox_cumprob <- exact_wilcox_data |> 
+  group_by(n) |> 
   mutate(
-    wilcox_res = map(data,function(x) wilcox.test(x %>% pull("rating"),mu = reference_level, alternative = "greater") %>% tidy()) 
-  ) %>% 
-  unnest(wilcox_res) %>% 
-  select(-data,-method) %>% 
-  gt() %>% 
-  fmt_markdown(
-    columns = everything()
-  ) %>% 
-  fmt_number(decimals = 3) %>% 
-  tab_options(
-    table.font.size = 15
-  )  %>% 
-  as_raw_html()
+    cum_prob = cumsum(density)
+  )
+  
+sum_exact_wilcox_data <-  exact_wilcox_data |> 
+  group_by(n) |> 
+  summarise(
+    lower_crit = mean(lower_crit),
+    upper_crit = mean(upper_crit),
+  )
 
-# # Perform a one-sample Wilcoxon test
-# wilcox.test(wear_and_tear_ratings, mu = reference_level, alternative = "two.sided")
+# Plot mit kritischen Werten
+
+wilcox_cumprob |> 
+  ggplot(
+    aes(
+      x = W,
+      y = cum_prob,
+      group = n
+    )
+  )+
+  geom_area(
+    fill = "gray60"
+  )+
+  scale_y_continuous(
+    expand = c(0,0,0,0.01)
+  )+
+  scale_x_continuous(
+    expand = c(0,0,0,0.0)
+  )+
+  geom_vline(
+    aes(
+      xintercept = lower_crit,
+      linetype = "lower crit val"
+    ),
+    key_glyph = "path"
+  )+
+  geom_vline(
+    aes(
+      xintercept = upper_crit,
+      linetype = "upper crit val"
+    ),
+    key_glyph = "path"
+  )+
+  geom_label(
+    data = sum_exact_wilcox_data,
+    aes(
+      x = lower_crit,
+      y = 0.1,
+      label = lower_crit
+    )
+  )+
+  geom_label(
+    data = sum_exact_wilcox_data,
+    aes(
+      x = upper_crit,
+      y = 0.1,
+      label = upper_crit
+    )
+  )+
+  labs(
+    title = "exact cumulative",
+    linetype = "critical values"
+  )+
+  facet_wrap(
+    ~n,
+    scales = "free_x"
+    )+
+  theme(
+    legend.position = "bottom"
+  )
 
 ```
-
-:::
-
-:::
-
-::: {.fragment .fade-in-then-out}
-
-```{r}
-#| label: tbl-wilcox-one-compare
-#| tbl-cap: The results for the one sample t-test compared to the results of a one sample Wilcoxon test.
-
-load(here("data","drive_shaft_data.Rdata"))
-
-drive_shaft %>% 
-  group_nest(group) %>% 
-  mutate(
-    t_one_sample = map(data, function(x) t.test(x["diameter"],mu = 12)),
-    t_tidy = map(t_one_sample, function(x) tidy(x)),
-    wilcox_one_sample = map(data, function(x) wilcox.test(x %>% pull(diameter),mu = 12)),
-    wilcox_tidy = map(wilcox_one_sample, function(x) tidy(x))
-  ) %>% 
-  unnest(cols = c(t_tidy, wilcox_tidy),names_sep = "_") %>% 
-  select(group,t_tidy_p.value,wilcox_tidy_p.value) %>% 
-  # mutate(
-  #   method = str_wrap(method, width  = 1),
-  #   method = str_replace_all(method, pattern = "\n", replacement = "<br />")
-  #   ) %>% 
-  gt() %>% 
-  fmt_markdown(
-    columns = everything()
-  ) %>% 
-  fmt_number(decimals = 3) %>% 
-  tab_options(
-    table.font.size = 15
-  )  %>% 
-  as_raw_html()
-
-```
-
-:::
-
-:::
 
 ## Test 2 Variable (Qualitative or Quantitative)
 
@@ -1974,64 +2617,131 @@ In the context of the drive shaft production the example assumes a dataset with 
 
 :::
 
-#### Contingency tables
+#### Sezenario
 
-::: {.content-visible when-profile="script"}
+A manufacturing plant produces three types of components (A, B, C) using two different assembly lines (Line 1 and Line 2). 
+The quality control team suspects that the defect rates may differ between the two lines. 
+They collect data over a week to test whether component type and defect occurrence are independent of the assembly line used.
 
-A contingency table, also known as a cross-tabulation or crosstab, is a statistical table that displays the frequency distribution of variables. 
-It organizes data into rows and columns to show the frequency or relationship between two or more categorical variables. 
-Each cell in the table represents the count or frequency of occurrences that fall into a specific combination of categories for the variables being analyzed. 
-It is commonly used in statistics to examine the association between categorical variables and to understand patterns within data sets.
+#### Hypotheses
 
-:::
+{{< acr H0 >}}: Component type and defect occurrence are independent of the assembly line (no association).
+
+{{< acr Ha >}}: Component type and defect occurrence are dependent on the assembly line (association exists).
+
+$$H_0: P(\text{Defect}|Line) = P(\text{Defect})$$
+
+#### The data
 
 ```{r}
-#| label: tbl-chi-sq-indep-tbl
-#| tbl-cap: The contingency table for this example.
+#| label: tbl-chi2-indep-data
+#| tbl-cap: The contingency table of the obeservations.
 
-load(file = here("data","drive_shaft_chi_sq.Rdata"))
 
-# Create a contingency table
+# Create a tibble with the observed counts
+defect_data <- tribble(
+  ~Component, ~Line, ~DefectStatus, ~Count,
+  "A",        "Line1", "Defect",     12,
+  "A",        "Line1", "NoDefect",  188,
+  "A",        "Line2", "Defect",     20,
+  "A",        "Line2", "NoDefect",  180,
+  "B",        "Line1", "Defect",      8,
+  "B",        "Line1", "NoDefect",  242,
+  "B",        "Line2", "Defect",     15,
+  "B",        "Line2", "NoDefect",  235,
+  "C",        "Line1", "Defect",     25,
+  "C",        "Line1", "NoDefect",  175,
+  "C",        "Line2", "Defect",     10,
+  "C",        "Line2", "NoDefect",  240
+)
 
-contingency_table <- table(drive_shaft_chi_sq$Defects, drive_shaft_chi_sq$Operator) 
+# Create a contingency table (Component x Line x DefectStatus)
+contingency_table <- defect_data %>%
+  pivot_wider(
+    names_from = c(Line, DefectStatus),
+    values_from = Count,
+    values_fill = 0
+  )
 
-drive_shaft_chi_sq %>% 
-  count(Operator, Defects) %>% 
-  pivot_wider(names_from = Operator, values_from = n) %>% 
-  gt() %>% 
-  fmt_markdown(
-    columns = everything()
-  ) %>% 
-  fmt_number(decimals = 0) %>% 
-  tab_options(
-    table.font.size = 15
-  ) %>% 
-  as_raw_html()
+contingency_table |> gt()
+
+```
+
+Tipp: Revisit $\chi^2$ goodness of fit.
+
+#### The test - Component A
+
+```{r}
+#| label: tbl-chi2-indep-data-comp-A
+#| tbl-cap: The test result for Line A
+
+# Filter data for Component A
+component_A <- defect_data %>%
+  filter(Component == "A")
+
+# Create a 2x2 contingency table (Line vs. DefectStatus)
+table_A <- component_A %>%
+  count(Line, DefectStatus) %>%
+  pivot_wider(names_from = DefectStatus, values_from = n) %>%
+  column_to_rownames("Line")
+
+# Chi-square test
+chisq.test(table_A) |> broom::tidy() |> gt()
+
+```
+
+#### The test - Line vs. Defect Status (Ignoring Component)
+
+```{r}
+#| label: tbl-chi2-indep-data-comp-overall
+#| tbl-cap: The test result for the overall data
+
+# Aggregate data across all components
+overall_table <- defect_data %>%
+  count(Line, DefectStatus) %>%
+  pivot_wider(names_from = DefectStatus, values_from = n) %>%
+  column_to_rownames("Line")
+
+# Chi-square test
+chisq.test(overall_table) |> broom::tidy() |> gt()
 
 
 ```
 
-#### test results
-
-::: {.content-visible when-profile="script"}
-
-With $p\approx1>0.05$ the $p$-value is greater than the significance level of $\alpha = 0.05$.
-The $H_0$ is therefore proven, there is no difference between the operators.
-The test results are depicted below-
-
-:::
+#### Visualization
 
 ```{r}
-#| label: chi-sq-indep-res
-#| warning: false
+#| label: fig-chi2-indep-vis
+#| out-width: 95%
+#| fig-cap: Viualitzation of the data
 
-chi_sq_test <- chisq.test(contingency_table) %>% print()
+
+# Create a long-format table for plotting
+plot_data <- defect_data %>%
+  group_by(Line, DefectStatus) %>%
+  summarise(Count = sum(Count), .groups = "drop") %>%
+  mutate(DefectStatus = factor(DefectStatus, levels = c("NoDefect", "Defect")))
+
+# Plot
+ggplot(plot_data, aes(x = Line, y = DefectStatus, fill = Count)) +
+  geom_tile() +
+  geom_label(
+    aes(
+      label = Count
+    )
+  )+
+  # scale_fill_gradient(low = "white", high = "red") +
+  labs(title = "Defect Count by Assembly Line",
+       x = "Assembly Line",
+       y = "Defect Status",
+       fill = "Count") +
+  theme_minimal()
+
 
 ```
 
 
 ### Correlation
-
 
 ```{r}
 #| label: fig-corr
@@ -2044,13 +2754,13 @@ knitr::include_graphics(here::here("chapter002","024_Correlation.png"))
 
 ::: {.content-visible when-profile="script"}
 
-Correlation refers to a statistical measure that describes the relationship between two variables. 
-It indicates the extent to which changes in one variable are associated with changes in another. 
+Correlation refers to a statistical measure that describes the relationship between two variables.
+It indicates the extent to which changes in one variable are associated with changes in another.
 
 Correlation is measured on a scale from -1 to 1:
 
 - A correlation of 1 implies a perfect positive relationship, where an increase in one variable corresponds to a proportional increase in the other.
-  
+
 - A correlation of -1 implies a perfect negative relationship, where an increase in one variable corresponds to a proportional decrease in the other.
 
 - A correlation close to 0 suggests a weak or no relationship between the variables.
@@ -2060,99 +2770,21 @@ Correlation doesn't imply causation; it only indicates that two variables change
 :::
 
 
-#### Pearson Corrrelation
+### Pearson Corrrelation
 
-::: {.r-stack}
+The pearson correlation $R$ or $r$ coefficient is a normalized version of the covariance.
 
-:::{.fragment .fade-in-then-out}
-
-::: {.r-fit-text}
-
-The pearson correlation coefficient is a normalized version of the covariance.
-
-:::
-
-::::
-
-::: {.content-visible when-profile="slides"}
-
-:::{.fragment .fade-in-then-out}
-
-<center>
-Covariance?
-</center>
-
-:::
-
-:::{.fragment .fade-in-then-out}
+#### Covariance
 
 Covariance is a measure of joint variability.
 
 Covariance is a generalized formulation of the variance.
 
-:::
-
-:::{.fragment .fade-in-then-out}
-
-You and your friend are swinging back and forth.
-
-When you swing forward, your friend also swings forward.
-
-When you swing backward, your friend also swings backward.
-
-You’re moving together — that’s like **positive** covariance.
-
-:::
-
-:::{.fragment .fade-in-then-out}
-
-When you swing forward, this friend swings backward.
-
-When you swing backward, they swing forward.
-
-Now you’re moving in opposite directions — that’s like **negative** covariance.
-
-:::
-
-
-:::{.fragment .fade-in-then-out}
-
-Sometimes you go forward, and they go backward.
-
-Other times, they go forward, and you go backward.
-
-No pattern at all.
-
-That means no covariance — you’re not moving together in any consistent way.
-
-:::
-
-:::{.fragment .fade-in-then-out}
-
-Covariance is a **number** that tells us:
-
-How two things change together.
-
-If they both go up or down at the same time (positive covariance).
-
-If one goes up while the other goes down (negative covariance).
-
-Or if they don’t match at all (covariance near zero).
-
-:::
-
-
-:::{.fragment .fade-in-then-out}
-
 \begin{align}
 \mathrm{Cov}(X,Y) = \frac{1}{n}\sum{(X_i - \bar{X})(Y_i - \bar{Y})}
 \end{align}
 
-
-:::
-
-:::{.fragment .fade-in-then-out}
-
+#### Example
 
 ```{r}
 #| label: tbl-example-data-cov
@@ -2164,16 +2796,16 @@ cov_data <- data.frame(
   rod_length_mm = c(100.2,100.5,100.9,101.3,101.6)
 )
 
-cov_data |> 
-  gt() |> 
+cov_data |>
+  gt() |>
   cols_label(
-    temp_c = "Temperature in °C",
+    temp_c = "Temperature in C",
     rod_length_mm = "Rod Length in mm"
-  ) |> 
+  ) |>
   cols_align(
     align = "center",
     columns = everything()
-  ) |> 
+  ) |>
   tab_options(
     table.width = pct(100),
     table.font.size = pct(80)
@@ -2181,11 +2813,7 @@ cov_data |>
 
 ```
 
-:::
-
-:::{.fragment .fade-in-then-out}
-
-computing means
+#### Computing means
 
 \begin{align}
 \bar{X} = \frac{`r cov_data$temp_c[1]`+`r cov_data$temp_c[2]`+`r cov_data$temp_c[3]`+`r cov_data$temp_c[4]`+`r cov_data$temp_c[5]`}{`r nrow(cov_data)`} = `r mean(cov_data$temp_c)`
@@ -2195,45 +2823,39 @@ computing means
 \bar{X} = \frac{`r cov_data$rod_length_mm[1]`+`r cov_data$rod_length_mm[2]`+`r cov_data$rod_length_mm[3]`+`r cov_data$rod_length_mm[4]`+`r cov_data$rod_length_mm[5]`}{`r nrow(cov_data)`} = `r mean(cov_data$rod_length_mm)`
 \end{align}
 
-:::
-
-:::{.fragment .fade-in-then-out}
+#### Computing covariance
 
 ```{r}
 #| label: tbl-example-data-cov-calc
 #| tbl-cap: Hand calculation of the XY-covariance
 
-cov_data_calc <- cov_data |> 
+cov_data_calc <- cov_data |>
   mutate(
     Xi_X = temp_c-mean(temp_c),
     Yi_Y = rod_length_mm-mean(rod_length_mm),
     products = Xi_X*Yi_Y
-  ) 
+  )
 
-cov_data_calc |> 
-  gt() |> 
+cov_data_calc |>
+  gt() |>
   cols_label(
-    temp_c = "Temperature in °C",
+    temp_c = "Temperature in C",
     rod_length_mm = "Rod Length in mm",
     Xi_X = "$X_i - \\bar{X}$",
     Yi_Y = "$Y_i - \\bar{Y}$",
     products = "$(X_i - \\bar{X}) \\cdot (Y_i - \\bar{Y})$"
-  ) |> 
+  ) |>
   cols_align(
     align = "center",
     columns = everything()
-  ) |> 
+  ) |>
   tab_options(
     table.width = pct(100),
     table.font.size = pct(70)
   )
 ```
 
-:::
-
-:::{.fragment .fade-in-then-out}
-
-Sum the products
+#### Sum the products
 
 \begin{align}
 \sum(X_i - \bar{X})(Y_i - \bar{Y}) = `r cov_data_calc$products[1]` + `r cov_data_calc$products[2]` + `r cov_data_calc$products[3]` + `r cov_data_calc$products[4]` + `r cov_data_calc$products[5]` = `r sum(cov_data_calc$products)`
@@ -2245,11 +2867,7 @@ Compute Covariance
 \mathrm{Cov}(X,Y) = \frac{`r sum(cov_data_calc$products)`}{`r nrow(cov_data_calc)`} = `r  sum(cov_data_calc$products)/nrow(cov_data_calc)`
 \end{align}
 
-:::
-
-:::{.fragment .fade-in-then-out}
-
-Interpretation:
+#### Interpretation:
 
 * **Covariance** $= 1.44\;°C\cdot mm$
 * It's **positive**, meaning:
@@ -2257,9 +2875,7 @@ Interpretation:
 * It's **not standardized**
   * The number $1.44$ is not "large" or "small" until compared with variance or a **correlation** is computed
 
-:::
-
-:::{.fragment .fade-in-then-out}
+#### detailed Interpretation
 
 * $(X_i-\bar{X}) \rightarrow$ How different is this temperature from average?
 * $(Y_i-\bar{Y}) \rightarrow$ How different is this rod length from average?
@@ -2267,16 +2883,12 @@ Interpretation:
   * Positive $x$ Positive $\rightarrow$ rods are longer at higher temp $\rightarrow$ $+$ contribution
   * Negative $x$ Negative $\rightarrow$ rods are shorter at lower temp $\rightarrow$ $+$ contribution
   * Different signs $\rightarrow$ one high, one low $\rightarrow$ $-$ contribution
-  
+
 <center>
 The average of all contributions is the **Covariance**
 </center>
 
-:::
-
-:::
-
-:::{.fragment .fade-in-then-out}
+#### Correlation equation
 
 \begin{align}
 R = \frac{\mathrm{Cov}(X,Y)}{\sigma_x \sigma_y}
@@ -2285,9 +2897,8 @@ R = \frac{\mathrm{Cov}(X,Y)}{\sigma_x \sigma_y}
 * Covariance is sensitive to **scale** ($mm$ vs. $cm$)
 * Pearson correlation **removes** units, allowing for meaningful comparisons across datasets
 
-:::
 
-:::{.fragment .fade-in-then-out}
+#### drive shaft data
 
 ```{r}
 #| label: fig-drive-shaft-pearson-qq
@@ -2296,8 +2907,8 @@ R = \frac{\mathrm{Cov}(X,Y)}{\sigma_x \sigma_y}
 
 load(here("data","drive_shaft_rpm_dia.Rdata"))
 
-drive_shaft_rpm_dia %>% 
-  pivot_longer(cols = everything(),names_to = "variable",values_to = "value") %>% 
+drive_shaft_rpm_dia %>%
+  pivot_longer(cols = everything(),names_to = "variable",values_to = "value") %>%
   ggplot(aes(sample = value))+
   stat_qq_band()+
   stat_qq_line()+
@@ -2305,14 +2916,12 @@ drive_shaft_rpm_dia %>%
   facet_wrap(~variable,scales = "free")+
   labs(
     title = "QQ-plot of diameter and rpm",
-  )+
-  theme_few()
+  )
 
 ```
+We have data on the the `diameter`  vs. `rpm` and want to know, if there is a correlation between the two variables.
 
-:::
-
-:::{.fragment .fade-in-then-out}
+#### The correlation
 
 ```{r}
 #| label: fig-drive-shaft-corr-pear
@@ -2321,7 +2930,7 @@ drive_shaft_rpm_dia %>%
 
 load(here("data","drive_shaft_rpm_dia.Rdata"))
 
-drive_shaft_rpm_dia %>% 
+drive_shaft_rpm_dia %>%
   ggplot(aes(x = rpm, y = diameter))+
   geom_point()+
   stat_cor()+
@@ -2332,14 +2941,11 @@ drive_shaft_rpm_dia %>%
     title = "Drive shaft diameter vs. rpm of lathe machine",
     x = "rpm",
     y = "diameter in mm"
-  )+
-  theme_few()
+  )
 
 ```
 
-:::
-
-:::{.fragment .fade-in-then-out}
+#### Testing and computing it
 
 ```{r}
 
@@ -2349,30 +2955,21 @@ cor.test(drive_shaft_rpm_dia$rpm,drive_shaft_rpm_dia$diameter)
 
 ```
 
-:::
+### Pearson correlation coefficient summary
 
-:::
+- $2$ continuous variables, measure the strength and direction of their linear relationship: Pearson correlation [@PCC]
 
-::: {.content-visible when-profile="script"}
-
-When you have two continuous variables and want to measure the strength and direction of their linear relationship, Pearson correlation is the go-to choice [@PCC]. 
-It assumes normally distributed data and is particularly valuable for exploring linear associations between variables and is calculated via \eqref{pearcorr}.
+- normally distributed data
 
 \begin{align}
 R = \frac{\sum_{i = 1}^{n}(x_i - \bar{x}) \times (y_i - \bar{y})}{\sqrt{\sum_{i=1}^{n}(x_i-\bar{x})^2}\times \sum_{i=1}^{n}(y_i-\bar{y})^2} \label{pearcorr}
 \end{align}
 
-The [Pearson Correlation Coeffcient](#PCC) works best with normal disitributed data.
-The normal distribution of the data is verified in @fig-drive-shaft-pearson-qq.
-
-:::
-
-
-#### Spearman Correlation
+### Spearman Correlation
 
 ::: {.content-visible when-profile="script"}
 
-Spearman [@Spearman1904] correlation is a non-parametric alternative to Pearson correlation. 
+Spearman [@Spearman1904] correlation is a non-parametric alternative to Pearson correlation.
 It is used when the data is not normally distributed or when the relationship between variables is monotonic but not necessarily linear.
 
 \begin{align}
@@ -2385,67 +2982,9 @@ This can also be seen in the QQ-plots of both variables in @fig-drive-shaft-spea
 
 :::
 
-::: {.r-stack}
-
-::: {.fragment .fade-in-then-out}
-
 The **spearman** correlation coefficient ($\rho$) is based on the pearson correlation, but applied to **ranked** data
 
-:::
-
-::: {.content-visible when-profile="slides"}
-
-::: {.fragment .fade-in-then-out}
-
-::: {.r-fit-text}
-
-<center>
-Rank?
-</center>
-
-:::
-
-:::
-
-::: {.fragment .fade-in-then-out}
-
-A **rank** is a position number assigned to an item in a sorted list. 
-It tells you where the item stands relative to others.
-
-:::
-
-::: {.fragment .fade-in-then-out}
-
-```{r}
-#| label: tbl-spear-rank
-#| tbl-cap: Example data on ranking items in a list.
-
-rnk_ex <- data.frame(
-  name = c("Alice","Bob","Clara","David","Elena"),
-  height = c(160,165,170,175,180),
-  rnk = c(1,2,3,4,5)
-) 
-rnk_ex |> 
-  gt() |> 
-  cols_label(
-    name = "Name",
-    height = "Height in cm",
-    rnk = "rank"
-  ) |> 
-  cols_align(
-    align = "center",
-    columns = everything()
-  ) |> 
-  tab_options(
-    table.width = pct(100),
-    table.font.size = pct(70)
-  )
-
-```
-
-:::
-
-::: {.fragment .fade-in-then-out}
+#### data with outliers
 
 ```{r}
 #| label: tbl-spear-ex-raw
@@ -2455,45 +2994,43 @@ spear_dat <- data.frame(
   obs = seq(1,8,1),
   temp_c = c(20,22,24,26,28,30,32,34),
   rod_length_mm = c(100.2,100.4,100.7, 101.0, 101.3, 110, 120.0, 130.0)
-) |> 
+) |>
   add_column(
     comment = c("normal","normal","normal","normal","normal","steep increase","very steep","extreme")
-  ) 
+  )
 
-spear_dat |> 
-  gt() |> 
+spear_dat |>
+  gt() |>
   cols_label(
     obs = "Observation",
-    temp_c = "Temperature in °C",
+    temp_c = "Temperature in C",
     rod_length_mm = "Rod Length in mm",
     comment = "Comment"
-  ) |> 
+  ) |>
   cols_align(
     align = "center",
     columns = everything()
-  ) |> 
+  ) |>
   tab_options(
     table.width = pct(100),
     table.font.size = pct(70)
-  ) |> 
+  ) |>
     tab_style(
     style = cell_fill(color = 'grey'),
     locations = cells_body(
-      columns = c(rod_length_mm), 
+      columns = c(rod_length_mm),
       rows = c(6,7,8)
     ))
 
 ```
 
-:::
-
-::: {.fragment .fade-in-then-out}
+#### The ranks of the data
 
 ```{r}
 #| label: tbl-spear-ex-calc
 #| tbl-cap: The steps in calculating the spearman correlation.
 
-spear_dat_calc <- spear_dat |> 
+spear_dat_calc <- spear_dat |>
   mutate(
     rnk_temp = dense_rank(temp_c),
     rnk_leng = dense_rank(rod_length_mm),
@@ -2501,51 +3038,42 @@ spear_dat_calc <- spear_dat |>
     di2 = di^2
   )
 
-spear_dat_calc |> 
-  gt() |> 
+spear_dat_calc |>
+  gt() |>
   cols_label(
     obs = "Obersvation",
-    temp_c = "Temperature in °C",
+    temp_c = "Temperature in C",
     rod_length_mm = "Rod Length in mm",
     comment = "Comment",
     rnk_temp = "Rank $X$",
     rnk_leng = "Rank $Y$",
     di = "$d = R_X-R_Y$",
     di2 = "$d^2$"
-  ) |> 
+  ) |>
   cols_align(
     align = "center",
     columns = everything()
-  ) |> 
+  ) |>
   tab_options(
     table.width = pct(100),
     table.font.size = pct(70)
-  ) |> 
+  ) |>
     tab_style(
     style = cell_fill(color = 'grey'),
     locations = cells_body(
-      columns = c(rod_length_mm), 
+      columns = c(rod_length_mm),
       rows = c(6,7,8)
     ))
 
 ```
 
-
-:::
-
-:::{.fragment .fade-in-then-out}
+#### The spearman rho
 
 \begin{align}
 \rho = 1- \frac{6\sum{d^2}}{n(n^2-1)} = 1 - \frac{0}{8(64-1)} = 1
 \end{align}
 
-Pearson correlation:
-
-$R = `r round(cor(spear_dat$temp_c,spear_dat$rod_length_mm),digits = 2)`$
-
-:::
-
-:::{.fragment .fade-in-then-out}
+#### The data in a plot
 
 ```{r}
 #| label: fig-spear-dat
@@ -2554,7 +3082,7 @@ $R = `r round(cor(spear_dat$temp_c,spear_dat$rod_length_mm),digits = 2)`$
 #| out-width: 95%
 #| fig-cap: The data for which the spearman correlation is computed
 
-spear_dat_calc |> 
+spear_dat_calc |>
   ggplot(
     aes(
       x = temp_c,
@@ -2569,22 +3097,17 @@ spear_dat_calc |>
   geom_smooth(method = "lm",se = TRUE)+
   labs(
     title = "The data for the correlation computation",
-    x = "Temperature in °C",
+    x = "Temperature in C",
     y = "Rod Length in mm"
   )+
-  stat_cor(method = "pearson", label.x = 20, label.y = 125)+
-  stat_cor(method = "spearman", label.x = 20, label.y = 130)+
-  theme_few(
-    base_size = 15
-  )
+  stat_cor(method = "spearman", label.x = 20, label.y = 130)
 
 
 
 ```
 
-:::
+#### Background
 
-:::{.fragment .fade-in-then-out}
 
 The spearman $\rho$ calculates the pearson correlation, but between the *rank* difference of the variables.
 
@@ -2599,88 +3122,22 @@ The spearman $\rho$ calculates the pearson correlation, but between the *rank* d
 
 :::
 
-:::
-
-:::
-
-:::{.fragment .fade-in-then-out}
+### Comparison on outlier data
 
 ```{r}
-#| label: fig-drive-shaft-corr-spear
-#| out-width: 95%
-#| fig-cap: The relationship between the production time and the number of defects. 
 
-
-load(file = here("data","drive_shaft_time_defects.Rdata"))
-
-drive_shaft_time_defect %>% 
-  ggplot(aes(x = Production_Time,y = Defects))+
-  geom_point()+
-  geom_smooth(
-    method = "lm",
-    linetype = "dashed",
-    color = "gray")+
-  geom_smooth()+
-  labs(
-    title = "Production Time vs. Number of Defects."
-  )+
-  theme_few()
+corr_comp <- 
+  data.frame(
+    cor.test(spear_dat_calc$temp_c,spear_dat_calc$rod_length_mm, method = "pearson") |> broom::tidy()) |> 
+  add_row(
+    cor.test(spear_dat_calc$temp_c,spear_dat_calc$rod_length_mm, method = "spearman")|> broom::tidy()) 
   
+corr_comp |> gt()  
 
 ```
 
-:::
 
-:::{.fragment .fade-in-then-out}
-
-```{r}
-#| label: fig-drive-shaft-spear-qq
-#| out-width: 95%
-#| fig-cap: The QQ-plots of both variables.
-
-load(file = here("data","drive_shaft_time_defects.Rdata"))
-
-drive_shaft_time_defect %>% 
-  pivot_longer(
-    cols = everything(),
-    names_to = "variable",
-    values_to = "values"
-  ) %>% 
-  ggplot(aes(sample = values))+
-  stat_qq_band()+
-  stat_qq_line()+
-  stat_qq_point()+
-  facet_wrap(~variable,scales = "free")+
-  labs(
-    title = "The QQ-plots for the  variables. There is strong evidence that the data is not normally disitributed"
-  )+
-  theme_few()
-
-```
-
-:::
-
-:::
-
-<!-- :::{.fragment .fade-in} -->
-
-<!-- ```{r} -->
-<!-- out_spearman <- cor.test(drive_shaft_time_defect$Production_Time,drive_shaft_time_defect$Defects,method = "spearman") %>% print() -->
-<!-- ``` -->
-
-<!-- ::: -->
-
-<!-- :::{.fragment .fade-in} -->
-
-<!-- ```{r} -->
-<!-- out_pearson <- cor.test(drive_shaft_time_defect$Production_Time,drive_shaft_time_defect$Defects,method = "pearson") %>% print() -->
-
-<!-- ``` -->
-<!-- ::: -->
-
-<!-- ::: -->
-
-#### Correlation - methodogical limits
+### Correlation - methodogical limits
 
 ::: {.content-visible when-profile="script"}
 
@@ -2693,35 +3150,30 @@ Always check the raw data.
 
 :::
 
-::: {.r-stack}
-
-:::{.fragment .fade-out}
-
 ```{r}
 #| label: tbl-corr-limits
 #| tbl-cap: The datasauRus data and the respective summary statistics.
 
-datasaurus_dozen %>% 
-    group_by(dataset) %>% 
+datasaurus_dozen %>%
+    group_by(dataset) %>%
     summarize(
       mean_x    = mean(x),
       mean_y    = mean(y),
       std_dev_x = sd(x),
       std_dev_y = sd(y),
       corr_x_y  = cor(x, y)
-    ) %>% 
-  gt() %>% 
-   fmt_number(decimals = 3) %>% 
+    ) %>%
+  gt() %>%
+   fmt_number(decimals = 3) %>%
   tab_options(
     # table.font.size = 25
-  ) %>% 
+  ) %>%
   as_raw_html()
 
 ```
 
-:::
 
-:::{.fragment .fade-in-then-out}
+### Plot of the raw data
 
 ```{r}
 #| label: fig-corr-limits
@@ -2737,9 +3189,6 @@ ggplot(datasaurus_dozen, aes(x = x, y = y))+
 
 ```
 
-:::
-
-:::
 
 ## Test 2 Variables (2 Groups)
 
@@ -2758,7 +3207,7 @@ knitr::include_graphics(here::here("chapter002","021_StatisticalTests_TwoVar_Two
 ```{r}
 #| label: fig-tst-var
 #| fig-cap: The variances ($sd^2$) for the drive shaft data.
-#| out-width: 75%
+#| out-width: 95%
 
 load(here("data","drive_shaft_data.Rdata"))
 
@@ -2901,9 +3350,7 @@ It evaluates whether there is a significant difference in means between these gr
 
 :::
 
-::: {.r-stack}
-
-:::{.fragment .fade-out}
+#### Prerequisites
 
 - **Null Hypothesis:** The means of the two samples are equal.
 - **Prerequisites:**
@@ -2911,10 +3358,156 @@ It evaluates whether there is a significant difference in means between these gr
   - Normal Distribution
   - Number of groups $=2$
   - equal Variances of the groups
+  
+#### Hypotheses
 
-:::
+{{< acr H0 >}}: $\mu_1 = \mu_2$ (two tailed)
 
-:::{.fragment .fade-in-then-out}
+{{< acr Ha >}}: $\mu_1 > \mu_2$ or $\mu_1 < \mu_2$ (one-tailed)
+
+#### One sided test
+
+```{r}
+#| label: fig-t-test-oneside
+#| fig-cap: The idea for a one-sided (t-)test
+#| out-width: 95%
+#| 
+# Parameters
+alpha <- 0.05
+df_small <- 5    # Small sample size (heavy tails)
+df_large <- 20   # Larger sample size (closer to normal)
+x_range <- seq(-4, 4, length.out = 1000)
+
+# Create data frames for t-distributions
+df_t <- tibble(
+  x = x_range,
+  y_small = dt(x, df = df_small),
+  y_large = dt(x, df_large)
+)
+
+# Critical values for one-sided and two-sided tests
+crit_one_sided_small <- qt(1 - alpha, df = df_small)
+crit_two_sided_small <- qt(1 - alpha/2, df = df_small)
+crit_one_sided_large <- qt(1 - alpha, df = df_large)
+crit_two_sided_large <- qt(1 - alpha/2, df = df_large)
+
+# One-Sided Plot (with both small and large df)
+p1 <- ggplot() +
+  # Small df (red curve)
+  geom_line(
+    data = df_t, aes(x = x, y = y_small, color = "Small n (df=5)"),
+    linewidth = 1, show.legend = TRUE
+  ) +
+  geom_area(
+    data = df_t %>% filter(x >= crit_one_sided_small),
+    aes(x = x, y = y_small),
+    fill = "red", alpha = 0.3
+  ) +
+  geom_vline(
+    xintercept = crit_one_sided_small,
+    linetype = "dashed", color = "red", linewidth = 0.8
+  ) +
+  # Large df (blue curve)
+  geom_line(
+    data = df_t, aes(x = x, y = y_large, color = "Large n (df=20)"),
+    linewidth = 1, show.legend = TRUE
+  ) +
+  geom_area(
+    data = df_t %>% filter(x >= crit_one_sided_large),
+    aes(x = x, y = y_large),
+    fill = "blue", alpha = 0.3
+  ) +
+  geom_vline(
+    xintercept = crit_one_sided_large,
+    linetype = "dashed", color = "blue", linewidth = 0.8
+  ) +
+  labs(
+    title = "One-Sided t-Test (Right-Tailed)",
+    subtitle = "Influence of Sample Size (df) on Critical Values and Distribution Shape",
+    x = "t-Statistic", y = "Density",
+    color = "Sample Size"
+  ) +
+  scale_color_manual(values = c("red", "blue")) +
+  theme(legend.position = "bottom")
+
+p1
+
+```
+
+#### Two sided test
+
+```{r}
+#| label: fig-t-test-twoside
+#| fig-cap: The idea for a two-sided (t-)test
+#| out-width: 95%
+#| 
+# Two-Sided Plot (with both small and large df)
+p2 <- ggplot() +
+  # Small df (red curve)
+  geom_line(
+    data = df_t, aes(x = x, y = y_small, color = "Small n (df=5)"),
+    linewidth = 1, show.legend = TRUE
+  ) +
+  geom_area(
+    data = df_t %>% filter(x <= -crit_two_sided_small | x >= crit_two_sided_small),
+    aes(x = x, y = y_small),
+    fill = "red", alpha = 0.3
+  ) +
+  geom_vline(
+    xintercept = c(-crit_two_sided_small, crit_two_sided_small),
+    linetype = "dashed", color = "red", linewidth = 0.8
+  ) +
+  # Large df (blue curve)
+  geom_line(
+    data = df_t, aes(x = x, y = y_large, color = "Large n (df=20)"),
+    linewidth = 1, show.legend = TRUE
+  ) +
+  geom_area(
+    data = df_t %>% filter(x <= -crit_two_sided_large | x >= crit_two_sided_large),
+    aes(x = x, y = y_large),
+    fill = "blue", alpha = 0.3
+  ) +
+  geom_vline(
+    xintercept = c(-crit_two_sided_large, crit_two_sided_large),
+    linetype = "dashed", color = "blue", linewidth = 0.8
+  ) +
+  labs(
+    title = "Two-Sided t-Test",
+    subtitle = "Influence of Sample Size (df) on Critical Values and Distribution Shape",
+    x = "t-Statistic", y = "Density",
+    color = "Sample Size"
+  ) +
+  scale_color_manual(values = c("red", "blue")) +
+  theme(legend.position = "bottom")
+
+p2
+
+```
+
+#### The test statistic
+
+The t-statistic quantifies how far the observed difference in means ($\bar{x_1}-\bar{x_2}$) is from {{< acr H0 >}} in units of standard error.
+
+\begin{align}
+t = \frac{\text{Observed Difference}}{\text{Standard Error of the Difference}} = \frac{\bar{x_1}-\bar{x_2}}{SE_{\bar{x_1}-\bar{x_2}}}
+\end{align}
+
+Where the standard error depends on:
+
+- Sample Sizes ($n_1,n_2$)
+
+- Sample variances ($sd_1^2,sd_2^2$)
+
+- Whether the sample variances are equal (pooled variance) or not (Welch's t-test)
+
+#### Standard error for equal variances
+
+\begin{align}
+SE_{pooled} &= \sqrt{sd_p^2(\frac{1}{n_1}+\frac{1}{n_2})} \\
+sd_p^2 &= \frac{(n_1-1)sd_1^2+(n_2-1)sd_2^2}{n_1+n_2-2}
+\end{align}
+
+#### Variances
 
 First, the variances are compared in order to check if they are equal using the F-Test (as described in @sec-f-test).
 
@@ -2931,9 +3524,7 @@ var.test(group01 %>% pull("diameter"),group03%>% pull("diameter"))
 
 With $p>\alpha = 0.05$ the $H_0$ is accepted, the variances are equal.
 
-:::
-
-:::{.fragment .fade-in-then-out}
+#### Normality
 
 The next step is to check the data for normality using the KS-test (as described in @sec-ks-test).
 
@@ -2956,14 +3547,12 @@ ks.test(group03 %>% pull("diameter"),
 
 With $p>\alpha = 0.05$ the $H_0$ is accepted, the data seems to be normally distributed.
 
-:::
-
-:::{.fragment .fade-in-then-out}
+#### Visualization
 
 ```{r}
 #| label: fig-t-tst-two-indep
 #| fig-cap: The data within the two groups for comparing the sample means using the t-test for independent samples.
-#| out-width: 75%
+#| out-width: 95%
 #| fig-pos: "H"
 
 load (here("data","drive_shaft_data.Rdata"))
@@ -3016,9 +3605,7 @@ tmp %>%
 
 ```
 
-:::
-
-:::{.fragment .fade-in-then-out}
+#### Testing
 
 The formal test is then carried out.
 With $p<\alpha=0.05$ $H_0$ is rejected, the data comes from populations with different means.
@@ -3035,9 +3622,7 @@ t.test(group01 %>% pull(diameter),group03%>% pull(diameter),var.equal = TRUE)
 
 ```
 
-:::
 
-:::
 
 ### Welch t-test for independent samples
 
@@ -3048,9 +3633,7 @@ However, it is employed when there are unequal variances between the groups, rel
 
 :::
 
-::: {.r-stack}
-
-:::{.fragment .fade-out}
+#### Prerequisites
 
 - **Null Hypothesis:** The means of the two samples are equal.
 - **Prerequisites:**
@@ -3058,9 +3641,8 @@ However, it is employed when there are unequal variances between the groups, rel
   - Normal Distribution
   - Number of groups $=2$
 
-:::
 
-:::{.fragment .fade-in-then-out}
+#### Variance Check
 
 First, the variances are compared in order to check if they are equal using the F-Test (as described in @sec-f-test).
 
@@ -3078,9 +3660,7 @@ var.test(group01 %>% pull("diameter"),group02%>% pull("diameter"))
 With $p<\alpha = 0.05$ $H_0$ is rejected and $H_a$ is accepted. 
 The variances are different.
 
-:::
-
-:::{.fragment .fade-in-then-out}
+#### Normality Check
 
 Using the KS-test (see @sec-ks-test) the data is checked for normality.
 
@@ -3103,9 +3683,7 @@ ks.test(group02 %>% pull("diameter"),
 
 With $p>\alpha = 0.05$ $H_0$ is accepted, the data seems to be normally distributed.
 
-:::
-
-:::{.fragment .fade-in-then-out}
+#### The data
 
 ```{r}
 #| label: fig-welch-tst-two-indep
@@ -3170,9 +3748,15 @@ tmp %>%
 
 ```
 
-:::
+#### Calculation for unequal variances
 
-:::{.fragment .fade-in-then-out}
+The {{< acr SE >}} of the variances for unequal variances is calculated:
+
+\begin{align}
+SE_{Welch} = \sqrt{\frac{sd_1^2}{n_1}+\frac{sd_2^2}{n_2}}
+\end{align}
+
+#### The test
 
 Then, the formal test is carried out.
 
@@ -3190,10 +3774,6 @@ t.test(group01 %>% pull(diameter),group02%>% pull(diameter),var.equal = FALSE)
 
 With $p<\alpha = 0.05$ we reject $H_0$, the data seems to be coming from different population means, even though the variances are overlapping (and different).
 
-:::
-
-:::
-
 ### Mann-Whitney U test
 
 ::: {.content-visible when-profile="script"}
@@ -3203,9 +3783,9 @@ It assesses whether there is a significant difference in medians between two ind
 
 :::
 
-::: {.r-stack}
+#### Prerequisites
 
-:::{.fragment .fade-out}
+Based on the Wilcoxon rank sum test (see @sec-wilcox-rank-sum).
 
 - **Null Hypothesis:** The medians of the two samples are equal.
 - **Prerequisites:**
@@ -3213,14 +3793,18 @@ It assesses whether there is a significant difference in medians between two ind
   - no specific distribution (non-parametric)
   - Number of groups $=2$
 
-:::
+#### Hypotheses
 
-:::{.fragment .fade-in-then-out}
+{{< acr H0 >}}: The two groups have equal medians
+
+{{< acr Ha >}}: The two groups have unequal medians
+
+#### The data
 
 ```{r}
 #| label: fig-mannu-tst-data
 #| fig-cap: The data within the two groups for comparing the sample medians using the Mann-Whitney-U Test.
-#| out-width: 75%
+#| out-width: 95%
 #| fig-pos: "H"
 
 load(here("data","drive_shaft_mann_u.Rdata"))
@@ -3241,18 +3825,19 @@ drive_shaft_mann_u %>%
   labs(
     title = "Ridgeline plots of two groups of drive shaft diameters",
     y = ""
-  )+
-  theme_few()
+  )
   
 ```
 
-:::
+#### Check for Normality
 
-:::{.fragment .fade-in-then-out}
+::: {.content-visible when-profile="script"}
 
 This time a graphical method to check for normality is employed (QQ-plot, see @sec-qq-plot).
 From the @fig-mannu-tst-qq it is pretty clear, that the data is not normally distributed.
 Furthermore, the variances seem to be unequal as well.
+
+:::
 
 ```{r}
 #| label: fig-mannu-tst-qq
@@ -3276,14 +3861,11 @@ drive_shaft_mann_u %>%
     )+
   labs(
     title = "The QQ-plots for the data to check for normality."
-  )+
-  theme_few()
+  )
   
 ```
 
-:::
-
-:::{.fragment .fade-in-then-out}
+#### The test
 
 Then, the formal test is carried out.
 With $p<\alpha = 0.05$ $H_0$ is rejected, the true location shift is not equal to $0$.
@@ -3294,11 +3876,11 @@ load(here("data","drive_shaft_mann_u.Rdata"))
 
 wilcox.test(diameter~group,data = drive_shaft_mann_u)
 
+cohens_d(diameter~group,data = drive_shaft_mann_u)
+
 ```
 
-:::
 
-:::
 
 ### t-test for paired samples
 
@@ -3309,9 +3891,7 @@ It helps determine if there is a significant difference in means between the rel
 
 :::
 
-::: {.r-stack}
-
-:::{.fragment .fade-out}
+#### Prerequisites
 
 - **Null Hypothesis:** True mean difference is not equal to 0.
 - **Prerequisites:**
@@ -3319,10 +3899,29 @@ It helps determine if there is a significant difference in means between the rel
   - Normal Distribution
   - equal variances
   - Number of groups $=2$
+  
+#### Special characteristics
 
-:::
+The paired t-test focuses on the differences between paired observations.
 
-:::{.fragment .fade-in-then-out}
+- ($X_{1i},X_{2i}$) may be the $i$th pair of observations ($i = 1, \ldots, n$)
+- Differences: $D_i = X_{1i}-X_{2i}$
+
+It is then evaluated whether the mean differences ($\mu_D$) is zero.
+
+#### Hypotheses
+
+{{< acr H0 >}}: $\mu_D = 0$
+
+{{< acr Ha >}}: $\mu_D \neq 0$
+
+with the test statistic being
+
+\begin{align}
+t = \frac{\bar{D}}{sd_D/\sqrt{n}}
+\end{align}
+
+#### Variances
 
 Using the F-Test, the variances are compared.
 
@@ -3335,9 +3934,7 @@ var.test(diameter~timepoint, data = drive_shaft_treatment)
 
 With $p>\alpha = 0.05$ $H_0$ is accepted, the variances are equal.
 
-:::
-
-:::{.fragment .fade-in-then-out} 
+#### Normality
 
 Using a QQ-plot the data is checked for normality.
 
@@ -3353,20 +3950,11 @@ drive_shaft_treatment %>%
   facet_wrap(~timepoint)+
   labs(
     title = "QQ-plots of the treament data at the different timepoints"
-  )+
-  theme_few()
+  )
 
 ```
 
-::: {.content-visible when-profile="script"}
-
-Without a formal test, the data is assumed to be normally distributed.
-
-:::
-
-:::
-
-:::{.fragment .fade-in-then-out}
+#### Visualization
 
 ```{r}
 #| label: fig-t-tst-paired
@@ -3391,15 +3979,12 @@ drive_shaft_treatment %>%
     title = "Paired t-test data with connections between samples.",
     x = "t0 = initial, t1 = after treatment",
     y = "diameter in mm"
-  )+
-  theme_few()
+  )
   
 
 ```
 
-:::
-
-:::{.fragment .fade-in-then-out}
+#### The test
 
 The formal test is then carried out.
 
@@ -3415,10 +4000,6 @@ drive_shaft_treatment |>
 
 With $p<\alpha = 0.05$ $H_0$ is rejected, the treatment changed the properties of the product.
 
-:::
-
-
-:::
 
 ### Wilcoxon signed rank test
 
@@ -3429,18 +4010,14 @@ It evaluates whether there is a significant difference in medians between the re
 
 :::
 
-::: {.r-stack}
-
-:::{.fragment .fade-out}
+#### Prerequisites
 
 - **Null Hypothesis:** True mean difference is not equal to 0.
 - **Prerequisites:**
   - Paired Data
   - Number of groups $=2$
 
-:::
-
-:::{.fragment .fade-in-then-out}
+#### Check for Normality
 
 ```{r}
 
@@ -3457,9 +4034,14 @@ drive_shaft_wilcox_signed_rank %>%
 
 ```
 
-:::
+#### Special characteristic
 
-:::{.fragment .fade-in-then-out}
+- ($X_{1i},X_{2i}$) may be the $i$th pair of observations ($i = 1, \ldots, n$)
+- Differences: $D_i = X_{1i}-X_{2i}$
+
+It is then evaluated whether the median differences is zero
+
+#### The data
 
 ```{r}
 
@@ -3481,9 +4063,7 @@ drive_shaft_wilcox_signed_rank %>%
 
 ```
 
-:::
-
-:::{.fragment .fade-in-then-out}
+#### The test
 
 ```{r}
 
@@ -3495,11 +4075,139 @@ drive_shaft_wilcox_signed_rank |>
 
 ```
 
-:::
+### Exercise on paired samples
 
-:::
+A manufacturing plant has 10 machines producing steel rods. 
+After recalibration, the diameters of rods from each machine are measured again. 
+The goal is to determine if the recalibration significantly changed the mean diameter.
 
-{{< pagebreak >}}
+#### The data
+
+```{r}
+#| label: tbl-exercise-paired-data
+#| tbl-cap: The data for the paired test example
+
+set.seed(42)
+before <- c(
+  rnorm(5, mean = 7, sd = 1),    # Small cluster
+  rnorm(3, mean = 110, sd = 5),   # Outliers
+  rlnorm(2, meanlog = 2, sdlog = 0.1) # Extra skew
+) |> round(digits = 2)
+
+# Generate 'after' by subtracting a normal shift
+shift <- rnorm(10, mean = 1.5, sd = 0.4)  |> round(digits = 2)# Normal differences
+after <- before - shift
+
+
+diameter_data <- data.frame(
+  before,
+  after
+)
+
+diameter_data|> 
+  gt()
+
+```
+
+#### Your plan
+
+How do we go on?
+
+#### Solution: Differences
+
+```{r}
+#| label: tbl-exercise-paired-data-sol01
+#| tbl-cap: The data for the paired test example
+
+diameter_data <- diameter_data |> 
+  mutate(
+    D = before-after
+  )
+
+diameter_data|> 
+  gt()
+
+```
+
+#### Solution: Check Normality of data
+
+```{r}
+#| label: fig-data-qq
+#| fig-cap: The distribution of the data
+#| out-width: 95%
+
+diameter_data |> 
+  pivot_longer(
+    cols = c("before","after"),
+    names_to = "group",
+    values_to = "diameter"
+  ) |> 
+  ggplot(
+    aes(
+      sample = diameter
+    )
+  )+
+  stat_qq_band()+
+  stat_qq_line()+
+  stat_qq_point()+
+  facet_wrap(~group)
+
+
+```
+
+#### Solution: Check Normality of the differences
+
+```{r}
+#| label: fig-D-diff
+#| fig-cap: The distribution of the differences
+#| out-width: 95%
+
+diameter_data |> 
+  ggplot(
+    aes(
+      sample = D
+    )
+  )+
+  stat_qq_band()+
+  stat_qq_line()+
+  stat_qq_point()
+
+
+```
+
+#### The test
+
+```{r}
+#| label: tbl-exercise-paired-data-solution-final
+#| tbl-cap: The data for the paired test example
+
+
+diameter_data_long <- diameter_data |> 
+  select(before,after) |> 
+  pivot_longer(
+    cols = c("before","after"),
+    names_to = "group",
+    values_to = "diameter")
+
+res_paired <- diameter_data_long |> 
+  t_test(diameter ~ group,paired = TRUE) |> 
+  add_column("is_paired" = "yes")
+res_standard <- diameter_data_long |> 
+  t_test(diameter ~ group,paired = FALSE)|> 
+  add_column("is_paired" = "no")
+    
+
+res_both <- data.frame(
+  res_paired
+)   |> 
+  add_row(
+    res_standard
+  )
+  
+res_both |> gt()
+
+```
+
 
 ## Test 2 Variables (> 2 Groups)
 
@@ -3629,9 +4337,7 @@ It assesses whether there are significant differences in means among these group
 
 :::
 
-::: {.r-stack}
-
-:::{.fragment .fade-in-then-out .v-center-container fragment-index=1}
+#### Prerequisites
 
 - **Null Hypothesis:** True mean difference is equal to 0.
 - **Prerequisites:**
@@ -3639,9 +4345,7 @@ It assesses whether there are significant differences in means among these group
   - Number of groups $>2$
   - One response, one predictor variable
 
-:::
-
-:::{.fragment .fade-in-then-out fragment-index=2}
+#### One-way AOVA - basic idea
 
 ```{r}
 #| label: fig-one-way-ANOVA-basic-idea
@@ -3652,10 +4356,8 @@ It assesses whether there are significant differences in means among these group
 knitr::include_graphics(here::here("chapter002","026_One-Way-ANOVA.png"))
 
 ```
-:::
 
-:::{.fragment .fade-in-then-out fragment-index=3}
-
+#### Check Variances
 
 The most important prerequisite for a One-way ANOVA are equal variances.
 Because there are more than two groups, the Bartlett test (as introduced in @sec-bartlett) is chosen (data is normally distributed).
@@ -3666,15 +4368,11 @@ bartlett.test(diameter ~ group,data = drive_shaft)
 
 ```
 
-:::
 
-:::{.fragment .fade-in-then-out fragment-index=4}
 
 Because $p<\alpha = 0.05$ the variances are different.
 
-:::
-
-:::{.fragment .fade-in-then-out fragment-index=5}
+#### Where are the variances equal?
 
 ```{r}
 #| label: fig-one-way-ANOVA-boxplot
@@ -3691,23 +4389,16 @@ drive_shaft %>%
   theme(legend.position = "bottom")
 ```
 
-:::
+#### More tests
 
-:::{.fragment .fade-in-then-out fragment-index=6}
 
 ```{r}
 bartlett.test(diameter ~ group,data = drive_shaft %>% filter(group %in% c("group01","group04","group03")))
 ```
 
-:::
-
-:::{.fragment .fade-in-then-out fragment-index=7}
-
 With $p>\alpha=0.05$ $H_0$ is accepted, the variances of `group01`, `group02` and `group03` are equal.
 
-:::
-
-:::{.fragment .fade-in-then-out fragment-index=8}
+#### The whole game
 
 Of course, many software package provide an automated way of performing a One-way ANOVA, but the first will be explained in detail.
 The general model for a One-way ANOVA is shown in \eqref{onewayanova}.
@@ -3721,10 +4412,6 @@ Y \sim X + \epsilon \label{onewayanova}
 
 For a One-way ANOVA the [predictor variable](#X) $X$ is the mean ($\bar{x}$) of all datapoints $x_i$.
 
-:::
-
-:::{.fragment .fade-in-then-out fragment-index=9}
-
 ::: {.content-visible when-profile="script"}
 
 First the SSE and the MSE is calculated for the complete model ($H_a$ is true), see @tbl-anova-ow-complete.
@@ -3732,10 +4419,12 @@ The complete model means, that every mean, for every group is calculated and the
 
 :::
 
+#### Complete Model
+
 ```{r}
 #| label: fig-anova-mdls-comp
 #| fig-cap: Computation of error for the complete model (mean per group as model)
-#| out-width: 75%
+#| out-width: 95%
 
 load (here("data","drive_shaft_data.Rdata"))
 
@@ -3787,18 +4476,15 @@ grp_dat %>%
     subtitle = "model = mean per group",
     x = "sample no",
     y = "diameter"
-  )+
-  theme_few()
+  )
 ```
 
-:::
-
-:::{.fragment .fade-in-then-out fragment-index=10}
+#### Reduced Model
 
 ```{r}
 #| label: fig-anova-mdls-red
 #| fig-cap: Computation of error for the reduced model (overall mean as model)
-#| out-width: 75%
+#| out-width: 95%
 
 mean_dat %>% 
   ggplot()+
@@ -3827,15 +4513,12 @@ mean_dat %>%
     subtitle = "model = overall mean",
     x = "sample no",
     y = "diameter"
-  )+
-  theme_few()
+  )
 
 
 ```
 
-:::
-
-:::{.fragment .fade-in-then-out fragment-index=11}
+#### SE and MSE
 
 ```{r}
 #| label: tbl-anova-ow-complete
@@ -3875,9 +4558,7 @@ aov_ow_complete %>%
 
 ```
 
-:::
-
-:::{.fragment .fade-in-then-out fragment-index=12}
+#### SE and MSE comparison
 
 Then, the SSE and the MSE is calculated for the reduced model ($H_0$ is true).
 In the reduced model, the mean is not calculated per group, the overall mean is calculated (results in @tbl-anova-ow-reduced).
@@ -3917,9 +4598,7 @@ aov_ow_reduced %>%
 
 ```
 
-:::
-
-:::{.fragment .fade-in-then-out fragment-index=13}
+#### Explained 
 
 The $SSE$, $df$ and $MSE$ explained by the complete model are calculated:
 
@@ -3939,9 +4618,7 @@ df_{explained} &= df_{reduced} - df_{complete} = `r round(explained_df,digits = 
 MSE_{explained} &= \frac{SSE_{explained}}{df_{explained}} = `r round(explained_mse,digits = 2)`
 \end{align}
 
-:::
-
-:::{.fragment .fade-in-then-out fragment-index=14}
+#### Ratio of Variances
 
 The ratio of the  variance (MSE) as explained by the complete model to the reduced model is then calculated.
 The probability of this statistic is afterwards calculated (if $H_0$ is true).
@@ -3961,9 +4638,7 @@ aov_res <- aov(diameter~group,data =aov_ow_data)
 
 The probability of a F-statistic with $pf = `r round(f,digits = 3)`$ is $`r round(p_aov_ow,digits = 2)`$.
 
-:::
-
-:::{.fragment .fade-in-then-out fragment-index=15}
+#### Crosscheck
 
 A crosscheck with a automated solution (`aov`-function) yields the results shown in @tbl-anova-ow-r-sol.
 
@@ -3982,9 +4657,7 @@ aov_res %>%
 
 ```
 
-:::
-
-:::{.fragment .fade-in-then-out .smaller fragment-index=16}
+#### Sanity Checks
 
 Some sanity checks are of course required to ensure the validity of the results.
 First, the variance of the residuals must be equal along the groups (see @fig-anova-ow-variance).
@@ -4005,14 +4678,11 @@ aov_augment %>%
   geom_boxplot()+
   labs(
     title = "The residuals of the ANOVA models"
-  )+
-  theme_few()
+  )
 
 ```
 
-:::
-
-:::{.fragment .fade-in-then-out fragment-index=17}
+#### residuals
 
 Also, the residuals from the model must be normally distributed (see @fig-anova-ow-qq).
 
@@ -4033,14 +4703,11 @@ aov_augment %>%
   stat_qq_point()+
   labs(
     title = "The distribution of the residuals"
-  )+
-  theme_few()
+  )
 
 ```
 
-:::
-
-:::{.fragment .fade-in-then-out fragment-index=18}
+#### final conclusion
 
 The model seems to be valid (equal variances of residuals, normal distributed residuals).
 
@@ -4052,9 +4719,7 @@ With $p<\alpha = 0.05$ $H_0$ can be rejected, the means come from different popu
 
 :::
 
-:::
 
-:::
 
 ### Welch ANOVA
 
@@ -4065,18 +4730,14 @@ Similar to one-way ANOVA, the Welch ANOVA is employed when there are unequal var
 
 :::
 
-::: {.r-stack}
-
-:::{.fragment .fade-in-then-out .v-center-container fragment-index=1}
+#### Prerequisites
 
 - **Null Hypothesis:** True mean difference is not equal to 0.
 - **Prerequisites:**
   - Number of groups $>2$
   - One response, one predictor variable
 
-:::
-
-:::{.fragment .fade-in-then-out fragment-index=2}
+#### Variance test
 
 The Welch ANOVA drops the prerequisite of equal variances in groups.
 Because there are more than two groups, the Bartlett test (as introduced in @sec-bartlett) is chosen (data is normally distributed).
@@ -4091,9 +4752,7 @@ bartlett.test(diameter ~ group,data = drive_shaft)
 
 With $p<\alpha = 0.05$ $H_0$ can be rejected, the variances are not equal.
 
-:::
-
-:::{.fragment .fade-in-then-out fragment-index=3}
+#### ANOVA table
 
 The ANOVA table for the Welch ANOVA is shown in @tbl-anova-ow-welch.
 
@@ -4122,13 +4781,8 @@ aov_welch_res %>%
 
 ```
 
-:::
-
-:::
 
 ### Kruskal Wallis
-
-::: {.r-stack}
 
 ::: {.content-visible when-profile="script"}
 
@@ -4140,7 +4794,7 @@ In this example the drive strength is measured using three-point bending.
 Three different methods are employed to increase the strength of the drive shaft.
 :::
 
-:::{.fragment .fade-in-then-out .v-center-container fragment-index=1}
+#### Scenario
 
 ```{r}
 #| label: fig-kruskal-three-point
@@ -4156,10 +4810,6 @@ knitr::include_graphics(here::here("chapter002","028_three_point_bending.png"))
 * Method B: different geometry
 * Method C: different material
 
-:::
-
-:::{.fragment .fade-in-then-out .v-center-container fragment-index=2}
-
 ::: {.content-visible when-profile="script"}
 
 In @fig-kruskal-raw-dat the raw drive shaft strength data for Method A, B and C is shown.
@@ -4167,9 +4817,11 @@ At first glance, the data does not appear to be normally distributed.
 
 :::
 
+#### The data
+
 ```{r}
 #| label: fig-kruskal-raw-dat
-#| out-width: 80%
+#| out-width: 95%
 #| fig-cap: The raw data from the drive shaft strength testing.
 #| fig-pos: "H"
 #| 
@@ -4187,14 +4839,12 @@ kw_shaft_data %>%
     title = "Drive shaft strength vs. production method",
     x = "",
     y = bquote("strength in "~frac(N,mm^2))
-  )+
-  theme_few()
+  )
 
 ```
 
-:::
 
-:::{.fragment .fade-in-then-out .v-center-container fragment-index=3}
+#### Check Disitribution
 
 ::: {.content-visible when-profile="script"}
 
@@ -4205,7 +4855,7 @@ The data does not appear to be normally distributed.
 
 ```{r}
 #| label: fig-kruskal-qq
-#| out-width: 80%
+#| out-width: 95%
 #| fig-cap: The qq-plot for the drive shaft strength testing data.
 #| fig-pos: "H"
  
@@ -4214,15 +4864,11 @@ kw_shaft_data %>%
   stat_qq_band()+
   stat_qq_line()+
   stat_qq_point()+
-  facet_wrap(~group)+
-  theme_few(base_size = 15)
+  facet_wrap(~group)
 
 ```
 
-:::
-
-
-:::{.fragment .fade-in-then-out .v-center-container fragment-index=4}
+#### The test
 
 ::: {.content-visible when-profile="script"}
 
@@ -4237,16 +4883,12 @@ The next step is to find which of the groups are different using a post-hoc anal
 kruskal.test(strength~group, data = kw_shaft_data)
 
 ```
-:::
 
-::: {.fragment .fade-in-then-out fragment-index=5}
-
-::: {.content-visible when-profile="script"}
+#### multiple tests
 
 The Kruskal-Wallis Test (as the ANOVA) can only tell you, if there is a signifcant difference between the groups, not what groups are different.
 Post-hoc tests are able to determine such, but must be used with a correction for multiple testing (see [@Tamhane1977])
 
-:::
 
 ```{r}
 
@@ -4256,15 +4898,7 @@ pairwise.wilcox.test(kw_shaft_data$strength, kw_shaft_data$group, p.adjust.metho
 
 Because  $p<\alpha = 0.05$ it can be concluded, that all means are different from each other.
 
-:::
-
-:::
-
 ### repeated measures ANOVA
-
-::: {.r-stack}
-
-:::{.fragment .fade-out}
 
 ::: {.content-visible when-profile="script"}
 
@@ -4280,9 +4914,11 @@ In this example, the diameter of $n = 20$ drive shafts is measured after three d
 
 :::
 
+#### The data
+
 ```{r}
 #| label: fig-rep-meas-raw
-#| out-width: 80%
+#| out-width: 95%
 #| fig-cap: The raw data for the repeated measures ANOVA.
 #| fig-pos: "H"
 
@@ -4333,13 +4969,11 @@ rep_meas_ds %>%
     title = "repeatedly measured diameters at different timepoints",
     x = "",
     y = "diameter"
-  )+
-  theme_few(base_size = 15)
+  )
 
 ```
-:::
 
-:::{.fragment .fade-in-then-out}
+#### Outlier detection
 
 First, outliers are identified.
 There is no strict rule to identify outliers, in this case a classical measure is applied according to \eqref{outlierrule}
@@ -4364,9 +4998,8 @@ rep_meas_ds <- rep_meas_ds %>%
   filter(Subject_ID != detected_outliers$Subject_ID)
 
 ```
-:::
 
-:::{.fragment .fade-in-then-out}
+#### Check Distributions
 
 A check for normality is done employing the Shapiro-Wilk test [@shapiro1965analysis].
 
@@ -4383,16 +5016,12 @@ rep_meas_ds %>%
   as_raw_html()
 
 ```
-:::
 
-:::{.fragment .fade-in-then-out}
-
-::: {.content-visible when-profile="script"}
+#### Sphericity
 
 The next step is to check the dataset for sphericity, meaning to compare the variance of the groups among each other in order to determine the equality thereof.
 For this the Mauchly Test for sphericity is employed [@Mauchly1940].
 
-:::
 
 ```{r}
 
@@ -4410,15 +5039,14 @@ print(out[[2]])
 
 With $p>\alpha = 0.05$ $H_0$ is accepted, the variances are equal.
 Otherwise sphericity corrections must be applied [@Greenhouse1959].
-:::
-
-:::{.fragment .fade-in-then-out}
 
 ::: {.content-visible when-profile="script"}
 
 The next step is to perform the repeated measures ANOVA, which yields the following results.
 
 :::
+
+#### The test
 
 ```{r}
 
@@ -4435,15 +5063,14 @@ out %>% get_anova_table() %>%
 With  $p<\alpha = 0.05$ $H_0$ is rejected, the different timepoints yield different diameters. 
 Which groups are different is then determined using a post-hoc test, including a correction for the significance level [@bonferroni1936].
 
-:::
-
-:::{.fragment .fade-in-then-out}
 
 ::: {.content-visible when-profile="script"}
 
 In this case, the assumptions for a t-test are met, the pairwise t-test can be used.
 
 :::
+
+#### p-value adjustment
 
 ```{r}
 
@@ -4466,15 +5093,7 @@ rep_meas_ds %>%
 with  $p<\alpha = 0.05$ $H_0$ is rejected for the comparison `Before_Machining - After_Machining` and `After_Inspection - Before_Machining`.
 It can therefore be concluded that the machining has a significant influence on the diameter, whereas the inspection has none.
 
-:::
-
-:::
-
 ### Friedman test
-
-::: {.r-stack}
-
-:::{.fragment .fade-in}
 
 ::: {.content-visible when-profile="script"}
 
@@ -4483,6 +5102,8 @@ It is utilized when dealing with non-normally distributed data and multiple meas
 This test helps determine if there are significant differences in medians over the repeated measurements.
 
 :::
+
+#### The test
 
 The same data as for the repeated measures ANOVA will be used.
 
@@ -4506,10 +5127,6 @@ out_fried %>%
 
 With $p<\alpha = 0.05$ $H_0$ is rejected, the timepoints play a vital role for the drive shaft parameter.
 
-:::
-
-:::
-   
 ::: {.content-visible when-profile="slides"}
 
 ## References

@@ -23,6 +23,11 @@ library(ggeffects)
 library(modelr)
 library(patchwork)
 library(cardx)
+library(corrplot)
+
+ggplot2::theme_set(
+  ggthemes::theme_few(base_size = 15)
+  )
 
 ```
 
@@ -87,167 +92,316 @@ knitr::include_graphics(here::here("chapter003","030_lm_error.png"))
 The computation of the residuals is based on \eqref{rss} to the [residual sum of squares](#rss).
 
 \begin{align}
-RSS = \frac{1}{n} \sum_{i=1}^{n} (y_i - (\beta_1 x_i+\beta_0))^2 \label{rss}
+SSE = \frac{1}{n} \sum_{i=1}^{n} (y_i - (\beta_1 x_i+\beta_0))^2 \label{rss}
 \end{align}
 
 :::
 
 :::
 
-### Gradient Descent [@Ruder2016]
+#### Error Determination
 
-```{r}
-#| label: fig-grad-desc
-#| out-width: 70%
-#| fig-cap: An example for the gradient descent algorithm
+{{< acr SST >}}: $SST = \sum_{i = 1}^n(y_i -\bar{y})$
 
-knitr::include_graphics(here::here("chapter003","031_gradient_descent.png"))
+- How much do the observed $y_i$ values deviate from the mean $\bar{y}$
 
-```
+{{< acr SSR >}}: $SSR = \sum_{i = 1}^n(\hat{y_i} -\bar{y})$
 
-::: {.content-visible when-profile="script"}
-In linear regression, gradient descent is an iterative optimization process used to minimize the difference between predicted and actual values. 
-It starts with initial coefficients and calculates the gradient of the cost function, representing the error. 
-The coefficients are then updated in the opposite direction of the gradient, with the magnitude of the update controlled by a learning rate. 
-This process is repeated until convergence, gradually refining the coefficients to improve the accuracy of the linear regression model.
-:::
+- How much do the predicted $\hat{y_i}$ values deviate from the mean $\bar{y}$
+
+{{< acr SSE >}}: $SSE = \sum_{i = 1}^n(y_i -\hat{y})$
+
+- How much do the observed $y_i$ values deviate from the predicted $\hat{y}$
+
+#### Key Relationship
+
+\begin{align}
+SST = SSR + SSE
+\end{align}
 
 
 ### Model Evaluation and Interpretation
 
-::: {.r-stack}
-
-:::{.fragment .fade-out}
-
 ```{r}
-#| label: fig-lm
-#| out-width: 75%
-#| fig-cap: The linear regression between rounds per minute (rpm) of the lathing machine and the diameter of the drive shaft.
+#| label: fig-lm-data
+#| out-width: 95%
+#| fig-cap: How doe the screw length depend on the rpm of the machine
 #| fig-pos: "H"
 
-load(here("data","drive_shaft_rpm_dia.Rdata"))
 
-drive_shaft_rpm_dia %>% 
-  ggplot(aes(x = rpm, y = diameter))+
+screw_data <- tibble(
+  rpm = c(100, 120, 140, 160, 180, 200, 220, 240, 260, 280),
+  length = c(49.8, 49.9, 50.0, 50.2, 50.3, 50.5, 50.8, 51.0, 51.3, 51.5)
+)
+
+
+
+screw_data %>% 
+  ggplot(aes(x = rpm, y = length))+
+  geom_point()+
+  # geom_smooth(
+  #   method = "lm"
+  #   )+
+  # stat_regline_equation()+
+  labs(
+    title = "The data",
+    x = "rpm in 1/min",
+    y = "screw length in mm"
+  )
+  # theme_few()
+  
+
+
+```
+
+### The model
+
+```{r}
+#| label: fig-lm-mdl
+#| out-width: 95%
+#| fig-cap: How doe the screw length depend on the rpm of the machine
+
+screw_data <- tibble(
+  rpm = c(100, 120, 140, 160, 180, 200, 220, 240, 260, 280),
+  length = c(49.8, 49.9, 50.0, 50.2, 50.3, 50.5, 50.8, 51.0, 51.3, 51.5)
+)
+
+
+
+screw_data %>% 
+  ggplot(aes(x = rpm, y = length))+
   geom_point()+
   geom_smooth(
     method = "lm"
     )+
   stat_regline_equation()+
   labs(
-    title = "linear regression line",
+    title = "The data",
     x = "rpm in 1/min",
-    y = "diameter in mm"
-  )+
-  theme_few()
+    y = "screw length in mm"
+  )
   
+  
+```
 
-lm_model = lm(diameter ~ rpm, data = drive_shaft_rpm_dia)
+### The model parameters
+
+```{r}
+#| label: tbl-lm-param
+#| tbl-cap: The parameters of the linear model
+
+lm_model = lm(length ~ rpm, data = screw_data)
+
+lm_model |> 
+  tbl_regression(
+    intercept = TRUE,
+    add_estimate_to_reference_rows = TRUE
+  ) |> 
+  add_glance_table(
+    include = c(r.squared)
+  )
+
 
 ```
 
-:::
 
-:::{.fragment .fade-in-then-out}
+### Defining $r^2$
+
+The $r^2$ is the proportion of total variability explained by the model:
+
+\begin{align}
+r^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST} \label{r2}
+\end{align}
+
+Properties of $r^2$:
+
+- Ranges from $0$ to $1$ (or $0\% \ldots 100\%$)
+- Not a test for causality
+- Addition of predictors increases $r^2$
 
 ::: {.content-visible when-profile="script"}
 
-The [coefficient of determination](#r2) ($r^2$), is a statistical measure that assesses the proportion of the variance in the dependent variable that is explained by the independent variable(s) in a regression model. 
+The {{< acr CoD >}} ($r^2$), is a statistical measure that assesses the proportion of the variance in the dependent variable that is explained by the independent variable(s) in a regression model. 
 It ranges from $0$ to $1$, where $0$ indicates that the model does not explain any variability, and $1$ indicates that the model explains all the variability. 
 In other words, $r^2$ provides insight into the goodness of fit of a regression model, indicating how well the model's predictions match the observed data.
 
 :::
 
-\begin{align}
-r^2 = 1- \frac{RSS}{SSE} \label{r2}
-\end{align}
-
-:::
-
-:::{.fragment .fade-in-then-out}
-
-::: {.content-visible when-profile="script"}
-
-The [adjusted coefficient of determination](#r2adj), is a modification of the regular $r^2$ in regression analysis. 
-While $r^2$ assesses the proportion of variance explained by the independent variables, the $r^2_{adjusted}$ takes into account the [number of predictors ($k$)](#numpred) in the model, addressing potential issues with overfitting according to \eqref{r2adj}.
-
-The $r^2_{adjusted}$ incorporates a penalty for adding unnecessary predictors that do not significantly contribute to explaining the variance in the dependent variable. 
-This adjustment helps prevent an inflated $r^2$ when including more predictors, even if they don't improve the model significantly.
-
-:::
+#### Computing $r^2$
 
 ```{r}
-#| label: fig-r2vsr2adj
-#| out-width: 75%
-#| fig-cap: The influence of k (number of predictors) on $r^2$ and $r^2_{adjusted}$.
-#| fig-pos: "H"
+#| include: false
 
-k <- seq(1,5)
+y_bar <- mean(screw_data$length)
+SST <- sum((screw_data$length - y_bar)^2)
+SSR <- sum((predict(lm_model) - y_bar)^2)
+SSE <- sum((screw_data$length - predict(lm_model))^2)
 
-rsq <- seq(0.5,0.99,0.01)
+```
 
-n <-  seq(10,60,10)
-  
-tmp <- expand_grid(
-  rsq, k,n
-) %>% 
+
+##### SST
+
+```{r}
+#| label: fig-lm-SST
+#| out-width: 95%
+#| fig-cap: Visualization of $SST = \sum_{i = 1}^n(y_i -\bar{y})$
+
+# Fit the model
+model <- lm(length ~ rpm, data = screw_data)
+
+# Calculate mean, predictions, and errors
+screw_data <- screw_data %>%
   mutate(
-    r2adj = 1-(1-rsq)*(k/(n-k+1))
-  ) 
-  
+    y_mean = mean(length),          # Mean of length (for SST)
+    y_hat = predict(model),        # Predicted length (for SSR)
+    residual = length - y_hat      # Residuals (for SSE)
+  )
 
-tmp %>% 
-  ggplot(
-    aes(x = rsq,
-        y = r2adj,
-        linetype = as.factor(k))
+# Create the plot
+ggplot() +
+  geom_point(
+    data = screw_data, 
+    aes(
+      x = rpm, 
+      y = length
+      ),
+    size = 3, 
+    color = "black"
   ) +
+  # geom_line(
+  #   data = screw_data, 
+  #   aes(
+  #     x = rpm, 
+  #     y = y_hat
+  #     ),
+  #   color = "black", 
+  #   linewidth = 1,
+  #   linetype = "longdash"
+  # ) +
   geom_hline(
-    yintercept = 1,
-    color = "gray"
-    )+
-  geom_line()+
-  facet_wrap(
-    ~n,
-    labeller = label_both
-  )+
+    yintercept = screw_data$y_mean[1], 
+    color = "blue", 
+    linetype = "dashed"
+  ) +
+  geom_segment(
+    data = screw_data,
+    aes(
+      x = rpm, y = length,
+      xend = rpm, yend = y_mean
+    ),
+    color = "blue", linewidth = 0.5, alpha = 0.7
+  ) +
   labs(
-    x = bquote(r^2),
-    y = bquote(r[adj]^2),
-    linetype = "k (number of predictors)",
-    title = bquote(r^2 ~ "and" ~ r[adj]^2 ~ "vs."~ k)
-  )+
-  theme_few()+
-  theme(
-    legend.position = "bottom"
+    title = "SST",
+    x = "Machine Speed (RPM)",
+    y = "Screw Length (mm)"
   )
 
 ```
 
-
-\begin{align}
-r^2_{adjusted} = 1 - (1-r^2)\frac{n-1}{n-k-1} \label{r2adj}
-\end{align}
-
-:::
-
-:::{.fragment .fade-in-then-out}
+##### SSR
 
 ```{r}
+#| label: fig-lm-SSR
+#| out-width: 95%
+#| fig-cap: Visualization of $SSR = \sum_{i = 1}^n(\hat{y_i} -\bar{y})$
 
-summary(lm_model)
+# Create the plot
+ggplot() +
+  geom_line(
+    data = screw_data, 
+    aes(
+      x = rpm, 
+      y = y_hat
+      ),
+    color = "black", 
+    linewidth = 1,
+    linetype = "longdash"
+  ) +
+  geom_hline(
+    yintercept = screw_data$y_mean[1], color = "blue", linetype = "dashed"
+  ) +
+  geom_segment(
+    data = screw_data,
+    aes(
+      x = rpm, 
+      y = y_mean,
+      xend = rpm, 
+      yend = y_hat
+    ),
+    color = "red", linewidth = 1, alpha = 0.7
+  ) +
+  labs(
+    title = "SSR",
+    x = "Machine Speed (RPM)",
+    y = "Screw Length (mm)"
+  )
+
+
 
 ```
-:::
 
-:::{.fragment .fade-in-then-out}
+##### SSE
 
-::: {.content-visible when-profile="script"}
-In linear regression modeling, the absence of a visible pattern in the residuals is desirable because it indicates that the model adequately captures the underlying relationship between the independent and dependent variables. 
-Residuals are the differences between the observed and predicted values, and their randomness or lack of discernible pattern suggests that the model is effectively explaining the variance in the data. 
-A visible pattern in residuals could indicate that the model fails to account for certain patterns or trends, suggesting potential shortcomings or misspecifications in the regression model. 
-Detecting and addressing such patterns in residuals is crucial for ensuring the validity and reliability of the linear regression analysis.
-:::
+```{r}
+#| label: fig-lm-SSE
+#| out-width: 95%
+#| fig-cap: Visualization of $SSE = \sum_{i = 1}^n(y_i -\hat{y})$
+
+
+ggplot() +
+  geom_point(
+    data = screw_data, 
+    aes(
+      x = rpm, 
+      y = length
+      ),
+    size = 3, 
+    color = "black"
+  ) +
+  geom_line(
+    data = screw_data, 
+    aes(
+      x = rpm, 
+      y = y_hat
+      ),
+    color = "black", 
+    linewidth = 1,
+    linetype = "longdash"
+  ) +
+  geom_segment(
+    data = screw_data,
+    aes(
+      x = rpm, y = y_hat,
+      xend = rpm, yend = length
+    ),
+    color = "red", linewidth = 1, alpha = 0.7
+  ) +
+  labs(
+    title = "SSE",
+    x = "Machine Speed (RPM)",
+    y = "Screw Length (mm)"
+  )
+  
+```
+
+
+##### Putting it all together: $r^2$ as a proportion
+
+\begin{align}
+r^2 &= \frac{SSR}{SST} \label{r2expvar} \\
+&= 1- \frac{SSE}{SST} \label{r2notexpvar}
+\end{align}
+
+- \eqref{r2expvar}: If explained variability ($SSR$) is total variability ($SST$): $r^2 = 1$
+- \eqref{r2notexpvar}: If variability from model ($SSE$) is $0$: $r^2 = 1$
+
+
+
+
+
+### Model Checks - Residuals
 
 ```{r}
 #| label: fig-lm-resid-pattern
@@ -264,15 +418,20 @@ lm_augmented %>%
   theme_few()
 
 ```
+
+::: {.content-visible when-profile="script"}
+In linear regression modeling, the absence of a visible pattern in the residuals is desirable because it indicates that the model adequately captures the underlying relationship between the independent and dependent variables. 
+Residuals are the differences between the observed and predicted values, and their randomness or lack of discernible pattern suggests that the model is effectively explaining the variance in the data. 
+A visible pattern in residuals could indicate that the model fails to account for certain patterns or trends, suggesting potential shortcomings or misspecifications in the regression model. 
+Detecting and addressing such patterns in residuals is crucial for ensuring the validity and reliability of the linear regression analysis.
 :::
 
-:::{.fragment .fade-in-then-out}
+### Residual Distribution
 
 ```{r}
 #| label: fig-lm-resid-qq
-#| out-width: 75%
-#| fig-cap: The resiuals should be normally distributed.
-#| fig-pos: "H"
+#| out-width: 95%
+#| fig-cap: The residuals should be normally distributed.
 
 lm_augmented <- lm_model %>% augment()
 
@@ -280,8 +439,7 @@ lm_augmented %>%
   ggplot(aes(sample = .resid))+
   stat_qq_band()+
   stat_qq_line()+
-  stat_qq_point()+
-  theme_few()
+  stat_qq_point()
 
 ```
 
@@ -292,14 +450,8 @@ While departures from normality may not always invalidate results, adherence to 
 If consistently violated, alternative modeling approaches or transformations may be considered.
 :::
 
-:::
-
-:::
 
 ### Hypostesis testing in linear regression
-
-:::{.fragment .fade-in-then-out}
-
 
 [Null Hypothesis (H0)](#H0): $\beta_1 = 0$
 
@@ -347,116 +499,213 @@ In linear regression, the F-test assesses the overall significance of the regres
 :::
 
 
+
+
+### Gradient Descent [@Ruder2016]
+
+```{r}
+#| label: fig-grad-desc
+#| out-width: 70%
+#| fig-cap: An example for the gradient descent algorithm
+
+knitr::include_graphics(here::here("chapter003","gradient_descent.png"))
+
+```
+
+::: {.content-visible when-profile="script"}
+In linear regression, gradient descent is an iterative optimization process used to minimize the difference between predicted and actual values. 
+It starts with initial coefficients and calculates the gradient of the cost function, representing the error. 
+The coefficients are then updated in the opposite direction of the gradient, with the magnitude of the update controlled by a learning rate. 
+This process is repeated until convergence, gradually refining the coefficients to improve the accuracy of the linear regression model.
 :::
 
 ## Multiple linear regression
 
-::: {.r-stack}
+- Multicollinearity
+- Model selection
 
-::: {.fragment .fade-out}
+### Example
+
+A CNC lathe produces screws with a target length of 50 mm. The process engineers suspect that:
+
+- Higher RPM increases length due to material expansion from heat.
+- Higher feed rate decreases length due to faster material removal.
+
+But:
+
+- Higher feed rates require higher RPM to maintain surface finish.
+- This introduces multicollinearity, complicating the analysis.
+
+### The data
 
 ```{r}
-#| label: tbl-mlm-eda
-#| tbl-cap: The data in a tabular overview including test for normal distribution.
+#| include: false
 
-load(file = here("data","drive_shaft_rpm_dia_feed.Rdata"))
-
-drive_shaft_rpm_dia_feed %>% 
-  tbl_summary(
-    by = "site"
-  ) %>% 
-  add_p() %>% 
-  add_overall()
+set.seed(123)
+screw_data <- tibble(
+  rpm = c(rnorm(15, mean = 1000, sd = 100), rnorm(15, mean = 2000, sd = 100)),
+  feed_rate = 0.001 * rpm + rnorm(30, sd = 0.25),  # Reduced noise (sd = 0.1)
+  length = 45 + 0.02 * rpm - 10 * feed_rate + rnorm(30, sd = 0.5)
+)
 
 ```
 
-::: {.content-visible when-profile="script"}
-A short [exploratory data analysis](#eda) of the data for the multiple linear regression is given in @tbl-mlm-eda.
-:::
 
-:::
-
-::: {.fragment .fade-in-then-out}
+#### rpm
 
 ```{r}
-#| label: fig-mlm-qq-eda
-#| out-width: 75%
-#| fig-cap: The graphical test for normal distribution (QQ-plot)
-#| fig-pos: "H"
+#| label: fig-mlm-eda-rpm
+#| out-width: 95%
+#| fig-cap: EDA on rpm
 
-drive_shaft_rpm_dia_feed %>% 
-  select(-site) %>% 
-  pivot_longer(cols = everything()) %>% 
-  ggplot(aes(sample = value))+
-  # geom_histogram()+
-  stat_qq_band()+
-  stat_qq_line()+
-  stat_qq_point()+
-  facet_wrap(
-    ~name,
-    scales = "free"
-  )+
-  labs(
-    title = "QQ-plot for the continous variables"
-  )+
-  theme_few()
 
-```
-
-::: {.content-visible when-profile="script"}
-
-@fig-mlm-qq-eda shows the graphical test for normal distribution for the multiple linear regression.
-
-:::
-
-:::
-
-::: {.fragment .fade-in-then-out}
-
-```{r}
-#| label: fig-mlm-hist
-#| out-width: 75%
-#| fig-cap: The distribution of the output and input parameters.
-#| fig-pos: "H"
-
-drive_shaft_rpm_dia_feed %>% 
-  select(-site) %>% 
-  pivot_longer(cols = everything()) %>% 
+screw_data |> 
   ggplot(
-    aes(x = value)
+    aes(
+      x = rpm
+    )
   )+
-  geom_histogram()+
-  facet_wrap(~name,scales = "free_x")+
+  geom_histogram(
+    color = "white"
+  )+
+  scale_x_continuous(
+    expand = c(0,0,0,0)
+  )+
   scale_y_continuous(
     expand = c(0,0,0.05,0)
   )+
-  theme_few()
-  
+  labs(
+    title = "Histogram of rpm"
+  )
+
+```
+
+#### feed rate
+
+```{r}
+#| label: fig-mlm-eda-feed-rate
+#| out-width: 95%
+#| fig-cap: EDA on feed rate
+
+
+screw_data |> 
+  ggplot(
+    aes(
+      x = feed_rate
+    )
+  )+
+  geom_histogram(
+    color = "white"
+  )+
+  scale_x_continuous(
+    expand = c(0,0,0,0)
+  )+
+  scale_y_continuous(
+    expand = c(0,0,0.05,0)
+  )+
+  labs(
+    title = "Histogram of feed rate"
+  )
+
+```
+#### length
+
+```{r}
+#| label: fig-mlm-eda-length
+#| out-width: 95%
+#| fig-cap: EDA on length
+
+
+screw_data |> 
+  ggplot(
+    aes(
+      x = length
+    )
+  )+
+  geom_histogram(
+    color = "white"
+  )+
+  scale_x_continuous(
+    expand = c(0,0,0,0)
+  )+
+  scale_y_continuous(
+    expand = c(0,0,0.05,0)
+  )+
+  labs(
+    title = "Histogram of length"
+  )
+
+```
+
+#### all in one
+
+```{r}
+#| label: fig-mlm-eda
+#| out-width: 95%
+#| fig-cap: Density plots of the machining process
+
+screw_data_lng <- screw_data |> 
+  pivot_longer(
+    cols = everything(),
+    names_to = "variable",
+    values_to = "value"
+  )
+
+screw_data_lng |> 
+  ggplot(
+    aes(
+      x = value
+    )
+  )+
+  geom_density()+
+  facet_wrap(
+    ~variable,
+    scales = "free"
+    )
+
 ```
 
 ::: {.content-visible when-profile="script"}
-
-In @fig-mlm-hist the distribution of the input data is shown in a histogram.
-
+A short {{< acr EDA >}} of the data for the multiple linear regression is given in @tbl-mlm-eda.
 :::
 
-:::
+#### Correlation plot
 
-:::{.fragment .fade-in-then-out}
+```{r}
+#| label: fig-mlm-corrplot
+#| out-width: 95%
+#| fig-cap: The correlation plot of the variables.
+
+
+corrplot(
+  corr = cor(screw_data),
+  # order = "AOE",
+  method = "number"
+  # lower = "number",
+  # upper = "pie"
+  )
+
+```
+
+
+#### Fitting the model
 
 \begin{align}
-Y \sim rpm + feed+ site \label{mlmmodel}
+\text{length} = \beta_0 + \beta_1 \text{rpm} + \beta_1 \text{feedrate} + \epsilon  \label{mlmmodel}
 \end{align}
 
 ```{r}
 #| label: tbl-mlm-mdl
 #| tbl-cap: The output of the multiple linear regression modelling
 
-mlm <- lm(diameter ~ rpm+feed+site ,data = drive_shaft_rpm_dia_feed)
+mlm <- lm(length ~ rpm+feed_rate ,data = screw_data)
 
 mlm %>% 
   tbl_regression(
     add_estimate_to_reference_rows = T
+  ) |> 
+  add_glance_table(
+    include = c(r.squared,adj.r.squared)
   )
 
 ```
@@ -470,30 +719,111 @@ Whilst the continuous variables appear to be significant ($p<\alpha = 0.05$), th
  
 :::
 
+#### $r^2_{adjusted}$
+
+```{r}
+#| label: fig-r2vsr2adj
+#| out-width: 95%
+#| fig-cap: The influence of $k$ (number of predictors) on $r^2$ and $r^2_{adjusted}$.
+
+k <- seq(1,4)
+
+rsq <- seq(0.5,1,0.01)
+
+n <-  c(10)
+  
+tmp <- expand_grid(
+  rsq, k,n
+) %>% 
+  mutate(
+    r2adj = 1-(1-rsq)*((n-1)/(n-k-1))
+  ) 
+  
+tmp_label <- tmp |> 
+  filter(rsq==0.5)
+
+tmp %>% 
+  # filter(k%in%c(1,2)) |> 
+  # filter(n==10) |> 
+  ggplot(
+    aes(x = rsq,
+        y = r2adj,
+        color = as.factor(k)
+        )
+  ) +
+  geom_hline(
+    yintercept = 1,
+    color = "gray"
+    )+
+  geom_line(
+    show.legend = FALSE
+  )+
+  # facet_wrap(
+  #   ~n,
+  #   labeller = label_both
+  # )+
+ scale_color_brewer(palette = "Dark2")+
+  labs(
+    x = bquote(r^2),
+    y = bquote(r[adj]^2),
+    # color = "k (number of predictors)",
+    color = "",
+    title = bquote(r^2 ~ "and" ~ r[adj]^2 ~ "vs."~ k)
+  )+
+  annotate(
+    geom = "label",
+    x = tmp_label$rsq,
+    y = tmp_label$r2adj,
+    label = paste("k=",tmp_label$k)
+  )
+# +
+#   theme(
+#     legend.position = "bottom"
+#   )
+
+```
+
+:::{style="font-size: 85%;"}
+
+\begin{align}
+r^2_{adjusted} = 1 - (1-r^2)\frac{n-1}{n-k-1} \label{r2adj}
+\end{align}
+
 :::
 
-:::{.fragment .fade-in-then-out}
+::: {.content-visible when-profile="script"}
+
+The [adjusted coefficient of determination](#r2adj), is a modification of the regular $r^2$ in regression analysis. 
+While $r^2$ assesses the proportion of variance explained by the independent variables, the $r^2_{adjusted}$ takes into account the [number of predictors ($k$)](#numpred) in the model, addressing potential issues with overfitting according to \eqref{r2adj}.
+
+The $r^2_{adjusted}$ incorporates a penalty for adding unnecessary predictors that do not significantly contribute to explaining the variance in the dependent variable. 
+This adjustment helps prevent an inflated $r^2$ when including more predictors, even if they don't improve the model significantly.
+
+:::
+
+
+#### Visualizing the model
 
 ```{r}
 #| label: fig-mlm-mdl
-#| out-width: 75%
+#| out-width: 95%
 #| fig-cap: The model of the mulitple linear regression
-#| fig-pos: "H"
 
-drive_shaft_rpm_dia_feed %>% 
-  pivot_longer(cols = c("rpm","feed")) %>% 
+
+screw_data |> 
+  pivot_longer(cols = c("rpm","feed_rate")) %>% 
   ggplot(
     aes(
-      x = value, y = diameter
-    )
+      x = value, 
+      y = length
+      )
     )+
   geom_point()+
   geom_smooth(method = "lm")+
   facet_wrap(
     ~name,
     scales = "free_x"
-  )+
-  theme_few()
+  )
 
 ```
 
@@ -504,15 +834,246 @@ With increasing `rpm` or `feed` also the drive shaft diameter increases.
 
 :::
 
+#### How stable is the model?
+
+```{r}
+#| label: fig-mlm-added-noise
+#| out-width: 95%
+#| fig-cap: What happens if we add some noise? How robust is the model?
+#| 
+# Add tiny noise to feed_rate
+screw_data_noisy <- screw_data %>%
+  mutate(feed_rate = feed_rate + rnorm(30, sd = 0.05))
+
+# Refitted model
+model_noisy <- lm(length ~ rpm + feed_rate, data = screw_data_noisy)
+# summary(model_noisy) |> tbl_regression()
+# summary(mlm) |> tbl_regression()
+
+screw_data_total <- bind_rows(
+  screw_data |> add_column("source" = "original"),
+  screw_data_noisy |> add_column("source" = "noisy")
+)
+
+screw_data_total_lng <- screw_data_total |> 
+  pivot_longer(cols = c("rpm","feed_rate"),names_to = "variable",values_to = "value") 
+
+screw_data_total_lng |> 
+  # filter(source=="noisy") |> 
+  ggplot(
+    aes(
+      x = value,
+      y = length,
+      shape = source,
+      linetype = source
+    )
+  )+
+  geom_point()+
+  geom_smooth(
+    color = "black",
+    method = "lm"
+    )+
+  facet_grid(
+    source~variable,
+    scales = "free_x"
+    )+
+  labs(
+    title = "Data with a little added noise",
+    subtitle = paste0((100-coef(model_noisy)[3]/coef(mlm)[3]*100) |> round(digits = 0),"% change in slope")
+  )+
+  theme(
+    legend.position = "bottom"
+  )
+
+
+```
+
+#### Variance Inflation Factor
+
+How much does the variance of the coefficient for `feed_rate` increase because `feed_rate` is correlated with other predictors (`rpm`)?
+
+- $\text{VIF} = 1$: No correlation with other predictors (ideal)
+- $\text{VIF} > 1$: Variance is inflated by a factor of {{< acr VIF >}}
+
+##### How much variance is explained?
+
+```{r}
+#| label: tbl-mlm-vif
+#| tbl-cap: How much variance is explained among the regressors?
+
+vif_model <- lm(rpm~feed_rate, data = screw_data)
+
+vif_model |> 
+  tbl_regression() |> 
+  add_glance_table(
+    include = "r.squared"
+  )
+
+```
+
+:::{.fragment}
+
+That's high!
+
 :::
 
-:::{.fragment .fade-in-then-out}
+##### Computing VIF
+
+\begin{align}
+\text{VIF}_{\text{rpm}} &= \frac{1}{1 - r^2_{\text{rpm ~ feedrate}}} \\
+\text{VIF}_{\text{rpm}} &= \frac{1}{1 - `r vif_model |> glance() |> pull(r.squared)`} \\
+\text{VIF}_{\text{rpm}} &= `r car::vif(mlm)[[1]]`
+\end{align}
+
+##### VIF and $r^2$
+
+```{r}
+#| label: fig-mlm-vifr2
+#| out-width: 95%
+#| fig-cap: How the VIF changes with increasing multicollinearity
+
+
+vif_dat <- data.frame(
+  r2 = seq(0.01,0.9,0.01)
+) |> 
+  mutate(
+    vif = 1/(1-r2)
+  )
+
+vif_filter <- vif_dat |> 
+  filter(vif>4.9&vif<5.1)
+
+vif_dat |> 
+  ggplot(
+    aes(
+      x = r2,
+      y = vif
+    )
+  )+
+  geom_line()+
+  geom_hline(
+    yintercept = vif_filter$vif,
+    linetype = "dashed"
+  )+
+  geom_vline(
+    xintercept = vif_filter$r2,
+    linetype = "dashed"
+  )+
+  scale_x_continuous(
+    breaks = pretty
+  )+
+  scale_y_continuous(
+    breaks = pretty
+  )+
+  labs(
+    title = "Critical VIF and r² of parameters",
+    x = "r²"
+  )
+
+```
+
+
+##### Rule of Thumb for VIF
+
+```{r}
+#| label: tbl-mlm-vif-rules
+#| tbl-cap: Rule of thumbs on VIF
+
+vif_guide <- tibble(
+  `VIF Range` = c("VIF = 1", "1 < VIF < 5", "5 ≤ VIF < 10", "VIF ≥ 10"),
+  Interpretation = c("No correlation",
+                     "Moderate correlation",
+                     "High correlation",
+                     "Extreme multicollinearity"),
+  Action = c("Ideal scenario.",
+             "Acceptable, but monitor coefficients.",
+             "Consider removing predictors.",
+             "Avoid! Coefficients are unreliable.")
+)
+
+# Create the gt table
+vif_table <- vif_guide %>%
+  gt() %>%
+  tab_header(
+    title = md("**Variance Inflation Factor (VIF) Interpretation Guide**"),
+    subtitle = md("Guidelines for assessing multicollinearity in regression models")
+  ) %>%
+  fmt_markdown(columns = everything()) %>%
+  tab_style(
+    style = cell_text(weight = "bold"),
+    locations = cells_column_labels()
+  ) %>%
+  tab_options(
+  #   heading.title.font.size = 18,
+  #   heading.subtitle.font.size = 12,
+    column_labels.background.color = "#f0f0f0",
+  #   table.font.size = px(14)
+  ) %>%
+  cols_align(align = "left") %>%
+  tab_style(
+    style = cell_text(weight = "bold"),
+    locations = cells_body(columns = `VIF Range`)
+  )
+
+# Print the table (or include in Quarto document)
+vif_table
+
+
+```
+
+##### How to fix the model
+
+1) Remove one predictor:
+  - If `rpm` and `feed_rate` are almost identical, keep only one.
+
+
+2) Combine predictors:
+  - Create a new variable, e.g., `speed_feed_ratio = rpm / feed_rate`.
+  
+3) Design experiments better:
+  - Use orthogonal arrays to minimize predictor correlation.
+
+##### New variable
+
+```{r}
+#| label: fig-mlm-added_var
+#| out-width: 95%
+#| fig-cap: Adding a new variable
+
+screw_data_new_var <- screw_data |> 
+  mutate(
+    speed_feed_ratio = rpm/feed_rate,
+    rpm_c = rpm - mean(rpm),
+    feed_rate_c = feed_rate - mean(feed_rate)
+  )
+
+
+screw_data_new_var |> 
+  ggplot(
+    aes(
+      x = speed_feed_ratio,
+      y = length
+    )
+  )+
+  geom_point()+
+  stat_regline_equation(
+    aes(label =  paste(..adj.rr.label..)),
+  )+
+  geom_smooth(
+    method = "lm"
+  )
+
+
+```
+
+
+#### Residuals
 
 ```{r}
 #| label: fig-mlm-resid-pattern
-#| out-width: 75%
+#| out-width: 95%
 #| fig-cap: The check for pattern in the residuals
-#| fig-pos: "H"
+
 
 mlm %>% 
   augment() %>% 
@@ -529,15 +1090,14 @@ mlm %>%
 
 
 ```
-:::
 
-:::{.fragment .fade-in-then-out}
+#### Residual Distribution
 
 ```{r}
 #| label: fig-mlm-resid-nd
-#| out-width: 75%
+#| out-width: 95%
 #| fig-cap: The check for normal distribution in the residuals.
-#| fig-pos: "H"
+
 
 mlm %>% 
   augment() %>% 
@@ -560,11 +1120,7 @@ mlm %>%
 In @fig-mlm-resid-nd the normal distribution of the residuals is confirmed, the model appears to be valid.
 :::
 
-:::
 
-:::
-
-{{< pagebreak >}}
 
 ## Logistic Regression
 

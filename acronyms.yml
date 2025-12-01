@@ -10,6 +10,7 @@ CLT: Central Limit Theorem
 Z: Standard Score / Z-Score
 LLN: Law of Large Numbers
 CDF: Cumulative Density Function
+ECDF: Empirical Cumulative Density Function
 cl: confidence level
 SE: Standard Error
 ANOVA: Analysis of Variance
@@ -17,4 +18,11 @@ H0: Null-Hypothesis
 Ha: alternative Hypothesis
 QC: Quality Control
 ME: Margin of Error
+SST: Total Sum of Squares
+SSR: Regression Sum of Squares
+SSE: Error Sum of Squares
+CoD: Coefficient of Determination
+EDA: Explorative Data Analysis
+VIF: Variance Inflation Factor
+DoE: Design of Experiments
 ---

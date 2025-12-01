@@ -256,11 +256,20 @@ window.Quarto = {
   <li><a href="#linear-regression" id="toc-linear-regression" class="nav-link active" data-scroll-target="#linear-regression"><span class="header-section-number">5.1</span> Linear Regression</a>
   <ul class="collapse">
   <li><a href="#residuals" id="toc-residuals" class="nav-link" data-scroll-target="#residuals"><span class="header-section-number">5.1.1</span> Residuals</a></li>
-  <li><a href="#gradient-descent-ruder2016" id="toc-gradient-descent-ruder2016" class="nav-link" data-scroll-target="#gradient-descent-ruder2016"><span class="header-section-number">5.1.2</span> Gradient Descent <span class="citation" data-cites="Ruder2016">(Ruder 2016)</span></a></li>
-  <li><a href="#model-evaluation-and-interpretation" id="toc-model-evaluation-and-interpretation" class="nav-link" data-scroll-target="#model-evaluation-and-interpretation"><span class="header-section-number">5.1.3</span> Model Evaluation and Interpretation</a></li>
-  <li><a href="#hypostesis-testing-in-linear-regression" id="toc-hypostesis-testing-in-linear-regression" class="nav-link" data-scroll-target="#hypostesis-testing-in-linear-regression"><span class="header-section-number">5.1.4</span> Hypostesis testing in linear regression</a></li>
+  <li><a href="#model-evaluation-and-interpretation" id="toc-model-evaluation-and-interpretation" class="nav-link" data-scroll-target="#model-evaluation-and-interpretation"><span class="header-section-number">5.1.2</span> Model Evaluation and Interpretation</a></li>
+  <li><a href="#the-model" id="toc-the-model" class="nav-link" data-scroll-target="#the-model"><span class="header-section-number">5.1.3</span> The model</a></li>
+  <li><a href="#the-model-parameters" id="toc-the-model-parameters" class="nav-link" data-scroll-target="#the-model-parameters"><span class="header-section-number">5.1.4</span> The model parameters</a></li>
+  <li><a href="#defining-r2" id="toc-defining-r2" class="nav-link" data-scroll-target="#defining-r2"><span class="header-section-number">5.1.5</span> Defining <span class="math inline">\(r^2\)</span></a></li>
+  <li><a href="#model-checks---residuals" id="toc-model-checks---residuals" class="nav-link" data-scroll-target="#model-checks---residuals"><span class="header-section-number">5.1.6</span> Model Checks - Residuals</a></li>
+  <li><a href="#residual-distribution" id="toc-residual-distribution" class="nav-link" data-scroll-target="#residual-distribution"><span class="header-section-number">5.1.7</span> Residual Distribution</a></li>
+  <li><a href="#hypostesis-testing-in-linear-regression" id="toc-hypostesis-testing-in-linear-regression" class="nav-link" data-scroll-target="#hypostesis-testing-in-linear-regression"><span class="header-section-number">5.1.8</span> Hypostesis testing in linear regression</a></li>
+  <li><a href="#gradient-descent-ruder2016" id="toc-gradient-descent-ruder2016" class="nav-link" data-scroll-target="#gradient-descent-ruder2016"><span class="header-section-number">5.1.9</span> Gradient Descent <span class="citation" data-cites="Ruder2016">(Ruder 2016)</span></a></li>
   </ul></li>
-  <li><a href="#multiple-linear-regression" id="toc-multiple-linear-regression" class="nav-link" data-scroll-target="#multiple-linear-regression"><span class="header-section-number">5.2</span> Multiple linear regression</a></li>
+  <li><a href="#multiple-linear-regression" id="toc-multiple-linear-regression" class="nav-link" data-scroll-target="#multiple-linear-regression"><span class="header-section-number">5.2</span> Multiple linear regression</a>
+  <ul class="collapse">
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example"><span class="header-section-number">5.2.1</span> Example</a></li>
+  <li><a href="#the-data" id="toc-the-data" class="nav-link" data-scroll-target="#the-data"><span class="header-section-number">5.2.2</span> The data</a></li>
+  </ul></li>
   <li><a href="#logistic-regression" id="toc-logistic-regression" class="nav-link" data-scroll-target="#logistic-regression"><span class="header-section-number">5.3</span> Logistic Regression</a>
   <ul class="collapse">
   <li><a href="#beta_0-1-and-beta_1-1" id="toc-beta_0-1-and-beta_1-1" class="nav-link" data-scroll-target="#beta_0-1-and-beta_1-1"><span class="header-section-number">5.3.1</span> <span class="math inline">\(\beta_0 = 1\)</span> and <span class="math inline">\(\beta_1 = 1\)</span></a></li>
@@ -355,165 +364,93 @@ Figure&nbsp;5.2: The calculation of residuals.
 <div class="fragment fade-in-then-out">
 <p>The computation of the residuals is based on <span class="math inline">\(\eqref{rss}\)</span> to the <a href="#rss">residual sum of squares</a>.</p>
 <p><span class="math display">\[\begin{align}
-RSS = \frac{1}{n} \sum_{i=1}^{n} (y_i - (\beta_1 x_i+\beta_0))^2 \label{rss}
+SSE = \frac{1}{n} \sum_{i=1}^{n} (y_i - (\beta_1 x_i+\beta_0))^2 \label{rss}
 \end{align}\]</span></p>
 </div>
 </div>
+<section id="error-determination" class="level4" data-number="5.1.1.1">
+<h4 data-number="5.1.1.1" class="anchored" data-anchor-id="error-determination"><span class="header-section-number">5.1.1.1</span> Error Determination</h4>
+<p><a href="#acronyms_SST">Total Sum of Squares (SST)</a>: <span class="math inline">\(SST = \sum_{i = 1}^n(y_i -\bar{y})\)</span></p>
+<ul>
+<li>How much do the observed <span class="math inline">\(y_i\)</span> values deviate from the mean <span class="math inline">\(\bar{y}\)</span></li>
+</ul>
+<p><a href="#acronyms_SSR">Regression Sum of Squares (SSR)</a>: <span class="math inline">\(SSR = \sum_{i = 1}^n(\hat{y_i} -\bar{y})\)</span></p>
+<ul>
+<li>How much do the predicted <span class="math inline">\(\hat{y_i}\)</span> values deviate from the mean <span class="math inline">\(\bar{y}\)</span></li>
+</ul>
+<p><a href="#acronyms_SSE">Error Sum of Squares (SSE)</a>: <span class="math inline">\(SSE = \sum_{i = 1}^n(y_i -\hat{y})\)</span></p>
+<ul>
+<li>How much do the observed <span class="math inline">\(y_i\)</span> values deviate from the predicted <span class="math inline">\(\hat{y}\)</span></li>
+</ul>
 </section>
-<section id="gradient-descent-ruder2016" class="level3" data-number="5.1.2">
-<h3 data-number="5.1.2" class="anchored" data-anchor-id="gradient-descent-ruder2016"><span class="header-section-number">5.1.2</span> Gradient Descent <span class="citation" data-cites="Ruder2016">(<a href="chapter000_BasicConcepts.html#ref-Ruder2016" role="doc-biblioref">Ruder 2016</a>)</span></h3>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-grad-desc" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-grad-desc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter003/031_gradient_descent.png" class="img-fluid figure-img" style="width:70.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-grad-desc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.3: An example for the gradient descent algorithm
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>In linear regression, gradient descent is an iterative optimization process used to minimize the difference between predicted and actual values. It starts with initial coefficients and calculates the gradient of the cost function, representing the error. The coefficients are then updated in the opposite direction of the gradient, with the magnitude of the update controlled by a learning rate. This process is repeated until convergence, gradually refining the coefficients to improve the accuracy of the linear regression model.</p>
-</section>
-<section id="model-evaluation-and-interpretation" class="level3" data-number="5.1.3">
-<h3 data-number="5.1.3" class="anchored" data-anchor-id="model-evaluation-and-interpretation"><span class="header-section-number">5.1.3</span> Model Evaluation and Interpretation</h3>
-<div class="r-stack">
-<div class="fragment fade-out">
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-lm" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-lm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter003_Regression_files/figure-html/fig-lm-1.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.4: The linear regression between rounds per minute (rpm) of the lathing machine and the diameter of the drive shaft.
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div class="fragment fade-in-then-out">
-<p>The <a href="#r2">coefficient of determination</a> (<span class="math inline">\(r^2\)</span>), is a statistical measure that assesses the proportion of the variance in the dependent variable that is explained by the independent variable(s) in a regression model. It ranges from <span class="math inline">\(0\)</span> to <span class="math inline">\(1\)</span>, where <span class="math inline">\(0\)</span> indicates that the model does not explain any variability, and <span class="math inline">\(1\)</span> indicates that the model explains all the variability. In other words, <span class="math inline">\(r^2\)</span> provides insight into the goodness of fit of a regression model, indicating how well the model’s predictions match the observed data.</p>
+<section id="key-relationship" class="level4" data-number="5.1.1.2">
+<h4 data-number="5.1.1.2" class="anchored" data-anchor-id="key-relationship"><span class="header-section-number">5.1.1.2</span> Key Relationship</h4>
 <p><span class="math display">\[\begin{align}
-r^2 = 1- \frac{RSS}{SSE} \label{r2}
+SST = SSR + SSE
 \end{align}\]</span></p>
-</div>
-<div class="fragment fade-in-then-out">
-<p>The <a href="#r2adj">adjusted coefficient of determination</a>, is a modification of the regular <span class="math inline">\(r^2\)</span> in regression analysis. While <span class="math inline">\(r^2\)</span> assesses the proportion of variance explained by the independent variables, the <span class="math inline">\(r^2_{adjusted}\)</span> takes into account the <a href="#numpred">number of predictors (<span class="math inline">\(k\)</span>)</a> in the model, addressing potential issues with overfitting according to <span class="math inline">\(\eqref{r2adj}\)</span>.</p>
-<p>The <span class="math inline">\(r^2_{adjusted}\)</span> incorporates a penalty for adding unnecessary predictors that do not significantly contribute to explaining the variance in the dependent variable. This adjustment helps prevent an inflated <span class="math inline">\(r^2\)</span> when including more predictors, even if they don’t improve the model significantly.</p>
+</section>
+</section>
+<section id="model-evaluation-and-interpretation" class="level3" data-number="5.1.2">
+<h3 data-number="5.1.2" class="anchored" data-anchor-id="model-evaluation-and-interpretation"><span class="header-section-number">5.1.2</span> Model Evaluation and Interpretation</h3>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-r2vsr2adj" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
+<div id="fig-lm-data" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-r2vsr2adj-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter003_Regression_files/figure-html/fig-r2vsr2adj-1.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
+<div aria-describedby="fig-lm-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chapter003_Regression_files/figure-html/fig-lm-data-1.png" class="img-fluid figure-img" style="width:95.0%" data-fig-pos="H">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-r2vsr2adj-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.5: The influence of k (number of predictors) on <span class="math inline">\(r^2\)</span> and <span class="math inline">\(r^2_{adjusted}\)</span>.
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lm-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.3: How doe the screw length depend on the rpm of the machine
 </figcaption>
 </figure>
 </div>
-</div>
-</div>
-<p><span class="math display">\[\begin{align}
-r^2_{adjusted} = 1 - (1-r^2)\frac{n-1}{n-k-1} \label{r2adj}
-\end{align}\]</span></p>
-</div>
-<div class="fragment fade-in-then-out">
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = diameter ~ rpm, data = drive_shaft_rpm_dia)
-
-Residuals:
-     Min       1Q   Median       3Q      Max 
--0.89501 -0.19690 -0.01096  0.21917  1.00742 
-
-Coefficients:
-             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept) 2.5000000  0.1406190   17.78   &lt;2e-16 ***
-rpm         0.0095000  0.0001399   67.89   &lt;2e-16 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 0.3126 on 498 degrees of freedom
-Multiple R-squared:  0.9025,    Adjusted R-squared:  0.9023 
-F-statistic:  4610 on 1 and 498 DF,  p-value: &lt; 2.2e-16</code></pre>
-</div>
-</div>
-</div>
-<div class="fragment fade-in-then-out">
-<p>In linear regression modeling, the absence of a visible pattern in the residuals is desirable because it indicates that the model adequately captures the underlying relationship between the independent and dependent variables. Residuals are the differences between the observed and predicted values, and their randomness or lack of discernible pattern suggests that the model is effectively explaining the variance in the data. A visible pattern in residuals could indicate that the model fails to account for certain patterns or trends, suggesting potential shortcomings or misspecifications in the regression model. Detecting and addressing such patterns in residuals is crucial for ensuring the validity and reliability of the linear regression analysis.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-lm-resid-pattern" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-lm-resid-pattern-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter003_Regression_files/figure-html/fig-lm-resid-pattern-1.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lm-resid-pattern-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.6: There should not be a visible pattern in the residuals.
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div class="fragment fade-in-then-out">
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-lm-resid-qq" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-lm-resid-qq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter003_Regression_files/figure-html/fig-lm-resid-qq-1.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lm-resid-qq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.7: The resiuals should be normally distributed.
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>In linear regression, the assumption of normally distributed residuals is essential for accurate statistical inference, parameter estimation using ordinary least squares, and constructing reliable confidence intervals. Normal residuals indicate that the model appropriately captures data variability and helps identify issues like heteroscedasticity. While departures from normality may not always invalidate results, adherence to this assumption enhances the model’s robustness and reliability. If consistently violated, alternative modeling approaches or transformations may be considered.</p>
 </div>
 </div>
 </section>
-<section id="hypostesis-testing-in-linear-regression" class="level3" data-number="5.1.4">
-<h3 data-number="5.1.4" class="anchored" data-anchor-id="hypostesis-testing-in-linear-regression"><span class="header-section-number">5.1.4</span> Hypostesis testing in linear regression</h3>
-<div class="fragment fade-in-then-out">
-<p><a href="#H0">Null Hypothesis (H0)</a>: <span class="math inline">\(\beta_1 = 0\)</span></p>
-<p><a href="#Ha">Alternative Hypothesis (Ha)</a>: <span class="math inline">\(\beta_1 \neq 0\)</span></p>
+<section id="the-model" class="level3" data-number="5.1.3">
+<h3 data-number="5.1.3" class="anchored" data-anchor-id="the-model"><span class="header-section-number">5.1.3</span> The model</h3>
 <div class="cell">
-<div id="tbl-lm-t-test" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<div class="cell-output-display">
+<div id="fig-lm-mdl" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lm-mdl-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chapter003_Regression_files/figure-html/fig-lm-mdl-1.png" class="img-fluid figure-img" style="width:95.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lm-mdl-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.4: How doe the screw length depend on the rpm of the machine
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="the-model-parameters" class="level3" data-number="5.1.4">
+<h3 data-number="5.1.4" class="anchored" data-anchor-id="the-model-parameters"><span class="header-section-number">5.1.4</span> The model parameters</h3>
+<div class="cell">
+<div id="tbl-lm-param" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-lm-t-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;5.1: The significance of model parameters.
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-lm-param-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.1: The parameters of the linear model
 </figcaption>
-<div aria-describedby="tbl-lm-t-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="tbl-lm-param-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="nukdupzzrg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#nukdupzzrg table {
+<div id="cbmglpjjpe" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#cbmglpjjpe table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#nukdupzzrg thead, #nukdupzzrg tbody, #nukdupzzrg tfoot, #nukdupzzrg tr, #nukdupzzrg td, #nukdupzzrg th {
+#cbmglpjjpe thead, #cbmglpjjpe tbody, #cbmglpjjpe tfoot, #cbmglpjjpe tr, #cbmglpjjpe td, #cbmglpjjpe th {
   border-style: none;
 }
 
-#nukdupzzrg p {
+#cbmglpjjpe p {
   margin: 0;
   padding: 0;
 }
 
-#nukdupzzrg .gt_table {
+#cbmglpjjpe .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -539,12 +476,12 @@ Table&nbsp;5.1: The significance of model parameters.
   border-left-color: #D3D3D3;
 }
 
-#nukdupzzrg .gt_caption {
+#cbmglpjjpe .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#nukdupzzrg .gt_title {
+#cbmglpjjpe .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -556,7 +493,7 @@ Table&nbsp;5.1: The significance of model parameters.
   border-bottom-width: 0;
 }
 
-#nukdupzzrg .gt_subtitle {
+#cbmglpjjpe .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -568,7 +505,7 @@ Table&nbsp;5.1: The significance of model parameters.
   border-top-width: 0;
 }
 
-#nukdupzzrg .gt_heading {
+#cbmglpjjpe .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -580,13 +517,13 @@ Table&nbsp;5.1: The significance of model parameters.
   border-right-color: #D3D3D3;
 }
 
-#nukdupzzrg .gt_bottom_border {
+#cbmglpjjpe .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#nukdupzzrg .gt_col_headings {
+#cbmglpjjpe .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -601,7 +538,7 @@ Table&nbsp;5.1: The significance of model parameters.
   border-right-color: #D3D3D3;
 }
 
-#nukdupzzrg .gt_col_heading {
+#cbmglpjjpe .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -621,7 +558,7 @@ Table&nbsp;5.1: The significance of model parameters.
   overflow-x: hidden;
 }
 
-#nukdupzzrg .gt_column_spanner_outer {
+#cbmglpjjpe .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -633,15 +570,15 @@ Table&nbsp;5.1: The significance of model parameters.
   padding-right: 4px;
 }
 
-#nukdupzzrg .gt_column_spanner_outer:first-child {
+#cbmglpjjpe .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#nukdupzzrg .gt_column_spanner_outer:last-child {
+#cbmglpjjpe .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#nukdupzzrg .gt_column_spanner {
+#cbmglpjjpe .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -653,11 +590,11 @@ Table&nbsp;5.1: The significance of model parameters.
   width: 100%;
 }
 
-#nukdupzzrg .gt_spanner_row {
+#cbmglpjjpe .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#nukdupzzrg .gt_group_heading {
+#cbmglpjjpe .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -683,7 +620,7 @@ Table&nbsp;5.1: The significance of model parameters.
   text-align: left;
 }
 
-#nukdupzzrg .gt_empty_group_heading {
+#cbmglpjjpe .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -698,15 +635,15 @@ Table&nbsp;5.1: The significance of model parameters.
   vertical-align: middle;
 }
 
-#nukdupzzrg .gt_from_md > :first-child {
+#cbmglpjjpe .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#nukdupzzrg .gt_from_md > :last-child {
+#cbmglpjjpe .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#nukdupzzrg .gt_row {
+#cbmglpjjpe .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -725,7 +662,7 @@ Table&nbsp;5.1: The significance of model parameters.
   overflow-x: hidden;
 }
 
-#nukdupzzrg .gt_stub {
+#cbmglpjjpe .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -738,7 +675,7 @@ Table&nbsp;5.1: The significance of model parameters.
   padding-right: 5px;
 }
 
-#nukdupzzrg .gt_stub_row_group {
+#cbmglpjjpe .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -752,15 +689,15 @@ Table&nbsp;5.1: The significance of model parameters.
   vertical-align: top;
 }
 
-#nukdupzzrg .gt_row_group_first td {
+#cbmglpjjpe .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#nukdupzzrg .gt_row_group_first th {
+#cbmglpjjpe .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#nukdupzzrg .gt_summary_row {
+#cbmglpjjpe .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -770,16 +707,16 @@ Table&nbsp;5.1: The significance of model parameters.
   padding-right: 5px;
 }
 
-#nukdupzzrg .gt_first_summary_row {
+#cbmglpjjpe .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#nukdupzzrg .gt_first_summary_row.thick {
+#cbmglpjjpe .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#nukdupzzrg .gt_last_summary_row {
+#cbmglpjjpe .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -789,7 +726,7 @@ Table&nbsp;5.1: The significance of model parameters.
   border-bottom-color: #D3D3D3;
 }
 
-#nukdupzzrg .gt_grand_summary_row {
+#cbmglpjjpe .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -799,7 +736,7 @@ Table&nbsp;5.1: The significance of model parameters.
   padding-right: 5px;
 }
 
-#nukdupzzrg .gt_first_grand_summary_row {
+#cbmglpjjpe .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -809,7 +746,7 @@ Table&nbsp;5.1: The significance of model parameters.
   border-top-color: #D3D3D3;
 }
 
-#nukdupzzrg .gt_last_grand_summary_row_top {
+#cbmglpjjpe .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -819,11 +756,11 @@ Table&nbsp;5.1: The significance of model parameters.
   border-bottom-color: #D3D3D3;
 }
 
-#nukdupzzrg .gt_striped {
+#cbmglpjjpe .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#nukdupzzrg .gt_table_body {
+#cbmglpjjpe .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -832,7 +769,7 @@ Table&nbsp;5.1: The significance of model parameters.
   border-bottom-color: #D3D3D3;
 }
 
-#nukdupzzrg .gt_footnotes {
+#cbmglpjjpe .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -846,7 +783,7 @@ Table&nbsp;5.1: The significance of model parameters.
   border-right-color: #D3D3D3;
 }
 
-#nukdupzzrg .gt_footnote {
+#cbmglpjjpe .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -855,7 +792,7 @@ Table&nbsp;5.1: The significance of model parameters.
   padding-right: 5px;
 }
 
-#nukdupzzrg .gt_sourcenotes {
+#cbmglpjjpe .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -869,7 +806,7 @@ Table&nbsp;5.1: The significance of model parameters.
   border-right-color: #D3D3D3;
 }
 
-#nukdupzzrg .gt_sourcenote {
+#cbmglpjjpe .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -877,72 +814,700 @@ Table&nbsp;5.1: The significance of model parameters.
   padding-right: 5px;
 }
 
-#nukdupzzrg .gt_left {
+#cbmglpjjpe .gt_left {
   text-align: left;
 }
 
-#nukdupzzrg .gt_center {
+#cbmglpjjpe .gt_center {
   text-align: center;
 }
 
-#nukdupzzrg .gt_right {
+#cbmglpjjpe .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#nukdupzzrg .gt_font_normal {
+#cbmglpjjpe .gt_font_normal {
   font-weight: normal;
 }
 
-#nukdupzzrg .gt_font_bold {
+#cbmglpjjpe .gt_font_bold {
   font-weight: bold;
 }
 
-#nukdupzzrg .gt_font_italic {
+#cbmglpjjpe .gt_font_italic {
   font-style: italic;
 }
 
-#nukdupzzrg .gt_super {
+#cbmglpjjpe .gt_super {
   font-size: 65%;
 }
 
-#nukdupzzrg .gt_footnote_marks {
+#cbmglpjjpe .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#nukdupzzrg .gt_asterisk {
+#cbmglpjjpe .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#nukdupzzrg .gt_indent_1 {
+#cbmglpjjpe .gt_indent_1 {
   text-indent: 5px;
 }
 
-#nukdupzzrg .gt_indent_2 {
+#cbmglpjjpe .gt_indent_2 {
   text-indent: 10px;
 }
 
-#nukdupzzrg .gt_indent_3 {
+#cbmglpjjpe .gt_indent_3 {
   text-indent: 15px;
 }
 
-#nukdupzzrg .gt_indent_4 {
+#cbmglpjjpe .gt_indent_4 {
   text-indent: 20px;
 }
 
-#nukdupzzrg .gt_indent_5 {
+#cbmglpjjpe .gt_indent_5 {
   text-indent: 25px;
 }
 
-#nukdupzzrg .katex-display {
+#cbmglpjjpe .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#nukdupzzrg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#cbmglpjjpe div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="gt_col_headings header">
+<th id="label" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><strong>Characteristic</strong></th>
+<th id="estimate" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>Beta</strong></th>
+<th id="conf.low" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>95% CI</strong></th>
+<th id="p.value" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>p-value</strong></th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">(Intercept)</td>
+<td class="gt_row gt_center" headers="estimate">49</td>
+<td class="gt_row gt_center" headers="conf.low">48, 49</td>
+<td class="gt_row gt_center" headers="p.value">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">rpm</td>
+<td class="gt_row gt_center" headers="estimate">0.01</td>
+<td class="gt_row gt_center" headers="conf.low">0.01, 0.01</td>
+<td class="gt_row gt_center" headers="p.value">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label" style="border-top-width: 2px; border-top-style: solid; border-top-color: #D3D3D3">R²</td>
+<td class="gt_row gt_center" headers="estimate" style="border-top-width: 2px; border-top-style: solid; border-top-color: #D3D3D3">0.975</td>
+<td class="gt_row gt_center" headers="conf.low" style="border-top-width: 2px; border-top-style: solid; border-top-color: #D3D3D3"><br>
+</td>
+<td class="gt_row gt_center" headers="p.value" style="border-top-width: 2px; border-top-style: solid; border-top-color: #D3D3D3"><br>
+</td>
+</tr>
+</tbody><tfoot>
+<tr class="gt_sourcenotes odd">
+<td colspan="4" class="gt_sourcenote">Abbreviation: CI = Confidence Interval</td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+</section>
+<section id="defining-r2" class="level3" data-number="5.1.5">
+<h3 data-number="5.1.5" class="anchored" data-anchor-id="defining-r2"><span class="header-section-number">5.1.5</span> Defining <span class="math inline">\(r^2\)</span></h3>
+<p>The <span class="math inline">\(r^2\)</span> is the proportion of total variability explained by the model:</p>
+<p><span class="math display">\[\begin{align}
+r^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST} \label{r2}
+\end{align}\]</span></p>
+<p>Properties of <span class="math inline">\(r^2\)</span>:</p>
+<ul>
+<li>Ranges from <span class="math inline">\(0\)</span> to <span class="math inline">\(1\)</span> (or <span class="math inline">\(0\% \ldots 100\%\)</span>)</li>
+<li>Not a test for causality</li>
+<li>Addition of predictors increases <span class="math inline">\(r^2\)</span></li>
+</ul>
+<p>The <a href="#acronyms_CoD">Coefficient of Determination (CoD)</a> (<span class="math inline">\(r^2\)</span>), is a statistical measure that assesses the proportion of the variance in the dependent variable that is explained by the independent variable(s) in a regression model. It ranges from <span class="math inline">\(0\)</span> to <span class="math inline">\(1\)</span>, where <span class="math inline">\(0\)</span> indicates that the model does not explain any variability, and <span class="math inline">\(1\)</span> indicates that the model explains all the variability. In other words, <span class="math inline">\(r^2\)</span> provides insight into the goodness of fit of a regression model, indicating how well the model’s predictions match the observed data.</p>
+<section id="computing-r2" class="level4" data-number="5.1.5.1">
+<h4 data-number="5.1.5.1" class="anchored" data-anchor-id="computing-r2"><span class="header-section-number">5.1.5.1</span> Computing <span class="math inline">\(r^2\)</span></h4>
+<section id="sst" class="level5" data-number="5.1.5.1.1">
+<h5 data-number="5.1.5.1.1" class="anchored" data-anchor-id="sst"><span class="header-section-number">5.1.5.1.1</span> SST</h5>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-lm-SST" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lm-SST-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chapter003_Regression_files/figure-html/fig-lm-SST-1.png" class="img-fluid figure-img" style="width:95.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lm-SST-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.5: Visualization of <span class="math inline">\(SST = \sum_{i = 1}^n(y_i -\bar{y})\)</span>
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="ssr" class="level5" data-number="5.1.5.1.2">
+<h5 data-number="5.1.5.1.2" class="anchored" data-anchor-id="ssr"><span class="header-section-number">5.1.5.1.2</span> SSR</h5>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-lm-SSR" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lm-SSR-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chapter003_Regression_files/figure-html/fig-lm-SSR-1.png" class="img-fluid figure-img" style="width:95.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lm-SSR-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.6: Visualization of <span class="math inline">\(SSR = \sum_{i = 1}^n(\hat{y_i} -\bar{y})\)</span>
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="sse" class="level5" data-number="5.1.5.1.3">
+<h5 data-number="5.1.5.1.3" class="anchored" data-anchor-id="sse"><span class="header-section-number">5.1.5.1.3</span> SSE</h5>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-lm-SSE" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lm-SSE-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chapter003_Regression_files/figure-html/fig-lm-SSE-1.png" class="img-fluid figure-img" style="width:95.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lm-SSE-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.7: Visualization of <span class="math inline">\(SSE = \sum_{i = 1}^n(y_i -\hat{y})\)</span>
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="putting-it-all-together-r2-as-a-proportion" class="level5" data-number="5.1.5.1.4">
+<h5 data-number="5.1.5.1.4" class="anchored" data-anchor-id="putting-it-all-together-r2-as-a-proportion"><span class="header-section-number">5.1.5.1.4</span> Putting it all together: <span class="math inline">\(r^2\)</span> as a proportion</h5>
+<p><span class="math display">\[\begin{align}
+r^2 &amp;= \frac{SSR}{SST} \label{r2expvar} \\
+&amp;= 1- \frac{SSE}{SST} \label{r2notexpvar}
+\end{align}\]</span></p>
+<ul>
+<li><span class="math inline">\(\eqref{r2expvar}\)</span>: If explained variability (<span class="math inline">\(SSR\)</span>) is total variability (<span class="math inline">\(SST\)</span>): <span class="math inline">\(r^2 = 1\)</span></li>
+<li><span class="math inline">\(\eqref{r2notexpvar}\)</span>: If variability from model (<span class="math inline">\(SSE\)</span>) is <span class="math inline">\(0\)</span>: <span class="math inline">\(r^2 = 1\)</span></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="model-checks---residuals" class="level3" data-number="5.1.6">
+<h3 data-number="5.1.6" class="anchored" data-anchor-id="model-checks---residuals"><span class="header-section-number">5.1.6</span> Model Checks - Residuals</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-lm-resid-pattern" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lm-resid-pattern-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chapter003_Regression_files/figure-html/fig-lm-resid-pattern-1.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lm-resid-pattern-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.8: There should not be a visible pattern in the residuals.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>In linear regression modeling, the absence of a visible pattern in the residuals is desirable because it indicates that the model adequately captures the underlying relationship between the independent and dependent variables. Residuals are the differences between the observed and predicted values, and their randomness or lack of discernible pattern suggests that the model is effectively explaining the variance in the data. A visible pattern in residuals could indicate that the model fails to account for certain patterns or trends, suggesting potential shortcomings or misspecifications in the regression model. Detecting and addressing such patterns in residuals is crucial for ensuring the validity and reliability of the linear regression analysis.</p>
+</section>
+<section id="residual-distribution" class="level3" data-number="5.1.7">
+<h3 data-number="5.1.7" class="anchored" data-anchor-id="residual-distribution"><span class="header-section-number">5.1.7</span> Residual Distribution</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-lm-resid-qq" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lm-resid-qq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chapter003_Regression_files/figure-html/fig-lm-resid-qq-1.png" class="img-fluid figure-img" style="width:95.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lm-resid-qq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.9: The residuals should be normally distributed.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>In linear regression, the assumption of normally distributed residuals is essential for accurate statistical inference, parameter estimation using ordinary least squares, and constructing reliable confidence intervals. Normal residuals indicate that the model appropriately captures data variability and helps identify issues like heteroscedasticity. While departures from normality may not always invalidate results, adherence to this assumption enhances the model’s robustness and reliability. If consistently violated, alternative modeling approaches or transformations may be considered.</p>
+</section>
+<section id="hypostesis-testing-in-linear-regression" class="level3" data-number="5.1.8">
+<h3 data-number="5.1.8" class="anchored" data-anchor-id="hypostesis-testing-in-linear-regression"><span class="header-section-number">5.1.8</span> Hypostesis testing in linear regression</h3>
+<p><a href="#H0">Null Hypothesis (H0)</a>: <span class="math inline">\(\beta_1 = 0\)</span></p>
+<p><a href="#Ha">Alternative Hypothesis (Ha)</a>: <span class="math inline">\(\beta_1 \neq 0\)</span></p>
+<div class="cell">
+<div id="tbl-lm-t-test" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-lm-t-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.2: The significance of model parameters.
+</figcaption>
+<div aria-describedby="tbl-lm-t-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div id="sgrlrbvksd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#sgrlrbvksd table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#sgrlrbvksd thead, #sgrlrbvksd tbody, #sgrlrbvksd tfoot, #sgrlrbvksd tr, #sgrlrbvksd td, #sgrlrbvksd th {
+  border-style: none;
+}
+
+#sgrlrbvksd p {
+  margin: 0;
+  padding: 0;
+}
+
+#sgrlrbvksd .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#sgrlrbvksd .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#sgrlrbvksd .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#sgrlrbvksd .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#sgrlrbvksd .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#sgrlrbvksd .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#sgrlrbvksd .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#sgrlrbvksd .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#sgrlrbvksd .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#sgrlrbvksd .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#sgrlrbvksd .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#sgrlrbvksd .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#sgrlrbvksd .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#sgrlrbvksd .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#sgrlrbvksd .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#sgrlrbvksd .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#sgrlrbvksd .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#sgrlrbvksd .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#sgrlrbvksd .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sgrlrbvksd .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#sgrlrbvksd .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#sgrlrbvksd .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#sgrlrbvksd .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sgrlrbvksd .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#sgrlrbvksd .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#sgrlrbvksd .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#sgrlrbvksd .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sgrlrbvksd .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#sgrlrbvksd .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#sgrlrbvksd .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#sgrlrbvksd .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#sgrlrbvksd .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#sgrlrbvksd .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sgrlrbvksd .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#sgrlrbvksd .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sgrlrbvksd .gt_left {
+  text-align: left;
+}
+
+#sgrlrbvksd .gt_center {
+  text-align: center;
+}
+
+#sgrlrbvksd .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#sgrlrbvksd .gt_font_normal {
+  font-weight: normal;
+}
+
+#sgrlrbvksd .gt_font_bold {
+  font-weight: bold;
+}
+
+#sgrlrbvksd .gt_font_italic {
+  font-style: italic;
+}
+
+#sgrlrbvksd .gt_super {
+  font-size: 65%;
+}
+
+#sgrlrbvksd .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#sgrlrbvksd .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#sgrlrbvksd .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#sgrlrbvksd .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#sgrlrbvksd .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#sgrlrbvksd .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#sgrlrbvksd .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#sgrlrbvksd .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#sgrlrbvksd div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -960,16 +1525,16 @@ Table&nbsp;5.1: The significance of model parameters.
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_left" headers="term">(Intercept)</td>
-<td class="gt_row gt_right" headers="estimate">2.500</td>
-<td class="gt_row gt_right" headers="std.error">0.141</td>
-<td class="gt_row gt_right" headers="statistic">17.779</td>
+<td class="gt_row gt_right" headers="estimate">48.682</td>
+<td class="gt_row gt_right" headers="std.error">0.108</td>
+<td class="gt_row gt_right" headers="statistic">449.635</td>
 <td class="gt_row gt_right" headers="p.value">0.000</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="term">rpm</td>
 <td class="gt_row gt_right" headers="estimate">0.010</td>
-<td class="gt_row gt_right" headers="std.error">0.000</td>
-<td class="gt_row gt_right" headers="statistic">67.895</td>
+<td class="gt_row gt_right" headers="std.error">0.001</td>
+<td class="gt_row gt_right" headers="statistic">17.833</td>
 <td class="gt_row gt_right" headers="p.value">0.000</td>
 </tr>
 </tbody>
@@ -986,27 +1551,27 @@ Table&nbsp;5.1: The significance of model parameters.
 <div id="tbl-lm-f-test" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-lm-f-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;5.2: The significance of the model.
+Table&nbsp;5.3: The significance of the model.
 </figcaption>
 <div aria-describedby="tbl-lm-f-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="mdvgsyhryd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#mdvgsyhryd table {
+<div id="mvtajoekle" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#mvtajoekle table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#mdvgsyhryd thead, #mdvgsyhryd tbody, #mdvgsyhryd tfoot, #mdvgsyhryd tr, #mdvgsyhryd td, #mdvgsyhryd th {
+#mvtajoekle thead, #mvtajoekle tbody, #mvtajoekle tfoot, #mvtajoekle tr, #mvtajoekle td, #mvtajoekle th {
   border-style: none;
 }
 
-#mdvgsyhryd p {
+#mvtajoekle p {
   margin: 0;
   padding: 0;
 }
 
-#mdvgsyhryd .gt_table {
+#mvtajoekle .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1032,12 +1597,12 @@ Table&nbsp;5.2: The significance of the model.
   border-left-color: #D3D3D3;
 }
 
-#mdvgsyhryd .gt_caption {
+#mvtajoekle .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#mdvgsyhryd .gt_title {
+#mvtajoekle .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1049,7 +1614,7 @@ Table&nbsp;5.2: The significance of the model.
   border-bottom-width: 0;
 }
 
-#mdvgsyhryd .gt_subtitle {
+#mvtajoekle .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1061,7 +1626,7 @@ Table&nbsp;5.2: The significance of the model.
   border-top-width: 0;
 }
 
-#mdvgsyhryd .gt_heading {
+#mvtajoekle .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1073,13 +1638,13 @@ Table&nbsp;5.2: The significance of the model.
   border-right-color: #D3D3D3;
 }
 
-#mdvgsyhryd .gt_bottom_border {
+#mvtajoekle .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#mdvgsyhryd .gt_col_headings {
+#mvtajoekle .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1094,7 +1659,7 @@ Table&nbsp;5.2: The significance of the model.
   border-right-color: #D3D3D3;
 }
 
-#mdvgsyhryd .gt_col_heading {
+#mvtajoekle .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1114,7 +1679,7 @@ Table&nbsp;5.2: The significance of the model.
   overflow-x: hidden;
 }
 
-#mdvgsyhryd .gt_column_spanner_outer {
+#mvtajoekle .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1126,15 +1691,15 @@ Table&nbsp;5.2: The significance of the model.
   padding-right: 4px;
 }
 
-#mdvgsyhryd .gt_column_spanner_outer:first-child {
+#mvtajoekle .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#mdvgsyhryd .gt_column_spanner_outer:last-child {
+#mvtajoekle .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#mdvgsyhryd .gt_column_spanner {
+#mvtajoekle .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1146,11 +1711,11 @@ Table&nbsp;5.2: The significance of the model.
   width: 100%;
 }
 
-#mdvgsyhryd .gt_spanner_row {
+#mvtajoekle .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#mdvgsyhryd .gt_group_heading {
+#mvtajoekle .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1176,7 +1741,7 @@ Table&nbsp;5.2: The significance of the model.
   text-align: left;
 }
 
-#mdvgsyhryd .gt_empty_group_heading {
+#mvtajoekle .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1191,15 +1756,15 @@ Table&nbsp;5.2: The significance of the model.
   vertical-align: middle;
 }
 
-#mdvgsyhryd .gt_from_md > :first-child {
+#mvtajoekle .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#mdvgsyhryd .gt_from_md > :last-child {
+#mvtajoekle .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#mdvgsyhryd .gt_row {
+#mvtajoekle .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1218,7 +1783,7 @@ Table&nbsp;5.2: The significance of the model.
   overflow-x: hidden;
 }
 
-#mdvgsyhryd .gt_stub {
+#mvtajoekle .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1231,7 +1796,7 @@ Table&nbsp;5.2: The significance of the model.
   padding-right: 5px;
 }
 
-#mdvgsyhryd .gt_stub_row_group {
+#mvtajoekle .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1245,15 +1810,15 @@ Table&nbsp;5.2: The significance of the model.
   vertical-align: top;
 }
 
-#mdvgsyhryd .gt_row_group_first td {
+#mvtajoekle .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#mdvgsyhryd .gt_row_group_first th {
+#mvtajoekle .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#mdvgsyhryd .gt_summary_row {
+#mvtajoekle .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1263,16 +1828,16 @@ Table&nbsp;5.2: The significance of the model.
   padding-right: 5px;
 }
 
-#mdvgsyhryd .gt_first_summary_row {
+#mvtajoekle .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#mdvgsyhryd .gt_first_summary_row.thick {
+#mvtajoekle .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#mdvgsyhryd .gt_last_summary_row {
+#mvtajoekle .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1282,7 +1847,7 @@ Table&nbsp;5.2: The significance of the model.
   border-bottom-color: #D3D3D3;
 }
 
-#mdvgsyhryd .gt_grand_summary_row {
+#mvtajoekle .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1292,7 +1857,7 @@ Table&nbsp;5.2: The significance of the model.
   padding-right: 5px;
 }
 
-#mdvgsyhryd .gt_first_grand_summary_row {
+#mvtajoekle .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1302,7 +1867,7 @@ Table&nbsp;5.2: The significance of the model.
   border-top-color: #D3D3D3;
 }
 
-#mdvgsyhryd .gt_last_grand_summary_row_top {
+#mvtajoekle .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1312,11 +1877,11 @@ Table&nbsp;5.2: The significance of the model.
   border-bottom-color: #D3D3D3;
 }
 
-#mdvgsyhryd .gt_striped {
+#mvtajoekle .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#mdvgsyhryd .gt_table_body {
+#mvtajoekle .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1325,7 +1890,7 @@ Table&nbsp;5.2: The significance of the model.
   border-bottom-color: #D3D3D3;
 }
 
-#mdvgsyhryd .gt_footnotes {
+#mvtajoekle .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1339,7 +1904,7 @@ Table&nbsp;5.2: The significance of the model.
   border-right-color: #D3D3D3;
 }
 
-#mdvgsyhryd .gt_footnote {
+#mvtajoekle .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1348,7 +1913,7 @@ Table&nbsp;5.2: The significance of the model.
   padding-right: 5px;
 }
 
-#mdvgsyhryd .gt_sourcenotes {
+#mvtajoekle .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1362,7 +1927,7 @@ Table&nbsp;5.2: The significance of the model.
   border-right-color: #D3D3D3;
 }
 
-#mdvgsyhryd .gt_sourcenote {
+#mvtajoekle .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1370,72 +1935,72 @@ Table&nbsp;5.2: The significance of the model.
   padding-right: 5px;
 }
 
-#mdvgsyhryd .gt_left {
+#mvtajoekle .gt_left {
   text-align: left;
 }
 
-#mdvgsyhryd .gt_center {
+#mvtajoekle .gt_center {
   text-align: center;
 }
 
-#mdvgsyhryd .gt_right {
+#mvtajoekle .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#mdvgsyhryd .gt_font_normal {
+#mvtajoekle .gt_font_normal {
   font-weight: normal;
 }
 
-#mdvgsyhryd .gt_font_bold {
+#mvtajoekle .gt_font_bold {
   font-weight: bold;
 }
 
-#mdvgsyhryd .gt_font_italic {
+#mvtajoekle .gt_font_italic {
   font-style: italic;
 }
 
-#mdvgsyhryd .gt_super {
+#mvtajoekle .gt_super {
   font-size: 65%;
 }
 
-#mdvgsyhryd .gt_footnote_marks {
+#mvtajoekle .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#mdvgsyhryd .gt_asterisk {
+#mvtajoekle .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#mdvgsyhryd .gt_indent_1 {
+#mvtajoekle .gt_indent_1 {
   text-indent: 5px;
 }
 
-#mdvgsyhryd .gt_indent_2 {
+#mvtajoekle .gt_indent_2 {
   text-indent: 10px;
 }
 
-#mdvgsyhryd .gt_indent_3 {
+#mvtajoekle .gt_indent_3 {
   text-indent: 15px;
 }
 
-#mdvgsyhryd .gt_indent_4 {
+#mvtajoekle .gt_indent_4 {
   text-indent: 20px;
 }
 
-#mdvgsyhryd .gt_indent_5 {
+#mvtajoekle .gt_indent_5 {
   text-indent: 25px;
 }
 
-#mdvgsyhryd .katex-display {
+#mvtajoekle .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#mdvgsyhryd div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#mvtajoekle div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1454,13 +2019,13 @@ Table&nbsp;5.2: The significance of the model.
 </thead>
 <tbody class="gt_table_body">
 <tr class="odd">
-<td class="gt_row gt_right" headers="r.squared">0.902</td>
-<td class="gt_row gt_right" headers="adj.r.squared">0.902</td>
-<td class="gt_row gt_right" headers="statistic">4,609.692</td>
+<td class="gt_row gt_right" headers="r.squared">0.975</td>
+<td class="gt_row gt_right" headers="adj.r.squared">0.972</td>
+<td class="gt_row gt_right" headers="statistic">318.028</td>
 <td class="gt_row gt_right" headers="p.value">0.000</td>
 <td class="gt_row gt_right" headers="df">1.000</td>
-<td class="gt_row gt_right" headers="df.residual">498.000</td>
-<td class="gt_row gt_right" headers="nobs">500.000</td>
+<td class="gt_row gt_right" headers="df.residual">8.000</td>
+<td class="gt_row gt_right" headers="nobs">10.000</td>
 </tr>
 </tbody>
 </table>
@@ -1472,575 +2037,137 @@ Table&nbsp;5.2: The significance of the model.
 </div>
 </div>
 <p>In linear regression, the F-test assesses the overall significance of the regression model by comparing the fit of the model with predictors to a model without predictors, helping determine if the regression equation explains a significant proportion of the variance in the dependent variable.</p>
+</section>
+<section id="gradient-descent-ruder2016" class="level3" data-number="5.1.9">
+<h3 data-number="5.1.9" class="anchored" data-anchor-id="gradient-descent-ruder2016"><span class="header-section-number">5.1.9</span> Gradient Descent <span class="citation" data-cites="Ruder2016">(<a href="chapter000_BasicConcepts.html#ref-Ruder2016" role="doc-biblioref">Ruder 2016</a>)</span></h3>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-grad-desc" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-grad-desc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chapter003/gradient_descent.png" class="img-fluid figure-img" style="width:70.0%">
 </div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-grad-desc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.10: An example for the gradient descent algorithm
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>In linear regression, gradient descent is an iterative optimization process used to minimize the difference between predicted and actual values. It starts with initial coefficients and calculates the gradient of the cost function, representing the error. The coefficients are then updated in the opposite direction of the gradient, with the magnitude of the update controlled by a learning rate. This process is repeated until convergence, gradually refining the coefficients to improve the accuracy of the linear regression model.</p>
 </section>
 </section>
 <section id="multiple-linear-regression" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="multiple-linear-regression"><span class="header-section-number">5.2</span> Multiple linear regression</h2>
-<div class="r-stack">
-<div class="fragment fade-out">
-<div class="cell">
-<div id="tbl-mlm-eda" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-mlm-eda-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;5.3: The data in a tabular overview including test for normal distribution.
-</figcaption>
-<div aria-describedby="tbl-mlm-eda-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output-display">
-<div id="afqsghjymo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#afqsghjymo table {
-  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-#afqsghjymo thead, #afqsghjymo tbody, #afqsghjymo tfoot, #afqsghjymo tr, #afqsghjymo td, #afqsghjymo th {
-  border-style: none;
-}
-
-#afqsghjymo p {
-  margin: 0;
-  padding: 0;
-}
-
-#afqsghjymo .gt_table {
-  display: table;
-  border-collapse: collapse;
-  line-height: normal;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-
-#afqsghjymo .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-#afqsghjymo .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-#afqsghjymo .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 3px;
-  padding-bottom: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-#afqsghjymo .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#afqsghjymo .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#afqsghjymo .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#afqsghjymo .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-#afqsghjymo .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-#afqsghjymo .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-#afqsghjymo .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-#afqsghjymo .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-#afqsghjymo .gt_spanner_row {
-  border-bottom-style: hidden;
-}
-
-#afqsghjymo .gt_group_heading {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  text-align: left;
-}
-
-#afqsghjymo .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#afqsghjymo .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-#afqsghjymo .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-#afqsghjymo .gt_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-#afqsghjymo .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#afqsghjymo .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-
-#afqsghjymo .gt_row_group_first td {
-  border-top-width: 2px;
-}
-
-#afqsghjymo .gt_row_group_first th {
-  border-top-width: 2px;
-}
-
-#afqsghjymo .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#afqsghjymo .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-
-#afqsghjymo .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-
-#afqsghjymo .gt_last_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#afqsghjymo .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#afqsghjymo .gt_first_grand_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-#afqsghjymo .gt_last_grand_summary_row_top {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: double;
-  border-bottom-width: 6px;
-  border-bottom-color: #D3D3D3;
-}
-
-#afqsghjymo .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-#afqsghjymo .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#afqsghjymo .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#afqsghjymo .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#afqsghjymo .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#afqsghjymo .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#afqsghjymo .gt_left {
-  text-align: left;
-}
-
-#afqsghjymo .gt_center {
-  text-align: center;
-}
-
-#afqsghjymo .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-#afqsghjymo .gt_font_normal {
-  font-weight: normal;
-}
-
-#afqsghjymo .gt_font_bold {
-  font-weight: bold;
-}
-
-#afqsghjymo .gt_font_italic {
-  font-style: italic;
-}
-
-#afqsghjymo .gt_super {
-  font-size: 65%;
-}
-
-#afqsghjymo .gt_footnote_marks {
-  font-size: 75%;
-  vertical-align: 0.4em;
-  position: initial;
-}
-
-#afqsghjymo .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-
-#afqsghjymo .gt_indent_1 {
-  text-indent: 5px;
-}
-
-#afqsghjymo .gt_indent_2 {
-  text-indent: 10px;
-}
-
-#afqsghjymo .gt_indent_3 {
-  text-indent: 15px;
-}
-
-#afqsghjymo .gt_indent_4 {
-  text-indent: 20px;
-}
-
-#afqsghjymo .gt_indent_5 {
-  text-indent: 25px;
-}
-
-#afqsghjymo .katex-display {
-  display: inline-flex !important;
-  margin-bottom: 0.75em !important;
-}
-
-#afqsghjymo div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
-  height: 0px !important;
-}
-</style>
-
-<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
-<colgroup>
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-</colgroup>
-<thead>
-<tr class="gt_col_headings header">
-<th id="label" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><strong>Characteristic</strong></th>
-<th id="stat_0" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>Overall</strong><br>
-N = 500<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
-<th id="stat_1" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>A</strong><br>
-N = 165<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
-<th id="stat_2" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>B</strong><br>
-N = 181<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
-<th id="stat_3" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>C</strong><br>
-N = 154<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
-<th id="p.value" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>p-value</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>2</sup></span></th>
-</tr>
-</thead>
-<tbody class="gt_table_body">
-<tr class="odd">
-<td class="gt_row gt_left" headers="label">rpm</td>
-<td class="gt_row gt_center" headers="stat_0">999 (932, 1,068)</td>
-<td class="gt_row gt_center" headers="stat_1">993 (923, 1,061)</td>
-<td class="gt_row gt_center" headers="stat_2">995 (927, 1,074)</td>
-<td class="gt_row gt_center" headers="stat_3">1,012 (946, 1,068)</td>
-<td class="gt_row gt_center" headers="p.value">0.5</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="label">diameter</td>
-<td class="gt_row gt_center" headers="stat_0">11.95 (11.30, 12.66)</td>
-<td class="gt_row gt_center" headers="stat_1">11.90 (11.24, 12.51)</td>
-<td class="gt_row gt_center" headers="stat_2">11.98 (11.30, 12.67)</td>
-<td class="gt_row gt_center" headers="stat_3">12.01 (11.41, 12.77)</td>
-<td class="gt_row gt_center" headers="p.value">0.4</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="label">feed</td>
-<td class="gt_row gt_center" headers="stat_0">40.01 (39.34, 40.67)</td>
-<td class="gt_row gt_center" headers="stat_1">39.98 (39.34, 40.63)</td>
-<td class="gt_row gt_center" headers="stat_2">39.91 (39.34, 40.65)</td>
-<td class="gt_row gt_center" headers="stat_3">40.05 (39.37, 40.78)</td>
-<td class="gt_row gt_center" headers="p.value">0.7</td>
-</tr>
-</tbody><tfoot>
-<tr class="gt_footnotes odd">
-<td colspan="6" class="gt_footnote"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> Median (Q1, Q3)</td>
-</tr>
-<tr class="gt_footnotes even">
-<td colspan="6" class="gt_footnote"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>2</sup></span> Kruskal-Wallis rank sum test</td>
-</tr>
-</tfoot>
-
-</table>
-
-</div>
-</div>
-</div>
-</figure>
-</div>
-</div>
-<p>A short <a href="#eda">exploratory data analysis</a> of the data for the multiple linear regression is given in <a href="#tbl-mlm-eda" class="quarto-xref">Table&nbsp;<span>5.3</span></a>.</p>
-</div>
-<div class="fragment fade-in-then-out">
+<ul>
+<li>Multicollinearity</li>
+<li>Model selection</li>
+</ul>
+<section id="example" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="example"><span class="header-section-number">5.2.1</span> Example</h3>
+<p>A CNC lathe produces screws with a target length of 50 mm. The process engineers suspect that:</p>
+<ul>
+<li>Higher RPM increases length due to material expansion from heat.</li>
+<li>Higher feed rate decreases length due to faster material removal.</li>
+</ul>
+<p>But:</p>
+<ul>
+<li>Higher feed rates require higher RPM to maintain surface finish.</li>
+<li>This introduces multicollinearity, complicating the analysis.</li>
+</ul>
+</section>
+<section id="the-data" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="the-data"><span class="header-section-number">5.2.2</span> The data</h3>
+<section id="rpm" class="level4" data-number="5.2.2.1">
+<h4 data-number="5.2.2.1" class="anchored" data-anchor-id="rpm"><span class="header-section-number">5.2.2.1</span> rpm</h4>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-mlm-qq-eda" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
+<div id="fig-mlm-eda-rpm" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-mlm-qq-eda-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter003_Regression_files/figure-html/fig-mlm-qq-eda-1.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
+<div aria-describedby="fig-mlm-eda-rpm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chapter003_Regression_files/figure-html/fig-mlm-eda-rpm-1.png" class="img-fluid figure-img" style="width:95.0%">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mlm-qq-eda-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.8: The graphical test for normal distribution (QQ-plot)
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mlm-eda-rpm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.11: EDA on rpm
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p><a href="#fig-mlm-qq-eda" class="quarto-xref">Figure&nbsp;<span>5.8</span></a> shows the graphical test for normal distribution for the multiple linear regression.</p>
-</div>
-<div class="fragment fade-in-then-out">
+</section>
+<section id="feed-rate" class="level4" data-number="5.2.2.2">
+<h4 data-number="5.2.2.2" class="anchored" data-anchor-id="feed-rate"><span class="header-section-number">5.2.2.2</span> feed rate</h4>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-mlm-hist" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
+<div id="fig-mlm-eda-feed-rate" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-mlm-hist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter003_Regression_files/figure-html/fig-mlm-hist-1.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
+<div aria-describedby="fig-mlm-eda-feed-rate-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chapter003_Regression_files/figure-html/fig-mlm-eda-feed-rate-1.png" class="img-fluid figure-img" style="width:95.0%">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mlm-hist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.9: The distribution of the output and input parameters.
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mlm-eda-feed-rate-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.12: EDA on feed rate
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>In <a href="#fig-mlm-hist" class="quarto-xref">Figure&nbsp;<span>5.9</span></a> the distribution of the input data is shown in a histogram.</p>
+</section>
+<section id="length" class="level4" data-number="5.2.2.3">
+<h4 data-number="5.2.2.3" class="anchored" data-anchor-id="length"><span class="header-section-number">5.2.2.3</span> length</h4>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-mlm-eda-length" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mlm-eda-length-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chapter003_Regression_files/figure-html/fig-mlm-eda-length-1.png" class="img-fluid figure-img" style="width:95.0%">
 </div>
-<div class="fragment fade-in-then-out">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mlm-eda-length-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.13: EDA on length
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="all-in-one" class="level4" data-number="5.2.2.4">
+<h4 data-number="5.2.2.4" class="anchored" data-anchor-id="all-in-one"><span class="header-section-number">5.2.2.4</span> all in one</h4>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-mlm-eda" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mlm-eda-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chapter003_Regression_files/figure-html/fig-mlm-eda-1.png" class="img-fluid figure-img" style="width:95.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mlm-eda-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.14: Density plots of the machining process
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>A short <a href="#acronyms_EDA">Explorative Data Analysis (EDA)</a> of the data for the multiple linear regression is given in <span class="quarto-unresolved-ref">?tbl-mlm-eda</span>.</p>
+</section>
+<section id="correlation-plot" class="level4" data-number="5.2.2.5">
+<h4 data-number="5.2.2.5" class="anchored" data-anchor-id="correlation-plot"><span class="header-section-number">5.2.2.5</span> Correlation plot</h4>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-mlm-corrplot" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mlm-corrplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chapter003_Regression_files/figure-html/fig-mlm-corrplot-1.png" class="img-fluid figure-img" style="width:95.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mlm-corrplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.15: The correlation plot of the variables.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="fitting-the-model" class="level4" data-number="5.2.2.6">
+<h4 data-number="5.2.2.6" class="anchored" data-anchor-id="fitting-the-model"><span class="header-section-number">5.2.2.6</span> Fitting the model</h4>
 <p><span class="math display">\[\begin{align}
-Y \sim rpm + feed+ site \label{mlmmodel}
+\text{length} = \beta_0 + \beta_1 \text{rpm} + \beta_1 \text{feedrate} + \epsilon  \label{mlmmodel}
 \end{align}\]</span></p>
 <div class="cell">
 <div id="tbl-mlm-mdl" class="cell quarto-float quarto-figure quarto-figure-center anchored">
@@ -2050,23 +2177,23 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
 </figcaption>
 <div aria-describedby="tbl-mlm-mdl-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="lmdwtlxncr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#lmdwtlxncr table {
+<div id="sygvzigbpm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#sygvzigbpm table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#lmdwtlxncr thead, #lmdwtlxncr tbody, #lmdwtlxncr tfoot, #lmdwtlxncr tr, #lmdwtlxncr td, #lmdwtlxncr th {
+#sygvzigbpm thead, #sygvzigbpm tbody, #sygvzigbpm tfoot, #sygvzigbpm tr, #sygvzigbpm td, #sygvzigbpm th {
   border-style: none;
 }
 
-#lmdwtlxncr p {
+#sygvzigbpm p {
   margin: 0;
   padding: 0;
 }
 
-#lmdwtlxncr .gt_table {
+#sygvzigbpm .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2092,12 +2219,12 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
   border-left-color: #D3D3D3;
 }
 
-#lmdwtlxncr .gt_caption {
+#sygvzigbpm .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#lmdwtlxncr .gt_title {
+#sygvzigbpm .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2109,7 +2236,7 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
   border-bottom-width: 0;
 }
 
-#lmdwtlxncr .gt_subtitle {
+#sygvzigbpm .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2121,7 +2248,7 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
   border-top-width: 0;
 }
 
-#lmdwtlxncr .gt_heading {
+#sygvzigbpm .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2133,13 +2260,13 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
   border-right-color: #D3D3D3;
 }
 
-#lmdwtlxncr .gt_bottom_border {
+#sygvzigbpm .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#lmdwtlxncr .gt_col_headings {
+#sygvzigbpm .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2154,7 +2281,7 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
   border-right-color: #D3D3D3;
 }
 
-#lmdwtlxncr .gt_col_heading {
+#sygvzigbpm .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2174,7 +2301,7 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
   overflow-x: hidden;
 }
 
-#lmdwtlxncr .gt_column_spanner_outer {
+#sygvzigbpm .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2186,15 +2313,15 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
   padding-right: 4px;
 }
 
-#lmdwtlxncr .gt_column_spanner_outer:first-child {
+#sygvzigbpm .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#lmdwtlxncr .gt_column_spanner_outer:last-child {
+#sygvzigbpm .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#lmdwtlxncr .gt_column_spanner {
+#sygvzigbpm .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2206,11 +2333,11 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
   width: 100%;
 }
 
-#lmdwtlxncr .gt_spanner_row {
+#sygvzigbpm .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#lmdwtlxncr .gt_group_heading {
+#sygvzigbpm .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2236,7 +2363,7 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
   text-align: left;
 }
 
-#lmdwtlxncr .gt_empty_group_heading {
+#sygvzigbpm .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2251,15 +2378,15 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
   vertical-align: middle;
 }
 
-#lmdwtlxncr .gt_from_md > :first-child {
+#sygvzigbpm .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#lmdwtlxncr .gt_from_md > :last-child {
+#sygvzigbpm .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#lmdwtlxncr .gt_row {
+#sygvzigbpm .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2278,7 +2405,7 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
   overflow-x: hidden;
 }
 
-#lmdwtlxncr .gt_stub {
+#sygvzigbpm .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2291,7 +2418,7 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
   padding-right: 5px;
 }
 
-#lmdwtlxncr .gt_stub_row_group {
+#sygvzigbpm .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2305,15 +2432,15 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
   vertical-align: top;
 }
 
-#lmdwtlxncr .gt_row_group_first td {
+#sygvzigbpm .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#lmdwtlxncr .gt_row_group_first th {
+#sygvzigbpm .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#lmdwtlxncr .gt_summary_row {
+#sygvzigbpm .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2323,16 +2450,16 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
   padding-right: 5px;
 }
 
-#lmdwtlxncr .gt_first_summary_row {
+#sygvzigbpm .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#lmdwtlxncr .gt_first_summary_row.thick {
+#sygvzigbpm .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#lmdwtlxncr .gt_last_summary_row {
+#sygvzigbpm .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2342,7 +2469,7 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
   border-bottom-color: #D3D3D3;
 }
 
-#lmdwtlxncr .gt_grand_summary_row {
+#sygvzigbpm .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2352,7 +2479,7 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
   padding-right: 5px;
 }
 
-#lmdwtlxncr .gt_first_grand_summary_row {
+#sygvzigbpm .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2362,7 +2489,7 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
   border-top-color: #D3D3D3;
 }
 
-#lmdwtlxncr .gt_last_grand_summary_row_top {
+#sygvzigbpm .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2372,11 +2499,11 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
   border-bottom-color: #D3D3D3;
 }
 
-#lmdwtlxncr .gt_striped {
+#sygvzigbpm .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#lmdwtlxncr .gt_table_body {
+#sygvzigbpm .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2385,7 +2512,7 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
   border-bottom-color: #D3D3D3;
 }
 
-#lmdwtlxncr .gt_footnotes {
+#sygvzigbpm .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2399,7 +2526,7 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
   border-right-color: #D3D3D3;
 }
 
-#lmdwtlxncr .gt_footnote {
+#sygvzigbpm .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2408,7 +2535,7 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
   padding-right: 5px;
 }
 
-#lmdwtlxncr .gt_sourcenotes {
+#sygvzigbpm .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2422,7 +2549,7 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
   border-right-color: #D3D3D3;
 }
 
-#lmdwtlxncr .gt_sourcenote {
+#sygvzigbpm .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2430,72 +2557,72 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
   padding-right: 5px;
 }
 
-#lmdwtlxncr .gt_left {
+#sygvzigbpm .gt_left {
   text-align: left;
 }
 
-#lmdwtlxncr .gt_center {
+#sygvzigbpm .gt_center {
   text-align: center;
 }
 
-#lmdwtlxncr .gt_right {
+#sygvzigbpm .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#lmdwtlxncr .gt_font_normal {
+#sygvzigbpm .gt_font_normal {
   font-weight: normal;
 }
 
-#lmdwtlxncr .gt_font_bold {
+#sygvzigbpm .gt_font_bold {
   font-weight: bold;
 }
 
-#lmdwtlxncr .gt_font_italic {
+#sygvzigbpm .gt_font_italic {
   font-style: italic;
 }
 
-#lmdwtlxncr .gt_super {
+#sygvzigbpm .gt_super {
   font-size: 65%;
 }
 
-#lmdwtlxncr .gt_footnote_marks {
+#sygvzigbpm .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#lmdwtlxncr .gt_asterisk {
+#sygvzigbpm .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#lmdwtlxncr .gt_indent_1 {
+#sygvzigbpm .gt_indent_1 {
   text-indent: 5px;
 }
 
-#lmdwtlxncr .gt_indent_2 {
+#sygvzigbpm .gt_indent_2 {
   text-indent: 10px;
 }
 
-#lmdwtlxncr .gt_indent_3 {
+#sygvzigbpm .gt_indent_3 {
   text-indent: 15px;
 }
 
-#lmdwtlxncr .gt_indent_4 {
+#sygvzigbpm .gt_indent_4 {
   text-indent: 20px;
 }
 
-#lmdwtlxncr .gt_indent_5 {
+#sygvzigbpm .gt_indent_5 {
   text-indent: 25px;
 }
 
-#lmdwtlxncr .katex-display {
+#sygvzigbpm .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#lmdwtlxncr div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#sygvzigbpm div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2518,43 +2645,31 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_left" headers="label">rpm</td>
-<td class="gt_row gt_center" headers="estimate">0.00</td>
-<td class="gt_row gt_center" headers="conf.low">0.00, 0.01</td>
+<td class="gt_row gt_center" headers="estimate">0.02</td>
+<td class="gt_row gt_center" headers="conf.low">0.02, 0.02</td>
 <td class="gt_row gt_center" headers="p.value">&lt;0.001</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label">feed</td>
-<td class="gt_row gt_center" headers="estimate">0.44</td>
-<td class="gt_row gt_center" headers="conf.low">0.29, 0.58</td>
+<td class="gt_row gt_left" headers="label">feed_rate</td>
+<td class="gt_row gt_center" headers="estimate">-10</td>
+<td class="gt_row gt_center" headers="conf.low">-11, -9.7</td>
 <td class="gt_row gt_center" headers="p.value">&lt;0.001</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label">site</td>
-<td class="gt_row gt_center" headers="estimate"><br>
+<td class="gt_row gt_left" headers="label" style="border-top-width: 2px; border-top-style: solid; border-top-color: #D3D3D3">R²</td>
+<td class="gt_row gt_center" headers="estimate" style="border-top-width: 2px; border-top-style: solid; border-top-color: #D3D3D3">0.995</td>
+<td class="gt_row gt_center" headers="conf.low" style="border-top-width: 2px; border-top-style: solid; border-top-color: #D3D3D3"><br>
 </td>
+<td class="gt_row gt_center" headers="p.value" style="border-top-width: 2px; border-top-style: solid; border-top-color: #D3D3D3"><br>
+</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">Adjusted R²</td>
+<td class="gt_row gt_center" headers="estimate">0.995</td>
 <td class="gt_row gt_center" headers="conf.low"><br>
 </td>
 <td class="gt_row gt_center" headers="p.value"><br>
 </td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;A</td>
-<td class="gt_row gt_center" headers="estimate">0.00</td>
-<td class="gt_row gt_center" headers="conf.low">—</td>
-<td class="gt_row gt_center" headers="p.value"><br>
-</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;B</td>
-<td class="gt_row gt_center" headers="estimate">0.09</td>
-<td class="gt_row gt_center" headers="conf.low">-0.02, 0.20</td>
-<td class="gt_row gt_center" headers="p.value">0.11</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;C</td>
-<td class="gt_row gt_center" headers="estimate">0.08</td>
-<td class="gt_row gt_center" headers="conf.low">-0.03, 0.20</td>
-<td class="gt_row gt_center" headers="p.value">0.15</td>
 </tr>
 </tbody><tfoot>
 <tr class="gt_sourcenotes odd">
@@ -2571,59 +2686,1186 @@ Table&nbsp;5.4: The output of the multiple linear regression modelling
 </div>
 </div>
 <p><span class="math inline">\(\eqref{mlmmodel}\)</span> shows the general model for the multiple linear regression model. In this example, also the production site (<code>site A</code>, <code>site B</code> and <code>site C</code>) is included to test, if different production sites lead to differently produced drive shafts. The results of the multiple regression are shown in <a href="#tbl-mlm-mdl" class="quarto-xref">Table&nbsp;<span>5.4</span></a>. Whilst the continuous variables appear to be significant (<span class="math inline">\(p&lt;\alpha = 0.05\)</span>), the production site does not play a significant rolefor the drive shaft diameter.</p>
-</div>
-<div class="fragment fade-in-then-out">
+</section>
+<section id="r2_adjusted" class="level4" data-number="5.2.2.7">
+<h4 data-number="5.2.2.7" class="anchored" data-anchor-id="r2_adjusted"><span class="header-section-number">5.2.2.7</span> <span class="math inline">\(r^2_{adjusted}\)</span></h4>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-mlm-mdl" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
+<div id="fig-r2vsr2adj" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-r2vsr2adj-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chapter003_Regression_files/figure-html/fig-r2vsr2adj-1.png" class="img-fluid figure-img" style="width:95.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-r2vsr2adj-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.16: The influence of <span class="math inline">\(k\)</span> (number of predictors) on <span class="math inline">\(r^2\)</span> and <span class="math inline">\(r^2_{adjusted}\)</span>.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div style="font-size: 85%;">
+<p><span class="math display">\[\begin{align}
+r^2_{adjusted} = 1 - (1-r^2)\frac{n-1}{n-k-1} \label{r2adj}
+\end{align}\]</span></p>
+</div>
+<p>The <a href="#r2adj">adjusted coefficient of determination</a>, is a modification of the regular <span class="math inline">\(r^2\)</span> in regression analysis. While <span class="math inline">\(r^2\)</span> assesses the proportion of variance explained by the independent variables, the <span class="math inline">\(r^2_{adjusted}\)</span> takes into account the <a href="#numpred">number of predictors (<span class="math inline">\(k\)</span>)</a> in the model, addressing potential issues with overfitting according to <span class="math inline">\(\eqref{r2adj}\)</span>.</p>
+<p>The <span class="math inline">\(r^2_{adjusted}\)</span> incorporates a penalty for adding unnecessary predictors that do not significantly contribute to explaining the variance in the dependent variable. This adjustment helps prevent an inflated <span class="math inline">\(r^2\)</span> when including more predictors, even if they don’t improve the model significantly.</p>
+</section>
+<section id="visualizing-the-model" class="level4" data-number="5.2.2.8">
+<h4 data-number="5.2.2.8" class="anchored" data-anchor-id="visualizing-the-model"><span class="header-section-number">5.2.2.8</span> Visualizing the model</h4>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-mlm-mdl" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-mlm-mdl-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter003_Regression_files/figure-html/fig-mlm-mdl-1.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
+<img src="chapter003_Regression_files/figure-html/fig-mlm-mdl-1.png" class="img-fluid figure-img" style="width:95.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mlm-mdl-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.10: The model of the mulitple linear regression
+Figure&nbsp;5.17: The model of the mulitple linear regression
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>In <a href="#fig-mlm-mdl" class="quarto-xref">Figure&nbsp;<span>5.10</span></a> the model is shown to ease the interpretation. With increasing <code>rpm</code> or <code>feed</code> also the drive shaft diameter increases.</p>
-</div>
-<div class="fragment fade-in-then-out">
+<p>In <a href="#fig-mlm-mdl" class="quarto-xref">Figure&nbsp;<span>5.17</span></a> the model is shown to ease the interpretation. With increasing <code>rpm</code> or <code>feed</code> also the drive shaft diameter increases.</p>
+</section>
+<section id="how-stable-is-the-model" class="level4" data-number="5.2.2.9">
+<h4 data-number="5.2.2.9" class="anchored" data-anchor-id="how-stable-is-the-model"><span class="header-section-number">5.2.2.9</span> How stable is the model?</h4>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-mlm-resid-pattern" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
+<div id="fig-mlm-added-noise" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mlm-added-noise-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chapter003_Regression_files/figure-html/fig-mlm-added-noise-1.png" class="img-fluid figure-img" style="width:95.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mlm-added-noise-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.18: What happens if we add some noise? How robust is the model?
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="variance-inflation-factor" class="level4" data-number="5.2.2.10">
+<h4 data-number="5.2.2.10" class="anchored" data-anchor-id="variance-inflation-factor"><span class="header-section-number">5.2.2.10</span> Variance Inflation Factor</h4>
+<p>How much does the variance of the coefficient for <code>feed_rate</code> increase because <code>feed_rate</code> is correlated with other predictors (<code>rpm</code>)?</p>
+<ul>
+<li><span class="math inline">\(\text{VIF} = 1\)</span>: No correlation with other predictors (ideal)</li>
+<li><span class="math inline">\(\text{VIF} &gt; 1\)</span>: Variance is inflated by a factor of <a href="#acronyms_VIF">Variance Inflation Factor (VIF)</a></li>
+</ul>
+<section id="how-much-variance-is-explained" class="level5" data-number="5.2.2.10.1">
+<h5 data-number="5.2.2.10.1" class="anchored" data-anchor-id="how-much-variance-is-explained"><span class="header-section-number">5.2.2.10.1</span> How much variance is explained?</h5>
+<div class="cell">
+<div id="tbl-mlm-vif" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-mlm-vif-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.5: How much variance is explained among the regressors?
+</figcaption>
+<div aria-describedby="tbl-mlm-vif-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div id="jwkqlbsmms" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#jwkqlbsmms table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#jwkqlbsmms thead, #jwkqlbsmms tbody, #jwkqlbsmms tfoot, #jwkqlbsmms tr, #jwkqlbsmms td, #jwkqlbsmms th {
+  border-style: none;
+}
+
+#jwkqlbsmms p {
+  margin: 0;
+  padding: 0;
+}
+
+#jwkqlbsmms .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#jwkqlbsmms .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#jwkqlbsmms .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#jwkqlbsmms .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#jwkqlbsmms .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#jwkqlbsmms .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jwkqlbsmms .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#jwkqlbsmms .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#jwkqlbsmms .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#jwkqlbsmms .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#jwkqlbsmms .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#jwkqlbsmms .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#jwkqlbsmms .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#jwkqlbsmms .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#jwkqlbsmms .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#jwkqlbsmms .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#jwkqlbsmms .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#jwkqlbsmms .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#jwkqlbsmms .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jwkqlbsmms .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#jwkqlbsmms .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#jwkqlbsmms .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#jwkqlbsmms .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jwkqlbsmms .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#jwkqlbsmms .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#jwkqlbsmms .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jwkqlbsmms .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jwkqlbsmms .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#jwkqlbsmms .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jwkqlbsmms .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#jwkqlbsmms .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jwkqlbsmms .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#jwkqlbsmms .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jwkqlbsmms .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#jwkqlbsmms .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jwkqlbsmms .gt_left {
+  text-align: left;
+}
+
+#jwkqlbsmms .gt_center {
+  text-align: center;
+}
+
+#jwkqlbsmms .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#jwkqlbsmms .gt_font_normal {
+  font-weight: normal;
+}
+
+#jwkqlbsmms .gt_font_bold {
+  font-weight: bold;
+}
+
+#jwkqlbsmms .gt_font_italic {
+  font-style: italic;
+}
+
+#jwkqlbsmms .gt_super {
+  font-size: 65%;
+}
+
+#jwkqlbsmms .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#jwkqlbsmms .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#jwkqlbsmms .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#jwkqlbsmms .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#jwkqlbsmms .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#jwkqlbsmms .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#jwkqlbsmms .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#jwkqlbsmms .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#jwkqlbsmms div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="gt_col_headings header">
+<th id="label" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><strong>Characteristic</strong></th>
+<th id="estimate" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>Beta</strong></th>
+<th id="conf.low" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>95% CI</strong></th>
+<th id="p.value" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>p-value</strong></th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">feed_rate</td>
+<td class="gt_row gt_center" headers="estimate">901</td>
+<td class="gt_row gt_center" headers="conf.low">745, 1,056</td>
+<td class="gt_row gt_center" headers="p.value">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label" style="border-top-width: 2px; border-top-style: solid; border-top-color: #D3D3D3">R²</td>
+<td class="gt_row gt_center" headers="estimate" style="border-top-width: 2px; border-top-style: solid; border-top-color: #D3D3D3">0.834</td>
+<td class="gt_row gt_center" headers="conf.low" style="border-top-width: 2px; border-top-style: solid; border-top-color: #D3D3D3"><br>
+</td>
+<td class="gt_row gt_center" headers="p.value" style="border-top-width: 2px; border-top-style: solid; border-top-color: #D3D3D3"><br>
+</td>
+</tr>
+</tbody><tfoot>
+<tr class="gt_sourcenotes odd">
+<td colspan="4" class="gt_sourcenote">Abbreviation: CI = Confidence Interval</td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<div class="fragment">
+<p>That’s high!</p>
+</div>
+</section>
+<section id="computing-vif" class="level5" data-number="5.2.2.10.2">
+<h5 data-number="5.2.2.10.2" class="anchored" data-anchor-id="computing-vif"><span class="header-section-number">5.2.2.10.2</span> Computing VIF</h5>
+<p><span class="math display">\[\begin{align}
+\text{VIF}_{\text{rpm}} &amp;= \frac{1}{1 - r^2_{\text{rpm ~ feedrate}}} \\
+\text{VIF}_{\text{rpm}} &amp;= \frac{1}{1 - 0.834067} \\
+\text{VIF}_{\text{rpm}} &amp;= 6.026529
+\end{align}\]</span></p>
+</section>
+<section id="vif-and-r2" class="level5" data-number="5.2.2.10.3">
+<h5 data-number="5.2.2.10.3" class="anchored" data-anchor-id="vif-and-r2"><span class="header-section-number">5.2.2.10.3</span> VIF and <span class="math inline">\(r^2\)</span></h5>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-mlm-vifr2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mlm-vifr2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chapter003_Regression_files/figure-html/fig-mlm-vifr2-1.png" class="img-fluid figure-img" style="width:95.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mlm-vifr2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.19: How the VIF changes with increasing multicollinearity
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="rule-of-thumb-for-vif" class="level5" data-number="5.2.2.10.4">
+<h5 data-number="5.2.2.10.4" class="anchored" data-anchor-id="rule-of-thumb-for-vif"><span class="header-section-number">5.2.2.10.4</span> Rule of Thumb for VIF</h5>
+<div class="cell">
+<div id="tbl-mlm-vif-rules" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-mlm-vif-rules-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.6: Rule of thumbs on VIF
+</figcaption>
+<div aria-describedby="tbl-mlm-vif-rules-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div id="hztnymghcv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#hztnymghcv table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#hztnymghcv thead, #hztnymghcv tbody, #hztnymghcv tfoot, #hztnymghcv tr, #hztnymghcv td, #hztnymghcv th {
+  border-style: none;
+}
+
+#hztnymghcv p {
+  margin: 0;
+  padding: 0;
+}
+
+#hztnymghcv .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#hztnymghcv .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#hztnymghcv .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#hztnymghcv .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#hztnymghcv .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hztnymghcv .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hztnymghcv .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hztnymghcv .gt_col_heading {
+  color: #333333;
+  background-color: #F0F0F0;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#hztnymghcv .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #F0F0F0;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#hztnymghcv .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#hztnymghcv .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#hztnymghcv .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#hztnymghcv .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#hztnymghcv .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#hztnymghcv .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#hztnymghcv .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#hztnymghcv .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#hztnymghcv .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#hztnymghcv .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hztnymghcv .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#hztnymghcv .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#hztnymghcv .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#hztnymghcv .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hztnymghcv .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#hztnymghcv .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#hztnymghcv .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hztnymghcv .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hztnymghcv .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#hztnymghcv .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hztnymghcv .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#hztnymghcv .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hztnymghcv .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hztnymghcv .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hztnymghcv .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hztnymghcv .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hztnymghcv .gt_left {
+  text-align: left;
+}
+
+#hztnymghcv .gt_center {
+  text-align: center;
+}
+
+#hztnymghcv .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#hztnymghcv .gt_font_normal {
+  font-weight: normal;
+}
+
+#hztnymghcv .gt_font_bold {
+  font-weight: bold;
+}
+
+#hztnymghcv .gt_font_italic {
+  font-style: italic;
+}
+
+#hztnymghcv .gt_super {
+  font-size: 65%;
+}
+
+#hztnymghcv .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#hztnymghcv .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#hztnymghcv .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#hztnymghcv .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#hztnymghcv .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#hztnymghcv .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#hztnymghcv .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#hztnymghcv .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#hztnymghcv div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<td colspan="3" class="gt_heading gt_title gt_font_normal"><strong>Variance Inflation Factor (VIF) Interpretation Guide</strong></td>
+</tr>
+<tr class="gt_heading even">
+<td colspan="3" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Guidelines for assessing multicollinearity in regression models</td>
+</tr>
+<tr class="gt_col_headings header">
+<th id="VIF-Range" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="font-weight: bold" scope="col">VIF Range</th>
+<th id="Interpretation" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="font-weight: bold" scope="col">Interpretation</th>
+<th id="Action" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="font-weight: bold" scope="col">Action</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="VIF Range" style="font-weight: bold">VIF = 1</td>
+<td class="gt_row gt_left" headers="Interpretation">No correlation</td>
+<td class="gt_row gt_left" headers="Action">Ideal scenario.</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="VIF Range" style="font-weight: bold">1 &lt; VIF &lt; 5</td>
+<td class="gt_row gt_left" headers="Interpretation">Moderate correlation</td>
+<td class="gt_row gt_left" headers="Action">Acceptable, but monitor coefficients.</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="VIF Range" style="font-weight: bold">5 ≤ VIF &lt; 10</td>
+<td class="gt_row gt_left" headers="Interpretation">High correlation</td>
+<td class="gt_row gt_left" headers="Action">Consider removing predictors.</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="VIF Range" style="font-weight: bold">VIF ≥ 10</td>
+<td class="gt_row gt_left" headers="Interpretation">Extreme multicollinearity</td>
+<td class="gt_row gt_left" headers="Action">Avoid! Coefficients are unreliable.</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+</section>
+<section id="how-to-fix-the-model" class="level5" data-number="5.2.2.10.5">
+<h5 data-number="5.2.2.10.5" class="anchored" data-anchor-id="how-to-fix-the-model"><span class="header-section-number">5.2.2.10.5</span> How to fix the model</h5>
+<ol type="1">
+<li>Remove one predictor:</li>
+</ol>
+<ul>
+<li>If <code>rpm</code> and <code>feed_rate</code> are almost identical, keep only one.</li>
+</ul>
+<ol start="2" type="1">
+<li>Combine predictors:</li>
+</ol>
+<ul>
+<li>Create a new variable, e.g., <code>speed_feed_ratio = rpm / feed_rate</code>.</li>
+</ul>
+<ol start="3" type="1">
+<li>Design experiments better:</li>
+</ol>
+<ul>
+<li>Use orthogonal arrays to minimize predictor correlation.</li>
+</ul>
+</section>
+<section id="new-variable" class="level5" data-number="5.2.2.10.6">
+<h5 data-number="5.2.2.10.6" class="anchored" data-anchor-id="new-variable"><span class="header-section-number">5.2.2.10.6</span> New variable</h5>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-mlm-added_var" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mlm-added_var-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chapter003_Regression_files/figure-html/fig-mlm-added_var-1.png" class="img-fluid figure-img" style="width:95.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mlm-added_var-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.20: Adding a new variable
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="residuals-1" class="level4" data-number="5.2.2.11">
+<h4 data-number="5.2.2.11" class="anchored" data-anchor-id="residuals-1"><span class="header-section-number">5.2.2.11</span> Residuals</h4>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-mlm-resid-pattern" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-mlm-resid-pattern-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter003_Regression_files/figure-html/fig-mlm-resid-pattern-1.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
+<img src="chapter003_Regression_files/figure-html/fig-mlm-resid-pattern-1.png" class="img-fluid figure-img" style="width:95.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mlm-resid-pattern-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.11: The check for pattern in the residuals
+Figure&nbsp;5.21: The check for pattern in the residuals
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-</div>
-<div class="fragment fade-in-then-out">
+</section>
+<section id="residual-distribution-1" class="level4" data-number="5.2.2.12">
+<h4 data-number="5.2.2.12" class="anchored" data-anchor-id="residual-distribution-1"><span class="header-section-number">5.2.2.12</span> Residual Distribution</h4>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-mlm-resid-nd" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
+<div id="fig-mlm-resid-nd" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-mlm-resid-nd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chapter003_Regression_files/figure-html/fig-mlm-resid-nd-1.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
+<img src="chapter003_Regression_files/figure-html/fig-mlm-resid-nd-1.png" class="img-fluid figure-img" style="width:95.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mlm-resid-nd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.12: The check for normal distribution in the residuals.
+Figure&nbsp;5.22: The check for normal distribution in the residuals.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>In <a href="#fig-mlm-resid-nd" class="quarto-xref">Figure&nbsp;<span>5.12</span></a> the normal distribution of the residuals is confirmed, the model appears to be valid.</p>
-</div>
-</div>
-<div style="page-break-after: always;"></div>
+<p>In <a href="#fig-mlm-resid-nd" class="quarto-xref">Figure&nbsp;<span>5.22</span></a> the normal distribution of the residuals is confirmed, the model appears to be valid.</p>
+</section>
+</section>
 </section>
 <section id="logistic-regression" class="level2" data-number="5.3">
 <h2 data-number="5.3" class="anchored" data-anchor-id="logistic-regression"><span class="header-section-number">5.3</span> Logistic Regression</h2>
@@ -2637,13 +3879,13 @@ Figure&nbsp;5.12: The check for normal distribution in the residuals.
 <img src="chapter003/032_log_reg.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-logreg-basic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.13: The basic idea of logisitic regression.
+Figure&nbsp;5.23: The basic idea of logisitic regression.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Logistic regression is a statistical method designed for binary classification problems (<a href="#fig-logreg-basic" class="quarto-xref">Figure&nbsp;<span>5.13</span></a>). It models the probability that an observation belongs to a particular class using the sigmoid (logistic) function <span class="math inline">\(\eqref{sigmoid}\)</span>. The key steps include:</p>
+<p>Logistic regression is a statistical method designed for binary classification problems (<a href="#fig-logreg-basic" class="quarto-xref">Figure&nbsp;<span>5.23</span></a>). It models the probability that an observation belongs to a particular class using the sigmoid (logistic) function <span class="math inline">\(\eqref{sigmoid}\)</span>. The key steps include:</p>
 <ol type="1">
 <li><strong>Probability Modeling:</strong>
 <ul>
@@ -2705,13 +3947,13 @@ p = \frac{1}{1+e^{-(\beta_0 + \beta_1x)}} \label{sigmoid}
 <img src="chapter003_Regression_files/figure-html/fig-sigmoid-params-1.png" class="img-fluid figure-img" style="width:95.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sigmoid-params-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.14: The influence of different paramters for the sigmoid function
+Figure&nbsp;5.24: The influence of different paramters for the sigmoid function
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>In order to better understand the influencing factors a small parametric study on <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> is given. <a href="#fig-sigmoid-params" class="quarto-xref">Figure&nbsp;<span>5.14</span></a> the sigmoid function <span class="math inline">\(p = \frac{1}{1+e^{-(\beta_0 + \beta_1x)}}\)</span> with <span class="math inline">\(\beta_0=1\)</span> and <span class="math inline">\(\beta_1 = 1\)</span> is shown as a reference. Please note that the <em>linear regression</em> (<span class="math inline">\(\beta_0 + \beta_1x\)</span>) expands the usual <em>sigmoid</em> function which is given by</p>
+<p>In order to better understand the influencing factors a small parametric study on <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> is given. <a href="#fig-sigmoid-params" class="quarto-xref">Figure&nbsp;<span>5.24</span></a> the sigmoid function <span class="math inline">\(p = \frac{1}{1+e^{-(\beta_0 + \beta_1x)}}\)</span> with <span class="math inline">\(\beta_0=1\)</span> and <span class="math inline">\(\beta_1 = 1\)</span> is shown as a reference. Please note that the <em>linear regression</em> (<span class="math inline">\(\beta_0 + \beta_1x\)</span>) expands the usual <em>sigmoid</em> function which is given by</p>
 <p><span class="math display">\[f(x) = \frac{1}{1+e^{-x}}\]</span></p>
 <p>to model it in the <em>intercept</em> and <em>gradient</em> kind of logic.</p>
 <div style="page-break-after: always;"></div>
@@ -2726,13 +3968,13 @@ Figure&nbsp;5.14: The influence of different paramters for the sigmoid function
 <img src="chapter003_Regression_files/figure-html/fig-sigmoid-params02-1.png" class="img-fluid figure-img" style="width:95.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sigmoid-params02-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.15: The influence of different paramters for the sigmoid function
+Figure&nbsp;5.25: The influence of different paramters for the sigmoid function
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>In the first case of the parametric study the <em>gradient</em> parameter is studied by varying it between <span class="math inline">\(0\ldots5\)</span> with <span class="math inline">\(step_{size}=1\)</span>. From <a href="#fig-sigmoid-params02" class="quarto-xref">Figure&nbsp;<span>5.15</span></a> it can be seen, that the <em>linear regression gradient</em> parameters varies the characteristic <em>S</em>-like shape of the sigmoid function. The higher <span class="math inline">\(\beta_1\)</span> is, the more pronounced the <em>S</em>-shape becomes. The reference shape for <span class="math inline">\(\beta_0 = 1\)</span> and <span class="math inline">\(\beta_1 = 1\)</span> is shown in light gray in the figure. An interesting effect is visible for a gradient of <span class="math inline">\(\beta_1 = 0\)</span>: The function becomes a constant which only depends on the <em>intercept</em> (in this case <span class="math inline">\(\beta_0=1\)</span>).</p>
+<p>In the first case of the parametric study the <em>gradient</em> parameter is studied by varying it between <span class="math inline">\(0\ldots5\)</span> with <span class="math inline">\(step_{size}=1\)</span>. From <a href="#fig-sigmoid-params02" class="quarto-xref">Figure&nbsp;<span>5.25</span></a> it can be seen, that the <em>linear regression gradient</em> parameters varies the characteristic <em>S</em>-like shape of the sigmoid function. The higher <span class="math inline">\(\beta_1\)</span> is, the more pronounced the <em>S</em>-shape becomes. The reference shape for <span class="math inline">\(\beta_0 = 1\)</span> and <span class="math inline">\(\beta_1 = 1\)</span> is shown in light gray in the figure. An interesting effect is visible for a gradient of <span class="math inline">\(\beta_1 = 0\)</span>: The function becomes a constant which only depends on the <em>intercept</em> (in this case <span class="math inline">\(\beta_0=1\)</span>).</p>
 <div style="page-break-after: always;"></div>
 </section>
 <section id="beta_0-1-and-beta_1--5-ldots-0" class="level3" data-number="5.3.3">
@@ -2745,13 +3987,13 @@ Figure&nbsp;5.15: The influence of different paramters for the sigmoid function
 <img src="chapter003_Regression_files/figure-html/fig-sigmoid-params03-1.png" class="img-fluid figure-img" style="width:95.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sigmoid-params03-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.16: The influence of different paramters for the sigmoid function
+Figure&nbsp;5.26: The influence of different paramters for the sigmoid function
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>When the parameter study is expanded to negative values of <span class="math inline">\(\beta_1\)</span> (<span class="math inline">\(\beta_1 = -5 \ldots 0\)</span>) the curve is mirrored and reverses its direction (see <a href="#fig-sigmoid-params03" class="quarto-xref">Figure&nbsp;<span>5.16</span></a>), which is also highlighted by the reference shape for <span class="math inline">\(\beta_0 = 1\)</span> and <span class="math inline">\(\beta_1 = 1\)</span> in light gray. The general interpretation for the influence of this parameter is reversed by stays the same: the larger the deviation from <span class="math inline">\(0\)</span> is for <span class="math inline">\(\beta_1\)</span>, the more pronounced the <em>S</em>-like shape becomes.</p>
+<p>When the parameter study is expanded to negative values of <span class="math inline">\(\beta_1\)</span> (<span class="math inline">\(\beta_1 = -5 \ldots 0\)</span>) the curve is mirrored and reverses its direction (see <a href="#fig-sigmoid-params03" class="quarto-xref">Figure&nbsp;<span>5.26</span></a>), which is also highlighted by the reference shape for <span class="math inline">\(\beta_0 = 1\)</span> and <span class="math inline">\(\beta_1 = 1\)</span> in light gray. The general interpretation for the influence of this parameter is reversed by stays the same: the larger the deviation from <span class="math inline">\(0\)</span> is for <span class="math inline">\(\beta_1\)</span>, the more pronounced the <em>S</em>-like shape becomes.</p>
 <div style="page-break-after: always;"></div>
 </section>
 <section id="beta_0-0ldots-5-and-beta_1-1" class="level3" data-number="5.3.4">
@@ -2764,13 +4006,13 @@ Figure&nbsp;5.16: The influence of different paramters for the sigmoid function
 <img src="chapter003_Regression_files/figure-html/fig-sigmoid-params04-1.png" class="img-fluid figure-img" style="width:95.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sigmoid-params04-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.17: The influence of different paramters for the sigmoid function
+Figure&nbsp;5.27: The influence of different paramters for the sigmoid function
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>The second step is to vary the <em>intercept</em> (<span class="math inline">\(\beta_1\)</span>) of the linear regression function that is “hidden” within the sigmoid function. The reference function for <span class="math inline">\(\beta_0 = 1\)</span> and <span class="math inline">\(\beta_1 = 1\)</span> is again shown in light gray in the background in <a href="#fig-sigmoid-params04" class="quarto-xref">Figure&nbsp;<span>5.17</span></a>. It can clearly be seen, that the <em>intercept</em> in a sigmoid-function setting can be used as a kind of offset. Whilst the curve is exactly <span class="math inline">\(0.5\)</span> at <span class="math inline">\(\beta_0 = 0\)</span>, this intersection can be adapted by modeling the intercept. For <span class="math inline">\(\beta_0 &gt; 0\)</span> the intersection point becomes <span class="math inline">\(&gt;0.5\)</span>.</p>
+<p>The second step is to vary the <em>intercept</em> (<span class="math inline">\(\beta_1\)</span>) of the linear regression function that is “hidden” within the sigmoid function. The reference function for <span class="math inline">\(\beta_0 = 1\)</span> and <span class="math inline">\(\beta_1 = 1\)</span> is again shown in light gray in the background in <a href="#fig-sigmoid-params04" class="quarto-xref">Figure&nbsp;<span>5.27</span></a>. It can clearly be seen, that the <em>intercept</em> in a sigmoid-function setting can be used as a kind of offset. Whilst the curve is exactly <span class="math inline">\(0.5\)</span> at <span class="math inline">\(\beta_0 = 0\)</span>, this intersection can be adapted by modeling the intercept. For <span class="math inline">\(\beta_0 &gt; 0\)</span> the intersection point becomes <span class="math inline">\(&gt;0.5\)</span>.</p>
 <div style="page-break-after: always;"></div>
 </section>
 <section id="beta_0--5-ldots-0-and-beta_1-1" class="level3" data-number="5.3.5">
@@ -2783,13 +4025,13 @@ Figure&nbsp;5.17: The influence of different paramters for the sigmoid function
 <img src="chapter003_Regression_files/figure-html/fig-sigmoid-params05-1.png" class="img-fluid figure-img" style="width:95.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sigmoid-params05-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.18: The influence of different paramters for the sigmoid function
+Figure&nbsp;5.28: The influence of different paramters for the sigmoid function
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>The reference function for <span class="math inline">\(\beta_0 = 1\)</span> and <span class="math inline">\(\beta_1 = 1\)</span> is again shown in light gray in the background in <a href="#fig-sigmoid-params05" class="quarto-xref">Figure&nbsp;<span>5.18</span></a>. For an <em>intercept</em> <span class="math inline">\(&lt;0\)</span> the intersection point with the <code>xaxis</code> then offsets the curve in the other direction compared with <a href="#fig-sigmoid-params04" class="quarto-xref">Figure&nbsp;<span>5.17</span></a>. For <span class="math inline">\(\beta_0 &lt; 0\)</span> the intersection point becomes <span class="math inline">\(&lt;0.5\)</span>. In both cases the <em>S</em>-shape like characteristic of the sigmoid function is retained.</p>
+<p>The reference function for <span class="math inline">\(\beta_0 = 1\)</span> and <span class="math inline">\(\beta_1 = 1\)</span> is again shown in light gray in the background in <a href="#fig-sigmoid-params05" class="quarto-xref">Figure&nbsp;<span>5.28</span></a>. For an <em>intercept</em> <span class="math inline">\(&lt;0\)</span> the intersection point with the <code>xaxis</code> then offsets the curve in the other direction compared with <a href="#fig-sigmoid-params04" class="quarto-xref">Figure&nbsp;<span>5.27</span></a>. For <span class="math inline">\(\beta_0 &lt; 0\)</span> the intersection point becomes <span class="math inline">\(&lt;0.5\)</span>. In both cases the <em>S</em>-shape like characteristic of the sigmoid function is retained.</p>
 </section>
 <section id="maximum-likelihood-estimation-mle" class="level3" data-number="5.3.6">
 <h3 data-number="5.3.6" class="anchored" data-anchor-id="maximum-likelihood-estimation-mle"><span class="header-section-number">5.3.6</span> Maximum Likelihood Estimation (MLE)</h3>
@@ -2812,7 +4054,7 @@ Figure&nbsp;5.18: The influence of different paramters for the sigmoid function
 <img src="chapter003/033_mle.png" class="img-fluid figure-img" style="width:85.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.19: The principle of MLE.
+Figure&nbsp;5.29: The principle of MLE.
 </figcaption>
 </figure>
 </div>
@@ -2836,40 +4078,40 @@ Figure&nbsp;5.19: The principle of MLE.
 <img src="chapter003_Regression_files/figure-html/fig-logreg-data-1.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-logreg-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.20: The data for the logistic regression data.
+Figure&nbsp;5.30: The data for the logistic regression data.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>In <a href="#fig-logreg-data" class="quarto-xref">Figure&nbsp;<span>5.20</span></a> the data for the production data. The drive shafts have been rated between <code>PASS</code>and <code>FAIL</code> and the lathing machine feed has been recorded. The question is now, at which feed the drive shafts start to FAIL.</p>
+<p>In <a href="#fig-logreg-data" class="quarto-xref">Figure&nbsp;<span>5.30</span></a> the data for the production data. The drive shafts have been rated between <code>PASS</code>and <code>FAIL</code> and the lathing machine feed has been recorded. The question is now, at which feed the drive shafts start to FAIL.</p>
 </div>
 <div class="fragment fade-in-then-out">
 <div class="cell">
 <div id="tbl-logreg-eda" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-logreg-eda-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;5.5: The overview of the logistic regression data.
+Table&nbsp;5.7: The overview of the logistic regression data.
 </figcaption>
 <div aria-describedby="tbl-logreg-eda-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="tthwxfyapz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#tthwxfyapz table {
+<div id="vqesoscvyo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#vqesoscvyo table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#tthwxfyapz thead, #tthwxfyapz tbody, #tthwxfyapz tfoot, #tthwxfyapz tr, #tthwxfyapz td, #tthwxfyapz th {
+#vqesoscvyo thead, #vqesoscvyo tbody, #vqesoscvyo tfoot, #vqesoscvyo tr, #vqesoscvyo td, #vqesoscvyo th {
   border-style: none;
 }
 
-#tthwxfyapz p {
+#vqesoscvyo p {
   margin: 0;
   padding: 0;
 }
 
-#tthwxfyapz .gt_table {
+#vqesoscvyo .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2895,12 +4137,12 @@ Table&nbsp;5.5: The overview of the logistic regression data.
   border-left-color: #D3D3D3;
 }
 
-#tthwxfyapz .gt_caption {
+#vqesoscvyo .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#tthwxfyapz .gt_title {
+#vqesoscvyo .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2912,7 +4154,7 @@ Table&nbsp;5.5: The overview of the logistic regression data.
   border-bottom-width: 0;
 }
 
-#tthwxfyapz .gt_subtitle {
+#vqesoscvyo .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2924,7 +4166,7 @@ Table&nbsp;5.5: The overview of the logistic regression data.
   border-top-width: 0;
 }
 
-#tthwxfyapz .gt_heading {
+#vqesoscvyo .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2936,13 +4178,13 @@ Table&nbsp;5.5: The overview of the logistic regression data.
   border-right-color: #D3D3D3;
 }
 
-#tthwxfyapz .gt_bottom_border {
+#vqesoscvyo .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#tthwxfyapz .gt_col_headings {
+#vqesoscvyo .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2957,7 +4199,7 @@ Table&nbsp;5.5: The overview of the logistic regression data.
   border-right-color: #D3D3D3;
 }
 
-#tthwxfyapz .gt_col_heading {
+#vqesoscvyo .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2977,7 +4219,7 @@ Table&nbsp;5.5: The overview of the logistic regression data.
   overflow-x: hidden;
 }
 
-#tthwxfyapz .gt_column_spanner_outer {
+#vqesoscvyo .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2989,15 +4231,15 @@ Table&nbsp;5.5: The overview of the logistic regression data.
   padding-right: 4px;
 }
 
-#tthwxfyapz .gt_column_spanner_outer:first-child {
+#vqesoscvyo .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#tthwxfyapz .gt_column_spanner_outer:last-child {
+#vqesoscvyo .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#tthwxfyapz .gt_column_spanner {
+#vqesoscvyo .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -3009,11 +4251,11 @@ Table&nbsp;5.5: The overview of the logistic regression data.
   width: 100%;
 }
 
-#tthwxfyapz .gt_spanner_row {
+#vqesoscvyo .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#tthwxfyapz .gt_group_heading {
+#vqesoscvyo .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3039,7 +4281,7 @@ Table&nbsp;5.5: The overview of the logistic regression data.
   text-align: left;
 }
 
-#tthwxfyapz .gt_empty_group_heading {
+#vqesoscvyo .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3054,15 +4296,15 @@ Table&nbsp;5.5: The overview of the logistic regression data.
   vertical-align: middle;
 }
 
-#tthwxfyapz .gt_from_md > :first-child {
+#vqesoscvyo .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#tthwxfyapz .gt_from_md > :last-child {
+#vqesoscvyo .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#tthwxfyapz .gt_row {
+#vqesoscvyo .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3081,7 +4323,7 @@ Table&nbsp;5.5: The overview of the logistic regression data.
   overflow-x: hidden;
 }
 
-#tthwxfyapz .gt_stub {
+#vqesoscvyo .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3094,7 +4336,7 @@ Table&nbsp;5.5: The overview of the logistic regression data.
   padding-right: 5px;
 }
 
-#tthwxfyapz .gt_stub_row_group {
+#vqesoscvyo .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3108,15 +4350,15 @@ Table&nbsp;5.5: The overview of the logistic regression data.
   vertical-align: top;
 }
 
-#tthwxfyapz .gt_row_group_first td {
+#vqesoscvyo .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#tthwxfyapz .gt_row_group_first th {
+#vqesoscvyo .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#tthwxfyapz .gt_summary_row {
+#vqesoscvyo .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3126,16 +4368,16 @@ Table&nbsp;5.5: The overview of the logistic regression data.
   padding-right: 5px;
 }
 
-#tthwxfyapz .gt_first_summary_row {
+#vqesoscvyo .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#tthwxfyapz .gt_first_summary_row.thick {
+#vqesoscvyo .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#tthwxfyapz .gt_last_summary_row {
+#vqesoscvyo .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3145,7 +4387,7 @@ Table&nbsp;5.5: The overview of the logistic regression data.
   border-bottom-color: #D3D3D3;
 }
 
-#tthwxfyapz .gt_grand_summary_row {
+#vqesoscvyo .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3155,7 +4397,7 @@ Table&nbsp;5.5: The overview of the logistic regression data.
   padding-right: 5px;
 }
 
-#tthwxfyapz .gt_first_grand_summary_row {
+#vqesoscvyo .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3165,7 +4407,7 @@ Table&nbsp;5.5: The overview of the logistic regression data.
   border-top-color: #D3D3D3;
 }
 
-#tthwxfyapz .gt_last_grand_summary_row_top {
+#vqesoscvyo .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3175,11 +4417,11 @@ Table&nbsp;5.5: The overview of the logistic regression data.
   border-bottom-color: #D3D3D3;
 }
 
-#tthwxfyapz .gt_striped {
+#vqesoscvyo .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#tthwxfyapz .gt_table_body {
+#vqesoscvyo .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3188,7 +4430,7 @@ Table&nbsp;5.5: The overview of the logistic regression data.
   border-bottom-color: #D3D3D3;
 }
 
-#tthwxfyapz .gt_footnotes {
+#vqesoscvyo .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3202,7 +4444,7 @@ Table&nbsp;5.5: The overview of the logistic regression data.
   border-right-color: #D3D3D3;
 }
 
-#tthwxfyapz .gt_footnote {
+#vqesoscvyo .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -3211,7 +4453,7 @@ Table&nbsp;5.5: The overview of the logistic regression data.
   padding-right: 5px;
 }
 
-#tthwxfyapz .gt_sourcenotes {
+#vqesoscvyo .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3225,7 +4467,7 @@ Table&nbsp;5.5: The overview of the logistic regression data.
   border-right-color: #D3D3D3;
 }
 
-#tthwxfyapz .gt_sourcenote {
+#vqesoscvyo .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -3233,72 +4475,72 @@ Table&nbsp;5.5: The overview of the logistic regression data.
   padding-right: 5px;
 }
 
-#tthwxfyapz .gt_left {
+#vqesoscvyo .gt_left {
   text-align: left;
 }
 
-#tthwxfyapz .gt_center {
+#vqesoscvyo .gt_center {
   text-align: center;
 }
 
-#tthwxfyapz .gt_right {
+#vqesoscvyo .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#tthwxfyapz .gt_font_normal {
+#vqesoscvyo .gt_font_normal {
   font-weight: normal;
 }
 
-#tthwxfyapz .gt_font_bold {
+#vqesoscvyo .gt_font_bold {
   font-weight: bold;
 }
 
-#tthwxfyapz .gt_font_italic {
+#vqesoscvyo .gt_font_italic {
   font-style: italic;
 }
 
-#tthwxfyapz .gt_super {
+#vqesoscvyo .gt_super {
   font-size: 65%;
 }
 
-#tthwxfyapz .gt_footnote_marks {
+#vqesoscvyo .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#tthwxfyapz .gt_asterisk {
+#vqesoscvyo .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#tthwxfyapz .gt_indent_1 {
+#vqesoscvyo .gt_indent_1 {
   text-indent: 5px;
 }
 
-#tthwxfyapz .gt_indent_2 {
+#vqesoscvyo .gt_indent_2 {
   text-indent: 10px;
 }
 
-#tthwxfyapz .gt_indent_3 {
+#vqesoscvyo .gt_indent_3 {
   text-indent: 15px;
 }
 
-#tthwxfyapz .gt_indent_4 {
+#vqesoscvyo .gt_indent_4 {
   text-indent: 20px;
 }
 
-#tthwxfyapz .gt_indent_5 {
+#vqesoscvyo .gt_indent_5 {
   text-indent: 25px;
 }
 
-#tthwxfyapz .katex-display {
+#vqesoscvyo .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#tthwxfyapz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#vqesoscvyo div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -3346,34 +4588,34 @@ Table&nbsp;5.5: The overview of the logistic regression data.
 </figure>
 </div>
 </div>
-<p><a href="#tbl-logreg-eda" class="quarto-xref">Table&nbsp;<span>5.5</span></a> shows an overview of the logistic regression data. <code>PASS</code> and <code>FAIL</code> are fairly similar distributed.</p>
+<p><a href="#tbl-logreg-eda" class="quarto-xref">Table&nbsp;<span>5.7</span></a> shows an overview of the logistic regression data. <code>PASS</code> and <code>FAIL</code> are fairly similar distributed.</p>
 </div>
 <div class="fragment fade-in-then-out">
 <div class="cell">
 <div id="tbl-logreg-mdl" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-logreg-mdl-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;5.6: The modeling of the logisitic regression data.
+Table&nbsp;5.8: The modeling of the logisitic regression data.
 </figcaption>
 <div aria-describedby="tbl-logreg-mdl-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="cjvmioecmu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#cjvmioecmu table {
+<div id="evvnlvxnmt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#evvnlvxnmt table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#cjvmioecmu thead, #cjvmioecmu tbody, #cjvmioecmu tfoot, #cjvmioecmu tr, #cjvmioecmu td, #cjvmioecmu th {
+#evvnlvxnmt thead, #evvnlvxnmt tbody, #evvnlvxnmt tfoot, #evvnlvxnmt tr, #evvnlvxnmt td, #evvnlvxnmt th {
   border-style: none;
 }
 
-#cjvmioecmu p {
+#evvnlvxnmt p {
   margin: 0;
   padding: 0;
 }
 
-#cjvmioecmu .gt_table {
+#evvnlvxnmt .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -3399,12 +4641,12 @@ Table&nbsp;5.6: The modeling of the logisitic regression data.
   border-left-color: #D3D3D3;
 }
 
-#cjvmioecmu .gt_caption {
+#evvnlvxnmt .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#cjvmioecmu .gt_title {
+#evvnlvxnmt .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -3416,7 +4658,7 @@ Table&nbsp;5.6: The modeling of the logisitic regression data.
   border-bottom-width: 0;
 }
 
-#cjvmioecmu .gt_subtitle {
+#evvnlvxnmt .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -3428,7 +4670,7 @@ Table&nbsp;5.6: The modeling of the logisitic regression data.
   border-top-width: 0;
 }
 
-#cjvmioecmu .gt_heading {
+#evvnlvxnmt .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -3440,13 +4682,13 @@ Table&nbsp;5.6: The modeling of the logisitic regression data.
   border-right-color: #D3D3D3;
 }
 
-#cjvmioecmu .gt_bottom_border {
+#evvnlvxnmt .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#cjvmioecmu .gt_col_headings {
+#evvnlvxnmt .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3461,7 +4703,7 @@ Table&nbsp;5.6: The modeling of the logisitic regression data.
   border-right-color: #D3D3D3;
 }
 
-#cjvmioecmu .gt_col_heading {
+#evvnlvxnmt .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3481,7 +4723,7 @@ Table&nbsp;5.6: The modeling of the logisitic regression data.
   overflow-x: hidden;
 }
 
-#cjvmioecmu .gt_column_spanner_outer {
+#evvnlvxnmt .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3493,15 +4735,15 @@ Table&nbsp;5.6: The modeling of the logisitic regression data.
   padding-right: 4px;
 }
 
-#cjvmioecmu .gt_column_spanner_outer:first-child {
+#evvnlvxnmt .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#cjvmioecmu .gt_column_spanner_outer:last-child {
+#evvnlvxnmt .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#cjvmioecmu .gt_column_spanner {
+#evvnlvxnmt .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -3513,11 +4755,11 @@ Table&nbsp;5.6: The modeling of the logisitic regression data.
   width: 100%;
 }
 
-#cjvmioecmu .gt_spanner_row {
+#evvnlvxnmt .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#cjvmioecmu .gt_group_heading {
+#evvnlvxnmt .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3543,7 +4785,7 @@ Table&nbsp;5.6: The modeling of the logisitic regression data.
   text-align: left;
 }
 
-#cjvmioecmu .gt_empty_group_heading {
+#evvnlvxnmt .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3558,15 +4800,15 @@ Table&nbsp;5.6: The modeling of the logisitic regression data.
   vertical-align: middle;
 }
 
-#cjvmioecmu .gt_from_md > :first-child {
+#evvnlvxnmt .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#cjvmioecmu .gt_from_md > :last-child {
+#evvnlvxnmt .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#cjvmioecmu .gt_row {
+#evvnlvxnmt .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3585,7 +4827,7 @@ Table&nbsp;5.6: The modeling of the logisitic regression data.
   overflow-x: hidden;
 }
 
-#cjvmioecmu .gt_stub {
+#evvnlvxnmt .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3598,7 +4840,7 @@ Table&nbsp;5.6: The modeling of the logisitic regression data.
   padding-right: 5px;
 }
 
-#cjvmioecmu .gt_stub_row_group {
+#evvnlvxnmt .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3612,15 +4854,15 @@ Table&nbsp;5.6: The modeling of the logisitic regression data.
   vertical-align: top;
 }
 
-#cjvmioecmu .gt_row_group_first td {
+#evvnlvxnmt .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#cjvmioecmu .gt_row_group_first th {
+#evvnlvxnmt .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#cjvmioecmu .gt_summary_row {
+#evvnlvxnmt .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3630,16 +4872,16 @@ Table&nbsp;5.6: The modeling of the logisitic regression data.
   padding-right: 5px;
 }
 
-#cjvmioecmu .gt_first_summary_row {
+#evvnlvxnmt .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#cjvmioecmu .gt_first_summary_row.thick {
+#evvnlvxnmt .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#cjvmioecmu .gt_last_summary_row {
+#evvnlvxnmt .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3649,7 +4891,7 @@ Table&nbsp;5.6: The modeling of the logisitic regression data.
   border-bottom-color: #D3D3D3;
 }
 
-#cjvmioecmu .gt_grand_summary_row {
+#evvnlvxnmt .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3659,7 +4901,7 @@ Table&nbsp;5.6: The modeling of the logisitic regression data.
   padding-right: 5px;
 }
 
-#cjvmioecmu .gt_first_grand_summary_row {
+#evvnlvxnmt .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3669,7 +4911,7 @@ Table&nbsp;5.6: The modeling of the logisitic regression data.
   border-top-color: #D3D3D3;
 }
 
-#cjvmioecmu .gt_last_grand_summary_row_top {
+#evvnlvxnmt .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3679,11 +4921,11 @@ Table&nbsp;5.6: The modeling of the logisitic regression data.
   border-bottom-color: #D3D3D3;
 }
 
-#cjvmioecmu .gt_striped {
+#evvnlvxnmt .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#cjvmioecmu .gt_table_body {
+#evvnlvxnmt .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3692,7 +4934,7 @@ Table&nbsp;5.6: The modeling of the logisitic regression data.
   border-bottom-color: #D3D3D3;
 }
 
-#cjvmioecmu .gt_footnotes {
+#evvnlvxnmt .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3706,7 +4948,7 @@ Table&nbsp;5.6: The modeling of the logisitic regression data.
   border-right-color: #D3D3D3;
 }
 
-#cjvmioecmu .gt_footnote {
+#evvnlvxnmt .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -3715,7 +4957,7 @@ Table&nbsp;5.6: The modeling of the logisitic regression data.
   padding-right: 5px;
 }
 
-#cjvmioecmu .gt_sourcenotes {
+#evvnlvxnmt .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3729,7 +4971,7 @@ Table&nbsp;5.6: The modeling of the logisitic regression data.
   border-right-color: #D3D3D3;
 }
 
-#cjvmioecmu .gt_sourcenote {
+#evvnlvxnmt .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -3737,72 +4979,72 @@ Table&nbsp;5.6: The modeling of the logisitic regression data.
   padding-right: 5px;
 }
 
-#cjvmioecmu .gt_left {
+#evvnlvxnmt .gt_left {
   text-align: left;
 }
 
-#cjvmioecmu .gt_center {
+#evvnlvxnmt .gt_center {
   text-align: center;
 }
 
-#cjvmioecmu .gt_right {
+#evvnlvxnmt .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#cjvmioecmu .gt_font_normal {
+#evvnlvxnmt .gt_font_normal {
   font-weight: normal;
 }
 
-#cjvmioecmu .gt_font_bold {
+#evvnlvxnmt .gt_font_bold {
   font-weight: bold;
 }
 
-#cjvmioecmu .gt_font_italic {
+#evvnlvxnmt .gt_font_italic {
   font-style: italic;
 }
 
-#cjvmioecmu .gt_super {
+#evvnlvxnmt .gt_super {
   font-size: 65%;
 }
 
-#cjvmioecmu .gt_footnote_marks {
+#evvnlvxnmt .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#cjvmioecmu .gt_asterisk {
+#evvnlvxnmt .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#cjvmioecmu .gt_indent_1 {
+#evvnlvxnmt .gt_indent_1 {
   text-indent: 5px;
 }
 
-#cjvmioecmu .gt_indent_2 {
+#evvnlvxnmt .gt_indent_2 {
   text-indent: 10px;
 }
 
-#cjvmioecmu .gt_indent_3 {
+#evvnlvxnmt .gt_indent_3 {
   text-indent: 15px;
 }
 
-#cjvmioecmu .gt_indent_4 {
+#evvnlvxnmt .gt_indent_4 {
   text-indent: 20px;
 }
 
-#cjvmioecmu .gt_indent_5 {
+#evvnlvxnmt .gt_indent_5 {
   text-indent: 25px;
 }
 
-#cjvmioecmu .katex-display {
+#evvnlvxnmt .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#cjvmioecmu div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#evvnlvxnmt div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -3837,7 +5079,7 @@ Table&nbsp;5.6: The modeling of the logisitic regression data.
 </figure>
 </div>
 </div>
-<p>The model coefficients are shown in <a href="#tbl-logreg-mdl" class="quarto-xref">Table&nbsp;<span>5.6</span></a>. Translated in equation <span class="math inline">\(\eqref{logregor}\)</span> and <span class="math inline">\(\eqref{logrege}\)</span> we can see, what has been computed.</p>
+<p>The model coefficients are shown in <a href="#tbl-logreg-mdl" class="quarto-xref">Table&nbsp;<span>5.8</span></a>. Translated in equation <span class="math inline">\(\eqref{logregor}\)</span> and <span class="math inline">\(\eqref{logrege}\)</span> we can see, what has been computed.</p>
 <p><span class="math display">\[\begin{align}
 \log(\frac{P}{1-P}) &amp;= -9.17 + 0.46x \label{logregor} \\
 \frac{P}{1-P} &amp;= e^{-9.17 + 0.46x} \label{logrege}
@@ -3853,17 +5095,17 @@ Table&nbsp;5.6: The modeling of the logisitic regression data.
 <img src="chapter003_Regression_files/figure-html/fig-logreg-mdl-1.png" class="img-fluid figure-img" style="width:75.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-logreg-mdl-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.21: The probability (odds) for a drive shaft being PASS or FAIL for a given feed
+Figure&nbsp;5.31: The probability (odds) for a drive shaft being PASS or FAIL for a given feed
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p><a href="#fig-logreg-mdl" class="quarto-xref">Figure&nbsp;<span>5.21</span></a> shows the probability for a drive shaft <code>PASS</code> or <code>FAIL</code> for a given feed as well as the confidence interval of the odds ratio for any given feed. For example the probability for <code>PASS</code> at a <code>feed</code> of 20 is <span class="math inline">\(49 \%\)</span> with a confidence interval of <span class="math inline">\(44\%\)</span> to <span class="math inline">\(54\%\)</span>.</p>
+<p><a href="#fig-logreg-mdl" class="quarto-xref">Figure&nbsp;<span>5.31</span></a> shows the probability for a drive shaft <code>PASS</code> or <code>FAIL</code> for a given feed as well as the confidence interval of the odds ratio for any given feed. For example the probability for <code>PASS</code> at a <code>feed</code> of 20 is <span class="math inline">\(49 \%\)</span> with a confidence interval of <span class="math inline">\(44\%\)</span> to <span class="math inline">\(54\%\)</span>.</p>
 </div>
 </div>
-<section id="residuals-1" class="level5" data-number="5.3.7.0.1">
-<h5 data-number="5.3.7.0.1" class="anchored" data-anchor-id="residuals-1"><span class="header-section-number">5.3.7.0.1</span> residuals</h5>
+<section id="residuals-2" class="level5" data-number="5.3.7.0.1">
+<h5 data-number="5.3.7.0.1" class="anchored" data-anchor-id="residuals-2"><span class="header-section-number">5.3.7.0.1</span> residuals</h5>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-logreg-qq" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H">
@@ -3872,7 +5114,7 @@ Figure&nbsp;5.21: The probability (odds) for a drive shaft being PASS or FAIL fo
 <img src="chapter003_Regression_files/figure-html/fig-logreg-qq-1.png" class="img-fluid figure-img" style="width:85.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-logreg-qq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.22: Are the residuals of the model normally distributed?
+Figure&nbsp;5.32: Are the residuals of the model normally distributed?
 </figcaption>
 </figure>
 </div>
@@ -3899,7 +5141,7 @@ R^2 = 1- \frac{\log(L_{model})}{\log(L_{null})} \label{mcfadden} = 0.1198876
 <img src="chapter003/conmat.png" class="img-fluid figure-img" style="width:50.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sngl-conmat-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.23: A confusion matrix
+Figure&nbsp;5.33: A confusion matrix
 </figcaption>
 </figure>
 </div>
@@ -4038,13 +5280,13 @@ The ratio of true positive instances to the total actual positive instances.
 <img src="chapter003_Regression_files/figure-html/fig-glm-conmat05-1.png" class="img-fluid figure-img" style="width:95.0%" data-fig-pos="H">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-glm-conmat05-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.24: Confusion matrices at different probability thresholds
+Figure&nbsp;5.34: Confusion matrices at different probability thresholds
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p><a href="#fig-glm-conmat05" class="quarto-xref">Figure&nbsp;<span>5.24</span></a> shows three different confusion matrices at different probability threshold for the logistic regression model and the respective <a href="#TP">True Positive</a>, <a href="#FP">False Positive</a>, <a href="#TN">True Negative</a> and <a href="#FN">False Negative</a> rates. On the <code>x-axis</code> the reference is depicted and the <em>true</em> classes, being <span class="math inline">\(0\)</span> for <code>FAIL</code> and <span class="math inline">\(1\)</span> for <code>PASS</code> parts. The <code>y-axis</code> shows the prediction of the respective model with the classes again being <span class="math inline">\(0\)</span> for <code>FAIL</code> and <span class="math inline">\(1\)</span> for <code>PASS</code>. The <em>probability threshold</em> <span class="math inline">\(P = 0.3 \ldots 0.7\)</span> is the classification threshold of the model. The logistic regression model computes a <em>Probability</em> based on the <em>Predictor</em> variable (<code>feed</code>). This threshold then classifies the product as <code>pass</code> or <code>fail</code></p>
+<p><a href="#fig-glm-conmat05" class="quarto-xref">Figure&nbsp;<span>5.34</span></a> shows three different confusion matrices at different probability threshold for the logistic regression model and the respective <a href="#TP">True Positive</a>, <a href="#FP">False Positive</a>, <a href="#TN">True Negative</a> and <a href="#FN">False Negative</a> rates. On the <code>x-axis</code> the reference is depicted and the <em>true</em> classes, being <span class="math inline">\(0\)</span> for <code>FAIL</code> and <span class="math inline">\(1\)</span> for <code>PASS</code> parts. The <code>y-axis</code> shows the prediction of the respective model with the classes again being <span class="math inline">\(0\)</span> for <code>FAIL</code> and <span class="math inline">\(1\)</span> for <code>PASS</code>. The <em>probability threshold</em> <span class="math inline">\(P = 0.3 \ldots 0.7\)</span> is the classification threshold of the model. The logistic regression model computes a <em>Probability</em> based on the <em>Predictor</em> variable (<code>feed</code>). This threshold then classifies the product as <code>pass</code> or <code>fail</code></p>
 </section>
 <section id="accuracy-correct-classification-rate-proportion-of-correct-predictions" class="level4" data-number="5.3.7.4">
 <h4 data-number="5.3.7.4" class="anchored" data-anchor-id="accuracy-correct-classification-rate-proportion-of-correct-predictions"><span class="header-section-number">5.3.7.4</span> Accuracy, correct classification rate, proportion of correct predictions</h4>
@@ -4052,7 +5294,7 @@ Figure&nbsp;5.24: Confusion matrices at different probability thresholds
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="chapter003_Regression_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img"></p>
+<p><img src="chapter003_Regression_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -4064,7 +5306,7 @@ Figure&nbsp;5.24: Confusion matrices at different probability thresholds
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="chapter003_Regression_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img"></p>
+<p><img src="chapter003_Regression_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -4076,7 +5318,7 @@ Figure&nbsp;5.24: Confusion matrices at different probability thresholds
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="chapter003_Regression_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img"></p>
+<p><img src="chapter003_Regression_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -4088,7 +5330,7 @@ Figure&nbsp;5.24: Confusion matrices at different probability thresholds
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="chapter003_Regression_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img"></p>
+<p><img src="chapter003_Regression_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -4100,7 +5342,7 @@ Figure&nbsp;5.24: Confusion matrices at different probability thresholds
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="chapter003_Regression_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img"></p>
+<p><img src="chapter003_Regression_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -4112,7 +5354,7 @@ Figure&nbsp;5.24: Confusion matrices at different probability thresholds
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="chapter003_Regression_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img"></p>
+<p><img src="chapter003_Regression_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -4124,7 +5366,7 @@ Figure&nbsp;5.24: Confusion matrices at different probability thresholds
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="chapter003_Regression_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img"></p>
+<p><img src="chapter003_Regression_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>

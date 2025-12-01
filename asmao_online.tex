@@ -420,6 +420,14 @@ Cumulative Density Function
 Confidence Interval
 \item[\phantomsection\label{acronyms_CLT}{CLT}]
 Central Limit Theorem
+\item[\phantomsection\label{acronyms_CoD}{CoD}]
+Coefficient of Determination
+\item[\phantomsection\label{acronyms_DoE}{DoE}]
+Design of Experiments
+\item[\phantomsection\label{acronyms_ECDF}{ECDF}]
+Empirical Cumulative Density Function
+\item[\phantomsection\label{acronyms_EDA}{EDA}]
+Explorative Data Analysis
 \item[\phantomsection\label{acronyms_H0}{H0}]
 Null-Hypothesis
 \item[\phantomsection\label{acronyms_Ha}{Ha}]
@@ -440,6 +448,14 @@ Parameter of Interest
 Quality Control
 \item[\phantomsection\label{acronyms_SE}{SE}]
 Standard Error
+\item[\phantomsection\label{acronyms_SSE}{SSE}]
+Error Sum of Squares
+\item[\phantomsection\label{acronyms_SSR}{SSR}]
+Regression Sum of Squares
+\item[\phantomsection\label{acronyms_SST}{SST}]
+Total Sum of Squares
+\item[\phantomsection\label{acronyms_VIF}{VIF}]
+Variance Inflation Factor
 \item[\phantomsection\label{acronyms_Z}{Z}]
 Standard Score / Z-Score
 \item[\phantomsection\label{acronyms_cl}{cl}]
@@ -595,7 +611,7 @@ Variance\end{minipage}%
 
 \chapter{Basic Concepts}\label{basic-concepts}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 {\centering \includegraphics[width=3.5in,height=\textheight,keepaspectratio]{chapter000/000_basics_root.png}
 
@@ -771,7 +787,7 @@ Consider rolling a fair six-sided die.
   (Figure~\ref{fig-prob})
 \end{itemize}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -835,7 +851,7 @@ many times, tend to follow a normal distribution. This distribution is
 commonly observed in various natural phenomena and is essential in
 statistical analysis.
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -909,7 +925,7 @@ P(k) = \frac{n!}{k!(n-k)!}(\frac{1}{2})^n
 \section{\texorpdfstring{\hyperref[acronyms_CLT]{Central Limit Theorem
 (CLT)}}{Central Limit Theorem (CLT)}}\label{section}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -982,7 +998,7 @@ stability of random processes over a large number of observations.
 
 \section{Population}\label{population}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 {\centering \includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{chapter000/002_Population.png}
 
@@ -1006,7 +1022,7 @@ populations \emph{true mean} is depicted with
 
 \section{Sample}\label{sample}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 {\centering \includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{chapter000/003_Sample.png}
 
@@ -1043,7 +1059,7 @@ measures used in descriptive statistics include:
 \subsection{Example Data: The drive shaft
 exercise}\label{example-data-the-drive-shaft-exercise}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -1055,7 +1071,7 @@ exercise}\label{example-data-the-drive-shaft-exercise}
 
 \end{figure}%
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -1098,7 +1114,7 @@ include:
   over time, especially in time-series data or longitudinal studies.
 \end{itemize}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -1111,7 +1127,7 @@ sample index vs.~variable value}
 
 \end{figure}%
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -1126,7 +1142,7 @@ plot of sample index vs.~variable value}
 
 \subsubsection{Mean}\label{mean}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -1150,7 +1166,7 @@ plot of sample index vs.~variable value}
 
 \subsubsection{Median}\label{median}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -1177,7 +1193,7 @@ x_{\left(\frac{n+1}{2}\right)} & \text{if } n \text{ is odd} \\
 
 \subsection{Measures of Spread}\label{measures-of-spread}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -1222,7 +1238,7 @@ from each other and from the central tendency.
 
 \subsubsection{Range}\label{range}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -1243,7 +1259,7 @@ sample
 
 \subsubsection{Variance}\label{variance}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -1282,7 +1298,7 @@ It is the \textbf{expected squared deviation} from the mean.
 \text{sample: } sd &= \sqrt{\frac{1}{n-1} \sum_{i=1}^{n} (x_i - \bar{x})^2}
 \end{align}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -1342,7 +1358,7 @@ estimate
 \paragraph{Bessel's correction with increasing sample
 size}\label{bessels-correction-with-increasing-sample-size}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -1376,7 +1392,7 @@ with increasing sample size.}
   \end{itemize}
 \end{itemize}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -1391,7 +1407,7 @@ percentiles, quantiles}
 
 \subsection{Histogram}\label{histogram}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -1422,7 +1438,7 @@ between visibility and readability.
 
 \subsection{Density plot}\label{density-plot}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -1491,7 +1507,7 @@ valuable tool in data analysis and visualization.
 \subsection{Average, Standard deviation and
 Range}\label{average-standard-deviation-and-range}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -1552,7 +1568,7 @@ to maximum in a dataset.
 
 \subsection{Boxplots}\label{boxplots}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -1585,7 +1601,7 @@ as the \hyperref[acronyms_IQR]{Interquartile Range (IQR)}.
 \subsection{Mean and standard deviation
 plots}\label{mean-and-standard-deviation-plots}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -1608,7 +1624,7 @@ same logic as for the boxplots (\texttt{x-axis-data},
 
 \subsection{Half-half plots}\label{half-half-plots}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -1634,7 +1650,7 @@ visible clue about the sample size in the data size. Note that the
 
 \subsection{Ridgeline plots}\label{ridgeline-plots}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -1659,7 +1675,7 @@ Charts''} (2022).
 
 \subsection{Introduction}\label{introduction}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -1725,7 +1741,7 @@ rest of this lecture.
 
 \subsection{Visualizing all the Data}\label{visualizing-all-the-data}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \begin{minipage}{0.50\linewidth}
 
@@ -1799,7 +1815,7 @@ possibility further.
 \subsection{Visualizing groups within the
 data}\label{visualizing-groups-within-the-data}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \begin{minipage}{0.50\linewidth}
 
@@ -1903,7 +1919,7 @@ limit is also shown in the plot as vertical lines.
 
 Distributions are \emph{models} of the \emph{reality}.
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -1998,7 +2014,7 @@ types.}
 
 \subsection{Nominal Data}\label{nominal-data}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -2019,7 +2035,7 @@ or subtraction do not make sense in this context.
 
 \subsection{Ordinal Data}\label{ordinal-data}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -2042,7 +2058,7 @@ measurable.
 
 \subsection{Discrete Data}\label{discrete-data}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -2070,7 +2086,7 @@ practically observable. \ldots{}''
 
 \subsection{Continous Data}\label{continous-data}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -2103,7 +2119,7 @@ Every outcome is \textbf{equally} likely
 
 \subsection{Dice}\label{dice}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -2116,7 +2132,7 @@ during a roll is uniformly distributed.}
 
 \end{figure}%
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -2156,7 +2172,7 @@ X \sim \mathrm{Uniform}\{a,a+1,\ldots,b\} \text{ discrete}
 \subsection{Visual comparison of discrete and
 continuous}\label{visual-comparison-of-discrete-and-continuous}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -2381,7 +2397,7 @@ to get a specific outcome?
   repeat for 2-4 students
 \end{itemize}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -2394,7 +2410,7 @@ to get a specific outcome?
 
 \end{figure}%
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -2408,7 +2424,7 @@ to get a specific outcome?
 
 \subsection{Theory}\label{theory}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -2480,7 +2496,7 @@ models the number of successes in a fixed number of Bernoulli trials.
   each trial is independent
 \end{itemize}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -2575,7 +2591,7 @@ any single drive shaft being defective is \(0.05 (5\%)\). You want to
 find the probability of having a certain number of defective drive
 shafts in this batch.
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -2590,7 +2606,7 @@ exercise.}
 
 \section{The Normal Distribution}\label{the-normal-distribution}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -2641,7 +2657,7 @@ nature and society.
   \(\text{Number of paths to } k = \binom{n}{(n + k)/2}\)
 \end{itemize}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -2665,7 +2681,7 @@ curve}\label{approximation-with-a-smooth-curve}
   approximation}
 \end{itemize}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -2732,7 +2748,7 @@ approximated using a continous curve}
 
 \subsubsection{Parameter influence}\label{parameter-influence}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -2749,7 +2765,7 @@ parameters}
 
 \(P\) for crossing a line?
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -2764,7 +2780,7 @@ Buffon Needle Problem.}
 
 \subsubsection{Sample Size}\label{sample-size}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -2829,7 +2845,7 @@ symmetric regions.
 
 \section{Z - Standardization}\label{z---standardization}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -2892,7 +2908,7 @@ the same probability applies. Thus, the datapoints are comparable.
 \subsection{Comparison of standardized
 data}\label{comparison-of-standardized-data}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -3037,7 +3053,7 @@ Which is the \hyperref[acronyms_PDF]{PDF}
 \subsection{The drive shaft exercise - Normal
 Distribution}\label{the-drive-shaft-exercise---normal-distribution}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -3057,7 +3073,7 @@ is normally distributed, is a different question.
 
 \section{\texorpdfstring{\hyperref[acronyms_PDF]{PDF}}{PDF}}\label{section-3}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -3103,7 +3119,7 @@ over that interval.
 \varphi(x) = \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{1}{2}(\frac{x-\mu}{\sigma})^2}
 \end{align}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -3119,7 +3135,7 @@ normal distribution}
 \section{\texorpdfstring{\hyperref[acronyms_CDF]{Cumulative Density
 Function (CDF)}}{Cumulative Density Function (CDF)}}\label{section-4}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -3170,7 +3186,7 @@ z &= \frac{x-\mu}{\sigma} \nonumber \\
 \lim_{x\to - \infty} \phi(x) &= 0 \nonumber
 \end{align}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -3185,7 +3201,7 @@ the normal distribution.}
 
 \section{Likelihood and Probability}\label{likelihood-and-probability}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -3446,7 +3462,7 @@ with data and conducting statistical investigations.
 
 \subsection{A random variable}\label{a-random-variable}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -3460,7 +3476,7 @@ with data and conducting statistical investigations.
 
 \subsection{That is squared}\label{that-is-squared}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -3505,7 +3521,7 @@ Applications}{Chi2 Applications}}\label{chi2-applications}
 \subsection{\texorpdfstring{Chi\textsuperscript{2} The pdf and
 dof}{Chi2 The pdf and dof}}\label{chi2-the-pdf-and-dof}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -3571,7 +3587,7 @@ solution}\label{prerequisites-and-solution}
 Chi\textsuperscript{2}
 Distribution}{The drive shaft exercise - Chi2 Distribution}}\label{the-drive-shaft-exercise---chi2-distribution}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -3593,7 +3609,7 @@ to the theorectial.
 
 \section{t - Distribution}\label{t---distribution}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -3751,7 +3767,7 @@ with an independent \(\chi^2\) random variable
 
 \subsubsection{The Distribution}\label{the-distribution}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -3892,7 +3908,7 @@ the distribution on the bottom follow a \emph{t-distribution}. With
 very small, further showcasing the use of the \emph{t-distribution}
 (also see Figure~\ref{fig-t-dist} for comparison).
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -3945,7 +3961,7 @@ scores of students taught using different teaching methods.
   coefficients of the model are equal to zero.
 \end{enumerate}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -4127,7 +4143,7 @@ interconnected in several different ways.}
 
 \section{Weibull - Distribution}\label{weibull---distribution}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -4199,7 +4215,7 @@ schedules.
   Examples: time users spend on web pages, time until a product fails
 \end{itemize}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -4240,7 +4256,7 @@ f_X(x; \lambda, \beta) = \left\{ \begin{array}{cl}
   \end{itemize}
 \end{itemize}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -4290,7 +4306,7 @@ overlayed with an empirical density plot as a solid line, as well as the
 theoretical distribution as a dotted line (Luckily, we know the
 distribution parameters).
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -4371,7 +4387,7 @@ shape (Figure~\ref{fig-pois}). When \(\lambda\) is large, the
 distribution becomes increasingly similar to a normal
 distribution(Figure~\ref{fig-pois}).
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -4392,7 +4408,7 @@ distribution(Figure~\ref{fig-pois}).
 
 \subsection{Standard Error}\label{standard-error}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \begin{minipage}{0.50\linewidth}
 
@@ -4662,7 +4678,7 @@ Gender &  \\
 
 \subsubsection{Histogram}\label{histogram-1}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -4676,7 +4692,7 @@ Gender &  \\
 
 \subsubsection{Classroom Age}\label{classroom-age}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -4691,7 +4707,7 @@ Gender &  \\
 
 \subsubsection{Classroom Gender}\label{classroom-gender}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -4739,7 +4755,7 @@ population & 30.40 & 4.18 \\
 
 \subsubsection{\texorpdfstring{\(n = 5\)}{n = 5}}\label{n-5}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -4754,7 +4770,7 @@ population & 30.40 & 4.18 \\
 
 \subsubsection{\texorpdfstring{\(n = 10\)}{n = 10}}\label{n-10}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -4769,7 +4785,7 @@ population & 30.40 & 4.18 \\
 
 \subsubsection{\texorpdfstring{\(n = 15\)}{n = 15}}\label{n-15}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -4784,7 +4800,7 @@ population & 30.40 & 4.18 \\
 
 \subsubsection{\texorpdfstring{\(n = 20\)}{n = 20}}\label{n-20}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -4799,7 +4815,7 @@ population & 30.40 & 4.18 \\
 
 \subsubsection{Data}\label{data}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -4813,7 +4829,7 @@ population & 30.40 & 4.18 \\
 
 \subsubsection{Mean Comparison}\label{mean-comparison}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -4828,7 +4844,7 @@ different sample sizes}
 
 \subsubsection{SD Comparison}\label{sd-comparison}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -4871,7 +4887,7 @@ population & 30.40 & 4.18 \\
 
 \subsubsection{\texorpdfstring{\(k = 8\)}{k = 8}}\label{k-8}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -4886,7 +4902,7 @@ and every 8th sample}
 
 \subsubsection{\texorpdfstring{\(k = 5\)}{k = 5}}\label{k-5}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -4901,7 +4917,7 @@ and every 5th sample}
 
 \subsubsection{\texorpdfstring{\(k = 2\)}{k = 2}}\label{k-2}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -4916,7 +4932,7 @@ and every 2nd sample}
 
 \subsubsection{Data}\label{data-1}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -4930,7 +4946,7 @@ and every 2nd sample}
 
 \subsubsection{Mean Comparison}\label{mean-comparison-1}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -4945,7 +4961,7 @@ at different sampling intervals}
 
 \subsubsection{SD Comparison}\label{sd-comparison-1}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -4965,7 +4981,7 @@ population)
 
 \subsubsection{\texorpdfstring{\(\text{proportion} = 12\% \rightarrow n = 5\)}{\textbackslash text\{proportion\} = 12\textbackslash\% \textbackslash rightarrow n = 5}}\label{textproportion-12-rightarrow-n-5}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -4980,7 +4996,7 @@ stratified according to gender (\(12\%\))}
 
 \subsubsection{\texorpdfstring{\(\text{proportion} = 25\% \rightarrow n = 10\)}{\textbackslash text\{proportion\} = 25\textbackslash\% \textbackslash rightarrow n = 10}}\label{textproportion-25-rightarrow-n-10}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -4995,7 +5011,7 @@ stratified according to gender (\(12\%\))}
 
 \subsubsection{\texorpdfstring{\(\text{proportion} = 38\% \rightarrow n = 15\)}{\textbackslash text\{proportion\} = 38\textbackslash\% \textbackslash rightarrow n = 15}}\label{textproportion-38-rightarrow-n-15}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -5010,7 +5026,7 @@ stratified according to gender (\(12\%\))}
 
 \subsubsection{\texorpdfstring{\(\text{proportion} = 50\% \rightarrow n = 20\)}{\textbackslash text\{proportion\} = 50\textbackslash\% \textbackslash rightarrow n = 20}}\label{textproportion-50-rightarrow-n-20}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -5025,7 +5041,7 @@ stratified according to gender (\(12\%\))}
 
 \subsubsection{Data}\label{data-2}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -5040,7 +5056,7 @@ sampling}
 
 \subsubsection{Mean Comparsion}\label{mean-comparsion}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -5055,7 +5071,7 @@ at different sample sizes}
 
 \subsubsection{SD Comparison}\label{sd-comparison-2}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -5077,7 +5093,7 @@ In our case clusters are columns of students.
 
 \subsubsection{One Cluster}\label{one-cluster}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -5092,7 +5108,7 @@ In our case clusters are columns of students.
 
 \subsubsection{Two Clusters}\label{two-clusters}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -5107,7 +5123,7 @@ In our case clusters are columns of students.
 
 \subsubsection{Three Clusters}\label{three-clusters}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -5122,7 +5138,7 @@ In our case clusters are columns of students.
 
 \subsubsection{Four Clusters}\label{four-clusters}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -5137,7 +5153,7 @@ In our case clusters are columns of students.
 
 \subsubsection{Data}\label{data-3}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -5152,7 +5168,7 @@ sampling}
 
 \subsubsection{Mean Comparison}\label{mean-comparison-2}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -5167,7 +5183,7 @@ at different sample sizes}
 
 \subsubsection{SD Comparison}\label{sd-comparison-3}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -5186,7 +5202,7 @@ different sample sizes}
 \subsection{Overall Comparison of Sampling Strategies
 (Mean)}\label{overall-comparison-of-sampling-strategies-mean}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -5202,7 +5218,7 @@ of the absolute difference in means per sample strategy}
 \subsection{Overall Comparison of Sampling Strategies
 (SD)}\label{overall-comparison-of-sampling-strategies-sd}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -5217,7 +5233,7 @@ the absolute difference in means per sample strategy}
 
 \section{Bootstrapping}\label{bootstrapping}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -5283,7 +5299,7 @@ population.
 
 \section{Hypothesis Testing - Basics}\label{hypothesis-testing---basics}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -5309,7 +5325,7 @@ production rate is not equal to a certain value).
 
 \section{Statistical errors}\label{statistical-errors}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -5370,7 +5386,7 @@ statistical tests.
 
 \section{Significance}\label{significance}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -5575,7 +5591,7 @@ the computed intervals would contain \(\mu\).
 \subsection{The drive shaft exercise - Confidence
 Intervals}\label{the-drive-shaft-exercise---confidence-intervals}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -5766,9 +5782,9 @@ example}\label{power-calculations-in-this-example}
   \end{itemize}
 \end{itemize}
 
-\paragraph{\texorpdfstring{Power is the *probability of observing
+\paragraph{\texorpdfstring{Power is the probability of observing
 \(X\geq c\) under
-\(H_1\)}{Power is the *probability of observing X\textbackslash geq c under H\_1}}\label{power-is-the-probability-of-observing-xgeq-c-under-h_1}
+\(H_1\)}{Power is the probability of observing X\textbackslash geq c under H\_1}}\label{power-is-the-probability-of-observing-xgeq-c-under-h_1}
 
 \begin{itemize}
 \tightlist
@@ -5805,7 +5821,7 @@ example}\label{power-calculations-in-this-example}
 
 \subsection{Power vs.~sample size}\label{power-vs.-sample-size}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -5820,7 +5836,7 @@ example}\label{power-calculations-in-this-example}
 \subsection{Power and the different
 parameters}\label{power-and-the-different-parameters}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -5833,20 +5849,146 @@ different effect sizes}
 
 \end{figure}%
 
-\subsection{A word on Effect Size}\label{a-word-on-effect-size}
+\section{Effect Sizes}\label{effect-sizes}
 
-Cohen (Cohen 2013) describes effect size as ``the degree to which the
-null hypothesis is false.'' In the coin flipping example, this is the
-difference between \(75\%\) and \(50\%\). We could say the effect was
-25\% but recall we had to transform the absolute difference in
-proportions to another quantity using the ES.h function. This is a
-crucial part of doing power analysis correctly: An effect size must be
-provided on the expected scale. Doing otherwise will produce wrong
-sample size and power calculations.
+After computing statistical power, we must ask: \emph{``How meaningful
+is the effect we're powered to detect?''} Effect sizes quantify the
+\textbf{magnitude} of a phenomenon---separate from sample size or
+significance.
 
-When in doubt, Conventional Effect Sizes can be used. These are
-pre-determined effect sizes for ``small'', ``medium'', and ``large''
-effects, see Cohen (2013).
+\subsection{What is an effect size?}\label{what-is-an-effect-size}
+
+\begin{itemize}
+\tightlist
+\item
+  A \textbf{standardized} measure of the strength of a relationship or
+  difference.
+\item
+  Answers: \emph{``How large is the effect in the population?''} (not
+  just \emph{``Is it nonzero?''}).
+\item
+  \textbf{Key Property}: Independent of sample size (unlike
+  \emph{p}-values).
+\end{itemize}
+
+\textbf{Analogy}: Power tells you if your telescope is strong enough to
+see a star (\emph{significance}). Effect size tells you how bright the
+star is (\emph{meaningfulness}).
+
+\subsection{Types of effect sizes}\label{types-of-effect-sizes}
+
+\begin{table}
+
+\caption{\label{tbl-effectsize-calc}Some parametric and non-parametric
+statistical tests.}
+
+\centering{
+
+\caption*{
+{\fontsize{20}{25}\selectfont  \textbf{Common Effect Size Metrics in Statistical Analysis}\fontsize{12}{15}\selectfont } \\ 
+{\fontsize{14}{17}\selectfont  \emph{Interpretation guidelines and tidyverse functions}\fontsize{12}{15}\selectfont }
+} 
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}llll}
+\toprule
+Analysis Type & Common Effect Size Metric & Interpretation & R Function (tidyverse) \\ 
+\midrule\addlinespace[2.5pt]
+{Mean Difference} & {Cohen's \emph{d}} & {Small: 0.2, Medium: 0.5, Large: 0.8} & {\texttt{effectsize::cohen\_d()}} \\ 
+{Correlation} & {Pearson's \emph{r}} & {Small: 0.1, Medium: 0.3, Large: 0.5} & {\texttt{correlation::correlation()}} \\ 
+{Binary Outcome} & {Odds Ratio (OR) / Risk Ratio (RR)} & {OR = 2: 2x higher odds in group A} & {\texttt{effectsize::odds\_ratio()}} \\ 
+{ANOVA (Group Diffs)} & {Eta-squared (η²) / Omega-squared (ω²)} & {Proportion of variance explained} & {\texttt{effectsize::eta\_squared()}} \\ 
+{Regression} & {Standardized β (beta)} & {Change in SD units per 1-SD predictor change} & {\texttt{parameters::standardize\_parameters()}} \\ 
+\bottomrule
+\end{tabular*}
+
+}
+
+\end{table}%
+
+\subsection{Computing effect sizes in
+R}\label{computing-effect-sizes-in-r}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Simulate data: Treatment vs. Control}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\NormalTok{data\_effect }\OtherTok{\textless{}{-}} \FunctionTok{tibble}\NormalTok{(}
+  \AttributeTok{group =} \FunctionTok{rep}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"Treatment"}\NormalTok{, }\StringTok{"Control"}\NormalTok{), }\AttributeTok{each =} \DecValTok{50}\NormalTok{),}
+  \AttributeTok{score =} \FunctionTok{c}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{50}\NormalTok{, }\AttributeTok{mean =} \DecValTok{85}\NormalTok{, }\AttributeTok{sd =} \DecValTok{10}\NormalTok{), }\FunctionTok{rnorm}\NormalTok{(}\DecValTok{50}\NormalTok{, }\AttributeTok{mean =} \DecValTok{80}\NormalTok{, }\AttributeTok{sd =} \DecValTok{10}\NormalTok{))}
+\NormalTok{)}
+
+\CommentTok{\# Compute Cohen\textquotesingle{}s d (correct formula syntax)}
+\NormalTok{effectsize}\SpecialCharTok{::}\FunctionTok{cohens\_d}\NormalTok{(score }\SpecialCharTok{\textasciitilde{}}\NormalTok{ group, }\AttributeTok{data =}\NormalTok{ data\_effect) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Cohen's d |         95% CI
+--------------------------
+-0.42     | [-0.82, -0.03]
+
+- Estimated using pooled SD.
+\end{verbatim}
+
+\subsection{Visualization}\label{visualization}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/fig-effectsize-data-1.pdf}
+
+}
+
+\caption{\label{fig-effectsize-data}The visualization of the data}
+
+\end{figure}%
+
+\subsection{Simple example}\label{simple-example}
+
+\begin{itemize}
+\tightlist
+\item
+  Old process:
+  \(\text{Mean diameter:}\;10.02mm,\; sd = 0.1mm\;(n = 50)\)
+\item
+  New process:
+  \(\text{Mean diameter:}\;10.00mm,\; sd = 0.05mm\;(n = 50)\)
+\end{itemize}
+
+What is the effect size (\(d\)) of changing to the new process
+
+\subsection{Visualizations}\label{visualizations}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/fig-effectsize-simple-example-1.pdf}
+
+}
+
+\caption{\label{fig-effectsize-simple-example}Distribution of the
+process data}
+
+\end{figure}%
+
+\subsection{\texorpdfstring{Calculate Cohens \(d\) (Mean
+Difference)}{Calculate Cohens d (Mean Difference)}}\label{calculate-cohens-d-mean-difference}
+
+\begin{align}
+d = \frac{\bar{x}_{new}-\bar{x}_{old}}{sd_{pooled}}
+\end{align}
+
+Pooled sd:
+
+\begin{align}
+sd_{pooled} = \sqrt{\frac{(n_1-1)sd_{1}^2+(n_2-1)sd_{2}^2}{n_1+n_2-1}}\approx 0.076
+\end{align}
+
+Effect Size (\(d\)):
+
+\[d = \frac{10.00-10.02}{0.076} = \frac{-0.02}{0.076}\approx -0.26\]
 
 \section{Parametric and Non-parametric
 Tests}\label{parametric-and-non-parametric-tests}
@@ -6390,6 +6532,53 @@ area depicts the (\(95\%\)) confidence bands for a normal distribution.
 All the points fall into the area, as well as the line. This shows, that
 the points are likely to be normally distributed.
 
+\subsubsection{Expanding to non-normal
+disitributions}\label{expanding-to-non-normal-disitributions}
+
+\begin{figure}[H]
+
+\begin{minipage}{0.50\linewidth}
+
+\centering{
+
+\includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/fig-qq-wbll-1.pdf}
+
+}
+
+\subcaption{\label{fig-qq-wbll-1}the QQ-plot for the weibull
+distribution using the drive shaft failure time data}
+
+\end{minipage}%
+%
+\begin{minipage}{0.50\linewidth}
+
+\centering{
+
+\includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/fig-qq-wbll-2.pdf}
+
+}
+
+\subcaption{\label{fig-qq-wbll-2}a detrended QQ-plot}
+
+\end{minipage}%
+
+\caption{\label{fig-qq-wbll}The QQ-plot can easily be extended to
+non-normal distributions.}
+
+\end{figure}%
+
+The \hyperref[qq]{QQ}-plot can easily be extended to non-normal
+disitributions as well. This is shown in Figure~\ref{fig-qq-wbll}. In
+Figure~\ref{fig-qq-wbll-1} a classic \hyperref[qq]{QQ}-plot for
+Figure~\ref{fig-ds-wbll} is shown. The same rules as before still apply,
+they are \emph{only} extended to the weibull distribution. In
+Figure~\ref{fig-qq-wbll-2} a \emph{detrended} \hyperref[qq]{QQ}-plot is
+shown in order to account for visual bias. It is of course known, that
+the data follows a \emph{weibull} disitribution with a shape parameter
+\(\beta=2\) and a scale parameter \(\lambda = 500\), but such
+distributional parameters can also be estimated (Delignette-Muller and
+Dutang 2015).
+
 \subsubsection{The drive shaft
 exercise}\label{the-drive-shaft-exercise-1}
 
@@ -6418,6 +6607,29 @@ the measurement system may be to inaccurate.
 
 \subsection{Quantitative Methods}\label{sec-ks-test}
 
+\subsubsection{The data}\label{the-data}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/fig-dist-test-data-1.pdf}
+
+}
+
+\caption{\label{fig-dist-test-data}The example data to show all
+quantitative distribution tests.}
+
+\end{figure}%
+
+\subsubsection{Kolmogorov Smirnov}\label{kolmogorov-smirnov}
+
+Measures the distance from the \hyperref[acronyms_ECDF]{Empirical
+Cumulative Density Function (ECDF)} to the \hyperref[acronyms_CDF]{CDF}.
+
+\hyperref[acronyms_H0]{H0}: The data comes from the assumed
+distribution.
+
 \begin{figure}[H]
 
 \centering{
@@ -6430,6 +6642,48 @@ the measurement system may be to inaccurate.
 datapoints from before}
 
 \end{figure}%
+
+\begin{table}
+
+\caption{\label{tbl-kstest-result}The ks test result}
+
+\centering{
+
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}rrll}
+\toprule
+statistic & p.value & method & alternative \\ 
+\midrule\addlinespace[2.5pt]
+1 & 0 & Exact one-sample Kolmogorov-Smirnov test & two-sided \\ 
+\bottomrule
+\end{tabular*}
+
+}
+
+\end{table}%
+
+\subsubsection{Summary ks test}\label{summary-ks-test}
+
+Pro
+
+\begin{itemize}
+\tightlist
+\item
+  Generally applicable (not only normal distribution).
+\item
+  Easy to interpret (maximum deviation between empirical and theoretical
+  distribution).
+\end{itemize}
+
+Con
+
+\begin{itemize}
+\tightlist
+\item
+  Conservative (low power with small samples).
+\item
+  Sensitive to outliers.
+\end{itemize}
 
 The \hyperref[KS]{Kolmogorov-Smirnov} test for normality, often referred
 to as the \hyperref[KS]{KS} test, is a statistical test used to assess
@@ -6478,52 +6732,178 @@ test}, which may be more suitable in certain situations. Researchers
 typically choose the most appropriate test based on the characteristics
 of their data and the assumptions they want to test.
 
-\subsection{Expanding to non-normal
-disitributions}\label{expanding-to-non-normal-disitributions}
+\subsubsection{Anderson Darling Test}\label{anderson-darling-test}
 
-\begin{figure}[ht]
+Similar to ks test, but weighs the tails heavier.
 
-\begin{minipage}{0.50\linewidth}
+\hyperref[acronyms_H0]{H0}: The data comes from the assumed
+distribution.
 
-\centering{
+\begin{table}
 
-\includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/fig-qq-wbll-1.pdf}
-
-}
-
-\subcaption{\label{fig-qq-wbll-1}the QQ-plot for the weibull
-distribution using the drive shaft failure time data}
-
-\end{minipage}%
-%
-\begin{minipage}{0.50\linewidth}
+\caption{\label{tbl-adtest-result}The AD test result}
 
 \centering{
 
-\includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/fig-qq-wbll-2.pdf}
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}rrl}
+\toprule
+statistic & p.value & method \\ 
+\midrule\addlinespace[2.5pt]
+0.9818943 & 0.01073587 & Anderson-Darling normality test \\ 
+\bottomrule
+\end{tabular*}
 
 }
 
-\subcaption{\label{fig-qq-wbll-2}a detrended QQ-plot}
+\end{table}%
 
-\end{minipage}%
+\subsubsection{summary AD test}\label{summary-ad-test}
 
-\caption{\label{fig-qq-wbll}The QQ-plot can easily be extended to
-non-normal distributions.}
+Pro:
 
-\end{figure}%
+\begin{itemize}
+\tightlist
+\item
+  Generally applicable (not only normal distribution).
+\item
+  asy to interpret (maximum deviation between empirical and theoretical
+  distribution).
+\end{itemize}
 
-The \hyperref[qq]{QQ}-plot can easily be extended to non-normal
-disitributions as well. This is shown in Figure~\ref{fig-qq-wbll}. In
-Figure~\ref{fig-qq-wbll-1} a classic \hyperref[qq]{QQ}-plot for
-Figure~\ref{fig-ds-wbll} is shown. The same rules as before still apply,
-they are \emph{only} extended to the weibull distribution. In
-Figure~\ref{fig-qq-wbll-2} a \emph{detrended} \hyperref[qq]{QQ}-plot is
-shown in order to account for visual bias. It is of course known, that
-the data follows a \emph{weibull} disitribution with a shape parameter
-\(\beta=2\) and a scale parameter \(\lambda = 500\), but such
-distributional parameters can also be estimated (Delignette-Muller and
-Dutang 2015).
+Cons:
+
+\begin{itemize}
+\tightlist
+\item
+  Conservative (low power with small samples).
+\item
+  Sensitive to outliers.
+\end{itemize}
+
+\subsubsection{Shapiro Wilk}\label{shapiro-wilk}
+
+\begin{itemize}
+\tightlist
+\item
+  Special Case for the normal Distribution.
+\item
+  used for \(n<5000\)
+\item
+  Test Statistik ranges between \(0,\ldots,1\) with \(1\) being normally
+  distributed.
+\end{itemize}
+
+\hyperref[acronyms_H0]{H0}: The data comes from the assumed
+distribution.
+
+\subsubsection{Mathemtatical Intuition}\label{mathemtatical-intuition}
+
+\begin{itemize}
+\tightlist
+\item
+  evaluates whether a sample \(X_1,X_2,\ldots,X_n\) comes from a normal
+  distribution by comparing the ordered sample values to the expected
+  order.
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Order Statistics: \(X_{(1)} \leq X_{(2)} \leq \ldots \leq X_{(n)}\)
+\item
+  Expected Normal Order: taken from \(\mathrm{N}(0,1)\) via
+  \(m_i=\Phi^{-1}\frac{i}{n+1}\) with \(\Phi\) being the
+  \hyperref[acronyms_CDF]{CDF}
+\item
+  Weights (\(a_i\)): assign weights to \(a_i\) derived from the
+  covariance matrix to account for the variability in different parts of
+  the distribution (tails vs.~center)
+\end{enumerate}
+
+\subsubsection{Connection to linear
+Regression}\label{connection-to-linear-regression}
+
+The Shapiro Wilk test can be framed as a regression problem:
+
+\begin{itemize}
+\tightlist
+\item
+  Dependent variable: The ordered sample
+  \(X_{(1)} \leq X_{(2)} \leq \ldots \leq X_{(n)}\)
+\item
+  Independent variable: The expected normal order statistics
+  \(m_1,m_2,\ldots,m_n\)
+\item
+  Weights: The inverse covariance \(\mathrm{V}^{-1}\) accounts for the
+  non-independence of order statistics
+\end{itemize}
+
+The test statistic \(W\) is then the coefficient of determination
+\(r^2\) of this weighted regression.
+
+\[W = r^2 = \frac{\text{Explained Variance}}{\text{Total Variance}}\]
+
+\subsubsection{The test}\label{the-test}
+
+\begin{table}
+
+\caption{\label{tbl-sw-result}The shapiro Wilk test result}
+
+\centering{
+
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}rrl}
+\toprule
+statistic & p.value & method \\ 
+\midrule\addlinespace[2.5pt]
+0.8705227 & 0.01200034 & Shapiro-Wilk normality test \\ 
+\bottomrule
+\end{tabular*}
+
+}
+
+\end{table}%
+
+\subsection{Comparison of test
+results}\label{comparison-of-test-results}
+
+\begin{table}
+
+\caption{\label{tbl-quant-norm-test}Comparison of all quantitative test
+results on the same data}
+
+\centering{
+
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}rrll}
+\toprule
+statistic & p.value & method & alternative \\ 
+\midrule\addlinespace[2.5pt]
+0.8705227 & 0.01200034 & Shapiro-Wilk normality test & NA \\ 
+0.9818943 & 0.01073587 & Anderson-Darling normality test & NA \\ 
+1.0000000 & 0.00000000 & Exact one-sample Kolmogorov-Smirnov test & two-sided \\ 
+\bottomrule
+\end{tabular*}
+
+}
+
+\end{table}%
+
+\subsection{sample size influence}\label{sample-size-influence}
+
+\begin{table}
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}rrll}
+\toprule
+statistic & p.value & method & alternative \\ 
+\midrule\addlinespace[2.5pt]
+0.8268107 & 1.231603e-17 & Shapiro-Wilk normality test & NA \\ 
+23.8428787 & 3.700000e-24 & Anderson-Darling normality test & NA \\ 
+0.5000000 & 1.435019e-65 & Asymptotic one-sample Kolmogorov-Smirnov test & two-sided \\ 
+\bottomrule
+\end{tabular*}
+\end{table}
 
 \section{Test 1 Variable}\label{test-1-variable}
 
@@ -6560,9 +6940,9 @@ for studies involving proportions and percentages.
 \begin{description}
 \tightlist
 \item[{\hyperref[acronyms_H0]{H0}:}]
-Defect rate is \textless{} 2 percent
+Defect rate is \textless{} 2 \%
 \item[{\hyperref[acronyms_Ha]{Ha}:}]
-Defect rate is \textgreater2 percent
+Defect rate is \textgreater2 \%
 \end{description}
 
 This is a \textbf{right-tailed} test
@@ -6894,7 +7274,7 @@ glance, the data appears to be normally distributed.
 
 \subsubsection{Normality Check}\label{normality-check}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -7017,63 +7397,24 @@ alternative
 
 \end{longtable}
 
-\subsection{One sample Wilcoxon test}\label{one-sample-wilcoxon-test}
+\subsection{One sample Wilcoxon test}\label{sec-wilcox-rank-sum}
 
-For situations where your data may not follow a normal distribution or
-when dealing with ordinal data, the one-sample Wilcoxon test is a
-non-parametric alternative to the t-test. It is used to evaluate whether
-a sample's median significantly differs from a specified population
-median.
+Scenario:
 
-The wear and tear of drive shafts can occur due to various factors
-related to the vehicle's operation and maintenance. Some common causes
-include:
+A manufacturing plant produces bolts with a target diameter of 10.0 mm.
+The quality control team measures 7 randomly selected bolts and obtains
+the following diameters (in mm): 10.2, 9.8, 10.1, 9.9, 10.3, 9.7, 10.0
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  \textbf{Normal Usage:} Over time, the drive shaft undergoes stress and
-  strain during regular driving. This can lead to gradual wear on
-  components, especially if the vehicle is frequently used.
-\item
-  \textbf{Misalignment:} Improper alignment of the drive shaft can
-  result in uneven distribution of forces, causing accelerated wear.
-  This misalignment may stem from issues with the suspension system or
-  other related components.
-\item
-  \textbf{Lack of Lubrication:} Inadequate lubrication of the drive
-  shaft joints and bearings can lead to increased friction, accelerating
-  wear. Regular maintenance, including proper lubrication, is essential
-  to mitigate this factor.
-\item
-  \textbf{Contamination:} Exposure to dirt, debris, and water can
-  contribute to the degradation of drive shaft components. Contaminants
-  can infiltrate joints and bearings, causing abrasive damage over time.
-\item
-  \textbf{Vibration and Imbalance:} Excessive vibration or imbalance in
-  the drive shaft can lead to increased stress on its components. This
-  may result from issues with the balance of the rotating parts or
-  damage to the shaft itself.
-\item
-  \textbf{Extreme Operating Conditions:} Harsh driving conditions, such
-  as off-road terrain or constant heavy loads, can accelerate wear on
-  the drive shaft. The components may be subjected to higher levels of
-  stress than they were designed for, leading to premature wear and
-  tear.
-\end{enumerate}
+The team wants to determine if the median diameter differs from the
+target at a significance level of \(\alpha=0.05\) .
 
-The wear and tear because o the reasons above can be rated on a scale
-with discrete values from \(1 \ldots 5\) with \(2\) being the reference
-value. It is therefore interesting, if the wear and tear rating of
-\(n=100\) drive shafts per group differs \emph{significantly} from the
-reference value \(2\). Because we are dealing with discrete data, the
-one sample t-test can not be used.
+\subsubsection{The data}\label{the-data-1}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
-\includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/fig-wilcox-one-hist-1.pdf}
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/fig-wilcox-one-hist-1.pdf}
 
 }
 
@@ -7082,47 +7423,303 @@ histograms.}
 
 \end{figure}%
 
-\begin{longtable}[]{@{}lrrl@{}}
+\subsubsection{The hypotheses}\label{the-hypotheses}
 
-\caption{\label{tbl-wilcox-one-res}The results for the one sample
-Wilcoxon test for every group against the reference value.}
+\[H_0: \text{Median diameter} = 10.00mm\]
 
-\tabularnewline
+\[H_a: \text{Median diameter} \neq 10.00mm\]
 
-\toprule\noalign{}
-group & statistic & p.value & alternative \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-{group01} & 3,208.500 & 0.000 & {greater} \\
-{group02} & 5,050.000 & 0.000 & {greater} \\
-{group03} & 0.000 & 1.000 & {greater} \\
-{group04} & 3,203.500 & 0.000 & {greater} \\
-{group05} & 3,003.000 & 0.000 & {greater} \\
+\subsubsection{Signed Ranks}\label{signed-ranks}
 
-\end{longtable}
+\(D_i = X_1 - 10.00\) and Rank \(|D_i|\)
 
-\begin{longtable}[]{@{}lrr@{}}
+\begin{table}
 
-\caption{\label{tbl-wilcox-one-compare}The results for the one sample
-t-test compared to the results of a one sample Wilcoxon test.}
+\caption{\label{tbl-signed-rank}Signed rank calculation}
 
-\tabularnewline
+\centering{
 
-\toprule\noalign{}
-group & t\_tidy\_p.value & wilcox\_tidy\_p.value \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-{group01} & 0.167 & 0.182 \\
-{group02} & 0.000 & 0.000 \\
-{group03} & 0.000 & 0.000 \\
-{group04} & 0.000 & 0.000 \\
-{group05} & 0.677 & 0.803 \\
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}rrrrrr}
+\toprule
+Bolt ID & Bolt
+diameter & \(D_i\) & \(|D_i|\) & ranked \(D_i\) & signed rank of \(D_i\) \\ 
+\midrule\addlinespace[2.5pt]
+1 & 8.0 & -2.0 & 2.0 & 4 & -4 \\ 
+2 & 9.8 & -0.2 & 0.2 & 3 & -3 \\ 
+3 & 9.9 & -0.1 & 0.1 & 2 & -2 \\ 
+4 & 10.0 & 0.0 & 0.0 & 1 & 0 \\ 
+5 & 10.1 & 0.1 & 0.1 & 2 & 2 \\ 
+6 & 10.2 & 0.2 & 0.2 & 3 & 3 \\ 
+7 & 15.0 & 5.0 & 5.0 & 5 & 5 \\ 
+\bottomrule
+\end{tabular*}
 
-\end{longtable}
+}
+
+\end{table}%
+
+\subsubsection{Sum of signed ranks}\label{sum-of-signed-ranks}
+
+\begin{itemize}
+\tightlist
+\item
+  Sum of \emph{positive ranks}: 10
+\item
+  Sum of \emph{negative ranks}: 9
+\end{itemize}
+
+\subsubsection{Decision at α Level}\label{decision-at-ux3b1-level}
+
+\begin{itemize}
+\tightlist
+\item
+  Reject \(H_0\) if \(W \leq 2\)
+\item
+  Here \(W = 9\) (use the smaller sum), so we fail to reject \(H_0\)
+\end{itemize}
+
+\subsubsection{W?}\label{w}
+
+The Wilcoxon signed-rank test statistic \(W\) is the smaller of the two
+rank sums. Under \(H_0\), the distribution of \(W\) is symmetric, and we
+can enumerate all possible outcomes.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Total number of outcomes: Each bolt can have a positive or negative
+  outcome (ignoring \(0\)) \(2^7=128\).
+\item
+  Constructing the Distribution: For each combination, compute rank sum
+  for \(\pm\) differences. The critical value is the largest \(W\) such
+  that the cumulative probability \(P(W\leq w)\leq\alpha/2\) (two tailed
+  test)
+\item
+  For \(n = 7\) the cumulative probabilities for \(W\) are precomputed
+  in tables.
+\end{enumerate}
+
+\subsubsection{W value at significance level 5\% and n =
+7}\label{w-value-at-significance-level-5-and-n-7}
+
+\hyperref[acronyms_H0]{H0}: The median of differences is \(0\) (or a
+certain value like \(10.00mm\))
+
+Possible ranks of differences:
+
+For \(n = 7\) the ranks of the absolute differences are \emph{always}
+\(1,2,\ldots,7\) (independent of data, because for \(H_0\) all sign
+combinations are of interest)
+
+\[W_{max} = \sum_{k=1}^7 k = 28\]
+
+All possible sign combinations: \(2^7 = 128\). Every combination is one
+\textbf{possible realization of \(W\)}
+
+\subsubsection{Calculation of PMF}\label{calculation-of-pmf}
+
+\begin{itemize}
+\tightlist
+\item
+  \(W = 0\): all differences are negative
+\item
+  \(W = 1\): exactly the difference with rank 1 is positive (\(7\)
+  combinations, because every difference of the \(7\) could be the one
+  with rank 1)
+\item
+  \(W = 2\):
+
+  \begin{itemize}
+  \tightlist
+  \item
+    the difference with rank \(2\) is positive (and all others are
+    negative) \textbf{or}
+  \item
+    the differences with rank \(1\) and rank \(2\) are positive (\(7\)
+    combinations)
+  \end{itemize}
+\end{itemize}
+
+\subsubsection{\texorpdfstring{table for
+\(n = 7\)}{table for n = 7}}\label{table-for-n-7}
+
+\begin{table}
+
+\caption{\label{tbl-wilcox-cdf-n7-01}The exact cumulative
+probabilities\ldots{}}
+
+\centering{
+
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}rrr}
+\toprule
+W & frequency & cumulative probability \\ 
+\midrule\addlinespace[2.5pt]
+0 & 0.0078125 & 0.0078125 \\ 
+1 & 0.0078125 & 0.0156250 \\ 
+2 & 0.0156250 & 0.0312500 \\ 
+3 & 0.0156250 & 0.0468750 \\ 
+4 & 0.0156250 & 0.0625000 \\ 
+5 & 0.0234375 & 0.0859375 \\ 
+6 & 0.0234375 & 0.1093750 \\ 
+7 & 0.0468750 & 0.1562500 \\ 
+8 & 0.0312500 & 0.1875000 \\ 
+9 & 0.0546875 & 0.2421875 \\ 
+10 & 0.0546875 & 0.2968750 \\ 
+11 & 0.0625000 & 0.3593750 \\ 
+12 & 0.0625000 & 0.4218750 \\ 
+13 & 0.0703125 & 0.4921875 \\ 
+14 & 0.0781250 & 0.5703125 \\ 
+\bottomrule
+\end{tabular*}
+
+}
+
+\end{table}%
+
+\begin{table}
+
+\caption{\label{tbl-wilcox-cdf-n7-02}\ldots{} for the wilcoxon sigend
+rank test}
+
+\centering{
+
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}rrr}
+\toprule
+W & frequency & cumulative probability \\ 
+\midrule\addlinespace[2.5pt]
+15 & 0.0390625 & 0.6093750 \\ 
+16 & 0.0625000 & 0.6718750 \\ 
+17 & 0.0468750 & 0.7187500 \\ 
+18 & 0.0546875 & 0.7734375 \\ 
+19 & 0.0390625 & 0.8125000 \\ 
+20 & 0.0468750 & 0.8593750 \\ 
+21 & 0.0468750 & 0.9062500 \\ 
+22 & 0.0234375 & 0.9296875 \\ 
+23 & 0.0234375 & 0.9531250 \\ 
+24 & 0.0156250 & 0.9687500 \\ 
+25 & 0.0156250 & 0.9843750 \\ 
+26 & 0.0000000 & 0.9843750 \\ 
+27 & 0.0078125 & 0.9921875 \\ 
+28 & 0.0078125 & 1.0000000 \\ 
+\bottomrule
+\end{tabular*}
+
+}
+
+\end{table}%
+
+\subsubsection{\texorpdfstring{CDF for
+\(n = 7\)}{CDF for n = 7}}\label{cdf-for-n-7}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/fig-wilcox-cdf-n7-1.pdf}
+
+}
+
+\caption{\label{fig-wilcox-cdf-n7}The exact cumulative probabilities for
+the wilcoxon sigend rank test}
+
+\end{figure}%
+
+\subsubsection{Estimation of W for small
+n}\label{estimation-of-w-for-small-n}
+
+\begin{table}
+
+\caption{\label{tbl-wilcox-small-n-1}The critical W values for small n}
+
+\centering{
+
+\caption*{
+{\fontsize{14}{17}\selectfont  critical value for the Wilcoxon-signed-rank-test (two-sided, \ensuremath{\alpha}=0.05)\fontsize{12}{15}\selectfont } \\ 
+{\fontsize{9}{11}\selectfont  for small sample sizes (n \ensuremath{\leq} 20)\fontsize{12}{15}\selectfont }
+} 
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}rrl}
+\toprule
+{\bfseries sample size (n)} & critical value (W, two-sided, \ensuremath{\alpha}=0.05) & {\bfseries Interpretation (reject H₀ if...} \\ 
+\midrule\addlinespace[2.5pt]
+5 & 0 & W \ensuremath{\leq} 0 \\ 
+6 & 0 & W \ensuremath{\leq} 0 \\ 
+7 & 2 & W \ensuremath{\leq} 2 \\ 
+8 & 3 & W \ensuremath{\leq} 3 \\ 
+9 & 5 & W \ensuremath{\leq} 5 \\ 
+10 & 8 & W \ensuremath{\leq} 8 \\ 
+11 & 10 & W \ensuremath{\leq} 10 \\ 
+12 & 13 & W \ensuremath{\leq} 13 \\ 
+\bottomrule
+\end{tabular*}
+
+}
+
+\end{table}%
+
+\begin{table}
+
+\caption{\label{tbl-wilcox-small-n-2}The critical W values for small n}
+
+\centering{
+
+\caption*{
+{\fontsize{14}{17}\selectfont  critical value for the Wilcoxon-signed-rank-test (two-sided, \ensuremath{\alpha}=0.05)\fontsize{12}{15}\selectfont } \\ 
+{\fontsize{9}{11}\selectfont  for small sample sizes (n \ensuremath{\leq} 20)\fontsize{12}{15}\selectfont }
+} 
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}rrl}
+\toprule
+{\bfseries sample size (n)} & critical value (W, two-sided, \ensuremath{\alpha}=0.05) & {\bfseries Interpretation (reject H₀ if...} \\ 
+\midrule\addlinespace[2.5pt]
+13 & 17 & W \ensuremath{\leq} 17 \\ 
+14 & 21 & W \ensuremath{\leq} 21 \\ 
+15 & 25 & W \ensuremath{\leq} 25 \\ 
+16 & 30 & W \ensuremath{\leq} 30 \\ 
+17 & 35 & W \ensuremath{\leq} 35 \\ 
+18 & 41 & W \ensuremath{\leq} 41 \\ 
+19 & 47 & W \ensuremath{\leq} 47 \\ 
+20 & 53 & W \ensuremath{\leq} 53 \\ 
+\bottomrule
+\end{tabular*}
+
+}
+
+\end{table}%
+
+\subsubsection{The Wilcox PMF}\label{the-wilcox-pmf}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/fig-wilcox-exact-pmf-1.pdf}
+
+}
+
+\caption{\label{fig-wilcox-exact-pmf}The exact PMF for the wilcoxon
+sigend rank test}
+
+\end{figure}%
+
+\subsubsection{The Wilcox cumulative
+probabilities}\label{the-wilcox-cumulative-probabilities}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/fig-wilcox-cum-prob-1.pdf}
+
+}
+
+\caption{\label{fig-wilcox-cum-prob}The exact PMF for the wilcoxon
+sigend rank test}
+
+\end{figure}%
 
 \section{Test 2 Variable (Qualitative or
 Quantitative)}\label{test-2-variable-qualitative-or-quantitative}
@@ -7152,52 +7749,111 @@ In the context of the drive shaft production the example assumes a
 dataset with categorical variables like ``Defects'' (Yes/No) and
 ``Operator'' (Operator A/B).
 
-\subsubsection{Contingency tables}\label{contingency-tables-1}
+\subsubsection{Sezenario}\label{sezenario}
 
-A contingency table, also known as a cross-tabulation or crosstab, is a
-statistical table that displays the frequency distribution of variables.
-It organizes data into rows and columns to show the frequency or
-relationship between two or more categorical variables. Each cell in the
-table represents the count or frequency of occurrences that fall into a
-specific combination of categories for the variables being analyzed. It
-is commonly used in statistics to examine the association between
-categorical variables and to understand patterns within data sets.
+A manufacturing plant produces three types of components (A, B, C) using
+two different assembly lines (Line 1 and Line 2). The quality control
+team suspects that the defect rates may differ between the two lines.
+They collect data over a week to test whether component type and defect
+occurrence are independent of the assembly line used.
 
-\begin{longtable}[]{@{}lrr@{}}
+\subsubsection{Hypotheses}\label{hypotheses-1}
 
-\caption{\label{tbl-chi-sq-indep-tbl}The contingency table for this
-example.}
+\hyperref[acronyms_H0]{H0}: Component type and defect occurrence are
+independent of the assembly line (no association).
 
-\tabularnewline
+\hyperref[acronyms_Ha]{Ha}: Component type and defect occurrence are
+dependent on the assembly line (association exists).
 
-\toprule\noalign{}
-Defects & Operator A & Operator B \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-{No} & 2 & 3 \\
-{Yes} & 3 & 2 \\
+\[H_0: P(\text{Defect}|Line) = P(\text{Defect})\]
 
-\end{longtable}
+\subsubsection{The data}\label{the-data-2}
 
-\subsubsection{test results}\label{test-results}
+\begin{table}
 
-With \(p\approx1>0.05\) the \(p\)-value is greater than the significance
-level of \(\alpha = 0.05\). The \(H_0\) is therefore proven, there is no
-difference between the operators. The test results are depicted below-
+\caption{\label{tbl-chi2-indep-data}The contingency table of the
+obeservations.}
 
-\begin{verbatim}
+\centering{
 
-    Pearson's Chi-squared test with Yates' continuity correction
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrr}
+\toprule
+Component & Line1\_Defect & Line1\_NoDefect & Line2\_Defect & Line2\_NoDefect \\ 
+\midrule\addlinespace[2.5pt]
+A & 12 & 188 & 20 & 180 \\ 
+B & 8 & 242 & 15 & 235 \\ 
+C & 25 & 175 & 10 & 240 \\ 
+\bottomrule
+\end{tabular*}
 
-data:  contingency_table
-X-squared = 0, df = 1, p-value = 1
-\end{verbatim}
+}
+
+\end{table}%
+
+Tipp: Revisit \(\chi^2\) goodness of fit.
+
+\subsubsection{The test - Component A}\label{the-test---component-a}
+
+\begin{table}
+
+\caption{\label{tbl-chi2-indep-data-comp-A}The test result for Line A}
+
+\centering{
+
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}rrrl}
+\toprule
+statistic & p.value & parameter & method \\ 
+\midrule\addlinespace[2.5pt]
+0 & 1 & 1 & Pearson's Chi-squared test \\ 
+\bottomrule
+\end{tabular*}
+
+}
+
+\end{table}%
+
+\subsubsection{The test - Line vs.~Defect Status (Ignoring
+Component)}\label{the-test---line-vs.-defect-status-ignoring-component}
+
+\begin{table}
+
+\caption{\label{tbl-chi2-indep-data-comp-overall}The test result for the
+overall data}
+
+\centering{
+
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}rrrl}
+\toprule
+statistic & p.value & parameter & method \\ 
+\midrule\addlinespace[2.5pt]
+0 & 1 & 1 & Pearson's Chi-squared test \\ 
+\bottomrule
+\end{tabular*}
+
+}
+
+\end{table}%
+
+\subsubsection{Visualization}\label{visualization-1}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/fig-chi2-indep-vis-1.pdf}
+
+}
+
+\caption{\label{fig-chi2-indep-vis}Viualitzation of the data}
+
+\end{figure}%
 
 \subsection{Correlation}\label{correlation}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -7234,10 +7890,151 @@ Correlation doesn't imply causation; it only indicates that two
 variables change together but doesn't determine if one causes the change
 in the other.
 
-\subsubsection{Pearson Corrrelation}\label{pearson-corrrelation}
+\subsection{Pearson Corrrelation}\label{pearson-corrrelation}
 
-The pearson correlation coefficient is a normalized version of the
-covariance.
+The pearson correlation \(R\) or \(r\) coefficient is a normalized
+version of the covariance.
+
+\subsubsection{Covariance}\label{covariance}
+
+Covariance is a measure of joint variability.
+
+Covariance is a generalized formulation of the variance.
+
+\begin{align}
+\mathrm{Cov}(X,Y) = \frac{1}{n}\sum{(X_i - \bar{X})(Y_i - \bar{Y})}
+\end{align}
+
+\subsubsection{Example}\label{example}
+
+\begin{table}
+
+\caption{\label{tbl-example-data-cov}Example data on the calculation of
+the covariance for two variables.}
+
+\centering{
+
+\fontsize{13.0pt}{15.0pt}\selectfont
+\begin{tabular*}{1\linewidth}{@{\extracolsep{\fill}}cc}
+\toprule
+Temperature in C & Rod Length in mm \\ 
+\midrule\addlinespace[2.5pt]
+20 & 100.2 \\ 
+22 & 100.5 \\ 
+24 & 100.9 \\ 
+26 & 101.3 \\ 
+28 & 101.6 \\ 
+\bottomrule
+\end{tabular*}
+
+}
+
+\end{table}%
+
+\subsubsection{Computing means}\label{computing-means}
+
+\begin{align}
+\bar{X} = \frac{20+22+24+26+28}{5} = 24
+\end{align}
+
+\begin{align}
+\bar{X} = \frac{100.2+100.5+100.9+101.3+101.6}{5} = 100.9
+\end{align}
+
+\subsubsection{Computing covariance}\label{computing-covariance}
+
+\begin{table}
+
+\caption{\label{tbl-example-data-cov-calc}Hand calculation of the
+XY-covariance}
+
+\centering{
+
+\fontsize{11.0pt}{13.0pt}\selectfont
+\begin{tabular*}{1\linewidth}{@{\extracolsep{\fill}}ccccc}
+\toprule
+Temperature in C & Rod Length in mm & \$X\_i - \textbackslash{}bar\{X\}\$ & \$Y\_i - \textbackslash{}bar\{Y\}\$ & \$(X\_i - \textbackslash{}bar\{X\}) \textbackslash{}cdot (Y\_i - \textbackslash{}bar\{Y\})\$ \\ 
+\midrule\addlinespace[2.5pt]
+20 & 100.2 & -4 & -0.7 & 2.8 \\ 
+22 & 100.5 & -2 & -0.4 & 0.8 \\ 
+24 & 100.9 & 0 & 0.0 & 0.0 \\ 
+26 & 101.3 & 2 & 0.4 & 0.8 \\ 
+28 & 101.6 & 4 & 0.7 & 2.8 \\ 
+\bottomrule
+\end{tabular*}
+
+}
+
+\end{table}%
+
+\subsubsection{Sum the products}\label{sum-the-products}
+
+\begin{align}
+\sum(X_i - \bar{X})(Y_i - \bar{Y}) = 2.8 + 0.8 + 0 + 0.8 + 2.8 = 7.2
+\end{align}
+
+Compute Covariance
+
+\begin{align}
+\mathrm{Cov}(X,Y) = \frac{7.2}{5} = 1.44
+\end{align}
+
+\subsubsection{Interpretation:}\label{interpretation}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Covariance} \(= 1.44\;°C\cdot mm\)
+\item
+  It's \textbf{positive}, meaning:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    When the machine runs hotter, the rods are longer (thermal
+    expansion)
+  \end{itemize}
+\item
+  It's \textbf{not standardized}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    The number \(1.44\) is not ``large'' or ``small'' until compared
+    with variance or a \textbf{correlation} is computed
+  \end{itemize}
+\end{itemize}
+
+\subsubsection{detailed Interpretation}\label{detailed-interpretation}
+
+\begin{itemize}
+\tightlist
+\item
+  \((X_i-\bar{X}) \rightarrow\) How different is this temperature from
+  average?
+\item
+  \((Y_i-\bar{Y}) \rightarrow\) How different is this rod length from
+  average?
+\item
+  Multiply them:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Positive \(x\) Positive \(\rightarrow\) rods are longer at higher
+    temp \(\rightarrow\) \(+\) contribution
+  \item
+    Negative \(x\) Negative \(\rightarrow\) rods are shorter at lower
+    temp \(\rightarrow\) \(+\) contribution
+  \item
+    Different signs \(\rightarrow\) one high, one low \(\rightarrow\)
+    \(-\) contribution
+  \end{itemize}
+\end{itemize}
+
+The average of all contributions is the \textbf{Covariance}
+
+\subsubsection{Correlation equation}\label{correlation-equation}
 
 \begin{align}
 R = \frac{\mathrm{Cov}(X,Y)}{\sigma_x \sigma_y}
@@ -7252,7 +8049,9 @@ R = \frac{\mathrm{Cov}(X,Y)}{\sigma_x \sigma_y}
   comparisons across datasets
 \end{itemize}
 
-\begin{figure}[ht]
+\subsubsection{drive shaft data}\label{drive-shaft-data}
+
+\begin{figure}[H]
 
 \centering{
 
@@ -7265,7 +8064,12 @@ variables. There is strong evidence that they are normally distributed.}
 
 \end{figure}%
 
-\begin{figure}[ht]
+We have data on the the \texttt{diameter} vs.~\texttt{rpm} and want to
+know, if there is a correlation between the two variables.
+
+\subsubsection{The correlation}\label{the-correlation}
+
+\begin{figure}[H]
 
 \centering{
 
@@ -7277,6 +8081,8 @@ variables. There is strong evidence that they are normally distributed.}
 lathe machine and the diameter of the drive shaft.}
 
 \end{figure}%
+
+\subsubsection{Testing and computing it}\label{testing-and-computing-it}
 
 \begin{verbatim}
 
@@ -7292,21 +8098,22 @@ sample estimates:
 0.95 
 \end{verbatim}
 
-When you have two continuous variables and want to measure the strength
-and direction of their linear relationship, Pearson correlation is the
-go-to choice (Pearson 1895). It assumes normally distributed data and is
-particularly valuable for exploring linear associations between
-variables and is calculated via \eqref{pearcorr}.
+\subsection{Pearson correlation coefficient
+summary}\label{pearson-correlation-coefficient-summary}
+
+\begin{itemize}
+\item
+  \(2\) continuous variables, measure the strength and direction of
+  their linear relationship: Pearson correlation (Pearson 1895)
+\item
+  normally distributed data
+\end{itemize}
 
 \begin{align}
 R = \frac{\sum_{i = 1}^{n}(x_i - \bar{x}) \times (y_i - \bar{y})}{\sqrt{\sum_{i=1}^{n}(x_i-\bar{x})^2}\times \sum_{i=1}^{n}(y_i-\bar{y})^2} \label{pearcorr}
 \end{align}
 
-The \hyperref[PCC]{Pearson Correlation Coeffcient} works best with
-normal disitributed data. The normal distribution of the data is
-verified in Figure~\ref{fig-drive-shaft-pearson-qq}.
-
-\subsubsection{Spearman Correlation}\label{spearman-correlation}
+\subsection{Spearman Correlation}\label{spearman-correlation}
 
 Spearman (Spearman 1904) correlation is a non-parametric alternative to
 Pearson correlation. It is used when the data is not normally
@@ -7317,42 +8124,137 @@ not necessarily linear.
 \rho = 1 - \frac{6 \sum d_i^2}{n(n^2 - 1)} \label{spearcorr}
 \end{align}
 
-In Figure~\ref{fig-drive-shaft-corr-spear} the example data for a drive
+In \textbf{?@fig-drive-shaft-corr-spear} the example data for a drive
 shaft production is shown. The \texttt{Production\_Time} and the
 \texttt{Defects} seem to form a relationship, but the data does not
 appear to be normally distributed. This can also be seen in the QQ-plots
-of both variables in Figure~\ref{fig-drive-shaft-spear-qq}.
+of both variables in \textbf{?@fig-drive-shaft-spear-qq}.
 
 The \textbf{spearman} correlation coefficient (\(\rho\)) is based on the
 pearson correlation, but applied to \textbf{ranked} data
 
-\begin{figure}[ht]
+\subsubsection{data with outliers}\label{data-with-outliers}
+
+\begin{table}
+
+\caption{\label{tbl-spear-ex-raw}The data is now subject to outliers.}
 
 \centering{
 
-\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/fig-drive-shaft-corr-spear-1.pdf}
+\fontsize{11.0pt}{13.0pt}\selectfont
+\begin{tabular*}{1\linewidth}{@{\extracolsep{\fill}}cccc}
+\toprule
+Observation & Temperature in C & Rod Length in mm & Comment \\ 
+\midrule\addlinespace[2.5pt]
+1 & 20 & 100.2 & normal \\ 
+2 & 22 & 100.4 & normal \\ 
+3 & 24 & 100.7 & normal \\ 
+4 & 26 & 101.0 & normal \\ 
+5 & 28 & 101.3 & normal \\ 
+6 & 30 & {\cellcolor[HTML]{BEBEBE}{110.0}} & steep increase \\ 
+7 & 32 & {\cellcolor[HTML]{BEBEBE}{120.0}} & very steep \\ 
+8 & 34 & {\cellcolor[HTML]{BEBEBE}{130.0}} & extreme \\ 
+\bottomrule
+\end{tabular*}
 
 }
 
-\caption{\label{fig-drive-shaft-corr-spear}The relationship between the
-production time and the number of defects.}
+\end{table}%
 
-\end{figure}%
+\subsubsection{The ranks of the data}\label{the-ranks-of-the-data}
 
-\begin{figure}[ht]
+\begin{table}
+
+\caption{\label{tbl-spear-ex-calc}The steps in calculating the spearman
+correlation.}
 
 \centering{
 
-\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/fig-drive-shaft-spear-qq-1.pdf}
+\fontsize{11.0pt}{13.0pt}\selectfont
+\begin{tabular*}{1\linewidth}{@{\extracolsep{\fill}}cccccccc}
+\toprule
+Obersvation & Temperature in C & Rod Length in mm & Comment & Rank \$X\$ & Rank \$Y\$ & \$d = R\_X-R\_Y\$ & \$d\textasciicircum{}2\$ \\ 
+\midrule\addlinespace[2.5pt]
+1 & 20 & 100.2 & normal & 1 & 1 & 0 & 0 \\ 
+2 & 22 & 100.4 & normal & 2 & 2 & 0 & 0 \\ 
+3 & 24 & 100.7 & normal & 3 & 3 & 0 & 0 \\ 
+4 & 26 & 101.0 & normal & 4 & 4 & 0 & 0 \\ 
+5 & 28 & 101.3 & normal & 5 & 5 & 0 & 0 \\ 
+6 & 30 & {\cellcolor[HTML]{BEBEBE}{110.0}} & steep increase & 6 & 6 & 0 & 0 \\ 
+7 & 32 & {\cellcolor[HTML]{BEBEBE}{120.0}} & very steep & 7 & 7 & 0 & 0 \\ 
+8 & 34 & {\cellcolor[HTML]{BEBEBE}{130.0}} & extreme & 8 & 8 & 0 & 0 \\ 
+\bottomrule
+\end{tabular*}
 
 }
 
-\caption{\label{fig-drive-shaft-spear-qq}The QQ-plots of both
-variables.}
+\end{table}%
+
+\subsubsection{The spearman rho}\label{the-spearman-rho}
+
+\begin{align}
+\rho = 1- \frac{6\sum{d^2}}{n(n^2-1)} = 1 - \frac{0}{8(64-1)} = 1
+\end{align}
+
+\subsubsection{The data in a plot}\label{the-data-in-a-plot}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/fig-spear-dat-1.pdf}
+
+}
+
+\caption{\label{fig-spear-dat}The data for which the spearman
+correlation is computed}
 
 \end{figure}%
 
-\subsubsection{Correlation - methodogical
+\subsubsection{Background}\label{background}
+
+The spearman \(\rho\) calculates the pearson correlation, but between
+the \emph{rank} difference of the variables.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.2143}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.7857}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Part
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Meaning
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\(\sum d_i^2\) & Total squared difference in ranks (rank
+disagreement) \\
+\(6\) & Derived from algebraic simplification of Pearson's r using rank
+variance \\
+\(n(n^2 - 1)\) & Comes from variance of ranks and number of
+comparisons \\
+\(1 - \text{fraction}\) & Ensures perfect agreement yields \(\rho = 1\);
+increasing \(d_i^2\) lowers \(\rho\) \\
+\end{longtable}
+
+\subsection{Comparison on outlier
+data}\label{comparison-on-outlier-data}
+
+\begin{table}
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}rrrrrrll}
+\toprule
+estimate & statistic & p.value & parameter & conf.low & conf.high & method & alternative \\ 
+\midrule\addlinespace[2.5pt]
+0.8620862 & 4.166991 & 5.898272e-03 & 6 & 0.4010414 & 0.9746625 & Pearson's product-moment correlation & two.sided \\ 
+1.0000000 & 0.000000 & 4.960317e-05 & NA & NA & NA & Spearman's rank correlation rho & two.sided \\ 
+\bottomrule
+\end{tabular*}
+\end{table}
+
+\subsection{Correlation - methodogical
 limits}\label{correlation---methodogical-limits}
 
 While correlation analysis and summary statistics are certainly useful,
@@ -7395,7 +8297,9 @@ x\_shape & 54.260 & 47.840 & 16.770 & 26.930 & −0.066 \\
 
 \end{longtable}
 
-\begin{figure}[ht]
+\subsection{Plot of the raw data}\label{plot-of-the-raw-data}
+
+\begin{figure}[H]
 
 \centering{
 
@@ -7426,11 +8330,11 @@ variable.}
 \subsection{Test for equal variance
 (homoscedasticity)}\label{test-for-equal-variance-homoscedasticity}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
-\includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/fig-tst-var-1.pdf}
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/fig-tst-var-1.pdf}
 
 }
 
@@ -7592,6 +8496,8 @@ from two independent groups. It evaluates whether there is a significant
 difference in means between these groups, assuming a normal distribution
 of the data.
 
+\subsubsection{Prerequisites}\label{prerequisites}
+
 \begin{itemize}
 \tightlist
 \item
@@ -7612,6 +8518,73 @@ of the data.
   \end{itemize}
 \end{itemize}
 
+\subsubsection{Hypotheses}\label{hypotheses-2}
+
+\hyperref[acronyms_H0]{H0}: \(\mu_1 = \mu_2\) (two tailed)
+
+\hyperref[acronyms_Ha]{Ha}: \(\mu_1 > \mu_2\) or \(\mu_1 < \mu_2\)
+(one-tailed)
+
+\subsubsection{One sided test}\label{one-sided-test}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/fig-t-test-oneside-1.pdf}
+
+}
+
+\caption{\label{fig-t-test-oneside}The idea for a one-sided (t-)test}
+
+\end{figure}%
+
+\subsubsection{Two sided test}\label{two-sided-test}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/fig-t-test-twoside-1.pdf}
+
+}
+
+\caption{\label{fig-t-test-twoside}The idea for a two-sided (t-)test}
+
+\end{figure}%
+
+\subsubsection{The test statistic}\label{the-test-statistic}
+
+The t-statistic quantifies how far the observed difference in means
+(\(\bar{x_1}-\bar{x_2}\)) is from \hyperref[acronyms_H0]{H0} in units of
+standard error.
+
+\begin{align}
+t = \frac{\text{Observed Difference}}{\text{Standard Error of the Difference}} = \frac{\bar{x_1}-\bar{x_2}}{SE_{\bar{x_1}-\bar{x_2}}}
+\end{align}
+
+Where the standard error depends on:
+
+\begin{itemize}
+\item
+  Sample Sizes (\(n_1,n_2\))
+\item
+  Sample variances (\(sd_1^2,sd_2^2\))
+\item
+  Whether the sample variances are equal (pooled variance) or not
+  (Welch's t-test)
+\end{itemize}
+
+\subsubsection{Standard error for equal
+variances}\label{standard-error-for-equal-variances}
+
+\begin{align}
+SE_{pooled} &= \sqrt{sd_p^2(\frac{1}{n_1}+\frac{1}{n_2})} \\
+sd_p^2 &= \frac{(n_1-1)sd_1^2+(n_2-1)sd_2^2}{n_1+n_2-2}
+\end{align}
+
+\subsubsection{Variances}\label{variances}
+
 First, the variances are compared in order to check if they are equal
 using the F-Test (as described in Section~\ref{sec-f-test}).
 
@@ -7631,6 +8604,8 @@ ratio of variances
 
 With \(p>\alpha = 0.05\) the \(H_0\) is accepted, the variances are
 equal.
+
+\subsubsection{Normality}\label{normality}
 
 The next step is to check the data for normality using the KS-test (as
 described in Section~\ref{sec-ks-test}).
@@ -7656,11 +8631,13 @@ alternative hypothesis: two-sided
 With \(p>\alpha = 0.05\) the \(H_0\) is accepted, the data seems to be
 normally distributed.
 
+\subsubsection{Visualization}\label{visualization-2}
+
 \begin{figure}[H]
 
 \centering{
 
-\includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/fig-t-tst-two-indep-1.pdf}
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/fig-t-tst-two-indep-1.pdf}
 
 }
 
@@ -7668,6 +8645,8 @@ normally distributed.
 comparing the sample means using the t-test for independent samples.}
 
 \end{figure}%
+
+\subsubsection{Testing}\label{testing}
 
 The formal test is then carried out. With \(p<\alpha=0.05\) \(H_0\) is
 rejected, the data comes from populations with different means.
@@ -7694,6 +8673,8 @@ continuous data with two independent groups (WELCH 1947). However, it is
 employed when there are unequal variances between the groups, relaxing
 the assumption of equal variances in the standard t-test.
 
+\subsubsection{Prerequisites}\label{prerequisites-1}
+
 \begin{itemize}
 \tightlist
 \item
@@ -7711,6 +8692,8 @@ the assumption of equal variances in the standard t-test.
     Number of groups \(=2\)
   \end{itemize}
 \end{itemize}
+
+\subsubsection{Variance Check}\label{variance-check}
 
 First, the variances are compared in order to check if they are equal
 using the F-Test (as described in Section~\ref{sec-f-test}).
@@ -7731,6 +8714,8 @@ ratio of variances
 
 With \(p<\alpha = 0.05\) \(H_0\) is rejected and \(H_a\) is accepted.
 The variances are different.
+
+\subsubsection{Normality Check}\label{normality-check-1}
 
 Using the KS-test (see Section~\ref{sec-ks-test}) the data is checked
 for normality.
@@ -7756,6 +8741,8 @@ alternative hypothesis: two-sided
 With \(p>\alpha = 0.05\) \(H_0\) is accepted, the data seems to be
 normally distributed.
 
+\subsubsection{The data}\label{the-data-3}
+
 \begin{figure}[H]
 
 \centering{
@@ -7769,6 +8756,18 @@ for comparing the sample means using the Welch-test for independent
 samples.}
 
 \end{figure}%
+
+\subsubsection{Calculation for unequal
+variances}\label{calculation-for-unequal-variances}
+
+The \hyperref[acronyms_SE]{SE} of the variances for unequal variances is
+calculated:
+
+\begin{align}
+SE_{Welch} = \sqrt{\frac{sd_1^2}{n_1}+\frac{sd_2^2}{n_2}}
+\end{align}
+
+\subsubsection{The test}\label{the-test-1}
 
 Then, the formal test is carried out.
 
@@ -7798,6 +8797,11 @@ independent samples t-test (Mann and Whitney 1947). It assesses whether
 there is a significant difference in medians between two independent
 groups.
 
+\subsubsection{Prerequisites}\label{prerequisites-2}
+
+Based on the Wilcoxon rank sum test (see
+Section~\ref{sec-wilcox-rank-sum}).
+
 \begin{itemize}
 \tightlist
 \item
@@ -7816,11 +8820,19 @@ groups.
   \end{itemize}
 \end{itemize}
 
+\subsubsection{Hypotheses}\label{hypotheses-3}
+
+\hyperref[acronyms_H0]{H0}: The two groups have equal medians
+
+\hyperref[acronyms_Ha]{Ha}: The two groups have unequal medians
+
+\subsubsection{The data}\label{the-data-4}
+
 \begin{figure}[H]
 
 \centering{
 
-\includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/fig-mannu-tst-data-1.pdf}
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/fig-mannu-tst-data-1.pdf}
 
 }
 
@@ -7828,6 +8840,8 @@ groups.
 comparing the sample medians using the Mann-Whitney-U Test.}
 
 \end{figure}%
+
+\subsubsection{Check for Normality}\label{check-for-normality}
 
 This time a graphical method to check for normality is employed
 (QQ-plot, see Section~\ref{sec-qq-plot}). From the
@@ -7848,6 +8862,8 @@ comparing the sample medians using the Mann-Whitney-U Test.}
 
 \end{figure}%
 
+\subsubsection{The test}\label{the-test-2}
+
 Then, the formal test is carried out. With \(p<\alpha = 0.05\) \(H_0\)
 is rejected, the true location shift is not equal to \(0\).
 
@@ -7860,12 +8876,22 @@ W = 7396, p-value = 4.642e-09
 alternative hypothesis: true location shift is not equal to 0
 \end{verbatim}
 
+\begin{verbatim}
+Cohen's d |       95% CI
+------------------------
+0.93      | [0.63, 1.22]
+
+- Estimated using pooled SD.
+\end{verbatim}
+
 \subsection{t-test for paired samples}\label{t-test-for-paired-samples}
 
 The paired samples t-test is suitable when you have continuous data from
 two related groups or repeated measures. It helps determine if there is
 a significant difference in means between the related groups, assuming
 normally distributed data.
+
+\subsubsection{Prerequisites}\label{prerequisites-3}
 
 \begin{itemize}
 \tightlist
@@ -7887,6 +8913,36 @@ normally distributed data.
   \end{itemize}
 \end{itemize}
 
+\subsubsection{Special characteristics}\label{special-characteristics}
+
+The paired t-test focuses on the differences between paired
+observations.
+
+\begin{itemize}
+\tightlist
+\item
+  (\(X_{1i},X_{2i}\)) may be the \(i\)th pair of observations
+  (\(i = 1, \ldots, n\))
+\item
+  Differences: \(D_i = X_{1i}-X_{2i}\)
+\end{itemize}
+
+It is then evaluated whether the mean differences (\(\mu_D\)) is zero.
+
+\subsubsection{Hypotheses}\label{hypotheses-4}
+
+\hyperref[acronyms_H0]{H0}: \(\mu_D = 0\)
+
+\hyperref[acronyms_Ha]{Ha}: \(\mu_D \neq 0\)
+
+with the test statistic being
+
+\begin{align}
+t = \frac{\bar{D}}{sd_D/\sqrt{n}}
+\end{align}
+
+\subsubsection{Variances}\label{variances-1}
+
 Using the F-Test, the variances are compared.
 
 \begin{verbatim}
@@ -7905,11 +8961,13 @@ ratio of variances
 
 With \(p>\alpha = 0.05\) \(H_0\) is accepted, the variances are equal.
 
+\subsubsection{Normality}\label{normality-1}
+
 Using a QQ-plot the data is checked for normality.
 
-\pandocbounded{\includegraphics[keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/unnamed-chunk-13-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/unnamed-chunk-18-1.pdf}}
 
-Without a formal test, the data is assumed to be normally distributed.
+\subsubsection{Visualization}\label{visualization-3}
 
 \begin{figure}[H]
 
@@ -7923,6 +8981,8 @@ Without a formal test, the data is assumed to be normally distributed.
 connections between the datapoints.}
 
 \end{figure}%
+
+\subsubsection{The test}\label{the-test-3}
 
 The formal test is then carried out.
 
@@ -7943,6 +9003,8 @@ samples, the Wilcoxon signed rank test is a non-parametric alternative
 to the paired samples t-test. It evaluates whether there is a
 significant difference in medians between the related groups.
 
+\subsubsection{Prerequisites}\label{prerequisites-4}
+
 \begin{itemize}
 \tightlist
 \item
@@ -7959,9 +9021,28 @@ significant difference in medians between the related groups.
   \end{itemize}
 \end{itemize}
 
-\pandocbounded{\includegraphics[keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/unnamed-chunk-15-1.pdf}}
+\subsubsection{Check for Normality}\label{check-for-normality-1}
 
-\pandocbounded{\includegraphics[keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/unnamed-chunk-16-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/unnamed-chunk-20-1.pdf}}
+
+\subsubsection{Special characteristic}\label{special-characteristic}
+
+\begin{itemize}
+\tightlist
+\item
+  (\(X_{1i},X_{2i}\)) may be the \(i\)th pair of observations
+  (\(i = 1, \ldots, n\))
+\item
+  Differences: \(D_i = X_{1i}-X_{2i}\)
+\end{itemize}
+
+It is then evaluated whether the median differences is zero
+
+\subsubsection{The data}\label{the-data-5}
+
+\pandocbounded{\includegraphics[keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/unnamed-chunk-21-1.pdf}}
+
+\subsubsection{The test}\label{the-test-4}
 
 \begin{verbatim}
 # A tibble: 1 x 7
@@ -7970,7 +9051,132 @@ significant difference in medians between the related groups.
 1 diameter t0     t1        20    20        25 0.00169
 \end{verbatim}
 
-\newpage{}
+\subsection{Exercise on paired
+samples}\label{exercise-on-paired-samples}
+
+A manufacturing plant has 10 machines producing steel rods. After
+recalibration, the diameters of rods from each machine are measured
+again. The goal is to determine if the recalibration significantly
+changed the mean diameter.
+
+\subsubsection{The data}\label{the-data-6}
+
+\begin{table}
+
+\caption{\label{tbl-exercise-paired-data}The data for the paired test
+example}
+
+\centering{
+
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}rr}
+\toprule
+before & after \\ 
+\midrule\addlinespace[2.5pt]
+8.37 & 6.35 \\ 
+6.44 & 4.03 \\ 
+7.36 & 6.42 \\ 
+7.63 & 6.24 \\ 
+7.40 & 5.95 \\ 
+109.47 & 107.72 \\ 
+117.56 & 116.17 \\ 
+109.53 & 109.09 \\ 
+9.04 & 8.52 \\ 
+7.34 & 5.31 \\ 
+\bottomrule
+\end{tabular*}
+
+}
+
+\end{table}%
+
+\subsubsection{Your plan}\label{your-plan}
+
+How do we go on?
+
+\subsubsection{Solution: Differences}\label{solution-differences}
+
+\begin{table}
+
+\caption{\label{tbl-exercise-paired-data-sol01}The data for the paired
+test example}
+
+\centering{
+
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}rrr}
+\toprule
+before & after & D \\ 
+\midrule\addlinespace[2.5pt]
+8.37 & 6.35 & 2.02 \\ 
+6.44 & 4.03 & 2.41 \\ 
+7.36 & 6.42 & 0.94 \\ 
+7.63 & 6.24 & 1.39 \\ 
+7.40 & 5.95 & 1.45 \\ 
+109.47 & 107.72 & 1.75 \\ 
+117.56 & 116.17 & 1.39 \\ 
+109.53 & 109.09 & 0.44 \\ 
+9.04 & 8.52 & 0.52 \\ 
+7.34 & 5.31 & 2.03 \\ 
+\bottomrule
+\end{tabular*}
+
+}
+
+\end{table}%
+
+\subsubsection{Solution: Check Normality of
+data}\label{solution-check-normality-of-data}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/fig-data-qq-1.pdf}
+
+}
+
+\caption{\label{fig-data-qq}The distribution of the data}
+
+\end{figure}%
+
+\subsubsection{Solution: Check Normality of the
+differences}\label{solution-check-normality-of-the-differences}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/fig-D-diff-1.pdf}
+
+}
+
+\caption{\label{fig-D-diff}The distribution of the differences}
+
+\end{figure}%
+
+\subsubsection{The test}\label{the-test-5}
+
+\begin{table}
+
+\caption{\label{tbl-exercise-paired-data-solution-final}The data for the
+paired test example}
+
+\centering{
+
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lllrrrrrl}
+\toprule
+.y. & group1 & group2 & n1 & n2 & statistic & df & p & is\_paired \\ 
+\midrule\addlinespace[2.5pt]
+diameter & after & before & 10 & 10 & -6.95806860 & 9.00000 & 6.63e-05 & yes \\ 
+diameter & after & before & 10 & 10 & -0.06333031 & 17.99979 & 9.50e-01 & no \\ 
+\bottomrule
+\end{tabular*}
+
+}
+
+\end{table}%
 
 \section{Test 2 Variables (\textgreater{} 2
 Groups)}\label{test-2-variables-2-groups-1}
@@ -8120,6 +9326,8 @@ with three or more independent groups. It assesses whether there are
 significant differences in means among these groups, assuming a normal
 distribution.
 
+\subsubsection{Prerequisites}\label{prerequisites-5}
+
 \begin{itemize}
 \tightlist
 \item
@@ -8138,6 +9346,9 @@ distribution.
   \end{itemize}
 \end{itemize}
 
+\subsubsection{One-way AOVA - basic
+idea}\label{one-way-aova---basic-idea}
+
 \begin{figure}[H]
 
 \centering{
@@ -8150,6 +9361,8 @@ distribution.
 ANOVA.}
 
 \end{figure}%
+
+\subsubsection{Check Variances}\label{check-variances}
 
 The most important prerequisite for a One-way ANOVA are equal variances.
 Because there are more than two groups, the Bartlett test (as introduced
@@ -8165,6 +9378,9 @@ Bartlett's K-squared = 275.61, df = 4, p-value < 2.2e-16
 
 Because \(p<\alpha = 0.05\) the variances are different.
 
+\subsubsection{Where are the variances
+equal?}\label{where-are-the-variances-equal}
+
 \begin{figure}[H]
 
 \centering{
@@ -8178,6 +9394,8 @@ are highlighted.}
 
 \end{figure}%
 
+\subsubsection{More tests}\label{more-tests}
+
 \begin{verbatim}
 
     Bartlett test of homogeneity of variances
@@ -8188,6 +9406,8 @@ Bartlett's K-squared = 2.7239, df = 2, p-value = 0.2562
 
 With \(p>\alpha=0.05\) \(H_0\) is accepted, the variances of
 \texttt{group01}, \texttt{group02} and \texttt{group03} are equal.
+
+\subsubsection{The whole game}\label{the-whole-game}
 
 Of course, many software package provide an automated way of performing
 a One-way ANOVA, but the first will be explained in detail. The general
@@ -8213,11 +9433,13 @@ is true), see Table~\ref{tbl-anova-ow-complete}. The complete model
 means, that every mean, for every group is calculated and the
 \hyperref[sse]{\(SSE\)} according to \eqref{sse} is calculated.
 
-\begin{figure}[ht]
+\subsubsection{Complete Model}\label{complete-model}
+
+\begin{figure}[H]
 
 \centering{
 
-\includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/fig-anova-mdls-comp-1.pdf}
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/fig-anova-mdls-comp-1.pdf}
 
 }
 
@@ -8226,11 +9448,13 @@ complete model (mean per group as model)}
 
 \end{figure}%
 
-\begin{figure}[ht]
+\subsubsection{Reduced Model}\label{reduced-model}
+
+\begin{figure}[H]
 
 \centering{
 
-\includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/fig-anova-mdls-red-1.pdf}
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/fig-anova-mdls-red-1.pdf}
 
 }
 
@@ -8238,6 +9462,8 @@ complete model (mean per group as model)}
 model (overall mean as model)}
 
 \end{figure}%
+
+\subsubsection{SE and MSE}\label{se-and-mse}
 
 \begin{longtable}[]{@{}rrrrr@{}}
 
@@ -8255,6 +9481,8 @@ sse & df & n & p & mse \\
 3.150 & 297.000 & 300.000 & 3.000 & 0.011 \\
 
 \end{longtable}
+
+\subsubsection{SE and MSE comparison}\label{se-and-mse-comparison}
 
 Then, the SSE and the MSE is calculated for the reduced model (\(H_0\)
 is true). In the reduced model, the mean is not calculated per group,
@@ -8278,6 +9506,8 @@ sse & df & n & p & mse \\
 
 \end{longtable}
 
+\subsubsection{Explained}\label{explained}
+
 The \(SSE\), \(df\) and \(MSE\) explained by the complete model are
 calculated:
 
@@ -8286,6 +9516,8 @@ SSE_{explained} &= SSE_{reduced}-SSE_{complete} = 118.36 \\
 df_{explained} &= df_{reduced} - df_{complete} = 2 \\
 MSE_{explained} &= \frac{SSE_{explained}}{df_{explained}} = 59.18
 \end{align}
+
+\subsubsection{Ratio of Variances}\label{ratio-of-variances}
 
 The ratio of the variance (MSE) as explained by the complete model to
 the reduced model is then calculated. The probability of this statistic
@@ -8296,6 +9528,8 @@ is afterwards calculated (if \(H_0\) is true).
 \end{verbatim}
 
 The probability of a F-statistic with \(pf = 5579.207\) is \(0\).
+
+\subsubsection{Crosscheck}\label{crosscheck}
 
 A crosscheck with a automated solution (\texttt{aov}-function) yields
 the results shown in Table~\ref{tbl-anova-ow-r-sol}.
@@ -8318,6 +9552,8 @@ Residuals & 297.000 & 3.150 & 0.011 & NA & NA \\
 
 \end{longtable}
 
+\subsubsection{Sanity Checks}\label{sanity-checks}
+
 Some sanity checks are of course required to ensure the validity of the
 results. First, the variance of the residuals must be equal along the
 groups (see Figure~\ref{fig-anova-ow-variance}).
@@ -8334,6 +9570,8 @@ groups (see Figure~\ref{fig-anova-ow-variance}).
 
 \end{figure}%
 
+\subsubsection{residuals}\label{residuals}
+
 Also, the residuals from the model must be normally distributed (see
 Figure~\ref{fig-anova-ow-qq}).
 
@@ -8349,6 +9587,8 @@ Figure~\ref{fig-anova-ow-qq}).
 
 \end{figure}%
 
+\subsubsection{final conclusion}\label{final-conclusion}
+
 The model seems to be valid (equal variances of residuals, normal
 distributed residuals).
 
@@ -8361,6 +9601,8 @@ different populations.
 employed when there are unequal variances between the groups being
 compared. It relaxes the assumption of equal variances, making it
 suitable for situations where variance heterogeneity exists.
+
+\subsubsection{Prerequisites}\label{prerequisites-6}
 
 \begin{itemize}
 \tightlist
@@ -8378,6 +9620,8 @@ suitable for situations where variance heterogeneity exists.
   \end{itemize}
 \end{itemize}
 
+\subsubsection{Variance test}\label{variance-test}
+
 The Welch ANOVA drops the prerequisite of equal variances in groups.
 Because there are more than two groups, the Bartlett test (as introduced
 in Section~\ref{sec-bartlett}) is chosen (data is normally distributed).
@@ -8392,6 +9636,8 @@ Bartlett's K-squared = 275.61, df = 4, p-value < 2.2e-16
 
 With \(p<\alpha = 0.05\) \(H_0\) can be rejected, the variances are not
 equal.
+
+\subsubsection{ANOVA table}\label{anova-table}
 
 The ANOVA table for the Welch ANOVA is shown in
 Table~\ref{tbl-anova-ow-welch}.
@@ -8440,6 +9686,8 @@ In this example the drive strength is measured using three-point
 bending. Three different methods are employed to increase the strength
 of the drive shaft.
 
+\subsubsection{Scenario}\label{scenario}
+
 \begin{figure}[H]
 
 \centering{
@@ -8467,11 +9715,13 @@ In Figure~\ref{fig-kruskal-raw-dat} the raw drive shaft strength data
 for Method A, B and C is shown. At first glance, the data does not
 appear to be normally distributed.
 
+\subsubsection{The data}\label{the-data-7}
+
 \begin{figure}[H]
 
 \centering{
 
-\includegraphics[width=0.8\linewidth,height=\textheight,keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/fig-kruskal-raw-dat-1.pdf}
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/fig-kruskal-raw-dat-1.pdf}
 
 }
 
@@ -8480,6 +9730,8 @@ strength testing.}
 
 \end{figure}%
 
+\subsubsection{Check Disitribution}\label{check-disitribution}
+
 In Figure~\ref{fig-kruskal-qq} the visual test for normal distribution
 is performed. The data does not appear to be normally distributed.
 
@@ -8487,7 +9739,7 @@ is performed. The data does not appear to be normally distributed.
 
 \centering{
 
-\includegraphics[width=0.8\linewidth,height=\textheight,keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/fig-kruskal-qq-1.pdf}
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/fig-kruskal-qq-1.pdf}
 
 }
 
@@ -8495,6 +9747,8 @@ is performed. The data does not appear to be normally distributed.
 testing data.}
 
 \end{figure}%
+
+\subsubsection{The test}\label{the-test-6}
 
 The Kruskal-Wallis test is then carried out. With \(p< \alpha = 0.05\)
 it is shown, that the groups come from populations with different means.
@@ -8508,6 +9762,8 @@ post-hoc analysis.
 data:  strength by group
 Kruskal-Wallis chi-squared = 107.65, df = 2, p-value < 2.2e-16
 \end{verbatim}
+
+\subsubsection{multiple tests}\label{multiple-tests}
 
 The Kruskal-Wallis Test (as the ANOVA) can only tell you, if there is a
 signifcant difference between the groups, not what groups are different.
@@ -8552,11 +9808,13 @@ after three different steps.
   After Inspection
 \end{itemize}
 
+\subsubsection{The data}\label{the-data-8}
+
 \begin{figure}[H]
 
 \centering{
 
-\includegraphics[width=0.8\linewidth,height=\textheight,keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/fig-rep-meas-raw-1.pdf}
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter002_InferentialStatistics_files/figure-pdf/fig-rep-meas-raw-1.pdf}
 
 }
 
@@ -8564,6 +9822,8 @@ after three different steps.
 ANOVA.}
 
 \end{figure}%
+
+\subsubsection{Outlier detection}\label{outlier-detection}
 
 First, outliers are identified. There is no strict rule to identify
 outliers, in this case a classical measure is applied according to
@@ -8585,6 +9845,8 @@ x_i & <Q1 - 1.5 \cdot IQR
 1 After_Inspection 15             12.9 TRUE       FALSE     
 \end{verbatim}
 
+\subsubsection{Check Distributions}\label{check-distributions}
+
 A check for normality is done employing the Shapiro-Wilk test (Shapiro
 and Wilk 1965).
 
@@ -8599,6 +9861,8 @@ After\_Inspection & diameter & 0.968 & 0.727 \\
 After\_Machining & diameter & 0.954 & 0.456 \\
 Before\_Machining & diameter & 0.968 & 0.741 \\
 \end{longtable}
+
+\subsubsection{Sphericity}\label{sphericity}
 
 The next step is to check the dataset for sphericity, meaning to compare
 the variance of the groups among each other in order to determine the
@@ -8617,6 +9881,8 @@ Otherwise sphericity corrections must be applied (Greenhouse and Geisser
 The next step is to perform the repeated measures ANOVA, which yields
 the following results.
 
+\subsubsection{The test}\label{the-test-7}
+
 \begin{longtable}[]{@{}lrrrrrr@{}}
 \toprule\noalign{}
 Effect & DFn & DFd & F & p & p\textless.05 & ges \\
@@ -8634,6 +9900,8 @@ using a post-hoc test, including a correction for the significance level
 
 In this case, the assumptions for a t-test are met, the pairwise t-test
 can be used.
+
+\subsubsection{p-value adjustment}\label{p-value-adjustment}
 
 \begin{longtable}[]{@{}llrrrrrrl@{}}
 \toprule\noalign{}
@@ -8663,6 +9931,8 @@ ANOVA (Friedman 1937). It is utilized when dealing with non-normally
 distributed data and multiple measurements within the same subjects.
 This test helps determine if there are significant differences in
 medians over the repeated measurements.
+
+\subsubsection{The test}\label{the-test-8}
 
 The same data as for the repeated measures ANOVA will be used.
 
@@ -8724,7 +9994,7 @@ The basic idea behind linear regression is, to find the line of the form
 order to determine the best fit, a criterion to optimize for is needed.
 This is where residuals come into play.
 
-\subsection{Residuals}\label{residuals}
+\subsection{Residuals}\label{residuals-1}
 
 \begin{figure}[H]
 
@@ -8742,33 +10012,46 @@ The computation of the residuals is based on \eqref{rss} to the
 \hyperref[rss]{residual sum of squares}.
 
 \begin{align}
-RSS = \frac{1}{n} \sum_{i=1}^{n} (y_i - (\beta_1 x_i+\beta_0))^2 \label{rss}
+SSE = \frac{1}{n} \sum_{i=1}^{n} (y_i - (\beta_1 x_i+\beta_0))^2 \label{rss}
 \end{align}
 
-\subsection{Gradient Descent (Ruder
-2016)}\label{gradient-descent-ruder2016}
+\subsubsection{Error Determination}\label{error-determination}
 
-\begin{figure}[ht]
+\hyperref[acronyms_SST]{Total Sum of Squares (SST)}:
+\(SST = \sum_{i = 1}^n(y_i -\bar{y})\)
 
-\centering{
+\begin{itemize}
+\tightlist
+\item
+  How much do the observed \(y_i\) values deviate from the mean
+  \(\bar{y}\)
+\end{itemize}
 
-\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio]{chapter003/031_gradient_descent.png}
+\hyperref[acronyms_SSR]{Regression Sum of Squares (SSR)}:
+\(SSR = \sum_{i = 1}^n(\hat{y_i} -\bar{y})\)
 
-}
+\begin{itemize}
+\tightlist
+\item
+  How much do the predicted \(\hat{y_i}\) values deviate from the mean
+  \(\bar{y}\)
+\end{itemize}
 
-\caption{\label{fig-grad-desc}An example for the gradient descent
-algorithm}
+\hyperref[acronyms_SSE]{Error Sum of Squares (SSE)}:
+\(SSE = \sum_{i = 1}^n(y_i -\hat{y})\)
 
-\end{figure}%
+\begin{itemize}
+\tightlist
+\item
+  How much do the observed \(y_i\) values deviate from the predicted
+  \(\hat{y}\)
+\end{itemize}
 
-In linear regression, gradient descent is an iterative optimization
-process used to minimize the difference between predicted and actual
-values. It starts with initial coefficients and calculates the gradient
-of the cost function, representing the error. The coefficients are then
-updated in the opposite direction of the gradient, with the magnitude of
-the update controlled by a learning rate. This process is repeated until
-convergence, gradually refining the coefficients to improve the accuracy
-of the linear regression model.
+\subsubsection{Key Relationship}\label{key-relationship}
+
+\begin{align}
+SST = SSR + SSE
+\end{align}
 
 \subsection{Model Evaluation and
 Interpretation}\label{model-evaluation-and-interpretation}
@@ -8777,90 +10060,155 @@ Interpretation}\label{model-evaluation-and-interpretation}
 
 \centering{
 
-\includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{chapter003_Regression_files/figure-pdf/fig-lm-1.pdf}
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter003_Regression_files/figure-pdf/fig-lm-data-1.pdf}
 
 }
 
-\caption{\label{fig-lm}The linear regression between rounds per minute
-(rpm) of the lathing machine and the diameter of the drive shaft.}
+\caption{\label{fig-lm-data}How doe the screw length depend on the rpm
+of the machine}
 
 \end{figure}%
 
-The \hyperref[r2]{coefficient of determination} (\(r^2\)), is a
-statistical measure that assesses the proportion of the variance in the
-dependent variable that is explained by the independent variable(s) in a
-regression model. It ranges from \(0\) to \(1\), where \(0\) indicates
-that the model does not explain any variability, and \(1\) indicates
-that the model explains all the variability. In other words, \(r^2\)
-provides insight into the goodness of fit of a regression model,
-indicating how well the model's predictions match the observed data.
-
-\begin{align}
-r^2 = 1- \frac{RSS}{SSE} \label{r2}
-\end{align}
-
-The \hyperref[r2adj]{adjusted coefficient of determination}, is a
-modification of the regular \(r^2\) in regression analysis. While
-\(r^2\) assesses the proportion of variance explained by the independent
-variables, the \(r^2_{adjusted}\) takes into account the
-\hyperref[numpred]{number of predictors (\(k\))} in the model,
-addressing potential issues with overfitting according to \eqref{r2adj}.
-
-The \(r^2_{adjusted}\) incorporates a penalty for adding unnecessary
-predictors that do not significantly contribute to explaining the
-variance in the dependent variable. This adjustment helps prevent an
-inflated \(r^2\) when including more predictors, even if they don't
-improve the model significantly.
+\subsection{The model}\label{the-model}
 
 \begin{figure}[H]
 
 \centering{
 
-\includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{chapter003_Regression_files/figure-pdf/fig-r2vsr2adj-1.pdf}
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter003_Regression_files/figure-pdf/fig-lm-mdl-1.pdf}
 
 }
 
-\caption{\label{fig-r2vsr2adj}The influence of k (number of predictors)
-on \(r^2\) and \(r^2_{adjusted}\).}
+\caption{\label{fig-lm-mdl}How doe the screw length depend on the rpm of
+the machine}
 
 \end{figure}%
 
+\subsection{The model parameters}\label{the-model-parameters}
+
+\begin{table}
+
+\caption{\label{tbl-lm-param}The parameters of the linear model}
+
+\centering{
+
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lccc}
+\toprule
+\textbf{Characteristic} & \textbf{Beta} & \textbf{95\% CI} & \textbf{p-value} \\ 
+\midrule\addlinespace[2.5pt]
+(Intercept) & 49 & 48, 49 & <0.001 \\ 
+rpm & 0.01 & 0.01, 0.01 & <0.001 \\ 
+{R\texttwosuperior} & {0.975} & {} & {} \\ 
+\bottomrule
+\end{tabular*}
+\begin{minipage}{\linewidth}
+Abbreviation: CI = Confidence Interval\\
+\end{minipage}
+
+}
+
+\end{table}%
+
+\subsection{\texorpdfstring{Defining
+\(r^2\)}{Defining r\^{}2}}\label{defining-r2}
+
+The \(r^2\) is the proportion of total variability explained by the
+model:
+
 \begin{align}
-r^2_{adjusted} = 1 - (1-r^2)\frac{n-1}{n-k-1} \label{r2adj}
+r^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST} \label{r2}
 \end{align}
 
-\begin{verbatim}
+Properties of \(r^2\):
 
-Call:
-lm(formula = diameter ~ rpm, data = drive_shaft_rpm_dia)
+\begin{itemize}
+\tightlist
+\item
+  Ranges from \(0\) to \(1\) (or \(0\% \ldots 100\%\))
+\item
+  Not a test for causality
+\item
+  Addition of predictors increases \(r^2\)
+\end{itemize}
 
-Residuals:
-     Min       1Q   Median       3Q      Max 
--0.89501 -0.19690 -0.01096  0.21917  1.00742 
+The \hyperref[acronyms_CoD]{Coefficient of Determination (CoD)}
+(\(r^2\)), is a statistical measure that assesses the proportion of the
+variance in the dependent variable that is explained by the independent
+variable(s) in a regression model. It ranges from \(0\) to \(1\), where
+\(0\) indicates that the model does not explain any variability, and
+\(1\) indicates that the model explains all the variability. In other
+words, \(r^2\) provides insight into the goodness of fit of a regression
+model, indicating how well the model's predictions match the observed
+data.
 
-Coefficients:
-             Estimate Std. Error t value Pr(>|t|)    
-(Intercept) 2.5000000  0.1406190   17.78   <2e-16 ***
-rpm         0.0095000  0.0001399   67.89   <2e-16 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\subsubsection{\texorpdfstring{Computing
+\(r^2\)}{Computing r\^{}2}}\label{computing-r2}
 
-Residual standard error: 0.3126 on 498 degrees of freedom
-Multiple R-squared:  0.9025,    Adjusted R-squared:  0.9023 
-F-statistic:  4610 on 1 and 498 DF,  p-value: < 2.2e-16
-\end{verbatim}
+\paragraph{SST}\label{sst}
 
-In linear regression modeling, the absence of a visible pattern in the
-residuals is desirable because it indicates that the model adequately
-captures the underlying relationship between the independent and
-dependent variables. Residuals are the differences between the observed
-and predicted values, and their randomness or lack of discernible
-pattern suggests that the model is effectively explaining the variance
-in the data. A visible pattern in residuals could indicate that the
-model fails to account for certain patterns or trends, suggesting
-potential shortcomings or misspecifications in the regression model.
-Detecting and addressing such patterns in residuals is crucial for
-ensuring the validity and reliability of the linear regression analysis.
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter003_Regression_files/figure-pdf/fig-lm-SST-1.pdf}
+
+}
+
+\caption{\label{fig-lm-SST}Visualization of
+\(SST = \sum_{i = 1}^n(y_i -\bar{y})\)}
+
+\end{figure}%
+
+\paragraph{SSR}\label{ssr}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter003_Regression_files/figure-pdf/fig-lm-SSR-1.pdf}
+
+}
+
+\caption{\label{fig-lm-SSR}Visualization of
+\(SSR = \sum_{i = 1}^n(\hat{y_i} -\bar{y})\)}
+
+\end{figure}%
+
+\paragraph{SSE}\label{sse}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter003_Regression_files/figure-pdf/fig-lm-SSE-1.pdf}
+
+}
+
+\caption{\label{fig-lm-SSE}Visualization of
+\(SSE = \sum_{i = 1}^n(y_i -\hat{y})\)}
+
+\end{figure}%
+
+\paragraph{\texorpdfstring{Putting it all together: \(r^2\) as a
+proportion}{Putting it all together: r\^{}2 as a proportion}}\label{putting-it-all-together-r2-as-a-proportion}
+
+\begin{align}
+r^2 &= \frac{SSR}{SST} \label{r2expvar} \\
+&= 1- \frac{SSE}{SST} \label{r2notexpvar}
+\end{align}
+
+\begin{itemize}
+\tightlist
+\item
+  \eqref{r2expvar}: If explained variability (\(SSR\)) is total
+  variability (\(SST\)): \(r^2 = 1\)
+\item
+  \eqref{r2notexpvar}: If variability from model (\(SSE\)) is \(0\):
+  \(r^2 = 1\)
+\end{itemize}
+
+\subsection{Model Checks - Residuals}\label{model-checks---residuals}
 
 \begin{figure}[H]
 
@@ -8875,15 +10223,29 @@ pattern in the residuals.}
 
 \end{figure}%
 
+In linear regression modeling, the absence of a visible pattern in the
+residuals is desirable because it indicates that the model adequately
+captures the underlying relationship between the independent and
+dependent variables. Residuals are the differences between the observed
+and predicted values, and their randomness or lack of discernible
+pattern suggests that the model is effectively explaining the variance
+in the data. A visible pattern in residuals could indicate that the
+model fails to account for certain patterns or trends, suggesting
+potential shortcomings or misspecifications in the regression model.
+Detecting and addressing such patterns in residuals is crucial for
+ensuring the validity and reliability of the linear regression analysis.
+
+\subsection{Residual Distribution}\label{residual-distribution}
+
 \begin{figure}[H]
 
 \centering{
 
-\includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{chapter003_Regression_files/figure-pdf/fig-lm-resid-qq-1.pdf}
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter003_Regression_files/figure-pdf/fig-lm-resid-qq-1.pdf}
 
 }
 
-\caption{\label{fig-lm-resid-qq}The resiuals should be normally
+\caption{\label{fig-lm-resid-qq}The residuals should be normally
 distributed.}
 
 \end{figure}%
@@ -8916,8 +10278,8 @@ regression}\label{hypostesis-testing-in-linear-regression}
 \toprule
 term & estimate & std.error & statistic & p.value \\ 
 \midrule\addlinespace[2.5pt]
-(Intercept) & 2.500 & 0.141 & 17.779 & 0.000 \\ 
-rpm & 0.010 & 0.000 & 67.895 & 0.000 \\ 
+(Intercept) & 48.682 & 0.108 & 449.635 & 0.000 \\ 
+rpm & 0.010 & 0.001 & 17.833 & 0.000 \\ 
 \bottomrule
 \end{tabular*}
 
@@ -8941,7 +10303,7 @@ contribution to the model.
 \toprule
 r.squared & adj.r.squared & statistic & p.value & df & df.residual & nobs \\ 
 \midrule\addlinespace[2.5pt]
-0.902 & 0.902 & 4,609.692 & 0.000 & 1.000 & 498.000 & 500.000 \\ 
+0.975 & 0.972 & 318.028 & 0.000 & 1.000 & 8.000 & 10.000 \\ 
 \bottomrule
 \end{tabular*}
 
@@ -8955,71 +10317,144 @@ to a model without predictors, helping determine if the regression
 equation explains a significant proportion of the variance in the
 dependent variable.
 
+\subsection{Gradient Descent (Ruder
+2016)}\label{gradient-descent-ruder2016}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio]{chapter003/gradient_descent.png}
+
+}
+
+\caption{\label{fig-grad-desc}An example for the gradient descent
+algorithm}
+
+\end{figure}%
+
+In linear regression, gradient descent is an iterative optimization
+process used to minimize the difference between predicted and actual
+values. It starts with initial coefficients and calculates the gradient
+of the cost function, representing the error. The coefficients are then
+updated in the opposite direction of the gradient, with the magnitude of
+the update controlled by a learning rate. This process is repeated until
+convergence, gradually refining the coefficients to improve the accuracy
+of the linear regression model.
+
 \section{Multiple linear regression}\label{multiple-linear-regression}
 
-\begin{table}
+\begin{itemize}
+\tightlist
+\item
+  Multicollinearity
+\item
+  Model selection
+\end{itemize}
 
-\caption{\label{tbl-mlm-eda}The data in a tabular overview including
-test for normal distribution.}
+\subsection{Example}\label{example-1}
 
-\centering{
+A CNC lathe produces screws with a target length of 50 mm. The process
+engineers suspect that:
 
-\fontsize{12.0pt}{14.0pt}\selectfont
-\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lccccc}
-\toprule
-\textbf{Characteristic} & \textbf{Overall}  N = 500\textsuperscript{\textit{1}} & \textbf{A}  N = 165\textsuperscript{\textit{1}} & \textbf{B}  N = 181\textsuperscript{\textit{1}} & \textbf{C}  N = 154\textsuperscript{\textit{1}} & \textbf{p-value}\textsuperscript{\textit{2}} \\ 
-\midrule\addlinespace[2.5pt]
-rpm & 999 (932, 1,068) & 993 (923, 1,061) & 995 (927, 1,074) & 1,012 (946, 1,068) & 0.5 \\ 
-diameter & 11.95 (11.30, 12.66) & 11.90 (11.24, 12.51) & 11.98 (11.30, 12.67) & 12.01 (11.41, 12.77) & 0.4 \\ 
-feed & 40.01 (39.34, 40.67) & 39.98 (39.34, 40.63) & 39.91 (39.34, 40.65) & 40.05 (39.37, 40.78) & 0.7 \\ 
-\bottomrule
-\end{tabular*}
-\begin{minipage}{\linewidth}
-\textsuperscript{\textit{1}}Median (Q1, Q3)\\
-\textsuperscript{\textit{2}}Kruskal-Wallis rank sum test\\
-\end{minipage}
+\begin{itemize}
+\tightlist
+\item
+  Higher RPM increases length due to material expansion from heat.
+\item
+  Higher feed rate decreases length due to faster material removal.
+\end{itemize}
 
-}
+But:
 
-\end{table}%
+\begin{itemize}
+\tightlist
+\item
+  Higher feed rates require higher RPM to maintain surface finish.
+\item
+  This introduces multicollinearity, complicating the analysis.
+\end{itemize}
 
-A short \hyperref[eda]{exploratory data analysis} of the data for the
-multiple linear regression is given in Table~\ref{tbl-mlm-eda}.
+\subsection{The data}\label{the-data-9}
 
-\begin{figure}[H]
-
-\centering{
-
-\includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{chapter003_Regression_files/figure-pdf/fig-mlm-qq-eda-1.pdf}
-
-}
-
-\caption{\label{fig-mlm-qq-eda}The graphical test for normal
-distribution (QQ-plot)}
-
-\end{figure}%
-
-Figure~\ref{fig-mlm-qq-eda} shows the graphical test for normal
-distribution for the multiple linear regression.
+\subsubsection{rpm}\label{rpm}
 
 \begin{figure}[H]
 
 \centering{
 
-\includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{chapter003_Regression_files/figure-pdf/fig-mlm-hist-1.pdf}
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter003_Regression_files/figure-pdf/fig-mlm-eda-rpm-1.pdf}
 
 }
 
-\caption{\label{fig-mlm-hist}The distribution of the output and input
-parameters.}
+\caption{\label{fig-mlm-eda-rpm}EDA on rpm}
 
 \end{figure}%
 
-In Figure~\ref{fig-mlm-hist} the distribution of the input data is shown
-in a histogram.
+\subsubsection{feed rate}\label{feed-rate}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter003_Regression_files/figure-pdf/fig-mlm-eda-feed-rate-1.pdf}
+
+}
+
+\caption{\label{fig-mlm-eda-feed-rate}EDA on feed rate}
+
+\end{figure}%
+
+\subsubsection{length}\label{length}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter003_Regression_files/figure-pdf/fig-mlm-eda-length-1.pdf}
+
+}
+
+\caption{\label{fig-mlm-eda-length}EDA on length}
+
+\end{figure}%
+
+\subsubsection{all in one}\label{all-in-one}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter003_Regression_files/figure-pdf/fig-mlm-eda-1.pdf}
+
+}
+
+\caption{\label{fig-mlm-eda}Density plots of the machining process}
+
+\end{figure}%
+
+A short \hyperref[acronyms_EDA]{Explorative Data Analysis (EDA)} of the
+data for the multiple linear regression is given in
+\textbf{?@tbl-mlm-eda}.
+
+\subsubsection{Correlation plot}\label{correlation-plot}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter003_Regression_files/figure-pdf/fig-mlm-corrplot-1.pdf}
+
+}
+
+\caption{\label{fig-mlm-corrplot}The correlation plot of the variables.}
+
+\end{figure}%
+
+\subsubsection{Fitting the model}\label{fitting-the-model}
 
 \begin{align}
-Y \sim rpm + feed+ site \label{mlmmodel}
+\text{length} = \beta_0 + \beta_1 \text{rpm} + \beta_1 \text{feedrate} + \epsilon  \label{mlmmodel}
 \end{align}
 
 \begin{table}
@@ -9034,12 +10469,10 @@ modelling}
 \toprule
 \textbf{Characteristic} & \textbf{Beta} & \textbf{95\% CI} & \textbf{p-value} \\ 
 \midrule\addlinespace[2.5pt]
-rpm & 0.00 & 0.00, 0.01 & <0.001 \\ 
-feed & 0.44 & 0.29, 0.58 & <0.001 \\ 
-site &  &  &  \\ 
-    A & 0.00 & \textemdash &  \\ 
-    B & 0.09 & -0.02, 0.20 & 0.11 \\ 
-    C & 0.08 & -0.03, 0.20 & 0.15 \\ 
+rpm & 0.02 & 0.02, 0.02 & <0.001 \\ 
+feed\_rate & -10 & -11, -9.7 & <0.001 \\ 
+{R\texttwosuperior} & {0.995} & {} & {} \\ 
+Adjusted R\texttwosuperior & 0.995 &  &  \\ 
 \bottomrule
 \end{tabular*}
 \begin{minipage}{\linewidth}
@@ -9059,11 +10492,45 @@ Table~\ref{tbl-mlm-mdl}. Whilst the continuous variables appear to be
 significant (\(p<\alpha = 0.05\)), the production site does not play a
 significant rolefor the drive shaft diameter.
 
+\subsubsection{\texorpdfstring{\(r^2_{adjusted}\)}{r\^{}2\_\{adjusted\}}}\label{r2_adjusted}
+
 \begin{figure}[H]
 
 \centering{
 
-\includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{chapter003_Regression_files/figure-pdf/fig-mlm-mdl-1.pdf}
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter003_Regression_files/figure-pdf/fig-r2vsr2adj-1.pdf}
+
+}
+
+\caption{\label{fig-r2vsr2adj}The influence of \(k\) (number of
+predictors) on \(r^2\) and \(r^2_{adjusted}\).}
+
+\end{figure}%
+
+\begin{align}
+r^2_{adjusted} = 1 - (1-r^2)\frac{n-1}{n-k-1} \label{r2adj}
+\end{align}
+
+The \hyperref[r2adj]{adjusted coefficient of determination}, is a
+modification of the regular \(r^2\) in regression analysis. While
+\(r^2\) assesses the proportion of variance explained by the independent
+variables, the \(r^2_{adjusted}\) takes into account the
+\hyperref[numpred]{number of predictors (\(k\))} in the model,
+addressing potential issues with overfitting according to \eqref{r2adj}.
+
+The \(r^2_{adjusted}\) incorporates a penalty for adding unnecessary
+predictors that do not significantly contribute to explaining the
+variance in the dependent variable. This adjustment helps prevent an
+inflated \(r^2\) when including more predictors, even if they don't
+improve the model significantly.
+
+\subsubsection{Visualizing the model}\label{visualizing-the-model}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter003_Regression_files/figure-pdf/fig-mlm-mdl-1.pdf}
 
 }
 
@@ -9075,11 +10542,184 @@ In Figure~\ref{fig-mlm-mdl} the model is shown to ease the
 interpretation. With increasing \texttt{rpm} or \texttt{feed} also the
 drive shaft diameter increases.
 
+\subsubsection{How stable is the model?}\label{how-stable-is-the-model}
+
 \begin{figure}[H]
 
 \centering{
 
-\includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{chapter003_Regression_files/figure-pdf/fig-mlm-resid-pattern-1.pdf}
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter003_Regression_files/figure-pdf/fig-mlm-added-noise-1.pdf}
+
+}
+
+\caption{\label{fig-mlm-added-noise}What happens if we add some noise?
+How robust is the model?}
+
+\end{figure}%
+
+\subsubsection{Variance Inflation
+Factor}\label{variance-inflation-factor}
+
+How much does the variance of the coefficient for \texttt{feed\_rate}
+increase because \texttt{feed\_rate} is correlated with other predictors
+(\texttt{rpm})?
+
+\begin{itemize}
+\tightlist
+\item
+  \(\text{VIF} = 1\): No correlation with other predictors (ideal)
+\item
+  \(\text{VIF} > 1\): Variance is inflated by a factor of
+  \hyperref[acronyms_VIF]{Variance Inflation Factor (VIF)}
+\end{itemize}
+
+\paragraph{How much variance is
+explained?}\label{how-much-variance-is-explained}
+
+\begin{table}
+
+\caption{\label{tbl-mlm-vif}How much variance is explained among the
+regressors?}
+
+\centering{
+
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lccc}
+\toprule
+\textbf{Characteristic} & \textbf{Beta} & \textbf{95\% CI} & \textbf{p-value} \\ 
+\midrule\addlinespace[2.5pt]
+feed\_rate & 901 & 745, 1,056 & <0.001 \\ 
+{R\texttwosuperior} & {0.834} & {} & {} \\ 
+\bottomrule
+\end{tabular*}
+\begin{minipage}{\linewidth}
+Abbreviation: CI = Confidence Interval\\
+\end{minipage}
+
+}
+
+\end{table}%
+
+That's high!
+
+\paragraph{Computing VIF}\label{computing-vif}
+
+\begin{align}
+\text{VIF}_{\text{rpm}} &= \frac{1}{1 - r^2_{\text{rpm ~ feedrate}}} \\
+\text{VIF}_{\text{rpm}} &= \frac{1}{1 - 0.834067} \\
+\text{VIF}_{\text{rpm}} &= 6.026529
+\end{align}
+
+\paragraph{\texorpdfstring{VIF and
+\(r^2\)}{VIF and r\^{}2}}\label{vif-and-r2}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter003_Regression_files/figure-pdf/fig-mlm-vifr2-1.pdf}
+
+}
+
+\caption{\label{fig-mlm-vifr2}How the VIF changes with increasing
+multicollinearity}
+
+\end{figure}%
+
+\paragraph{Rule of Thumb for VIF}\label{rule-of-thumb-for-vif}
+
+\begin{table}
+
+\caption{\label{tbl-mlm-vif-rules}Rule of thumbs on VIF}
+
+\centering{
+
+\caption*{
+{\fontsize{20}{25}\selectfont  \textbf{Variance Inflation Factor (VIF) Interpretation Guide}\fontsize{12}{15}\selectfont } \\ 
+{\fontsize{14}{17}\selectfont  Guidelines for assessing multicollinearity in regression models\fontsize{12}{15}\selectfont }
+} 
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lll}
+\toprule
+{\bfseries VIF Range} & {\bfseries Interpretation} & {\bfseries Action} \\ 
+\midrule\addlinespace[2.5pt]
+{\bfseries VIF = 1} & No correlation & Ideal scenario. \\ 
+{\bfseries 1 \textless{} VIF \textless{} 5} & Moderate correlation & Acceptable, but monitor coefficients. \\ 
+{\bfseries 5 ≤ VIF \textless{} 10} & High correlation & Consider removing predictors. \\ 
+{\bfseries VIF ≥ 10} & Extreme multicollinearity & Avoid! Coefficients are unreliable. \\ 
+\bottomrule
+\end{tabular*}
+
+}
+
+\end{table}%
+
+\paragraph{How to fix the model}\label{how-to-fix-the-model}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  Remove one predictor:
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  If \texttt{rpm} and \texttt{feed\_rate} are almost identical, keep
+  only one.
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Combine predictors:
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  Create a new variable, e.g.,
+  \texttt{speed\_feed\_ratio\ =\ rpm\ /\ feed\_rate}.
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Design experiments better:
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  Use orthogonal arrays to minimize predictor correlation.
+\end{itemize}
+
+\paragraph{New variable}\label{new-variable}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter003_Regression_files/figure-pdf/fig-mlm-added_var-1.pdf}
+
+}
+
+\caption{\label{fig-mlm-added_var}Adding a new variable}
+
+\end{figure}%
+
+\subsubsection{Residuals}\label{residuals-2}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter003_Regression_files/figure-pdf/fig-mlm-resid-pattern-1.pdf}
 
 }
 
@@ -9088,11 +10728,13 @@ residuals}
 
 \end{figure}%
 
+\subsubsection{Residual Distribution}\label{residual-distribution-1}
+
 \begin{figure}[H]
 
 \centering{
 
-\includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{chapter003_Regression_files/figure-pdf/fig-mlm-resid-nd-1.pdf}
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter003_Regression_files/figure-pdf/fig-mlm-resid-nd-1.pdf}
 
 }
 
@@ -9103,8 +10745,6 @@ the residuals.}
 
 In Figure~\ref{fig-mlm-resid-nd} the normal distribution of the
 residuals is confirmed, the model appears to be valid.
-
-\newpage{}
 
 \section{Logistic Regression}\label{logistic-regression}
 
@@ -9500,7 +11140,7 @@ confidence interval of the odds ratio for any given feed. For example
 the probability for \texttt{PASS} at a \texttt{feed} of 20 is \(49 \%\)
 with a confidence interval of \(44\%\) to \(54\%\).
 
-\paragraph{residuals}\label{residuals-1}
+\paragraph{residuals}\label{residuals-3}
 
 \begin{figure}[H]
 
@@ -9532,7 +11172,7 @@ model fit in practice.
 
 \subsubsection{Confusion Matrix}\label{confusion-matrix}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -9715,37 +11355,37 @@ classifies the product as \texttt{pass} or \texttt{fail}
 correct
 predictions}\label{accuracy-correct-classification-rate-proportion-of-correct-predictions}
 
-\pandocbounded{\includegraphics[keepaspectratio]{chapter003_Regression_files/figure-pdf/unnamed-chunk-5-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{chapter003_Regression_files/figure-pdf/unnamed-chunk-6-1.pdf}}
 
 \subsubsection{Precision}\label{precision-1}
 
-\pandocbounded{\includegraphics[keepaspectratio]{chapter003_Regression_files/figure-pdf/unnamed-chunk-6-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{chapter003_Regression_files/figure-pdf/unnamed-chunk-7-1.pdf}}
 
 \subsubsection{Recall, True positive rate, sensitivity, hit rate,
 detection
 rate}\label{recall-true-positive-rate-sensitivity-hit-rate-detection-rate}
 
-\pandocbounded{\includegraphics[keepaspectratio]{chapter003_Regression_files/figure-pdf/unnamed-chunk-7-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{chapter003_Regression_files/figure-pdf/unnamed-chunk-8-1.pdf}}
 
 \subsubsection{Specificity, true negative rate, selectivity, true
 negative fraction, 1 - false positive
 rate}\label{specificity-true-negative-rate-selectivity-true-negative-fraction-1---false-positive-rate}
 
-\pandocbounded{\includegraphics[keepaspectratio]{chapter003_Regression_files/figure-pdf/unnamed-chunk-8-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{chapter003_Regression_files/figure-pdf/unnamed-chunk-9-1.pdf}}
 
 \subsubsection{F1 Score, harmonic mean of precision and
 recall}\label{f1-score-harmonic-mean-of-precision-and-recall}
 
-\pandocbounded{\includegraphics[keepaspectratio]{chapter003_Regression_files/figure-pdf/unnamed-chunk-9-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{chapter003_Regression_files/figure-pdf/unnamed-chunk-10-1.pdf}}
 
 \subsubsection{Receiver Operator Curve
 (ROC)}\label{receiver-operator-curve-roc}
 
-\pandocbounded{\includegraphics[keepaspectratio]{chapter003_Regression_files/figure-pdf/unnamed-chunk-10-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{chapter003_Regression_files/figure-pdf/unnamed-chunk-11-1.pdf}}
 
 \subsubsection{METRICSSS!!!!!}\label{metricsss}
 
-\pandocbounded{\includegraphics[keepaspectratio]{chapter003_Regression_files/figure-pdf/unnamed-chunk-11-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{chapter003_Regression_files/figure-pdf/unnamed-chunk-12-1.pdf}}
 
 \bookmarksetup{startatroot}
 
@@ -9807,7 +11447,7 @@ measurements within the same subjects over time.
 \textbf{Friedman Test:} Non-parametric alternative for analyzing
 non-normally distributed data with repeated measures.
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -9826,7 +11466,7 @@ non-normally distributed data with repeated measures.
 \section{Introduction to Production
 Statistics}\label{introduction-to-production-statistics}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 {\centering \includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{chapter004/001_ProductionStatistics.png}
 
@@ -9905,7 +11545,7 @@ Variables}\label{control-charts-for-variables}
 
 \subsection{The production}\label{the-production}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -10118,7 +11758,7 @@ can be calculated in \eqref{jntprob}.
 P_{ges} = P_1 * P_2 * P_3 * P_4 * P_5 = 0.95^{(n=5)}=0.774 \approx 77.4\% \label{jntprob}
 \end{align}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -10170,7 +11810,7 @@ a \(0ppm\) production, which is favoured by many, but achieved by few.
 \subsection{The Six Sigma Project Model
 (DMAIC)}\label{the-six-sigma-project-model-dmaic}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -10374,7 +12014,7 @@ precision.
 \subsection{Computing Process
 Capabilities}\label{computing-process-capabilities}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -10462,7 +12102,7 @@ production}\label{the-role-of-measurement-accuracy-in-production}
 
 \subsection{Measurement Errors}\label{measurement-errors}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -10514,7 +12154,7 @@ Even during such a simple measurement some random errors may include:
 \subsection{Significant Digits in
 Production}\label{significant-digits-in-production}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -10604,7 +12244,7 @@ the result should be reported with one significant digit, as \(0.1\).
 
 \subsubsection{edge cases}\label{edge-cases}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -10723,7 +12363,7 @@ In Table~\ref{tbl-msa1-summary} the raw data that was collected during
 the experiments is depicted, whereas in Figure~\ref{fig-msa1-plt} the
 same data is shown in graphical format.
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -10747,7 +12387,7 @@ in which the gage shall be capable to produce good measurement values.
 
 \paragraph{Data Distribution}\label{data-distribution}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -10817,7 +12457,7 @@ significant could be tested using the \emph{t-test for one variable}.
 \subsection{Measurement System Analysis Type II (Gage
 R\&R)}\label{measurement-system-analysis-type-ii-gage-rr}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -10899,9 +12539,9 @@ Moguerza, and Redchuk 2012).
   \(a \times b \times n = 3 \times 2 \times 3 = 18\) measurements
 \end{itemize}
 
-\subsubsection{The data}\label{the-data}
+\subsubsection{The data}\label{the-data-10}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -11102,7 +12742,7 @@ categories}\label{ndc---number-of-distinct-categories}
 \paragraph{standardized graphical
 output}\label{standardized-graphical-output}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -11298,7 +12938,7 @@ appraiser & reference & overall\_agreement \\
 
 \paragraph{graphical representation}\label{graphical-representation-1}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -11311,7 +12951,7 @@ reference.}
 
 \end{figure}%
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -11324,7 +12964,7 @@ reference?}
 
 \end{figure}%
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -11336,7 +12976,7 @@ reference?}
 
 \end{figure}%
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -11371,11 +13011,11 @@ reference?}
 
 \section{(O)ne (F)actor (A)t a (T)ime}\label{one-factor-at-a-time}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
-\includegraphics[width=0.85\linewidth,height=\textheight,keepaspectratio]{chapter005_DoE_files/figure-pdf/fig-ofat-1.pdf}
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter005_DoE_files/figure-pdf/fig-ofat-1.pdf}
 
 }
 
@@ -11391,7 +13031,7 @@ n_{experiments} = n_{levels}^{n_{factors}}
 
 \section{Concept of ANOVA}\label{concept-of-anova}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
@@ -11406,11 +13046,11 @@ n_{experiments} = n_{levels}^{n_{factors}}
 \section{Basics of Experimental
 Design}\label{basics-of-experimental-design}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
-\includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{chapter005/ANOVA_DoE.png}
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter005/ANOVA_DoE.png}
 
 }
 
@@ -11418,734 +13058,505 @@ Design}\label{basics-of-experimental-design}
 
 \end{figure}%
 
-\hyperref[DoE]{Design of Experiments}
+\hyperref[acronyms_DoE]{Design of Experiments (DoE)}
 
-\section{Experimental planning
-strategies}\label{experimental-planning-strategies}
-
-1.No planning
+\section{Terminology}\label{terminology}
 
 \begin{itemize}
 \tightlist
 \item
-  bad way of conducting an experiment
+  Factors (X's): Independent variables (e.g., temperature, pressure,
+  catalyst concentration).
 \item
-  happens often enough (trial-and-error approach)
+  Levels: Values a factor can take (e.g., low/high temperature).
+\item
+  Response (Y): Dependent variable (e.g., yield, defect rate).
+\item
+  Treatment: A specific combination of factor levels.
+\item
+  Replication: Repeating a treatment to estimate error.
+\item
+  Randomization: Assigning treatments randomly to reduce bias.
+\item
+  Blocking: Grouping similar experimental units to control nuisance
+  variables.
 \end{itemize}
 
-2.Plan everything at the beginning
+\section{Key Concepts}\label{key-concepts}
 
 \begin{itemize}
 \tightlist
 \item
-  after definition the entire budget is allocated to perform all
-  possible experiments
+  Factorial Designs: Study all combinations of factor levels (e.g.,
+  \(2^2 = 4 \text{runs}\) for \(2\) factors at \(2\) levels).
 \item
-  does not take into account intermediate results
-\item
-  spend money on experiments that contributed nothing to our knowledge
-  of the process
-\end{itemize}
-
-3.Sequential planning
-
-\begin{itemize}
-\tightlist
-\item
-  first stage, a reduced number of trials will be conducted to make
-  decisions about the next stage
-\item
-  first stage should consume between \(25\%\) and \(40\%\) of the budget
-\item
-  most of the budget should be spent in subsequent stages, taking into
-  account previous results.
-\end{itemize}
-
-\section{pizza dough example}\label{pizza-dough-example}
-
-\begin{itemize}
-\tightlist
-\item
-  representation of factors and levels for a designed experiment
-\item
-  example: pizza dough
+  Main Effects vs.~Interactions:
 
   \begin{itemize}
   \tightlist
   \item
-    food manufacturer is looking for the best recipe for its main
-    product: pizza dough sold in retailers
+    Main effect: Change in response due to one factor (e.g., increasing
+    temperature increases yield).
   \item
-    three factors shall be determined: \texttt{flour}, \texttt{salt},
-    baking powder: \texttt{bakPow}
-  \item
-    response will be determined by experts as \texttt{score}
-  \item
-    factors are to be set \texttt{low} (\(-\)) and \texttt{high} (\(+\))
+    Interaction: Effect of one factor depends on another (e.g.,
+    temperature and pressure interact to affect yield).
   \end{itemize}
+\item
+  Orthogonality: Factors are uncorrelated (balanced designs).
 \end{itemize}
 
-\section{design matrix}\label{design-matrix}
+\section{DoE Types}\label{doe-types}
 
-\begin{table}
-
-\caption{\label{tbl-dm}The design matrix for the pizza dough
-experimentation}
-
-\centering{
-
-\fontsize{12.0pt}{14.0pt}\selectfont
-\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}cccc}
-\toprule
-flour & salt & bakPow & score \\ 
-\midrule\addlinespace[2.5pt]
-- & - & - & NA \\ 
-+ & - & - & NA \\ 
-- & + & - & NA \\ 
-+ & + & - & NA \\ 
-- & - & + & NA \\ 
-+ & - & + & NA \\ 
-- & + & + & NA \\ 
-+ & + & + & NA \\ 
-\bottomrule
-\end{tabular*}
-
-}
-
-\end{table}%
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
-Be bold, but not stupid!
-
-\subsection{progressive
-experimentation}\label{progressive-experimentation}
+\subsection{Full Factorial}\label{full-factorial}
 
 \begin{itemize}
 \tightlist
 \item
-  OFAT
-
-  \begin{itemize}
-  \tightlist
-  \item
-    will leave out \textbf{interactions} of variables
-  \end{itemize}
+  All possible combinations of factor levels are tested.
 \item
-  \(2^k\): two-level factor experimentation
+  Example: 2 factors (A, B) at 2 levels → 4 runs (\(2^2\)).
 \item
-  including replications
+  Pros: Estimates all main effects and interactions.
+\item
+  Cons: Exponential growth in runs (e.g., 5 factors at 2 levels → 32
+  runs).
 \end{itemize}
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  \emph{Screening} experiments: to select the most important factors
-\item
-  \emph{Characterizing} experiments: to study the model (residuals) of
-  \(Y = f(X)\)
-\item
-  \emph{Optimization} experiments: operational minimum value for the
-  process
-\end{enumerate}
-
-\section{Model assumptions}\label{model-assumptions}
+\subsection{Fractional Factorial
+Designs}\label{fractional-factorial-designs}
 
 \begin{itemize}
 \tightlist
 \item
-  randomization!
+  Subset of full factorial runs (e.g., ½ fraction of 2³ = 4 runs instead
+  of 8).
+\item
+  Trade-off: Some interactions are confounded (aliased) with main
+  effects.
+\item
+  Use case: Screening many factors to identify important ones.
 \end{itemize}
 
-\begin{table}
+\subsection{Response Surface Methodology
+(RSM)}\label{response-surface-methodology-rsm}
 
-\caption{\label{tbl-dm-rnd}The randomized design matrix for experimental
-runs}
+\begin{itemize}
+\tightlist
+\item
+  Goal: Model curvature (quadratic effects) to find optimal settings.
+\item
+  Designs: Central Composite Design (CCD), Box-Behnken.
+\item
+  Example: Optimizing yield by modeling temperature and pressure with
+  quadratic terms.
+\end{itemize}
+
+\subsection{Taguchi Methods}\label{taguchi-methods}
+
+\begin{itemize}
+\tightlist
+\item
+  Focus: Robustness to noise (e.g., environmental variability).
+\item
+  Key idea: Use orthogonal arrays to minimize runs.
+\item
+  Criticism: Less flexible than classical DoE (fixed designs).
+\end{itemize}
+
+\section{Steps in a DoE}\label{steps-in-a-doe}
+
+Be bold, but not stupid
+
+\subsection{Define Objectives}\label{define-objectives}
+
+\begin{itemize}
+\tightlist
+\item
+  Screening (identify important factors)?
+\item
+  Optimization (find best settings)?
+\item
+  Robustness (reduce variability)?
+\end{itemize}
+
+\subsection{Select Factors \& Levels:}\label{select-factors-levels}
+
+Use subject-matter knowledge or preliminary experiments.
+
+\subsection{Choose Design}\label{choose-design}
+
+Full/fractional factorial? RSM? Taguchi?
+
+\subsection{Randomize \& Run
+Experiments:}\label{randomize-run-experiments}
+
+Avoid bias (e.g., time-order effects).
+
+\subsection{Analyze Data:}\label{analyze-data}
+
+ANOVA, regression, effect plots.
+
+\subsection{Interpret \& Validate:}\label{interpret-validate}
+
+\begin{itemize}
+\tightlist
+\item
+  Check assumptions (normality, independence).
+\item
+  Confirm with follow-up experiments.
+\end{itemize}
+
+\section{Case Study - The catapult}\label{case-study---the-catapult}
+
+\subsection{Measurement System}\label{measurement-system}
+
+\subsubsection{raw data}\label{raw-data}
+
+\begin{figure}[H]
 
 \centering{
 
-\fontsize{12.0pt}{14.0pt}\selectfont
-\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}ccccr}
-\toprule
-flour & salt & bakPow & score & ord \\ 
-\midrule\addlinespace[2.5pt]
-+ & - & - & NA & 1 \\ 
-- & + & - & NA & 2 \\ 
-+ & + & + & NA & 3 \\ 
-- & + & + & NA & 4 \\ 
-+ & + & - & NA & 5 \\ 
-- & - & - & NA & 6 \\ 
-+ & - & + & NA & 7 \\ 
-- & - & + & NA & 8 \\ 
-\bottomrule
-\end{tabular*}
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter005_DoE_files/figure-pdf/fig-msa-run-chart-1.pdf}
 
 }
 
-\end{table}%
-
-\section{experimental model}\label{experimental-model}
-
-\begin{figure}[ht]
-
-\centering{
-
-\includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{chapter005/mm_doe.png}
-
-}
-
-\caption{\label{fig-exp-mdl}The experimental model for a DoE}
+\caption{\label{fig-msa-run-chart}The MSA run chart.}
 
 \end{figure}%
 
-\section{analytical model}\label{analytical-model}
+\subsubsection{distribution}\label{distribution}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
-\includegraphics[width=1.86in,height=\textheight,keepaspectratio]{chapter005/mm_doe_02.png}
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter005_DoE_files/figure-pdf/fig-msa-qq-1.pdf}
 
 }
 
-\caption{\label{fig-ana-mdl}The experimental model with the fitted
-linear model.}
+\caption{\label{fig-msa-qq}qq-plot of results}
 
 \end{figure}%
 
-\section{\texorpdfstring{\(2^k\) factorial
-Designs}{2\^{}k factorial Designs}}\label{k-factorial-designs}
+\subsubsection{possible tolerance
+window}\label{possible-tolerance-window}
 
-\begin{description}
-\item[\(k\)]
-number of factors to be studied, all with \(2\) levels
-\item[\(n\)]
-number of replications
-\(\rightarrow \text{total number of experiments} = n \times 2^k\)
-\item[\(A,B, \ldots\)]
-factors (uppercase latin letters)
-\item[\(\alpha, \beta, \ldots\)]
-main effects
-\end{description}
+With a \(C_p = 2\) the tolerance window is \(\pm1.2cm\).
 
-\section{complete analytical model}\label{complete-analytical-model}
-
-\begin{itemize}
-\tightlist
-\item
-  three factors, \(n\) replications
-\end{itemize}
-
-\begin{align}
-\begin{split}
-y_{ijkl} = \mu &+ \alpha_i + \beta_j + \gamma_k\\
-&+ (\alpha\beta)_{ij} + (\alpha\gamma)_{ik} + (\beta\gamma)_{kl}\\
-&+(\alpha\beta\gamma)_{ijk}+\epsilon_{ijkl} \\
-\end{split}\\
-\begin{split}
-i = 1,2 \phantom{=} j = 1,2 \phantom{=} k = 1,2 \phantom{=} l = 1 \ldots n \\
-\epsilon_{ijkl} \sim N(0,\sigma)
-\end{split} \nonumber \\
-\end{align}
-
-\begin{description}
-\item[\(\mu\)]
-global mean of the response
-\item[\(\alpha_i\)]
-effect of factor \(A\) at level \(i\)
-\item[\(\beta_j\)]
-effect of factor \(B\) at level \(j\)
-\item[\(\gamma_k\)]
-effect of factor \(C\) at level \(k\)
-\item[\((\alpha\beta)_{ij}\)]
-effect of the interaction of factors \(A\) and \(B\) at levels \(i\) and
-\(j\)
-\end{description}
-
-\begin{description}
-\item[\((\alpha\gamma)_{ik}\)]
-effect of the interaction of factors \(A\) and \(C\) at levels \(i\) and
-\(k\)
-\item[\((\beta\gamma)_{jk}\)]
-effect of the interaction of factors \(B\) and \(C\) at levels \(j\) and
-\(k\)
-\item[\((\alpha\beta\gamma)_{ijk}\)]
-effect of the interaction of factors \(A,B\) and \(C\) at levels \(i,j\)
-and \(k\)
-\item[\(\epsilon_{ijkl}\)]
-random error component of the model
-\end{description}
-
-\subsection{pizza dough example raw
-data}\label{pizza-dough-example-raw-data}
-
-``\ldots{} bake the pizza for 9min at 180°C \ldots{}''
+\subsubsection{systematic error}\label{systematic-error}
 
 \begin{table}
 \fontsize{12.0pt}{14.0pt}\selectfont
-\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}rcccrr}
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrlrrrr}
 \toprule
-repl & flour & salt & bakPow & score & ord \\ 
+.y. & group1 & group2 & n & statistic & df & p \\ 
 \midrule\addlinespace[2.5pt]
-1 & - & - & - & 5.33 & 2 \\ 
-1 & + & - & - & 6.99 & 4 \\ 
-1 & - & + & - & 4.23 & 8 \\ 
-1 & + & + & - & 6.61 & 5 \\ 
-1 & - & - & + & 2.26 & 1 \\ 
-1 & + & - & + & 5.75 & 6 \\ 
-1 & - & + & + & 3.26 & 3 \\ 
-1 & + & + & + & 6.24 & 7 \\ 
-2 & - & - & - & 5.70 & 2 \\ 
-2 & + & - & - & 7.71 & 4 \\ 
-2 & - & + & - & 5.13 & 8 \\ 
-2 & + & + & - & 6.76 & 5 \\ 
-2 & - & - & + & 2.79 & 1 \\ 
-2 & + & - & + & 4.57 & 6 \\ 
-2 & - & + & + & 2.48 & 3 \\ 
-2 & + & + & + & 6.18 & 7 \\ 
+tape\_reading\_cm & 1 & null model & 50 & -9.134823 & 49 & 3.72e-12 \\ 
 \bottomrule
 \end{tabular*}
 \end{table}
 
-(Cano, Moguerza, and Redchuk 2012)
-
-\subsection{pizza dough example summarised
-data}\label{pizza-dough-example-summarised-data}
-
-\begin{table}
-\fontsize{12.0pt}{14.0pt}\selectfont
-\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}cccr}
-\toprule
-flour & salt & bakPow & mean\_score \\ 
-\midrule\addlinespace[2.5pt]
-- & - & - & 5.515 \\ 
-- & - & + & 2.525 \\ 
-- & + & - & 4.680 \\ 
-- & + & + & 2.870 \\ 
-+ & - & - & 7.350 \\ 
-+ & - & + & 5.160 \\ 
-+ & + & - & 6.685 \\ 
-+ & + & + & 6.210 \\ 
-\bottomrule
-\end{tabular*}
-\end{table}
-
-\subsection{pizza dough recipe full
-model}\label{pizza-dough-recipe-full-model}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{doe.model1 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(score }\SpecialCharTok{\textasciitilde{}}\NormalTok{ flour }\SpecialCharTok{+}\NormalTok{ salt }\SpecialCharTok{+}\NormalTok{ bakPow }\SpecialCharTok{+}
-\NormalTok{flour }\SpecialCharTok{*}\NormalTok{ salt }\SpecialCharTok{+}\NormalTok{ flour }\SpecialCharTok{*}\NormalTok{ bakPow }\SpecialCharTok{+}
-\NormalTok{salt }\SpecialCharTok{*}\NormalTok{ bakPow }\SpecialCharTok{+}\NormalTok{ flour }\SpecialCharTok{*}\NormalTok{ salt }\SpecialCharTok{*}\NormalTok{ bakPow,}
-\AttributeTok{data =}\NormalTok{ ss.data.doe1)}
-
-\FunctionTok{summary}\NormalTok{(doe.model1)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-
-Call:
-lm(formula = score ~ flour + salt + bakPow + flour * salt + flour * 
-    bakPow + salt * bakPow + flour * salt * bakPow, data = ss.data.doe1)
-
-Residuals:
-    Min      1Q  Median      3Q     Max 
--0.5900 -0.2888  0.0000  0.2888  0.5900 
-
-Coefficients:
-                     Estimate Std. Error t value Pr(>|t|)    
-(Intercept)            5.5150     0.3434  16.061 2.27e-07 ***
-flour+                 1.8350     0.4856   3.779 0.005398 ** 
-salt+                 -0.8350     0.4856  -1.719 0.123843    
-bakPow+               -2.9900     0.4856  -6.157 0.000272 ***
-flour+:salt+           0.1700     0.6868   0.248 0.810725    
-flour+:bakPow+         0.8000     0.6868   1.165 0.277620    
-salt+:bakPow+          1.1800     0.6868   1.718 0.124081    
-flour+:salt+:bakPow+   0.5350     0.9712   0.551 0.596779    
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 0.4856 on 8 degrees of freedom
-Multiple R-squared:  0.9565,    Adjusted R-squared:  0.9185 
-F-statistic: 25.15 on 7 and 8 DF,  p-value: 7.666e-05
-\end{verbatim}
-
-\subsection{pizza dough recipe elimination
-model}\label{pizza-dough-recipe-elimination-model}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{doe.model2 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(score }\SpecialCharTok{\textasciitilde{}}\NormalTok{ flour }\SpecialCharTok{+}\NormalTok{ bakPow,}\AttributeTok{data =}\NormalTok{ ss.data.doe1)}
-
-\FunctionTok{summary}\NormalTok{(doe.model2)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-
-Call:
-lm(formula = score ~ flour + bakPow, data = ss.data.doe1)
-
-Residuals:
-     Min       1Q   Median       3Q      Max 
--0.84812 -0.54344  0.06063  0.44406  0.86938 
-
-Coefficients:
-            Estimate Std. Error t value Pr(>|t|)    
-(Intercept)   4.8306     0.2787  17.330 2.30e-10 ***
-flour+        2.4538     0.3219   7.624 3.78e-06 ***
-bakPow+      -1.8662     0.3219  -5.798 6.19e-05 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 0.6437 on 13 degrees of freedom
-Multiple R-squared:  0.8759,    Adjusted R-squared:  0.8568 
-F-statistic: 45.87 on 2 and 13 DF,  p-value: 1.288e-06
-\end{verbatim}
-
-\subsection{pizza dough statistical
-model}\label{pizza-dough-statistical-model}
+With a p-value of \ensuremath{3.72\times 10^{-12}} there is a
+significant systematic error.
 
 \begin{align}
-\widehat{score} = 4.83 + 2.45\times flour  -1.87 \times bakPow \\
-\widehat{score} = 5.12 + 1.23\times flour  -0.93 \times bakPow
+\epsilon_{\text{systematic}} = \text{reference}-\bar{x}_{\text{tape reading}}
 \end{align}
 
-\subsection{main effect plot}\label{main-effect-plot}
+The systematic error is \(0.3cm\).
 
-\begin{figure}[ht]
+\subsubsection{check experiment vs.~tolerance
+window}\label{check-experiment-vs.-tolerance-window}
 
-\centering{
-
-\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter005_DoE_files/figure-pdf/fig-pd-me-1.pdf}
-
-}
-
-\caption{\label{fig-pd-me}The main effect plot for the pizza dough
-model}
-
-\end{figure}%
-
-\subsection{interaction plot}\label{interaction-plot}
-
-\begin{figure}[ht]
+\begin{figure}[H]
 
 \centering{
 
-\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter005_DoE_files/figure-pdf/fig-pd-ie-1.pdf}
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter005_DoE_files/figure-pdf/fig-fac-levels-vs-tol-1.pdf}
 
 }
 
-\caption{\label{fig-pd-ie}The interaction plot for the pizza dough
-model}
+\caption{\label{fig-fac-levels-vs-tol}How good can the factor levels be
+measured?}
 
 \end{figure}%
 
-\subsection{model validity}\label{model-validity}
+\subsection{Modeling}\label{modeling}
 
-\subsubsection{residual patterns}\label{residual-patterns}
+\subsubsection{full model}\label{full-model}
 
-\begin{figure}[ht]
+\paragraph{model quality}\label{model-quality}
+
+\begin{figure}[H]
 
 \centering{
 
-\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter005_DoE_files/figure-pdf/fig-pd-resid-seq-1.pdf}
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter005_DoE_files/figure-pdf/fig-model-q-1.pdf}
 
 }
 
-\caption{\label{fig-pd-resid-seq}Check for any pattern in the model
-residuals}
+\caption{\label{fig-model-q}Model quality (including repetitions)}
 
 \end{figure}%
 
-\subsubsection{residual distribution}\label{residual-distribution}
-
-\begin{figure}[ht]
-
-\centering{
-
-\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter005_DoE_files/figure-pdf/fig-pd-resid-qq-1.pdf}
-
-}
-
-\caption{\label{fig-pd-resid-qq}Check for the residuals normality (QQ
-plot)}
-
-\end{figure}%
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{shapiro.test}\NormalTok{(doe.model2\_aug}\SpecialCharTok{$}\NormalTok{.resid)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-
-    Shapiro-Wilk normality test
-
-data:  doe.model2_aug$.resid
-W = 0.90652, p-value = 0.1023
-\end{verbatim}
-
-\section{Design of Experiments for process
-improvement}\label{design-of-experiments-for-process-improvement}
-
-What if \ldots{}
-
-\ldots{} not all influencing factors (\(X\)) on the process have been
-identified?
-
-\ldots{} some \(X\) depend on external conditions and are not under
-control?
-
-\textbf{robust design}
-
-\ldots{} means also including \emph{noise} factors that are not under
-our control.
-
-\subsection{pizza dough example}\label{pizza-dough-example-1}
-
-\begin{itemize}
-\item
-  pizzas came out pretty bad as reported by the customers
-\item
-  pizza quality heavily relies on baking conditions!
-  (\(T = 180°C, t = 9min\))
-\item
-  almost \textbf{nobody} followed the recipe
-\item
-  noise factors are included with two levels
-
-  \begin{itemize}
-  \tightlist
-  \item
-    \(7min\) and \(11min\) as \(t+\) and \(t-\)
-  \item
-    \(160°C\) and \(200°C\) as \(T+\) and \(t-\)
-  \end{itemize}
-\item
-  \(2^5\) factorial design with \(2\) replications \(=64\) experimental
-  runs
-\end{itemize}
-
-\section{linear model - first run}\label{linear-model---first-run}
-
-\begin{verbatim}
-
-Call:
-lm(formula = score ~ (. - repl)^3, data = ss.data.doe2)
-
-Residuals:
-     Min       1Q   Median       3Q      Max 
--1.20094 -0.32937  0.02625  0.35656  1.07187 
-
-Coefficients:
-                     Estimate Std. Error t value Pr(>|t|)    
-(Intercept)           3.16906    0.42203   7.509 5.09e-09 ***
-flour+                0.07406    0.54902   0.135  0.89340    
-salt+                -1.47219    0.54902  -2.681  0.01078 *  
-bakPow+              -1.43219    0.54902  -2.609  0.01293 *  
-temp+                 2.56156    0.54902   4.666 3.75e-05 ***
-time+                 1.49594    0.54902   2.725  0.00967 ** 
-flour+:salt+          1.71000    0.66214   2.583  0.01378 *  
-flour+:bakPow+        2.14000    0.66214   3.232  0.00254 ** 
-flour+:temp+         -1.26250    0.66214  -1.907  0.06414 .  
-flour+:time+          0.46375    0.66214   0.700  0.48796    
-salt+:bakPow+         0.89250    0.66214   1.348  0.18567    
-salt+:temp+          -0.19500    0.66214  -0.294  0.76998    
-salt+:time+           1.38625    0.66214   2.094  0.04302 *  
-bakPow+:temp+        -1.17000    0.66214  -1.767  0.08526 .  
-bakPow+:time+        -1.30375    0.66214  -1.969  0.05628 .  
-temp+:time+          -3.91125    0.66214  -5.907 7.64e-07 ***
-flour+:salt+:bakPow+  0.14875    0.66214   0.225  0.82346    
-flour+:salt+:temp+    1.52375    0.66214   2.301  0.02696 *  
-flour+:salt+:time+   -1.11875    0.66214  -1.690  0.09930 .  
-flour+:bakPow+:temp+  0.22375    0.66214   0.338  0.73728    
-flour+:bakPow+:time+  0.09125    0.66214   0.138  0.89112    
-flour+:temp+:time+    0.30125    0.66214   0.455  0.65172    
-salt+:bakPow+:temp+  -0.33125    0.66214  -0.500  0.61977    
-salt+:bakPow+:time+   0.33625    0.66214   0.508  0.61451    
-salt+:temp+:time+    -1.04375    0.66214  -1.576  0.12324    
-bakPow+:temp+:time+   2.19125    0.66214   3.309  0.00205 ** 
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 0.6621 on 38 degrees of freedom
-Multiple R-squared:  0.9037,    Adjusted R-squared:  0.8404 
-F-statistic: 14.27 on 25 and 38 DF,  p-value: 1.428e-12
-\end{verbatim}
-
-\section{linear model - stepwise
-elimination}\label{linear-model---stepwise-elimination}
-
-\subsection{get rid of
-non-significant}\label{get-rid-of-non-significant}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{selectionvar }\OtherTok{\textless{}{-}} \FunctionTok{step}\NormalTok{(model.prob1, }\AttributeTok{method=}\StringTok{"backwards"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-Start:  AIC=-34.13
-score ~ ((repl + flour + salt + bakPow + temp + time) - repl)^3
-
-                    Df Sum of Sq    RSS     AIC
-- flour:bakPow:time  1    0.0083 16.669 -36.102
-- flour:salt:bakPow  1    0.0221 16.683 -36.049
-- flour:bakPow:temp  1    0.0501 16.710 -35.942
-- flour:temp:time    1    0.0908 16.751 -35.787
-- salt:bakPow:temp   1    0.1097 16.770 -35.714
-- salt:bakPow:time   1    0.1131 16.773 -35.701
-<none>                           16.660 -34.134
-- salt:temp:time     1    1.0894 17.750 -32.080
-- flour:salt:time    1    1.2516 17.912 -31.498
-- flour:salt:temp    1    2.3218 18.982 -27.784
-- bakPow:temp:time   1    4.8016 21.462 -19.926
-
-Step:  AIC=-36.1
-score ~ flour + salt + bakPow + temp + time + flour:salt + flour:bakPow + 
-    flour:temp + flour:time + salt:bakPow + salt:temp + salt:time + 
-    bakPow:temp + bakPow:time + temp:time + flour:salt:bakPow + 
-    flour:salt:temp + flour:salt:time + flour:bakPow:temp + flour:temp:time + 
-    salt:bakPow:temp + salt:bakPow:time + salt:temp:time + bakPow:temp:time
-
-                    Df Sum of Sq    RSS     AIC
-- flour:salt:bakPow  1    0.0221 16.691 -38.017
-- flour:bakPow:temp  1    0.0501 16.719 -37.910
-- flour:temp:time    1    0.0908 16.759 -37.755
-- salt:bakPow:temp   1    0.1097 16.779 -37.682
-- salt:bakPow:time   1    0.1131 16.782 -37.670
-<none>                           16.669 -36.102
-- salt:temp:time     1    1.0894 17.758 -34.050
-- flour:salt:time    1    1.2516 17.920 -33.469
-- flour:salt:temp    1    2.3218 18.991 -29.756
-- bakPow:temp:time   1    4.8016 21.470 -21.902
-
-Step:  AIC=-38.02
-score ~ flour + salt + bakPow + temp + time + flour:salt + flour:bakPow + 
-    flour:temp + flour:time + salt:bakPow + salt:temp + salt:time + 
-    bakPow:temp + bakPow:time + temp:time + flour:salt:temp + 
-    flour:salt:time + flour:bakPow:temp + flour:temp:time + salt:bakPow:temp + 
-    salt:bakPow:time + salt:temp:time + bakPow:temp:time
-
-                    Df Sum of Sq    RSS     AIC
-- flour:bakPow:temp  1    0.0501 16.741 -39.826
-- flour:temp:time    1    0.0908 16.782 -39.670
-- salt:bakPow:temp   1    0.1097 16.801 -39.598
-- salt:bakPow:time   1    0.1131 16.804 -39.585
-<none>                           16.691 -38.017
-- salt:temp:time     1    1.0894 17.780 -35.971
-- flour:salt:time    1    1.2516 17.942 -35.390
-- flour:salt:temp    1    2.3218 19.013 -31.682
-- bakPow:temp:time   1    4.8016 21.492 -23.836
-
-Step:  AIC=-39.83
-score ~ flour + salt + bakPow + temp + time + flour:salt + flour:bakPow + 
-    flour:temp + flour:time + salt:bakPow + salt:temp + salt:time + 
-    bakPow:temp + bakPow:time + temp:time + flour:salt:temp + 
-    flour:salt:time + flour:temp:time + salt:bakPow:temp + salt:bakPow:time + 
-    salt:temp:time + bakPow:temp:time
-
-                   Df Sum of Sq    RSS     AIC
-- flour:temp:time   1    0.0908 16.832 -41.480
-- salt:bakPow:temp  1    0.1097 16.851 -41.408
-- salt:bakPow:time  1    0.1131 16.854 -41.395
-<none>                          16.741 -39.826
-- salt:temp:time    1    1.0894 17.830 -37.791
-- flour:salt:time   1    1.2516 17.993 -37.211
-- flour:salt:temp   1    2.3218 19.063 -33.513
-- bakPow:temp:time  1    4.8016 21.543 -25.687
-- flour:bakPow      1   22.5032 39.244  12.699
-
-Step:  AIC=-41.48
-score ~ flour + salt + bakPow + temp + time + flour:salt + flour:bakPow + 
-    flour:temp + flour:time + salt:bakPow + salt:temp + salt:time + 
-    bakPow:temp + bakPow:time + temp:time + flour:salt:temp + 
-    flour:salt:time + salt:bakPow:temp + salt:bakPow:time + salt:temp:time + 
-    bakPow:temp:time
-
-                   Df Sum of Sq    RSS     AIC
-- salt:bakPow:temp  1    0.1097 16.941 -43.064
-- salt:bakPow:time  1    0.1131 16.945 -43.051
-<none>                          16.832 -41.480
-- salt:temp:time    1    1.0894 17.921 -39.466
-- flour:salt:time   1    1.2516 18.083 -38.889
-- flour:salt:temp   1    2.3218 19.154 -35.209
-- bakPow:temp:time  1    4.8016 21.633 -27.418
-- flour:bakPow      1   22.5032 39.335  10.847
-
-Step:  AIC=-43.06
-score ~ flour + salt + bakPow + temp + time + flour:salt + flour:bakPow + 
-    flour:temp + flour:time + salt:bakPow + salt:temp + salt:time + 
-    bakPow:temp + bakPow:time + temp:time + flour:salt:temp + 
-    flour:salt:time + salt:bakPow:time + salt:temp:time + bakPow:temp:time
-
-                   Df Sum of Sq    RSS     AIC
-- salt:bakPow:time  1    0.1131 17.054 -44.638
-<none>                          16.941 -43.064
-- salt:temp:time    1    1.0894 18.031 -41.075
-- flour:salt:time   1    1.2516 18.193 -40.502
-- flour:salt:temp   1    2.3218 19.263 -36.844
-- bakPow:temp:time  1    4.8016 21.743 -29.094
-- flour:bakPow      1   22.5032 39.445   9.025
-
-Step:  AIC=-44.64
-score ~ flour + salt + bakPow + temp + time + flour:salt + flour:bakPow + 
-    flour:temp + flour:time + salt:bakPow + salt:temp + salt:time + 
-    bakPow:temp + bakPow:time + temp:time + flour:salt:temp + 
-    flour:salt:time + salt:temp:time + bakPow:temp:time
-
-                   Df Sum of Sq    RSS     AIC
-<none>                          17.054 -44.638
-- salt:temp:time    1    1.0894 18.144 -42.675
-- flour:salt:time   1    1.2516 18.306 -42.106
-- flour:salt:temp   1    2.3218 19.376 -38.469
-- salt:bakPow       1    3.7588 20.813 -33.891
-- bakPow:temp:time  1    4.8016 21.856 -30.762
-- flour:bakPow      1   22.5032 39.558   7.208
-\end{verbatim}
-
-\subsection{main effect and
-interaction}\label{main-effect-and-interaction}
-
-\pandocbounded{\includegraphics[keepaspectratio]{chapter005_DoE_files/figure-pdf/unnamed-chunk-8-1.pdf}}
-
-\subsection{check residuals}\label{check-residuals}
-
-\pandocbounded{\includegraphics[keepaspectratio]{chapter005_DoE_files/figure-pdf/unnamed-chunk-9-1.pdf}}
-
-\subsection{pragmatic result}\label{pragmatic-result}
+\paragraph{significance}\label{significance-1}
 
 \begin{table}
 
-\caption{\label{tbl-pragm-res}The pragmatic results for the DoE}
+\caption{\label{tbl-aov}ANOVA results (full nmodel)}
 
 \centering{
 
 \fontsize{12.0pt}{14.0pt}\selectfont
-\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}cccrrrrrrr}
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lcccc}
 \toprule
-flour & salt & bakPow & score & T1t1 & T2t1 & T1t2 & T2t2 & Mean & SD \\ 
+\textbf{Characteristic} & \textbf{Beta} & \textbf{95\% CI} & \textbf{p-value} & \textbf{VIF} \\ 
 \midrule\addlinespace[2.5pt]
-- & - & - & 5.515 & 3.675 & 5.120 & 4.185 & 3.900 & 4.479 & 0.6352559 \\ 
-+ & - & - & 7.350 & 3.370 & 4.520 & 5.050 & 2.940 & 4.646 & 0.9814615 \\ 
-- & + & - & 4.680 & 0.955 & 4.910 & 5.295 & 1.170 & 3.402 & 2.3394319 \\ 
-+ & + & - & 6.685 & 3.590 & 5.895 & 5.625 & 3.870 & 5.133 & 1.1827299 \\ 
-- & - & + & 2.525 & 1.915 & 3.055 & 1.725 & 1.700 & 2.184 & 0.6446882 \\ 
-+ & - & + & 5.160 & 3.140 & 5.010 & 5.535 & 2.900 & 4.349 & 1.3216617 \\ 
-- & + & + & 2.870 & 1.215 & 1.860 & 3.040 & 1.310 & 2.059 & 0.8388223 \\ 
-+ & + & + & 6.210 & 5.805 & 6.110 & 5.980 & 5.965 & 6.014 & 0.1249667 \\ 
+A\_LaunchAngle & -26 & -29, -22 & <0.001 & 1.0 \\ 
+B\_ArmLength & -0.63 & -4.4, 3.1 & 0.7 & 1.0 \\ 
+C\_RubberBands & 22 & 18, 26 & <0.001 & 1.0 \\ 
+A\_LaunchAngle * B\_ArmLength & 3.6 & -0.16, 7.3 & 0.060 & 1.0 \\ 
+A\_LaunchAngle * C\_RubberBands & -15 & -19, -11 & <0.001 & 1.0 \\ 
+B\_ArmLength * C\_RubberBands & 0.57 & -3.2, 4.3 & 0.8 & 1.0 \\ 
+A\_LaunchAngle * B\_ArmLength * C\_RubberBands & -0.93 & -4.7, 2.8 & 0.6 & 1.0 \\ 
+{R\texttwosuperior} & {0.950} & {} & {} & {} \\ 
+Adjusted R\texttwosuperior & 0.934 &  &  &  \\ 
 \bottomrule
 \end{tabular*}
+\begin{minipage}{\linewidth}
+Abbreviations: CI = Confidence Interval, VIF = Variance Inflation Factor\\
+\end{minipage}
 
 }
 
 \end{table}%
+
+\subsection{DoE - main modeling}\label{doe---main-modeling}
+
+\subsubsection{pareto plot}\label{pareto-plot}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter005_DoE_files/figure-pdf/fig-pareto-1.pdf}
+
+}
+
+\caption{\label{fig-pareto}Pareto plot of parameters}
+
+\end{figure}%
+
+\subsubsection{half normal plot}\label{half-normal-plot}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter005_DoE_files/figure-pdf/fig-half-normal-1.pdf}
+
+}
+
+\caption{\label{fig-half-normal}Half normal plot of parameters}
+
+\end{figure}%
+
+\subsubsection{Main effect plot}\label{main-effect-plot}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter005_DoE_files/figure-pdf/fig-main-effect-1.pdf}
+
+}
+
+\caption{\label{fig-main-effect}Main Effect plot}
+
+\end{figure}%
+
+\subsubsection{Interaction effect plot}\label{interaction-effect-plot}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter005_DoE_files/figure-pdf/fig-interaction-effects-1.pdf}
+
+}
+
+\caption{\label{fig-interaction-effects}Interaction plot}
+
+\end{figure}%
+
+\subsection{DoE - robust design}\label{doe---robust-design}
+
+\subsubsection{Pareto plot}\label{pareto-plot-1}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter005_DoE_files/figure-pdf/fig-sd-pareto-1.pdf}
+
+}
+
+\caption{\label{fig-sd-pareto}Pareto plot for robust design model}
+
+\end{figure}%
+
+\subsubsection{Half-normal plot}\label{half-normal-plot-1}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter005_DoE_files/figure-pdf/fig-sd-half-normal-1.pdf}
+
+}
+
+\caption{\label{fig-sd-half-normal}Half-normal plot for robust design
+model}
+
+\end{figure}%
+
+\subsubsection{Main effect plot}\label{main-effect-plot-1}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter005_DoE_files/figure-pdf/fig-sd-main-effect-1.pdf}
+
+}
+
+\caption{\label{fig-sd-main-effect}Main Effect plot}
+
+\end{figure}%
+
+\subsubsection{Interaction effect plot}\label{interaction-effect-plot-1}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter005_DoE_files/figure-pdf/fig-sd-interaction-effects-1.pdf}
+
+}
+
+\caption{\label{fig-sd-interaction-effects}Interaction plot}
+
+\end{figure}%
+
+\subsection{Check for linearity}\label{check-for-linearity}
+
+\subsubsection{Check center points}\label{check-center-points}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter005_DoE_files/figure-pdf/fig-center-distribution-1.pdf}
+
+}
+
+\caption{\label{fig-center-distribution}Interaction plot}
+
+\end{figure}%
+
+\subsubsection{Test for linear model}\label{test-for-linear-model}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter005_DoE_files/figure-pdf/fig-center-dev-1.pdf}
+
+}
+
+\caption{\label{fig-center-dev}Interaction plot}
+
+\end{figure}%
+
+With a p value of \(0.032\) the center points deviate significantly from
+the linear model by about \(9cm\).
+
+\subsection{DoE - final model}\label{doe---final-model}
+
+\subsubsection{Parameters - classic
+model}\label{parameters---classic-model}
+
+\begin{table}
+
+\caption{\label{tbl-fin-doe-dummy}Final DoE Model for Distance (dummy
+model)}
+
+\centering{
+
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lcccc}
+\toprule
+\textbf{Characteristic} & \textbf{Beta} & \textbf{95\% CI} & \textbf{p-value} & \textbf{VIF} \\ 
+\midrule\addlinespace[2.5pt]
+A\_LaunchAngle & -26 & -31, -20 & <0.001 & 1.0 \\ 
+C\_RubberBands & 22 & 17, 27 & <0.001 & 1.0 \\ 
+A\_LaunchAngle * C\_RubberBands & -15 & -20, -9.6 & 0.001 & 1.0 \\ 
+{R\texttwosuperior} & {0.989} & {} & {} & {} \\ 
+Adjusted R\texttwosuperior & 0.982 &  &  &  \\ 
+\bottomrule
+\end{tabular*}
+\begin{minipage}{\linewidth}
+Abbreviations: CI = Confidence Interval, VIF = Variance Inflation Factor\\
+\end{minipage}
+
+}
+
+\end{table}%
+
+\subsubsection{Parameters - robust design
+model}\label{parameters---robust-design-model}
+
+\begin{table}
+
+\caption{\label{tbl-fin-sd-dummy}Final DoE Model for robust design
+(dummy model)}
+
+\centering{
+
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lcccc}
+\toprule
+\textbf{Characteristic} & \textbf{Beta} & \textbf{95\% CI} & \textbf{p-value} & \textbf{VIF} \\ 
+\midrule\addlinespace[2.5pt]
+A\_LaunchAngle & -2.8 & -4.4, -1.2 & 0.008 & 1.0 \\ 
+B\_ArmLength & -0.58 & -2.1, 0.98 & 0.4 & 1.0 \\ 
+A\_LaunchAngle * B\_ArmLength & 2.3 & 0.69, 3.8 & 0.016 & 1.0 \\ 
+{R\texttwosuperior} & {0.913} & {} & {} & {} \\ 
+Adjusted R\texttwosuperior & 0.847 &  &  &  \\ 
+\bottomrule
+\end{tabular*}
+\begin{minipage}{\linewidth}
+Abbreviations: CI = Confidence Interval, VIF = Variance Inflation Factor\\
+\end{minipage}
+
+}
+
+\end{table}%
+
+\subsubsection{Final Catapult Model}\label{final-catapult-model}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter005_DoE_files/figure-pdf/fig-fin-grid-vis-1.pdf}
+
+}
+
+\caption{\label{fig-fin-grid-vis}Visualization of final model including
+robust design}
+
+\end{figure}%
 
 \bookmarksetup{startatroot}
 
@@ -12173,10 +13584,6 @@ Sigma with r''} Not available: Not available.
 \bibitem[\citeproctext]{ref-pwr}
 Champely, Stephane. 2020. \emph{Pwr: Basic Functions for Power
 Analysis}. \url{https://CRAN.R-project.org/package=pwr}.
-
-\bibitem[\citeproctext]{ref-Cohen_2013}
-Cohen, Jacob. 2013. \emph{Statistical Power Analysis for the Behavioral
-Sciences}. Routledge. \url{https://doi.org/10.4324/9780203771587}.
 
 \bibitem[\citeproctext]{ref-datasauRus}
 Davies, Rhian, Steph Locke, and Lucy D'Agostino McGowan. 2022.

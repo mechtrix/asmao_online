@@ -2885,7 +2885,7 @@ cdf_f |>
   labs(
     title = "PDF of F-Statistic",
     subtitle = "dof1 = 9, dof2 = 9",
-    y = "density",
+    y = "probability",
     x = "F-Statistic"
   ) 
 
@@ -3185,7 +3185,7 @@ drive_shaft_failure %>%
 
 wbll_fit <- fitdistrplus::fitdist(drive_shaft_failure %>% pull("Time_to_Failure"),distr = "weibull")
 
-time_threshold <- 500
+time_threshold <- 1000
 
 probability_failure_after_500h <- 1 - pweibull(time_threshold, coef(wbll_fit)[["shape"]], coef(wbll_fit)[["scale"]])
 
