@@ -728,7 +728,6 @@ ff_center_rep |>
 #| fig-cap: Interaction plot
 
 
-
 ff_center_rep |> 
   ggplot(
     aes(
@@ -852,6 +851,290 @@ grid_vis_join |>
 
 ```
 
+### Fractional Factorial [@Gr_mping_2014]
+
+```{r}
+#| include: false
+
+frac_design <- FrF2(
+  nfactors = 3,               
+  nruns = 4, #2^(3-1)
+  factor.names = c("A_LaunchAngle", "B_ArmLength", "C_RubberBands"),
+  randomize = FALSE
+  # replications = 3,
+  # repeat.only = TRUE
+)
+
+frac_design_rep <- FrF2(
+  nfactors = 3,               
+  nruns = 4, #2^(3-1)
+  factor.names = c("A_LaunchAngle", "B_ArmLength", "C_RubberBands"),
+  randomize = FALSE,
+  replications = 2,
+  repeat.only = TRUE
+)
+
+fractional_runs_w_repetitions <- Full_Factorial_Catapult_RunSheet %>%
+  filter(
+    (A_LaunchAngle == -1 & B_ArmLength == -1 & C_RubberBands == 1) |  # Run 13
+    (A_LaunchAngle == 1 & B_ArmLength == -1 & C_RubberBands == -1) |   # Run 4
+    (A_LaunchAngle == -1 & B_ArmLength == 1 & C_RubberBands == -1) |   # Run 15
+    (A_LaunchAngle == 1 & B_ArmLength == 1 & C_RubberBands == 1)      # Run 22
+  )
+
+frac_runs_single <- fractional_runs_w_repetitions |> 
+  filter(Replicate==1) |> 
+  select(
+    A_LaunchAngle,
+    B_ArmLength,
+    C_RubberBands,
+    Distance_cm
+  ) |> 
+  mutate(
+    A_LaunchAngle = as_factor(A_LaunchAngle),
+    B_ArmLength = as_factor(B_ArmLength),
+    C_RubberBands = as_factor(C_RubberBands)
+  )
+
+frac_runs_rep <- fractional_runs_w_repetitions |> 
+  filter(Replicate==1|Replicate==2) |> 
+  select(
+    A_LaunchAngle,
+    B_ArmLength,
+    C_RubberBands,
+    Distance_cm
+  ) |> 
+  mutate(
+    A_LaunchAngle = as_factor(A_LaunchAngle),
+    B_ArmLength = as_factor(B_ArmLength),
+    C_RubberBands = as_factor(C_RubberBands)
+  )
+
+frac_design_df <- as.data.frame(frac_design)
+frac_design_rep_df <- as.data.frame(frac_design_rep)
+
+jnd <- right_join(
+  frac_design_df,
+  frac_runs_single
+)
+
+jnd_rep <- right_join(
+  frac_design_rep_df,
+  frac_runs_rep,
+  relationship = "many-to-many"
+) |> 
+  distinct()
+
+response <- jnd |> pull(Distance_cm)
+response_rep <- jnd_rep |> pull(Distance_cm)
+
+frac_design_resp <- add.response(frac_design,response = response)
+frac_design_rep_resp <- add.response(frac_design_rep,response = response_rep)
+
+MEPlot(frac_design_resp)
+MEPlot(frac_design_rep_resp)
+
+frac_design_resp_df <- frac_design_resp |> 
+  as.data.frame() |> 
+  mutate(
+    A_LaunchAngle = as.numeric(as.character(A_LaunchAngle)),
+    B_ArmLength = as.numeric(as.character(B_ArmLength)),
+    C_RubberBands = as.numeric(as.character(C_RubberBands))
+  )
+
+frac_design_rep_resp_df <- frac_design_rep_resp |> 
+  as.data.frame() |> 
+  mutate(
+    A_LaunchAngle = as.numeric(as.character(A_LaunchAngle)),
+    B_ArmLength = as.numeric(as.character(B_ArmLength)),
+    C_RubberBands = as.numeric(as.character(C_RubberBands))
+  )
+
+summary(lm(response_rep ~ (A_LaunchAngle + B_ArmLength + C_RubberBands)^2, data = frac_design_rep_resp_df))
+
+main_effects(
+  frac_design_resp_df,
+  response = "response",
+  n_columns = 1
+)
+
+interaction_effects(
+  frac_design_resp_df,
+  response = "response",
+  n_columns = 1
+)
+
+# main_effects(
+#   frac_design_rep_resp_df,
+#   response = "response",
+#   n_columns = 1
+# )
+
+
+```
+
+Goal: Identify main effects and key interaction with fewer experiments
+
+#### Experimental plan
+
+Original: $2^3 \text{(factor levels)}* 3 \text{(repetitions)} + 6\text{(center points)} = 30 \text{ experiments}$
+
+Fractional (minimal): $2^{3-1} \text{(factor levels)}* 1 \text{(no repetitions)} + 0\text{(center points)} = 4 \text{ experiments}$
+
+#### Aliasing
+
+```{r}
+#| label: fig-conf-comparison
+#| out-width: 95%
+#| fig-cap: What is confounding?
+
+plt_alias_full <- alias_matrix(ff |> select(A_LaunchAngle,B_ArmLength,C_RubberBands))
+
+plt_alias_frac <- alias_matrix(frac_design) 
+             
+combined <-  plt_alias_full/plt_alias_frac&theme(legend.position = "bottom")
+
+combined
+
+```
+
+
+
+#### Confounding
+
+```{r}
+#| label: tbl-conf
+#| tbl-cap: Example calculation to show what confounding means
+
+frac_design_df_conf <- frac_design_df |> 
+  mutate(
+    confounding = as.numeric(as.character(B_ArmLength))*as.numeric(as.character(C_RubberBands))
+  )
+
+frac_design_df_conf |>     
+  gt() |> 
+  cols_label(
+    A_LaunchAngle = "A: Launch Angle",
+    B_ArmLength = "B: Arm Length",
+    C_RubberBands = "C: Rubber Bands",
+    confounding = "A = B:C"
+  )
+
+
+```
+
+#### Resolution
+
+- degree of confounding (or aliasing)
+- provides a way to classify designs based on how severely factors and interactions are confounded
+- Higher resolution means less confounding and more reliable estimation of effects
+  - III: Main effects are confounded with two-way interactions
+  - IV: Main effects are confounded with three-way (or higher) interactions, but two-way interactions are confounded with each other
+  - V: Main effects and two-way interactions are confounded only with three-way (or higher) interactions.
+  
+#### practical implications
+
+- Lower resolution (e.g., R-III): Cheaper (fewer runs) but riskier because main effects may be confounded with two-way interactions. 
+
+**If interactions exist, you might misinterpret the results.**
+
+- Higher resolution (e.g., R-V): More expensive (more runs) but provides clearer estimates of main effects and two-way interactions. 
+
+**Preferred when interactions are suspected or critical.**
+
+#### available designs and resoultion
+
+```{r}
+
+catlg_df <- data.frame(
+  nfac = nfac(
+    catlg = catlg
+    ),
+  nruns = nruns(
+    catlg = catlg
+  ),
+  res = res(
+    catlg = catlg
+  )
+) |> 
+  filter(
+    nruns>4,
+    nfac<25,
+    nruns<129
+  ) |> 
+  group_by(
+    nruns,
+    nfac
+  ) |> 
+  summarise(
+    res = max(res)
+  ) |> 
+  ungroup() |> 
+  add_row(
+    nfac = c(3,3,3,3,3,4,4,4,4,5,5,5,6,6,7),
+    nruns = c(8,16,32,64,128,16,32,64,128,32,64,128,64,128,128),
+    res = c(9,10,10,10,10,9,10,10,10,9,10,10,9,10,9)
+  ) |> 
+  mutate(
+    roman_res = case_when(
+      res==3~"III",
+      res==4~"IV",
+      res==5~"V",
+      res==6~"VI",
+      res==7~"VII",
+      res==8~"VIII",
+      res==9~"full",
+      res>9~" ",
+    )
+  )
+
+
+
+
+catlg_df |> ggplot(
+  aes(
+    x = as_factor(nruns),
+    y = as_factor(nfac),
+    fill = as_factor(roman_res),
+    label = roman_res
+    )
+  )+
+  geom_tile(
+    color = "white",
+    show.legend = FALSE
+  )+
+  geom_text()+
+  scale_y_discrete(
+    limits = rev,
+    expand = c(0,0,0,0)
+  )+
+  scale_x_discrete(
+    expand = c(0,0,0,0)
+  )+
+  scale_fill_manual(
+    values = 
+     c(
+       "III" = "firebrick", 
+       "IV" = "gold", 
+       "V" = "darkgreen",
+       "VI" = "darkgreen",
+       "VII" = "darkgreen",
+       "VIII" = "darkgreen",
+       "full" = "darkgreen",
+       " " = "darkgreen"
+       )
+  )+
+  labs(
+    title = "Design and resolution",
+    x = "number of runs",
+    y = "number of factors"
+  )+
+  theme(
+    legend.position = "bottom",
+    panel.border = element_blank()
+  )
+
+```
 
 
 ::: {.content-visible when-profile="slides"}
