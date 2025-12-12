@@ -2122,7 +2122,7 @@ The bigger the samples, the narrower the range of scores that covers any particu
 Since the *t-score* is computed for every $x_i$ the resulting sampling distribution is called the *t-disitribution*.
 
 \begin{align}
-t_i = \frac{x_i - \mu_o}{sd/\sqrt{n}} \label{tscore}
+t_i = \frac{x_i - \mu_0}{sd/\sqrt{n}} \label{tscore}
 \end{align}
 
 In @fig-t-dist it is shown, that with increasing {{< acr dof >}} (in this case *sample size*), the *t-distribution* approximates a normal distribution (gray area).
@@ -2896,62 +2896,62 @@ cdf_f |>
 
 
 
-::: {.content-visible when-format="html"}
+<!-- ::: {.content-visible when-format="html"} -->
 
-```{r}
-#| label: fig-catapult-f-cdf-dof1dof2
-#| fig-cap: The CDF we need for the calculations
-#| fig-pos: "H"
+<!-- ```{r} -->
+<!-- #| label: fig-catapult-f-cdf-dof1dof2 -->
+<!-- #| fig-cap: The CDF we need for the calculations -->
+<!-- #| fig-pos: "H" -->
 
-cdf_f <- expand_grid(
-  x = seq(0.01,5,0.01),
-  dof1 = c(9),
-  dof2 = c(9),
-  # dof2 = seq(2,30,3)
-  ) %>%
-  mutate(
-    p = pf(x, dof1,dof2)
-    )
-    
-plotly::ggplotly(
-  cdf_f |> 
-  ggplot(
-    aes(
-      x = x,
-      y = p
-    )
-  )+
-  # geom_line()+
-  geom_area(
-    fill = "gray70"
-  )+
-  scale_x_continuous(
-    expand = c(0,0,0,0)
-  )+
-  scale_y_continuous(
-    expand = c(0,0,0.05,0)
-  )+
-  geom_vline(
-    xintercept =  qf(1-0.05,9,9)
-  )+
-  geom_text(
-    x = qf(1-0.05,9,9)+0.2,
-    y = 0.5,
-    label = "\u03B1=0.05",
-    
-    # angle = 90
-  )+
-  labs(
-    title = "PDF of F-Statistic",
-    subtitle = "dof1 = 9, dof2 = 9",
-    y = "density",
-    x = "F-Statistic"
-  ) 
-)
+<!-- cdf_f <- expand_grid( -->
+<!--   x = seq(0.01,5,0.01), -->
+<!--   dof1 = c(9), -->
+<!--   dof2 = c(9), -->
+<!--   # dof2 = seq(2,30,3) -->
+<!--   ) %>% -->
+<!--   mutate( -->
+<!--     p = pf(x, dof1,dof2) -->
+<!--     ) -->
 
-```
+<!-- plotly::ggplotly( -->
+<!--   cdf_f |>  -->
+<!--   ggplot( -->
+<!--     aes( -->
+<!--       x = x, -->
+<!--       y = p -->
+<!--     ) -->
+<!--   )+ -->
+<!--   # geom_line()+ -->
+<!--   geom_area( -->
+<!--     fill = "gray70" -->
+<!--   )+ -->
+<!--   scale_x_continuous( -->
+<!--     expand = c(0,0,0,0) -->
+<!--   )+ -->
+<!--   scale_y_continuous( -->
+<!--     expand = c(0,0,0.05,0) -->
+<!--   )+ -->
+<!--   geom_vline( -->
+<!--     xintercept =  qf(1-0.05,9,9) -->
+<!--   )+ -->
+<!--   geom_text( -->
+<!--     x = qf(1-0.05,9,9)+0.2, -->
+<!--     y = 0.5, -->
+<!--     label = "\u03B1=0.05", -->
 
-:::
+<!--     # angle = 90 -->
+<!--   )+ -->
+<!--   labs( -->
+<!--     title = "PDF of F-Statistic", -->
+<!--     subtitle = "dof1 = 9, dof2 = 9", -->
+<!--     y = "density", -->
+<!--     x = "F-Statistic" -->
+<!--   )  -->
+<!-- ) -->
+
+<!-- ``` -->
+
+<!-- ::: -->
 
 :::
 

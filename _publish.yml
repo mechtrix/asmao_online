@@ -1,0 +1,8 @@
+- source: index.qmd
+  connect:
+    - id: cc98095e-6502-448b-92f4-d2c5838ddbed
+      url: https://tcc-posit.th-deg.de:3939/content/cc98095e-6502-448b-92f4-d2c5838ddbed/
+- source: project
+  connect:
+    - id: 93b1ef61-c11a-4183-978d-76e52bd5b3ad
+      url: https://tcc-posit.th-deg.de:3939/content/93b1ef61-c11a-4183-978d-76e52bd5b3ad/

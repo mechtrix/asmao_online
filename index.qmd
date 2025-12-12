@@ -1,3 +1,10 @@
+---
+output: html_document
+resource_files:
+- "_quarto-script.yml"
+- acronyms.yml
+- asmao_online.tex
+---
 # Preface {.unnumbered}
 
 This is the script for the lecture "Advanced Statistical Methods and Optimization" at the DIT/Campus Cham.
