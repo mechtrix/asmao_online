@@ -1222,9 +1222,118 @@ Which then in turn gives \eqref{sigmoid}.
 
 :::
 
-{{< pagebreak >}}
+### Odds
 
-### $\beta_0 = 1$ and $\beta_1 = 1$
+::: {.r-stack}
+
+:::{.fragment .fade-in-then-out}
+
+```{r}
+#| label: fig-sw-odds
+#| out-width: 75%
+#| fig-cap: Never tell him the odds
+#| fig-pos: "H"
+
+knitr::include_graphics(here::here("chapter003","sw_odds.png"))
+
+```
+
+:::
+
+:::{.fragment .fade-in-then-out}
+
+The odds of an event is the ratio of the probability of the event occurring to it not occurring:
+
+$$\text{Odds} = \frac{p}{1-p}$$
+For example: $p = 0.8$, odds are $\frac{0.8}{0.2} = 4$ (or "4 to 1")
+
+:::
+
+:::
+
+### Odds ratio
+
+The odds ratio compares the odds of the outcome for two groups differing by $1$ unit in a predictor $X$. 
+For a binary predictor (e.g., treatment vs. control), it’s the ratio of odds between the two groups.
+
+For a continuous predictor, the OR represents the multiplicative change in odds for a 1-unit increase in $X$, holding other variables constant.
+
+\begin{align}
+OR = e^{\beta_j}
+\end{align}
+
+- $\beta_j > 0, \; OR > X$: Higher $X_j$ increases the odds of $Y = 1$
+- $\beta_j < 0, \; OR < X$: Higher $X_j$ decreases the odds of $Y = 1$
+- $\beta_j = 0, \; OR = X$: No effect
+
+### Example: Coffe vs. productivity
+
+```{r}
+
+# Create the dataset
+productivity_data <- tibble(
+  person = 1:6,
+  coffee = c(1, 1, 1, 0, 0, 0),
+  productive = c(1, 1, 0, 0, 1, 0)
+) %>%
+  mutate(
+    coffee = factor(coffee, labels = c("No", "Yes")),
+    productive = factor(productive, labels = c("No", "Yes"))
+  )
+
+# Create the gt table
+productivity_table <- productivity_data %>%
+  select(-person) %>%  # Exclude the 'person' column for clarity
+  gt() %>%
+  tab_header(
+    title = md("**Coffee and Productivity Dataset**"),
+    subtitle = md("Hypothetical data to illustrate odds ratio in logistic regression.")
+  ) %>%
+  fmt_number() %>%
+  cols_label(
+    coffee = md("**Drank Coffee**"),
+    productive = md("**Productive**")
+  ) %>%
+  tab_style(
+    style = cell_text(weight = "bold"),
+    locations = cells_column_labels()
+  ) %>%
+  tab_options(
+    table.font.size = px(14),
+    heading.title.font.size = px(18),
+    heading.subtitle.font.size = px(14)
+  )
+
+# Display the table
+productivity_table
+
+```
+
+### Odds (with coffee) 
+
+Odds of being productive if they drank coffee
+
+$$p = \frac{\text{Number of productive with coffee}}{\text{Total with coffee}} = \frac{2}{3}$$
+
+$$Odds = \frac{p}{1-p} = \frac{2/3}{1/3} = 2$$ (or "2 to 1")
+
+### Odds (without coffee) 
+
+Odds of being productive if they did not drink coffee
+
+$$p = \frac{\text{Number of productive without coffee}}{\text{Total without coffee}} = \frac{1}{3}$$
+
+$$Odds = \frac{p}{1-p} = \frac{1/3}{2/3} = 0.5$$ (or "1 to 2")
+
+
+### Odds ratio
+
+$$OR = \frac{\text{Odds with coffee}}{\text{Odds without coffee}} = \frac{2}{0.5} = 4$$
+
+People who drank coffee have 4 times higher odds of being productive compared to those who did not.
+
+
+### $\beta_0 = 0$ and $\beta_1 = 1$
 
 ```{r}
 #| label: fig-sigmoid-params
@@ -1233,7 +1342,7 @@ Which then in turn gives \eqref{sigmoid}.
 #| fig-pos: "H"
 
 x <- seq(-5,5,0.1)
-beta_0 <- 1
+beta_0 <- 0
 beta_1 <- 1
 
 ref <- expand_grid(
@@ -1258,7 +1367,7 @@ ref |>
   geom_vline(xintercept = 0,color = "gray")+
   geom_line()+
   labs(
-    title = bquote(y == frac(1,1+e^-(beta[0]+beta[1]*x)) ~ ";" ~ beta[0] == 1 ~ ";" ~ beta[1] == 1),
+    title = bquote(y == frac(1,1+e^-(beta[0]+beta[1]*x)) ~ ";" ~ beta[0] == 0 ~ ";" ~ beta[1] == 1),
     y = bquote(hat(y))
   )+
   scale_y_continuous(
@@ -1285,7 +1394,7 @@ to model it in the *intercept* and *gradient* kind of logic.
 
 {{< pagebreak >}}
 
-### $\beta_0 = 1$ and $\beta_1 = 0 \ldots 5$
+### $\beta_0 = 0$ and $\beta_1 = 0 \ldots 5$
 
 ```{r}
 #| label: fig-sigmoid-params02
@@ -1295,7 +1404,7 @@ to model it in the *intercept* and *gradient* kind of logic.
 #| fig-height: 5
 
 x <- seq(-5,5,0.1)
-beta_0 <- 1
+beta_0 <- 0
 beta_1 <- seq(0,5)
 
 dataset <- expand_grid(
@@ -1328,7 +1437,7 @@ dataset |>
     )+
   geom_line()+
   labs(
-    title = bquote(y == frac(1,1+e^-(beta[0]+beta[1]*x)) ~ ";" ~ beta[0] == 1 ~ ";" ~ beta[1] == list(0,...,5)),
+    title = bquote(y == frac(1,1+e^-(beta[0]+beta[1]*x)) ~ ";" ~ beta[0] == 0 ~ ";" ~ beta[1] == list(0,...,5)),
     y = bquote(hat(y)),
     linetype = bquote(beta[1] ~":   ")
   )+
@@ -1368,7 +1477,7 @@ An interesting effect is visible for a gradient of $\beta_1 = 0$: The function b
 #| fig-height: 5
 
 x <- seq(-5,5,0.1)
-beta_0 <- 1
+beta_0 <- 0
 beta_1 <- seq(-5,0)
 
 dataset <- expand_grid(
@@ -1401,7 +1510,7 @@ dataset |>
     )+
   geom_line()+
   labs(
-    title = bquote(y == frac(1,1+e^-(beta[0]+beta[1]*x)) ~ ";" ~ beta[0] == 1 ~ ";" ~ beta[1] == list(-5,...,0)),
+    title = bquote(y == frac(1,1+e^-(beta[0]+beta[1]*x)) ~ ";" ~ beta[0] == 0 ~ ";" ~ beta[1] == list(-5,...,0)),
     y = bquote(hat(y)),
     linetype = bquote(beta[1] ~":   ")
   )+
