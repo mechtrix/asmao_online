@@ -304,7 +304,7 @@ knitr::include_graphics(here("SamplingMethods","Cluster_sampling.png"))
 ```{r}
 #| include: false
 
-load(here("data","classroom_sampling.RData"))
+load(here("data","classroom_sampling.Rdata"))
 
 student_data <- student_data |> add_column(n = "population")
 

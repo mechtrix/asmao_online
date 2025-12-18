@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -35,15 +35,14 @@ ul.task-list li input[type="checkbox"] {
 <link href="./chapter001_Distributions.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-70a47bd5681a7291082a5b9f83d58762.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-6e275a737f1106d2584d26cd1c866b33.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -72,33 +71,19 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <script type="text/x-mathjax-config">
-
 MathJax.Hub.Config({
-
   TeX: { equationNumbers: {autoNumber: "AMS"} },
-
   tex2jax: {inlineMath: [ ['$','$'], ["\\(","\\)"] ]}
-
 });
-
 </script>
 
-
-
 <!-- This is what works with Quarto -->
-
 <script>
-
   MathJax = {
-
     tex: {
-
       tags: 'ams'  // should be 'ams', 'none', or 'all'
-
     }
-
   };
-
 </script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
@@ -115,7 +100,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+      if (mathElements[i].tagName == "SPAN") {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -156,11 +141,12 @@ window.Quarto = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-      <a href="./index.html" class="sidebar-logo-link">
-      </a>
-      <div class="sidebar-tools-main">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Advanced Statistical Methods and Optimization</a> 
+        <div class="sidebar-tools-main">
     <a href="./asmao_online.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
 </div>
+    </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
@@ -306,7 +292,7 @@ window.Quarto = {
 <div id="fig-se-1" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-se-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="SamplingMethods_files/figure-revealjs/fig-se-1.svg" class="img-fluid figure-img" style="width:95.0%" data-ref-parent="fig-se">
+<img src="SamplingMethods_files/figure-html/fig-se-1.png" class="img-fluid figure-img" style="width:95.0%" data-ref-parent="fig-se">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-se-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) maximum sample size <span class="math inline">\(n = 200\)</span>
@@ -318,7 +304,7 @@ window.Quarto = {
 <div id="fig-se-2" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-se-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="SamplingMethods_files/figure-revealjs/fig-se-2.svg" class="img-fluid figure-img" style="width:95.0%" data-ref-parent="fig-se">
+<img src="SamplingMethods_files/figure-html/fig-se-2.png" class="img-fluid figure-img" style="width:95.0%" data-ref-parent="fig-se">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-se-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) sample size for <span class="math inline">\(n = 5 \ldots 50\)</span>
@@ -949,7 +935,7 @@ Table&nbsp;3.1: The Classroom data
 }
 </style>
 
-<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
@@ -999,7 +985,7 @@ Table&nbsp;3.1: The Classroom data
 <div id="fig-Students-pop-hist" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-Students-pop-hist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="SamplingMethods_files/figure-revealjs/fig-Students-pop-hist-1.svg" class="img-fluid figure-img">
+<img src="SamplingMethods_files/figure-html/fig-Students-pop-hist-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Students-pop-hist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3.6: The histograms of students
@@ -1016,7 +1002,7 @@ Figure&nbsp;3.6: The histograms of students
 <div id="fig-Students-pop-class-age" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-Students-pop-class-age-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="SamplingMethods_files/figure-revealjs/fig-Students-pop-class-age-1.svg" class="img-fluid figure-img">
+<img src="SamplingMethods_files/figure-html/fig-Students-pop-class-age-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Students-pop-class-age-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3.7: Where students are seated (Age)
@@ -1033,7 +1019,7 @@ Figure&nbsp;3.7: Where students are seated (Age)
 <div id="fig-Students-pop-class-gender" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-Students-pop-class-gender-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="SamplingMethods_files/figure-revealjs/fig-Students-pop-class-gender-1.svg" class="img-fluid figure-img">
+<img src="SamplingMethods_files/figure-html/fig-Students-pop-class-gender-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Students-pop-class-gender-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3.8: Where students are seated (Age)
@@ -1509,7 +1495,7 @@ Table&nbsp;3.2: The means and standard deviations of the classroom data for n = 
 }
 </style>
 
-<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_col_headings header">
 <th id="n" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">n</th>
@@ -1559,7 +1545,7 @@ Table&nbsp;3.2: The means and standard deviations of the classroom data for n = 
 <div id="fig-Students-pop-srswor-n5" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-Students-pop-srswor-n5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="SamplingMethods_files/figure-revealjs/fig-Students-pop-srswor-n5-1.svg" class="img-fluid figure-img">
+<img src="SamplingMethods_files/figure-html/fig-Students-pop-srswor-n5-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Students-pop-srswor-n5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3.9: Where students are seated (Age) and the 5 samples
@@ -1576,7 +1562,7 @@ Figure&nbsp;3.9: Where students are seated (Age) and the 5 samples
 <div id="fig-Students-pop-srswor-n10" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-Students-pop-srswor-n10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="SamplingMethods_files/figure-revealjs/fig-Students-pop-srswor-n10-1.svg" class="img-fluid figure-img">
+<img src="SamplingMethods_files/figure-html/fig-Students-pop-srswor-n10-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Students-pop-srswor-n10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3.10: Where students are seated (Age) and the 10 samples
@@ -1593,7 +1579,7 @@ Figure&nbsp;3.10: Where students are seated (Age) and the 10 samples
 <div id="fig-Students-pop-srswor-n15" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-Students-pop-srswor-n15-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="SamplingMethods_files/figure-revealjs/fig-Students-pop-srswor-n15-1.svg" class="img-fluid figure-img">
+<img src="SamplingMethods_files/figure-html/fig-Students-pop-srswor-n15-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Students-pop-srswor-n15-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3.11: Where students are seated (Age) and the 15 samples
@@ -1610,7 +1596,7 @@ Figure&nbsp;3.11: Where students are seated (Age) and the 15 samples
 <div id="fig-Students-pop-srswor-n20" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-Students-pop-srswor-n20-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="SamplingMethods_files/figure-revealjs/fig-Students-pop-srswor-n20-1.svg" class="img-fluid figure-img">
+<img src="SamplingMethods_files/figure-html/fig-Students-pop-srswor-n20-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Students-pop-srswor-n20-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3.12: Where students are seated (Age) and the 20 samples
@@ -1627,7 +1613,7 @@ Figure&nbsp;3.12: Where students are seated (Age) and the 20 samples
 <div id="fig-srs-hist-cmp" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-srs-hist-cmp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="SamplingMethods_files/figure-revealjs/fig-srs-hist-cmp-1.svg" class="img-fluid figure-img">
+<img src="SamplingMethods_files/figure-html/fig-srs-hist-cmp-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-srs-hist-cmp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3.13: Comparison of sample to the population
@@ -1644,7 +1630,7 @@ Figure&nbsp;3.13: Comparison of sample to the population
 <div id="fig-Students-srswor-diffmeans" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-Students-srswor-diffmeans-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="SamplingMethods_files/figure-revealjs/fig-Students-srswor-diffmeans-1.svg" class="img-fluid figure-img">
+<img src="SamplingMethods_files/figure-html/fig-Students-srswor-diffmeans-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Students-srswor-diffmeans-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3.14: The difference in means at different sample sizes
@@ -1661,7 +1647,7 @@ Figure&nbsp;3.14: The difference in means at different sample sizes
 <div id="fig-Students-srswor-diffsd" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-Students-srswor-diffsd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="SamplingMethods_files/figure-revealjs/fig-Students-srswor-diffsd-1.svg" class="img-fluid figure-img">
+<img src="SamplingMethods_files/figure-html/fig-Students-srswor-diffsd-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Students-srswor-diffsd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3.15: The difference in sd at different sample sizes
@@ -2133,7 +2119,7 @@ Table&nbsp;3.3: The output of systematic sampling for every 8th, 5th, 4th, 2nd
 }
 </style>
 
-<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_col_headings header">
 <th id="k" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">k</th>
@@ -2183,7 +2169,7 @@ Table&nbsp;3.3: The output of systematic sampling for every 8th, 5th, 4th, 2nd
 <div id="fig-Students-systsmpl-k8" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-Students-systsmpl-k8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="SamplingMethods_files/figure-revealjs/fig-Students-systsmpl-k8-1.svg" class="img-fluid figure-img">
+<img src="SamplingMethods_files/figure-html/fig-Students-systsmpl-k8-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Students-systsmpl-k8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3.16: Where students are seated (Age) and every 8th sample
@@ -2200,7 +2186,7 @@ Figure&nbsp;3.16: Where students are seated (Age) and every 8th sample
 <div id="fig-Students-systsmpl-k5" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-Students-systsmpl-k5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="SamplingMethods_files/figure-revealjs/fig-Students-systsmpl-k5-1.svg" class="img-fluid figure-img">
+<img src="SamplingMethods_files/figure-html/fig-Students-systsmpl-k5-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Students-systsmpl-k5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3.17: Where students are seated (Age) and every 5th sample
@@ -2217,7 +2203,7 @@ Figure&nbsp;3.17: Where students are seated (Age) and every 5th sample
 <div id="fig-Students-systsmpl-k2" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-Students-systsmpl-k2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="SamplingMethods_files/figure-revealjs/fig-Students-systsmpl-k2-1.svg" class="img-fluid figure-img">
+<img src="SamplingMethods_files/figure-html/fig-Students-systsmpl-k2-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Students-systsmpl-k2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3.18: Where students are seated (Age) and every 2nd sample
@@ -2234,7 +2220,7 @@ Figure&nbsp;3.18: Where students are seated (Age) and every 2nd sample
 <div id="fig-Students-systsmlp-data" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-Students-systsmlp-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="SamplingMethods_files/figure-revealjs/fig-Students-systsmlp-data-1.svg" class="img-fluid figure-img">
+<img src="SamplingMethods_files/figure-html/fig-Students-systsmlp-data-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Students-systsmlp-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3.19: The data per subgroup
@@ -2251,7 +2237,7 @@ Figure&nbsp;3.19: The data per subgroup
 <div id="fig-Students-systsmlp-diffmeans" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-Students-systsmlp-diffmeans-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="SamplingMethods_files/figure-revealjs/fig-Students-systsmlp-diffmeans-1.svg" class="img-fluid figure-img">
+<img src="SamplingMethods_files/figure-html/fig-Students-systsmlp-diffmeans-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Students-systsmlp-diffmeans-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3.20: The difference in means at different sampling intervals
@@ -2268,7 +2254,7 @@ Figure&nbsp;3.20: The difference in means at different sampling intervals
 <div id="fig-Students-systsmlp-diffsd" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-Students-systsmlp-diffsd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="SamplingMethods_files/figure-revealjs/fig-Students-systsmlp-diffsd-1.svg" class="img-fluid figure-img">
+<img src="SamplingMethods_files/figure-html/fig-Students-systsmlp-diffsd-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Students-systsmlp-diffsd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3.21: The difference in sd at different sampling intervals
@@ -2289,7 +2275,7 @@ Figure&nbsp;3.21: The difference in sd at different sampling intervals
 <div id="fig-Students-strtsml-n5" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-Students-strtsml-n5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="SamplingMethods_files/figure-revealjs/fig-Students-strtsml-n5-1.svg" class="img-fluid figure-img">
+<img src="SamplingMethods_files/figure-html/fig-Students-strtsml-n5-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Students-strtsml-n5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3.22: Where students are seated (Age), stratified according to gender (<span class="math inline">\(12\%\)</span>)
@@ -2306,7 +2292,7 @@ Figure&nbsp;3.22: Where students are seated (Age), stratified according to gende
 <div id="fig-Students-strtsml-n10" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-Students-strtsml-n10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="SamplingMethods_files/figure-revealjs/fig-Students-strtsml-n10-1.svg" class="img-fluid figure-img">
+<img src="SamplingMethods_files/figure-html/fig-Students-strtsml-n10-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Students-strtsml-n10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3.23: Where students are seated (Age), stratified according to gender (<span class="math inline">\(25\%\)</span>)
@@ -2323,7 +2309,7 @@ Figure&nbsp;3.23: Where students are seated (Age), stratified according to gende
 <div id="fig-Students-strtsml-n15" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-Students-strtsml-n15-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="SamplingMethods_files/figure-revealjs/fig-Students-strtsml-n15-1.svg" class="img-fluid figure-img">
+<img src="SamplingMethods_files/figure-html/fig-Students-strtsml-n15-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Students-strtsml-n15-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3.24: Where students are seated (Age), stratified according to gender (<span class="math inline">\(38\%\)</span>)
@@ -2340,7 +2326,7 @@ Figure&nbsp;3.24: Where students are seated (Age), stratified according to gende
 <div id="fig-Students-strtsml-n20" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-Students-strtsml-n20-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="SamplingMethods_files/figure-revealjs/fig-Students-strtsml-n20-1.svg" class="img-fluid figure-img">
+<img src="SamplingMethods_files/figure-html/fig-Students-strtsml-n20-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Students-strtsml-n20-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3.25: Where students are seated (Age), stratified according to gender (<span class="math inline">\(50\%\)</span>)
@@ -2357,7 +2343,7 @@ Figure&nbsp;3.25: Where students are seated (Age), stratified according to gende
 <div id="fig-Students-strtsmpl-dat" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-Students-strtsmpl-dat-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="SamplingMethods_files/figure-revealjs/fig-Students-strtsmpl-dat-1.svg" class="img-fluid figure-img">
+<img src="SamplingMethods_files/figure-html/fig-Students-strtsmpl-dat-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Students-strtsmpl-dat-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3.26: The data of the stratified sampling
@@ -2374,7 +2360,7 @@ Figure&nbsp;3.26: The data of the stratified sampling
 <div id="fig-Students-strtsmpl-diffmeans" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-Students-strtsmpl-diffmeans-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="SamplingMethods_files/figure-revealjs/fig-Students-strtsmpl-diffmeans-1.svg" class="img-fluid figure-img">
+<img src="SamplingMethods_files/figure-html/fig-Students-strtsmpl-diffmeans-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Students-strtsmpl-diffmeans-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3.27: The difference in means at different sample sizes
@@ -2391,7 +2377,7 @@ Figure&nbsp;3.27: The difference in means at different sample sizes
 <div id="fig-Students-strtsmpl-diffsds" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-Students-strtsmpl-diffsds-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="SamplingMethods_files/figure-revealjs/fig-Students-strtsmpl-diffsds-1.svg" class="img-fluid figure-img">
+<img src="SamplingMethods_files/figure-html/fig-Students-strtsmpl-diffsds-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Students-strtsmpl-diffsds-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3.28: The difference in sd at different sample sizes
@@ -2413,7 +2399,7 @@ Figure&nbsp;3.28: The difference in sd at different sample sizes
 <div id="fig-Students-clstsmpl-n5" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-Students-clstsmpl-n5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="SamplingMethods_files/figure-revealjs/fig-Students-clstsmpl-n5-1.svg" class="img-fluid figure-img">
+<img src="SamplingMethods_files/figure-html/fig-Students-clstsmpl-n5-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Students-clstsmpl-n5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3.29: Where students are seated (Age), cluster one
@@ -2430,7 +2416,7 @@ Figure&nbsp;3.29: Where students are seated (Age), cluster one
 <div id="fig-Students-clstsmpl-n10" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-Students-clstsmpl-n10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="SamplingMethods_files/figure-revealjs/fig-Students-clstsmpl-n10-1.svg" class="img-fluid figure-img">
+<img src="SamplingMethods_files/figure-html/fig-Students-clstsmpl-n10-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Students-clstsmpl-n10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3.30: Where students are seated (Age), two clusters
@@ -2447,7 +2433,7 @@ Figure&nbsp;3.30: Where students are seated (Age), two clusters
 <div id="fig-Students-clstsmpl-n15" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-Students-clstsmpl-n15-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="SamplingMethods_files/figure-revealjs/fig-Students-clstsmpl-n15-1.svg" class="img-fluid figure-img">
+<img src="SamplingMethods_files/figure-html/fig-Students-clstsmpl-n15-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Students-clstsmpl-n15-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3.31: Where students are seated (Age), three clusters
@@ -2464,7 +2450,7 @@ Figure&nbsp;3.31: Where students are seated (Age), three clusters
 <div id="fig-Students-clstsmpl-n20" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-Students-clstsmpl-n20-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="SamplingMethods_files/figure-revealjs/fig-Students-clstsmpl-n20-1.svg" class="img-fluid figure-img">
+<img src="SamplingMethods_files/figure-html/fig-Students-clstsmpl-n20-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Students-clstsmpl-n20-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3.32: Where students are seated (Age), four clusters
@@ -2481,7 +2467,7 @@ Figure&nbsp;3.32: Where students are seated (Age), four clusters
 <div id="fig-Students-clstsmpl-data" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-Students-clstsmpl-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="SamplingMethods_files/figure-revealjs/fig-Students-clstsmpl-data-1.svg" class="img-fluid figure-img">
+<img src="SamplingMethods_files/figure-html/fig-Students-clstsmpl-data-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Students-clstsmpl-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3.33: The data of the clustered sampling
@@ -2498,7 +2484,7 @@ Figure&nbsp;3.33: The data of the clustered sampling
 <div id="fig-Students-clstsmpl-diffmeans" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-Students-clstsmpl-diffmeans-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="SamplingMethods_files/figure-revealjs/fig-Students-clstsmpl-diffmeans-1.svg" class="img-fluid figure-img">
+<img src="SamplingMethods_files/figure-html/fig-Students-clstsmpl-diffmeans-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Students-clstsmpl-diffmeans-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3.34: The difference in means at different sample sizes
@@ -2515,7 +2501,7 @@ Figure&nbsp;3.34: The difference in means at different sample sizes
 <div id="fig-Students-clstsmpl-diffsds" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-Students-clstsmpl-diffsds-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="SamplingMethods_files/figure-revealjs/fig-Students-clstsmpl-diffsds-1.svg" class="img-fluid figure-img">
+<img src="SamplingMethods_files/figure-html/fig-Students-clstsmpl-diffsds-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Students-clstsmpl-diffsds-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3.35: The difference in sd at different sample sizes
@@ -2536,7 +2522,7 @@ Figure&nbsp;3.35: The difference in sd at different sample sizes
 <div id="fig-comp-sampling-methods-means" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-comp-sampling-methods-means-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="SamplingMethods_files/figure-revealjs/fig-comp-sampling-methods-means-1.svg" class="img-fluid figure-img">
+<img src="SamplingMethods_files/figure-html/fig-comp-sampling-methods-means-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-comp-sampling-methods-means-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3.36: A graphical comparison of the absolute difference in means per sample strategy
@@ -2553,7 +2539,7 @@ Figure&nbsp;3.36: A graphical comparison of the absolute difference in means per
 <div id="fig-comp-sampling-methods-sd" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-comp-sampling-methods-sd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="SamplingMethods_files/figure-revealjs/fig-comp-sampling-methods-sd-1.svg" class="img-fluid figure-img">
+<img src="SamplingMethods_files/figure-html/fig-comp-sampling-methods-sd-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-comp-sampling-methods-sd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3.37: A graphical comparison of the absolute difference in means per sample strategy
@@ -2604,82 +2590,6 @@ Figure&nbsp;3.38: The idea of bootstrapping (Biggerj1, Marsupilami)
 </section>
 
 </main> <!-- /main -->
-
-
-<script>
-
-  // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-
-  // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-
-  // slide changes (different for each slide format).
-
-  (function () {
-
-    // dispatch for htmlwidgets
-
-    function fireSlideEnter() {
-
-      const event = window.document.createEvent("Event");
-
-      event.initEvent("slideenter", true, true);
-
-      window.document.dispatchEvent(event);
-
-    }
-
-
-
-    function fireSlideChanged(previousSlide, currentSlide) {
-
-      fireSlideEnter();
-
-
-
-      // dispatch for shiny
-
-      if (window.jQuery) {
-
-        if (previousSlide) {
-
-          window.jQuery(previousSlide).trigger("hidden");
-
-        }
-
-        if (currentSlide) {
-
-          window.jQuery(currentSlide).trigger("shown");
-
-        }
-
-      }
-
-    }
-
-
-
-    // hookup for slidy
-
-    if (window.w3c_slidy) {
-
-      window.w3c_slidy.add_observer(function (slide_num) {
-
-        // slide_num starts at position 1
-
-        fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-
-      });
-
-    }
-
-
-
-  })();
-
-</script>
-
-
-
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -2731,14 +2641,13 @@ Figure&nbsp;3.38: The idea of bootstrapping (Biggerj1, Marsupilami)
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
         }
-      }
-      return codeEl.innerText;
+        return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

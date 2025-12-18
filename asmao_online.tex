@@ -613,7 +613,7 @@ Variance\end{minipage}%
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=3.5in,height=\textheight,keepaspectratio]{chapter000/000_basics_root.png}
+{\centering \pandocbounded{\includegraphics[keepaspectratio]{chapter000/000_basics_root.png}}
 
 }
 
@@ -3670,7 +3670,7 @@ the resulting sampling distribution is called the
 \emph{t-disitribution}.
 
 \begin{align}
-t_i = \frac{x_i - \mu_o}{sd/\sqrt{n}} \label{tscore}
+t_i = \frac{x_i - \mu_0}{sd/\sqrt{n}} \label{tscore}
 \end{align}
 
 In Figure~\ref{fig-t-dist} it is shown, that with increasing
@@ -7403,7 +7403,7 @@ Scenario:
 
 A manufacturing plant produces bolts with a target diameter of 10.0 mm.
 The quality control team measures 7 randomly selected bolts and obtains
-the following diameters (in mm): 10.2, 9.8, 10.1, 9.9, 10.3, 9.7, 10.0
+the following diameters (in mm): 8, 9.8, 9.9, 10.0, 10.1, 10.2, 15.0
 
 The team wants to determine if the median diameter differs from the
 target at a significance level of \(\alpha=0.05\) .
@@ -8110,7 +8110,7 @@ summary}\label{pearson-correlation-coefficient-summary}
 \end{itemize}
 
 \begin{align}
-R = \frac{\sum_{i = 1}^{n}(x_i - \bar{x}) \times (y_i - \bar{y})}{\sqrt{\sum_{i=1}^{n}(x_i-\bar{x})^2}\times \sum_{i=1}^{n}(y_i-\bar{y})^2} \label{pearcorr}
+R = \frac{\sum_{i = 1}^{n}(x_i - \bar{x}) \times (y_i - \bar{y})}{\sqrt{\sum_{i=1}^{n}(x_i-\bar{x})^2}\times \sqrt{\sum_{i=1}^{n}(y_i-\bar{y})^2}} \label{pearcorr}
 \end{align}
 
 \subsection{Spearman Correlation}\label{spearman-correlation}
@@ -13558,6 +13558,110 @@ robust design}
 
 \end{figure}%
 
+\subsection{Fractional Factorial (Grömping
+2014)}\label{fractional-factorial-gr_mping_2014}
+
+Goal: Identify main effects and key interaction with fewer experiments
+
+\subsubsection{Experimental plan}\label{experimental-plan}
+
+Original:
+\(2^3 \text{(factor levels)}* 3 \text{(repetitions)} + 6\text{(center points)} = 30 \text{ experiments}\)
+
+Fractional (minimal):
+\(2^{3-1} \text{(factor levels)}* 1 \text{(no repetitions)} + 0\text{(center points)} = 4 \text{ experiments}\)
+
+\subsubsection{Aliasing}\label{aliasing}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{chapter005_DoE_files/figure-pdf/fig-conf-comparison-1.pdf}
+
+}
+
+\caption{\label{fig-conf-comparison}What is confounding?}
+
+\end{figure}%
+
+\subsubsection{Confounding}\label{confounding}
+
+\begin{table}
+
+\caption{\label{tbl-conf}Example calculation to show what confounding
+means}
+
+\centering{
+
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}cccr}
+\toprule
+A: Launch Angle & B: Arm Length & C: Rubber Bands & A = B:C \\ 
+\midrule\addlinespace[2.5pt]
+-1 & -1 & 1 & -1 \\ 
+1 & -1 & -1 & 1 \\ 
+-1 & 1 & -1 & -1 \\ 
+1 & 1 & 1 & 1 \\ 
+\bottomrule
+\end{tabular*}
+
+}
+
+\end{table}%
+
+\subsubsection{Resolution}\label{resolution}
+
+\begin{itemize}
+\tightlist
+\item
+  degree of confounding (or aliasing)
+\item
+  provides a way to classify designs based on how severely factors and
+  interactions are confounded
+\item
+  Higher resolution means less confounding and more reliable estimation
+  of effects
+
+  \begin{itemize}
+  \tightlist
+  \item
+    III: Main effects are confounded with two-way interactions
+  \item
+    IV: Main effects are confounded with three-way (or higher)
+    interactions, but two-way interactions are confounded with each
+    other
+  \item
+    V: Main effects and two-way interactions are confounded only with
+    three-way (or higher) interactions.
+  \end{itemize}
+\end{itemize}
+
+\subsubsection{practical implications}\label{practical-implications}
+
+\begin{itemize}
+\tightlist
+\item
+  Lower resolution (e.g., R-III): Cheaper (fewer runs) but riskier
+  because main effects may be confounded with two-way interactions.
+\end{itemize}
+
+\textbf{If interactions exist, you might misinterpret the results.}
+
+\begin{itemize}
+\tightlist
+\item
+  Higher resolution (e.g., R-V): More expensive (more runs) but provides
+  clearer estimates of main effects and two-way interactions.
+\end{itemize}
+
+\textbf{Preferred when interactions are suspected or critical.}
+
+\subsubsection{available designs and
+resoultion}\label{available-designs-and-resoultion}
+
+\pandocbounded{\includegraphics[keepaspectratio]{chapter005_DoE_files/figure-pdf/unnamed-chunk-6-1.pdf}}
+
 \bookmarksetup{startatroot}
 
 \chapter{References}\label{references-7}
@@ -13606,6 +13710,11 @@ American Statistical Association} 32 (December): 675--701.
 Greenhouse, Samuel W., and Seymour Geisser. 1959. {``On Methods in the
 Analysis of Profile Data.''} \emph{Psychometrika} 24 (June): 95--112.
 \url{https://doi.org/10.1007/bf02289823}.
+
+\bibitem[\citeproctext]{ref-Gr_mping_2014}
+Grömping, Ulrike. 2014. {``RPackageFrF2for Creating and Analyzing
+Fractional Factorial 2-Level Designs.''} \emph{Journal of Statistical
+Software} 56 (1). \url{https://doi.org/10.18637/jss.v056.i01}.
 
 \bibitem[\citeproctext]{ref-Hahs_Vaughn_2013}
 Hahs-Vaughn, Debbie L., and Richard G. Lomax. 2013. \emph{An
